@@ -41,11 +41,13 @@ const Header: React.FC = () => {
         {/* Right side - Theme Switch & CTA Buttons */}
         <div className="flex items-center space-x-4">
           {/* Theme Switch */}
-          <ThemeSwitch />
+          <div className="hidden md:block">
+            <ThemeSwitch />
+          </div>
           
           {/* Auth & CTA */}
-          <div className="flex items-center space-x-3">
-            <Button variant="ghost" size="sm" className="hidden md:inline-flex text-muted-foreground hover:text-foreground">
+          <div className="hidden md:flex items-center space-x-3">
+            <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
               Sign In
             </Button>
             <Button size="sm" className="bg-foreground text-background hover:bg-foreground/90 border-0 font-medium">
