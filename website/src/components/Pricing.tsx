@@ -20,7 +20,7 @@ const Pricing: React.FC = () => {
       period: 'forever',
       description: 'Perfect for getting started with AI-powered coding insights',
       badge: 'Most Popular',
-      badgeColor: 'bg-green-100 text-green-800',
+      badgeColor: 'bg-muted/50 text-foreground border border-border',
       features: [
         'Up to 100 tracked submissions/month',
         'Basic mistake pattern analysis',
@@ -44,7 +44,7 @@ const Pricing: React.FC = () => {
       period: 'per month',
       description: 'Advanced analytics and unlimited tracking for serious developers',
       badge: 'Best Value',
-      badgeColor: 'bg-blue-100 text-blue-800',
+      badgeColor: 'bg-muted/50 text-foreground border border-border',
       features: [
         'Everything in Free plan',
         'Unlimited tracked submissions',
@@ -68,7 +68,7 @@ const Pricing: React.FC = () => {
       period: 'per month',
       description: 'Collaborate and track progress across your entire development team',
       badge: 'Enterprise',
-      badgeColor: 'bg-purple-100 text-purple-800',
+      badgeColor: 'bg-muted/50 text-foreground border border-border',
       features: [
         'Everything in Pro',
         'Up to 10 team members',
@@ -89,19 +89,19 @@ const Pricing: React.FC = () => {
   ];
 
   return (
-    <section id="pricing" className="py-24 bg-white">
+    <section id="pricing" className="py-24 bg-background border-t border-border/20">
       <div className="container mx-auto px-4 md:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <Badge className="mb-4 bg-green-100 text-green-800 hover:bg-green-200">
+          <Badge className="mb-4 bg-muted/50 text-foreground border border-border font-mono">
             <AttachMoneyIcon className="w-4 h-4 mr-1" />
             Simple Pricing
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             Choose the perfect plan for
             <span className="gradient-text"> your journey</span>
           </h2>
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-xl text-muted-foreground leading-relaxed">
             Start free and upgrade as you grow. All plans include our core AI-powered analysis.
           </p>
         </div>
@@ -113,19 +113,19 @@ const Pricing: React.FC = () => {
               key={index} 
               className={`relative overflow-hidden transition-all duration-300 ${
                 plan.popular 
-                  ? 'border-2 border-blue-500 shadow-xl scale-105 bg-gradient-to-br from-blue-50 to-indigo-50' 
-                  : 'border-2 hover:border-gray-300 hover:shadow-lg bg-white'
+                  ? 'border-2 border-white/20 bg-card/50 shadow-xl scale-105' 
+                  : 'border border-border hover:border-white/20 hover:bg-card/30 bg-card/20'
               }`}
             >
               {plan.popular && (
-                <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-center py-2 text-sm font-semibold">
+                <div className="absolute top-0 left-0 right-0 bg-foreground text-background text-center py-2 text-sm font-semibold font-mono">
                   ⭐ Most Popular Choice
                 </div>
               )}
               
               <CardHeader className={`space-y-4 ${plan.popular ? 'pt-12' : 'pt-6'}`}>
                 <div className="flex items-center justify-between">
-                  <CardTitle className="text-2xl font-bold text-gray-900">
+                  <CardTitle className="text-2xl font-bold text-foreground">
                     {plan.name}
                   </CardTitle>
                   <Badge className={plan.badgeColor}>
@@ -135,10 +135,10 @@ const Pricing: React.FC = () => {
                 
                 <div className="space-y-2">
                   <div className="flex items-end space-x-1">
-                    <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
-                    <span className="text-gray-500 pb-1">/{plan.period}</span>
+                    <span className="text-4xl font-bold text-foreground font-mono">{plan.price}</span>
+                    <span className="text-muted-foreground pb-1 font-mono">/{plan.period}</span>
                   </div>
-                  <CardDescription className="text-gray-600">
+                  <CardDescription className="text-muted-foreground">
                     {plan.description}
                   </CardDescription>
                 </div>
@@ -147,8 +147,8 @@ const Pricing: React.FC = () => {
                   variant={plan.ctaVariant}
                   className={`w-full py-3 font-semibold ${
                     plan.ctaVariant === 'default' 
-                      ? 'bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white border-0' 
-                      : ''
+                      ? 'bg-foreground text-background hover:bg-foreground/90' 
+                      : 'border-border hover:bg-muted/50'
                   }`}
                 >
                   {plan.cta}
@@ -158,12 +158,12 @@ const Pricing: React.FC = () => {
               <CardContent className="space-y-6">
                 {/* Features */}
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-3">What's included:</h4>
+                  <h4 className="font-semibold text-foreground mb-3 font-mono">What's included:</h4>
                   <ul className="space-y-3">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start">
-                        <CheckCircleIcon className="w-5 h-5 mr-3 text-green-500 flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-gray-600">{feature}</span>
+                        <CheckCircleIcon className="w-5 h-5 mr-3 text-green-400 flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-muted-foreground">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -172,12 +172,12 @@ const Pricing: React.FC = () => {
                 {/* Limitations */}
                 {plan.limitations.length > 0 && (
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-3">Limitations:</h4>
+                    <h4 className="font-semibold text-foreground mb-3 font-mono">Limitations:</h4>
                     <ul className="space-y-2">
                       {plan.limitations.map((limitation, limitationIndex) => (
                         <li key={limitationIndex} className="flex items-start">
-                          <CloseIcon className="w-4 h-4 mr-3 text-gray-400 flex-shrink-0 mt-0.5" />
-                          <span className="text-sm text-gray-500">{limitation}</span>
+                          <CloseIcon className="w-4 h-4 mr-3 text-muted-foreground flex-shrink-0 mt-0.5" />
+                          <span className="text-sm text-muted-foreground">{limitation}</span>
                         </li>
                       ))}
                     </ul>
@@ -189,12 +189,12 @@ const Pricing: React.FC = () => {
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-gray-50 rounded-2xl p-8 md:p-12">
+        <div className="bg-muted/10 border border-border rounded-lg p-8 md:p-12">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 mb-4">
+            <h3 className="text-3xl font-bold text-foreground mb-4">
               Frequently Asked Questions
             </h3>
-            <p className="text-gray-600">
+            <p className="text-muted-foreground">
               Everything you need to know about our pricing and features
             </p>
           </div>
@@ -227,39 +227,39 @@ const Pricing: React.FC = () => {
               }
             ].map((faq, index) => (
               <div key={index} className="space-y-3">
-                <h4 className="font-semibold text-gray-900">{faq.question}</h4>
-                <p className="text-gray-600 text-sm leading-relaxed">{faq.answer}</p>
+                <h4 className="font-semibold text-foreground">{faq.question}</h4>
+                <p className="text-muted-foreground text-sm leading-relaxed">{faq.answer}</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Integration Highlight */}
-        <div className="text-center mt-16 p-8 bg-gradient-to-r from-gray-900 to-blue-900 rounded-2xl text-white">
+        <div className="text-center mt-16 p-8 bg-muted/10 border border-border rounded-lg">
           <div className="flex justify-center space-x-6 mb-6">
-            <div className="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
-              <GitHubIcon className="w-8 h-8" />
+            <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
+              <GitHubIcon className="w-8 h-8 text-foreground" />
             </div>
-            <div className="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
-              <NotesIcon className="w-8 h-8" />
+            <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
+              <NotesIcon className="w-8 h-8 text-foreground" />
             </div>
-            <div className="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
-              <StyleIcon className="w-8 h-8" />
+            <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
+              <StyleIcon className="w-8 h-8 text-foreground" />
             </div>
           </div>
-          <h3 className="text-2xl font-bold mb-4">
+          <h3 className="text-2xl font-bold mb-4 text-foreground">
             <AutoAwesomeIcon className="w-6 h-6 mr-2 inline" />
             Your Complete Coding Ecosystem
           </h3>
-          <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
+          <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
             The only tool that connects your practice to GitHub portfolio building, Notion knowledge management, and Anki memory retention.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
+            <Button variant="outline" className="border-border hover:bg-muted/50">
               <BusinessIcon className="w-4 h-4 mr-2" />
               Enterprise Solutions
             </Button>
-            <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
+            <Button variant="outline" className="border-border hover:bg-muted/50">
               <StarIcon className="w-4 h-4 mr-2" />
               See All Integrations
             </Button>

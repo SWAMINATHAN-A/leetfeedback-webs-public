@@ -1,4 +1,5 @@
 import React from 'react';
+import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Features from './components/Features';
@@ -9,16 +10,18 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App min-h-screen bg-white">
-      <Header />
-      <main>
-        <Hero />
-        <Features />
-        <HowItWorks />
-        <Pricing />
-      </main>
-      <Footer />
-    </div>
+    <ThemeProvider>
+      <div className="App min-h-screen bg-background">
+        <Header />
+        <main>
+          <Hero />
+          <Features />
+          <HowItWorks />
+          <Pricing />
+        </main>
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }
 

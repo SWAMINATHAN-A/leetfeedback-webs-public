@@ -1,0 +1,275 @@
+.theme-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+}
+
+.theme-switch #theme-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2196f3;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.sun-moon {
+  position: absolute;
+  content: "";
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  bottom: 3px;
+  background-color: yellow;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+#theme-input:checked + .slider {
+  background-color: #1a1a1a;
+}
+
+#theme-input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+#theme-input:checked + .slider .sun-moon {
+  -webkit-transform: translateX(22px);
+  -ms-transform: translateX(22px);
+  transform: translateX(22px);
+  background-color: white;
+  -webkit-animation: rotate-center 0.6s ease-in-out both;
+  animation: rotate-center 0.6s ease-in-out both;
+}
+
+.moon-dot {
+  opacity: 0;
+  transition: 0.4s;
+  fill: gray;
+}
+
+#theme-input:checked + .slider .sun-moon .moon-dot {
+  opacity: 1;
+}
+
+.slider.round {
+  border-radius: 28px;
+}
+
+.slider.round .sun-moon {
+  border-radius: 50%;
+}
+
+#moon-dot-1 {
+  left: 8px;
+  top: 2px;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  z-index: 4;
+}
+
+#moon-dot-2 {
+  left: 2px;
+  top: 8px;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  z-index: 4;
+}
+
+#moon-dot-3 {
+  left: 13px;
+  top: 15px;
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  z-index: 4;
+}
+
+#light-ray-1 {
+  left: -6px;
+  top: -6px;
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  z-index: -1;
+  fill: white;
+  opacity: 10%;
+}
+
+#light-ray-2 {
+  left: -50%;
+  top: -50%;
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  z-index: -1;
+  fill: white;
+  opacity: 10%;
+}
+
+#light-ray-3 {
+  left: -14px;
+  top: -14px;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  z-index: -1;
+  fill: white;
+  opacity: 10%;
+}
+
+.cloud-light {
+  position: absolute;
+  fill: #eee;
+  animation-name: cloud-move;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+}
+
+.cloud-dark {
+  position: absolute;
+  fill: #ccc;
+  animation-name: cloud-move;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-delay: 1s;
+}
+
+#cloud-1 {
+  left: 25px;
+  top: 12px;
+  width: 32px;
+}
+
+#cloud-2 {
+  left: 37px;
+  top: 8px;
+  width: 16px;
+}
+
+#cloud-3 {
+  left: 15px;
+  top: 20px;
+  width: 24px;
+}
+
+#cloud-4 {
+  left: 30px;
+  top: 15px;
+  width: 32px;
+}
+
+#cloud-5 {
+  left: 40px;
+  top: 11px;
+  width: 16px;
+}
+
+#cloud-6 {
+  left: 18px;
+  top: 22px;
+  width: 24px;
+}
+
+@keyframes cloud-move {
+  0% {
+    transform: translateX(0px);
+  }
+  40% {
+    transform: translateX(3px);
+  }
+  80% {
+    transform: translateX(-3px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+.stars {
+  transform: translateY(-26px);
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.star {
+  fill: white;
+  position: absolute;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  animation-name: star-twinkle;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+}
+
+#theme-input:checked + .slider .stars {
+  -webkit-transform: translateY(0);
+  -ms-transform: translateY(0);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+#star-1 {
+  width: 16px;
+  top: 2px;
+  left: 2px;
+  animation-delay: 0.3s;
+}
+
+#star-2 {
+  width: 5px;
+  top: 13px;
+  left: 2px;
+}
+
+#star-3 {
+  width: 10px;
+  top: 16px;
+  left: 8px;
+  animation-delay: 0.6s;
+}
+
+#star-4 {
+  width: 14px;
+  top: 0px;
+  left: 15px;
+  animation-delay: 1.3s;
+}
+
+@keyframes star-twinkle {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.2);
+  }
+  80% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes rotate-center {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

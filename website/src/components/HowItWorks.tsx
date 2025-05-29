@@ -7,8 +7,6 @@ import StyleIcon from '@mui/icons-material/Style';
 import GetAppIcon from '@mui/icons-material/GetApp';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import SpeedIcon from '@mui/icons-material/Speed';
-import LockIcon from '@mui/icons-material/Lock';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import SecurityIcon from '@mui/icons-material/Security';
 
@@ -61,18 +59,18 @@ const HowItWorks: React.FC = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-24 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section id="how-it-works" className="py-24 bg-background border-t border-border/20">
       <div className="container mx-auto px-4 md:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <Badge className="mb-4 bg-indigo-100 text-indigo-800 hover:bg-indigo-200">
+          <Badge className="mb-4 bg-muted/50 text-foreground border border-border font-mono">
             <AutoFixHighIcon className="w-4 h-4 mr-1" />
             Simple Process
           </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
             How <span className="gradient-text">LeetFeedback</span> Works
           </h2>
-          <p className="text-xl text-gray-600 leading-relaxed">
+          <p className="text-xl text-muted-foreground leading-relaxed">
             From installation to building your coding portfolio - everything happens automatically in the background.
           </p>
         </div>
@@ -83,31 +81,31 @@ const HowItWorks: React.FC = () => {
             <div key={index} className="relative">
               {/* Connection Line */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-16 left-full w-full h-0.5 bg-gradient-to-r from-blue-200 to-purple-200 z-0">
-                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-3 h-3 bg-purple-300 rounded-full"></div>
+                <div className="hidden lg:block absolute top-16 left-full w-full h-px bg-border z-0">
+                  <div className="absolute right-0 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-muted-foreground rounded-full"></div>
                 </div>
               )}
               
-              <Card className="relative z-10 h-full bg-white/80 backdrop-blur-sm border-2 hover:border-blue-200 hover:shadow-xl transition-all duration-300 group">
+              <Card className="relative z-10 h-full bg-card/30 border border-border hover:border-white/20 hover:bg-card/50 transition-all duration-300 group">
                 <CardHeader className="text-center space-y-4">
-                  <div className="mx-auto w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  <div className="mx-auto w-16 h-16 bg-muted/50 border border-border rounded-md flex items-center justify-center text-foreground font-bold text-xl shadow-lg group-hover:scale-105 transition-transform duration-300 font-mono">
                     {step.step}
                   </div>
-                  <div className="text-blue-600 group-hover:scale-110 transition-transform duration-300">
+                  <div className="text-foreground group-hover:scale-105 transition-transform duration-300">
                     {step.icon}
                   </div>
-                  <CardTitle className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                  <CardTitle className="text-xl font-bold text-foreground group-hover:text-white transition-colors">
                     {step.title}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <CardDescription className="text-gray-600 text-center leading-relaxed">
+                  <CardDescription className="text-muted-foreground text-center leading-relaxed">
                     {step.description}
                   </CardDescription>
                   <ul className="space-y-2">
                     {step.details.map((detail, detailIndex) => (
-                      <li key={detailIndex} className="flex items-start text-sm text-gray-500">
-                        <TrendingUpIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                      <li key={detailIndex} className="flex items-start text-sm text-muted-foreground">
+                        <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0 mt-0.5" />
                         {detail}
                       </li>
                     ))}
@@ -119,27 +117,27 @@ const HowItWorks: React.FC = () => {
         </div>
 
         {/* Integration Showcase */}
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-200">
+        <div className="bg-card/20 border border-border rounded-lg shadow-xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Left Side - Integration Visual */}
-            <div className="bg-gradient-to-br from-blue-600 to-purple-700 p-8 flex items-center justify-center min-h-[400px]">
-              <div className="text-center text-white">
+            <div className="bg-muted/10 p-8 flex items-center justify-center min-h-[400px] border-r border-border">
+              <div className="text-center">
                 <div className="grid grid-cols-3 gap-4 mb-6">
-                  <div className="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
-                    <GitHubIcon className="w-8 h-8" />
+                  <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
+                    <GitHubIcon className="w-8 h-8 text-foreground" />
                   </div>
-                  <div className="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
-                    <NotesIcon className="w-8 h-8" />
+                  <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
+                    <NotesIcon className="w-8 h-8 text-foreground" />
                   </div>
-                  <div className="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
-                    <StyleIcon className="w-8 h-8" />
+                  <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
+                    <StyleIcon className="w-8 h-8 text-foreground" />
                   </div>
                 </div>
-                <h3 className="text-2xl font-bold mb-4">All Your Tools Connected</h3>
-                <p className="text-blue-100 mb-6">
+                <h3 className="text-2xl font-bold mb-4 text-foreground">All Your Tools Connected</h3>
+                <p className="text-muted-foreground mb-6">
                   LeetFeedback seamlessly integrates with your existing workflow
                 </p>
-                <button className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center mx-auto">
+                <button className="bg-card/50 hover:bg-card/70 border border-border text-foreground px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center mx-auto">
                   <PlayArrowIcon className="w-5 h-5 mr-2" />
                   See Integration Demo
                 </button>
@@ -149,10 +147,10 @@ const HowItWorks: React.FC = () => {
             {/* Right Side - Benefits */}
             <div className="p-8 space-y-6">
               <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                <h3 className="text-2xl font-bold text-foreground mb-4">
                   Why Developers Choose LeetFeedback
                 </h3>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   The only tool that transforms your coding practice into a comprehensive learning and portfolio system.
                 </p>
               </div>
@@ -181,30 +179,30 @@ const HowItWorks: React.FC = () => {
                   }
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-start space-x-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600">
+                    <div className="flex-shrink-0 w-8 h-8 bg-muted/30 border border-border rounded-md flex items-center justify-center text-foreground">
                       {benefit.icon}
                     </div>
                     <div>
-                      <h4 className="font-semibold text-gray-900">{benefit.title}</h4>
-                      <p className="text-sm text-gray-600">{benefit.description}</p>
+                      <h4 className="font-semibold text-foreground">{benefit.title}</h4>
+                      <p className="text-sm text-muted-foreground">{benefit.description}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="pt-6 border-t border-gray-200">
+              <div className="pt-6 border-t border-border">
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
-                    <div className="text-2xl font-bold text-blue-600">15min</div>
-                    <div className="text-xs text-gray-500">Setup time</div>
+                    <div className="text-2xl font-bold text-foreground font-mono">15min</div>
+                    <div className="text-xs text-muted-foreground font-mono">Setup time</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-green-600">100%</div>
-                    <div className="text-xs text-gray-500">Automated</div>
+                    <div className="text-2xl font-bold text-green-400 font-mono">100%</div>
+                    <div className="text-xs text-muted-foreground font-mono">Automated</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-purple-600">∞</div>
-                    <div className="text-xs text-gray-500">Platforms</div>
+                    <div className="text-2xl font-bold text-blue-400 font-mono">∞</div>
+                    <div className="text-xs text-muted-foreground font-mono">Platforms</div>
                   </div>
                 </div>
               </div>
