@@ -10,6 +10,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import LockIcon from "@mui/icons-material/Lock";
 import StarIcon from "@mui/icons-material/Star";
+import PlatformIcon from "./PlatformIcon";
 
 const Hero: React.FC = () => {
     return (
@@ -118,23 +119,17 @@ const Hero: React.FC = () => {
                     {/* Platform Showcase */}
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto fade-in">
                         {[
-                            { name: "LeetCode", color: "border-orange-500/20" },
-                            {
-                                name: "GeeksforGeeks",
-                                color: "border-green-500/20",
-                            },
-                            {
-                                name: "HackerRank",
-                                color: "border-emerald-500/20",
-                            },
-                            { name: "CodeChef", color: "border-yellow-500/20" },
+                            { name: "LeetCode", color: "border-orange-500/20", key: "leetcode" },
+                            { name: "GeeksforGeeks", color: "border-green-500/20", key: "geeksforgeeks" },
+                            { name: "HackerRank", color: "border-emerald-500/20", key: "hackerrank" },
+                            { name: "CodeChef", color: "border-yellow-500/20", key: "codechef" },
                         ].map((platform, index) => (
                             <Card
                                 key={platform.name}
                                 className={`p-6 text-center border-2 ${platform.color} hover:bg-muted/20 transition-all duration-300 bg-card/50`}
                             >
-                                <div className="w-12 h-12 mx-auto mb-3 rounded-md bg-muted/50 flex items-center justify-center text-foreground font-bold text-lg font-mono border border-border">
-                                    {platform.name.charAt(0)}
+                                <div className="w-12 h-12 mx-auto mb-3 rounded-md bg-muted/50 flex items-center justify-center border border-border">
+                                    <PlatformIcon platform={platform.key as any} size="lg" />
                                 </div>
                                 <p className="font-semibold text-foreground text-sm">
                                     {platform.name}

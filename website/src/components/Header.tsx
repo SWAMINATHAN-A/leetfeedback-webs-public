@@ -4,6 +4,7 @@ import { Badge } from './ui/badge';
 import MenuIcon from '@mui/icons-material/Menu';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import ThemeSwitch from './ThemeSwitch';
+import PlatformIcon from './PlatformIcon';
 
 const Header: React.FC = () => {
   return (
@@ -36,6 +37,12 @@ const Header: React.FC = () => {
           <a href="#testimonials" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Reviews
           </a>
+          <div className="flex items-center space-x-4 pl-4 border-l border-border">
+            <PlatformIcon platform="leetcode" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
+            <PlatformIcon platform="geeksforgeeks" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
+            <PlatformIcon platform="hackerrank" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
+            <PlatformIcon platform="codechef" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
+          </div>
         </nav>
 
         {/* Right side - Theme Switch & CTA Buttons */}

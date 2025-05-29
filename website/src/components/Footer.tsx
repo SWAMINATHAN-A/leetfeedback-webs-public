@@ -7,6 +7,7 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
+import PlatformIcon from './PlatformIcon';
 
 const Footer: React.FC = () => {
   return (
@@ -88,28 +89,24 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Platform Support Section */}
-        <div className="border-t border-border pt-8 mb-8">
-          <h3 className="text-lg font-semibold mb-4 text-center text-foreground font-mono">Supported Platforms</h3>
-          <div className="flex flex-wrap justify-center items-center gap-6 text-muted-foreground">
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-muted/50 border border-border rounded-sm flex items-center justify-center text-foreground text-xs font-bold font-mono">L</div>
-              <span>LeetCode</span>
+        <div className="mt-8 text-center p-6 bg-muted/10 border border-border rounded-lg">
+          <h3 className="text-xl font-bold mb-4 text-foreground">Supported Platforms</h3>
+          <div className="flex flex-wrap justify-center gap-8 items-center">
+            <div className="flex flex-col items-center space-y-2">
+              <PlatformIcon platform="leetcode" size="lg" className="opacity-80 hover:opacity-100 transition-opacity" />
+              <span className="text-sm font-medium text-muted-foreground">LeetCode</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-muted/50 border border-border rounded-sm flex items-center justify-center text-foreground text-xs font-bold font-mono">G</div>
-              <span>GeeksforGeeks</span>
+            <div className="flex flex-col items-center space-y-2">
+              <PlatformIcon platform="geeksforgeeks" size="lg" className="opacity-80 hover:opacity-100 transition-opacity" />
+              <span className="text-sm font-medium text-muted-foreground">GeeksforGeeks</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-muted/50 border border-border rounded-sm flex items-center justify-center text-foreground text-xs font-bold font-mono">H</div>
-              <span>HackerRank</span>
+            <div className="flex flex-col items-center space-y-2">
+              <PlatformIcon platform="hackerrank" size="lg" className="opacity-80 hover:opacity-100 transition-opacity" />
+              <span className="text-sm font-medium text-muted-foreground">HackerRank</span>
             </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-muted/50 border border-border rounded-sm flex items-center justify-center text-foreground text-xs font-bold font-mono">C</div>
-              <span>CodeChef</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-6 h-6 bg-muted/50 border border-border rounded-sm flex items-center justify-center text-foreground text-xs font-bold font-mono">C</div>
-              <span>Codeforces</span>
+            <div className="flex flex-col items-center space-y-2">
+              <PlatformIcon platform="codechef" size="lg" className="opacity-80 hover:opacity-100 transition-opacity" />
+              <span className="text-sm font-medium text-muted-foreground">CodeChef</span>
             </div>
           </div>
         </div>
