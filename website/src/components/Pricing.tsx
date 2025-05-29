@@ -2,6 +2,15 @@ import React from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import NotesIcon from '@mui/icons-material/Notes';
+import StyleIcon from '@mui/icons-material/Style';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CloseIcon from '@mui/icons-material/Close';
+import BusinessIcon from '@mui/icons-material/Business';
+import StarIcon from '@mui/icons-material/Star';
+import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 
 const Pricing: React.FC = () => {
   const plans = [
@@ -37,14 +46,14 @@ const Pricing: React.FC = () => {
       badge: 'Best Value',
       badgeColor: 'bg-blue-100 text-blue-800',
       features: [
+        'Everything in Free plan',
         'Unlimited tracked submissions',
+        'GitHub auto-commit with AI notes',
+        'Notion workspace integration',
+        'Anki flashcard generation',
         'Advanced AI analysis & insights',
-        'Daily detailed reports',
         'All platforms supported',
         'Priority email support',
-        'Advanced analytics & trends',
-        'Code comparison tools',
-        'Performance benchmarking',
         'Export data to CSV/PDF',
         'Custom learning goals'
       ],
@@ -63,14 +72,14 @@ const Pricing: React.FC = () => {
       features: [
         'Everything in Pro',
         'Up to 10 team members',
+        'Shared GitHub organization repos',
+        'Team Notion workspace templates',
+        'Collaborative Anki decks',
         'Team analytics dashboard',
-        'Collaborative code reviews',
-        'Team performance insights',
         'Admin controls & permissions',
         'Slack/Discord integrations',
         'Custom reporting',
-        'Dedicated account manager',
-        'SSO integration'
+        'Dedicated account manager'
       ],
       limitations: [],
       cta: 'Contact Sales',
@@ -85,7 +94,8 @@ const Pricing: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
           <Badge className="mb-4 bg-green-100 text-green-800 hover:bg-green-200">
-            💰 Simple Pricing
+            <AttachMoneyIcon className="w-4 h-4 mr-1" />
+            Simple Pricing
           </Badge>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
             Choose the perfect plan for
@@ -152,9 +162,7 @@ const Pricing: React.FC = () => {
                   <ul className="space-y-3">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start">
-                        <svg className="w-5 h-5 mr-3 text-green-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                        </svg>
+                        <CheckCircleIcon className="w-5 h-5 mr-3 text-green-500 flex-shrink-0 mt-0.5" />
                         <span className="text-sm text-gray-600">{feature}</span>
                       </li>
                     ))}
@@ -168,9 +176,7 @@ const Pricing: React.FC = () => {
                     <ul className="space-y-2">
                       {plan.limitations.map((limitation, limitationIndex) => (
                         <li key={limitationIndex} className="flex items-start">
-                          <svg className="w-4 h-4 mr-3 text-gray-400 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                          </svg>
+                          <CloseIcon className="w-4 h-4 mr-3 text-gray-400 flex-shrink-0 mt-0.5" />
                           <span className="text-sm text-gray-500">{limitation}</span>
                         </li>
                       ))}
@@ -228,17 +234,36 @@ const Pricing: React.FC = () => {
           </div>
         </div>
 
-        {/* Enterprise CTA */}
-        <div className="text-center mt-16 p-8 bg-gradient-to-r from-blue-600 to-purple-700 rounded-2xl text-white">
+        {/* Integration Highlight */}
+        <div className="text-center mt-16 p-8 bg-gradient-to-r from-gray-900 to-blue-900 rounded-2xl text-white">
+          <div className="flex justify-center space-x-6 mb-6">
+            <div className="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
+              <GitHubIcon className="w-8 h-8" />
+            </div>
+            <div className="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
+              <NotesIcon className="w-8 h-8" />
+            </div>
+            <div className="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center backdrop-blur-sm">
+              <StyleIcon className="w-8 h-8" />
+            </div>
+          </div>
           <h3 className="text-2xl font-bold mb-4">
-            Need something custom for your organization?
+            <AutoAwesomeIcon className="w-6 h-6 mr-2 inline" />
+            Your Complete Coding Ecosystem
           </h3>
           <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-            We offer enterprise solutions with custom integrations, dedicated support, and volume pricing for larger teams.
+            The only tool that connects your practice to GitHub portfolio building, Notion knowledge management, and Anki memory retention.
           </p>
-          <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
-            Contact Enterprise Sales
-          </Button>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
+              <BusinessIcon className="w-4 h-4 mr-2" />
+              Enterprise Solutions
+            </Button>
+            <Button variant="outline" className="bg-white/10 border-white/30 text-white hover:bg-white/20">
+              <StarIcon className="w-4 h-4 mr-2" />
+              See All Integrations
+            </Button>
+          </div>
         </div>
       </div>
     </section>
