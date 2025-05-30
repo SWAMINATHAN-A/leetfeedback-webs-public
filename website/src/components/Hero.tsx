@@ -66,7 +66,7 @@ const Hero: React.FC = () => {
                             <strong className="text-foreground">
                                 Anki flashcards
                             </strong>{" "}
-                            from your coding mistakes. The complete learning
+                            from your <span className="text-red-500">coding mistakes</span>. The complete learning
                             ecosystem.
                         </p>
                     </BlurFade>
