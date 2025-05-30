@@ -128,7 +128,7 @@ const Features: React.FC = () => {
                       {feature.badge}
                     </Badge>
                   </div>
-                  <CardTitle className="text-xl font-bold text-foreground group-hover:text-white transition-colors">
+                  <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                     {feature.title}
                   </CardTitle>
                 </CardHeader>
@@ -170,7 +170,7 @@ const Features: React.FC = () => {
                       {feature.badge}
                     </Badge>
                   </div>
-                  <CardTitle className="text-lg font-semibold text-foreground group-hover:text-white transition-colors">
+                  <CardTitle className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                     {feature.title}
                   </CardTitle>
                 </CardHeader>

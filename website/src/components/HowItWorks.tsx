@@ -94,7 +94,7 @@ const HowItWorks: React.FC = () => {
                   <div className="text-foreground group-hover:scale-105 transition-transform duration-300">
                     {step.icon}
                   </div>
-                  <CardTitle className="text-xl font-bold text-foreground group-hover:text-white transition-colors">
+                  <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                     {step.title}
                   </CardTitle>
                 </CardHeader>
