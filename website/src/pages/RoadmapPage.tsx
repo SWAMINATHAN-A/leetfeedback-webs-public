@@ -26,6 +26,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import HomeIcon from "@mui/icons-material/Home";
+import ContactButton from '@/components/ui/contact-button';
 
 interface RoadmapItem {
     id: number;
@@ -397,12 +398,12 @@ const RoadmapPage: React.FC = () => {
                             <h4 className="text-2xl font-semibold text-white mb-3 font-mono">
                                 Join Our Journey
                             </h4>
-                            <p className="text-white/70 text-lg leading-relaxed font-mono">
-                                We're building the future of coding practice.
-                                Follow our progress and be part of the community
-                                that's transforming how developers learn and
-                                improve their DSA skills.
+                            <p className="text-white/70 text-lg leading-relaxed font-mono mb-6">
+                                Looking for developers to contribute code and testers to help shape the future of LeetFeedback.
                             </p>
+                            <div className="flex justify-center">
+                                <ContactButton />
+                            </div>
                         </div>
                     </BlurFade>
                 </div>
