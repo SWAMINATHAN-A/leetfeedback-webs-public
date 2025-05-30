@@ -143,7 +143,7 @@ const Hero: React.FC = () => {
                         ].map((platform, index) => (
                             <BlurFade key={platform.name} delay={1.75 + index * 0.1}>
                                 <Card
-                                    className={`p-6 text-center border-2 ${platform.color} hover:bg-muted/20 transition-all duration-300 bg-card/50`}
+                                    className={`p-6 text-center border-2 border-border hover:bg-muted/20 transition-all duration-300 bg-card/50`}
                                 >
                                     <div className="w-12 h-12 mx-auto mb-3 rounded-md bg-muted/50 flex items-center justify-center border border-border">
                                         <PlatformIcon platform={platform.key as any} size="lg" />
