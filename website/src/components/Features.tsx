@@ -106,7 +106,7 @@ const Features: React.FC = () => {
             delay={0.5}
             by="word"
           >
-            Everything you need to level up your coding
+            100% automated, install and forget it is there
           </TextAnimate>
           <BlurFade delay={0.75}>
             <p className="text-xl text-muted-foreground leading-relaxed">
