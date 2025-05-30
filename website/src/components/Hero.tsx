@@ -35,7 +35,7 @@ const Hero: React.FC = () => {
                     {/* Beta Badge */}
                     <BlurFade delay={0.25}>
                         <div className="mb-8">
-                            <Badge className="bg-muted/50 text-foreground border border-border px-4 py-2 text-sm font-mono">
+                            <Badge className="bg-muted/50 text-foreground border border-border px-4 py-2 text-sm font-mono hover:bg-white dark:hover:bg-white hover:text-black dark:hover:text-black">
                                 <RocketLaunchIcon className="w-4 h-4 mr-2" />
                                 Coming Soon - View Roadmap
                             </Badge>

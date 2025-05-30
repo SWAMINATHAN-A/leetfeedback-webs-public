@@ -67,7 +67,7 @@ const HowItWorks: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
           <BlurFade delay={0.25}>
-            <Badge className="mb-4 bg-muted/50 text-foreground border border-border font-mono">
+            <Badge className="mb-4 bg-muted/50 text-foreground border border-border font-mono hover:bg-white dark:hover:bg-white hover:text-black dark:hover:text-black">
               <AutoFixHighIcon className="w-4 h-4 mr-1" />
               Simple Process
             </Badge>
