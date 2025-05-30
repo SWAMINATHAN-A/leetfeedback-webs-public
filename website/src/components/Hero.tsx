@@ -11,6 +11,9 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import LockIcon from "@mui/icons-material/Lock";
 import StarIcon from "@mui/icons-material/Star";
 import PlatformIcon from "./PlatformIcon";
+import { BlurFade } from "./magicui/blur-fade";
+import { TextAnimate } from "./magicui/text-animate";
+import { NumberTicker } from "./magicui/number-ticker";
 
 const Hero: React.FC = () => {
     return (

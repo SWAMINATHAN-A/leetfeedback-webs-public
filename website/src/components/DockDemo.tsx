@@ -46,9 +46,9 @@ export function DockDemo() {
   };
 
   return (
-    <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50">
+    <div className="fixed bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-50">
       <TooltipProvider>
-        <Dock direction="middle">
+        <Dock direction="middle" iconSize={40} iconMagnification={48} className="md:h-[72px] h-[56px] md:px-6 px-3 md:gap-4 gap-2">
           {DATA.navbar.map((item) => (
             <DockIcon key={item.label}>
               <Tooltip>
@@ -61,7 +61,7 @@ export function DockDemo() {
                       "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10"
                     )}
                   >
-                    <item.icon className="size-5 text-foreground" />
+                    <item.icon className="md:size-5 size-4 text-foreground" />
                   </button>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -83,9 +83,9 @@ export function DockDemo() {
                   )}
                 >
                   {isDark ? (
-                    <LightModeIcon className="size-5 text-foreground" />
+                    <LightModeIcon className="md:size-5 size-4 text-foreground" />
                   ) : (
-                    <DarkModeIcon className="size-5 text-foreground" />
+                    <DarkModeIcon className="md:size-5 size-4 text-foreground" />
                   )}
                 </button>
               </TooltipTrigger>
