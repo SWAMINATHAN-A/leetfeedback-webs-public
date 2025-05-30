@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { IconMenu2, IconX } from "@tabler/icons-react";
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import {
   motion,
   AnimatePresence,
@@ -224,9 +225,9 @@ export const MobileNavToggle = ({
   onClick: () => void;
 }) => {
   return isOpen ? (
-    <IconX className="text-black dark:text-white" onClick={onClick} />
+    <CloseIcon className="text-black dark:text-white" onClick={onClick} />
   ) : (
-    <IconMenu2 className="text-black dark:text-white" onClick={onClick} />
+    <MenuIcon className="text-black dark:text-white" onClick={onClick} />
   );
 };
 
