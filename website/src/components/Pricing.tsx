@@ -151,7 +151,7 @@ const Pricing: React.FC = () => {
                 <div className="space-y-2">
                   <div className="flex items-end space-x-1">
                     <span className="text-4xl font-bold text-foreground font-mono">
-                      ${plan.priceValue === 0 ? '0' : <NumberTicker value={plan.priceValue} decimalPlaces={2} />}
+                      {plan.price}
                     </span>
                     <span className="text-muted-foreground pb-1 font-mono">/{plan.period}</span>
                   </div>
