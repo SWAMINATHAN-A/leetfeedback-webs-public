@@ -17,24 +17,7 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import PlatformIcon from '../PlatformIcon';
 
 export function ResizableNavbarDemo() {
-  const navItems = [
-    {
-      name: "Features",
-      link: "#features",
-    },
-    {
-      name: "How it Works",
-      link: "#how-it-works",
-    },
-    {
-      name: "Pricing",
-      link: "#pricing",
-    },
-    {
-      name: "Reviews",
-      link: "#testimonials",
-    },
-  ];
+  const navItems = [];
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -62,8 +45,11 @@ export function ResizableNavbarDemo() {
               <PlatformIcon platform="hackerrank" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
               <PlatformIcon platform="codechef" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
             </div>
-            <NavbarButton variant="secondary">Sign In</NavbarButton>
-            <NavbarButton variant="primary">Add to Chrome</NavbarButton>
+            <div className="h-6 w-px bg-border"></div>
+            <div className="flex items-center gap-3">
+              <NavbarButton variant="secondary">Sign In</NavbarButton>
+              <NavbarButton variant="primary">Add to Chrome</NavbarButton>
+            </div>
           </div>
         </NavBody>
 

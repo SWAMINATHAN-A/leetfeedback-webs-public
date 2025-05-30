@@ -14,7 +14,7 @@ import PlatformIcon from "./PlatformIcon";
 
 const Hero: React.FC = () => {
     return (
-        <section className="relative overflow-hidden bg-background pt-20 pb-32 grid-pattern">
+        <section id="home" className="relative overflow-hidden bg-background pt-20 pb-32 grid-pattern">
             {/* Floating Elements - Minimal */}
             <div className="absolute top-20 left-10 w-32 h-32 border border-border/20 rounded-full opacity-20 float dark:border-white/10"></div>
             <div
