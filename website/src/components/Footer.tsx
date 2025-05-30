@@ -127,15 +127,15 @@ const Footer: React.FC = () => {
         {/* Extension Download CTA */}
         <div className="mt-8 text-center p-6 bg-muted/10 border border-border rounded-lg">
           <h3 className="text-xl font-bold mb-2 text-foreground">Ready to Level Up Your Coding?</h3>
-          <p className="text-muted-foreground mb-4">Join thousands of developers already using LeetFeedback</p>
+          <p className="text-muted-foreground mb-4">Coming Soon - Join our waitlist for early access</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button className="bg-foreground text-background px-6 py-2 rounded-lg font-medium hover:bg-foreground/90 transition-colors flex items-center justify-center">
+            <button className="w-[240px] bg-foreground text-background px-6 py-2 rounded-lg font-medium hover:bg-foreground/90 transition-colors flex items-center justify-center">
               <RocketLaunchIcon className="w-4 h-4 mr-2" />
               Add to Chrome - Free
             </button>
-            <button className="border border-border text-foreground px-6 py-2 rounded-lg font-medium hover:bg-muted/50 transition-colors flex items-center justify-center">
-              <PlayArrowIcon className="w-4 h-4 mr-2" />
-              View Demo
+            <button className="w-[240px] border border-border text-foreground px-6 py-2 rounded-lg font-medium hover:bg-muted/50 transition-colors flex items-center justify-center">
+              <PlayArrowIcon className="w-8 h-8 mr-2" />
+              Watch Demo Video
             </button>
           </div>
         </div>

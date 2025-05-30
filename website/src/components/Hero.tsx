@@ -37,7 +37,7 @@ const Hero: React.FC = () => {
                         <div className="mb-8">
                             <Badge className="bg-muted/50 text-foreground border border-border px-4 py-2 text-sm font-mono">
                                 <RocketLaunchIcon className="w-4 h-4 mr-2" />
-                                Now in Beta - Join <NumberTicker value={10000} />+ developers
+                                Coming Soon - View Roadmap
                             </Badge>
                         </div>
                     </BlurFade>
@@ -98,7 +98,7 @@ const Hero: React.FC = () => {
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
                             <RainbowButton
                                 size="lg"
-                                className="px-8 py-4 text-lg font-semibold"
+                                className="w-[240px] px-8 py-4 text-lg font-semibold"
                             >
                                 <CheckCircleIcon className="w-5 h-5 mr-2" />
                                 Add to Chrome - Free
@@ -107,10 +107,10 @@ const Hero: React.FC = () => {
                             <RainbowButton
                                 variant="outline"
                                 size="lg"
-                                className="px-8 py-4 text-lg font-semibold"
+                                className="w-[240px] px-8 py-4 text-lg font-semibold"
                             >
-                                <PlayArrowIcon className="w-5 h-5 mr-2" />
-                                Watch Demo
+                                <PlayArrowIcon className="w-8 h-8 mr-2" />
+                                Watch Demo Video
                             </RainbowButton>
                         </div>
                     </BlurFade>
