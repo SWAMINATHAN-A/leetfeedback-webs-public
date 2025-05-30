@@ -104,7 +104,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minWidth: "800px",
       }}
       className={cn(
-        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-full bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
+        "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start rounded-2xl bg-transparent px-4 py-2 lg:flex dark:bg-transparent",
         visible && "bg-white/10 dark:bg-neutral-950/10 backdrop-blur-md border border-white/20 dark:border-white/10",
         className,
       )}
@@ -157,7 +157,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         width: visible ? "90%" : "100%",
         paddingRight: visible ? "12px" : "0px",
         paddingLeft: visible ? "12px" : "0px",
-        borderRadius: visible ? "4px" : "2rem",
+        borderRadius: visible ? "1rem" : "1rem",
         y: visible ? 20 : 0,
       }}
       transition={{
@@ -206,7 +206,7 @@ export const MobileNavMenu = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className={cn(
-            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-lg bg-white/10 dark:bg-neutral-950/10 backdrop-blur-md border border-white/20 dark:border-white/10 px-4 py-8",
+            "absolute inset-x-0 top-16 z-50 flex w-full flex-col items-start justify-start gap-4 rounded-2xl bg-white dark:bg-neutral-950 backdrop-blur-md border border-white/20 dark:border-white/10 px-4 py-8",
             className,
           )}
         >
