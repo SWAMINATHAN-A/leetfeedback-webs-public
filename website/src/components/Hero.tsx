@@ -14,6 +14,7 @@ import PlatformIcon from "./PlatformIcon";
 import { BlurFade } from "./magicui/blur-fade";
 import { TextAnimate } from "./magicui/text-animate";
 import { NumberTicker } from "./magicui/number-ticker";
+import { RainbowButton } from "./magicui/rainbow-button";
 
 const Hero: React.FC = () => {
     return (
@@ -95,22 +96,22 @@ const Hero: React.FC = () => {
                     {/* CTA Buttons */}
                     <BlurFade delay={1.25}>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-                            <Button
+                            <RainbowButton
                                 size="lg"
-                                className="bg-foreground text-background hover:bg-foreground/90 px-8 py-4 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+                                className="px-8 py-4 text-lg font-semibold"
                             >
                                 <CheckCircleIcon className="w-5 h-5 mr-2" />
                                 Add to Chrome - Free
-                            </Button>
+                            </RainbowButton>
 
-                            <Button
+                            <RainbowButton
                                 variant="outline"
                                 size="lg"
-                                className="px-8 py-4 text-lg font-semibold border-border hover:bg-muted/50 transition-all duration-300"
+                                className="px-8 py-4 text-lg font-semibold"
                             >
                                 <PlayArrowIcon className="w-5 h-5 mr-2" />
                                 Watch Demo
-                            </Button>
+                            </RainbowButton>
                         </div>
                     </BlurFade>
 
