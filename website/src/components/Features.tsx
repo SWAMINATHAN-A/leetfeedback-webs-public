@@ -8,6 +8,9 @@ import AnalyticsIcon from '@mui/icons-material/Analytics';
 import SmartToyIcon from '@mui/icons-material/SmartToy';
 import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
+import { BlurFade } from './magicui/blur-fade';
+import { TextAnimate } from './magicui/text-animate';
+import { NumberTicker } from './magicui/number-ticker';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
@@ -90,30 +93,41 @@ const Features: React.FC = () => {
       <div className="container mx-auto px-4 md:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <Badge className="mb-4 bg-muted/50 text-foreground border border-border font-mono">
-            <AutoFixHighIcon className="w-4 h-4 mr-1" />
-            Core Features
-          </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Everything you need to
-            <span className="gradient-text"> level up</span> your coding
-          </h2>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Transform your coding practice with powerful integrations and AI-driven insights that actually help you improve.
-          </p>
+          <BlurFade delay={0.25}>
+            <Badge className="mb-4 bg-muted/50 text-foreground border border-border font-mono">
+              <AutoFixHighIcon className="w-4 h-4 mr-1" />
+              Core Features
+            </Badge>
+          </BlurFade>
+          <TextAnimate
+            as="h2"
+            className="text-4xl md:text-5xl font-bold text-foreground mb-6"
+            animation="blurInUp"
+            delay={0.5}
+            by="word"
+          >
+            Everything you need to level up your coding
+          </TextAnimate>
+          <BlurFade delay={0.75}>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              Transform your coding practice with powerful integrations and AI-driven insights that actually help you improve.
+            </p>
+          </BlurFade>
         </div>
 
         {/* Primary Features - Highlighted */}
         <div className="mb-20">
-          <h3 className="text-2xl font-bold text-center text-foreground mb-12 font-mono">
-            Game-Changing Features
-          </h3>
+          <BlurFade delay={0.25}>
+            <h3 className="text-2xl font-bold text-center text-foreground mb-12 font-mono">
+              Game-Changing Features
+            </h3>
+          </BlurFade>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {primaryFeatures.map((feature, index) => (
-              <Card 
-                key={index} 
-                className="group hover:shadow-xl transition-all duration-300 border-2 border-border bg-card/50 relative overflow-hidden hover:border-white/20"
-              >
+              <BlurFade key={index} delay={1 + index * 0.2}>
+                <Card 
+                  className="group hover:shadow-xl transition-all duration-300 border-2 border-border bg-card/50 relative overflow-hidden hover:border-white/20"
+                >
                 {/* Highlight Badge */}
                 <div className="absolute top-0 right-0 bg-foreground text-background text-xs px-3 py-1 rounded-bl-md font-mono font-semibold">
                   FEATURED
@@ -145,7 +159,8 @@ const Features: React.FC = () => {
                     ))}
                   </ul>
                 </CardContent>
-              </Card>
+                </Card>
+              </BlurFade>
             ))}
           </div>
         </div>
@@ -157,10 +172,10 @@ const Features: React.FC = () => {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {secondaryFeatures.map((feature, index) => (
-              <Card 
-                key={index} 
-                className="group hover:shadow-lg transition-all duration-300 border border-border hover:border-white/20 bg-card/30"
-              >
+              <BlurFade key={index} delay={1.5 + index * 0.1}>
+                <Card 
+                  className="group hover:shadow-lg transition-all duration-300 border border-border bg-card/30 hover:bg-card/50"
+                >
                 <CardHeader className="space-y-3">
                   <div className="flex items-center justify-between">
                     <div className="text-muted-foreground group-hover:text-foreground group-hover:scale-110 transition-all duration-300">
@@ -187,7 +202,8 @@ const Features: React.FC = () => {
                     ))}
                   </ul>
                 </CardContent>
-              </Card>
+                </Card>
+              </BlurFade>
             ))}
           </div>
         </div>

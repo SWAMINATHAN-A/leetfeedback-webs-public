@@ -11,12 +11,16 @@ import CloseIcon from '@mui/icons-material/Close';
 import BusinessIcon from '@mui/icons-material/Business';
 import StarIcon from '@mui/icons-material/Star';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import { BlurFade } from './magicui/blur-fade';
+import { TextAnimate } from './magicui/text-animate';
+import { NumberTicker } from './magicui/number-ticker';
 
 const Pricing: React.FC = () => {
   const plans = [
     {
       name: 'Free',
       price: '$0',
+      priceValue: 0,
       period: 'forever',
       description: 'Perfect for getting started with AI-powered coding insights',
       badge: 'Most Popular',
@@ -41,6 +45,7 @@ const Pricing: React.FC = () => {
     {
       name: 'Pro',
       price: '$9.99',
+      priceValue: 9.99,
       period: 'per month',
       description: 'Advanced analytics and unlimited tracking for serious developers',
       badge: 'Best Value',
@@ -65,6 +70,7 @@ const Pricing: React.FC = () => {
     {
       name: 'Teams',
       price: '$29.99',
+      priceValue: 29.99,
       period: 'per month',
       description: 'Collaborate and track progress across your entire development team',
       badge: 'Enterprise',
@@ -93,30 +99,39 @@ const Pricing: React.FC = () => {
       <div className="container mx-auto px-4 md:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <Badge className="mb-4 bg-muted/50 text-foreground border border-border font-mono">
-            <AttachMoneyIcon className="w-4 h-4 mr-1" />
-            Simple Pricing
-          </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Choose the perfect plan for
-            <span className="gradient-text"> your journey</span>
-          </h2>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Start free and upgrade as you grow. All plans include our core AI-powered analysis.
-          </p>
+          <BlurFade delay={0.25}>
+            <Badge className="mb-4 bg-muted/50 text-foreground border border-border font-mono">
+              <AttachMoneyIcon className="w-4 h-4 mr-1" />
+              Simple Pricing
+            </Badge>
+          </BlurFade>
+          <TextAnimate
+            as="h2"
+            className="text-4xl md:text-5xl font-bold text-foreground mb-6"
+            animation="blurInUp"
+            delay={0.5}
+            by="word"
+          >
+            Choose the perfect plan for your growth
+          </TextAnimate>
+          <BlurFade delay={0.75}>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              Start free, upgrade as you scale. Every plan includes our core features.
+            </p>
+          </BlurFade>
         </div>
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {plans.map((plan, index) => (
-            <Card 
-              key={index} 
-              className={`relative overflow-hidden transition-all duration-300 ${
-                plan.popular 
-                  ? 'border-2 border-white/20 bg-card/50 shadow-xl scale-105' 
-                  : 'border border-border hover:border-white/20 hover:bg-card/30 bg-card/20'
-              }`}
-            >
+            <BlurFade key={index} delay={1 + index * 0.2}>
+              <Card 
+                className={`relative overflow-hidden transition-all duration-300 ${
+                  plan.popular 
+                    ? 'border-2 border-white/20 bg-card/50 shadow-xl scale-105' 
+                    : 'border border-border hover:border-white/20 hover:bg-card/30 bg-card/20'
+                }`}
+              >
               {plan.popular && (
                 <div className="absolute top-0 left-0 right-0 bg-foreground text-background text-center py-2 text-sm font-semibold font-mono">
                   ⭐ Most Popular Choice
@@ -135,7 +150,9 @@ const Pricing: React.FC = () => {
                 
                 <div className="space-y-2">
                   <div className="flex items-end space-x-1">
-                    <span className="text-4xl font-bold text-foreground font-mono">{plan.price}</span>
+                    <span className="text-4xl font-bold text-foreground font-mono">
+                      ${plan.priceValue === 0 ? '0' : <NumberTicker value={plan.priceValue} decimalPlaces={2} />}
+                    </span>
                     <span className="text-muted-foreground pb-1 font-mono">/{plan.period}</span>
                   </div>
                   <CardDescription className="text-muted-foreground">
@@ -184,7 +201,8 @@ const Pricing: React.FC = () => {
                   </div>
                 )}
               </CardContent>
-            </Card>
+              </Card>
+            </BlurFade>
           ))}
         </div>
 

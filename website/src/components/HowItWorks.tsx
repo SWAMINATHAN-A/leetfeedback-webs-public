@@ -9,6 +9,9 @@ import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import SecurityIcon from '@mui/icons-material/Security';
+import { BlurFade } from './magicui/blur-fade';
+import { TextAnimate } from './magicui/text-animate';
+import { NumberTicker } from './magicui/number-ticker';
 
 const HowItWorks: React.FC = () => {
   const steps = [
@@ -63,22 +66,33 @@ const HowItWorks: React.FC = () => {
       <div className="container mx-auto px-4 md:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
-          <Badge className="mb-4 bg-muted/50 text-foreground border border-border font-mono">
-            <AutoFixHighIcon className="w-4 h-4 mr-1" />
-            Simple Process
-          </Badge>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            How <span className="gradient-text">LeetFeedback</span> Works
-          </h2>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            From installation to building your coding portfolio - everything happens automatically in the background.
-          </p>
+          <BlurFade delay={0.25}>
+            <Badge className="mb-4 bg-muted/50 text-foreground border border-border font-mono">
+              <AutoFixHighIcon className="w-4 h-4 mr-1" />
+              Simple Process
+            </Badge>
+          </BlurFade>
+          <TextAnimate
+            as="h2"
+            className="text-4xl md:text-5xl font-bold text-foreground mb-6"
+            animation="blurInUp"
+            delay={0.5}
+            by="word"
+          >
+            How LeetFeedback Works
+          </TextAnimate>
+          <BlurFade delay={0.75}>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              From installation to building your coding portfolio - everything happens automatically in the background.
+            </p>
+          </BlurFade>
         </div>
 
         {/* Steps */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
           {steps.map((step, index) => (
-            <div key={index} className="relative">
+            <BlurFade key={index} delay={1 + index * 0.2}>
+              <div className="relative">
               {/* Connection Line */}
               {index < steps.length - 1 && (
                 <div className="hidden lg:block absolute top-16 left-full w-full h-px bg-border z-0">
@@ -112,7 +126,8 @@ const HowItWorks: React.FC = () => {
                   </ul>
                 </CardContent>
               </Card>
-            </div>
+              </div>
+            </BlurFade>
           ))}
         </div>
 
