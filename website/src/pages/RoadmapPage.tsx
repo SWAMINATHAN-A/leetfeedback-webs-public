@@ -154,9 +154,9 @@ const RoadmapPage: React.FC = () => {
             {/* Roadmap Content Section */}
             <div className="relative bg-slate-950 min-h-screen flex flex-col items-center justify-start pt-20 pb-32">
                 {/* Roadmap Content */}
-                <div className="relative z-20 max-w-4xl mx-auto px-6 md:px-8">
+                <div className="relative z-20 max-w-4xl mx-auto pl-8 pr-6 md:pl-16 md:pr-8">
                     {/* Bright Neon Laser Line - Left of Cards */}
-                    <div className="absolute -left-8 top-20 bottom-20">
+                    <div className="absolute left-2 md:left-4 top-20 bottom-20">
                         {/* Main white laser line with enhanced glow */}
                         <div className="relative w-1 h-full bg-gradient-to-b from-white via-gray-100 to-white rounded-full shadow-[0_0_40px_rgba(255,255,255,1),0_0_20px_rgba(255,255,255,0.8),0_0_10px_rgba(255,255,255,0.6)]" />
 
@@ -283,84 +283,81 @@ const RoadmapPage: React.FC = () => {
                                 >
                                     <div
                                         className={cn(
-                                            "relative bg-black/80 border border-white/20 rounded-lg p-6 hover:shadow-lg transition-all duration-300",
+                                            "relative bg-black/80 border border-white/20 rounded-lg p-4 md:p-6 hover:shadow-lg transition-all duration-300",
                                             item.completed && "opacity-70"
                                         )}
                                     >
-                                        {/* Rainbow halos */}
-                                        {index % 4 === 0 && (
+                                        {/* Rainbow halos - laser reflection effect */}
+                                        {index % 3 === 0 && (
                                             <>
-                                                <div className="absolute -top-1 -left-1 w-4 h-4 rounded-full opacity-40 blur-sm">
-                                                    <div className="absolute inset-0 bg-red-400 rounded-full opacity-60"></div>
-                                                    <div className="absolute inset-0.5 bg-yellow-400 rounded-full opacity-50"></div>
-                                                    <div className="absolute inset-1 bg-green-400 rounded-full opacity-40"></div>
-                                                    <div className="absolute inset-1.5 bg-blue-400 rounded-full opacity-30"></div>
-                                                </div>
-                                                <div className="absolute bottom-2 -left-1 w-3 h-3 rounded-full opacity-35 blur-sm">
-                                                    <div className="absolute inset-0 bg-blue-400 rounded-full opacity-60"></div>
-                                                    <div className="absolute inset-0.5 bg-purple-400 rounded-full opacity-50"></div>
-                                                    <div className="absolute inset-1 bg-pink-400 rounded-full opacity-40"></div>
-                                                </div>
-                                                <div className="absolute top-1/3 left-2 w-2 h-2 rounded-full opacity-45 blur-sm">
-                                                    <div className="absolute inset-0 bg-green-400 rounded-full opacity-70"></div>
-                                                    <div className="absolute inset-0.5 bg-cyan-400 rounded-full opacity-50"></div>
-                                                </div>
-                                            </>
-                                        )}
-                                        {index % 4 === 1 && (
-                                            <>
-                                                <div className="absolute top-2 -left-2 w-3 h-3 rounded-full opacity-35 blur-sm">
-                                                    <div className="absolute inset-0 bg-purple-400 rounded-full opacity-60"></div>
-                                                    <div className="absolute inset-0.5 bg-pink-400 rounded-full opacity-50"></div>
-                                                    <div className="absolute inset-1 bg-orange-400 rounded-full opacity-40"></div>
-                                                </div>
-                                                <div className="absolute -bottom-1 -left-2 w-4 h-4 rounded-full opacity-30 blur-sm">
-                                                    <div className="absolute inset-0 bg-orange-400 rounded-full opacity-60"></div>
-                                                    <div className="absolute inset-0.5 bg-red-400 rounded-full opacity-50"></div>
-                                                    <div className="absolute inset-1 bg-purple-400 rounded-full opacity-40"></div>
-                                                    <div className="absolute inset-1.5 bg-blue-400 rounded-full opacity-30"></div>
-                                                </div>
-                                                <div className="absolute bottom-1/3 left-3 w-2 h-2 rounded-full opacity-40 blur-sm">
-                                                    <div className="absolute inset-0 bg-cyan-400 rounded-full opacity-70"></div>
-                                                    <div className="absolute inset-0.5 bg-green-400 rounded-full opacity-50"></div>
-                                                </div>
-                                            </>
-                                        )}
-                                        {index % 4 === 2 && (
-                                            <>
-                                                <div className="absolute -top-2 left-1/4 w-2 h-2 rounded-full opacity-45 blur-sm">
-                                                    <div className="absolute inset-0 bg-yellow-400 rounded-full opacity-70"></div>
-                                                    <div className="absolute inset-0.5 bg-green-400 rounded-full opacity-50"></div>
-                                                </div>
-                                                <div className="absolute top-1/2 -left-2 w-3 h-3 rounded-full opacity-35 blur-sm">
-                                                    <div className="absolute inset-0 bg-pink-400 rounded-full opacity-60"></div>
-                                                    <div className="absolute inset-0.5 bg-purple-400 rounded-full opacity-50"></div>
-                                                    <div className="absolute inset-1 bg-cyan-400 rounded-full opacity-40"></div>
-                                                </div>
-                                                <div className="absolute -bottom-2 left-1/4 w-4 h-4 rounded-full opacity-30 blur-sm">
-                                                    <div className="absolute inset-0 bg-blue-400 rounded-full opacity-60"></div>
-                                                    <div className="absolute inset-0.5 bg-cyan-400 rounded-full opacity-50"></div>
-                                                    <div className="absolute inset-1 bg-green-400 rounded-full opacity-40"></div>
-                                                    <div className="absolute inset-1.5 bg-yellow-400 rounded-full opacity-30"></div>
-                                                </div>
-                                            </>
-                                        )}
-                                        {index % 4 === 3 && (
-                                            <>
-                                                <div className="absolute top-1/4 -left-1 w-4 h-4 rounded-full opacity-30 blur-sm">
-                                                    <div className="absolute inset-0 bg-green-400 rounded-full opacity-60"></div>
-                                                    <div className="absolute inset-0.5 bg-yellow-400 rounded-full opacity-50"></div>
-                                                    <div className="absolute inset-1 bg-orange-400 rounded-full opacity-40"></div>
-                                                    <div className="absolute inset-1.5 bg-red-400 rounded-full opacity-30"></div>
-                                                </div>
-                                                <div className="absolute -top-1 left-1/4 w-2 h-2 rounded-full opacity-45 blur-sm">
+                                                {/* Border reflection halos */}
+                                                <div className="absolute -top-1 -left-1 w-2 h-2 rounded-full opacity-25 blur-sm">
                                                     <div className="absolute inset-0 bg-red-400 rounded-full opacity-70"></div>
-                                                    <div className="absolute inset-0.5 bg-orange-400 rounded-full opacity-50"></div>
+                                                    <div className="absolute inset-0.5 bg-orange-400 rounded-full opacity-55"></div>
+                                                    <div className="absolute inset-1 bg-yellow-400 rounded-full opacity-40"></div>
                                                 </div>
-                                                <div className="absolute bottom-1/4 -left-1 w-3 h-3 rounded-full opacity-35 blur-sm">
-                                                    <div className="absolute inset-0 bg-purple-400 rounded-full opacity-60"></div>
+                                                <div className="absolute -bottom-1 left-0 w-1.5 h-1.5 rounded-full opacity-30 blur-sm">
+                                                    <div className="absolute inset-0 bg-blue-400 rounded-full opacity-65"></div>
+                                                    <div className="absolute inset-0.5 bg-purple-400 rounded-full opacity-50"></div>
+                                                    <div className="absolute inset-1 bg-pink-400 rounded-full opacity-35"></div>
+                                                </div>
+                                                {/* Interior halos */}
+                                                <div className="absolute top-1/4 left-3 w-2 h-2 rounded-full opacity-20 blur-sm">
+                                                    <div className="absolute inset-0 bg-green-400 rounded-full opacity-60"></div>
+                                                    <div className="absolute inset-0.5 bg-cyan-400 rounded-full opacity-45"></div>
+                                                    <div className="absolute inset-1 bg-blue-400 rounded-full opacity-30"></div>
+                                                </div>
+                                                <div className="absolute bottom-1/3 left-1 w-1.5 h-1.5 rounded-full opacity-25 blur-sm">
+                                                    <div className="absolute inset-0 bg-yellow-400 rounded-full opacity-65"></div>
+                                                    <div className="absolute inset-0.5 bg-green-400 rounded-full opacity-50"></div>
+                                                    <div className="absolute inset-1 bg-cyan-400 rounded-full opacity-35"></div>
+                                                </div>
+                                            </>
+                                        )}
+                                        {index % 3 === 1 && (
+                                            <>
+                                                {/* Border reflection halos */}
+                                                <div className="absolute top-0 -left-1 w-2.5 h-2.5 rounded-full opacity-25 blur-sm">
+                                                    <div className="absolute inset-0 bg-purple-400 rounded-full opacity-70"></div>
+                                                    <div className="absolute inset-0.5 bg-pink-400 rounded-full opacity-55"></div>
+                                                    <div className="absolute inset-1 bg-red-400 rounded-full opacity-40"></div>
+                                                </div>
+                                                <div className="absolute -bottom-1 -left-2 w-1.5 h-1.5 rounded-full opacity-30 blur-sm">
+                                                    <div className="absolute inset-0 bg-cyan-400 rounded-full opacity-65"></div>
                                                     <div className="absolute inset-0.5 bg-blue-400 rounded-full opacity-50"></div>
-                                                    <div className="absolute inset-1 bg-green-400 rounded-full opacity-40"></div>
+                                                    <div className="absolute inset-1 bg-green-400 rounded-full opacity-35"></div>
+                                                </div>
+                                                {/* Interior halos */}
+                                                <div className="absolute top-1/3 left-2 w-2 h-2 rounded-full opacity-20 blur-sm">
+                                                    <div className="absolute inset-0 bg-orange-400 rounded-full opacity-60"></div>
+                                                    <div className="absolute inset-0.5 bg-yellow-400 rounded-full opacity-45"></div>
+                                                    <div className="absolute inset-1 bg-green-400 rounded-full opacity-30"></div>
+                                                </div>
+                                            </>
+                                        )}
+                                        {index % 3 === 2 && (
+                                            <>
+                                                {/* Border reflection halos */}
+                                                <div className="absolute -top-1 left-0 w-2 h-2 rounded-full opacity-25 blur-sm">
+                                                    <div className="absolute inset-0 bg-green-400 rounded-full opacity-70"></div>
+                                                    <div className="absolute inset-0.5 bg-yellow-400 rounded-full opacity-55"></div>
+                                                    <div className="absolute inset-1 bg-orange-400 rounded-full opacity-40"></div>
+                                                </div>
+                                                <div className="absolute bottom-0 -left-1 w-1.5 h-1.5 rounded-full opacity-30 blur-sm">
+                                                    <div className="absolute inset-0 bg-pink-400 rounded-full opacity-65"></div>
+                                                    <div className="absolute inset-0.5 bg-purple-400 rounded-full opacity-50"></div>
+                                                    <div className="absolute inset-1 bg-blue-400 rounded-full opacity-35"></div>
+                                                </div>
+                                                {/* Interior halos */}
+                                                <div className="absolute top-1/2 left-1 w-2.5 h-2.5 rounded-full opacity-20 blur-sm">
+                                                    <div className="absolute inset-0 bg-cyan-400 rounded-full opacity-60"></div>
+                                                    <div className="absolute inset-0.5 bg-blue-400 rounded-full opacity-45"></div>
+                                                    <div className="absolute inset-1 bg-purple-400 rounded-full opacity-30"></div>
+                                                </div>
+                                                <div className="absolute bottom-1/4 left-3 w-1.5 h-1.5 rounded-full opacity-25 blur-sm">
+                                                    <div className="absolute inset-0 bg-red-400 rounded-full opacity-65"></div>
+                                                    <div className="absolute inset-0.5 bg-orange-400 rounded-full opacity-50"></div>
+                                                    <div className="absolute inset-1 bg-yellow-400 rounded-full opacity-35"></div>
                                                 </div>
                                             </>
                                         )}
@@ -374,9 +371,9 @@ const RoadmapPage: React.FC = () => {
                                             </div>
                                         )}
 
-                                        <div className="flex items-start space-x-4">
-                                            {/* Icon and Number */}
-                                            <div className="flex-shrink-0 flex items-center space-x-3">
+                                        <div className="flex items-start md:space-x-4">
+                                            {/* Icon and Number - Hidden on mobile */}
+                                            <div className="hidden md:flex flex-shrink-0 items-center space-x-3">
                                                 <div className="relative">
                                                     {IconComponent && (
                                                         <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center">
@@ -395,15 +392,17 @@ const RoadmapPage: React.FC = () => {
                                                 )}>
                                                     {item.id}
                                                 </div>
-                                                {item.completed ? (
-                                                    <CheckCircleIcon className="w-5 h-5 text-white/50" />
-                                                ) : (
-                                                    <RadioButtonUncheckedIcon className="w-5 h-5 text-white/70" />
-                                                )}
+                                                <div className="hidden md:block">
+                                                    {item.completed ? (
+                                                        <CheckCircleIcon className="w-5 h-5 text-white/50" />
+                                                    ) : (
+                                                        <RadioButtonUncheckedIcon className="w-5 h-5 text-white/70" />
+                                                    )}
+                                                </div>
                                             </div>
 
                                             {/* Content */}
-                                            <div className="flex-1 min-w-0">
+                                            <div className="flex-1 min-w-0 w-full">
                                                 <h3 className={cn(
                                                     "text-xl font-semibold mb-2 font-mono",
                                                     item.completed
