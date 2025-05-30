@@ -132,7 +132,7 @@ const roadmapItems: RoadmapItem[] = [
 
 const RoadmapPage: React.FC = () => {
     const { isDark, toggleTheme } = useTheme();
-    
+
     return (
         <div className="min-h-screen bg-background">
             {/* Lamp Effect Section with Roadmap Heading */}
@@ -164,7 +164,7 @@ const RoadmapPage: React.FC = () => {
                         <div className="absolute top-0 w-full h-full">
                             {/* Left side particles */}
                             <div className="absolute top-[87%] -left-2 w-0.5 h-0.5 bg-white rounded-full" />
-              
+
                             {/* Concentrated particles at start */}
                             <div className="absolute top-[1%] -left-1 w-0.5 h-0.5 bg-white rounded-full" />
                             <div className="absolute top-[2%] -left-2.5 w-px h-px bg-white rounded-full" />
@@ -176,7 +176,7 @@ const RoadmapPage: React.FC = () => {
                             <div className="absolute top-[8%] -left-1.5 w-px h-px bg-white rounded-full" />
                             <div className="absolute top-[9%] -left-3 w-px h-px bg-white rounded-full" />
                             <div className="absolute top-[10%] -left-1 w-0.5 h-0.5 bg-white rounded-full" />
-              
+
                             {/* Rest of particles */}
                             <div className="absolute top-[11%] -left-1 w-px h-px bg-white rounded-full" />
                             <div className="absolute top-[17%] -left-2 w-0.5 h-0.5 bg-white rounded-full" />
@@ -222,7 +222,7 @@ const RoadmapPage: React.FC = () => {
                             <div className="absolute top-[77%] -right-1 w-px h-px bg-white rounded-full" />
                             <div className="absolute top-[85%] -right-2 w-0.5 h-0.5 bg-white rounded-full" />
                             <div className="absolute top-[93%] -right-1.5 w-px h-px bg-white rounded-full" />
-              
+
                             {/* Concentrated particles at start - right side */}
                             <div className="absolute top-[1%] -right-1 w-px h-px bg-white rounded-full" />
                             <div className="absolute top-[2%] -right-2 w-0.5 h-0.5 bg-white rounded-full" />
@@ -281,39 +281,87 @@ const RoadmapPage: React.FC = () => {
                                     delay={0.1 * index}
                                     direction="right"
                                 >
-                                    <div 
+                                    <div
                                         className={cn(
                                             "relative bg-black/80 border border-white/20 rounded-lg p-6 hover:shadow-lg transition-all duration-300",
                                             item.completed && "opacity-70"
                                         )}
                                     >
-                                        {/* Small rainbow halos */}
+                                        {/* Rainbow halos */}
                                         {index % 4 === 0 && (
                                             <>
-                                                <div className="absolute -top-1 -right-1 w-2 h-2 bg-gradient-to-r from-red-400 to-yellow-400 rounded-full opacity-30"></div>
-                                                <div className="absolute bottom-2 -left-1 w-1.5 h-1.5 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full opacity-25"></div>
-                                                <div className="absolute top-1/3 right-2 w-1 h-1 bg-gradient-to-r from-green-400 to-cyan-400 rounded-full opacity-35"></div>
+                                                <div className="absolute -top-1 -left-1 w-4 h-4 rounded-full opacity-40 blur-sm">
+                                                    <div className="absolute inset-0 bg-red-400 rounded-full opacity-60"></div>
+                                                    <div className="absolute inset-0.5 bg-yellow-400 rounded-full opacity-50"></div>
+                                                    <div className="absolute inset-1 bg-green-400 rounded-full opacity-40"></div>
+                                                    <div className="absolute inset-1.5 bg-blue-400 rounded-full opacity-30"></div>
+                                                </div>
+                                                <div className="absolute bottom-2 -left-1 w-3 h-3 rounded-full opacity-35 blur-sm">
+                                                    <div className="absolute inset-0 bg-blue-400 rounded-full opacity-60"></div>
+                                                    <div className="absolute inset-0.5 bg-purple-400 rounded-full opacity-50"></div>
+                                                    <div className="absolute inset-1 bg-pink-400 rounded-full opacity-40"></div>
+                                                </div>
+                                                <div className="absolute top-1/3 left-2 w-2 h-2 rounded-full opacity-45 blur-sm">
+                                                    <div className="absolute inset-0 bg-green-400 rounded-full opacity-70"></div>
+                                                    <div className="absolute inset-0.5 bg-cyan-400 rounded-full opacity-50"></div>
+                                                </div>
                                             </>
                                         )}
                                         {index % 4 === 1 && (
                                             <>
-                                                <div className="absolute top-2 -left-2 w-1.5 h-1.5 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-35"></div>
-                                                <div className="absolute -bottom-1 -right-2 w-2 h-2 bg-gradient-to-r from-orange-400 to-red-400 rounded-full opacity-25"></div>
-                                                <div className="absolute bottom-1/3 left-3 w-1 h-1 bg-gradient-to-r from-cyan-400 to-blue-400 rounded-full opacity-40"></div>
+                                                <div className="absolute top-2 -left-2 w-3 h-3 rounded-full opacity-35 blur-sm">
+                                                    <div className="absolute inset-0 bg-purple-400 rounded-full opacity-60"></div>
+                                                    <div className="absolute inset-0.5 bg-pink-400 rounded-full opacity-50"></div>
+                                                    <div className="absolute inset-1 bg-orange-400 rounded-full opacity-40"></div>
+                                                </div>
+                                                <div className="absolute -bottom-1 -left-2 w-4 h-4 rounded-full opacity-30 blur-sm">
+                                                    <div className="absolute inset-0 bg-orange-400 rounded-full opacity-60"></div>
+                                                    <div className="absolute inset-0.5 bg-red-400 rounded-full opacity-50"></div>
+                                                    <div className="absolute inset-1 bg-purple-400 rounded-full opacity-40"></div>
+                                                    <div className="absolute inset-1.5 bg-blue-400 rounded-full opacity-30"></div>
+                                                </div>
+                                                <div className="absolute bottom-1/3 left-3 w-2 h-2 rounded-full opacity-40 blur-sm">
+                                                    <div className="absolute inset-0 bg-cyan-400 rounded-full opacity-70"></div>
+                                                    <div className="absolute inset-0.5 bg-green-400 rounded-full opacity-50"></div>
+                                                </div>
                                             </>
                                         )}
                                         {index % 4 === 2 && (
                                             <>
-                                                <div className="absolute -top-2 left-1/4 w-1 h-1 bg-gradient-to-r from-yellow-400 to-green-400 rounded-full opacity-30"></div>
-                                                <div className="absolute top-1/2 -right-2 w-1.5 h-1.5 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full opacity-35"></div>
-                                                <div className="absolute -bottom-2 left-1/2 w-2 h-2 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full opacity-25"></div>
+                                                <div className="absolute -top-2 left-1/4 w-2 h-2 rounded-full opacity-45 blur-sm">
+                                                    <div className="absolute inset-0 bg-yellow-400 rounded-full opacity-70"></div>
+                                                    <div className="absolute inset-0.5 bg-green-400 rounded-full opacity-50"></div>
+                                                </div>
+                                                <div className="absolute top-1/2 -left-2 w-3 h-3 rounded-full opacity-35 blur-sm">
+                                                    <div className="absolute inset-0 bg-pink-400 rounded-full opacity-60"></div>
+                                                    <div className="absolute inset-0.5 bg-purple-400 rounded-full opacity-50"></div>
+                                                    <div className="absolute inset-1 bg-cyan-400 rounded-full opacity-40"></div>
+                                                </div>
+                                                <div className="absolute -bottom-2 left-1/4 w-4 h-4 rounded-full opacity-30 blur-sm">
+                                                    <div className="absolute inset-0 bg-blue-400 rounded-full opacity-60"></div>
+                                                    <div className="absolute inset-0.5 bg-cyan-400 rounded-full opacity-50"></div>
+                                                    <div className="absolute inset-1 bg-green-400 rounded-full opacity-40"></div>
+                                                    <div className="absolute inset-1.5 bg-yellow-400 rounded-full opacity-30"></div>
+                                                </div>
                                             </>
                                         )}
                                         {index % 4 === 3 && (
                                             <>
-                                                <div className="absolute top-1/4 -left-1 w-2 h-2 bg-gradient-to-r from-green-400 to-yellow-400 rounded-full opacity-40"></div>
-                                                <div className="absolute -top-1 right-1/4 w-1 h-1 bg-gradient-to-r from-red-400 to-orange-400 rounded-full opacity-30"></div>
-                                                <div className="absolute bottom-1/4 -right-1 w-1.5 h-1.5 bg-gradient-to-r from-purple-400 to-blue-400 rounded-full opacity-35"></div>
+                                                <div className="absolute top-1/4 -left-1 w-4 h-4 rounded-full opacity-30 blur-sm">
+                                                    <div className="absolute inset-0 bg-green-400 rounded-full opacity-60"></div>
+                                                    <div className="absolute inset-0.5 bg-yellow-400 rounded-full opacity-50"></div>
+                                                    <div className="absolute inset-1 bg-orange-400 rounded-full opacity-40"></div>
+                                                    <div className="absolute inset-1.5 bg-red-400 rounded-full opacity-30"></div>
+                                                </div>
+                                                <div className="absolute -top-1 left-1/4 w-2 h-2 rounded-full opacity-45 blur-sm">
+                                                    <div className="absolute inset-0 bg-red-400 rounded-full opacity-70"></div>
+                                                    <div className="absolute inset-0.5 bg-orange-400 rounded-full opacity-50"></div>
+                                                </div>
+                                                <div className="absolute bottom-1/4 -left-1 w-3 h-3 rounded-full opacity-35 blur-sm">
+                                                    <div className="absolute inset-0 bg-purple-400 rounded-full opacity-60"></div>
+                                                    <div className="absolute inset-0.5 bg-blue-400 rounded-full opacity-50"></div>
+                                                    <div className="absolute inset-1 bg-green-400 rounded-full opacity-40"></div>
+                                                </div>
                                             </>
                                         )}
 
@@ -341,8 +389,8 @@ const RoadmapPage: React.FC = () => {
                                                 </div>
                                                 <div className={cn(
                                                     "w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-2",
-                                                    item.completed 
-                                                        ? "bg-white/20 text-white/50 border-white/30" 
+                                                    item.completed
+                                                        ? "bg-white/20 text-white/50 border-white/30"
                                                         : "bg-white text-black border-white"
                                                 )}>
                                                     {item.id}
@@ -358,21 +406,21 @@ const RoadmapPage: React.FC = () => {
                                             <div className="flex-1 min-w-0">
                                                 <h3 className={cn(
                                                     "text-xl font-semibold mb-2 font-mono",
-                                                    item.completed 
-                                                        ? "text-white/50 line-through" 
+                                                    item.completed
+                                                        ? "text-white/50 line-through"
                                                         : "text-white"
                                                 )}>
                                                     {item.title}
                                                 </h3>
                                                 <p className={cn(
                                                     "leading-relaxed font-mono",
-                                                    item.completed 
-                                                        ? "text-white/40 line-through" 
+                                                    item.completed
+                                                        ? "text-white/40 line-through"
                                                         : "text-white/70"
                                                 )}>
                                                     {item.description}
                                                 </p>
-                                                
+
                                                 {!item.completed && (
                                                     <div className="flex items-center space-x-2 mt-3">
                                                         <div className="w-2 h-2 bg-white/40 rounded-full"></div>
@@ -394,7 +442,7 @@ const RoadmapPage: React.FC = () => {
                             <div className="absolute -top-2 left-1/4 w-3 h-3 bg-gradient-to-r from-red-400 to-yellow-400 rounded-full opacity-25"></div>
                             <div className="absolute -bottom-1 right-1/3 w-2 h-2 bg-gradient-to-r from-green-400 to-blue-400 rounded-full opacity-35"></div>
                             <div className="absolute top-1/2 -left-2 w-1.5 h-1.5 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-30"></div>
-                            
+
                             <h4 className="text-2xl font-semibold text-white mb-3 font-mono">
                                 Join Our Journey
                             </h4>
