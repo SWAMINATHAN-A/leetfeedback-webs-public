@@ -48,7 +48,7 @@ export function ResizableNavbarDemo() {
             <div className="h-6 w-px bg-border"></div>
             <div className="flex items-center gap-3">
               <NavbarButton variant="secondary">Sign In</NavbarButton>
-              <NavbarButton variant="primary">Add to Chrome</NavbarButton>
+              <NavbarButton variant="primary" onClick={() => window.location.href = '/roadmap'}>Roadmap</NavbarButton>
             </div>
           </div>
         </NavBody>
@@ -102,11 +102,14 @@ export function ResizableNavbarDemo() {
                 Sign In
               </NavbarButton>
               <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  window.location.href = '/roadmap';
+                }}
                 variant="primary"
                 className="w-full"
               >
-                Add to Chrome
+                Roadmap
               </NavbarButton>
             </div>
           </MobileNavMenu>

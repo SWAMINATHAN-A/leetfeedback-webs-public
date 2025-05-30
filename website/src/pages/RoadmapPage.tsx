@@ -6,7 +6,12 @@ import { cn } from "@/lib/utils";
 import { LampContainer } from "@/components/ui/lamp";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import { Dock, DockIcon } from "@/components/magicui/dock";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { buttonVariants } from "@/components/ui/button";
 import { useTheme } from "@/contexts/ThemeContext";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -26,7 +31,9 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import HomeIcon from "@mui/icons-material/Home";
-import ContactButton from '@/components/ui/contact-button';
+import ScienceIcon from "@mui/icons-material/Science";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
+import ContactButton from "@/components/ui/contact-button";
 
 interface RoadmapItem {
     id: number;
@@ -60,7 +67,7 @@ const roadmapItems: RoadmapItem[] = [
         description:
             "Implement AI pattern recognition for coding mistakes with automated GitHub analysis reports",
         completed: false,
-        milestone: "🔸 Public Beta Launch",
+        milestone: "Public Beta Launch",
         icon: PsychologyIcon,
     },
     {
@@ -125,7 +132,7 @@ const roadmapItems: RoadmapItem[] = [
         description:
             "Enable team analytics, progress comparison, and organizational dashboards for coding bootcamps",
         completed: false,
-        milestone: "🚀 Public Release",
+        milestone: "Public Release",
         icon: GroupsIcon,
     },
 ];
@@ -284,7 +291,7 @@ const RoadmapPage: React.FC = () => {
                                     <div
                                         className={cn(
                                             "relative bg-black/80 border border-white/20 rounded-lg p-4 md:p-6 hover:shadow-lg transition-all duration-300",
-                                            item.completed && "opacity-70"
+                                            item.completed && "opacity-70",
                                         )}
                                     >
                                         {/* Rainbow halos - laser reflection effect */}
@@ -365,7 +372,15 @@ const RoadmapPage: React.FC = () => {
                                         {/* Milestone Badge */}
                                         {item.milestone && (
                                             <div className="absolute -top-3 left-6">
-                                                <span className="bg-white text-black text-xs font-semibold px-3 py-1 rounded-full shadow-md border border-white/20">
+                                                <span className="bg-white text-black text-xs font-semibold px-3 py-1 rounded-full shadow-md border border-white/20 flex items-center gap-1">
+                                                    {item.milestone ===
+                                                        "Public Beta Launch" && (
+                                                        <ScienceIcon className="w-3 h-3" />
+                                                    )}
+                                                    {item.milestone ===
+                                                        "Public Release" && (
+                                                        <RocketLaunchIcon className="w-3 h-3" />
+                                                    )}
                                                     {item.milestone}
                                                 </span>
                                             </div>
@@ -377,19 +392,25 @@ const RoadmapPage: React.FC = () => {
                                                 <div className="relative">
                                                     {IconComponent && (
                                                         <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center">
-                                                            <IconComponent className={cn(
-                                                                "w-6 h-6",
-                                                                item.completed ? "text-white/50" : "text-white"
-                                                            )} />
+                                                            <IconComponent
+                                                                className={cn(
+                                                                    "w-6 h-6",
+                                                                    item.completed
+                                                                        ? "text-white/50"
+                                                                        : "text-white",
+                                                                )}
+                                                            />
                                                         </div>
                                                     )}
                                                 </div>
-                                                <div className={cn(
-                                                    "w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-2",
-                                                    item.completed
-                                                        ? "bg-white/20 text-white/50 border-white/30"
-                                                        : "bg-white text-black border-white"
-                                                )}>
+                                                <div
+                                                    className={cn(
+                                                        "w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm border-2",
+                                                        item.completed
+                                                            ? "bg-white/20 text-white/50 border-white/30"
+                                                            : "bg-white text-black border-white",
+                                                    )}
+                                                >
                                                     {item.id}
                                                 </div>
                                                 <div className="hidden md:block">
@@ -403,27 +424,33 @@ const RoadmapPage: React.FC = () => {
 
                                             {/* Content */}
                                             <div className="flex-1 min-w-0 w-full">
-                                                <h3 className={cn(
-                                                    "text-xl font-semibold mb-2 font-mono",
-                                                    item.completed
-                                                        ? "text-white/50 line-through"
-                                                        : "text-white"
-                                                )}>
+                                                <h3
+                                                    className={cn(
+                                                        "text-xl font-semibold mb-2 font-mono",
+                                                        item.completed
+                                                            ? "text-white/50 line-through"
+                                                            : "text-white",
+                                                    )}
+                                                >
                                                     {item.title}
                                                 </h3>
-                                                <p className={cn(
-                                                    "leading-relaxed font-mono",
-                                                    item.completed
-                                                        ? "text-white/40 line-through"
-                                                        : "text-white/70"
-                                                )}>
+                                                <p
+                                                    className={cn(
+                                                        "leading-relaxed font-mono",
+                                                        item.completed
+                                                            ? "text-white/40 line-through"
+                                                            : "text-white/70",
+                                                    )}
+                                                >
                                                     {item.description}
                                                 </p>
 
                                                 {!item.completed && (
                                                     <div className="flex items-center space-x-2 mt-3">
                                                         <div className="w-2 h-2 bg-white/40 rounded-full"></div>
-                                                        <span className="text-xs text-white/50 font-medium font-mono">In Development</span>
+                                                        <span className="text-xs text-white/50 font-medium font-mono">
+                                                            In Development
+                                                        </span>
                                                     </div>
                                                 )}
                                             </div>
@@ -442,11 +469,13 @@ const RoadmapPage: React.FC = () => {
                             <div className="absolute -bottom-1 right-1/3 w-2 h-2 bg-gradient-to-r from-green-400 to-blue-400 rounded-full opacity-35"></div>
                             <div className="absolute top-1/2 -left-2 w-1.5 h-1.5 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-30"></div>
 
-                            <h4 className="text-2xl font-semibold text-white mb-3 font-mono">
+                            <h4 className="text-2xl font-semibold text-white mb-3">
                                 Join Our Journey
                             </h4>
-                            <p className="text-white/70 text-lg leading-relaxed font-mono mb-6">
-                                Looking for developers to contribute code and testers to help shape the future of LeetFeedback.
+                            <p className="text-white/70 text-lg leading-relaxed mb-6">
+                                Looking for developers to contribute code and
+                                testers to help shape the future of
+                                LeetFeedback.
                             </p>
                             <div className="flex justify-center">
                                 <ContactButton />
@@ -459,7 +488,12 @@ const RoadmapPage: React.FC = () => {
             {/* Dock Navigation */}
             <div className="fixed bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-50">
                 <TooltipProvider>
-                    <Dock direction="middle" iconSize={40} iconMagnification={48} className="md:h-[72px] h-[56px] md:px-6 px-3 md:gap-4 gap-2">
+                    <Dock
+                        direction="middle"
+                        iconSize={40}
+                        iconMagnification={48}
+                        className="md:h-[72px] h-[56px] md:px-6 px-3 md:gap-4 gap-2"
+                    >
                         <DockIcon>
                             <Tooltip>
                                 <TooltipTrigger asChild>
@@ -467,8 +501,11 @@ const RoadmapPage: React.FC = () => {
                                         href="/"
                                         aria-label="Home"
                                         className={cn(
-                                            buttonVariants({ variant: "ghost", size: "icon" }),
-                                            "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10"
+                                            buttonVariants({
+                                                variant: "ghost",
+                                                size: "icon",
+                                            }),
+                                            "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10",
                                         )}
                                     >
                                         <HomeIcon className="md:size-5 size-4 text-foreground" />
@@ -489,8 +526,11 @@ const RoadmapPage: React.FC = () => {
                                         rel="noopener noreferrer"
                                         aria-label="GitHub Repository"
                                         className={cn(
-                                            buttonVariants({ variant: "ghost", size: "icon" }),
-                                            "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10"
+                                            buttonVariants({
+                                                variant: "ghost",
+                                                size: "icon",
+                                            }),
+                                            "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10",
                                         )}
                                     >
                                         <GitHubIcon className="md:size-5 size-4 text-foreground" />
@@ -509,8 +549,11 @@ const RoadmapPage: React.FC = () => {
                                         onClick={toggleTheme}
                                         aria-label="Toggle Theme"
                                         className={cn(
-                                            buttonVariants({ variant: "ghost", size: "icon" }),
-                                            "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10"
+                                            buttonVariants({
+                                                variant: "ghost",
+                                                size: "icon",
+                                            }),
+                                            "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10",
                                         )}
                                     >
                                         {isDark ? (
