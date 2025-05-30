@@ -19,7 +19,7 @@ const Pricing: React.FC = () => {
   const plans = [
     {
       name: 'Free',
-      price: '$0',
+      price: '₹0',
       priceValue: 0,
       period: 'forever',
       description: 'Perfect for getting started with AI-powered coding insights',
@@ -44,8 +44,8 @@ const Pricing: React.FC = () => {
     },
     {
       name: 'Pro',
-      price: '$9.99',
-      priceValue: 9.99,
+      price: '₹200',
+      priceValue: 200,
       period: 'per month',
       description: 'Advanced analytics and unlimited tracking for serious developers',
       badge: 'Best Value',
@@ -69,8 +69,8 @@ const Pricing: React.FC = () => {
     },
     {
       name: 'Teams',
-      price: '$29.99',
-      priceValue: 29.99,
+      price: '₹500',
+      priceValue: 500,
       period: 'per month',
       description: 'Collaborate and track progress across your entire development team',
       badge: 'Enterprise',
