@@ -15,6 +15,7 @@ import { BlurFade } from "./magicui/blur-fade";
 import { TextAnimate } from "./magicui/text-animate";
 import { NumberTicker } from "./magicui/number-ticker";
 import { RainbowButton } from "./magicui/rainbow-button";
+import { analytics } from "../utils/analytics";
 
 const Hero: React.FC = () => {
     return (
@@ -35,7 +36,11 @@ const Hero: React.FC = () => {
                     {/* Beta Badge */}
                     <BlurFade delay={0.25}>
                         <div className="mb-8">
-                            <a href="/roadmap" className="inline-block">
+                            <a 
+                                href="/roadmap" 
+                                className="inline-block"
+                                onClick={() => analytics.trackRoadmapView()}
+                            >
                                 <Badge className="bg-muted/50 text-foreground border border-border px-4 py-2 text-sm font-mono hover:bg-white dark:hover:bg-white hover:text-black dark:hover:text-black">
                                     <RocketLaunchIcon className="w-4 h-4 mr-2" />
                                     Coming Soon -&nbsp;<span className="underline decoration-dotted">View Roadmap</span>
@@ -101,6 +106,7 @@ const Hero: React.FC = () => {
                             <RainbowButton
                                 size="lg"
                                 className="w-[240px] px-8 py-4 text-lg font-semibold"
+                                onClick={() => analytics.trackDownloadClick('hero_primary_cta')}
                             >
                                 <CheckCircleIcon className="w-5 h-5 mr-2" />
                                 Add to Chrome - Free
@@ -110,6 +116,7 @@ const Hero: React.FC = () => {
                                 variant="outline"
                                 size="lg"
                                 className="w-[240px] px-8 py-4 text-lg font-semibold"
+                                onClick={() => analytics.trackFeatureClick('demo_video')}
                             >
                                 <PlayArrowIcon className="w-8 h-8 mr-2" />
                                 Watch Demo Video

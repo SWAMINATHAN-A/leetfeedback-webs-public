@@ -14,6 +14,7 @@ import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
 import { BlurFade } from './magicui/blur-fade';
 import { TextAnimate } from './magicui/text-animate';
 import { NumberTicker } from './magicui/number-ticker';
+import { analytics } from '../utils/analytics';
 
 const Pricing: React.FC = () => {
   const plans = [
@@ -167,6 +168,7 @@ const Pricing: React.FC = () => {
                       ? 'bg-foreground text-background hover:bg-foreground/90' 
                       : 'border-border hover:bg-muted/50'
                   }`}
+                  onClick={() => analytics.trackPricingPlanView(plan.name)}
                 >
                   {plan.cta}
                 </Button>
@@ -273,11 +275,19 @@ const Pricing: React.FC = () => {
             The only tool that connects your practice to GitHub portfolio building, Notion knowledge management, and Anki memory retention.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button variant="outline" className="border-border hover:bg-muted/50">
+            <Button 
+              variant="outline" 
+              className="border-border hover:bg-muted/50"
+              onClick={() => analytics.trackFeatureClick('enterprise_solutions')}
+            >
               <BusinessIcon className="w-4 h-4 mr-2" />
               Enterprise Solutions
             </Button>
-            <Button variant="outline" className="border-border hover:bg-muted/50">
+            <Button 
+              variant="outline" 
+              className="border-border hover:bg-muted/50"
+              onClick={() => analytics.trackFeatureClick('see_all_integrations')}
+            >
               <StarIcon className="w-4 h-4 mr-2" />
               See All Integrations
             </Button>

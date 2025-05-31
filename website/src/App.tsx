@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -33,6 +35,8 @@ function App() {
             <Route path="/roadmap" element={<RoadmapPage />} />
           </Routes>
         </div>
+        <Analytics />
+        <SpeedInsights />
       </Router>
     </ThemeProvider>
   );
