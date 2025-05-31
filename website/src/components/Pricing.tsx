@@ -15,6 +15,10 @@ import { BlurFade } from './magicui/blur-fade';
 import { TextAnimate } from './magicui/text-animate';
 import { NumberTicker } from './magicui/number-ticker';
 import { analytics } from '../utils/analytics';
+import AnimatedButton from './ui/animated-button';
+import GroupsIcon from '@mui/icons-material/Groups';
+import CodeIcon from '@mui/icons-material/Code';
+import BugReportIcon from '@mui/icons-material/BugReport';
 
 const Pricing: React.FC = () => {
   const plans = [
@@ -254,43 +258,30 @@ const Pricing: React.FC = () => {
           </div>
         </div>
 
-        {/* Integration Highlight */}
+        {/* Help Us Section */}
         <div className="text-center mt-16 p-8 bg-muted/10 border border-border rounded-lg">
           <div className="flex justify-center space-x-6 mb-6">
             <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-              <GitHubIcon className="w-8 h-8 text-foreground" />
+              <GroupsIcon className="w-8 h-8 text-foreground" />
             </div>
             <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-              <NotesIcon className="w-8 h-8 text-foreground" />
+              <CodeIcon className="w-8 h-8 text-foreground" />
             </div>
             <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-              <StyleIcon className="w-8 h-8 text-foreground" />
+              <BugReportIcon className="w-8 h-8 text-foreground" />
             </div>
           </div>
           <h3 className="text-2xl font-bold mb-4 text-foreground">
             <AutoAwesomeIcon className="w-6 h-6 mr-2 inline" />
-            Your Complete Coding Ecosystem
+            Help Us Build LeetFeedback
           </h3>
           <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-            The only tool that connects your practice to GitHub portfolio building, Notion knowledge management, and Anki memory retention.
+            Actively looking for designers, developers and testers to join our mission of making coding practice more effective and enjoyable.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button 
-              variant="outline" 
-              className="border-border hover:bg-muted/50"
-              onClick={() => analytics.trackFeatureClick('enterprise_solutions')}
-            >
-              <BusinessIcon className="w-4 h-4 mr-2" />
-              Enterprise Solutions
-            </Button>
-            <Button 
-              variant="outline" 
-              className="border-border hover:bg-muted/50"
-              onClick={() => analytics.trackFeatureClick('see_all_integrations')}
-            >
-              <StarIcon className="w-4 h-4 mr-2" />
-              See All Integrations
-            </Button>
+          <div className="flex justify-center">
+            <AnimatedButton onClick={() => window.location.href = 'mailto:catince@outlook.com'}>
+              Join Our Team
+            </AnimatedButton>
           </div>
         </div>
       </div>

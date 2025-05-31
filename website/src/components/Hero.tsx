@@ -106,7 +106,10 @@ const Hero: React.FC = () => {
                             <RainbowButton
                                 size="lg"
                                 className="w-[240px] px-8 py-4 text-lg font-semibold"
-                                onClick={() => analytics.trackDownloadClick('hero_primary_cta')}
+                                onClick={() => {
+                                    analytics.trackDownloadClick('hero_primary_cta');
+                                    window.open('https://github.com/QuickHasaCat/leetFeedback', '_blank');
+                                }}
                             >
                                 <CheckCircleIcon className="w-5 h-5 mr-2" />
                                 Add to Chrome - Free
@@ -116,10 +119,13 @@ const Hero: React.FC = () => {
                                 variant="outline"
                                 size="lg"
                                 className="w-[240px] px-8 py-4 text-lg font-semibold"
-                                onClick={() => analytics.trackFeatureClick('demo_video')}
+                                onClick={() => {
+                                    analytics.trackFeatureClick('follow_development');
+                                    window.location.href = '/roadmap';
+                                }}
                             >
-                                <PlayArrowIcon className="w-8 h-8 mr-2" />
-                                Watch Demo Video
+                                <RocketLaunchIcon className="w-5 h-5 mr-2" />
+                                Follow Development
                             </RainbowButton>
                         </div>
                     </BlurFade>
@@ -143,12 +149,13 @@ const Hero: React.FC = () => {
                     </BlurFade>
 
                     {/* Platform Showcase */}
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto">
+                    <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-4xl mx-auto">
                         {[
                             { name: "LeetCode", color: "border-orange-500/20", key: "leetcode" },
                             { name: "GeeksforGeeks", color: "border-green-500/20", key: "geeksforgeeks" },
                             { name: "HackerRank", color: "border-emerald-500/20", key: "hackerrank" },
                             { name: "CodeChef", color: "border-yellow-500/20", key: "codechef" },
+                            { name: "TUF Plus", color: "border-blue-500/20", key: "tufplus" },
                         ].map((platform, index) => (
                             <BlurFade key={platform.name} delay={1.75 + index * 0.1}>
                                 <Card

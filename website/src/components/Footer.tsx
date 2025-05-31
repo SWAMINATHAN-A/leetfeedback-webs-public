@@ -108,6 +108,10 @@ const Footer: React.FC = () => {
               <PlatformIcon platform="codechef" size="lg" className="opacity-80 hover:opacity-100 transition-opacity" />
               <span className="text-sm font-medium text-muted-foreground">CodeChef</span>
             </div>
+            <div className="flex flex-col items-center space-y-2">
+              <PlatformIcon platform="tufplus" size="lg" className="opacity-80 hover:opacity-100 transition-opacity" />
+              <span className="text-sm font-medium text-muted-foreground">TUF Plus</span>
+            </div>
           </div>
         </div>
 
@@ -129,13 +133,19 @@ const Footer: React.FC = () => {
           <h3 className="text-xl font-bold mb-2 text-foreground">Ready to Level Up Your Coding?</h3>
           <p className="text-muted-foreground mb-4">Coming Soon - Join our waitlist for early access</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button className="w-[240px] bg-foreground text-background px-6 py-2 rounded-lg font-medium hover:bg-foreground/90 transition-colors flex items-center justify-center">
+            <button 
+              className="w-[240px] bg-foreground text-background px-6 py-2 rounded-lg font-medium hover:bg-foreground/90 transition-colors flex items-center justify-center"
+              onClick={() => window.open('https://github.com/QuickHasaCat/leetFeedback', '_blank')}
+            >
               <RocketLaunchIcon className="w-4 h-4 mr-2" />
               Add to Chrome - Free
             </button>
-            <button className="w-[240px] border border-border text-foreground px-6 py-2 rounded-lg font-medium hover:bg-muted/50 transition-colors flex items-center justify-center">
-              <PlayArrowIcon className="w-8 h-8 mr-2" />
-              Watch Demo Video
+            <button 
+              className="w-[240px] border border-border text-foreground px-6 py-2 rounded-lg font-medium hover:bg-muted/50 transition-colors flex items-center justify-center"
+              onClick={() => window.location.href = '/roadmap'}
+            >
+              <RocketLaunchIcon className="w-4 h-4 mr-2" />
+              Follow Development
             </button>
           </div>
         </div>

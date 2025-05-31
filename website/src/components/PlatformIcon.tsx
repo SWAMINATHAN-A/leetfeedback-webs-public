@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface PlatformIconProps {
-  platform: 'leetcode' | 'geeksforgeeks' | 'hackerrank' | 'codechef';
+  platform: 'leetcode' | 'geeksforgeeks' | 'hackerrank' | 'codechef' | 'tufplus';
   className?: string;
   size?: 'sm' | 'md' | 'lg';
 }
@@ -17,7 +17,8 @@ const PlatformIcon: React.FC<PlatformIconProps> = ({ platform, className = '', s
     leetcode: '/support-icons/leetcode-svgrepo-com.svg',
     geeksforgeeks: '/support-icons/geeksforgeeks.svg',
     hackerrank: '/support-icons/hackerrank-svgrepo-com.svg',
-    codechef: '/support-icons/codechef-svgrepo-com.svg'
+    codechef: '/support-icons/codechef-svgrepo-com.svg',
+    tufplus: '/dist/support-icons/tuf.svg'
   };
 
   return (

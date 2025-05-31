@@ -44,6 +44,7 @@ export function ResizableNavbarDemo() {
               <PlatformIcon platform="geeksforgeeks" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
               <PlatformIcon platform="hackerrank" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
               <PlatformIcon platform="codechef" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
+              <PlatformIcon platform="tufplus" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
             </div>
             <div className="h-6 w-px bg-border"></div>
             <div className="flex items-center gap-3">
@@ -93,6 +94,7 @@ export function ResizableNavbarDemo() {
                 <PlatformIcon platform="geeksforgeeks" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
                 <PlatformIcon platform="hackerrank" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
                 <PlatformIcon platform="codechef" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
+                <PlatformIcon platform="tufplus" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
               </div>
               <NavbarButton
                 onClick={() => setIsMobileMenuOpen(false)}
