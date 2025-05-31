@@ -59,11 +59,15 @@ const StyledWrapper = styled.div`
     background: linear-gradient(90deg, #03a9f4, #f441a5, #ffeb3b, #03a9f4);
     background-size: 400%;
     border-radius: 10px;
-    transition: 1s;
   }
 
   button:hover::before {
-    filter: blur(20px);
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { filter: blur(5px); }
+    to   { filter: blur(20px); }
   }
 
   button:active {
@@ -71,4 +75,4 @@ const StyledWrapper = styled.div`
   }
 `;
 
-export default AnimatedButton; 
+export default AnimatedButton;
