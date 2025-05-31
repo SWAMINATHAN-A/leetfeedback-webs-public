@@ -33,7 +33,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import HomeIcon from "@mui/icons-material/Home";
 import ScienceIcon from "@mui/icons-material/Science";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
-import ContactButton from "@/components/ui/contact-button";
+import AnimatedButton from "@/components/ui/animated-button";
 
 interface RoadmapItem {
     id: number;
@@ -371,15 +371,15 @@ const RoadmapPage: React.FC = () => {
 
                                         {/* Milestone Badge */}
                                         {item.milestone && (
-                                            <div className="absolute -top-3 left-6">
-                                                <span className="bg-white text-black text-xs font-semibold px-3 py-1 rounded-full shadow-md border border-white/20 flex items-center gap-1">
+                                            <div className="absolute -top-2 left-4">
+                                                <span className="bg-white text-black text-[10px] font-medium px-1.5 py-0.5 rounded-md shadow-sm border border-white/20 flex items-center gap-1 whitespace-nowrap">
                                                     {item.milestone ===
                                                         "Public Beta Launch" && (
-                                                        <ScienceIcon className="w-3 h-3" />
+                                                        <ScienceIcon className="w-2 h-2" />
                                                     )}
                                                     {item.milestone ===
                                                         "Public Release" && (
-                                                        <RocketLaunchIcon className="w-3 h-3" />
+                                                        <RocketLaunchIcon className="w-2 h-2" />
                                                     )}
                                                     {item.milestone}
                                                 </span>
@@ -478,7 +478,9 @@ const RoadmapPage: React.FC = () => {
                                 LeetFeedback.
                             </p>
                             <div className="flex justify-center">
-                                <ContactButton />
+                                <AnimatedButton onClick={() => window.location.href = 'mailto:catinice@outlook.com'}>
+                                    Join Our Team
+                                </AnimatedButton>
                             </div>
                         </div>
                     </BlurFade>
