@@ -18,7 +18,7 @@ const PlatformIcon: React.FC<PlatformIconProps> = ({ platform, className = '', s
     geeksforgeeks: '/support-icons/geeksforgeeks.svg',
     hackerrank: '/support-icons/hackerrank-svgrepo-com.svg',
     codechef: '/support-icons/codechef-svgrepo-com.svg',
-    tufplus: '/dist/support-icons/tuf.svg'
+    tufplus: '/support-icons/tuf.svg'
   };
 
   return (
