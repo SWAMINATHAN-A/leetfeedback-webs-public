@@ -15,11 +15,19 @@ import { useState } from "react";
 import { Badge } from "./badge";
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import PlatformIcon from '../PlatformIcon';
+import { useAuth } from '../../contexts/AuthContext';
+import SignInModal from './SignInModal';
+import SimpleUserMenu from './SimpleUserMenu';
 
 export function ResizableNavbarDemo() {
   const navItems = [];
-
+  const { isAuthenticated, isLoading } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+
+  const handleSignInClick = () => {
+    setIsSignInModalOpen(true);
+  };
 
   return (
     <div className="relative w-full">
@@ -48,7 +56,17 @@ export function ResizableNavbarDemo() {
             </div>
             <div className="h-6 w-px bg-border"></div>
             <div className="flex items-center gap-3">
-              <NavbarButton variant="secondary">Sign In</NavbarButton>
+              {isAuthenticated ? (
+                <SimpleUserMenu />
+              ) : (
+                <NavbarButton 
+                  variant="secondary" 
+                  onClick={handleSignInClick}
+                  disabled={isLoading}
+                >
+                  {isLoading ? 'Loading...' : 'Sign In'}
+                </NavbarButton>
+              )}
               <NavbarButton variant="primary" onClick={() => window.location.href = '/roadmap'}>Roadmap</NavbarButton>
             </div>
           </div>
@@ -96,13 +114,25 @@ export function ResizableNavbarDemo() {
                 <PlatformIcon platform="codechef" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
                 <PlatformIcon platform="tufplus" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
               </div>
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="secondary"
-                className="w-full"
-              >
-                Sign In
-              </NavbarButton>
+              
+              {isAuthenticated ? (
+                <div className="px-3">
+                  <SimpleUserMenu />
+                </div>
+              ) : (
+                <NavbarButton
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    handleSignInClick();
+                  }}
+                  variant="secondary"
+                  className="w-full"
+                  disabled={isLoading}
+                >
+                  {isLoading ? 'Loading...' : 'Sign In'}
+                </NavbarButton>
+              )}
+              
               <NavbarButton
                 onClick={() => {
                   setIsMobileMenuOpen(false);
@@ -117,6 +147,12 @@ export function ResizableNavbarDemo() {
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
+
+      {/* Sign In Modal */}
+      <SignInModal 
+        isOpen={isSignInModalOpen} 
+        onClose={() => setIsSignInModalOpen(false)} 
+      />
     </div>
   );
-} 
+}
