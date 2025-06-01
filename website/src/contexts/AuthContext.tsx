@@ -90,7 +90,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         };
         
         if (event.source) {
-          event.source.postMessage(response, event.origin);
+          (event.source as Window).postMessage(response, event.origin);
         } else {
           // Fallback: post to window
           window.postMessage(response, window.location.origin);

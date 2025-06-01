@@ -42,7 +42,6 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ className = '
     setIsOpen(false);
     navigate('/profile');
   }, [navigate]);
-</edits>
 
   if (!isAuthenticated || !user) {
     return null;
