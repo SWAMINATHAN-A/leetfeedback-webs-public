@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { User, LogOut } from 'lucide-react';
 import ProfileImage from '../components/ui/ProfileImage';
+import { DockDemo } from '../components/DockDemo';
 
 const SimpleProfilePage: React.FC = () => {
   const { user, signOut, isAuthenticated } = useAuth();
@@ -75,6 +76,7 @@ const SimpleProfilePage: React.FC = () => {
       </main>
 
       <Footer />
+      <DockDemo />
     </div>
   );
 };

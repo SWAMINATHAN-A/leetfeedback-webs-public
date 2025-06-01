@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/tooltip";
 import { buttonVariants } from "@/components/ui/button";
 import { useTheme } from "@/contexts/ThemeContext";
+import { useAuth } from "@/contexts/AuthContext";
+import ProfileImage from "@/components/ui/ProfileImage";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CodeIcon from "@mui/icons-material/Code";
@@ -139,6 +141,7 @@ const roadmapItems: RoadmapItem[] = [
 
 const RoadmapPage: React.FC = () => {
     const { isDark, toggleTheme } = useTheme();
+    const { user, isAuthenticated } = useAuth();
 
     return (
         <div className="min-h-screen bg-background">
@@ -507,7 +510,7 @@ const RoadmapPage: React.FC = () => {
                                                 variant: "ghost",
                                                 size: "icon",
                                             }),
-                                            "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10",
+                                            "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10 p-1.5",
                                         )}
                                     >
                                         <HomeIcon className="md:size-5 size-4 text-foreground" />
@@ -544,32 +547,40 @@ const RoadmapPage: React.FC = () => {
                             </Tooltip>
                         </DockIcon>
 
-                        <DockIcon>
-                            <Tooltip>
-                                <TooltipTrigger asChild>
-                                    <button
-                                        onClick={toggleTheme}
-                                        aria-label="Toggle Theme"
-                                        className={cn(
-                                            buttonVariants({
-                                                variant: "ghost",
-                                                size: "icon",
-                                            }),
-                                            "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10",
-                                        )}
-                                    >
-                                        {isDark ? (
-                                            <LightModeIcon className="md:size-5 size-4 text-foreground" />
-                                        ) : (
-                                            <DarkModeIcon className="md:size-5 size-4 text-foreground" />
-                                        )}
-                                    </button>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                    <p>Toggle Theme</p>
-                                </TooltipContent>
-                            </Tooltip>
-                        </DockIcon>
+                        {isAuthenticated && user && (
+                            <DockIcon>
+                                <Tooltip>
+                                    <TooltipTrigger asChild>
+                                        <a
+                                            href="/profile"
+                                            aria-label="Profile"
+                                            className={cn(
+                                                buttonVariants({
+                                                    variant: "ghost",
+                                                    size: "icon",
+                                                }),
+                                                "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10 p-0.5",
+                                            )}
+                                        >
+                                            <img
+                                                src={user.photoURL || '/support-icons/default.jpg'}
+                                                alt={user.displayName || "User"}
+                                                className="w-full h-full rounded-full object-cover"
+                                                onError={(e) => {
+                                                    const target = e.target as HTMLImageElement;
+                                                    if (target.src !== '/support-icons/default.jpg') {
+                                                        target.src = '/support-icons/default.jpg';
+                                                    }
+                                                }}
+                                            />
+                                        </a>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        <p>Profile</p>
+                                    </TooltipContent>
+                                </Tooltip>
+                            </DockIcon>
+                        )}
                     </Dock>
                 </TooltipProvider>
             </div>
