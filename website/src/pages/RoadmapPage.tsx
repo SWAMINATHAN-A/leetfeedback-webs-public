@@ -141,54 +141,54 @@ const RoadmapPage: React.FC = () => {
                         {item.icon && (
                             <div className={cn(
                                 "w-12 h-12 rounded-lg flex items-center justify-center border-2",
-                                item.completed 
-                                    ? "bg-white text-black border-white" 
-                                    : "bg-black text-white border-white"
+                                item.completed
+                                    ? "bg-foreground text-background border-foreground"
+                                    : "bg-background text-foreground border-foreground"
                             )}>
                                 <item.icon className="w-6 h-6" />
                             </div>
                         )}
                     </div>
-                    
+
                     <div className="flex-1 space-y-3">
                         <div className="flex items-center gap-3">
                             <h3 className={cn(
                                 "text-xl font-bold",
-                                item.completed 
-                                    ? "text-white line-through" 
-                                    : "text-white"
+                                item.completed
+                                    ? "text-foreground line-through"
+                                    : "text-foreground"
                             )}>
                                 {item.title}
                             </h3>
-                            
+
                             {item.completed ? (
-                                <CheckCircleIcon className="w-5 h-5 text-white" />
+                                <CheckCircleIcon className="w-5 h-5 text-foreground" />
                             ) : (
-                                <RadioButtonUncheckedIcon className="w-5 h-5 text-white/60" />
+                                <RadioButtonUncheckedIcon className="w-5 h-5 text-muted-foreground" />
                             )}
-                            
+
                             {item.milestone && (
-                                <span className="bg-white text-black text-xs font-medium px-2 py-1 rounded-full border border-white">
+                                <span className="bg-foreground text-background text-xs font-medium px-2 py-1 rounded-full border border-foreground">
                                     {item.milestone}
                                 </span>
                             )}
                         </div>
-                        
+
                         <p className={cn(
                             "text-base leading-relaxed",
-                            item.completed 
-                                ? "text-white/60 line-through" 
-                                : "text-white/80"
+                            item.completed
+                                ? "text-muted-foreground line-through"
+                                : "text-muted-foreground"
                         )}>
                             {item.description}
                         </p>
-                        
+
                         <div className="flex items-center gap-2">
                             <div className={cn(
                                 "w-2 h-2 rounded-full",
-                                item.completed ? "bg-white" : "bg-white/60"
+                                item.completed ? "bg-foreground" : "bg-muted-foreground"
                             )} />
-                            <span className="text-xs text-white/60 font-medium">
+                            <span className="text-xs text-muted-foreground font-medium">
                                 {item.completed ? "Completed" : "In Development"}
                             </span>
                         </div>
@@ -217,20 +217,20 @@ const RoadmapPage: React.FC = () => {
             </LampContainer>
 
             {/* Timeline Section */}
-            <div className="bg-neutral-950">
+            <div className="bg-background">
                 <Timeline data={timelineData} />
-                
+
                 {/* Call to Action Section */}
                 <div className="max-w-4xl mx-auto px-4 pb-20">
-                    <div className="relative bg-black border-2 border-white rounded-lg p-8 shadow-2xl">
-                        <h4 className="text-2xl font-semibold text-white mb-3 font-mono">Join Our Journey</h4>
-                        <p className="text-white/80 text-lg leading-relaxed mb-6 font-mono">
+                    <div className="relative bg-card border-2 border-foreground rounded-lg p-8 shadow-2xl">
+                        <h4 className="text-2xl font-semibold text-foreground mb-3 font-mono">Join Our Journey</h4>
+                        <p className="text-muted-foreground text-lg leading-relaxed mb-6 font-mono">
                             Looking for developers to contribute code and testers to help shape the future of LeetFeedback.
                         </p>
                         <div className="flex justify-center">
-                            <button 
+                            <button
                                 onClick={() => window.location.href = "mailto:catinice@outlook.com"}
-                                className="bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors border-2 border-white font-mono"
+                                className="bg-foreground text-background px-6 py-3 rounded-lg font-medium hover:bg-foreground/90 transition-colors border-2 border-foreground font-mono"
                             >
                                 Join Our Team
                             </button>

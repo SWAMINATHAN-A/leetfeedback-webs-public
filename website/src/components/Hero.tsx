@@ -149,6 +149,12 @@ const Hero: React.FC = () => {
                     </BlurFade>
 
                     {/* Platform Showcase */}
+                    <BlurFade delay={1.7}>
+                        <h3 className="text-xl font-bold text-center text-foreground mb-8 font-mono">
+                            Supported Platforms
+                        </h3>
+                    </BlurFade>
+                    
                     <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-4xl mx-auto">
                         {[
                             { name: "LeetCode", color: "border-orange-500/20", key: "leetcode" },
