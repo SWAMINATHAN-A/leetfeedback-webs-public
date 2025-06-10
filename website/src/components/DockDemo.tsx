@@ -240,7 +240,7 @@ export function DockDemo() {
   return (
     <div className="fixed bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-50">
       <TooltipProvider>
-        <Dock direction="middle" iconSize={40} iconMagnification={48} className="md:h-[72px] h-[56px]">
+        <Dock direction="middle" iconSize={48} iconMagnification={60} className="md:h-[80px] h-[64px]">
           {showNavigation && DATA.navbar.map((item) => (
             <DockIcon key={item.label}>
               <Tooltip>

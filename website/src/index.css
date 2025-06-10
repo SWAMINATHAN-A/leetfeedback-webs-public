@@ -322,12 +322,12 @@
 
 .liquidGlass-dock {
   border-radius: 2rem;
-  padding: 0.6rem;
-  gap: 8px;
+  padding: 0.8rem;
+  gap: 12px;
 }
 
 .liquidGlass-dock:hover {
-  padding: 0.8rem;
+  padding: 1.0rem;
   border-radius: 2.5rem;
   transform: translateY(-2px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25), 
