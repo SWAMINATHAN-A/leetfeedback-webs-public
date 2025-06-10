@@ -19,7 +19,10 @@ import { analytics } from "../utils/analytics";
 
 const Hero: React.FC = () => {
     return (
-        <section id="home" className="relative overflow-hidden bg-background pt-20 pb-32 grid-pattern">
+        <section
+            id="home"
+            className="relative overflow-hidden bg-background pt-20 pb-32 grid-pattern"
+        >
             {/* Floating Elements - Minimal */}
             <div className="absolute top-20 left-10 w-32 h-32 border border-border/20 rounded-full opacity-20 float dark:border-white/10"></div>
             <div
@@ -36,14 +39,14 @@ const Hero: React.FC = () => {
                     {/* Beta Badge */}
                     <BlurFade delay={0.25}>
                         <div className="mb-8">
-                            <a 
-                                href="/roadmap" 
+                            <a
+                                href="/roadmap"
                                 className="inline-block"
                                 onClick={() => analytics.trackRoadmapView()}
                             >
                                 <Badge className="bg-muted/50 text-foreground border border-border px-4 py-2 text-sm font-mono hover:bg-white dark:hover:bg-white hover:text-black dark:hover:text-black">
                                     <RocketLaunchIcon className="w-4 h-4 mr-2" />
-                                    Coming Soon -&nbsp;<span className="underline decoration-dotted">View Roadmap</span>
+                                    Public Beta is out!
                                 </Badge>
                             </a>
                         </div>
@@ -66,13 +69,16 @@ const Hero: React.FC = () => {
                             Automatically push solutions to{" "}
                             <strong className="text-foreground">GitHub</strong>,
                             sync insights to{" "}
-                            <strong className="text-foreground">Notion</strong>, and
-                            create{" "}
+                            <strong className="text-foreground">Notion</strong>,
+                            and create{" "}
                             <strong className="text-foreground">
                                 Anki flashcards
                             </strong>{" "}
-                            from your <span className="text-red-500">coding mistakes</span>. The complete learning
-                            ecosystem.
+                            from your{" "}
+                            <span className="text-red-500">
+                                coding mistakes
+                            </span>
+                            . The complete learning ecosystem.
                         </p>
                     </BlurFade>
 
@@ -107,8 +113,13 @@ const Hero: React.FC = () => {
                                 size="lg"
                                 className="w-[240px] px-8 py-4 text-lg font-semibold"
                                 onClick={() => {
-                                    analytics.trackDownloadClick('hero_primary_cta');
-                                    window.open('https://github.com/QuickHasaCat/leetFeedback', '_blank');
+                                    analytics.trackDownloadClick(
+                                        "hero_primary_cta",
+                                    );
+                                    window.open(
+                                        "https://github.com/QuickHasaCat/leetFeedback",
+                                        "_blank",
+                                    );
                                 }}
                             >
                                 <CheckCircleIcon className="w-5 h-5 mr-2" />
@@ -120,8 +131,10 @@ const Hero: React.FC = () => {
                                 size="lg"
                                 className="w-[240px] px-8 py-4 text-lg font-semibold"
                                 onClick={() => {
-                                    analytics.trackFeatureClick('follow_development');
-                                    window.location.href = '/roadmap';
+                                    analytics.trackFeatureClick(
+                                        "follow_development",
+                                    );
+                                    window.location.href = "/roadmap";
                                 }}
                             >
                                 <RocketLaunchIcon className="w-5 h-5 mr-2" />
@@ -143,7 +156,8 @@ const Hero: React.FC = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <StarIcon className="w-4 h-4 text-yellow-400" />
-                                <NumberTicker value={4.8} decimalPlaces={1} />/5 Rating
+                                <NumberTicker value={4.8} decimalPlaces={1} />
+                                /5 Rating
                             </div>
                         </div>
                     </BlurFade>
@@ -154,21 +168,47 @@ const Hero: React.FC = () => {
                             Supported Platforms
                         </h3>
                     </BlurFade>
-                    
+
                     <div className="grid grid-cols-2 md:grid-cols-5 gap-6 max-w-4xl mx-auto">
                         {[
-                            { name: "LeetCode", color: "border-orange-500/20", key: "leetcode" },
-                            { name: "GeeksforGeeks", color: "border-green-500/20", key: "geeksforgeeks" },
-                            { name: "HackerRank", color: "border-emerald-500/20", key: "hackerrank" },
-                            { name: "CodeChef", color: "border-yellow-500/20", key: "codechef" },
-                            { name: "TUF Plus", color: "border-blue-500/20", key: "tufplus" },
+                            {
+                                name: "LeetCode",
+                                color: "border-orange-500/20",
+                                key: "leetcode",
+                            },
+                            {
+                                name: "GeeksforGeeks",
+                                color: "border-green-500/20",
+                                key: "geeksforgeeks",
+                            },
+                            {
+                                name: "HackerRank",
+                                color: "border-emerald-500/20",
+                                key: "hackerrank",
+                            },
+                            {
+                                name: "CodeChef",
+                                color: "border-yellow-500/20",
+                                key: "codechef",
+                            },
+                            {
+                                name: "TUF Plus",
+                                color: "border-blue-500/20",
+                                key: "tufplus",
+                            },
                         ].map((platform, index) => (
-                            <BlurFade key={platform.name} delay={1.75 + index * 0.1}>
+                            <BlurFade
+                                key={platform.name}
+                                delay={1.75 + index * 0.1}
+                            >
                                 <Card
                                     className={`p-6 text-center border-2 border-border hover:bg-muted/20 transition-all duration-300 bg-card/50`}
                                 >
                                     <div className="w-12 h-12 mx-auto mb-3 rounded-md bg-muted/50 flex items-center justify-center border border-border">
-                                        <PlatformIcon platform={platform.key as any} size="lg" />
+                                        <PlatformIcon
+                                            platform={platform.key as any}
+                                            size="lg"
+                                        />
                                     </div>
                                     <p className="font-semibold text-foreground text-sm">
                                         {platform.name}
