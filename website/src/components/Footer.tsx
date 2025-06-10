@@ -118,7 +118,7 @@ const Footer: React.FC = () => {
         {/* Bottom Footer */}
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center">
           <div className="text-muted-foreground text-sm mb-4 md:mb-0 font-mono">
-            © 2024 LeetFeedback. All rights reserved.
+            © 2025 LeetFeedback. All rights reserved.
           </div>
           <div className="flex flex-wrap justify-center md:justify-end space-x-6 text-sm">
             <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</a>
@@ -128,27 +128,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Extension Download CTA */}
-        <div className="mt-8 text-center p-6 bg-muted/10 border border-border rounded-lg">
-          <h3 className="text-xl font-bold mb-2 text-foreground">Ready to Level Up Your Coding?</h3>
-          <p className="text-muted-foreground mb-4">Coming Soon - Join our waitlist for early access</p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button 
-              className="w-[240px] bg-foreground text-background px-6 py-2 rounded-lg font-medium hover:bg-foreground/90 transition-colors flex items-center justify-center"
-              onClick={() => window.open('https://github.com/QuickHasaCat/leetFeedback', '_blank')}
-            >
-              <RocketLaunchIcon className="w-4 h-4 mr-2" />
-              Add to Chrome - Free
-            </button>
-            <button 
-              className="w-[240px] border border-border text-foreground px-6 py-2 rounded-lg font-medium hover:bg-muted/50 transition-colors flex items-center justify-center"
-              onClick={() => window.location.href = '/roadmap'}
-            >
-              <RocketLaunchIcon className="w-4 h-4 mr-2" />
-              Follow Development
-            </button>
-          </div>
-        </div>
+
       </div>
     </footer>
   );

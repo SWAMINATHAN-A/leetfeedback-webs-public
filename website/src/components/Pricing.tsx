@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     Card,
     CardContent,
@@ -8,105 +8,51 @@ import {
 } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import GitHubIcon from "@mui/icons-material/GitHub";
-import NotesIcon from "@mui/icons-material/Notes";
-import StyleIcon from "@mui/icons-material/Style";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import CloseIcon from "@mui/icons-material/Close";
-import BusinessIcon from "@mui/icons-material/Business";
-import StarIcon from "@mui/icons-material/Star";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import { BlurFade } from "./magicui/blur-fade";
 import { TextAnimate } from "./magicui/text-animate";
-import { NumberTicker } from "./magicui/number-ticker";
+import { RainbowButton } from "./magicui/rainbow-button";
 import { analytics } from "../utils/analytics";
-import AnimatedButton from "./ui/animated-button";
 import GroupsIcon from "@mui/icons-material/Groups";
 import CodeIcon from "@mui/icons-material/Code";
 import BugReportIcon from "@mui/icons-material/BugReport";
+import OpenSourceIcon from "@mui/icons-material/OpenInNew";
 
 const Pricing: React.FC = () => {
-    const plans = [
-        {
-            name: "Free",
-            price: "₹0",
-            priceValue: 0,
-            period: "forever",
-            description:
-                "Perfect for getting started with AI-powered coding insights",
-            badge: "Most Popular",
-            badgeColor: "bg-muted/50 text-foreground border border-border",
-            features: [
-                "Up to 100 tracked submissions/month",
-                "Basic mistake pattern analysis",
-                "Weekly progress reports",
-                "Support for 3 platforms",
-                "Community support",
-                "Basic analytics dashboard",
-            ],
-            limitations: [
-                "Limited to 100 submissions/month",
-                "Basic AI analysis only",
-                "No export functionality",
-            ],
-            cta: "Start Free",
-            ctaVariant: "outline" as const,
-            popular: true,
-        },
-        {
-            name: "Pro",
-            price: "₹200",
-            priceValue: 200,
-            period: "per month",
-            description:
-                "Advanced analytics and unlimited tracking for serious developers",
-            badge: "Best Value",
-            badgeColor: "bg-muted/50 text-foreground border border-border",
-            features: [
-                "Everything in Free plan",
-                "Unlimited tracked submissions",
-                "GitHub auto-commit with AI notes",
-                "Notion workspace integration",
-                "Anki flashcard generation",
-                "Advanced AI analysis & insights",
-                "All platforms supported",
-                "Priority email support",
-                "Export data to CSV/PDF",
-                "Custom learning goals",
-            ],
-            limitations: [],
-            cta: "Start Pro Trial",
-            ctaVariant: "default" as const,
-            popular: false,
-        },
-        {
-            name: "Teams",
-            price: "₹500",
-            priceValue: 500,
-            period: "per month",
-            description:
-                "Collaborate and track progress across your entire development team",
-            badge: "Enterprise",
-            badgeColor: "bg-muted/50 text-foreground border border-border",
-            features: [
-                "Everything in Pro",
-                "Up to 10 team members",
-                "Shared GitHub organization repos",
-                "Team Notion workspace templates",
-                "Collaborative Anki decks",
-                "Team analytics dashboard",
-                "Admin controls & permissions",
-                "Slack/Discord integrations",
-                "Custom reporting",
-                "Dedicated account manager",
-            ],
-            limitations: [],
-            cta: "Contact Sales",
-            ctaVariant: "outline" as const,
-            popular: false,
-        },
+    const [showUPI, setShowUPI] = useState(false);
+
+    const features = [
+        "Unlimited tracked submissions",
+        "GitHub auto-commit with AI notes",
+        "Notion workspace integration", 
+        "Anki flashcard generation",
+        "Advanced AI analysis & insights",
+        "All platforms supported",
+        "Advanced mistake pattern analysis",
+        "Detailed progress reports",
+        "Export data to CSV/PDF",
+        "Custom learning goals",
+        "Team collaboration features",
+        "Analytics dashboard",
+        "Community support",
+        "Priority email support",
+        "Slack/Discord integrations",
+        "Custom reporting"
     ];
+
+    const handleDonateClick = () => {
+        setShowUPI(!showUPI);
+        analytics.trackFeatureClick('donation_button');
+    };
+
+    const copyUPI = () => {
+        navigator.clipboard.writeText('9992806683@yapl');
+        // You could add a toast notification here
+    };
 
     return (
         <section
@@ -115,11 +61,11 @@ const Pricing: React.FC = () => {
         >
             <div className="container mx-auto px-4 md:px-8">
                 {/* Section Header */}
-                <div className="text-center max-w-3xl mx-auto mb-20">
+                <div className="text-center max-w-4xl mx-auto mb-20">
                     <BlurFade delay={0.25}>
                         <Badge className="mb-4 bg-green-500/20 text-green-400 border border-green-500/30 font-mono hover:bg-green-500/30 hover:text-green-300">
-                            <AttachMoneyIcon className="w-4 h-4 mr-1" />
-                            Beta Pricing
+                            <FavoriteIcon className="w-4 h-4 mr-1" />
+                            Free Forever
                         </Badge>
                     </BlurFade>
                     <TextAnimate
@@ -129,171 +75,210 @@ const Pricing: React.FC = () => {
                         delay={0.5}
                         by="word"
                     >
-                        Choose the perfect plan for your growth
+                        Everything is Free Forever
                     </TextAnimate>
                     <BlurFade delay={0.75}>
-                        <p className="text-xl text-muted-foreground leading-relaxed">
-                            Start free, upgrade as you scale. Every plan
-                            includes our core features.
+                        <p className="text-xl text-muted-foreground leading-relaxed mb-6">
+                            Made with ❤️ and open source. All features, unlimited usage, forever free.
                         </p>
+                        <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
+                            <div className="flex items-center gap-2">
+                                <OpenSourceIcon className="w-4 h-4" />
+                                <span>Open Source</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <FavoriteIcon className="w-4 h-4 text-red-400" />
+                                <span>Made with Love</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <GitHubIcon className="w-4 h-4" />
+                                <span>Community Driven</span>
+                            </div>
+                        </div>
                     </BlurFade>
                 </div>
 
-                {/* Pricing Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                    {plans.map((plan, index) => (
-                        <BlurFade key={index} delay={1 + index * 0.2}>
-                            <Card
-                                className={`relative overflow-hidden transition-all duration-300 ${
-                                    plan.popular
-                                        ? "border-2 border-white/20 bg-card/50 shadow-xl scale-105"
-                                        : "border border-border hover:border-white/20 hover:bg-card/30 bg-card/20"
-                                }`}
-                            >
-                                {plan.popular && (
-                                    <div className="absolute top-0 left-0 right-0 bg-foreground text-background text-center py-2 text-sm font-semibold font-mono">
-                                        ⭐ Most Popular Choice
-                                    </div>
-                                )}
+                {/* Single Free Plan Card */}
+                <div className="max-w-2xl mx-auto mb-16">
+                    <BlurFade delay={1}>
+                        <Card className="relative overflow-hidden border-2 border-green-500/30 bg-card/50 shadow-xl">
+                            <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-green-500 to-blue-500 text-white text-center py-2 text-sm font-semibold font-mono">
+                                🎉 Everything Included - Always Free
+                            </div>
 
-                                <CardHeader
-                                    className={`space-y-4 ${plan.popular ? "pt-12" : "pt-6"}`}
+                            <CardHeader className="pt-12 space-y-4">
+                                <div className="flex items-center justify-between">
+                                    <CardTitle className="text-3xl font-bold text-foreground">
+                                        LeetFeedback
+                                    </CardTitle>
+                                    <Badge className="bg-green-500/20 text-green-400 border border-green-500/30">
+                                        Free Forever
+                                    </Badge>
+                                </div>
+
+                                <div className="space-y-2">
+                                    <div className="flex items-end space-x-1">
+                                        <span className="text-5xl font-bold text-foreground font-mono">
+                                            ₹0
+                                        </span>
+                                        <span className="text-muted-foreground pb-2 font-mono">
+                                            /forever
+                                        </span>
+                                    </div>
+                                    <CardDescription className="text-muted-foreground text-lg">
+                                        All features included. No limitations. No premium tiers. Just pure love for the coding community.
+                                    </CardDescription>
+                                </div>
+
+                                <Button
+                                    variant="default"
+                                    className="w-full py-3 font-semibold bg-foreground text-background hover:bg-foreground/90"
+                                    onClick={() => {
+                                        analytics.trackPricingPlanView('Free Forever');
+                                        window.open("https://github.com/QuickHasaCat/leetFeedback", "_blank");
+                                    }}
                                 >
-                                    <div className="flex items-center justify-between">
-                                        <CardTitle className="text-2xl font-bold text-foreground">
-                                            {plan.name}
-                                        </CardTitle>
-                                        <Badge className={plan.badgeColor}>
-                                            {plan.badge}
-                                        </Badge>
+                                    <CheckCircleIcon className="w-5 h-5 mr-2" />
+                                    Get Started - It's Free!
+                                </Button>
+                            </CardHeader>
+
+                            <CardContent className="space-y-6">
+                                {/* Features */}
+                                <div>
+                                    <h4 className="font-semibold text-foreground mb-4 font-mono text-lg">
+                                        Everything included:
+                                    </h4>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                        {features.map((feature, featureIndex) => (
+                                            <div
+                                                key={featureIndex}
+                                                className="flex items-start"
+                                            >
+                                                <CheckCircleIcon className="w-5 h-5 mr-3 text-green-400 flex-shrink-0 mt-0.5" />
+                                                <span className="text-sm text-muted-foreground">
+                                                    {feature}
+                                                </span>
+                                            </div>
+                                        ))}
                                     </div>
+                                </div>
 
-                                    <div className="space-y-2">
-                                        <div className="flex items-end space-x-1">
-                                            <span className="text-4xl font-bold text-foreground font-mono">
-                                                {plan.price}
-                                            </span>
-                                            <span className="text-muted-foreground pb-1 font-mono">
-                                                /{plan.period}
-                                            </span>
-                                        </div>
-                                        <CardDescription className="text-muted-foreground">
-                                            {plan.description}
-                                        </CardDescription>
-                                    </div>
-
-                                    <Button
-                                        variant={plan.ctaVariant}
-                                        className={`w-full py-3 font-semibold ${
-                                            plan.ctaVariant === "default"
-                                                ? "bg-foreground text-background hover:bg-foreground/90"
-                                                : "border-border hover:bg-muted/50"
-                                        }`}
-                                        onClick={() =>
-                                            analytics.trackPricingPlanView(
-                                                plan.name,
-                                            )
-                                        }
-                                    >
-                                        {plan.cta}
-                                    </Button>
-                                </CardHeader>
-
-                                <CardContent className="space-y-6">
-                                    {/* Features */}
-                                    <div>
-                                        <h4 className="font-semibold text-foreground mb-3 font-mono">
-                                            What's included:
+                                {/* Open Source Message */}
+                                <div className="bg-muted/20 border border-border rounded-lg p-6">
+                                    <div className="flex items-center gap-3 mb-3">
+                                        <GitHubIcon className="w-6 h-6 text-foreground" />
+                                        <h4 className="font-semibold text-foreground font-mono">
+                                            Open Source & Community Driven
                                         </h4>
-                                        <ul className="space-y-3">
-                                            {plan.features.map(
-                                                (feature, featureIndex) => (
-                                                    <li
-                                                        key={featureIndex}
-                                                        className="flex items-start"
-                                                    >
-                                                        <CheckCircleIcon className="w-5 h-5 mr-3 text-green-400 flex-shrink-0 mt-0.5" />
-                                                        <span className="text-sm text-muted-foreground">
-                                                            {feature}
-                                                        </span>
-                                                    </li>
-                                                ),
-                                            )}
-                                        </ul>
                                     </div>
+                                    <p className="text-sm text-muted-foreground mb-4">
+                                        LeetFeedback is completely open source and built with love by the coding community. 
+                                        We believe that great tools should be accessible to everyone, regardless of their financial situation.
+                                    </p>
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => window.open("https://github.com/QuickHasaCat/leetFeedback", "_blank")}
+                                        className="border-border hover:bg-muted/50"
+                                    >
+                                        <GitHubIcon className="w-4 h-4 mr-2" />
+                                        View on GitHub
+                                    </Button>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </BlurFade>
+                </div>
 
-                                    {/* Limitations */}
-                                    {plan.limitations.length > 0 && (
-                                        <div>
-                                            <h4 className="font-semibold text-foreground mb-3 font-mono">
-                                                Limitations:
-                                            </h4>
-                                            <ul className="space-y-2">
-                                                {plan.limitations.map(
-                                                    (
-                                                        limitation,
-                                                        limitationIndex,
-                                                    ) => (
-                                                        <li
-                                                            key={
-                                                                limitationIndex
-                                                            }
-                                                            className="flex items-start"
-                                                        >
-                                                            <CloseIcon className="w-4 h-4 mr-3 text-muted-foreground flex-shrink-0 mt-0.5" />
-                                                            <span className="text-sm text-muted-foreground">
-                                                                {limitation}
-                                                            </span>
-                                                        </li>
-                                                    ),
-                                                )}
-                                            </ul>
+                {/* Donation Section */}
+                <div className="text-center max-w-2xl mx-auto mb-16">
+                    <BlurFade delay={1.2}>
+                        <div className="bg-muted/10 border border-border rounded-lg p-8">
+                            <div className="flex justify-center mb-4">
+                                <VolunteerActivismIcon className="w-12 h-12 text-red-400" />
+                            </div>
+                            <h3 className="text-2xl font-bold mb-4 text-foreground">
+                                Support Our Mission
+                            </h3>
+                            <p className="text-muted-foreground mb-6">
+                                If LeetFeedback has helped you in your coding journey, consider supporting us. 
+                                Every contribution helps us keep the project alive and improve it further.
+                            </p>
+                            
+                            <div className="space-y-4">
+                                <RainbowButton
+                                    size="lg"
+                                    className="px-8 py-4 text-lg font-semibold"
+                                    onClick={handleDonateClick}
+                                >
+                                    <VolunteerActivismIcon className="w-5 h-5 mr-2" />
+                                    Donate
+                                </RainbowButton>
+                                
+                                {showUPI && (
+                                    <BlurFade>
+                                        <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
+                                            <p className="text-sm text-muted-foreground mb-2">UPI ID:</p>
+                                            <div className="flex items-center justify-center gap-2">
+                                                <code className="bg-muted px-3 py-1 rounded font-mono text-sm">
+                                                    9992806683@yapl
+                                                </code>
+                                                <Button
+                                                    size="sm"
+                                                    variant="outline"
+                                                    onClick={copyUPI}
+                                                >
+                                                    Copy
+                                                </Button>
+                                            </div>
+                                            <p className="text-xs text-muted-foreground mt-2">
+                                                Thank you for supporting open source! ❤️
+                                            </p>
                                         </div>
-                                    )}
-                                </CardContent>
-                            </Card>
-                        </BlurFade>
-                    ))}
+                                    </BlurFade>
+                                )}
+                            </div>
+                        </div>
+                    </BlurFade>
                 </div>
 
                 {/* FAQ Section */}
-                <div className="bg-muted/10 border border-border rounded-lg p-8 md:p-12">
+                <div className="bg-muted/10 border border-border rounded-lg p-8 md:p-12 mb-16">
                     <div className="text-center mb-12">
                         <h3 className="text-3xl font-bold text-foreground mb-4">
                             Frequently Asked Questions
                         </h3>
                         <p className="text-muted-foreground">
-                            Everything you need to know about our pricing and
-                            features
+                            Everything you need to know about our free forever approach
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         {[
                             {
-                                question: "Can I upgrade or downgrade anytime?",
-                                answer: "Yes! You can change your plan at any time. Upgrades take effect immediately, and downgrades apply at your next billing cycle.",
+                                question: "Is this really free forever?",
+                                answer: "Yes! We believe great tools should be accessible to everyone. LeetFeedback will always be free with all features included.",
                             },
                             {
-                                question: "Do you offer student discounts?",
-                                answer: "Absolutely! Students get 50% off Pro plans with a valid .edu email address. Contact us for verification.",
+                                question: "How do you sustain the project?",
+                                answer: "Through community donations, contributions, and the passion of our open source community. Every donation helps us improve and maintain the service.",
+                            },
+                            {
+                                question: "Can I contribute to the project?",
+                                answer: "Absolutely! We welcome contributors, whether you're a developer, designer, or tester. Check out our GitHub repository to get started.",
                             },
                             {
                                 question: "Is my code data secure?",
-                                answer: "Yes, we use enterprise-grade encryption and never store your actual code. Only anonymized patterns are analyzed.",
+                                answer: "Yes, we use enterprise-grade encryption and never store your actual code. Only anonymized patterns are analyzed for insights.",
                             },
                             {
-                                question:
-                                    "What happens if I exceed the free limit?",
-                                answer: "We'll notify you as you approach the limit. You can upgrade anytime or wait for the next month's reset.",
+                                question: "Will you ever add paid features?",
+                                answer: "No. Our commitment is to keep everything free forever. We believe in democratizing access to great coding tools.",
                             },
                             {
-                                question: "Do you offer refunds?",
-                                answer: "Yes, we offer a 30-day money-back guarantee on all paid plans. No questions asked.",
-                            },
-                            {
-                                question: "Can I cancel anytime?",
-                                answer: "Of course! Cancel anytime with one click. Your data remains accessible until your current period ends.",
+                                question: "How can I support the project?",
+                                answer: "You can donate, contribute code, spread the word, or help with testing and feedback. Every form of support is appreciated!",
                             },
                         ].map((faq, index) => (
                             <div key={index} className="space-y-3">
@@ -323,22 +308,24 @@ const Pricing: React.FC = () => {
                     </div>
                     <h3 className="text-2xl font-bold mb-4 text-foreground">
                         <AutoAwesomeIcon className="w-6 h-6 mr-2 inline" />
-                        Help Us Build LeetFeedback
+                        Join Our Open Source Community
                     </h3>
                     <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                        Actively looking for designers, developers and testers
-                        to join our mission of making coding practice more
-                        effective and enjoyable.
+                        Help us make LeetFeedback even better! We're looking for passionate developers, 
+                        designers, and testers to join our mission of making coding practice more 
+                        effective and enjoyable for everyone.
                     </p>
                     <div className="flex justify-center">
-                        <AnimatedButton
+                        <Button
+                            size="lg"
+                            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold px-8 py-4 text-lg"
                             onClick={() =>
-                                (window.location.href =
-                                    "mailto:catince@outlook.com")
+                                window.open("https://github.com/QuickHasaCat/leetFeedback", "_blank")
                             }
                         >
-                            Join Our Team
-                        </AnimatedButton>
+                            <GitHubIcon className="w-5 h-5 mr-2" />
+                            Contribute on GitHub
+                        </Button>
                     </div>
                 </div>
             </div>
