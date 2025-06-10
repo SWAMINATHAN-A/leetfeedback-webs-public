@@ -83,36 +83,79 @@ export function DockDemo() {
         </DockIcon>
       );
     } else if (isRoadmapPage) {
-      // Roadmap page: Show user profile picture only (if authenticated)
-      if (isAuthenticated && user) {
-        return (
+      // Roadmap page: Show home link + theme switch + profile (if authenticated)
+      return (
+        <>
           <DockIcon>
             <Tooltip>
               <TooltipTrigger asChild>
                 <button
-                  onClick={() => window.location.href = '/profile'}
-                  aria-label="Profile"
+                  onClick={() => window.location.href = '/'}
+                  aria-label="Home"
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10 p-1"
+                    "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10"
                   )}
                 >
-                  <ProfileImage
-                    src={user.photoURL}
-                    alt={user.displayName || "User"}
-                    size="sm"
-                    className="w-full h-full border-0"
-                  />
+                  <HomeIcon className="md:size-5 size-4 text-foreground" />
                 </button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Profile</p>
+                <p>Home</p>
               </TooltipContent>
             </Tooltip>
           </DockIcon>
-        );
-      }
-      return null;
+          <DockIcon>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <button
+                  onClick={toggleTheme}
+                  aria-label="Toggle Theme"
+                  className={cn(
+                    buttonVariants({ variant: "ghost", size: "icon" }),
+                    "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10"
+                  )}
+                >
+                  {isDark ? (
+                    <LightModeIcon className="md:size-5 size-4 text-foreground" />
+                  ) : (
+                    <DarkModeIcon className="md:size-5 size-4 text-foreground" />
+                  )}
+                </button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Toggle Theme</p>
+              </TooltipContent>
+            </Tooltip>
+          </DockIcon>
+          {isAuthenticated && user && (
+            <DockIcon>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={() => window.location.href = '/profile'}
+                    aria-label="Profile"
+                    className={cn(
+                      buttonVariants({ variant: "ghost", size: "icon" }),
+                      "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10 p-1"
+                    )}
+                  >
+                    <ProfileImage
+                      src={user.photoURL}
+                      alt={user.displayName || "User"}
+                      size="sm"
+                      className="w-full h-full border-0"
+                    />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Profile</p>
+                </TooltipContent>
+              </Tooltip>
+            </DockIcon>
+          )}
+        </>
+      );
     } else if (isProfilePage) {
       // Profile page: Show home link + theme switch
       return (
