@@ -27,7 +27,7 @@ const DEFAULT_MAGNIFICATION = 72;
 const DEFAULT_DISTANCE = 40;
 
 const dockVariants = cva(
-    "supports-backdrop-blur:bg-white/10 supports-backdrop-blur:dark:bg-black/10 mx-auto mt-8 flex h-[72px] w-max items-center justify-center gap-4 rounded-2xl border px-6 py-2 backdrop-blur-md",
+    "liquidGlass-wrapper liquidGlass-dock mx-auto mt-8 flex h-[72px] w-max items-center justify-center",
 );
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(
@@ -75,7 +75,12 @@ const Dock = React.forwardRef<HTMLDivElement, DockProps>(
                     "items-end": direction === "bottom",
                 }, className)}
             >
-                {renderChildren()}
+                <div className="liquidGlass-effect"></div>
+                <div className="liquidGlass-tint"></div>
+                <div className="liquidGlass-shine"></div>
+                <div className="liquidGlass-content flex items-center justify-center w-full h-full">
+                    {renderChildren()}
+                </div>
             </motion.div>
         );
     },
@@ -138,7 +143,7 @@ const DockIcon = ({
             ref={ref}
             style={{ width: scaleSize, height: scaleSize, padding }}
             className={cn(
-                "flex aspect-square cursor-pointer items-center justify-center rounded-full",
+                "liquidGlass-dockIcon flex aspect-square cursor-pointer items-center justify-center rounded-full",
                 className,
             )}
             {...props}

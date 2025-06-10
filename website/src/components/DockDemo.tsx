@@ -66,7 +66,7 @@ export function DockDemo() {
                 aria-label="Toggle Theme"
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "icon" }),
-                  "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
+                  "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
                 )}
               >
                 {isDark ? (
@@ -94,7 +94,7 @@ export function DockDemo() {
                   aria-label="Home"
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
+                    "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
                   )}
                 >
                   <HomeIcon className="md:size-5 size-4 text-foreground" />
@@ -113,7 +113,7 @@ export function DockDemo() {
                   aria-label="Toggle Theme"
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
+                    "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
                   )}
                 >
                   {isDark ? (
@@ -137,7 +137,7 @@ export function DockDemo() {
                     aria-label="Profile"
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
-                      "w-full h-full hover:bg-white/10 dark:hover:bg-black/10 p-1"
+                      "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 p-1"
                     )}
                   >
                     <ProfileImage
@@ -168,7 +168,7 @@ export function DockDemo() {
                   aria-label="Home"
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
+                    "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
                   )}
                 >
                   <HomeIcon className="md:size-5 size-4 text-foreground" />
@@ -187,7 +187,7 @@ export function DockDemo() {
                   aria-label="Toggle Theme"
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
+                    "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
                   )}
                 >
                   {isDark ? (
@@ -216,7 +216,7 @@ export function DockDemo() {
               aria-label="Toggle Theme"
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
-                "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
+                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
               )}
             >
               {isDark ? (
@@ -240,7 +240,7 @@ export function DockDemo() {
   return (
     <div className="fixed bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-50">
       <TooltipProvider>
-        <Dock direction="middle" iconSize={40} iconMagnification={48} className="md:h-[72px] h-[56px] md:px-6 px-3 md:gap-4 gap-2">
+        <Dock direction="middle" iconSize={40} iconMagnification={48} className="md:h-[72px] h-[56px]">
           {showNavigation && DATA.navbar.map((item) => (
             <DockIcon key={item.label}>
               <Tooltip>
