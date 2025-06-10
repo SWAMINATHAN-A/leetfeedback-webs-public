@@ -66,7 +66,7 @@ export function DockDemo() {
                 aria-label="Toggle Theme"
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "icon" }),
-                  "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10"
+                  "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
                 )}
               >
                 {isDark ? (
@@ -94,7 +94,7 @@ export function DockDemo() {
                   aria-label="Home"
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10"
+                    "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
                   )}
                 >
                   <HomeIcon className="md:size-5 size-4 text-foreground" />
@@ -113,7 +113,7 @@ export function DockDemo() {
                   aria-label="Toggle Theme"
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10"
+                    "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
                   )}
                 >
                   {isDark ? (
@@ -137,7 +137,7 @@ export function DockDemo() {
                     aria-label="Profile"
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
-                      "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10 p-1"
+                      "w-full h-full hover:bg-white/10 dark:hover:bg-black/10 p-1"
                     )}
                   >
                     <ProfileImage
@@ -168,7 +168,7 @@ export function DockDemo() {
                   aria-label="Home"
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10"
+                    "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
                   )}
                 >
                   <HomeIcon className="md:size-5 size-4 text-foreground" />
@@ -187,7 +187,7 @@ export function DockDemo() {
                   aria-label="Toggle Theme"
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10"
+                    "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
                   )}
                 >
                   {isDark ? (
@@ -216,7 +216,7 @@ export function DockDemo() {
               aria-label="Toggle Theme"
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
-                "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10"
+                "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
               )}
             >
               {isDark ? (
@@ -250,7 +250,7 @@ export function DockDemo() {
                     aria-label={item.label}
                     className={cn(
                       buttonVariants({ variant: "ghost", size: "icon" }),
-                      "w-full h-full rounded-full bg-white/10 backdrop-blur-md hover:bg-white/20 dark:bg-black/10 dark:hover:bg-black/20 border border-white/20 dark:border-white/10"
+                      "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
                     )}
                   >
                     <item.icon className="md:size-5 size-4 text-foreground" />
