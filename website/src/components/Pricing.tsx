@@ -28,7 +28,7 @@ const Pricing: React.FC = () => {
     const features = [
         "Unlimited tracked submissions",
         "GitHub auto-commit with AI notes",
-        "Notion workspace integration", 
+        "Notion workspace integration",
         "Anki flashcard generation",
         "Advanced AI analysis & insights",
         "All platforms supported",
@@ -41,16 +41,16 @@ const Pricing: React.FC = () => {
         "Community support",
         "Priority email support",
         "Slack/Discord integrations",
-        "Custom reporting"
+        "Custom reporting",
     ];
 
     const handleDonateClick = () => {
         setShowUPI(!showUPI);
-        analytics.trackFeatureClick('donation_button');
+        analytics.trackFeatureClick("donation_button");
     };
 
     const copyUPI = () => {
-        navigator.clipboard.writeText('9992806683@yapl');
+        navigator.clipboard.writeText("9992806683@yapl");
         // You could add a toast notification here
     };
 
@@ -79,7 +79,8 @@ const Pricing: React.FC = () => {
                     </TextAnimate>
                     <BlurFade delay={0.75}>
                         <p className="text-xl text-muted-foreground leading-relaxed mb-6">
-                            Made with ❤️ and open source. All features, unlimited usage, forever free.
+                            Made with ❤️ and open source. All features,
+                            unlimited usage, forever free.
                         </p>
                         <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
                             <div className="flex items-center gap-2">
@@ -126,7 +127,9 @@ const Pricing: React.FC = () => {
                                         </span>
                                     </div>
                                     <CardDescription className="text-muted-foreground text-lg">
-                                        All features included. No limitations. No premium tiers. Just pure love for the coding community.
+                                        All features included. No limitations.
+                                        No premium tiers. Just pure love for the
+                                        coding community.
                                     </CardDescription>
                                 </div>
 
@@ -134,8 +137,13 @@ const Pricing: React.FC = () => {
                                     size="lg"
                                     className="w-full py-3 text-lg font-semibold"
                                     onClick={() => {
-                                        analytics.trackPricingPlanView('Free Forever');
-                                        window.open("https://github.com/QuickHasaCat/leetFeedback", "_blank");
+                                        analytics.trackPricingPlanView(
+                                            "Free Forever",
+                                        );
+                                        window.open(
+                                            "https://github.com/QuickHasaCat/leetFeedback",
+                                            "_blank",
+                                        );
                                     }}
                                 >
                                     <CheckCircleIcon className="w-5 h-5 mr-2" />
@@ -150,17 +158,19 @@ const Pricing: React.FC = () => {
                                         Everything included:
                                     </h4>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                        {features.map((feature, featureIndex) => (
-                                            <div
-                                                key={featureIndex}
-                                                className="flex items-start"
-                                            >
-                                                <CheckCircleIcon className="w-5 h-5 mr-3 text-green-400 flex-shrink-0 mt-0.5" />
-                                                <span className="text-sm text-muted-foreground">
-                                                    {feature}
-                                                </span>
-                                            </div>
-                                        ))}
+                                        {features.map(
+                                            (feature, featureIndex) => (
+                                                <div
+                                                    key={featureIndex}
+                                                    className="flex items-start"
+                                                >
+                                                    <CheckCircleIcon className="w-5 h-5 mr-3 text-green-400 flex-shrink-0 mt-0.5" />
+                                                    <span className="text-sm text-muted-foreground">
+                                                        {feature}
+                                                    </span>
+                                                </div>
+                                            ),
+                                        )}
                                     </div>
                                 </div>
 
@@ -173,13 +183,21 @@ const Pricing: React.FC = () => {
                                         </h4>
                                     </div>
                                     <p className="text-sm text-muted-foreground mb-4">
-                                        LeetFeedback is completely open source and built with love by the coding community. 
-                                        We believe that great tools should be accessible to everyone, regardless of their financial situation.
+                                        LeetFeedback is completely open source
+                                        and built with love by the coding
+                                        community. We believe that great tools
+                                        should be accessible to everyone,
+                                        regardless of their financial situation.
                                     </p>
                                     <Button
                                         variant="outline"
                                         size="sm"
-                                        onClick={() => window.open("https://github.com/QuickHasaCat/leetFeedback", "_blank")}
+                                        onClick={() =>
+                                            window.open(
+                                                "https://github.com/QuickHasaCat/leetFeedback",
+                                                "_blank",
+                                            )
+                                        }
                                         className="border-border hover:bg-muted/50"
                                     >
                                         <GitHubIcon className="w-4 h-4 mr-2" />
@@ -202,10 +220,12 @@ const Pricing: React.FC = () => {
                                 Support Our Mission
                             </h3>
                             <p className="text-muted-foreground mb-6">
-                                If LeetFeedback has helped you in your coding journey, consider supporting us. 
-                                Every contribution helps us keep the project alive and improve it further.
+                                If LeetFeedback has helped you in your coding
+                                journey, consider supporting us. Every
+                                contribution helps us keep the project alive and
+                                improve it further.
                             </p>
-                            
+
                             <div className="space-y-4">
                                 <RainbowButton
                                     size="lg"
@@ -215,11 +235,13 @@ const Pricing: React.FC = () => {
                                     <VolunteerActivismIcon className="w-5 h-5 mr-2" />
                                     Donate
                                 </RainbowButton>
-                                
+
                                 {showUPI && (
                                     <BlurFade>
                                         <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
-                                            <p className="text-sm text-muted-foreground mb-2">UPI ID:</p>
+                                            <p className="text-sm text-muted-foreground mb-2">
+                                                UPI ID:
+                                            </p>
                                             <div className="flex items-center justify-center gap-2">
                                                 <code className="bg-muted px-3 py-1 rounded font-mono text-sm">
                                                     9992806683@yapl
@@ -233,7 +255,8 @@ const Pricing: React.FC = () => {
                                                 </Button>
                                             </div>
                                             <p className="text-xs text-muted-foreground mt-2">
-                                                Thank you for supporting open source! ❤️
+                                                Thank you for supporting open
+                                                source! ❤️
                                             </p>
                                         </div>
                                     </BlurFade>
@@ -250,7 +273,8 @@ const Pricing: React.FC = () => {
                             Frequently Asked Questions
                         </h3>
                         <p className="text-muted-foreground">
-                            Everything you need to know about our free forever approach
+                            Everything you need to know about our free forever
+                            approach
                         </p>
                     </div>
 
@@ -258,27 +282,30 @@ const Pricing: React.FC = () => {
                         {[
                             {
                                 question: "Is this really free forever?",
-                                answer: "Yes! We believe great tools should be accessible to everyone. LeetFeedback will always be free with all features included.",
+                                answer: "I initially decided to make it paid but no one's paying for this crap idea. So yeah it's free forever now.",
                             },
                             {
                                 question: "How do you sustain the project?",
-                                answer: "Through community donations, contributions, and the passion of our open source community. Every donation helps us improve and maintain the service.",
+                                answer: "Midnight motivation bursts.",
                             },
                             {
-                                question: "Can I contribute to the project?",
-                                answer: "Absolutely! We welcome contributors, whether you're a developer, designer, or tester. Check out our GitHub repository to get started.",
+                                question:
+                                    "Any deadlines or something of that sort for phases and upcoming features?",
+                                answer: "If reality hits hard this will be completed entirely within 1 non-working-day.",
                             },
                             {
                                 question: "Is my code data secure?",
-                                answer: "Yes, we use enterprise-grade encryption and never store your actual code. Only anonymized patterns are analyzed for insights.",
+                                answer: "Yes, It is only stored locally (for now), refer to Gemini Policy for Ai stuff, requests are made direcctly from you there's no middleware.",
                             },
                             {
-                                question: "Will you ever add paid features?",
-                                answer: "No. Our commitment is to keep everything free forever. We believe in democratizing access to great coding tools.",
+                                question:
+                                    "We are XYZ/MNC and are looking to buy this for XYZ million dollars...",
+                                answer: "Not selling.",
                             },
                             {
-                                question: "How can I support the project?",
-                                answer: "You can donate, contribute code, spread the word, or help with testing and feedback. Every form of support is appreciated!",
+                                question:
+                                    "How do I request a new feature/idea?",
+                                answer: "Just mail catinice@outlook.com. You get instant reply even if it's 3AM.",
                             },
                         ].map((faq, index) => (
                             <div key={index} className="space-y-3">
@@ -311,16 +338,20 @@ const Pricing: React.FC = () => {
                         Join Our Open Source Community
                     </h3>
                     <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                        Help us make LeetFeedback even better! We're looking for passionate developers, 
-                        designers, and testers to join our mission of making coding practice more 
-                        effective and enjoyable for everyone.
+                        Help us make LeetFeedback even better! We're looking for
+                        passionate developers, designers, and testers to join
+                        our mission of making coding practice more effective and
+                        enjoyable for everyone.
                     </p>
                     <div className="flex justify-center">
                         <RainbowButton
                             size="lg"
                             className="px-8 py-4 text-lg font-semibold"
                             onClick={() =>
-                                window.open("https://github.com/QuickHasaCat/leetFeedback", "_blank")
+                                window.open(
+                                    "https://github.com/QuickHasaCat/leetFeedback",
+                                    "_blank",
+                                )
                             }
                         >
                             <GitHubIcon className="w-5 h-5 mr-2" />
