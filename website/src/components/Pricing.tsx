@@ -130,9 +130,9 @@ const Pricing: React.FC = () => {
                                     </CardDescription>
                                 </div>
 
-                                <Button
-                                    variant="default"
-                                    className="w-full py-3 font-semibold bg-foreground text-background hover:bg-foreground/90"
+                                <RainbowButton
+                                    size="lg"
+                                    className="w-full py-3 text-lg font-semibold"
                                     onClick={() => {
                                         analytics.trackPricingPlanView('Free Forever');
                                         window.open("https://github.com/QuickHasaCat/leetFeedback", "_blank");
@@ -140,7 +140,7 @@ const Pricing: React.FC = () => {
                                 >
                                     <CheckCircleIcon className="w-5 h-5 mr-2" />
                                     Get Started - It's Free!
-                                </Button>
+                                </RainbowButton>
                             </CardHeader>
 
                             <CardContent className="space-y-6">
@@ -316,16 +316,16 @@ const Pricing: React.FC = () => {
                         effective and enjoyable for everyone.
                     </p>
                     <div className="flex justify-center">
-                        <Button
+                        <RainbowButton
                             size="lg"
-                            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold px-8 py-4 text-lg"
+                            className="px-8 py-4 text-lg font-semibold"
                             onClick={() =>
                                 window.open("https://github.com/QuickHasaCat/leetFeedback", "_blank")
                             }
                         >
                             <GitHubIcon className="w-5 h-5 mr-2" />
                             Contribute on GitHub
-                        </Button>
+                        </RainbowButton>
                     </div>
                 </div>
             </div>
