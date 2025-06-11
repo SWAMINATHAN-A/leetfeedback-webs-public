@@ -13,6 +13,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
+import CelebrationIcon from "@mui/icons-material/Celebration";
 import { BlurFade } from "./magicui/blur-fade";
 import { TextAnimate } from "./magicui/text-animate";
 import { RainbowButton } from "./magicui/rainbow-button";
@@ -64,7 +65,7 @@ const Pricing: React.FC = () => {
                 {/* Section Header */}
                 <div className="text-center max-w-4xl mx-auto mb-20">
                     <BlurFade delay={0.25}>
-                        <Badge className="mb-4 bg-green-500/20 text-green-400 border border-green-500/30 font-mono hover:bg-green-500/30 hover:text-green-300">
+                        <Badge className="mb-4 bg-red-500/20 text-red-400 border border-red-500/30 font-mono hover:bg-red-500/30 hover:text-red-300">
                             <FavoriteIcon className="w-4 h-4 mr-1" />
                             Free Forever
                         </Badge>
@@ -80,21 +81,27 @@ const Pricing: React.FC = () => {
                     </TextAnimate>
                     <BlurFade delay={0.75}>
                         <p className="text-xl text-muted-foreground leading-relaxed mb-6">
-                            Made with ❤️ and open source. All features,
+                            Made with <FavoriteIcon className="w-5 h-5 inline text-red-400" /> and open source. All features,
                             unlimited usage, forever free.
                         </p>
-                        <div className="flex items-center justify-center gap-4 text-sm text-muted-foreground">
-                            <div className="flex items-center gap-2">
-                                <OpenSourceIcon className="w-4 h-4" />
-                                <span>Open Source</span>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                            <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
+                                <div className="flex items-center gap-2">
+                                    <OpenSourceIcon className="w-4 h-4" />
+                                    <span className="text-sm">Open Source until I get featured on githubRetards (again)</span>
+                                </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                                <FavoriteIcon className="w-4 h-4 text-red-400" />
-                                <span>Made with Love</span>
+                            <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
+                                <div className="flex items-center gap-2">
+                                    <FavoriteIcon className="w-4 h-4 text-red-400" />
+                                    <span className="text-sm">Made with Love (AI is love)</span>
+                                </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                                <GitHubIcon className="w-4 h-4" />
-                                <span>Community Driven</span>
+                            <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
+                                <div className="flex items-center gap-2">
+                                    <GitHubIcon className="w-4 h-4" />
+                                    <span className="text-sm">Community Driven (I am the community)</span>
+                                </div>
                             </div>
                         </div>
                     </BlurFade>
@@ -105,7 +112,7 @@ const Pricing: React.FC = () => {
                     <BlurFade delay={1}>
                         <Card className="relative overflow-hidden border-2 border-green-500/30 bg-card/50 shadow-xl">
                             <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-green-500 to-blue-500 text-white text-center py-2 text-sm font-semibold font-mono">
-                                🎉 Everything Included - Always Free
+                                <CelebrationIcon className="w-4 h-4 inline mr-1" /> Everything Included - Always Free
                             </div>
 
                             <CardHeader className="pt-12 space-y-4">
@@ -156,7 +163,7 @@ const Pricing: React.FC = () => {
                                 {/* Features */}
                                 <div>
                                     <h4 className="font-semibold text-foreground mb-4 font-mono text-lg">
-                                        Everything included:
+                                        Everything included (Refer roadmap): 
                                     </h4>
                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                                         {features.map(
@@ -256,8 +263,7 @@ const Pricing: React.FC = () => {
                                                 </Button>
                                             </div>
                                             <p className="text-xs text-muted-foreground mt-2">
-                                                Thank you for supporting open
-                                                source! ❤️
+                                                Thank you for funding my gambling addiction.
                                             </p>
                                         </div>
                                     </BlurFade>
@@ -295,7 +301,7 @@ const Pricing: React.FC = () => {
                             },
                             {
                                 question: "Is my code data secure?",
-                                answer: "Yes, It is only stored locally (for now), refer to Gemini Policy for Ai stuff, requests are made direcctly from you there's no middleware.",
+                                answer: "Yes, It is only stored locally (for now), refer to Gemini Policy for Ai stuff, requests are made direcctly from you, there's no middleware.",
                             },
                             {
                                 question:
@@ -338,10 +344,7 @@ const Pricing: React.FC = () => {
                         Join Our Open Source Community
                     </h3>
                     <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                        Help us make LeetFeedback even better! We're looking for
-                        passionate developers, designers, and testers to join
-                        our mission of making coding practice more effective and
-                        enjoyable for everyone.
+                        Looking for someone to design icon and fix some AI generated slop.
                     </p>
                     <div className="flex justify-center gap-4">
                         <RainbowButton

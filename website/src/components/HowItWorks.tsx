@@ -26,10 +26,10 @@ const HowItWorks: React.FC = () => {
             step: "01",
             title: "Install Extension",
             description:
-                "Add LeetFeedback to Chrome in seconds. No registration required to start tracking.",
+                "Add LeetFeedback to Chrome in seconds. No Sign-In required.",
             icon: <GetAppIcon className="w-8 h-8" />,
             details: [
-                "One-click installation from Chrome Web Store",
+                "One-click installation",
                 "Automatic detection of supported platforms",
                 "Instant activation on coding sites",
             ],
@@ -38,7 +38,7 @@ const HowItWorks: React.FC = () => {
             step: "02",
             title: "Code & Practice",
             description:
-                "Continue your normal coding practice. We silently track your runs and submissions.",
+                "Continue your normal Leetcode. We silently track your runs and submissions.",
             icon: <AutoFixHighIcon className="w-8 h-8" />,
             details: [
                 "Works on LeetCode, GeeksforGeeks, HackerRank",
@@ -108,7 +108,7 @@ const HowItWorks: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
                     {steps.map((step, index) => (
                         <BlurFade key={index} delay={1 + index * 0.2}>
-                            <div className="relative">
+                            <div className="relative h-full">
                                 {/* Connection Line */}
                                 {index < steps.length - 1 && (
                                     <div className="hidden lg:block absolute top-16 left-full w-full h-px bg-border z-0">
@@ -116,8 +116,8 @@ const HowItWorks: React.FC = () => {
                                     </div>
                                 )}
 
-                                <Card className="relative z-10 h-full bg-card/30 border border-border hover:border-white/20 hover:bg-card/50 transition-all duration-300 group">
-                                    <CardHeader className="text-center space-y-4">
+                                <Card className="relative z-10 h-full bg-card/30 border border-border hover:border-white/20 hover:bg-card/50 transition-all duration-300 group flex flex-col">
+                                    <CardHeader className="text-center space-y-4 flex-shrink-0">
                                         <div className="mx-auto w-16 h-16 bg-muted/50 border border-border rounded-md flex items-center justify-center text-foreground font-bold text-xl shadow-lg group-hover:scale-105 transition-transform duration-300 font-mono">
                                             {step.step}
                                         </div>
@@ -128,11 +128,11 @@ const HowItWorks: React.FC = () => {
                                             {step.title}
                                         </CardTitle>
                                     </CardHeader>
-                                    <CardContent className="space-y-4">
-                                        <CardDescription className="text-muted-foreground text-center leading-relaxed">
+                                    <CardContent className="space-y-4 flex-grow flex flex-col">
+                                        <CardDescription className="text-muted-foreground text-center leading-relaxed flex-grow">
                                             {step.description}
                                         </CardDescription>
-                                        <ul className="space-y-2">
+                                        <ul className="space-y-2 flex-shrink-0">
                                             {step.details.map(
                                                 (detail, detailIndex) => (
                                                     <li
@@ -268,15 +268,15 @@ const HowItWorks: React.FC = () => {
 
                             <div className="pt-6 border-t border-border">
                                 <div className="grid grid-cols-3 gap-4 text-center">
-                                    <div>
+                                    <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
                                         <div className="text-2xl font-bold text-foreground font-mono">
-                                            1
+                                            1 minute
                                         </div>
                                         <div className="text-xs text-muted-foreground font-mono">
                                             Setup time
                                         </div>
                                     </div>
-                                    <div>
+                                    <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
                                         <div className="text-2xl font-bold text-green-400 font-mono">
                                             100%
                                         </div>
@@ -284,9 +284,9 @@ const HowItWorks: React.FC = () => {
                                             Automated
                                         </div>
                                     </div>
-                                    <div>
+                                    <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
                                         <div className="text-2xl font-bold text-blue-400 font-mono">
-                                            ∞
+                                            5
                                         </div>
                                         <div className="text-xs text-muted-foreground font-mono">
                                             Platforms

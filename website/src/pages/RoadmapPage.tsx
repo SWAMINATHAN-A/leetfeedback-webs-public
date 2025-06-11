@@ -27,6 +27,7 @@ import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import FlagIcon from "@mui/icons-material/Flag";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
+import TargetIcon from "@mui/icons-material/MyLocation";
 
 interface RoadmapItem {
     id: number;
@@ -284,7 +285,10 @@ const RoadmapPage: React.FC = () => {
                                     >
                                         {item.milestone && (
                                             <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-center py-2 text-sm font-semibold font-mono">
-                                                🎯 {item.milestone}
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <TargetIcon className="w-4 h-4 text-blue-400" />
+                                                    {item.milestone}
+                                                </div>
                                             </div>
                                         )}
 

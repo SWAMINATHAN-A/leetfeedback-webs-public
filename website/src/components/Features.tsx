@@ -38,7 +38,7 @@ const Features: React.FC = () => {
       title: 'Anki Cards Generation',
       description: 'Generate Anki cards from your mistakes, Tagged by mistake type and questions.',
       benefits: ['Auto-generated cards', 'Spaced repetition', 'Memory retention'],
-      badge: 'Learning',
+      badge: 'Revision',
       highlight: true
     }
   ];
@@ -53,16 +53,16 @@ const Features: React.FC = () => {
     },
     {
       icon: <SmartToyIcon className="w-6 h-6" />,
-      title: 'AI-Powered Analysis',
+      title: 'Importance of Feedback',
       description: 'Advanced LLM analysis of your coding patterns and mistake identification.',
       benefits: ['Pattern recognition', 'Personalized insights', 'Actionable feedback'],
       badge: 'AI'
     },
     {
       icon: <AnalyticsIcon className="w-6 h-6" />,
-      title: 'Performance Analytics',
+      title: 'Performance Analytics and graphs',
       description: 'Detailed metrics on your problem-solving journey with interactive charts.',
-      benefits: ['Progress visualization', 'Trend analysis', 'Goal tracking'],
+      benefits: ['Progress visualization', 'Time tracking', 'Difficulty tracking'],
       badge: 'Analytics'
     },
     {
@@ -106,7 +106,7 @@ const Features: React.FC = () => {
             delay={0.5}
             by="word"
           >
-            100% automated, install and forget it is there
+            100% Automated, Install and forget.
           </TextAnimate>
           <BlurFade delay={0.75}>
             <p className="text-xl text-muted-foreground leading-relaxed">
@@ -221,7 +221,7 @@ const Features: React.FC = () => {
               </h3>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
                 Every solution you complete gets automatically committed to your GitHub with AI-generated 
-                feedback notes, creating a comprehensive coding journal that showcases your growth to employers.
+                feedback notes, creating a kind of <span className="text-red-400 text-bold">coding journal</span> that showcases your growth to employers.
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
@@ -229,15 +229,15 @@ const Features: React.FC = () => {
                   <div className="text-sm text-muted-foreground">Auto-commits per month</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-green-400 mb-2 font-mono">95%</div>
-                  <div className="text-sm text-muted-foreground">Developers hired faster</div>
+                  <div className="text-3xl font-bold text-green-400 mb-2 font-mono">0%</div>
+                  <div className="text-sm text-muted-foreground">Developers hired faster (give me a job pls)</div>
                 </div>
               </div>
             </div>
             <div className="relative">
               <div className="bg-background/50 border border-border rounded-lg shadow-xl p-6 font-mono text-sm">
                 <div className="flex items-center justify-between mb-4 text-muted-foreground">
-                  <span className="font-mono">📁 my-leetcode-journey</span>
+                  <span className="font-mono">📁 my-dsa-journey</span>
                   <GitHubIcon className="w-5 h-5" />
                 </div>
                 <div className="space-y-2 text-muted-foreground">
@@ -252,7 +252,7 @@ const Features: React.FC = () => {
                   <div className="mt-4 p-3 bg-muted/20 rounded border-l-4 border-blue-400">
                     <div className="text-blue-400 text-xs mb-1 font-mono">AI Feedback:</div>
                     <div className="text-foreground text-xs">
-                      "Consider using hash map for O(1) lookup instead of nested loops..."
+                      "Your solution is shit. Do this instead..."
                     </div>
                   </div>
                 </div>
