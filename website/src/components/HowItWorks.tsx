@@ -18,6 +18,7 @@ import SecurityIcon from "@mui/icons-material/Security";
 import { BlurFade } from "./magicui/blur-fade";
 import { TextAnimate } from "./magicui/text-animate";
 import { NumberTicker } from "./magicui/number-ticker";
+import DiscordIcon from "./icons/DiscordIcon";
 
 const HowItWorks: React.FC = () => {
     const steps = [
@@ -224,6 +225,26 @@ const HowItWorks: React.FC = () => {
                                         title: "Privacy Focused",
                                         description:
                                             "Your data stays yours - full control over what gets shared",
+                                    },
+                                    {
+                                        icon: (
+                                            <DiscordIcon className="w-5 h-5" />
+                                        ),
+                                        title: "Community Support",
+                                        description: (
+                                            <span>
+                                                Join our{" "}
+                                                <a 
+                                                    href="https://discord.gg/BZDb22gz" 
+                                                    target="_blank" 
+                                                    rel="noopener noreferrer"
+                                                    className="text-primary hover:text-primary/80 underline"
+                                                >
+                                                    Discord community
+                                                </a>{" "}
+                                                for help and updates
+                                            </span>
+                                        ),
                                     },
                                 ].map((benefit, index) => (
                                     <div

@@ -21,6 +21,7 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import CodeIcon from "@mui/icons-material/Code";
 import BugReportIcon from "@mui/icons-material/BugReport";
 import OpenSourceIcon from "@mui/icons-material/OpenInNew";
+import DiscordIcon from "./icons/DiscordIcon";
 
 const Pricing: React.FC = () => {
     const [showUPI, setShowUPI] = useState(false);
@@ -273,8 +274,7 @@ const Pricing: React.FC = () => {
                             Frequently Asked Questions
                         </h3>
                         <p className="text-muted-foreground">
-                            Everything you need to know about our free forever
-                            approach
+                            Everything you need to know
                         </p>
                     </div>
 
@@ -343,7 +343,7 @@ const Pricing: React.FC = () => {
                         our mission of making coding practice more effective and
                         enjoyable for everyone.
                     </p>
-                    <div className="flex justify-center">
+                    <div className="flex justify-center gap-4">
                         <RainbowButton
                             size="lg"
                             className="px-8 py-4 text-lg font-semibold"
@@ -356,6 +356,20 @@ const Pricing: React.FC = () => {
                         >
                             <GitHubIcon className="w-5 h-5 mr-2" />
                             Contribute on GitHub
+                        </RainbowButton>
+                        <RainbowButton
+                            variant="outline"
+                            size="lg"
+                            className="px-8 py-4 text-lg font-semibold"
+                            onClick={() =>
+                                window.open(
+                                    "https://discord.gg/BZDb22gz",
+                                    "_blank",
+                                )
+                            }
+                        >
+                            <DiscordIcon className="w-5 h-5 mr-2" />
+                            Join Discord Community
                         </RainbowButton>
                     </div>
                 </div>

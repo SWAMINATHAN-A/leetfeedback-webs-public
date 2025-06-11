@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
               <li><a href="#features" className="text-muted-foreground hover:text-foreground transition-colors">Features</a></li>
               <li><a href="#how-it-works" className="text-muted-foreground hover:text-foreground transition-colors">How it Works</a></li>
               <li><a href="#pricing" className="text-muted-foreground hover:text-foreground transition-colors">Pricing</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Roadmap</a></li>
+              <li><a href="/roadmap" className="text-muted-foreground hover:text-foreground transition-colors">Roadmap</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Changelog</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">API Documentation</a></li>
             </ul>
@@ -69,7 +69,16 @@ const Footer: React.FC = () => {
               <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Documentation</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Installation Guide</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Community Forum</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Contact Support</a></li>
+              <li>
+                <a 
+                  href="https://discord.gg/BZDb22gz" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  Discord Community
+                </a>
+              </li>
               <li><a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Report a Bug</a></li>
             </ul>
           </div>
@@ -121,8 +130,8 @@ const Footer: React.FC = () => {
             © 2025 LeetFeedback. All rights reserved.
           </div>
           <div className="flex flex-wrap justify-center md:justify-end space-x-6 text-sm">
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Terms of Service</a>
+            <a href="/privacy" className="text-muted-foreground hover:text-foreground transition-colors">Privacy Policy</a>
+            <a href="/terms" className="text-muted-foreground hover:text-foreground transition-colors">Terms of Service</a>
             <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Cookie Policy</a>
             <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">Security</a>
           </div>

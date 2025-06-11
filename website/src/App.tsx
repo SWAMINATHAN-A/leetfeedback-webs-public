@@ -7,6 +7,8 @@ import { AuthProvider } from './contexts/AuthContext';
 import HomePage from './pages/HomePage';
 import RoadmapPage from './pages/RoadmapPage';
 import SimpleProfilePage from './pages/SimpleProfilePage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsOfServicePage from './pages/TermsOfServicePage';
 import './App.css';
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/roadmap" element={<RoadmapPage />} />
               <Route path="/profile" element={<SimpleProfilePage />} />
+              <Route path="/privacy" element={<PrivacyPolicyPage />} />
+              <Route path="/terms" element={<TermsOfServicePage />} />
             </Routes>
           </div>
           <Analytics />

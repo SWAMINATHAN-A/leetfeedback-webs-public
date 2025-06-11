@@ -20,24 +20,24 @@ const Features: React.FC = () => {
     {
       icon: <GitHubIcon className="w-8 h-8" />,
       title: 'GitHub Integration',
-      description: 'Automatically push your solutions and AI feedback notes to GitHub repositories. Keep a versioned history of your coding journey.',
-      benefits: ['Auto-commit solutions', 'AI feedback as comments', 'Progress tracking', 'Portfolio building'],
+      description: 'Automatically push your solutions and AI feedback notes to a GitHub repo.',
+      benefits: ['Auto-commit solutions and AI analysis', 'Progress tracking', 'Portfolio building'],
       badge: 'Core',
       highlight: true
     },
     {
       icon: <NotesIcon className="w-8 h-8" />,
       title: 'Notion Sync',
-      description: 'Seamlessly export your coding sessions, insights, and progress reports to your Notion workspace for organized learning.',
-      benefits: ['Structured notes', 'Progress databases', 'Custom templates', 'Team collaboration'],
+      description: 'Export insights and tagged mistakes your Notion workspace.',
+      benefits: ['Structured notes', 'Mistake tags','Team collaboration'],
       badge: 'Productivity',
       highlight: true
     },
     {
       icon: <StyleIcon className="w-8 h-8" />,
       title: 'Anki Cards Generation',
-      description: 'Transform your mistakes and learnings into spaced repetition flashcards. Never forget important concepts again.',
-      benefits: ['Auto-generated cards', 'Spaced repetition', 'Concept reinforcement', 'Memory retention'],
+      description: 'Generate Anki cards from your mistakes, Tagged by mistake type and questions.',
+      benefits: ['Auto-generated cards', 'Spaced repetition', 'Memory retention'],
       badge: 'Learning',
       highlight: true
     }

@@ -148,16 +148,16 @@ const Hero: React.FC = () => {
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-muted-foreground mb-20">
                             <div className="flex items-center gap-2">
                                 <CheckCircleIcon className="w-4 h-4 text-green-400" />
-                                Free Forever Plan
+                                Free Forever
                             </div>
                             <div className="flex items-center gap-2">
                                 <LockIcon className="w-4 h-4 text-blue-400" />
-                                Privacy First
+                                Open source
                             </div>
                             <div className="flex items-center gap-2">
                                 <StarIcon className="w-4 h-4 text-yellow-400" />
-                                <NumberTicker value={4.8} decimalPlaces={1} />
-                                /5 Rating
+                                <NumberTicker value={5} decimalPlaces={1} />
+                            / 5 Rating (I rated)
                             </div>
                         </div>
                     </BlurFade>
