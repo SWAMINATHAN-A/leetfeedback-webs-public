@@ -90,14 +90,34 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
       animate={{
         width: visible ? "40%" : "100%",
         y: visible ? 20 : 0,
+        scale: visible ? [1, 0.95, 1.02, 1] : 1,
+        rotateX: visible ? [0, -2, 1, 0] : 0,
       }}
       transition={{
         type: "spring",
-        stiffness: 200,
-        damping: 50,
+        stiffness: 150,
+        damping: 12,
+        mass: 0.8,
+        width: { 
+          type: "spring", 
+          stiffness: 120, 
+          damping: 15,
+          bounce: 0.6
+        },
+        scale: { 
+          duration: 0.8,
+          times: [0, 0.3, 0.7, 1],
+          ease: [0.68, -0.55, 0.265, 1.55]
+        },
+        rotateX: {
+          duration: 0.6,
+          ease: "easeInOut"
+        }
       }}
       style={{
         minWidth: "800px",
+        transformOrigin: "center center",
+        transformStyle: "preserve-3d",
       }}
       className={cn(
         "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start lg:flex",
@@ -112,9 +132,24 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
           <div className="liquidGlass-shine"></div>
         </>
       )}
-      <div className={cn("liquidGlass-content flex flex-row items-center w-full", !visible && "px-4 py-2")}>
+      <motion.div 
+        animate={{
+          opacity: visible ? [0.7, 1] : 1,
+          y: visible ? [5, 0] : 0,
+        }}
+        transition={{
+          opacity: { duration: 0.4, delay: 0.2 },
+          y: { 
+            type: "spring",
+            stiffness: 300,
+            damping: 20,
+            delay: 0.1
+          }
+        }}
+        className={cn("liquidGlass-content flex flex-row items-center w-full", !visible && "px-6 py-3")}
+      >
         {children}
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -133,21 +168,48 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         )}
       >
         {items.map((item, idx) => (
-          <a
+          <motion.a
             onMouseEnter={() => setHovered(idx)}
             onClick={onItemClick}
             className="liquidGlass-navItem relative text-inherit"
             key={`link-${idx}`}
             href={item.link}
+            initial={{ scale: 1, y: 0 }}
+            animate={{ 
+              scale: 1,
+              y: 0,
+            }}
+            whileHover={{ 
+              scale: 1.05,
+              y: -2,
+              transition: { type: "spring", stiffness: 400, damping: 17 }
+            }}
           >
             {hovered === idx && (
               <motion.div
                 layoutId="hovered"
                 className="absolute inset-0 h-full w-full rounded-lg bg-white/20 dark:bg-white/10"
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.8, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 500, damping: 25 }}
               />
             )}
-            <span className="relative z-20">{item.name}</span>
-          </a>
+            <motion.span 
+              className="relative z-20"
+              animate={{
+                y: 0,
+              }}
+              transition={{
+                delay: idx * 0.05,
+                type: "spring",
+                stiffness: 200,
+                damping: 15
+              }}
+            >
+              {item.name}
+            </motion.span>
+          </motion.a>
         ))}
       </motion.div>
       <div className="liquidGlass-spacerRight" />
@@ -160,15 +222,37 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
     <motion.div
       animate={{
         width: visible ? "90%" : "100%",
-        paddingRight: visible ? "12px" : "0px",
-        paddingLeft: visible ? "12px" : "0px",
-        borderRadius: visible ? "1rem" : "1rem",
+        paddingRight: visible ? "16px" : "0px",
+        paddingLeft: visible ? "16px" : "0px",
+        borderRadius: visible ? "2rem" : "2rem",
         y: visible ? 20 : 0,
+        scale: visible ? [1, 0.92, 1.05, 1] : 1,
+        rotateY: visible ? [0, 3, -1, 0] : 0,
       }}
       transition={{
         type: "spring",
-        stiffness: 200,
-        damping: 50,
+        stiffness: 140,
+        damping: 14,
+        mass: 0.9,
+        width: { 
+          type: "spring", 
+          stiffness: 110, 
+          damping: 16,
+          bounce: 0.7
+        },
+        scale: { 
+          duration: 0.9,
+          times: [0, 0.35, 0.75, 1],
+          ease: [0.68, -0.55, 0.265, 1.55]
+        },
+        rotateY: {
+          duration: 0.7,
+          ease: "easeInOut"
+        }
+      }}
+      style={{
+        transformOrigin: "center center",
+        transformStyle: "preserve-3d",
       }}
       className={cn(
         "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 lg:hidden",
@@ -183,9 +267,24 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
           <div className="liquidGlass-shine"></div>
         </>
       )}
-      <div className={cn("liquidGlass-content flex flex-col items-center justify-between w-full", !visible && "px-0 py-2")}>
+      <motion.div 
+        animate={{
+          opacity: visible ? [0.6, 1] : 1,
+          scale: visible ? [0.98, 1] : 1,
+        }}
+        transition={{
+          opacity: { duration: 0.5, delay: 0.15 },
+          scale: { 
+            type: "spring",
+            stiffness: 250,
+            damping: 18,
+            delay: 0.1
+          }
+        }}
+        className={cn("liquidGlass-content flex flex-col items-center justify-between w-full", !visible && "px-4 py-3")}
+      >
         {children}
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -252,18 +351,36 @@ export const MobileNavToggle = ({
 
 export const NavbarLogo = () => {
   return (
-    <a
+    <motion.a
       href="#"
       className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
+      whileHover={{ 
+        scale: 1.05,
+        y: -1,
+        transition: { type: "spring", stiffness: 400, damping: 15 }
+      }}
+      whileTap={{ scale: 0.95 }}
     >
-      <img
+      <motion.img
         src="https://assets.aceternity.com/logo-dark.png"
         alt="logo"
         width={30}
         height={30}
+        whileHover={{ 
+          rotate: [0, -5, 5, 0],
+          transition: { duration: 0.5, ease: "easeInOut" }
+        }}
       />
-      <span className="font-medium text-black dark:text-white">Startup</span>
-    </a>
+      <motion.span 
+        className="font-medium text-black dark:text-white"
+        whileHover={{
+          x: 2,
+          transition: { type: "spring", stiffness: 300, damping: 20 }
+        }}
+      >
+        Startup
+      </motion.span>
+    </motion.a>
   );
 };
 
@@ -297,12 +414,29 @@ export const NavbarButton = ({
   };
 
   return (
-    <Tag
-      href={href || undefined}
-      className={cn(baseStyles, variantStyles[variant], className)}
-      {...props}
+    <motion.div
+      whileHover={{ 
+        scale: 1.05,
+        y: -2,
+        transition: { type: "spring", stiffness: 400, damping: 15 }
+      }}
+      whileTap={{ scale: 0.95 }}
     >
-      {children}
-    </Tag>
+      <Tag
+        href={href || undefined}
+        className={cn(baseStyles, variantStyles[variant], className)}
+        {...props}
+      >
+        <motion.span
+          initial={{ opacity: 1 }}
+          whileHover={{
+            opacity: [1, 0.8, 1],
+            transition: { duration: 0.3 }
+          }}
+        >
+          {children}
+        </motion.span>
+      </Tag>
+    </motion.div>
   );
 };
