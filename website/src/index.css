@@ -249,6 +249,13 @@
     pointer-events: none;
 }
 
+/* Disable SVG filter on smaller screens to prevent visual glitches */
+@media (max-width: 1023px) {
+    .liquidGlass-effect {
+        filter: none;
+    }
+}
+
 .liquidGlass-tint {
     z-index: 1;
     position: absolute;
@@ -318,6 +325,12 @@
     filter: url(#glass-distortion) brightness(1.05);
 }
 
+@media (max-width: 1023px) {
+    .liquidGlass-nav:hover .liquidGlass-effect {
+        filter: none;
+    }
+}
+
 .liquidGlass-nav .liquidGlass-navItem {
     font-size: 16px;
     color: inherit;
@@ -340,9 +353,9 @@
 }
 
 .liquidGlass-dock {
-  border-radius: 2rem;
-  padding: 1rem;
-  gap: 12px;
+    border-radius: 2rem;
+    padding: 1rem;
+    gap: 12px;
 }
 
 .liquidGlass-dock:hover {
@@ -358,6 +371,12 @@
 .liquidGlass-dock:hover .liquidGlass-effect {
     backdrop-filter: blur(12px) saturate(1.3);
     filter: url(#glass-distortion) brightness(1.05);
+}
+
+@media (max-width: 1023px) {
+    .liquidGlass-dock:hover .liquidGlass-effect {
+        filter: none;
+    }
 }
 
 .liquidGlass-dock .liquidGlass-dockIcon {
@@ -445,4 +464,45 @@
 .dark .liquidGlass-spacerLeft,
 .dark .liquidGlass-spacerRight {
     border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Ensure dock positioning stability across all screen sizes */
+.fixed.bottom-4,
+.fixed.bottom-8 {
+    position: fixed !important;
+    will-change: auto;
+    transform: translateX(-50%) translateZ(0);
+    backface-visibility: hidden;
+}
+
+/* Prevent layout shifts from filter changes */
+@media (max-width: 1023px) {
+    .liquidGlass-wrapper {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    .liquidGlass-effect {
+        will-change: auto;
+    }
+    
+    /* Force hide desktop navbar on mobile */
+    .max-lg\:\!hidden {
+        display: none !important;
+        visibility: hidden !important;
+    }
+}
+
+/* Additional responsive stability */
+@media (min-width: 1024px) {
+    .liquidGlass-wrapper {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+    }
+
+    /* Force hide mobile navbar on desktop */
+    .lg\:\!hidden {
+        display: none !important;
+        visibility: hidden !important;
+    }
 }

@@ -122,6 +122,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
       className={cn(
         "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start lg:flex",
         visible ? "liquidGlass-wrapper liquidGlass-nav" : "bg-transparent dark:bg-transparent",
+        "max-lg:!hidden", // Force hide desktop navbar on mobile
         className,
       )}
     >
@@ -257,6 +258,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
       className={cn(
         "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center justify-between px-0 py-2 lg:hidden",
         visible ? "liquidGlass-wrapper liquidGlass-nav" : "bg-transparent dark:bg-transparent",
+        "lg:!hidden", // Ensure mobile navbar never shows on desktop
         className,
       )}
     >
