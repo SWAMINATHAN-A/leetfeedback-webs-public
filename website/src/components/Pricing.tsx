@@ -346,7 +346,7 @@ const Pricing: React.FC = () => {
                     <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                         Looking for someone to design icon and fix some AI generated slop.
                     </p>
-                    <div className="flex justify-center gap-4">
+                    <div className="flex flex-col sm:flex-row justify-center gap-4">
                         <RainbowButton
                             size="lg"
                             className="px-8 py-4 text-lg font-semibold"
