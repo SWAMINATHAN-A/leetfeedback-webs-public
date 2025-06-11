@@ -8,7 +8,7 @@ import {
   NavbarLogo,
   NavbarButton,
   MobileNavHeader,
-  MobileNavMenu,
+  MobileNavExpandableContent,
   MobileNavToggle,
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
@@ -59,8 +59,8 @@ export function ResizableNavbarDemo() {
               {isAuthenticated ? (
                 <SimpleUserMenu />
               ) : (
-                <NavbarButton 
-                  variant="secondary" 
+                <NavbarButton
+                  variant="secondary"
                   onClick={handleSignInClick}
                   disabled={isLoading}
                 >
@@ -92,10 +92,7 @@ export function ResizableNavbarDemo() {
             />
           </MobileNavHeader>
 
-          <MobileNavMenu
-            isOpen={isMobileMenuOpen}
-            onClose={() => setIsMobileMenuOpen(false)}
-          >
+          <MobileNavExpandableContent isExpanded={isMobileMenuOpen}>
             {navItems.map((item, idx) => (
               <a
                 key={`mobile-link-${idx}`}
@@ -106,19 +103,17 @@ export function ResizableNavbarDemo() {
                 <span className="block">{item.name}</span>
               </a>
             ))}
-            <div className="flex w-full flex-col gap-4">
-              <div className="flex items-center justify-center space-x-4 py-4 border-y border-border">
-                <PlatformIcon platform="leetcode" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
-                <PlatformIcon platform="geeksforgeeks" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
-                <PlatformIcon platform="hackerrank" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
-                <PlatformIcon platform="codechef" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
-                <PlatformIcon platform="tufplus" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
-              </div>
-              
+
+            <div className="flex items-center justify-center space-x-4 py-4 border-y border-border w-full">
+              <PlatformIcon platform="leetcode" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
+              <PlatformIcon platform="geeksforgeeks" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
+              <PlatformIcon platform="hackerrank" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
+              <PlatformIcon platform="codechef" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
+              <PlatformIcon platform="tufplus" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
+            </div>
+            <div className="flex w-full flex-col gap-3 px-4">
               {isAuthenticated ? (
-                <div className="px-3">
-                  <SimpleUserMenu />
-                </div>
+                <SimpleUserMenu />
               ) : (
                 <NavbarButton
                   onClick={() => {
@@ -132,7 +127,7 @@ export function ResizableNavbarDemo() {
                   {isLoading ? 'Loading...' : 'Sign In'}
                 </NavbarButton>
               )}
-              
+
               <NavbarButton
                 onClick={() => {
                   setIsMobileMenuOpen(false);
@@ -144,14 +139,14 @@ export function ResizableNavbarDemo() {
                 Roadmap
               </NavbarButton>
             </div>
-          </MobileNavMenu>
+          </MobileNavExpandableContent>
         </MobileNav>
       </Navbar>
 
       {/* Sign In Modal */}
-      <SignInModal 
-        isOpen={isSignInModalOpen} 
-        onClose={() => setIsSignInModalOpen(false)} 
+      <SignInModal
+        isOpen={isSignInModalOpen}
+        onClose={() => setIsSignInModalOpen(false)}
       />
     </div>
   );
