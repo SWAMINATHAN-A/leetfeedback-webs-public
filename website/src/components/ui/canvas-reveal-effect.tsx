@@ -26,7 +26,7 @@ export const CanvasRevealEffect = ({
     return (
         <div
             className={cn(
-                "h-full relative bg-white w-full",
+                "h-full relative bg-transparent w-full",
                 containerClassName,
             )}
         >
