@@ -410,10 +410,8 @@ export const NavbarButton = ({
     children: React.ReactNode;
     className?: string;
     variant?: "primary" | "secondary" | "dark" | "gradient";
-} & (
-    | React.ComponentPropsWithoutRef<"a">
-    | React.ComponentPropsWithoutRef<"button">
-)) => {
+    [key: string]: any;
+}) => {
     const baseStyles =
         "px-4 py-2 rounded-md text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
@@ -436,11 +434,17 @@ export const NavbarButton = ({
             }}
             whileTap={{ scale: 0.95 }}
         >
-            <Tag
-                href={href || undefined}
-                className={cn(baseStyles, variantStyles[variant], className)}
-                {...props}
-            >
+            {React.createElement(
+                Tag as any,
+                {
+                    href: href || undefined,
+                    className: cn(
+                        baseStyles,
+                        variantStyles[variant],
+                        className,
+                    ),
+                    ...props,
+                },
                 <motion.span
                     initial={{ opacity: 1 }}
                     whileHover={{
@@ -449,8 +453,8 @@ export const NavbarButton = ({
                     }}
                 >
                     {children}
-                </motion.span>
-            </Tag>
+                </motion.span>,
+            )}
         </motion.div>
     );
 };
