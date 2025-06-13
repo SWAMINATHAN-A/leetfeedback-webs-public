@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-} from "./ui/card";
+import { CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -23,6 +17,7 @@ import CodeIcon from "@mui/icons-material/Code";
 import BugReportIcon from "@mui/icons-material/BugReport";
 import OpenSourceIcon from "@mui/icons-material/OpenInNew";
 import DiscordIcon from "./icons/DiscordIcon";
+import { CardSpotlight } from "./ui/card-spotlight";
 
 const Pricing: React.FC = () => {
     const [showUPI, setShowUPI] = useState(false);
@@ -81,195 +76,230 @@ const Pricing: React.FC = () => {
                     </TextAnimate>
                     <BlurFade delay={0.75}>
                         <p className="text-xl text-muted-foreground leading-relaxed mb-6">
-                            Made with <FavoriteIcon className="w-5 h-5 inline text-red-400" /> and open source. All features,
-                            unlimited usage, forever free.
+                            Made with{" "}
+                            <FavoriteIcon className="w-5 h-5 inline text-red-400" />{" "}
+                            and open source. All features, unlimited usage,
+                            forever free.
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                             <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
                                 <div className="flex items-center gap-2">
                                     <OpenSourceIcon className="w-4 h-4" />
-                                    <span className="text-sm">Open Source until I get featured on githubRetards (again)</span>
+                                    <span className="text-sm">
+                                        Open Source until I get featured on
+                                        githubRetards (again)
+                                    </span>
                                 </div>
                             </div>
                             <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
                                 <div className="flex items-center gap-2">
                                     <FavoriteIcon className="w-4 h-4 text-red-400" />
-                                    <span className="text-sm">Made with Love (AI is love)</span>
+                                    <span className="text-sm">
+                                        Made with Love (AI is love)
+                                    </span>
                                 </div>
                             </div>
                             <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
                                 <div className="flex items-center gap-2">
                                     <GitHubIcon className="w-4 h-4" />
-                                    <span className="text-sm">Community Driven (I am the community)</span>
+                                    <span className="text-sm">
+                                        Community Driven (I am the community)
+                                    </span>
                                 </div>
                             </div>
                         </div>
                     </BlurFade>
                 </div>
 
-                {/* Single Free Plan Card */}
-                <div className="max-w-2xl mx-auto mb-16">
+                {/* Single Free Plan Card with CardSpotlight - Compact Design */}
+                <div className="max-w-6xl mx-auto mb-16">
                     <BlurFade delay={1}>
-                        <Card className="relative overflow-hidden border-2 border-green-500/30 bg-card/50 shadow-xl">
-                            <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-green-500 to-blue-500 text-white text-center py-2 text-sm font-semibold font-mono">
-                                <CelebrationIcon className="w-4 h-4 inline mr-1" /> Everything Included - Always Free
+                        <CardSpotlight
+                            radius={300}
+                            color="transparent"
+                            className="relative overflow-hidden border border-border bg-background/80 shadow-xl backdrop-blur-sm"
+                        >
+                            <div className="absolute top-0 left-0 right-0 bg-muted/20 border-b border-border text-center py-2 text-sm font-semibold font-mono">
+                                <CelebrationIcon className="w-4 h-4 inline mr-1" />{" "}
+                                Everything Included - Always Free
                             </div>
 
-                            <CardHeader className="pt-12 space-y-4">
-                                <div className="flex items-center justify-between">
-                                    <CardTitle className="text-3xl font-bold text-foreground">
-                                        LeetFeedback
-                                    </CardTitle>
-                                    <Badge className="bg-green-500/20 text-green-400 border border-green-500/30">
-                                        Free Forever
-                                    </Badge>
-                                </div>
+                            <div className="p-8 pt-12 relative z-10">
+                                {/* Header Section - Horizontal Layout on Desktop */}
+                                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
+                                    {/* Left: Title and Price */}
+                                    <div className="lg:col-span-1 space-y-4">
+                                        <div className="flex items-center gap-3">
+                                            <CardTitle className="text-2xl font-bold text-foreground">
+                                                LeetFeedback
+                                            </CardTitle>
+                                            <Badge className="bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs">
+                                                Free Forever
+                                            </Badge>
+                                        </div>
 
-                                <div className="space-y-2">
-                                    <div className="flex items-end space-x-1">
-                                        <span className="text-5xl font-bold text-foreground font-mono">
-                                            ₹0
-                                        </span>
-                                        <span className="text-muted-foreground pb-2 font-mono">
-                                            /forever
-                                        </span>
+                                        <div className="space-y-1">
+                                            <div className="flex items-end space-x-1">
+                                                <span className="text-4xl font-bold text-foreground font-mono">
+                                                    ₹0
+                                                </span>
+                                                <span className="text-muted-foreground pb-1 font-mono text-sm">
+                                                    /forever
+                                                </span>
+                                            </div>
+                                            <CardDescription className="text-muted-foreground">
+                                                All features included. No
+                                                limitations.
+                                            </CardDescription>
+                                        </div>
+
+                                        <RainbowButton
+                                            size="lg"
+                                            className="w-full py-3 font-semibold"
+                                            onClick={() => {
+                                                analytics.trackPricingPlanView(
+                                                    "Free Forever",
+                                                );
+                                                window.open(
+                                                    "https://github.com/QuickHasaCat/leetFeedback",
+                                                    "_blank",
+                                                );
+                                            }}
+                                        >
+                                            <CheckCircleIcon className="w-5 h-5 mr-2" />
+                                            Get Started - It's Free!
+                                        </RainbowButton>
                                     </div>
-                                    <CardDescription className="text-muted-foreground text-lg">
-                                        All features included. No limitations.
-                                        No premium tiers. Just pure love for the
-                                        coding community.
-                                    </CardDescription>
-                                </div>
 
-                                <RainbowButton
-                                    size="lg"
-                                    className="w-full py-3 text-lg font-semibold"
-                                    onClick={() => {
-                                        analytics.trackPricingPlanView(
-                                            "Free Forever",
-                                        );
-                                        window.open(
-                                            "https://github.com/QuickHasaCat/leetFeedback",
-                                            "_blank",
-                                        );
-                                    }}
-                                >
-                                    <CheckCircleIcon className="w-5 h-5 mr-2" />
-                                    Get Started - It's Free!
-                                </RainbowButton>
-                            </CardHeader>
-
-                            <CardContent className="space-y-6">
-                                {/* Features */}
-                                <div>
-                                    <h4 className="font-semibold text-foreground mb-4 font-mono text-lg">
-                                        Everything included (Refer roadmap): 
-                                    </h4>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                                        {features.map(
-                                            (feature, featureIndex) => (
-                                                <div
-                                                    key={featureIndex}
-                                                    className="flex items-start"
-                                                >
-                                                    <CheckCircleIcon className="w-5 h-5 mr-3 text-green-400 flex-shrink-0 mt-0.5" />
-                                                    <span className="text-sm text-muted-foreground">
-                                                        {feature}
-                                                    </span>
-                                                </div>
-                                            ),
+                                    {/* Right: Features Grid - More Compact */}
+                                    <div className="lg:col-span-2">
+                                        <h4 className="font-semibold text-foreground mb-4 font-mono">
+                                            Everything included (Refer roadmap):
+                                        </h4>
+                                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                                            {features
+                                                .slice(0, 12)
+                                                .map(
+                                                    (feature, featureIndex) => (
+                                                        <div
+                                                            key={featureIndex}
+                                                            className="flex items-start"
+                                                        >
+                                                            <CheckCircleIcon className="w-4 h-4 mr-2 text-blue-400 flex-shrink-0 mt-0.5" />
+                                                            <span className="text-xs text-muted-foreground">
+                                                                {feature}
+                                                            </span>
+                                                        </div>
+                                                    ),
+                                                )}
+                                        </div>
+                                        {features.length > 12 && (
+                                            <p className="text-xs text-muted-foreground mt-2 text-center">
+                                                + {features.length - 12} more
+                                                features
+                                            </p>
                                         )}
                                     </div>
                                 </div>
 
-                                {/* Open Source Message */}
-                                <div className="bg-muted/20 border border-border rounded-lg p-6">
-                                    <div className="flex items-center gap-3 mb-3">
-                                        <GitHubIcon className="w-6 h-6 text-foreground" />
-                                        <h4 className="font-semibold text-foreground font-mono">
-                                            Open Source & Community Driven
-                                        </h4>
+                                {/* Open Source Message - Compact */}
+                                <div className="bg-muted/10 border border-border rounded-lg p-4 backdrop-blur-sm">
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-3">
+                                            <GitHubIcon className="w-5 h-5 text-foreground" />
+                                            <div>
+                                                <h4 className="font-semibold text-foreground font-mono text-sm">
+                                                    Open Source & Community
+                                                    Driven
+                                                </h4>
+                                                <p className="text-xs text-muted-foreground">
+                                                    Built with love by the
+                                                    coding community. Free tools
+                                                    for everyone.
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            onClick={() =>
+                                                window.open(
+                                                    "https://github.com/QuickHasaCat/leetFeedback",
+                                                    "_blank",
+                                                )
+                                            }
+                                            className="border-border hover:bg-muted/50 text-xs"
+                                        >
+                                            <GitHubIcon className="w-3 h-3 mr-1" />
+                                            View on GitHub
+                                        </Button>
                                     </div>
-                                    <p className="text-sm text-muted-foreground mb-4">
-                                        LeetFeedback is completely open source
-                                        and built with love by the coding
-                                        community. We believe that great tools
-                                        should be accessible to everyone,
-                                        regardless of their financial situation.
-                                    </p>
-                                    <Button
-                                        variant="outline"
-                                        size="sm"
-                                        onClick={() =>
-                                            window.open(
-                                                "https://github.com/QuickHasaCat/leetFeedback",
-                                                "_blank",
-                                            )
-                                        }
-                                        className="border-border hover:bg-muted/50"
-                                    >
-                                        <GitHubIcon className="w-4 h-4 mr-2" />
-                                        View on GitHub
-                                    </Button>
                                 </div>
-                            </CardContent>
-                        </Card>
+                            </div>
+                        </CardSpotlight>
                     </BlurFade>
                 </div>
 
-                {/* Donation Section */}
+                {/* Donation Section with CardSpotlight */}
                 <div className="text-center max-w-2xl mx-auto mb-16">
                     <BlurFade delay={1.2}>
-                        <div className="bg-muted/10 border border-border rounded-lg p-8">
-                            <div className="flex justify-center mb-4">
-                                <VolunteerActivismIcon className="w-12 h-12 text-red-400" />
-                            </div>
-                            <h3 className="text-2xl font-bold mb-4 text-foreground">
-                                Support Our Mission
-                            </h3>
-                            <p className="text-muted-foreground mb-6">
-                                If LeetFeedback has helped you in your coding
-                                journey, consider supporting us. Every
-                                contribution helps us keep the project alive and
-                                improve it further.
-                            </p>
+                        <CardSpotlight
+                            radius={300}
+                            color="transparent"
+                            className="bg-background/80 border border-border rounded-lg backdrop-blur-sm"
+                        >
+                            <div className="p-8 relative z-10">
+                                <div className="flex justify-center mb-4">
+                                    <VolunteerActivismIcon className="w-12 h-12 text-red-400" />
+                                </div>
+                                <h3 className="text-2xl font-bold mb-4 text-foreground">
+                                    Support Our Mission
+                                </h3>
+                                <p className="text-muted-foreground mb-6">
+                                    If LeetFeedback has helped you in your
+                                    coding journey, consider supporting us.
+                                    Every contribution helps us keep the project
+                                    alive and improve it further.
+                                </p>
 
-                            <div className="space-y-4">
-                                <RainbowButton
-                                    size="lg"
-                                    className="px-8 py-4 text-lg font-semibold"
-                                    onClick={handleDonateClick}
-                                >
-                                    <VolunteerActivismIcon className="w-5 h-5 mr-2" />
-                                    Donate
-                                </RainbowButton>
+                                <div className="space-y-4">
+                                    <RainbowButton
+                                        size="lg"
+                                        className="px-8 py-4 text-lg font-semibold"
+                                        onClick={handleDonateClick}
+                                    >
+                                        <VolunteerActivismIcon className="w-5 h-5 mr-2" />
+                                        Donate
+                                    </RainbowButton>
 
-                                {showUPI && (
-                                    <BlurFade>
-                                        <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
-                                            <p className="text-sm text-muted-foreground mb-2">
-                                                UPI ID:
-                                            </p>
-                                            <div className="flex items-center justify-center gap-2">
-                                                <code className="bg-muted px-3 py-1 rounded font-mono text-sm">
-                                                    9992806683@yapl
-                                                </code>
-                                                <Button
-                                                    size="sm"
-                                                    variant="outline"
-                                                    onClick={copyUPI}
-                                                >
-                                                    Copy
-                                                </Button>
+                                    {showUPI && (
+                                        <BlurFade>
+                                            <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
+                                                <p className="text-sm text-muted-foreground mb-2">
+                                                    UPI ID:
+                                                </p>
+                                                <div className="flex items-center justify-center gap-2">
+                                                    <code className="bg-muted px-3 py-1 rounded font-mono text-sm">
+                                                        9992806683@yapl
+                                                    </code>
+                                                    <Button
+                                                        size="sm"
+                                                        variant="outline"
+                                                        onClick={copyUPI}
+                                                    >
+                                                        Copy
+                                                    </Button>
+                                                </div>
+                                                <p className="text-xs text-muted-foreground mt-2">
+                                                    Thank you for funding my
+                                                    gambling addiction.
+                                                </p>
                                             </div>
-                                            <p className="text-xs text-muted-foreground mt-2">
-                                                Thank you for funding my gambling addiction.
-                                            </p>
-                                        </div>
-                                    </BlurFade>
-                                )}
+                                        </BlurFade>
+                                    )}
+                                </div>
                             </div>
-                        </div>
+                        </CardSpotlight>
                     </BlurFade>
                 </div>
 
@@ -326,55 +356,64 @@ const Pricing: React.FC = () => {
                     </div>
                 </div>
 
-                {/* Help Us Section */}
-                <div className="text-center mt-16 p-8 bg-muted/10 border border-border rounded-lg">
-                    <div className="flex justify-center space-x-6 mb-6">
-                        <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                            <GroupsIcon className="w-8 h-8 text-foreground" />
+                {/* Help Us Section with CardSpotlight */}
+                <div className="text-center mt-16">
+                    <CardSpotlight
+                        radius={350}
+                        color="#8b5cf6"
+                        className="bg-background/80 border border-border rounded-lg backdrop-blur-sm"
+                    >
+                        <div className="p-8 relative z-10">
+                            <div className="flex justify-center space-x-6 mb-6">
+                                <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
+                                    <GroupsIcon className="w-8 h-8 text-foreground" />
+                                </div>
+                                <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
+                                    <CodeIcon className="w-8 h-8 text-foreground" />
+                                </div>
+                                <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
+                                    <BugReportIcon className="w-8 h-8 text-foreground" />
+                                </div>
+                            </div>
+                            <h3 className="text-2xl font-bold mb-4 text-foreground">
+                                <AutoAwesomeIcon className="w-6 h-6 mr-2 inline" />
+                                Join Our Open Source Community
+                            </h3>
+                            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                                Looking for someone to design icon and fix some
+                                AI generated slop.
+                            </p>
+                            <div className="flex flex-col sm:flex-row justify-center gap-4">
+                                <RainbowButton
+                                    size="lg"
+                                    className="px-8 py-4 text-lg font-semibold"
+                                    onClick={() =>
+                                        window.open(
+                                            "https://github.com/QuickHasaCat/leetFeedback",
+                                            "_blank",
+                                        )
+                                    }
+                                >
+                                    <GitHubIcon className="w-5 h-5 mr-2" />
+                                    Contribute on GitHub
+                                </RainbowButton>
+                                <RainbowButton
+                                    variant="outline"
+                                    size="lg"
+                                    className="px-8 py-4 text-lg font-semibold"
+                                    onClick={() =>
+                                        window.open(
+                                            "https://discord.gg/BZDb22gz",
+                                            "_blank",
+                                        )
+                                    }
+                                >
+                                    <DiscordIcon className="w-5 h-5 mr-2" />
+                                    Join Discord Community
+                                </RainbowButton>
+                            </div>
                         </div>
-                        <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                            <CodeIcon className="w-8 h-8 text-foreground" />
-                        </div>
-                        <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                            <BugReportIcon className="w-8 h-8 text-foreground" />
-                        </div>
-                    </div>
-                    <h3 className="text-2xl font-bold mb-4 text-foreground">
-                        <AutoAwesomeIcon className="w-6 h-6 mr-2 inline" />
-                        Join Our Open Source Community
-                    </h3>
-                    <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                        Looking for someone to design icon and fix some AI generated slop.
-                    </p>
-                    <div className="flex flex-col sm:flex-row justify-center gap-4">
-                        <RainbowButton
-                            size="lg"
-                            className="px-8 py-4 text-lg font-semibold"
-                            onClick={() =>
-                                window.open(
-                                    "https://github.com/QuickHasaCat/leetFeedback",
-                                    "_blank",
-                                )
-                            }
-                        >
-                            <GitHubIcon className="w-5 h-5 mr-2" />
-                            Contribute on GitHub
-                        </RainbowButton>
-                        <RainbowButton
-                            variant="outline"
-                            size="lg"
-                            className="px-8 py-4 text-lg font-semibold"
-                            onClick={() =>
-                                window.open(
-                                    "https://discord.gg/BZDb22gz",
-                                    "_blank",
-                                )
-                            }
-                        >
-                            <DiscordIcon className="w-5 h-5 mr-2" />
-                            Join Discord Community
-                        </RainbowButton>
-                    </div>
+                    </CardSpotlight>
                 </div>
             </div>
         </section>
