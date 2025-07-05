@@ -117,7 +117,7 @@ const Hero: React.FC = () => {
                                         "hero_primary_cta",
                                     );
                                     window.open(
-                                        "https://github.com/QuickHasaCat/leetFeedback",
+                                        "https://github.com/lqSky7/leetFeedback-extension",
                                         "_blank",
                                     );
                                 }}
@@ -156,8 +156,8 @@ const Hero: React.FC = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <StarIcon className="w-4 h-4 text-yellow-400" />
-                                <NumberTicker value={5} decimalPlaces={1} />
-                            / 5 Rating (I rated)
+                                <NumberTicker value={5} decimalPlaces={1} />/ 5
+                                Rating (I rated)
                             </div>
                         </div>
                     </BlurFade>

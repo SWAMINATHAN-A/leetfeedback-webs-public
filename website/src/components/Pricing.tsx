@@ -161,7 +161,7 @@ const Pricing: React.FC = () => {
                                                     "Free Forever",
                                                 );
                                                 window.open(
-                                                    "https://github.com/QuickHasaCat/leetFeedback",
+                                                    "https://github.com/lqSky7/leetFeedback-extension",
                                                     "_blank",
                                                 );
                                             }}
@@ -224,7 +224,7 @@ const Pricing: React.FC = () => {
                                             size="sm"
                                             onClick={() =>
                                                 window.open(
-                                                    "https://github.com/QuickHasaCat/leetFeedback",
+                                                    "https://github.com/lqSky7/leetFeedback-extension",
                                                     "_blank",
                                                 )
                                             }
@@ -389,7 +389,7 @@ const Pricing: React.FC = () => {
                                     className="px-8 py-4 text-lg font-semibold"
                                     onClick={() =>
                                         window.open(
-                                            "https://github.com/QuickHasaCat/leetFeedback",
+                                            "https://github.com/lqSky7/leetFeedback-extension",
                                             "_blank",
                                         )
                                     }

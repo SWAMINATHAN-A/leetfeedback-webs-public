@@ -1,10 +1,16 @@
-import React, { useState } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { DockDemo } from '../components/DockDemo';
+import React, { useState } from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import { DockDemo } from "../components/DockDemo";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+} from "../components/ui/card";
 import { BlurFade } from "../components/magicui/blur-fade";
 import { TextAnimate } from "../components/magicui/text-animate";
 import { RainbowButton } from "../components/magicui/rainbow-button";
@@ -47,7 +53,8 @@ const RoadmapPage: React.FC = () => {
         {
             id: 1,
             title: "Foundation & Core Features",
-            description: "Basic tracking functionality and user interface development",
+            description:
+                "Basic tracking functionality and user interface development",
             completed: true,
             phase: "Phase 1",
             icon: CodeIcon,
@@ -55,8 +62,8 @@ const RoadmapPage: React.FC = () => {
                 "LeetCode & GeeksforGeeks platform integration",
                 "Extension popup interface",
                 "Basic problem tracking",
-                "User authentication system"
-            ]
+                "User authentication system",
+            ],
         },
         {
             id: 2,
@@ -70,8 +77,8 @@ const RoadmapPage: React.FC = () => {
                 "AI mistake pattern recognition",
                 "Automated GitHub analysis reports",
                 "Smart insights generation",
-                "Performance trend analysis"
-            ]
+                "Performance trend analysis",
+            ],
         },
         {
             id: 3,
@@ -84,8 +91,8 @@ const RoadmapPage: React.FC = () => {
                 "ANKI flashcard auto-generation",
                 "Notion workspace integration",
                 "Study session planning",
-                "Progress tracking dashboard"
-            ]
+                "Progress tracking dashboard",
+            ],
         },
         {
             id: 4,
@@ -98,8 +105,8 @@ const RoadmapPage: React.FC = () => {
                 "Advanced analytics dashboard",
                 "Performance metrics visualization",
                 "Progress comparison tools",
-                "Custom reporting features"
-            ]
+                "Custom reporting features",
+            ],
         },
         {
             id: 5,
@@ -112,8 +119,8 @@ const RoadmapPage: React.FC = () => {
                 "Achievement badges & streaks",
                 "Leaderboards & competitions",
                 "Goal setting & tracking",
-                "Motivation system"
-            ]
+                "Motivation system",
+            ],
         },
         {
             id: 6,
@@ -127,8 +134,8 @@ const RoadmapPage: React.FC = () => {
                 "TUF+, CodeChef, HackerRank support",
                 "Codeforces integration",
                 "Mobile companion app",
-                "Cross-platform synchronization"
-            ]
+                "Cross-platform synchronization",
+            ],
         },
         {
             id: 7,
@@ -141,8 +148,8 @@ const RoadmapPage: React.FC = () => {
                 "Team analytics dashboards",
                 "Organization management",
                 "Bootcamp integration tools",
-                "Advanced admin controls"
-            ]
+                "Advanced admin controls",
+            ],
         },
         {
             id: 8,
@@ -155,13 +162,15 @@ const RoadmapPage: React.FC = () => {
                 "End-to-end encryption",
                 "GDPR compliance",
                 "Data anonymization",
-                "Advanced privacy controls"
-            ]
-        }
+                "Advanced privacy controls",
+            ],
+        },
     ];
 
-    const completedCount = roadmapItems.filter(item => item.completed).length;
-    const progressPercentage = Math.round((completedCount / roadmapItems.length) * 100);
+    const completedCount = roadmapItems.filter((item) => item.completed).length;
+    const progressPercentage = Math.round(
+        (completedCount / roadmapItems.length) * 100,
+    );
 
     return (
         <>
@@ -208,8 +217,9 @@ const RoadmapPage: React.FC = () => {
 
                             <BlurFade delay={0.75}>
                                 <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-12 max-w-3xl mx-auto">
-                                    Follow our journey as we build the future of coding practice. 
-                                    Transparent development with community-driven features.
+                                    Follow our journey as we build the future of
+                                    coding practice. Transparent development
+                                    with community-driven features.
                                 </p>
                             </BlurFade>
 
@@ -220,8 +230,12 @@ const RoadmapPage: React.FC = () => {
                                         <CardContent className="pt-6">
                                             <div className="text-center">
                                                 <CheckCircleIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
-                                                <div className="text-2xl font-bold text-foreground">{completedCount}</div>
-                                                <div className="text-sm text-muted-foreground">Phases Complete</div>
+                                                <div className="text-2xl font-bold text-foreground">
+                                                    {completedCount}
+                                                </div>
+                                                <div className="text-sm text-muted-foreground">
+                                                    Phases Complete
+                                                </div>
                                             </div>
                                         </CardContent>
                                     </Card>
@@ -229,8 +243,13 @@ const RoadmapPage: React.FC = () => {
                                         <CardContent className="pt-6">
                                             <div className="text-center">
                                                 <AutoAwesomeIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
-                                                <div className="text-2xl font-bold text-foreground">{roadmapItems.length - completedCount}</div>
-                                                <div className="text-sm text-muted-foreground">In Development</div>
+                                                <div className="text-2xl font-bold text-foreground">
+                                                    {roadmapItems.length -
+                                                        completedCount}
+                                                </div>
+                                                <div className="text-sm text-muted-foreground">
+                                                    In Development
+                                                </div>
                                             </div>
                                         </CardContent>
                                     </Card>
@@ -238,8 +257,17 @@ const RoadmapPage: React.FC = () => {
                                         <CardContent className="pt-6">
                                             <div className="text-center">
                                                 <FlagIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
-                                                <div className="text-2xl font-bold text-foreground">{roadmapItems.filter(item => item.milestone).length}</div>
-                                                <div className="text-sm text-muted-foreground">Major Milestones</div>
+                                                <div className="text-2xl font-bold text-foreground">
+                                                    {
+                                                        roadmapItems.filter(
+                                                            (item) =>
+                                                                item.milestone,
+                                                        ).length
+                                                    }
+                                                </div>
+                                                <div className="text-sm text-muted-foreground">
+                                                    Major Milestones
+                                                </div>
                                             </div>
                                         </CardContent>
                                     </Card>
@@ -264,7 +292,8 @@ const RoadmapPage: React.FC = () => {
                             </TextAnimate>
                             <BlurFade delay={0.75}>
                                 <p className="text-xl text-muted-foreground leading-relaxed">
-                                    Our development phases and the exciting features coming your way
+                                    Our development phases and the exciting
+                                    features coming your way
                                 </p>
                             </BlurFade>
                         </div>
@@ -273,15 +302,21 @@ const RoadmapPage: React.FC = () => {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             {roadmapItems.map((item, index) => (
                                 <BlurFade key={item.id} delay={1 + index * 0.1}>
-                                    <Card 
+                                    <Card
                                         className={`relative overflow-hidden transition-all duration-300 cursor-pointer ${
                                             item.completed
                                                 ? "border-2 border-foreground/30 bg-foreground/5 shadow-lg"
                                                 : selectedPhase === item.phase
-                                                ? "border-2 border-foreground/50 bg-foreground/10 shadow-lg scale-105"
-                                                : "border border-border hover:border-foreground/20 hover:bg-card/30 bg-card/20"
+                                                  ? "border-2 border-foreground/50 bg-foreground/10 shadow-lg scale-105"
+                                                  : "border border-border hover:border-foreground/20 hover:bg-card/30 bg-card/20"
                                         }`}
-                                        onClick={() => setSelectedPhase(selectedPhase === item.phase ? null : item.phase)}
+                                        onClick={() =>
+                                            setSelectedPhase(
+                                                selectedPhase === item.phase
+                                                    ? null
+                                                    : item.phase,
+                                            )
+                                        }
                                     >
                                         {item.milestone && (
                                             <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-center py-2 text-sm font-semibold font-mono">
@@ -292,22 +327,28 @@ const RoadmapPage: React.FC = () => {
                                             </div>
                                         )}
 
-                                        <CardHeader className={`space-y-4 ${item.milestone ? "pt-12" : "pt-6"}`}>
+                                        <CardHeader
+                                            className={`space-y-4 ${item.milestone ? "pt-12" : "pt-6"}`}
+                                        >
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center gap-4">
-                                                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center border-2 ${
-                                                        item.completed
-                                                            ? "bg-foreground text-background border-foreground"
-                                                            : "bg-card text-foreground border-border"
-                                                    }`}>
+                                                    <div
+                                                        className={`w-12 h-12 rounded-lg flex items-center justify-center border-2 ${
+                                                            item.completed
+                                                                ? "bg-foreground text-background border-foreground"
+                                                                : "bg-card text-foreground border-border"
+                                                        }`}
+                                                    >
                                                         <item.icon className="w-6 h-6" />
                                                     </div>
                                                     <div>
-                                                        <Badge className={`${
-                                                            item.completed
-                                                                ? "bg-foreground/20 text-foreground border-foreground/30"
-                                                                : "bg-muted/50 text-foreground border-border"
-                                                        } font-mono`}>
+                                                        <Badge
+                                                            className={`${
+                                                                item.completed
+                                                                    ? "bg-foreground/20 text-foreground border-foreground/30"
+                                                                    : "bg-muted/50 text-foreground border-border"
+                                                            } font-mono`}
+                                                        >
                                                             {item.phase}
                                                         </Badge>
                                                     </div>
@@ -322,9 +363,13 @@ const RoadmapPage: React.FC = () => {
                                             </div>
 
                                             <div>
-                                                <CardTitle className={`text-xl font-bold mb-2 ${
-                                                    item.completed ? "text-foreground" : "text-foreground"
-                                                }`}>
+                                                <CardTitle
+                                                    className={`text-xl font-bold mb-2 ${
+                                                        item.completed
+                                                            ? "text-foreground"
+                                                            : "text-foreground"
+                                                    }`}
+                                                >
                                                     {item.title}
                                                 </CardTitle>
                                                 <CardDescription className="text-muted-foreground">
@@ -339,28 +384,45 @@ const RoadmapPage: React.FC = () => {
                                                     Key Features:
                                                 </h4>
                                                 <ul className="space-y-2">
-                                                    {item.features.map((feature, featureIndex) => (
-                                                        <li
-                                                            key={featureIndex}
-                                                            className="flex items-start"
-                                                        >
-                                                            <CheckCircleIcon className={`w-4 h-4 mr-3 flex-shrink-0 mt-0.5 ${
-                                                                item.completed ? "text-foreground" : "text-muted-foreground"
-                                                            }`} />
-                                                            <span className="text-sm text-muted-foreground">
-                                                                {feature}
-                                                            </span>
-                                                        </li>
-                                                    ))}
+                                                    {item.features.map(
+                                                        (
+                                                            feature,
+                                                            featureIndex,
+                                                        ) => (
+                                                            <li
+                                                                key={
+                                                                    featureIndex
+                                                                }
+                                                                className="flex items-start"
+                                                            >
+                                                                <CheckCircleIcon
+                                                                    className={`w-4 h-4 mr-3 flex-shrink-0 mt-0.5 ${
+                                                                        item.completed
+                                                                            ? "text-foreground"
+                                                                            : "text-muted-foreground"
+                                                                    }`}
+                                                                />
+                                                                <span className="text-sm text-muted-foreground">
+                                                                    {feature}
+                                                                </span>
+                                                            </li>
+                                                        ),
+                                                    )}
                                                 </ul>
                                             </div>
 
                                             <div className="flex items-center gap-2 pt-2">
-                                                <div className={`w-2 h-2 rounded-full ${
-                                                    item.completed ? "bg-foreground" : "bg-muted-foreground"
-                                                }`} />
+                                                <div
+                                                    className={`w-2 h-2 rounded-full ${
+                                                        item.completed
+                                                            ? "bg-foreground"
+                                                            : "bg-muted-foreground"
+                                                    }`}
+                                                />
                                                 <span className="text-xs text-muted-foreground font-medium">
-                                                    {item.completed ? "Completed" : "In Development"}
+                                                    {item.completed
+                                                        ? "Completed"
+                                                        : "In Development"}
                                                 </span>
                                             </div>
                                         </CardContent>
@@ -393,16 +455,23 @@ const RoadmapPage: React.FC = () => {
                                     Join Our Open Source Journey
                                 </h3>
                                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto text-lg">
-                                    Help us build the future of coding practice! We're looking for passionate developers, 
-                                    designers, and testers to contribute to this open source project.
+                                    Help us build the future of coding practice!
+                                    We're looking for passionate developers,
+                                    designers, and testers to contribute to this
+                                    open source project.
                                 </p>
                                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                     <RainbowButton
                                         size="lg"
                                         className="px-8 py-4 text-lg font-semibold"
                                         onClick={() => {
-                                            analytics.trackFeatureClick('contribute_github');
-                                            window.open("https://github.com/QuickHasaCat/leetFeedback", "_blank");
+                                            analytics.trackFeatureClick(
+                                                "contribute_github",
+                                            );
+                                            window.open(
+                                                "https://github.com/lqSky7/leetFeedback-extension",
+                                                "_blank",
+                                            );
                                         }}
                                     >
                                         <GitHubIcon className="w-5 h-5 mr-2" />
@@ -412,7 +481,10 @@ const RoadmapPage: React.FC = () => {
                                         variant="outline"
                                         size="lg"
                                         className="px-8 py-4 text-lg font-semibold border-border hover:bg-muted/50"
-                                        onClick={() => window.location.href = "mailto:catince@outlook.com"}
+                                        onClick={() =>
+                                            (window.location.href =
+                                                "mailto:catince@outlook.com")
+                                        }
                                     >
                                         Join Our Team
                                     </Button>
@@ -425,20 +497,32 @@ const RoadmapPage: React.FC = () => {
                                     Shape the Future
                                 </h3>
                                 <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                                    Your feedback drives our development. Join our community and help us prioritize features 
-                                    that matter most to developers like you.
+                                    Your feedback drives our development. Join
+                                    our community and help us prioritize
+                                    features that matter most to developers like
+                                    you.
                                 </p>
                                 <div className="flex justify-center gap-4">
                                     <Button
                                         variant="outline"
-                                        onClick={() => window.open("https://github.com/QuickHasaCat/leetFeedback/issues", "_blank")}
+                                        onClick={() =>
+                                            window.open(
+                                                "https://github.com/lqSky7/leetFeedback-extension/issues",
+                                                "_blank",
+                                            )
+                                        }
                                         className="border-border hover:bg-muted/50"
                                     >
                                         Request Features
                                     </Button>
                                     <Button
                                         variant="outline"
-                                        onClick={() => window.open("https://github.com/QuickHasaCat/leetFeedback/discussions", "_blank")}
+                                        onClick={() =>
+                                            window.open(
+                                                "https://github.com/lqSky7/leetFeedback-extension/discussions",
+                                                "_blank",
+                                            )
+                                        }
                                         className="border-border hover:bg-muted/50"
                                     >
                                         Join Discussion
