@@ -1,4 +1,4 @@
-@import url("../public/harmonyos-fonts/css/harmonyos_sans_optimized.css");
+@import url("/harmonyos-fonts/css/harmonyos_sans_optimized.css");
 
 @tailwind base;
 @tailwind components;
