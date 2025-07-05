@@ -47,7 +47,7 @@ const Pricing: React.FC = () => {
     };
 
     const copyUPI = () => {
-        navigator.clipboard.writeText("9992806683@yapl");
+        navigator.clipboard.writeText("d.singh.55@superyes");
         // You could add a toast notification here
     };
 
@@ -280,7 +280,7 @@ const Pricing: React.FC = () => {
                                                 </p>
                                                 <div className="flex items-center justify-center gap-2">
                                                     <code className="bg-muted px-3 py-1 rounded font-mono text-sm">
-                                                        9992806683@yapl
+                                                        d.singh.55@superyes
                                                     </code>
                                                     <Button
                                                         size="sm"
