@@ -1,5 +1,11 @@
 "use client";
 
+declare global {
+  interface Document {
+    startViewTransition: (callback: () => Promise<void> | void) => { ready: Promise<void> };
+  }
+}
+
 import { Moon, SunDim } from "lucide-react";
 import { useRef } from "react";
 import { flushSync } from "react-dom";

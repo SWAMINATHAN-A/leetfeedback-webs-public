@@ -14,6 +14,7 @@ import {
 import { BlurFade } from "../components/magicui/blur-fade";
 import { TextAnimate } from "../components/magicui/text-animate";
 import { RainbowButton } from "../components/magicui/rainbow-button";
+import { ArcTimeline, ArcTimelineItem } from "../components/magicui/arc-timeline";
 import { analytics } from "../utils/analytics";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
@@ -170,6 +171,62 @@ const RoadmapPage: React.FC = () => {
         (completedCount / roadmapItems.length) * 100,
     );
 
+    // Arc Timeline Data
+    const arcTimelineData: ArcTimelineItem[] = [
+        {
+            time: "2024 Q1-Q2",
+            steps: [
+                {
+                    icon: <CodeIcon className="w-6 h-6" />,
+                    content: "Foundation & Core Features - Basic tracking functionality and user interface development"
+                },
+                {
+                    icon: <PsychologyIcon className="w-6 h-6" />,
+                    content: "AI-Powered Intelligence - Advanced AI analysis and automated reporting systems"
+                }
+            ]
+        },
+        {
+            time: "2024 Q3-Q4",
+            steps: [
+                {
+                    icon: <StyleIcon className="w-6 h-6" />,
+                    content: "Study & Productivity Tools - Enhanced learning tools and workspace integrations"
+                },
+                {
+                    icon: <AnalyticsIcon className="w-6 h-6" />,
+                    content: "Analytics & Insights - Comprehensive performance analytics and reporting"
+                }
+            ]
+        },
+        {
+            time: "2025 Q1-Q2",
+            steps: [
+                {
+                    icon: <EmojiEventsIcon className="w-6 h-6" />,
+                    content: "Gamification & Engagement - Achievement system and motivation features"
+                },
+                {
+                    icon: <DevicesIcon className="w-6 h-6" />,
+                    content: "Platform Expansion - Extended platform support and mobile experience"
+                }
+            ]
+        },
+        {
+            time: "2025 Q3+",
+            steps: [
+                {
+                    icon: <GroupsIcon className="w-6 h-6" />,
+                    content: "Enterprise & Teams - Team collaboration and organizational features"
+                },
+                {
+                    icon: <SecurityIcon className="w-6 h-6" />,
+                    content: "Security & Compliance - Advanced security features and data protection"
+                }
+            ]
+        }
+    ];
+
     return (
         <>
             <Header />
@@ -296,88 +353,113 @@ const RoadmapPage: React.FC = () => {
                             </BlurFade>
                         </div>
 
-                        {/* Timeline Grid */}
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                            {roadmapItems.map((item, index) => (
-                                <BlurFade key={item.id} delay={1 + index * 0.1}>
-                                    <Card className="relative h-full bg-card border border-border">
-                                        {/* Milestone Badge */}
-                                        {item.milestone && (
-                                            <div className="absolute top-4 right-4">
-                                                <Badge className="bg-muted text-muted-foreground border border-border text-xs font-mono">
-                                                    <TargetIcon className="w-3 h-3 mr-1" />
-                                                    {item.milestone}
+                        {/* Arc Timeline */}
+                        <BlurFade delay={1}>
+                            <div className="w-full max-w-6xl mx-auto">
+                                <ArcTimeline 
+                                    data={arcTimelineData}
+                                    className="mb-16"
+                                    defaultActiveStep={{
+                                        time: "2024 Q1-Q2",
+                                        stepIndex: 0
+                                    }}
+                                />
+                            </div>
+                        </BlurFade>
+
+                        {/* Detailed Features Grid */}
+                        <div className="mt-20">
+                            <div className="text-center max-w-3xl mx-auto mb-12">
+                                <h3 className="text-3xl font-bold text-foreground mb-4">
+                                    Detailed Features
+                                </h3>
+                                <p className="text-lg text-muted-foreground">
+                                    Dive deeper into each development phase and discover what's coming
+                                </p>
+                            </div>
+                            
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                                {roadmapItems.map((item, index) => (
+                                    <BlurFade key={item.id} delay={1 + index * 0.1}>
+                                        <Card className="relative h-full bg-card border border-border">
+                                            {/* Milestone Badge */}
+                                            {item.milestone && (
+                                                <div className="absolute top-4 right-4">
+                                                    <Badge className="bg-muted text-muted-foreground border border-border text-xs font-mono">
+                                                        <TargetIcon className="w-3 h-3 mr-1" />
+                                                        {item.milestone}
+                                                    </Badge>
+                                                </div>
+                                            )}
+
+                                            {/* Phase Badge */}
+                                            <div className="absolute top-4 left-4">
+                                                <Badge className="bg-muted text-muted-foreground border border-border font-mono text-xs">
+                                                    {item.phase}
                                                 </Badge>
                                             </div>
-                                        )}
 
-                                        {/* Phase Badge */}
-                                        <div className="absolute top-4 left-4">
-                                            <Badge className="bg-muted text-muted-foreground border border-border font-mono text-xs">
-                                                {item.phase}
-                                            </Badge>
-                                        </div>
-
-                                        <CardHeader className="pt-16 pb-4">
-                                            <div className="flex items-start gap-4">
-                                                {/* Icon */}
-                                                <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-muted border border-border text-muted-foreground">
-                                                    <item.icon className="w-6 h-6" />
-                                                </div>
-
-                                                {/* Title and Description */}
-                                                <div className="flex-1 min-w-0">
-                                                    <div className="flex items-center gap-2 mb-2">
-                                                        <CardTitle className="text-lg font-bold text-foreground">
-                                                            {item.title}
-                                                        </CardTitle>
-                                                        {item.completed ? (
-                                                            <CheckCircleIcon className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                                                        ) : (
-                                                            <RadioButtonUncheckedIcon className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                                                        )}
+                                            <CardHeader className="pt-16 pb-4">
+                                                <div className="flex items-start gap-4">
+                                                    {/* Icon */}
+                                                    <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-muted border border-border text-muted-foreground">
+                                                        <item.icon className="w-6 h-6" />
                                                     </div>
-                                                    <CardDescription className="text-sm text-muted-foreground">
-                                                        {item.description}
-                                                    </CardDescription>
-                                                </div>
-                                            </div>
-                                        </CardHeader>
 
-                                        <CardContent className="pt-0 pb-6">
-                                            {/* Features List */}
-                                            <div className="space-y-3">
-                                                <h4 className="text-sm font-semibold text-foreground border-b border-border pb-2">
-                                                    Key Features
-                                                </h4>
-                                                <ul className="space-y-2">
-                                                    {item.features.map((feature, featureIndex) => (
-                                                        <li key={featureIndex} className="flex items-start gap-3">
-                                                            <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-muted-foreground" />
-                                                            <span className="text-sm text-muted-foreground leading-relaxed">
-                                                                {feature}
-                                                            </span>
-                                                        </li>
-                                                    ))}
-                                                </ul>
-                                            </div>
+                                                    {/* Title and Description */}
+                                                    <div className="flex-1 min-w-0">
+                                                        <div className="flex items-center gap-2 mb-2">
+                                                            <CardTitle className="text-lg font-bold text-foreground">
+                                                                {item.title}
+                                                            </CardTitle>
+                                                            {item.completed ? (
+                                                                <CheckCircleIcon className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                                                            ) : (
+                                                                <RadioButtonUncheckedIcon className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                                                            )}
+                                                        </div>
+                                                        <CardDescription className="text-sm text-muted-foreground">
+                                                            {item.description}
+                                                        </CardDescription>
+                                                    </div>
+                                                </div>
+                                            </CardHeader>
 
-                                            {/* Status Footer */}
-                                            <div className="flex items-center justify-between pt-4 mt-4 border-t border-border">
-                                                <div className="flex items-center gap-2">
-                                                    <div className="w-2 h-2 rounded-full bg-muted-foreground" />
-                                                    <span className="text-xs font-medium text-muted-foreground">
-                                                        {item.completed ? "Completed" : "In Development"}
-                                                    </span>
+                                            <CardContent className="pt-0 pb-6">
+                                                {/* Features List */}
+                                                <div className="space-y-3">
+                                                    <h4 className="text-sm font-semibold text-foreground border-b border-border pb-2">
+                                                        Key Features
+                                                    </h4>
+                                                    <ul className="space-y-2">
+                                                        {item.features.map((feature, featureIndex) => (
+                                                            <li key={featureIndex} className="flex items-start gap-3">
+                                                                <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-muted-foreground" />
+                                                                <span className="text-sm text-muted-foreground leading-relaxed">
+                                                                    {feature}
+                                                                </span>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
                                                 </div>
-                                                <div className="text-xs text-muted-foreground font-mono">
-                                                    {item.features.length} features
+
+                                                {/* Status Footer */}
+                                                <div className="flex items-center justify-between pt-4 mt-4 border-t border-border">
+                                                    <div className="flex items-center gap-2">
+                                                        <div className="w-2 h-2 rounded-full bg-muted-foreground" />
+                                                        <span className="text-xs font-medium text-muted-foreground">
+                                                            {item.completed ? "Completed" : "In Development"}
+                                                        </span>
+                                                    </div>
+                                                    <div className="text-xs text-muted-foreground font-mono">
+                                                        {item.features.length} features
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                </BlurFade>
-                            ))}
+                                            </CardContent>
+                                        </Card>
+                                    </BlurFade>
+                                ))}
+                            </div>
                         </div>
                     </div>
                 </section>
