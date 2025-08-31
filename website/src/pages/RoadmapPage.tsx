@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { DockDemo } from "../components/DockDemo";
@@ -47,8 +47,6 @@ interface RoadmapItem {
 }
 
 const RoadmapPage: React.FC = () => {
-    const [selectedPhase, setSelectedPhase] = useState<string | null>(null);
-
     const roadmapItems: RoadmapItem[] = [
         {
             id: 1,
@@ -302,128 +300,79 @@ const RoadmapPage: React.FC = () => {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                             {roadmapItems.map((item, index) => (
                                 <BlurFade key={item.id} delay={1 + index * 0.1}>
-                                    <Card
-                                        className={`relative overflow-hidden transition-all duration-300 cursor-pointer ${
-                                            item.completed
-                                                ? "border-2 border-foreground/30 bg-foreground/5 shadow-lg"
-                                                : selectedPhase === item.phase
-                                                  ? "border-2 border-foreground/50 bg-foreground/10 shadow-lg scale-105"
-                                                  : "border border-border hover:border-foreground/20 hover:bg-card/30 bg-card/20"
-                                        }`}
-                                        onClick={() =>
-                                            setSelectedPhase(
-                                                selectedPhase === item.phase
-                                                    ? null
-                                                    : item.phase,
-                                            )
-                                        }
-                                    >
+                                    <Card className="relative h-full bg-card border border-border">
+                                        {/* Milestone Badge */}
                                         {item.milestone && (
-                                            <div className="absolute top-0 left-0 right-0 bg-gradient-to-r from-purple-500 to-blue-500 text-white text-center py-2 text-sm font-semibold font-mono">
-                                                <div className="flex items-center gap-2 mb-2">
-                                                    <TargetIcon className="w-4 h-4 text-blue-400" />
+                                            <div className="absolute top-4 right-4">
+                                                <Badge className="bg-muted text-muted-foreground border border-border text-xs font-mono">
+                                                    <TargetIcon className="w-3 h-3 mr-1" />
                                                     {item.milestone}
-                                                </div>
+                                                </Badge>
                                             </div>
                                         )}
 
-                                        <CardHeader
-                                            className={`space-y-4 ${item.milestone ? "pt-12" : "pt-6"}`}
-                                        >
-                                            <div className="flex items-center justify-between">
-                                                <div className="flex items-center gap-4">
-                                                    <div
-                                                        className={`w-12 h-12 rounded-lg flex items-center justify-center border-2 ${
-                                                            item.completed
-                                                                ? "bg-foreground text-background border-foreground"
-                                                                : "bg-card text-foreground border-border"
-                                                        }`}
-                                                    >
-                                                        <item.icon className="w-6 h-6" />
-                                                    </div>
-                                                    <div>
-                                                        <Badge
-                                                            className={`${
-                                                                item.completed
-                                                                    ? "bg-foreground/20 text-foreground border-foreground/30"
-                                                                    : "bg-muted/50 text-foreground border-border"
-                                                            } font-mono`}
-                                                        >
-                                                            {item.phase}
-                                                        </Badge>
-                                                    </div>
-                                                </div>
-                                                <div className="flex items-center gap-2">
-                                                    {item.completed ? (
-                                                        <CheckCircleIcon className="w-6 h-6 text-foreground" />
-                                                    ) : (
-                                                        <RadioButtonUncheckedIcon className="w-6 h-6 text-muted-foreground" />
-                                                    )}
-                                                </div>
-                                            </div>
+                                        {/* Phase Badge */}
+                                        <div className="absolute top-4 left-4">
+                                            <Badge className="bg-muted text-muted-foreground border border-border font-mono text-xs">
+                                                {item.phase}
+                                            </Badge>
+                                        </div>
 
-                                            <div>
-                                                <CardTitle
-                                                    className={`text-xl font-bold mb-2 ${
-                                                        item.completed
-                                                            ? "text-foreground"
-                                                            : "text-foreground"
-                                                    }`}
-                                                >
-                                                    {item.title}
-                                                </CardTitle>
-                                                <CardDescription className="text-muted-foreground">
-                                                    {item.description}
-                                                </CardDescription>
+                                        <CardHeader className="pt-16 pb-4">
+                                            <div className="flex items-start gap-4">
+                                                {/* Icon */}
+                                                <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-muted border border-border text-muted-foreground">
+                                                    <item.icon className="w-6 h-6" />
+                                                </div>
+
+                                                {/* Title and Description */}
+                                                <div className="flex-1 min-w-0">
+                                                    <div className="flex items-center gap-2 mb-2">
+                                                        <CardTitle className="text-lg font-bold text-foreground">
+                                                            {item.title}
+                                                        </CardTitle>
+                                                        {item.completed ? (
+                                                            <CheckCircleIcon className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                                                        ) : (
+                                                            <RadioButtonUncheckedIcon className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                                                        )}
+                                                    </div>
+                                                    <CardDescription className="text-sm text-muted-foreground">
+                                                        {item.description}
+                                                    </CardDescription>
+                                                </div>
                                             </div>
                                         </CardHeader>
 
-                                        <CardContent className="space-y-4">
-                                            <div>
-                                                <h4 className="font-semibold text-foreground mb-3 font-mono">
-                                                    Key Features:
+                                        <CardContent className="pt-0 pb-6">
+                                            {/* Features List */}
+                                            <div className="space-y-3">
+                                                <h4 className="text-sm font-semibold text-foreground border-b border-border pb-2">
+                                                    Key Features
                                                 </h4>
                                                 <ul className="space-y-2">
-                                                    {item.features.map(
-                                                        (
-                                                            feature,
-                                                            featureIndex,
-                                                        ) => (
-                                                            <li
-                                                                key={
-                                                                    featureIndex
-                                                                }
-                                                                className="flex items-start"
-                                                            >
-                                                                <CheckCircleIcon
-                                                                    className={`w-4 h-4 mr-3 flex-shrink-0 mt-0.5 ${
-                                                                        item.completed
-                                                                            ? "text-foreground"
-                                                                            : "text-muted-foreground"
-                                                                    }`}
-                                                                />
-                                                                <span className="text-sm text-muted-foreground">
-                                                                    {feature}
-                                                                </span>
-                                                            </li>
-                                                        ),
-                                                    )}
+                                                    {item.features.map((feature, featureIndex) => (
+                                                        <li key={featureIndex} className="flex items-start gap-3">
+                                                            <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-muted-foreground" />
+                                                            <span className="text-sm text-muted-foreground leading-relaxed">
+                                                                {feature}
+                                                            </span>
+                                                        </li>
+                                                    ))}
                                                 </ul>
                                             </div>
 
-                                            <div className="flex items-center gap-2 pt-2">
-                                                <div
-                                                    className={`w-2 h-2 rounded-full ${
-                                                        item.completed
-                                                            ? "bg-foreground"
-                                                            : "bg-muted-foreground"
-                                                    }`}
-                                                />
-                                                <span className="text-xs text-muted-foreground font-medium">
-                                                    {item.completed
-                                                        ? "Completed"
-                                                        : "In Development"}
-                                                </span>
+                                            {/* Status Footer */}
+                                            <div className="flex items-center justify-between pt-4 mt-4 border-t border-border">
+                                                <div className="flex items-center gap-2">
+                                                    <div className="w-2 h-2 rounded-full bg-muted-foreground" />
+                                                    <span className="text-xs font-medium text-muted-foreground">
+                                                        {item.completed ? "Completed" : "In Development"}
+                                                    </span>
+                                                </div>
+                                                <div className="text-xs text-muted-foreground font-mono">
+                                                    {item.features.length} features
+                                                </div>
                                             </div>
                                         </CardContent>
                                     </Card>
