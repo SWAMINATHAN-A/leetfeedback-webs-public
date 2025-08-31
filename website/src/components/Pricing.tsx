@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -83,26 +83,26 @@ const Pricing: React.FC = () => {
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                             <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
-                                <div className="flex items-center gap-2">
-                                    <OpenSourceIcon className="w-4 h-4" />
-                                    <span className="text-sm">
+                                <div className="flex items-start gap-2">
+                                    <OpenSourceIcon className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                                    <span className="text-sm leading-relaxed">
                                         Open Source until I get featured on
                                         githubRetards (again)
                                     </span>
                                 </div>
                             </div>
                             <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
-                                <div className="flex items-center gap-2">
-                                    <FavoriteIcon className="w-4 h-4 text-red-400" />
-                                    <span className="text-sm">
+                                <div className="flex items-start gap-2">
+                                    <FavoriteIcon className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
+                                    <span className="text-sm leading-relaxed">
                                         Made with Love (AI is love)
                                     </span>
                                 </div>
                             </div>
                             <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
-                                <div className="flex items-center gap-2">
-                                    <GitHubIcon className="w-4 h-4" />
-                                    <span className="text-sm">
+                                <div className="flex items-start gap-2">
+                                    <GitHubIcon className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                                    <span className="text-sm leading-relaxed">
                                         Community Driven (I am the community)
                                     </span>
                                 </div>
@@ -124,7 +124,7 @@ const Pricing: React.FC = () => {
                                 Everything Included - Always Free
                             </div>
 
-                            <div className="p-8 pt-12 relative z-10">
+                            <div className="p-4 sm:p-8 pt-8 sm:pt-12 relative z-10">
                                 {/* Header Section - Horizontal Layout on Desktop */}
                                 <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
                                     {/* Left: Title and Price */}
@@ -248,7 +248,7 @@ const Pricing: React.FC = () => {
                             color="transparent"
                             className="bg-background/80 border border-border rounded-lg backdrop-blur-sm"
                         >
-                            <div className="p-8 relative z-10">
+                            <div className="p-4 sm:p-8 relative z-10">
                                 <div className="flex justify-center mb-4">
                                     <VolunteerActivismIcon className="w-12 h-12 text-red-400" />
                                 </div>
@@ -265,11 +265,11 @@ const Pricing: React.FC = () => {
                                 <div className="space-y-4">
                                     <RainbowButton
                                         size="lg"
-                                        className="px-8 py-4 text-lg font-semibold"
+                                        className="px-4 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold w-full sm:w-auto"
                                         onClick={handleDonateClick}
                                     >
-                                        <VolunteerActivismIcon className="w-5 h-5 mr-2" />
-                                        Donate
+                                        <VolunteerActivismIcon className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
+                                        <span className="text-center">Donate</span>
                                     </RainbowButton>
 
                                     {showUPI && (
@@ -358,12 +358,10 @@ const Pricing: React.FC = () => {
 
                 {/* Help Us Section with CardSpotlight */}
                 <div className="text-center mt-16">
-                    <CardSpotlight
-                        radius={350}
-                        color="#8b5cf6"
+                    <Card
                         className="bg-background/80 border border-border rounded-lg backdrop-blur-sm"
                     >
-                        <div className="p-8 relative z-10">
+                        <div className="p-4 sm:p-8 relative z-10">
                             <div className="flex justify-center space-x-6 mb-6">
                                 <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
                                     <GroupsIcon className="w-8 h-8 text-foreground" />
@@ -383,10 +381,10 @@ const Pricing: React.FC = () => {
                                 Looking for someone to design icon and fix some
                                 AI generated slop.
                             </p>
-                            <div className="flex flex-col sm:flex-row justify-center gap-4">
+                            <div className="flex flex-col sm:flex-row justify-center gap-4 px-4">
                                 <RainbowButton
                                     size="lg"
-                                    className="px-8 py-4 text-lg font-semibold"
+                                    className="px-4 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold w-full sm:w-auto"
                                     onClick={() =>
                                         window.open(
                                             "https://github.com/lqSky7/leetFeedback-extension",
@@ -394,13 +392,13 @@ const Pricing: React.FC = () => {
                                         )
                                     }
                                 >
-                                    <GitHubIcon className="w-5 h-5 mr-2" />
-                                    Contribute on GitHub
+                                    <GitHubIcon className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
+                                    <span className="text-center">Contribute on GitHub</span>
                                 </RainbowButton>
                                 <RainbowButton
                                     variant="outline"
                                     size="lg"
-                                    className="px-8 py-4 text-lg font-semibold"
+                                    className="px-4 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold w-full sm:w-auto"
                                     onClick={() =>
                                         window.open(
                                             "https://discord.gg/BZDb22gz",
@@ -408,12 +406,12 @@ const Pricing: React.FC = () => {
                                         )
                                     }
                                 >
-                                    <DiscordIcon className="w-5 h-5 mr-2" />
-                                    Join Discord Community
+                                    <DiscordIcon className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
+                                    <span className="text-center">Join Discord Community</span>
                                 </RainbowButton>
                             </div>
                         </div>
-                    </CardSpotlight>
+                    </Card>
                 </div>
             </div>
         </section>
