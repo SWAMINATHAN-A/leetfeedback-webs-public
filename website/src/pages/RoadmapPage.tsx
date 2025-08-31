@@ -5,16 +5,19 @@ import { DockDemo } from "../components/DockDemo";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from "../components/ui/card";
 import { BlurFade } from "../components/magicui/blur-fade";
 import { TextAnimate } from "../components/magicui/text-animate";
 import { RainbowButton } from "../components/magicui/rainbow-button";
-import { ArcTimeline, ArcTimelineItem } from "../components/magicui/arc-timeline";
+import {
+  ArcTimeline,
+  ArcTimelineItem,
+} from "../components/magicui/arc-timeline";
 import { analytics } from "../utils/analytics";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
@@ -37,537 +40,537 @@ import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import TargetIcon from "@mui/icons-material/MyLocation";
 
 interface RoadmapItem {
-    id: number;
-    title: string;
-    description: string;
-    completed: boolean;
-    phase: string;
-    milestone?: string;
-    icon: React.ComponentType<any>;
-    features: string[];
+  id: number;
+  title: string;
+  description: string;
+  completed: boolean;
+  phase: string;
+  milestone?: string;
+  icon: React.ComponentType<any>;
+  features: string[];
 }
 
 const RoadmapPage: React.FC = () => {
-    const roadmapItems: RoadmapItem[] = [
-        {
-            id: 1,
-            title: "Foundation & Core Features",
-            description:
-                "Basic tracking functionality and user interface development",
-            completed: true,
-            phase: "Phase 1",
-            icon: CodeIcon,
-            features: [
-                "LeetCode & GeeksforGeeks platform integration",
-                "Extension popup interface",
-                "Basic problem tracking",
-                "User authentication system",
-            ],
-        },
-        {
-            id: 2,
-            title: "AI-Powered Intelligence",
-            description: "Advanced AI analysis and automated reporting systems",
-            completed: true,
-            phase: "Phase 2",
-            milestone: "Public Beta Launch",
-            icon: PsychologyIcon,
-            features: [
-                "AI mistake pattern recognition",
-                "Automated GitHub analysis reports",
-                "Smart insights generation",
-                "Performance trend analysis",
-            ],
-        },
-        {
-            id: 3,
-            title: "Study & Productivity Tools",
-            description: "Enhanced learning tools and workspace integrations",
-            completed: false,
-            phase: "Phase 3",
-            icon: StyleIcon,
-            features: [
-                "ANKI flashcard auto-generation",
-                "Notion workspace integration",
-                "Study session planning",
-                "Progress tracking dashboard",
-            ],
-        },
-        {
-            id: 4,
-            title: "Analytics & Insights",
-            description: "Comprehensive performance analytics and reporting",
-            completed: false,
-            phase: "Phase 4",
-            icon: AnalyticsIcon,
-            features: [
-                "Advanced analytics dashboard",
-                "Performance metrics visualization",
-                "Progress comparison tools",
-                "Custom reporting features",
-            ],
-        },
-        {
-            id: 5,
-            title: "Gamification & Engagement",
-            description: "Achievement system and motivation features",
-            completed: false,
-            phase: "Phase 5",
-            icon: EmojiEventsIcon,
-            features: [
-                "Achievement badges & streaks",
-                "Leaderboards & competitions",
-                "Goal setting & tracking",
-                "Motivation system",
-            ],
-        },
-        {
-            id: 6,
-            title: "Platform Expansion",
-            description: "Extended platform support and mobile experience",
-            completed: false,
-            phase: "Phase 6",
-            milestone: "Public Release",
-            icon: DevicesIcon,
-            features: [
-                "TUF+, CodeChef, HackerRank support",
-                "Codeforces integration",
-                "Mobile companion app",
-                "Cross-platform synchronization",
-            ],
-        },
-        {
-            id: 7,
-            title: "Enterprise & Teams",
-            description: "Team collaboration and organizational features",
-            completed: false,
-            phase: "Phase 7",
-            icon: GroupsIcon,
-            features: [
-                "Team analytics dashboards",
-                "Organization management",
-                "Bootcamp integration tools",
-                "Advanced admin controls",
-            ],
-        },
-        {
-            id: 8,
-            title: "Security & Compliance",
-            description: "Advanced security features and data protection",
-            completed: false,
-            phase: "Phase 8",
-            icon: SecurityIcon,
-            features: [
-                "End-to-end encryption",
-                "GDPR compliance",
-                "Data anonymization",
-                "Advanced privacy controls",
-            ],
-        },
-    ];
+  const roadmapItems: RoadmapItem[] = [
+    {
+      id: 1,
+      title: "Foundation & Core Features",
+      description:
+        "Basic tracking functionality and user interface development",
+      completed: true,
+      phase: "Phase 1",
+      icon: CodeIcon,
+      features: [
+        "LeetCode & GeeksforGeeks platform integration",
+        "Extension popup interface",
+        "Basic problem tracking",
+        "User authentication system",
+      ],
+    },
+    {
+      id: 2,
+      title: "AI-Powered Intelligence",
+      description: "Advanced AI analysis and automated reporting systems",
+      completed: true,
+      phase: "Phase 2",
+      milestone: "Public Beta Launch",
+      icon: PsychologyIcon,
+      features: [
+        "AI mistake pattern recognition",
+        "Automated GitHub analysis reports",
+        "Smart insights generation",
+        "Performance trend analysis",
+      ],
+    },
+    {
+      id: 3,
+      title: "Study & Productivity Tools",
+      description: "Enhanced learning tools and workspace integrations",
+      completed: false,
+      phase: "Phase 3",
+      icon: StyleIcon,
+      features: [
+        "ANKI flashcard auto-generation",
+        "Notion workspace integration",
+        "Study session planning",
+        "Progress tracking dashboard",
+      ],
+    },
+    {
+      id: 4,
+      title: "Analytics & Insights",
+      description: "Comprehensive performance analytics and reporting",
+      completed: false,
+      phase: "Phase 4",
+      icon: AnalyticsIcon,
+      features: [
+        "Advanced analytics dashboard",
+        "Performance metrics visualization",
+        "Progress comparison tools",
+        "Custom reporting features",
+      ],
+    },
+    {
+      id: 5,
+      title: "Gamification & Engagement",
+      description: "Achievement system and motivation features",
+      completed: false,
+      phase: "Phase 5",
+      icon: EmojiEventsIcon,
+      features: [
+        "Achievement badges & streaks",
+        "Leaderboards & competitions",
+        "Goal setting & tracking",
+        "Motivation system",
+      ],
+    },
+    {
+      id: 6,
+      title: "Platform Expansion",
+      description: "Extended platform support and mobile experience",
+      completed: false,
+      phase: "Phase 6",
+      milestone: "Public Release",
+      icon: DevicesIcon,
+      features: [
+        "TUF+, CodeChef, HackerRank support",
+        "Codeforces integration",
+        "Mobile companion app",
+        "Cross-platform synchronization",
+      ],
+    },
+    {
+      id: 7,
+      title: "Enterprise & Teams",
+      description: "Team collaboration and organizational features",
+      completed: false,
+      phase: "Phase 7",
+      icon: GroupsIcon,
+      features: [
+        "Team analytics dashboards",
+        "Organization management",
+        "Bootcamp integration tools",
+        "Advanced admin controls",
+      ],
+    },
+    {
+      id: 8,
+      title: "Security & Compliance",
+      description: "Advanced security features and data protection",
+      completed: false,
+      phase: "Phase 8",
+      icon: SecurityIcon,
+      features: [
+        "End-to-end encryption",
+        "GDPR compliance",
+        "Data anonymization",
+        "Advanced privacy controls",
+      ],
+    },
+  ];
 
-    const completedCount = roadmapItems.filter((item) => item.completed).length;
-    const progressPercentage = Math.round(
-        (completedCount / roadmapItems.length) * 100,
-    );
+  const completedCount = roadmapItems.filter((item) => item.completed).length;
+  const progressPercentage = Math.round(
+    (completedCount / roadmapItems.length) * 100
+  );
 
-    // Arc Timeline Data
-    const arcTimelineData: ArcTimelineItem[] = [
+  // Arc Timeline Data
+  const arcTimelineData: ArcTimelineItem[] = [
+    {
+      time: "2025 Q1-Q2",
+      steps: [
         {
-            time: "2024 Q1-Q2",
-            steps: [
-                {
-                    icon: <CodeIcon className="w-6 h-6" />,
-                    content: "Foundation & Core Features - Basic tracking functionality and user interface development"
-                },
-                {
-                    icon: <PsychologyIcon className="w-6 h-6" />,
-                    content: "AI-Powered Intelligence - Advanced AI analysis and automated reporting systems"
-                }
-            ]
+          icon: <CodeIcon className="w-6 h-6" />,
+          content:
+            "Foundation & Core Features - Basic tracking functionality and user interface development",
         },
         {
-            time: "2024 Q3-Q4",
-            steps: [
-                {
-                    icon: <StyleIcon className="w-6 h-6" />,
-                    content: "Study & Productivity Tools - Enhanced learning tools and workspace integrations"
-                },
-                {
-                    icon: <AnalyticsIcon className="w-6 h-6" />,
-                    content: "Analytics & Insights - Comprehensive performance analytics and reporting"
-                }
-            ]
+          icon: <PsychologyIcon className="w-6 h-6" />,
+          content:
+            "AI-Powered Intelligence - Advanced AI analysis and automated reporting systems",
+        },
+      ],
+    },
+    {
+      time: "2025 Q3-Q4",
+      steps: [
+        {
+          icon: <StyleIcon className="w-6 h-6" />,
+          content:
+            "Study & Productivity Tools - Enhanced learning tools and workspace integrations",
         },
         {
-            time: "2025 Q1-Q2",
-            steps: [
-                {
-                    icon: <EmojiEventsIcon className="w-6 h-6" />,
-                    content: "Gamification & Engagement - Achievement system and motivation features"
-                },
-                {
-                    icon: <DevicesIcon className="w-6 h-6" />,
-                    content: "Platform Expansion - Extended platform support and mobile experience"
-                }
-            ]
+          icon: <AnalyticsIcon className="w-6 h-6" />,
+          content:
+            "Analytics & Insights - Comprehensive performance analytics and reporting",
+        },
+      ],
+    },
+    {
+      time: "2025 Q1-Q2",
+      steps: [
+        {
+          icon: <EmojiEventsIcon className="w-6 h-6" />,
+          content:
+            "Gamification & Engagement - Achievement system and motivation features",
         },
         {
-            time: "2025 Q3+",
-            steps: [
-                {
-                    icon: <GroupsIcon className="w-6 h-6" />,
-                    content: "Enterprise & Teams - Team collaboration and organizational features"
-                },
-                {
-                    icon: <SecurityIcon className="w-6 h-6" />,
-                    content: "Security & Compliance - Advanced security features and data protection"
-                }
-            ]
-        }
-    ];
+          icon: <DevicesIcon className="w-6 h-6" />,
+          content:
+            "Platform Expansion - Extended platform support and mobile experience",
+        },
+      ],
+    },
+    {
+      time: "2025 Q3+",
+      steps: [
+        {
+          icon: <GroupsIcon className="w-6 h-6" />,
+          content:
+            "Enterprise & Teams - Team collaboration and organizational features",
+        },
+        {
+          icon: <SecurityIcon className="w-6 h-6" />,
+          content:
+            "Security & Compliance - Advanced security features and data protection",
+        },
+      ],
+    },
+  ];
 
-    return (
-        <>
-            <Header />
-            <main>
-                {/* Hero Section */}
-                <section
-                    id="roadmap"
-                    className="relative overflow-hidden bg-background pt-20 pb-32 grid-pattern"
-                >
-                    {/* Floating Elements */}
-                    <div className="absolute top-20 left-10 w-32 h-32 border border-border/20 rounded-full opacity-20 float dark:border-white/10"></div>
-                    <div
-                        className="absolute top-40 right-20 w-24 h-24 border border-border/10 rounded-full opacity-30 float dark:border-white/5"
-                        style={{ animationDelay: "1s" }}
-                    ></div>
-                    <div
-                        className="absolute bottom-20 left-1/4 w-16 h-16 border border-border/30 rounded-full opacity-25 float dark:border-white/15"
-                        style={{ animationDelay: "2s" }}
-                    ></div>
+  return (
+    <>
+      <Header />
+      <main>
+        {/* Hero Section */}
+        <section
+          id="roadmap"
+          className="relative overflow-hidden bg-background pt-20 pb-32 grid-pattern"
+        >
+          {/* Floating Elements */}
+          <div className="absolute top-20 left-10 w-32 h-32 border border-border/20 rounded-full opacity-20 float dark:border-white/10"></div>
+          <div
+            className="absolute top-40 right-20 w-24 h-24 border border-border/10 rounded-full opacity-30 float dark:border-white/5"
+            style={{ animationDelay: "1s" }}
+          ></div>
+          <div
+            className="absolute bottom-20 left-1/4 w-16 h-16 border border-border/30 rounded-full opacity-25 float dark:border-white/15"
+            style={{ animationDelay: "2s" }}
+          ></div>
 
-                    <div className="container relative mx-auto px-4 md:px-8">
-                        <div className="text-center max-w-5xl mx-auto">
-                            {/* Progress Badge */}
-                            <BlurFade delay={0.25}>
-                                <div className="mb-8">
-                                    <Badge className="bg-blue-500/20 text-blue-400 border border-blue-500/30 px-4 py-2 text-sm font-mono hover:bg-blue-500/30">
-                                        <TrendingUpIcon className="w-4 h-4 mr-2" />
-                                        {progressPercentage}% Complete
-                                    </Badge>
-                                </div>
-                            </BlurFade>
+          <div className="container relative mx-auto px-4 md:px-8">
+            <div className="text-center max-w-5xl mx-auto">
+              {/* Progress Badge */}
+              <BlurFade delay={0.25}>
+                <div className="mb-8">
+                  <Badge className="bg-blue-500/20 text-blue-400 border border-blue-500/30 px-4 py-2 text-sm font-mono hover:bg-blue-500/30">
+                    <TrendingUpIcon className="w-4 h-4 mr-2" />
+                    {progressPercentage}% Complete
+                  </Badge>
+                </div>
+              </BlurFade>
 
-                            {/* Main Heading */}
-                            <TextAnimate
-                                as="h1"
-                                className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight"
-                                animation="blurInUp"
-                                delay={0.5}
-                                by="word"
-                            >
-                                Development Roadmap
-                            </TextAnimate>
+              {/* Main Heading */}
+              <TextAnimate
+                as="h1"
+                className="text-5xl md:text-7xl font-bold text-foreground mb-6 leading-tight"
+                animation="blurInUp"
+                delay={0.5}
+                by="word"
+              >
+                Development Roadmap
+              </TextAnimate>
 
-                            <BlurFade delay={0.75}>
-                                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-12 max-w-3xl mx-auto">
-                                    Follow our journey as we build the future of
-                                    coding practice. Transparent development
-                                    with community-driven features.
-                                </p>
-                            </BlurFade>
+              <BlurFade delay={0.75}>
+                <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed mb-12 max-w-3xl mx-auto">
+                  Follow our journey as we build the future of coding practice.
+                  Transparent development with community-driven features.
+                </p>
+              </BlurFade>
 
-                            {/* Progress Stats */}
-                            <BlurFade delay={1}>
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                                    <Card className="bg-card/50 border border-border backdrop-blur-sm">
-                                        <CardContent className="pt-6">
-                                            <div className="text-center">
-                                                <CheckCircleIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
-                                                <div className="text-2xl font-bold text-foreground">
-                                                    {completedCount}
-                                                </div>
-                                                <div className="text-sm text-muted-foreground">
-                                                    Phases Complete
-                                                </div>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                    <Card className="bg-card/50 border border-border backdrop-blur-sm">
-                                        <CardContent className="pt-6">
-                                            <div className="text-center">
-                                                <AutoAwesomeIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
-                                                <div className="text-2xl font-bold text-foreground">
-                                                    {roadmapItems.length -
-                                                        completedCount}
-                                                </div>
-                                                <div className="text-sm text-muted-foreground">
-                                                    In Development
-                                                </div>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                    <Card className="bg-card/50 border border-border backdrop-blur-sm">
-                                        <CardContent className="pt-6">
-                                            <div className="text-center">
-                                                <FlagIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
-                                                <div className="text-2xl font-bold text-foreground">
-                                                    {
-                                                        roadmapItems.filter(
-                                                            (item) =>
-                                                                item.milestone,
-                                                        ).length
-                                                    }
-                                                </div>
-                                                <div className="text-sm text-muted-foreground">
-                                                    Major Milestones
-                                                </div>
-                                            </div>
-                                        </CardContent>
-                                    </Card>
-                                </div>
-                            </BlurFade>
+              {/* Progress Stats */}
+              <BlurFade delay={1}>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                  <Card className="bg-card/50 border border-border backdrop-blur-sm">
+                    <CardContent className="pt-6">
+                      <div className="text-center">
+                        <CheckCircleIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
+                        <div className="text-2xl font-bold text-foreground">
+                          {completedCount}
                         </div>
-                    </div>
-                </section>
+                        <div className="text-sm text-muted-foreground">
+                          Phases Complete
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                  <Card className="bg-card/50 border border-border backdrop-blur-sm">
+                    <CardContent className="pt-6">
+                      <div className="text-center">
+                        <AutoAwesomeIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
+                        <div className="text-2xl font-bold text-foreground">
+                          {roadmapItems.length - completedCount}
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          In Development
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                  <Card className="bg-card/50 border border-border backdrop-blur-sm">
+                    <CardContent className="pt-6">
+                      <div className="text-center">
+                        <FlagIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
+                        <div className="text-2xl font-bold text-foreground">
+                          {roadmapItems.filter((item) => item.milestone).length}
+                        </div>
+                        <div className="text-sm text-muted-foreground">
+                          Major Milestones
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              </BlurFade>
+            </div>
+          </div>
+        </section>
 
-                {/* Roadmap Timeline */}
-                <section className="py-24 bg-background border-t border-border/20">
-                    <div className="container mx-auto px-4 md:px-8">
-                        <div className="text-center max-w-3xl mx-auto mb-20">
-                            <TextAnimate
-                                as="h2"
-                                className="text-4xl md:text-5xl font-bold text-foreground mb-6"
-                                animation="blurInUp"
-                                delay={0.5}
-                                by="word"
-                            >
-                                Feature Timeline
-                            </TextAnimate>
-                            <BlurFade delay={0.75}>
-                                <p className="text-xl text-muted-foreground leading-relaxed">
-                                    Our development phases and the exciting
-                                    features coming your way
-                                </p>
-                            </BlurFade>
+        {/* Roadmap Timeline */}
+        <section className="py-24 bg-background border-t border-border/20">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-20">
+              <TextAnimate
+                as="h2"
+                className="text-4xl md:text-5xl font-bold text-foreground mb-6"
+                animation="blurInUp"
+                delay={0.5}
+                by="word"
+              >
+                Feature Timeline
+              </TextAnimate>
+              <BlurFade delay={0.75}>
+                <p className="text-xl text-muted-foreground leading-relaxed">
+                  Our development phases and the exciting features coming your
+                  way
+                </p>
+              </BlurFade>
+            </div>
+
+            {/* Arc Timeline */}
+            <BlurFade delay={1}>
+              <div className="w-full max-w-6xl mx-auto">
+                <ArcTimeline
+                  data={arcTimelineData}
+                  className="mb-16"
+                  defaultActiveStep={{
+                    time: "2026 Q1-Q2",
+                    stepIndex: 0,
+                  }}
+                />
+              </div>
+            </BlurFade>
+
+            {/* Detailed Features Grid */}
+            <div className="mt-20">
+              <div className="text-center max-w-3xl mx-auto mb-12">
+                <h3 className="text-3xl font-bold text-foreground mb-4">
+                  Detailed Features
+                </h3>
+                <p className="text-lg text-muted-foreground">
+                  Dive deeper into each development phase and discover what's
+                  coming
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {roadmapItems.map((item, index) => (
+                  <BlurFade key={item.id} delay={1 + index * 0.1}>
+                    <Card className="relative h-full bg-card border border-border">
+                      {/* Milestone Badge */}
+                      {item.milestone && (
+                        <div className="absolute top-4 right-4">
+                          <Badge className="bg-muted text-muted-foreground border border-border text-xs font-mono">
+                            <TargetIcon className="w-3 h-3 mr-1" />
+                            {item.milestone}
+                          </Badge>
+                        </div>
+                      )}
+
+                      {/* Phase Badge */}
+                      <div className="absolute top-4 left-4">
+                        <Badge className="bg-muted text-muted-foreground border border-border font-mono text-xs">
+                          {item.phase}
+                        </Badge>
+                      </div>
+
+                      <CardHeader className="pt-16 pb-4">
+                        <div className="flex items-start gap-4">
+                          {/* Icon */}
+                          <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-muted border border-border text-muted-foreground">
+                            <item.icon className="w-6 h-6" />
+                          </div>
+
+                          {/* Title and Description */}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-2">
+                              <CardTitle className="text-lg font-bold text-foreground">
+                                {item.title}
+                              </CardTitle>
+                              {item.completed ? (
+                                <CheckCircleIcon className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                              ) : (
+                                <RadioButtonUncheckedIcon className="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                              )}
+                            </div>
+                            <CardDescription className="text-sm text-muted-foreground">
+                              {item.description}
+                            </CardDescription>
+                          </div>
+                        </div>
+                      </CardHeader>
+
+                      <CardContent className="pt-0 pb-6">
+                        {/* Features List */}
+                        <div className="space-y-3">
+                          <h4 className="text-sm font-semibold text-foreground border-b border-border pb-2">
+                            Key Features
+                          </h4>
+                          <ul className="space-y-2">
+                            {item.features.map((feature, featureIndex) => (
+                              <li
+                                key={featureIndex}
+                                className="flex items-start gap-3"
+                              >
+                                <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-muted-foreground" />
+                                <span className="text-sm text-muted-foreground leading-relaxed">
+                                  {feature}
+                                </span>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
 
-                        {/* Arc Timeline */}
-                        <BlurFade delay={1}>
-                            <div className="w-full max-w-6xl mx-auto">
-                                <ArcTimeline 
-                                    data={arcTimelineData}
-                                    className="mb-16"
-                                    defaultActiveStep={{
-                                        time: "2024 Q1-Q2",
-                                        stepIndex: 0
-                                    }}
-                                />
-                            </div>
-                        </BlurFade>
-
-                        {/* Detailed Features Grid */}
-                        <div className="mt-20">
-                            <div className="text-center max-w-3xl mx-auto mb-12">
-                                <h3 className="text-3xl font-bold text-foreground mb-4">
-                                    Detailed Features
-                                </h3>
-                                <p className="text-lg text-muted-foreground">
-                                    Dive deeper into each development phase and discover what's coming
-                                </p>
-                            </div>
-                            
-                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                                {roadmapItems.map((item, index) => (
-                                    <BlurFade key={item.id} delay={1 + index * 0.1}>
-                                        <Card className="relative h-full bg-card border border-border">
-                                            {/* Milestone Badge */}
-                                            {item.milestone && (
-                                                <div className="absolute top-4 right-4">
-                                                    <Badge className="bg-muted text-muted-foreground border border-border text-xs font-mono">
-                                                        <TargetIcon className="w-3 h-3 mr-1" />
-                                                        {item.milestone}
-                                                    </Badge>
-                                                </div>
-                                            )}
-
-                                            {/* Phase Badge */}
-                                            <div className="absolute top-4 left-4">
-                                                <Badge className="bg-muted text-muted-foreground border border-border font-mono text-xs">
-                                                    {item.phase}
-                                                </Badge>
-                                            </div>
-
-                                            <CardHeader className="pt-16 pb-4">
-                                                <div className="flex items-start gap-4">
-                                                    {/* Icon */}
-                                                    <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-muted border border-border text-muted-foreground">
-                                                        <item.icon className="w-6 h-6" />
-                                                    </div>
-
-                                                    {/* Title and Description */}
-                                                    <div className="flex-1 min-w-0">
-                                                        <div className="flex items-center gap-2 mb-2">
-                                                            <CardTitle className="text-lg font-bold text-foreground">
-                                                                {item.title}
-                                                            </CardTitle>
-                                                            {item.completed ? (
-                                                                <CheckCircleIcon className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                                                            ) : (
-                                                                <RadioButtonUncheckedIcon className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                                                            )}
-                                                        </div>
-                                                        <CardDescription className="text-sm text-muted-foreground">
-                                                            {item.description}
-                                                        </CardDescription>
-                                                    </div>
-                                                </div>
-                                            </CardHeader>
-
-                                            <CardContent className="pt-0 pb-6">
-                                                {/* Features List */}
-                                                <div className="space-y-3">
-                                                    <h4 className="text-sm font-semibold text-foreground border-b border-border pb-2">
-                                                        Key Features
-                                                    </h4>
-                                                    <ul className="space-y-2">
-                                                        {item.features.map((feature, featureIndex) => (
-                                                            <li key={featureIndex} className="flex items-start gap-3">
-                                                                <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-muted-foreground" />
-                                                                <span className="text-sm text-muted-foreground leading-relaxed">
-                                                                    {feature}
-                                                                </span>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                </div>
-
-                                                {/* Status Footer */}
-                                                <div className="flex items-center justify-between pt-4 mt-4 border-t border-border">
-                                                    <div className="flex items-center gap-2">
-                                                        <div className="w-2 h-2 rounded-full bg-muted-foreground" />
-                                                        <span className="text-xs font-medium text-muted-foreground">
-                                                            {item.completed ? "Completed" : "In Development"}
-                                                        </span>
-                                                    </div>
-                                                    <div className="text-xs text-muted-foreground font-mono">
-                                                        {item.features.length} features
-                                                    </div>
-                                                </div>
-                                            </CardContent>
-                                        </Card>
-                                    </BlurFade>
-                                ))}
-                            </div>
+                        {/* Status Footer */}
+                        <div className="flex items-center justify-between pt-4 mt-4 border-t border-border">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 rounded-full bg-muted-foreground" />
+                            <span className="text-xs font-medium text-muted-foreground">
+                              {item.completed ? "Completed" : "In Development"}
+                            </span>
+                          </div>
+                          <div className="text-xs text-muted-foreground font-mono">
+                            {item.features.length} features
+                          </div>
                         </div>
-                    </div>
-                </section>
+                      </CardContent>
+                    </Card>
+                  </BlurFade>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
 
-                {/* Call to Action Section */}
-                <section className="py-24 bg-background border-t border-border/20">
-                    <div className="container mx-auto px-4 md:px-8">
-                        <div className="max-w-4xl mx-auto">
-                            {/* Open Source Contribution */}
-                            <div className="text-center p-8 bg-muted/10 border border-border rounded-lg mb-16">
-                                <div className="flex justify-center space-x-6 mb-6">
-                                    <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                                        <GroupsIcon className="w-8 h-8 text-foreground" />
-                                    </div>
-                                    <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                                        <CodeIcon className="w-8 h-8 text-foreground" />
-                                    </div>
-                                    <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                                        <AutoAwesomeIcon className="w-8 h-8 text-foreground" />
-                                    </div>
-                                </div>
-                                <h3 className="text-3xl font-bold mb-4 text-foreground">
-                                    <VolunteerActivismIcon className="w-8 h-8 mr-2 inline" />
-                                    Join Our Open Source Journey
-                                </h3>
-                                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto text-lg">
-                                    Help us build the future of coding practice!
-                                    We're looking for passionate developers,
-                                    designers, and testers to contribute to this
-                                    open source project.
-                                </p>
-                                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                                    <RainbowButton
-                                        size="lg"
-                                        className="px-8 py-4 text-lg font-semibold"
-                                        onClick={() => {
-                                            analytics.trackFeatureClick(
-                                                "contribute_github",
-                                            );
-                                            window.open(
-                                                "https://github.com/lqSky7/leetFeedback-extension",
-                                                "_blank",
-                                            );
-                                        }}
-                                    >
-                                        <GitHubIcon className="w-5 h-5 mr-2" />
-                                        Contribute on GitHub
-                                    </RainbowButton>
-                                    <Button
-                                        variant="outline"
-                                        size="lg"
-                                        className="px-8 py-4 text-lg font-semibold border-border hover:bg-muted/50"
-                                        onClick={() =>
-                                            (window.location.href =
-                                                "mailto:catince@outlook.com")
-                                        }
-                                    >
-                                        Join Our Team
-                                    </Button>
-                                </div>
-                            </div>
+        {/* Call to Action Section */}
+        <section className="py-24 bg-background border-t border-border/20">
+          <div className="container mx-auto px-4 md:px-8">
+            <div className="max-w-4xl mx-auto">
+              {/* Open Source Contribution */}
+              <div className="text-center p-8 bg-muted/10 border border-border rounded-lg mb-16">
+                <div className="flex justify-center space-x-6 mb-6">
+                  <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
+                    <GroupsIcon className="w-8 h-8 text-foreground" />
+                  </div>
+                  <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
+                    <CodeIcon className="w-8 h-8 text-foreground" />
+                  </div>
+                  <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
+                    <AutoAwesomeIcon className="w-8 h-8 text-foreground" />
+                  </div>
+                </div>
+                <h3 className="text-3xl font-bold mb-4 text-foreground">
+                  <VolunteerActivismIcon className="w-8 h-8 mr-2 inline" />
+                  Join Our Open Source Journey
+                </h3>
+                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto text-lg">
+                  Help us build the future of coding practice! We're looking for
+                  passionate developers, designers, and testers to contribute to
+                  this open source project.
+                </p>
+                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                  <RainbowButton
+                    size="lg"
+                    className="px-8 py-4 text-lg font-semibold"
+                    onClick={() => {
+                      analytics.trackFeatureClick("contribute_github");
+                      window.open(
+                        "https://github.com/lqSky7/leetFeedback-extension",
+                        "_blank"
+                      );
+                    }}
+                  >
+                    <GitHubIcon className="w-5 h-5 mr-2" />
+                    Contribute on GitHub
+                  </RainbowButton>
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="px-8 py-4 text-lg font-semibold border-border hover:bg-muted/50"
+                    onClick={() =>
+                      (window.location.href = "mailto:catince@outlook.com")
+                    }
+                  >
+                    Join Our Team
+                  </Button>
+                </div>
+              </div>
 
-                            {/* Community & Feedback */}
-                            <div className="text-center">
-                                <h3 className="text-2xl font-bold mb-4 text-foreground">
-                                    Shape the Future
-                                </h3>
-                                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                                    Your feedback drives our development. Join
-                                    our community and help us prioritize
-                                    features that matter most to developers like
-                                    you.
-                                </p>
-                                <div className="flex justify-center gap-4">
-                                    <Button
-                                        variant="outline"
-                                        onClick={() =>
-                                            window.open(
-                                                "https://github.com/lqSky7/leetFeedback-extension/issues",
-                                                "_blank",
-                                            )
-                                        }
-                                        className="border-border hover:bg-muted/50"
-                                    >
-                                        Request Features
-                                    </Button>
-                                    <Button
-                                        variant="outline"
-                                        onClick={() =>
-                                            window.open(
-                                                "https://github.com/lqSky7/leetFeedback-extension/discussions",
-                                                "_blank",
-                                            )
-                                        }
-                                        className="border-border hover:bg-muted/50"
-                                    >
-                                        Join Discussion
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
-            <Footer />
-            <DockDemo />
-        </>
-    );
+              {/* Community & Feedback */}
+              <div className="text-center">
+                <h3 className="text-2xl font-bold mb-4 text-foreground">
+                  Shape the Future
+                </h3>
+                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+                  Your feedback drives our development. Join our community and
+                  help us prioritize features that matter most to developers
+                  like you.
+                </p>
+                <div className="flex justify-center gap-4">
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      window.open(
+                        "https://github.com/lqSky7/leetFeedback-extension/issues",
+                        "_blank"
+                      )
+                    }
+                    className="border-border hover:bg-muted/50"
+                  >
+                    Request Features
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() =>
+                      window.open(
+                        "https://github.com/lqSky7/leetFeedback-extension/discussions",
+                        "_blank"
+                      )
+                    }
+                    className="border-border hover:bg-muted/50"
+                  >
+                    Join Discussion
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <Footer />
+      <DockDemo />
+    </>
+  );
 };
 
 export default RoadmapPage;

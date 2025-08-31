@@ -63,7 +63,7 @@ export function DockDemo() {
                 buttonVariants({ variant: "ghost", size: "icon" }),
                 "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
               )}>
-                <AnimatedThemeToggler className="w-5 h-5 md:w-6 md:h-6" />
+                <AnimatedThemeToggler />
               </div>
             </TooltipTrigger>
             <TooltipContent>
@@ -87,7 +87,7 @@ export function DockDemo() {
                     "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
                   )}
                 >
-                  <HomeIcon className="md:size-5 size-4 text-foreground" />
+                  <HomeIcon className="md:size-6 size-5 text-foreground" />
                 </button>
               </TooltipTrigger>
               <TooltipContent>
@@ -102,7 +102,7 @@ export function DockDemo() {
                   buttonVariants({ variant: "ghost", size: "icon" }),
                   "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
                 )}>
-                  <AnimatedThemeToggler className="w-5 h-5 md:w-6 md:h-6" />
+                  <AnimatedThemeToggler />
                 </div>
               </TooltipTrigger>
               <TooltipContent>
@@ -153,7 +153,7 @@ export function DockDemo() {
                     "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
                   )}
                 >
-                  <HomeIcon className="md:size-5 size-4 text-foreground" />
+                  <HomeIcon className="md:size-6 size-5 text-foreground" />
                 </button>
               </TooltipTrigger>
               <TooltipContent>
@@ -168,7 +168,7 @@ export function DockDemo() {
                   buttonVariants({ variant: "ghost", size: "icon" }),
                   "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
                 )}>
-                  <AnimatedThemeToggler className="w-5 h-5 md:w-6 md:h-6" />
+                  <AnimatedThemeToggler />
                 </div>
               </TooltipTrigger>
               <TooltipContent>
@@ -189,7 +189,7 @@ export function DockDemo() {
               buttonVariants({ variant: "ghost", size: "icon" }),
               "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
             )}>
-              <AnimatedThemeToggler className="w-5 h-5 md:w-6 md:h-6" />
+              <AnimatedThemeToggler />
             </div>
           </TooltipTrigger>
           <TooltipContent>
@@ -219,7 +219,7 @@ export function DockDemo() {
                       "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
                     )}
                   >
-                    <item.icon className="md:size-5 size-4 text-foreground" />
+                    <item.icon className="md:size-6 size-5 text-foreground" />
                   </button>
                 </TooltipTrigger>
                 <TooltipContent>
