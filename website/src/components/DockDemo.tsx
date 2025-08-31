@@ -15,14 +15,13 @@ import { useTheme } from "../contexts/ThemeContext";
 import { useAuth } from "../contexts/AuthContext";
 import { useLocation } from "react-router-dom";
 import ProfileImage from "./ui/ProfileImage";
+import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
 
 // Material Icons
 import FeaturesIcon from '@mui/icons-material/Stars';
 import HowItWorksIcon from '@mui/icons-material/Build';
 import PricingIcon from '@mui/icons-material/AttachMoney';
 import HomeIcon from '@mui/icons-material/Home';
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -36,7 +35,6 @@ const DATA = {
 };
 
 export function DockDemo() {
-  const { isDark, toggleTheme } = useTheme();
   const { user, isAuthenticated } = useAuth();
   const location = useLocation();
   
@@ -61,20 +59,12 @@ export function DockDemo() {
         <DockIcon>
           <Tooltip>
             <TooltipTrigger asChild>
-              <button
-                onClick={toggleTheme}
-                aria-label="Toggle Theme"
-                className={cn(
-                  buttonVariants({ variant: "ghost", size: "icon" }),
-                  "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
-                )}
-              >
-                {isDark ? (
-                  <LightModeIcon className="md:size-5 size-4 text-foreground" />
-                ) : (
-                  <DarkModeIcon className="md:size-5 size-4 text-foreground" />
-                )}
-              </button>
+              <div className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+              )}>
+                <AnimatedThemeToggler className="w-5 h-5 md:w-6 md:h-6" />
+              </div>
             </TooltipTrigger>
             <TooltipContent>
               <p>Toggle Theme</p>
@@ -108,20 +98,12 @@ export function DockDemo() {
           <DockIcon>
             <Tooltip>
               <TooltipTrigger asChild>
-                <button
-                  onClick={toggleTheme}
-                  aria-label="Toggle Theme"
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
-                  )}
-                >
-                  {isDark ? (
-                    <LightModeIcon className="md:size-5 size-4 text-foreground" />
-                  ) : (
-                    <DarkModeIcon className="md:size-5 size-4 text-foreground" />
-                  )}
-                </button>
+                <div className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+                )}>
+                  <AnimatedThemeToggler className="w-5 h-5 md:w-6 md:h-6" />
+                </div>
               </TooltipTrigger>
               <TooltipContent>
                 <p>Toggle Theme</p>
@@ -182,20 +164,12 @@ export function DockDemo() {
           <DockIcon>
             <Tooltip>
               <TooltipTrigger asChild>
-                <button
-                  onClick={toggleTheme}
-                  aria-label="Toggle Theme"
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
-                  )}
-                >
-                  {isDark ? (
-                    <LightModeIcon className="md:size-5 size-4 text-foreground" />
-                  ) : (
-                    <DarkModeIcon className="md:size-5 size-4 text-foreground" />
-                  )}
-                </button>
+                <div className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+                )}>
+                  <AnimatedThemeToggler className="w-5 h-5 md:w-6 md:h-6" />
+                </div>
               </TooltipTrigger>
               <TooltipContent>
                 <p>Toggle Theme</p>
@@ -211,20 +185,12 @@ export function DockDemo() {
       <DockIcon>
         <Tooltip>
           <TooltipTrigger asChild>
-            <button
-              onClick={toggleTheme}
-              aria-label="Toggle Theme"
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
-              )}
-            >
-              {isDark ? (
-                <LightModeIcon className="md:size-5 size-4 text-foreground" />
-              ) : (
-                <DarkModeIcon className="md:size-5 size-4 text-foreground" />
-              )}
-            </button>
+            <div className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+            )}>
+              <AnimatedThemeToggler className="w-5 h-5 md:w-6 md:h-6" />
+            </div>
           </TooltipTrigger>
           <TooltipContent>
             <p>Toggle Theme</p>
