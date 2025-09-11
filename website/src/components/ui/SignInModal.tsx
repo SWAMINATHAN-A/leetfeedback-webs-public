@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import { X, LogIn, Lock, RefreshCw, Code2 } from 'lucide-react';
-import { MagicCard } from '../magicui/magic-card';
+import React, { useState } from "react";
+import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { X, LogIn, Lock, RefreshCw, Code2 } from "lucide-react";
+import { MagicCard } from "../magicui/magic-card";
 
 interface SignInModalProps {
   isOpen: boolean;
@@ -16,24 +16,24 @@ const SignInModal: React.FC<SignInModalProps> = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-    const handleGoogleSignIn = async () => {
+  const handleGoogleSignIn = async () => {
     try {
       setError(null);
       await signInWithGoogle();
       onClose();
     } catch (error) {
-      setError('Failed to sign in with Google. Please try again.');
+      setError("Failed to sign in with Google. Please try again.");
     }
   };
 
   const handleTermsClick = () => {
     onClose();
-    navigate('/terms');
+    navigate("/terms");
   };
 
   const handlePrivacyClick = () => {
     onClose();
-    navigate('/privacy');
+    navigate("/privacy");
   };
 
   if (!isOpen) return null;
@@ -41,11 +41,11 @@ const SignInModal: React.FC<SignInModalProps> = ({ isOpen, onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Backdrop */}
-      <div 
+      <div
         className="absolute inset-0 bg-black/80 backdrop-blur-sm"
         onClick={onClose}
       />
-      
+
       {/* Modal */}
       <MagicCard className="relative w-full max-w-md mx-4 overflow-hidden">
         <div className="relative bg-background/95 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl">
@@ -59,16 +59,17 @@ const SignInModal: React.FC<SignInModalProps> = ({ isOpen, onClose }) => {
               >
                 <X className="h-5 w-5 group-hover:rotate-90 transition-transform duration-200" />
               </button>
-              
+
               <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 border border-border/50 flex items-center justify-center">
                 <Code2 className="h-8 w-8 text-foreground" />
               </div>
-              
+
               <h2 className="text-2xl font-bold bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text">
                 Welcome to LeetFeedback
               </h2>
               <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
-                Sign in to unlock your coding journey and sync progress across all your devices
+                Sign in to unlock your coding journey and sync progress across
+                all your devices
               </p>
             </div>
           </div>
@@ -119,15 +120,15 @@ const SignInModal: React.FC<SignInModalProps> = ({ isOpen, onClose }) => {
 
             <div className="mt-6 pt-4 border-t border-border/50">
               <p className="text-xs text-muted-foreground text-center leading-relaxed">
-                By signing in, you agree to our{' '}
-                <button 
+                By signing in, you agree to our{" "}
+                <button
                   onClick={handleTermsClick}
                   className="text-foreground hover:underline focus:outline-none focus:underline transition-all"
                 >
                   Terms of Service
-                </button>
-                {' '}and{' '}
-                <button 
+                </button>{" "}
+                and{" "}
+                <button
                   onClick={handlePrivacyClick}
                   className="text-foreground hover:underline focus:outline-none focus:underline transition-all"
                 >

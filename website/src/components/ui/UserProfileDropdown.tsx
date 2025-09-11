@@ -1,29 +1,34 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
-import { useAuth } from '../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import { User, LogOut, Settings, ChevronDown, UserCircle } from 'lucide-react';
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { User, LogOut, Settings, ChevronDown, UserCircle } from "lucide-react";
 
 interface UserProfileDropdownProps {
   className?: string;
 }
 
-const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ className = '' }) => {
+const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({
+  className = "",
+}) => {
   const { user, signOut, isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const handleClickOutside = useCallback((event: MouseEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
       setIsOpen(false);
     }
   }, []);
 
   useEffect(() => {
     if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener("mousedown", handleClickOutside);
       };
     }
   }, [isOpen, handleClickOutside]);
@@ -32,15 +37,15 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ className = '
     try {
       setIsOpen(false);
       await signOut();
-      navigate('/');
+      navigate("/");
     } catch (error) {
-      console.error('Sign out error:', error);
+      console.error("Sign out error:", error);
     }
   }, [signOut, navigate]);
 
   const handleProfileClick = useCallback(() => {
     setIsOpen(false);
-    navigate('/profile');
+    navigate("/profile");
   }, [navigate]);
 
   if (!isAuthenticated || !user) {
@@ -58,7 +63,7 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ className = '
           {user.photoURL ? (
             <img
               src={user.photoURL}
-              alt={user.displayName || 'User'}
+              alt={user.displayName || "User"}
               className="h-8 w-8 rounded-full object-cover border-2 border-border/20"
             />
           ) : (
@@ -70,13 +75,19 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ className = '
         </div>
         <div className="hidden sm:block text-left">
           <div className="text-sm font-medium leading-none">
-            {user.displayName || user.email?.split('@')[0] || 'User'}
+            {user.displayName || user.email?.split("@")[0] || "User"}
           </div>
           <div className="text-xs text-muted-foreground mt-1">
-            {user.email && user.email.length > 20 ? user.email.substring(0, 20) + '...' : user.email}
+            {user.email && user.email.length > 20
+              ? user.email.substring(0, 20) + "..."
+              : user.email}
           </div>
         </div>
-        <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown
+          className={`h-4 w-4 transition-transform duration-200 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
       </button>
 
       {/* Dropdown Menu */}
@@ -88,7 +99,7 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ className = '
                 {user.photoURL ? (
                   <img
                     src={user.photoURL}
-                    alt={user.displayName || 'User'}
+                    alt={user.displayName || "User"}
                     className="h-14 w-14 rounded-full object-cover border-3 border-border/30"
                   />
                 ) : (
@@ -100,7 +111,7 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ className = '
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-base font-semibold truncate">
-                  {user.displayName || 'User'}
+                  {user.displayName || "User"}
                 </p>
                 <p className="text-sm text-muted-foreground truncate">
                   {user.email}
@@ -108,7 +119,8 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ className = '
                 <div className="flex items-center gap-1 mt-1">
                   <div className="w-2 h-2 rounded-full bg-blue-500"></div>
                   <p className="text-xs text-muted-foreground">
-                    via {user.provider === 'google.com' ? 'Google' : user.provider}
+                    via{" "}
+                    {user.provider === "google.com" ? "Google" : user.provider}
                   </p>
                 </div>
               </div>
@@ -125,10 +137,12 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ className = '
               </div>
               <div className="text-left">
                 <div className="font-medium">Profile</div>
-                <div className="text-xs text-muted-foreground">Manage your account</div>
+                <div className="text-xs text-muted-foreground">
+                  Manage your account
+                </div>
               </div>
             </button>
-            
+
             <button
               onClick={() => {
                 setIsOpen(false);
@@ -141,12 +155,14 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ className = '
               </div>
               <div className="text-left">
                 <div className="font-medium">Settings</div>
-                <div className="text-xs text-muted-foreground">Preferences & privacy</div>
+                <div className="text-xs text-muted-foreground">
+                  Preferences & privacy
+                </div>
               </div>
             </button>
-            
+
             <div className="my-2 h-px bg-gradient-to-r from-transparent via-border/50 to-transparent"></div>
-            
+
             <button
               onClick={handleSignOut}
               className="w-full flex items-center gap-3 px-4 py-3 text-sm rounded-lg hover:bg-red-50/50 hover:text-red-600 dark:hover:bg-red-950/20 dark:hover:text-red-400 transition-all duration-200 group"
@@ -156,7 +172,9 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ className = '
               </div>
               <div className="text-left">
                 <div className="font-medium">Sign Out</div>
-                <div className="text-xs text-muted-foreground">End your session</div>
+                <div className="text-xs text-muted-foreground">
+                  End your session
+                </div>
               </div>
             </button>
           </div>

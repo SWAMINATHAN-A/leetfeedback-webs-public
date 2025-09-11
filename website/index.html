@@ -16,28 +16,6 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     
-    <!-- SVG filter for liquid glass distortion effect -->
-    <svg style="position: absolute; width: 0; height: 0; visibility: hidden;">
-      <defs>
-        <filter id="glass-distortion" x="-50%" y="-50%" width="200%" height="200%">
-          <!-- Create turbulence pattern for glass distortion -->
-          <feTurbulence type="turbulence" baseFrequency="0.015" numOctaves="2" seed="3" stitchTiles="stitch" result="turbulence"/>
-          
-          <!-- Add some blur to the turbulence pattern -->
-          <feGaussianBlur stdDeviation="0.5" in="turbulence" result="blur"/>
-          
-          <!-- Use displacement map for magnification effect -->
-          <feDisplacementMap in="SourceGraphic" in2="blur" scale="20" xChannelSelector="R" yChannelSelector="G" result="displace"/>
-          
-          <!-- Add slight blur to final result to smooth edges -->
-          <feGaussianBlur stdDeviation="0.5" in="displace" result="finalBlur"/>
-          
-          <!-- Blend original source with displaced version -->
-          <feComposite in="finalBlur" in2="SourceGraphic" operator="arithmetic" k1="0.5" k2="0.5" k3="0" k4="0"/>
-        </filter>
-      </defs>
-    </svg>
-    
     <div id="root"></div>
     <script type="module" src="/src/index.tsx"></script>
   </body>
