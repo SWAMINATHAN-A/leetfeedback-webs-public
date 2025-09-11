@@ -108,7 +108,7 @@ const UserProfileDropdown: React.FC<UserProfileDropdownProps> = ({ className = '
                 <div className="flex items-center gap-1 mt-1">
                   <div className="w-2 h-2 rounded-full bg-blue-500"></div>
                   <p className="text-xs text-muted-foreground">
-                    via {user.provider === 'google.com' ? 'Google' : user.provider === 'apple.com' ? 'Apple' : user.provider}
+                    via {user.provider === 'google.com' ? 'Google' : user.provider}
                   </p>
                 </div>
               </div>

@@ -6,7 +6,7 @@ import {
   onAuthStateChanged,
   UserCredential
 } from 'firebase/auth';
-import { auth, googleProvider, appleProvider } from '../config/firebase';
+import { auth, googleProvider } from '../config/firebase';
 
 interface User {
   uid: string;
@@ -20,7 +20,6 @@ interface AuthContextType {
   user: User | null;
   isLoading: boolean;
   signInWithGoogle: () => Promise<void>;
-  signInWithApple: () => Promise<void>;
   signOut: () => Promise<void>;
   isAuthenticated: boolean;
 }
@@ -136,19 +135,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const signInWithApple = async (): Promise<void> => {
-    try {
-      setIsLoading(true);
-      const result: UserCredential = await signInWithPopup(auth, appleProvider);
-      // User state will be updated by onAuthStateChanged
-    } catch (error) {
-      console.error('Apple sign-in error:', error);
-      throw error;
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   const signOut = async (): Promise<void> => {
     try {
       await firebaseSignOut(auth);
@@ -163,7 +149,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     user,
     isLoading,
     signInWithGoogle,
-    signInWithApple,
     signOut,
     isAuthenticated: !!user
   };

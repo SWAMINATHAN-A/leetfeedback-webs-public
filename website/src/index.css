@@ -63,6 +63,7 @@
     }
     .theme {
         --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
+        --animate-line-shadow: line-shadow 15s linear infinite;
     }
 }
 
@@ -224,6 +225,14 @@
         }
         100% {
             background-position: 200%;
+        }
+    }
+  @keyframes line-shadow {
+  0% {
+    background-position: 0 0;
+        }
+  100% {
+    background-position: 100% -100%;
         }
     }
 }

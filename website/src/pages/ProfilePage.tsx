@@ -60,8 +60,6 @@ const ProfilePage: React.FC = () => {
     switch (provider) {
       case 'google.com':
         return 'Google';
-      case 'apple.com':
-        return 'Apple';
       default:
         return provider;
     }
