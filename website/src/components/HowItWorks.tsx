@@ -15,9 +15,12 @@ import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import SecurityIcon from "@mui/icons-material/Security";
+import LinkIcon from "@mui/icons-material/Link";
+import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
 import { BlurFade } from "./magicui/blur-fade";
 import { TextAnimate } from "./magicui/text-animate";
 import { NumberTicker } from "./magicui/number-ticker";
+import { GlowingStarsBackgroundCard, GlowingStarsTitle, GlowingStarsDescription } from "./ui/glowing-stars";
 import DiscordIcon from "./icons/DiscordIcon";
 
 const HowItWorks: React.FC = () => {
@@ -156,31 +159,69 @@ const HowItWorks: React.FC = () => {
                 <div className="bg-card/20 border border-border rounded-lg shadow-xl overflow-hidden">
                     <div className="grid grid-cols-1 lg:grid-cols-2">
                         {/* Left Side - Integration Visual */}
-                        <div className="bg-muted/10 p-8 flex items-center justify-center min-h-[400px] border-r border-border">
-                            <div className="text-center">
-                                <div className="grid grid-cols-3 gap-4 mb-6">
-                                    <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                                        <GitHubIcon className="w-8 h-8 text-foreground" />
+                        <div className="bg-muted/10 flex items-center justify-center min-h-[400px] border-r border-border overflow-hidden">
+                            <GlowingStarsBackgroundCard className="w-full h-full max-w-none max-h-none rounded-none border-0 m-0 p-8">
+                                <div className="text-center space-y-6">
+                                    <GlowingStarsTitle className="text-gray-900 dark:text-white">
+                                        All Your Tools Connected
+                                    </GlowingStarsTitle>
+                                    
+                                    {/* Platform Icons Grid */}
+                                    <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
+                                        <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                                            <img src="/support-icons/leetcode-svgrepo-com.svg" alt="LeetCode" className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200" />
+                                            <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">LeetCode</span>
+                                        </div>
+                                        <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                                            <img src="/support-icons/geeksforgeeks.svg" alt="GeeksforGeeks" className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200" />
+                                            <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">GeeksforGeeks</span>
+                                        </div>
+                                        <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                                            <img src="/support-icons/hackerrank-svgrepo-com.svg" alt="HackerRank" className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200" />
+                                            <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">HackerRank</span>
+                                        </div>
+                                        <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                                            <img src="/support-icons/codechef-svgrepo-com.svg" alt="CodeChef" className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200" />
+                                            <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">CodeChef</span>
+                                        </div>
+                                        <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                                            <img src="/support-icons/tuf.svg" alt="TakeUforward" className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200" />
+                                            <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">TakeUforward</span>
+                                        </div>
+                                        <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                                            <img src="/support-icons/notion.svg" alt="Notion" className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200" />
+                                            <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">Notion</span>
+                                        </div>
+                                        <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                                            <img src="/support-icons/anki.png" alt="Anki" className="w-8 h-8" />
+                                            <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">Anki</span>
+                                        </div>
+                                        <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                                            <img src="/support-icons/gemini.svg.png" alt="Gemini AI" className="w-8 h-8" />
+                                            <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">Gemini AI</span>
+                                        </div>
                                     </div>
-                                    <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                                        <NotesIcon className="w-8 h-8 text-foreground" />
-                                    </div>
-                                    <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                                        <StyleIcon className="w-8 h-8 text-foreground" />
+                                    
+                                    <GlowingStarsDescription className="max-w-none text-gray-700 dark:text-gray-300">
+                                        We seamlessly integrate with all major coding platforms, study tools, and AI assistants to create the best unified learning ecosystem.
+                                    </GlowingStarsDescription>
+                                    
+                                    <div className="flex items-center justify-center space-x-6 pt-2">
+                                        <div className="flex items-center space-x-2">
+                                            <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
+                                            <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">8 Platforms</span>
+                                        </div>
+                                        <div className="flex items-center space-x-2">
+                                            <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
+                                            <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">Auto-Sync</span>
+                                        </div>
+                                        <div className="flex items-center space-x-2">
+                                            <div className="w-3 h-3 bg-purple-400 rounded-full animate-pulse"></div>
+                                            <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">AI-Powered</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <h3 className="text-2xl font-bold mb-4 text-foreground">
-                                    All Your Tools Connected
-                                </h3>
-                                <p className="text-muted-foreground mb-6">
-                                    LeetFeedback seamlessly integrates with your
-                                    existing workflow
-                                </p>
-                                <button className="bg-card/50 hover:bg-card/70 border border-border text-foreground px-6 py-3 rounded-lg font-medium transition-all duration-300 flex items-center mx-auto">
-                                    <PlayArrowIcon className="w-5 h-5 mr-2" />
-                                    See Integration Demo
-                                </button>
-                            </div>
+                            </GlowingStarsBackgroundCard>
                         </div>
 
                         {/* Right Side - Benefits */}
