@@ -342,7 +342,7 @@ const HowItWorks: React.FC = () => {
                 ))}
               </div>
 
-                            <div className="pt-6 border-t border-border">
+              <div className="pt-6 border-t border-border">
                 <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
                   <div className="bg-card/50 border border-border rounded-lg p-2 sm:p-4 backdrop-blur-sm">
                     <div className="text-lg sm:text-2xl font-bold text-foreground font-mono">

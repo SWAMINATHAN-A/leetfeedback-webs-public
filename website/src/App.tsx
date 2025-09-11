@@ -1,16 +1,16 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/react';
-import { ThemeProvider } from './contexts/ThemeContext';
-import { AuthProvider } from './contexts/AuthContext';
-import HomePage from './pages/HomePage';
-import RoadmapPage from './pages/RoadmapPage';
-import SimpleProfilePage from './pages/SimpleProfilePage';
-import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
-import TermsOfServicePage from './pages/TermsOfServicePage';
-import { ProgressiveBlur } from './components/magicui/progressive-blur';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
+import { ThemeProvider } from "./contexts/ThemeContext";
+import { AuthProvider } from "./contexts/AuthContext";
+import HomePage from "./pages/HomePage";
+import RoadmapPage from "./pages/RoadmapPage";
+import SimpleProfilePage from "./pages/SimpleProfilePage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsOfServicePage from "./pages/TermsOfServicePage";
+import { ProgressiveBlur } from "./components/magicui/progressive-blur";
+import "./App.css";
 
 function App() {
   return (
@@ -25,9 +25,9 @@ function App() {
               <Route path="/privacy" element={<PrivacyPolicyPage />} />
               <Route path="/terms" element={<TermsOfServicePage />} />
             </Routes>
-            <ProgressiveBlur 
-              position="bottom" 
-              height="10vh" 
+            <ProgressiveBlur
+              position="bottom"
+              height="10vh"
               className="fixed bottom-0 left-0 right-0 z-40 pointer-events-none"
             />
           </div>
