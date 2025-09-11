@@ -192,12 +192,12 @@ const HowItWorks: React.FC = () => {
                                             <img src="/support-icons/notion.svg" alt="Notion" className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200" />
                                             <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">Notion</span>
                                         </div>
-                                        <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
-                                            <img src="/support-icons/anki.png" alt="Anki" className="w-8 h-8" />
+           <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                                            <img src="/support-icons/anki.svg" alt="Anki" className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200" />
                                             <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">Anki</span>
                                         </div>
                                         <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
-                                            <img src="/support-icons/gemini.svg.png" alt="Gemini AI" className="w-8 h-8" />
+                                            <img src="/support-icons/gemini.svg" alt="Gemini AI" className="w-8 h-8" />
                                             <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">Gemini AI</span>
                                         </div>
                                     </div>
