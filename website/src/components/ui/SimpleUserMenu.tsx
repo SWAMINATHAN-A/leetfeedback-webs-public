@@ -1,7 +1,7 @@
-import React from 'react';
-import { useAuth } from '../../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import ProfileImage from './ProfileImage';
+import React from "react";
+import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+import ProfileImage from "./ProfileImage";
 
 const SimpleUserMenu: React.FC = () => {
   const { user, isAuthenticated } = useAuth();
@@ -12,7 +12,7 @@ const SimpleUserMenu: React.FC = () => {
   }
 
   const handleProfileClick = () => {
-    navigate('/profile');
+    navigate("/profile");
   };
 
   return (
@@ -20,11 +20,7 @@ const SimpleUserMenu: React.FC = () => {
       onClick={handleProfileClick}
       className="flex items-center gap-2 px-3 py-2 rounded-md hover:bg-muted transition-colors"
     >
-      <ProfileImage
-        src={user.photoURL}
-        alt="User"
-        size="sm"
-      />
+      <ProfileImage src={user.photoURL} alt="User" size="sm" />
       <span className="text-sm font-medium hidden sm:block">
         {user.displayName || user.email}
       </span>

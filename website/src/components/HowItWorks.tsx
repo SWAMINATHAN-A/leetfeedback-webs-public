@@ -26,6 +26,7 @@ import {
   GlowingStarsDescription,
 } from "./ui/glowing-stars";
 import DiscordIcon from "./icons/DiscordIcon";
+import TextPressure from "./TextPressure";
 
 const HowItWorks: React.FC = () => {
   const steps = [
@@ -270,30 +271,38 @@ const HowItWorks: React.FC = () => {
             </div>
 
             {/* Right Side - Benefits */}
-            <div className="p-8 space-y-6">
-              <div>
-                <h3 className="text-2xl font-bold text-foreground mb-4">
-                  Why Developers Choose LeetFeedback
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  The only tool that transforms your coding practice into a
-                  comprehensive learning and portfolio system.
+            <div className="p-8 flex flex-col h-full">
+              <div className="flex-shrink-0">
+                <div className="mb-6 h-20 flex items-center">
+                  <TextPressure 
+                    text="Why Choose Us"
+                    className="text-4xl md:text-5xl font-bold italic"
+                    textColor="hsl(var(--foreground))"
+                    minFontSize={32}
+                    width={true}
+                    weight={true}
+                    italic={true}
+                    flex={false}
+                  />
+                </div>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  The only tool that integrates and personalises your learning experience.
                 </p>
               </div>
 
-              <div className="space-y-4">
+              <div className="flex-grow space-y-4">
                 {[
                   {
                     icon: <GitHubIcon className="w-5 h-5" />,
                     title: "Portfolio Building",
                     description:
-                      "Every solution automatically becomes part of your GitHub portfolio",
+                      "Every solution automatically becomes part of your portfolio",
                   },
                   {
                     icon: <NotesIcon className="w-5 h-5" />,
-                    title: "Organized Learning",
+                    title: "Uninterrupted Learning",
                     description:
-                      "Structured knowledge base in Notion with progress tracking",
+                      "no extra input required from you after inital setup",
                   },
                   {
                     icon: <StyleIcon className="w-5 h-5" />,
@@ -307,24 +316,7 @@ const HowItWorks: React.FC = () => {
                     description:
                       "Your data stays yours - full control over what gets shared",
                   },
-                  {
-                    icon: <DiscordIcon className="w-5 h-5" />,
-                    title: "Community Support",
-                    description: (
-                      <span>
-                        Join our{" "}
-                        <a
-                          href="https://discord.gg/BZDb22gz"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary hover:text-primary/80 underline"
-                        >
-                          Discord community
-                        </a>{" "}
-                        for help and updates
-                      </span>
-                    ),
-                  },
+                  
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-start space-x-3">
                     <div className="flex-shrink-0 w-8 h-8 bg-muted/30 border border-border rounded-md flex items-center justify-center text-foreground">
@@ -342,11 +334,11 @@ const HowItWorks: React.FC = () => {
                 ))}
               </div>
 
-              <div className="pt-6 border-t border-border">
+              <div className="flex-shrink-0 pt-6 border-t border-border mt-auto">
                 <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
                   <div className="bg-card/50 border border-border rounded-lg p-2 sm:p-4 backdrop-blur-sm">
                     <div className="text-lg sm:text-2xl font-bold text-foreground font-mono">
-                      1 min
+                      2 min
                     </div>
                     <div className="text-xs text-muted-foreground font-mono">
                       Setup
@@ -357,7 +349,7 @@ const HowItWorks: React.FC = () => {
                       100%
                     </div>
                     <div className="text-xs text-muted-foreground font-mono">
-                      Auto
+                      Automated
                     </div>
                   </div>
                   <div className="bg-card/50 border border-border rounded-lg p-2 sm:p-4 backdrop-blur-sm">
