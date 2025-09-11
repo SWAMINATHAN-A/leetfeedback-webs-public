@@ -5,12 +5,6 @@ import { cn } from "../lib/utils";
 import { Dock, DockIcon } from "./magicui/dock";
 import { Button, buttonVariants } from "./ui/button";
 import { Separator } from "./ui/separator";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./ui/tooltip";
 import { useTheme } from "../contexts/ThemeContext";
 import { useAuth } from "../contexts/AuthContext";
 import { useLocation } from "react-router-dom";
@@ -57,19 +51,12 @@ export function DockDemo() {
       // Home page: Show theme switch only
       return (
         <DockIcon>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
-              )}>
-                <AnimatedThemeToggler />
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Toggle Theme</p>
-            </TooltipContent>
-          </Tooltip>
+          <div className={cn(
+            buttonVariants({ variant: "ghost", size: "icon" }),
+            "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+          )}>
+            <AnimatedThemeToggler />
+          </div>
         </DockIcon>
       );
     } else if (isRoadmapPage) {
@@ -77,63 +64,42 @@ export function DockDemo() {
       return (
         <>
           <DockIcon>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <button
-                  onClick={() => window.location.href = '/'}
-                  aria-label="Home"
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
-                  )}
-                >
-                  <HomeIcon className="md:size-6 size-5 text-foreground" />
-                </button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Home</p>
-              </TooltipContent>
-            </Tooltip>
+            <button
+              onClick={() => window.location.href = '/'}
+              aria-label="Home"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
+              )}
+            >
+              <HomeIcon className="md:size-6 size-5 text-foreground" />
+            </button>
           </DockIcon>
           <DockIcon>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <div className={cn(
-                  buttonVariants({ variant: "ghost", size: "icon" }),
-                  "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
-                )}>
-                  <AnimatedThemeToggler />
-                </div>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Toggle Theme</p>
-              </TooltipContent>
-            </Tooltip>
+            <div className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+            )}>
+              <AnimatedThemeToggler />
+            </div>
           </DockIcon>
           {isAuthenticated && user && (
             <DockIcon>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button
-                    onClick={() => window.location.href = '/profile'}
-                    aria-label="Profile"
-                    className={cn(
-                      buttonVariants({ variant: "ghost", size: "icon" }),
-                      "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 p-1"
-                    )}
-                  >
-                    <ProfileImage
-                      src={user.photoURL}
-                      alt={user.displayName || "User"}
-                      size="sm"
-                      className="w-full h-full border-0"
-                    />
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Profile</p>
-                </TooltipContent>
-              </Tooltip>
+              <button
+                onClick={() => window.location.href = '/profile'}
+                aria-label="Profile"
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 p-1"
+                )}
+              >
+                <ProfileImage
+                  src={user.photoURL}
+                  alt={user.displayName || "User"}
+                  size="sm"
+                  className="w-full h-full border-0"
+                />
+              </button>
             </DockIcon>
           )}
         </>
@@ -143,38 +109,24 @@ export function DockDemo() {
       return (
         <>
           <DockIcon>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <button
-                  onClick={() => window.location.href = '/'}
-                  aria-label="Home"
-                  className={cn(
-                    buttonVariants({ variant: "ghost", size: "icon" }),
-                    "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
-                  )}
-                >
-                  <HomeIcon className="md:size-6 size-5 text-foreground" />
-                </button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Home</p>
-              </TooltipContent>
-            </Tooltip>
+            <button
+              onClick={() => window.location.href = '/'}
+              aria-label="Home"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
+              )}
+            >
+              <HomeIcon className="md:size-6 size-5 text-foreground" />
+            </button>
           </DockIcon>
           <DockIcon>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <div className={cn(
-                  buttonVariants({ variant: "ghost", size: "icon" }),
-                  "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
-                )}>
-                  <AnimatedThemeToggler />
-                </div>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Toggle Theme</p>
-              </TooltipContent>
-            </Tooltip>
+            <div className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+            )}>
+              <AnimatedThemeToggler />
+            </div>
           </DockIcon>
         </>
       );
@@ -183,19 +135,12 @@ export function DockDemo() {
     // Default fallback: show theme switch
     return (
       <DockIcon>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <div className={cn(
-              buttonVariants({ variant: "ghost", size: "icon" }),
-              "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
-            )}>
-              <AnimatedThemeToggler />
-            </div>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Toggle Theme</p>
-          </TooltipContent>
-        </Tooltip>
+        <div className={cn(
+          buttonVariants({ variant: "ghost", size: "icon" }),
+          "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+        )}>
+          <AnimatedThemeToggler />
+        </div>
       </DockIcon>
     );
   };
@@ -205,33 +150,24 @@ export function DockDemo() {
 
   return (
     <div className="fixed bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-      <TooltipProvider>
-        <Dock direction="middle" iconSize={48} iconMagnification={60} className="md:h-[80px] h-[64px]">
-          {showNavigation && DATA.navbar.map((item) => (
-            <DockIcon key={item.label}>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button
-                    onClick={() => scrollToSection(item.href)}
-                    aria-label={item.label}
-                    className={cn(
-                      buttonVariants({ variant: "ghost", size: "icon" }),
-                      "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
-                    )}
-                  >
-                    <item.icon className="md:size-6 size-5 text-foreground" />
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>{item.label}</p>
-                </TooltipContent>
-              </Tooltip>
-            </DockIcon>
-          ))}
-          {showNavigation && <Separator orientation="vertical" className="h-full py-2" />}
-          {renderRightSection()}
-        </Dock>
-      </TooltipProvider>
+      <Dock direction="middle" iconSize={48} iconMagnification={60} className="md:h-[80px] h-[64px]">
+        {showNavigation && DATA.navbar.map((item) => (
+          <DockIcon key={item.label}>
+            <button
+              onClick={() => scrollToSection(item.href)}
+              aria-label={item.label}
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
+              )}
+            >
+              <item.icon className="md:size-6 size-5 text-foreground" />
+            </button>
+          </DockIcon>
+        ))}
+        {showNavigation && <Separator orientation="vertical" className="h-full py-2" />}
+        {renderRightSection()}
+      </Dock>
     </div>
   );
 }
