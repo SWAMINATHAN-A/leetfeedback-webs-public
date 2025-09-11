@@ -17,6 +17,9 @@ import CelebrationIcon from "@mui/icons-material/Celebration";
 import { BlurFade } from "./magicui/blur-fade";
 import { TextAnimate } from "./magicui/text-animate";
 import { RainbowButton } from "./magicui/rainbow-button";
+import { Ripple } from "./magicui/ripple";
+import { LineShadowText } from "./magicui/line-shadow-text";
+import { ScriptCopyBtn } from "./magicui/script-copy-btn";
 import { analytics } from "../utils/analytics";
 import GroupsIcon from "@mui/icons-material/Groups";
 import CodeIcon from "@mui/icons-material/Code";
@@ -50,11 +53,6 @@ const Pricing: React.FC = () => {
   const handleDonateClick = () => {
     setShowUPI(!showUPI);
     analytics.trackFeatureClick("donation_button");
-  };
-
-  const copyUPI = () => {
-    navigator.clipboard.writeText("d.singh.55@superyes");
-    // You could add a toast notification here
   };
 
   return (
@@ -221,7 +219,9 @@ const Pricing: React.FC = () => {
                       className="border-border hover:bg-muted/50 text-xs flex-shrink-0"
                     >
                       <GitHubIcon className="w-3 h-3" />
-                      <span className="ml-1 hidden sm:inline">View on GitHub</span>
+                      <span className="ml-1 hidden sm:inline">
+                        View on GitHub
+                      </span>
                     </Button>
                   </div>
                 </div>
@@ -230,52 +230,58 @@ const Pricing: React.FC = () => {
           </BlurFade>
         </div>
 
-        {/* Donation Section with CardSpotlight */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
+        {/* Donation Section with Ripple Background */}
+        <div className="max-w-4xl mx-auto mb-16">
           <BlurFade delay={1.2}>
-            <CardSpotlight
-              radius={300}
-              color="transparent"
-              className="bg-background/80 border border-border rounded-lg backdrop-blur-sm"
-            >
-              <div className="p-4 sm:p-8 relative z-10">
-                <div className="flex justify-center mb-4">
-                  <VolunteerActivismIcon className="w-12 h-12 text-red-400" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-foreground">
-                  Support Our Mission
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  If LeetFeedback has helped you in your coding journey,
-                  consider supporting us. Every contribution helps us keep the
-                  project alive and improve it further.
-                </p>
+            <div className="relative bg-background/80 border border-border rounded-lg backdrop-blur-sm overflow-hidden min-h-[400px] flex items-center justify-center">
+              {/* Ripple Background */}
+              <Ripple
+                mainCircleSize={200}
+                mainCircleOpacity={0.12}
+                numCircles={8}
+              />
 
-                <div className="space-y-4">
+              {/* Content */}
+              <div className="p-4 sm:p-8 relative z-10 flex flex-col items-center justify-center text-center">
+                {/* Line Shadow Donate Text */}
+                <div className="mb-8">
+                  <LineShadowText
+                    as="h1"
+                    shadowColor="hsl(var(--muted-foreground))"
+                    className="text-5xl sm:text-7xl md:text-8xl font-black text-foreground tracking-tight italic"
+                  >
+                    DONATE
+                  </LineShadowText>
+                  <div className="flex justify-center mt-6 mb-4">
+                    <VolunteerActivismIcon className="w-16 h-16 text-red-400" />
+                  </div>
+                  <p className="text-lg text-muted-foreground max-w-md">
+                    If we have helped you in your coding journey, consider
+                    supporting us
+                  </p>
+                </div>
+
+                <div className="space-y-6 w-full max-w-sm">
                   <RainbowButton
                     size="lg"
-                    className="px-4 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold w-full sm:w-auto"
+                    className="px-8 py-4 text-xl font-bold w-full"
                     onClick={handleDonateClick}
                   >
-                    <VolunteerActivismIcon className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
-                    <span className="text-center">Donate</span>
+                    <VolunteerActivismIcon className="w-6 h-6 mr-3" />
+                    Support Us
                   </RainbowButton>
 
                   {showUPI && (
-                    <BlurFade>
-                      <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
-                        <p className="text-sm text-muted-foreground mb-2">
+                    <BlurFade delay={0.3}>
+                      <div className="bg-card/60 border border-border rounded-lg p-4 backdrop-blur-sm">
+                        <p className="text-sm text-muted-foreground mb-3 font-medium">
                           UPI ID:
                         </p>
-                        <div className="flex items-center justify-center gap-2">
-                          <code className="bg-muted px-3 py-1 rounded font-mono text-sm">
-                            d.singh.55@superyes
-                          </code>
-                          <Button size="sm" variant="outline" onClick={copyUPI}>
-                            Copy
-                          </Button>
-                        </div>
-                        <p className="text-xs text-muted-foreground mt-2">
+                        <ScriptCopyBtn
+                          textToCopy="d.singh.55@superyes"
+                          className="w-full max-w-none"
+                        />
+                        <p className="text-xs text-muted-foreground mt-3 text-center opacity-70">
                           Thank you for funding my gambling addiction.
                         </p>
                       </div>
@@ -283,7 +289,7 @@ const Pricing: React.FC = () => {
                   )}
                 </div>
               </div>
-            </CardSpotlight>
+            </div>
           </BlurFade>
         </div>
 

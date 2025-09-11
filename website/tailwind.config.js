@@ -83,12 +83,30 @@ module.exports = {
                     },
                     "50%": { boxShadow: "0 0 30px rgba(255, 255, 255, 0.2)" },
                 },
+                ripple: {
+                    "0%, 100%": {
+                        transform: "translate(-50%, -50%) scale(1)",
+                    },
+                    "50%": {
+                        transform: "translate(-50%, -50%) scale(0.9)",
+                    },
+                },
+                "line-shadow": {
+                    "0%": {
+                        backgroundPosition: "0 0",
+                    },
+                    "100%": {
+                        backgroundPosition: "100% -100%",
+                    },
+                },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
                 "fade-in": "fade-in 0.8s ease-out forwards",
                 glow: "glow 2s ease-in-out infinite",
+                ripple: "ripple 2s ease-in-out infinite",
+                "line-shadow": "line-shadow 35s linear infinite",
             },
         },
     },
