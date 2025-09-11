@@ -9,6 +9,7 @@ import RoadmapPage from './pages/RoadmapPage';
 import SimpleProfilePage from './pages/SimpleProfilePage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsOfServicePage from './pages/TermsOfServicePage';
+import { ProgressiveBlur } from './components/magicui/progressive-blur';
 import './App.css';
 
 function App() {
@@ -16,7 +17,7 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <Router>
-          <div className="App min-h-screen bg-background">
+          <div className="App min-h-screen bg-background relative">
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/roadmap" element={<RoadmapPage />} />
@@ -24,6 +25,11 @@ function App() {
               <Route path="/privacy" element={<PrivacyPolicyPage />} />
               <Route path="/terms" element={<TermsOfServicePage />} />
             </Routes>
+            <ProgressiveBlur 
+              position="bottom" 
+              height="10vh" 
+              className="fixed bottom-0 left-0 right-0 z-40 pointer-events-none"
+            />
           </div>
           <Analytics />
           <SpeedInsights />

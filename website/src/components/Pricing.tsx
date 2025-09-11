@@ -82,30 +82,30 @@ const Pricing: React.FC = () => {
                             forever free.
                         </p>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                            <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
-                                <div className="flex items-start gap-2">
-                                    <OpenSourceIcon className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                                    <span className="text-sm leading-relaxed">
-                                        Open Source until I get featured on
-                                        githubRetards (again)
-                                    </span>
+                            <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm text-center">
+                                <div className="flex items-center justify-center gap-2 mb-2">
+                                    <OpenSourceIcon className="w-4 h-4 flex-shrink-0" />
                                 </div>
+                                <span className="text-sm leading-relaxed">
+                                    Open Source until I get featured on
+                                    githubRetards (again)
+                                </span>
                             </div>
-                            <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
-                                <div className="flex items-start gap-2">
-                                    <FavoriteIcon className="w-4 h-4 text-red-400 mt-0.5 flex-shrink-0" />
-                                    <span className="text-sm leading-relaxed">
-                                        Made with Love (AI is love)
-                                    </span>
+                            <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm text-center">
+                                <div className="flex items-center justify-center gap-2 mb-2">
+                                    <FavoriteIcon className="w-4 h-4 text-red-400 flex-shrink-0" />
                                 </div>
+                                <span className="text-sm leading-relaxed">
+                                    Made with Love (AI is love)
+                                </span>
                             </div>
-                            <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm">
-                                <div className="flex items-start gap-2">
-                                    <GitHubIcon className="w-4 h-4 mt-0.5 flex-shrink-0" />
-                                    <span className="text-sm leading-relaxed">
-                                        Community Driven (I am the community)
-                                    </span>
+                            <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm text-center">
+                                <div className="flex items-center justify-center gap-2 mb-2">
+                                    <GitHubIcon className="w-4 h-4 flex-shrink-0" />
                                 </div>
+                                <span className="text-sm leading-relaxed">
+                                    Community Driven (I am the community)
+                                </span>
                             </div>
                         </div>
                     </BlurFade>

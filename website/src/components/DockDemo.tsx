@@ -12,10 +12,10 @@ import ProfileImage from "./ui/ProfileImage";
 import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
 
 // Material Icons
-import FeaturesIcon from '@mui/icons-material/Stars';
-import HowItWorksIcon from '@mui/icons-material/Build';
-import PricingIcon from '@mui/icons-material/AttachMoney';
-import HomeIcon from '@mui/icons-material/Home';
+import FeaturesIcon from "@mui/icons-material/Stars";
+import HowItWorksIcon from "@mui/icons-material/Build";
+import PricingIcon from "@mui/icons-material/AttachMoney";
+import HomeIcon from "@mui/icons-material/Home";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -31,30 +31,32 @@ const DATA = {
 export function DockDemo() {
   const { user, isAuthenticated } = useAuth();
   const location = useLocation();
-  
+
   const scrollToSection = (href: string) => {
-    if (href.startsWith('#')) {
+    if (href.startsWith("#")) {
       const element = document.querySelector(href);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        element.scrollIntoView({ behavior: "smooth" });
       }
     }
   };
 
   // Determine what to show based on current page
-  const isHomePage = location.pathname === '/';
-  const isRoadmapPage = location.pathname === '/roadmap';
-  const isProfilePage = location.pathname === '/profile';
+  const isHomePage = location.pathname === "/";
+  const isRoadmapPage = location.pathname === "/roadmap";
+  const isProfilePage = location.pathname === "/profile";
 
   const renderRightSection = () => {
     if (isHomePage) {
       // Home page: Show theme switch only
       return (
         <DockIcon>
-          <div className={cn(
-            buttonVariants({ variant: "ghost", size: "icon" }),
-            "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
-          )}>
+          <div
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+            )}
+          >
             <AnimatedThemeToggler />
           </div>
         </DockIcon>
@@ -65,7 +67,7 @@ export function DockDemo() {
         <>
           <DockIcon>
             <button
-              onClick={() => window.location.href = '/'}
+              onClick={() => (window.location.href = "/")}
               aria-label="Home"
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
@@ -76,17 +78,19 @@ export function DockDemo() {
             </button>
           </DockIcon>
           <DockIcon>
-            <div className={cn(
-              buttonVariants({ variant: "ghost", size: "icon" }),
-              "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
-            )}>
+            <div
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+              )}
+            >
               <AnimatedThemeToggler />
             </div>
           </DockIcon>
           {isAuthenticated && user && (
             <DockIcon>
               <button
-                onClick={() => window.location.href = '/profile'}
+                onClick={() => (window.location.href = "/profile")}
                 aria-label="Profile"
                 className={cn(
                   buttonVariants({ variant: "ghost", size: "icon" }),
@@ -110,7 +114,7 @@ export function DockDemo() {
         <>
           <DockIcon>
             <button
-              onClick={() => window.location.href = '/'}
+              onClick={() => (window.location.href = "/")}
               aria-label="Home"
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
@@ -121,24 +125,28 @@ export function DockDemo() {
             </button>
           </DockIcon>
           <DockIcon>
-            <div className={cn(
-              buttonVariants({ variant: "ghost", size: "icon" }),
-              "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
-            )}>
+            <div
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+              )}
+            >
               <AnimatedThemeToggler />
             </div>
           </DockIcon>
         </>
       );
     }
-    
+
     // Default fallback: show theme switch
     return (
       <DockIcon>
-        <div className={cn(
-          buttonVariants({ variant: "ghost", size: "icon" }),
-          "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
-        )}>
+        <div
+          className={cn(
+            buttonVariants({ variant: "ghost", size: "icon" }),
+            "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+          )}
+        >
           <AnimatedThemeToggler />
         </div>
       </DockIcon>
@@ -150,22 +158,30 @@ export function DockDemo() {
 
   return (
     <div className="fixed bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 z-50">
-      <Dock direction="middle" iconSize={48} iconMagnification={60} className="md:h-[80px] h-[64px]">
-        {showNavigation && DATA.navbar.map((item) => (
-          <DockIcon key={item.label}>
-            <button
-              onClick={() => scrollToSection(item.href)}
-              aria-label={item.label}
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
-              )}
-            >
-              <item.icon className="md:size-6 size-5 text-foreground" />
-            </button>
-          </DockIcon>
-        ))}
-        {showNavigation && <Separator orientation="vertical" className="h-full py-2" />}
+      <Dock
+        direction="middle"
+        iconSize={48}
+        iconMagnification={60}
+        className="md:h-[80px] h-[64px]"
+      >
+        {showNavigation &&
+          DATA.navbar.map((item) => (
+            <DockIcon key={item.label}>
+              <button
+                onClick={() => scrollToSection(item.href)}
+                aria-label={item.label}
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
+                )}
+              >
+                <item.icon className="md:size-6 size-5 text-foreground" />
+              </button>
+            </DockIcon>
+          ))}
+        {showNavigation && (
+          <Separator orientation="vertical" className="h-full py-2" />
+        )}
         {renderRightSection()}
       </Dock>
     </div>
