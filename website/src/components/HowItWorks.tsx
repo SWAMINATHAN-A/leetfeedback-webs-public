@@ -274,7 +274,7 @@ const HowItWorks: React.FC = () => {
             <div className="p-8 flex flex-col h-full">
               <div className="flex-shrink-0">
                 <div className="mb-6 h-20 flex items-center">
-                  <TextPressure 
+                  <TextPressure
                     text="Why Choose Us"
                     className="text-4xl md:text-5xl font-bold italic"
                     textColor="hsl(var(--foreground))"
@@ -286,7 +286,8 @@ const HowItWorks: React.FC = () => {
                   />
                 </div>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  The only tool that integrates and personalises your learning experience.
+                  The only tool that integrates and personalises your learning
+                  experience.
                 </p>
               </div>
 
@@ -316,7 +317,6 @@ const HowItWorks: React.FC = () => {
                     description:
                       "Your data stays yours - full control over what gets shared",
                   },
-                  
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-start space-x-3">
                     <div className="flex-shrink-0 w-8 h-8 bg-muted/30 border border-border rounded-md flex items-center justify-center text-foreground">
