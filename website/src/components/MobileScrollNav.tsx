@@ -143,11 +143,8 @@ export function MobileScrollNav() {
             {/* Dot */}
             <div
               className={cn(
-                "w-1 h-1 rounded-full cursor-pointer transition-all duration-300 select-none",
-                "hover:scale-125 relative z-10",
-                activeSection === section.id
-                  ? "bg-primary scale-125"
-                  : "bg-muted-foreground/40 hover:bg-muted-foreground/60"
+                "w-8 h-8 rounded-full cursor-pointer transition-all duration-300 select-none",
+                "hover:scale-125 relative z-10 flex items-center justify-center"
               )}
               onClick={() => {
                 setActiveSection(section.id);
@@ -165,7 +162,17 @@ export function MobileScrollNav() {
                   scrollToSection(section.id);
                 }
               }}
-            />
+            >
+              {/* Visual dot inside the touch target */}
+              <div
+                className={cn(
+                  "w-1 h-1 rounded-full transition-all duration-300",
+                  activeSection === section.id
+                    ? "bg-primary scale-125"
+                    : "bg-muted-foreground/40"
+                )}
+              />
+            </div>
           </div>
         ))}
       </div>
