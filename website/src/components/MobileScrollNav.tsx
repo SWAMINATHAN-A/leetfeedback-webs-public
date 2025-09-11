@@ -32,9 +32,9 @@ export function MobileScrollNav() {
     const handleScroll = () => {
       if (isDragging) return; // Don't update active section while dragging
 
-      const sections = SECTIONS.map(section => ({
+      const sections = SECTIONS.map((section) => ({
         ...section,
-        element: document.querySelector(`#${section.id}`)
+        element: document.querySelector(`#${section.id}`),
       }));
 
       const scrollPosition = window.scrollY + window.innerHeight / 2;
@@ -44,7 +44,7 @@ export function MobileScrollNav() {
         if (section.element) {
           const rect = section.element.getBoundingClientRect();
           const elementTop = window.scrollY + rect.top;
-          
+
           if (scrollPosition >= elementTop) {
             setActiveSection(section.id);
             break;
@@ -66,13 +66,19 @@ export function MobileScrollNav() {
     scrollToSection(sectionId);
 
     const startY = e.clientY;
-    const startIndex = SECTIONS.findIndex(s => s.id === sectionId);
+    const startIndex = SECTIONS.findIndex((s) => s.id === sectionId);
 
     const handleMouseMove = (e: MouseEvent) => {
       const deltaY = e.clientY - startY;
       const sensitivity = 30; // pixels per section
-      const newIndex = Math.max(0, Math.min(SECTIONS.length - 1, startIndex - Math.round(deltaY / sensitivity)));
-      
+      const newIndex = Math.max(
+        0,
+        Math.min(
+          SECTIONS.length - 1,
+          startIndex - Math.round(deltaY / sensitivity)
+        )
+      );
+
       if (newIndex !== startIndex) {
         const newSection = SECTIONS[newIndex];
         setActiveSection(newSection.id);
@@ -97,14 +103,20 @@ export function MobileScrollNav() {
     scrollToSection(sectionId);
 
     const startY = e.touches[0].clientY;
-    const startIndex = SECTIONS.findIndex(s => s.id === sectionId);
+    const startIndex = SECTIONS.findIndex((s) => s.id === sectionId);
 
     const handleTouchMove = (e: TouchEvent) => {
       e.preventDefault();
       const deltaY = e.touches[0].clientY - startY;
       const sensitivity = 30;
-      const newIndex = Math.max(0, Math.min(SECTIONS.length - 1, startIndex - Math.round(deltaY / sensitivity)));
-      
+      const newIndex = Math.max(
+        0,
+        Math.min(
+          SECTIONS.length - 1,
+          startIndex - Math.round(deltaY / sensitivity)
+        )
+      );
+
       if (newIndex !== startIndex) {
         const newSection = SECTIONS[newIndex];
         setActiveSection(newSection.id);
@@ -126,10 +138,7 @@ export function MobileScrollNav() {
     <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-40 md:hidden opacity-60">
       <div className="flex flex-col items-center gap-6 p-2">
         {SECTIONS.map((section, index) => (
-          <div
-            key={section.id}
-            className="relative"
-          >
+          <div key={section.id} className="relative">
             {/* Camera focus effect for active dot */}
             {activeSection === section.id && (
               <div className="absolute inset-0 w-6 h-6 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
@@ -139,7 +148,7 @@ export function MobileScrollNav() {
                 <div className="absolute bottom-0 left-0 w-1.5 h-1.5 border-b border-l border-primary/50 rounded-bl-sm" />
               </div>
             )}
-            
+
             {/* Dot */}
             <div
               className={cn(
