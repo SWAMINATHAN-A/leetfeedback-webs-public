@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "motion/react";
 import {
   Card,
   CardContent,
@@ -14,12 +15,22 @@ import AnalyticsIcon from "@mui/icons-material/Analytics";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
 import TrackChangesIcon from "@mui/icons-material/TrackChanges";
 import CompareArrowsIcon from "@mui/icons-material/CompareArrows";
+import AppsIcon from "@mui/icons-material/Apps";
 import { BlurFade } from "./magicui/blur-fade";
 import { TextAnimate } from "./magicui/text-animate";
 import { NumberTicker } from "./magicui/number-ticker";
+import { FlipWords } from "./ui/flip-words";
 import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
+import TextPressure from "./TextPressure";
+import { IconCloud } from "./magicui/icon-cloud";
+import { LineShadowText } from "./magicui/line-shadow-text";
+import MagicBento from "./MagicBento";
+import { LampContainer } from "./ui/lamp";
+import InsightsIcon from "@mui/icons-material/Insights";
+import GroupsIcon from "@mui/icons-material/Groups";
+import LinkIcon from "@mui/icons-material/Link";
 
 const Features: React.FC = () => {
   const primaryFeatures = [
@@ -159,11 +170,22 @@ const Features: React.FC = () => {
 
         {/* Primary Features - Highlighted */}
         <div className="mb-20">
-          <BlurFade delay={0.25}>
-            <h3 className="text-2xl font-bold text-center text-foreground mb-12 font-mono">
-              Game-Changing Features
-            </h3>
-          </BlurFade>
+          <LampContainer className="relative flex h-10 flex-col items-center justify-center overflow-hidden bg-background w-full rounded-md z-0">
+            <motion.div
+              initial={{ opacity: 0.5, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{
+                delay: 0.3,
+                duration: 0.8,
+                ease: "easeInOut",
+              }}
+              className="absolute z-50 translate-y-0 text-center"
+            >
+              <h3 className="text-5xl sm:text-7xl md:text-8xl font-black text-foreground tracking-tight">
+                THE BASICS
+              </h3>
+            </motion.div>
+          </LampContainer>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {primaryFeatures.map((feature, index) => (
               <BlurFade key={index} delay={1 + index * 0.2}>
@@ -211,50 +233,115 @@ const Features: React.FC = () => {
           </div>
         </div>
 
-        {/* Secondary Features */}
+        {/* Power Features - Bento Grid */}
         <div className="mb-20">
-          <h3 className="text-2xl font-bold text-center text-foreground mb-12 font-mono">
-            Additional Power Features
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {secondaryFeatures.map((feature, index) => (
-              <BlurFade key={index} delay={1.5 + index * 0.1}>
-                <Card className="group hover:shadow-lg transition-all duration-300 border border-border bg-card/30 hover:bg-card/50">
-                  <CardHeader className="space-y-3">
-                    <div className="flex items-center justify-between">
-                      <div className="text-muted-foreground group-hover:text-foreground group-hover:scale-110 transition-all duration-300">
-                        {feature.icon}
+          {/* Section Title */}
+          <div className="text-center mb-16">
+            <LineShadowText
+              as="h2"
+              shadowColor="hsl(var(--muted-foreground))"
+              className="text-5xl sm:text-7xl md:text-8xl font-black text-foreground tracking-tight italic mb-4"
+            >
+              BEYOND BASICS
+            </LineShadowText>
+            <p className="text-2xl text-muted-foreground font-light">
+              Six features that{" "}
+              <FlipWords
+                words={["transform", "accelerate", "supercharge"]}
+                className="text-foreground font-bold"
+                duration={2500}
+              />{" "}
+              your growth
+            </p>
+          </div>
+
+          {/* Magic Bento Grid */}
+                    {/* Magic Bento Grid - Desktop & Mobile Responsive */}
+          <div className="bento-section w-full flex justify-center px-4">
+            {/* Desktop: Bento Grid */}
+            <div className="hidden md:block w-full">
+              <MagicBento
+                textAutoHide={false}
+                enableStars={true}
+                enableSpotlight={true}
+                enableBorderGlow={true}
+                disableAnimations={false}
+                spotlightRadius={300}
+                particleCount={12}
+                enableTilt={false}
+                glowColor="255, 255, 255"
+                clickEffect={true}
+                enableMagnetism={true}
+                cardData={[
+                  {
+                    color: "#000000",
+                    title: "Smart Tracking",
+                    description: "Captures every run across all platforms",
+                    label: "LIVE",
+                  },
+                  {
+                    color: "#000000",
+                    title: "AI Analysis",
+                    description: "Pattern recognition & insights",
+                    label: "SMART",
+                  },
+                  {
+                    color: "#000000",
+                    title: "8 Platforms",
+                    description: "LeetCode, HackerRank & more",
+                    label: "CONNECT",
+                  },
+                  {
+                    color: "#000000",
+                    title: "Live Analytics",
+                    description: "Real-time progress visualization",
+                    label: "INSIGHTS",
+                  },
+                  {
+                    color: "#000000",
+                    title: "Gamification",
+                    description: "Achievements & motivation boost",
+                    label: "MOTIVATE",
+                  },
+                  {
+                    color: "#000000",
+                    title: "Team Collaboration",
+                    description: "Share insights with your team",
+                    label: "CONNECT",
+                  },
+                ]}
+              />
+            </div>
+
+            {/* Mobile: Simple Grid */}
+            <div className="block md:hidden w-full max-w-sm mx-auto">
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { title: "Smart Tracking", label: "LIVE", icon: <TrackChangesIcon className="w-6 h-6" /> },
+                  { title: "AI Analysis", label: "SMART", icon: <SmartToyIcon className="w-6 h-6" /> },
+                  { title: "8 Platforms", label: "CONNECT", icon: <LinkIcon className="w-6 h-6" /> },
+                  { title: "Live Analytics", label: "INSIGHTS", icon: <InsightsIcon className="w-6 h-6" /> },
+                  { title: "Gamification", label: "MOTIVATE", icon: <EmojiEventsIcon className="w-6 h-6" /> },
+                  { title: "Team Collab", label: "CONNECT", icon: <GroupsIcon className="w-6 h-6" /> },
+                ].map((feature, index) => (
+                  <BlurFade key={index} delay={0.8 + index * 0.1}>
+                    <div className="bg-card/80 backdrop-blur-sm border border-border rounded-xl p-4 hover:bg-card/90 transition-all duration-300 group">
+                      <div className="flex flex-col items-center text-center space-y-2">
+                        <div className="text-foreground group-hover:scale-110 transition-transform duration-300">
+                          {feature.icon}
+                        </div>
+                        <div className="text-xs font-mono text-muted-foreground bg-muted/30 px-2 py-1 rounded">
+                          {feature.label}
+                        </div>
+                        <h4 className="text-sm font-semibold text-foreground leading-tight">
+                          {feature.title}
+                        </h4>
                       </div>
-                      <Badge
-                        variant="outline"
-                        className="text-xs font-mono bg-muted/20"
-                      >
-                        {feature.badge}
-                      </Badge>
                     </div>
-                    <CardTitle className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {feature.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-3">
-                    <CardDescription className="text-muted-foreground text-sm leading-relaxed">
-                      {feature.description}
-                    </CardDescription>
-                    <ul className="space-y-1">
-                      {feature.benefits.map((benefit, benefitIndex) => (
-                        <li
-                          key={benefitIndex}
-                          className="flex items-center text-xs text-muted-foreground"
-                        >
-                          <div className="w-1.5 h-1.5 bg-green-300 rounded-full mr-2 flex-shrink-0"></div>
-                          {benefit}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </BlurFade>
-            ))}
+                  </BlurFade>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 

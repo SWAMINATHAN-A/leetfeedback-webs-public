@@ -5,7 +5,6 @@ import Features from "../components/Features";
 import HowItWorks from "../components/HowItWorks";
 import Pricing from "../components/Pricing";
 import Footer from "../components/Footer";
-import { DockDemo } from "../components/DockDemo";
 
 const HomePage: React.FC = () => {
   return (
@@ -18,7 +17,6 @@ const HomePage: React.FC = () => {
         <Pricing />
       </main>
       <Footer />
-      <DockDemo />
     </>
   );
 };

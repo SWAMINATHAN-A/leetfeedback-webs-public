@@ -308,21 +308,19 @@
 /* Dark theme adjustments for liquid glass */
 .dark .liquidGlass-wrapper {
     color: white;
-    box-shadow:
-        0 6px 6px rgba(0, 0, 0, 0.4),
-        0 0 20px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .dark .liquidGlass-tint {
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.1);
 }
 
 .dark .liquidGlass-shine {
     box-shadow:
-        inset 2px 2px 1px 0 rgba(255, 255, 255, 0.2),
-        inset -1px -1px 1px 1px rgba(255, 255, 255, 0.2);
+        inset 1px 1px 1px 0 rgba(255, 255, 255, 0.05),
+        inset -1px -1px 1px 1px rgba(255, 255, 255, 0.02);
 }
+
+/* Additional responsive stability */
 
 /* Liquid glass navigation specific styles */
 .liquidGlass-nav {
@@ -487,7 +485,42 @@
         transform: translateZ(0);
         backface-visibility: hidden;
     }
+}
 
+/* Background ripple effect animations */
+@keyframes cell-ripple {
+    0% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+}
+
+.animate-cell-ripple {
+    animation: cell-ripple var(--duration, 300ms) ease-out;
+    animation-delay: var(--delay, 0ms);
+}
+
+/* Mask utilities for background ripple */
+.mask-radial-from-20\% {
+    -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+}
+
+.mask-radial-at-top {
+    -webkit-mask-position: top center;
+    mask-position: top center;
+}
+
+/* Responsive utilities */
+@media (max-width: 1023px) {
     .liquidGlass-effect {
         will-change: auto;
     }
@@ -515,4 +548,36 @@
 ::view-transition-old(root), ::view-transition-new(root) {
     animation: none;
     mix-blend-mode: normal;
+}
+
+/* Background ripple effect animations */
+@keyframes cell-ripple {
+    0% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.1);
+    }
+    100% {
+        opacity: 0.4;
+        transform: scale(1);
+    }
+}
+
+.animate-cell-ripple {
+    animation: cell-ripple var(--duration, 300ms) ease-out;
+    animation-delay: var(--delay, 0ms);
+}
+
+/* Mask utilities for background ripple */
+.mask-radial-from-20\% {
+    -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+    mask-image: radial-gradient(ellipse at center, black 20%, transparent 70%);
+}
+
+.mask-radial-at-top {
+    -webkit-mask-position: top center;
+    mask-position: top center;
 }

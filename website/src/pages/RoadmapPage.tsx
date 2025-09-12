@@ -243,10 +243,7 @@ const RoadmapPage: React.FC = () => {
       <Header />
       <main>
         {/* Hero Section */}
-        <section
-          id="roadmap"
-          className="relative overflow-hidden pt-20 pb-32"
-        >
+        <section id="roadmap" className="relative overflow-hidden pt-20 pb-32">
           {/* Floating Elements */}
           <div className="absolute top-20 left-10 w-32 h-32 border border-border/20 rounded-full opacity-20 float dark:border-white/10"></div>
           <div

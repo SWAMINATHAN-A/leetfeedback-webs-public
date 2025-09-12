@@ -16,7 +16,8 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import { ProgressiveBlur } from "./components/magicui/progressive-blur";
 import { MobileScrollNav } from "./components/MobileScrollNav";
-import DarkVeil from "./components/DarkVeil";
+import { BackgroundRippleEffect } from "./components/ui/background-ripple-effect";
+import { DockDemo } from "./components/DockDemo";
 import "./App.css";
 
 function AppContent() {
@@ -25,19 +26,15 @@ function AppContent() {
 
   return (
     <div className="App min-h-screen relative">
-      {/* DarkVeil Background */}
+      {/* Background Ripple Effect */}
       <div className="fixed inset-0 w-full h-full z-0">
-        <DarkVeil 
-          hueShift={32}
-          noiseIntensity={0.05}
-          scanlineIntensity={0}
-          speed={0.5}
-          scanlineFrequency={0.5}
-          warpAmount={0.1}
-          resolutionScale={1}
+        <BackgroundRippleEffect
+          rows={8}
+          cols={27}
+          cellSize={56}
         />
       </div>
-      
+
       {/* Content overlay */}
       <div className="relative z-10">
         <Routes>
@@ -49,12 +46,15 @@ function AppContent() {
         </Routes>
         {isHomePage && <MobileScrollNav />}
       </div>
-      
+
       <ProgressiveBlur
         position="bottom"
         height="10vh"
         className="fixed bottom-0 left-0 right-0 z-40 pointer-events-none"
       />
+      
+      {/* Dock - only show on home page */}
+      {isHomePage && <DockDemo />}
     </div>
   );
 }
