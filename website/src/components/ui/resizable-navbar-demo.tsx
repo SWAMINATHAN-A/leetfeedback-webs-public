@@ -39,7 +39,7 @@ export function ResizableNavbarDemo() {
               <TrendingUpIcon className="h-4 w-4 text-foreground" />
             </div>
             <div className="flex items-center space-x-2">
-              <span className="text-lg font-semibold mono">LeetFeedback</span>
+              <span className="text-lg font-semibold mono">Traverse</span>
               <Badge variant="outline" className="text-xs font-mono bg-muted/50">
                 Beta
               </Badge>
@@ -80,7 +80,7 @@ export function ResizableNavbarDemo() {
                 <TrendingUpIcon className="h-4 w-4 text-foreground" />
               </div>
               <div className="flex items-center space-x-2">
-                <span className="text-lg font-semibold mono">LeetFeedback</span>
+                <span className="text-lg font-semibold mono">Traverse</span>
                 <Badge variant="outline" className="text-xs font-mono bg-muted/50">
                   Beta
                 </Badge>

@@ -65,7 +65,7 @@ const SignInModal: React.FC<SignInModalProps> = ({ isOpen, onClose }) => {
               </div>
 
               <h2 className="text-2xl font-bold bg-gradient-to-r from-foreground via-foreground/80 to-foreground bg-clip-text">
-                Welcome to LeetFeedback
+                Welcome to Traverse
               </h2>
               <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
                 Sign in to unlock your coding journey and sync progress across

@@ -10,13 +10,13 @@ const PrivacyPolicyPage: React.FC = () => {
       <main className="min-h-screen bg-background">
         <div className="container mx-auto px-4 md:px-8 py-16 max-w-4xl">
           <div className="prose prose-lg max-w-none">
-            <h1 className="text-4xl font-bold mb-8 text-foreground">Privacy Policy for LeetFeedback</h1>
+            <h1 className="text-4xl font-bold mb-8 text-foreground">Privacy Policy for Traverse</h1>
             <p className="text-muted-foreground mb-8">Effective Date: January 1, 2025</p>
 
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-4 text-foreground">1. Our Commitment to Privacy</h2>
               <p className="text-foreground mb-4">
-                Welcome to LeetFeedback ("we," "us," or "our"). We are committed to protecting your privacy. 
+                Welcome to Traverse ("we," "us," or "our"). We are committed to protecting your privacy. 
                 This Privacy Policy is designed to be as simple as possible because our approach is simple: 
                 <strong> we do not collect, store, share, or process any of your personal data.</strong>
               </p>

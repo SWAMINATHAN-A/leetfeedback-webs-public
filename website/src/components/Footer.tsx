@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
                 {/* Bottom Footer */}
                 <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center">
                     <div className="text-muted-foreground text-sm mb-4 md:mb-0 font-mono">
-                        © 2025 LeetFeedback. All rights reserved.
+                        © 2025 Traverse. All rights reserved.
                     </div>
                     <div className="flex flex-wrap justify-center md:justify-end space-x-6 text-sm">
                         <a

@@ -1,6 +1,6 @@
 # Vercel Analytics Integration
 
-This document explains the Vercel Speed Insights and User Analytics integration implemented in the LeetFeedback website.
+This document explains the Vercel Speed Insights and User Analytics integration implemented in the Traverse website.
 
 ## Overview
 
@@ -49,7 +49,7 @@ function App() {
 A centralized analytics configuration provides:
 - Custom event tracking functions
 - Environment-based enabling/disabling
-- LeetFeedback-specific event trackers
+- Traverse-specific event trackers
 
 #### Key Functions:
 

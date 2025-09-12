@@ -34,7 +34,7 @@ const HowItWorks: React.FC = () => {
       step: "01",
       title: "Install Extension",
       description:
-        "Add LeetFeedback to Chrome in seconds. No Sign-In required.",
+        "Add Traverse to Chrome in seconds. No Sign-In required.",
       icon: <GetAppIcon className="w-8 h-8" />,
       details: [
         "One-click installation",
@@ -101,7 +101,7 @@ const HowItWorks: React.FC = () => {
             delay={0.5}
             by="word"
           >
-            How LeetFeedback Works
+            How Traverse Works
           </TextAnimate>
           <BlurFade delay={0.75}>
             <p className="text-xl text-muted-foreground leading-relaxed">

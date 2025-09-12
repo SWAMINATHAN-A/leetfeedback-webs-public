@@ -21,7 +21,7 @@ export const trackEvent = (eventName: string, properties?: Record<string, any>) 
   }
 };
 
-// Common event trackers for LeetFeedback
+// Common event trackers for Traverse
 export const analytics = {
   // Track user interactions
   trackFeatureClick: (featureName: string) => {

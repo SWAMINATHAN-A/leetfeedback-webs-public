@@ -132,7 +132,7 @@ const Pricing: React.FC = () => {
                   <div className="lg:col-span-1 space-y-4">
                     <div className="flex items-center gap-3">
                       <CardTitle className="text-2xl font-bold text-foreground">
-                        LeetFeedback
+                        Traverse
                       </CardTitle>
                       <Badge className="bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs">
                         Free Forever

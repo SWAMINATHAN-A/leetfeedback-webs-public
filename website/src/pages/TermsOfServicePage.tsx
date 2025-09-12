@@ -10,13 +10,13 @@ const TermsOfServicePage: React.FC = () => {
       <main className="min-h-screen bg-background">
         <div className="container mx-auto px-4 md:px-8 py-16 max-w-4xl">
           <div className="prose prose-lg max-w-none">
-            <h1 className="text-4xl font-bold mb-8 text-foreground">Terms of Service for LeetFeedback</h1>
+            <h1 className="text-4xl font-bold mb-8 text-foreground">Terms of Service for Traverse</h1>
             <p className="text-muted-foreground mb-8">Effective Date: January 1, 2025</p>
 
             <section className="mb-12">
               <h2 className="text-2xl font-semibold mb-4 text-foreground">1. Agreement to Terms</h2>
               <p className="text-foreground mb-4">
-                Welcome to LeetFeedback (the "Service"), provided by LeetFeedback ("we," "us," or "our"). 
+                Welcome to Traverse (the "Service"), provided by Traverse ("we," "us," or "our"). 
                 These Terms of Service ("Terms") govern your access to and use of our website, applications, and services.
               </p>
               <p className="text-foreground mb-4">
@@ -45,7 +45,7 @@ const TermsOfServicePage: React.FC = () => {
               <h2 className="text-2xl font-semibold mb-4 text-foreground">3. Intellectual Property</h2>
               <p className="text-foreground mb-4">
                 The Service and its original content, features, and functionality are and will remain the exclusive 
-                property of LeetFeedback and its licensors. Our trademarks and trade dress may not be used in 
+                property of Traverse and its licensors. Our trademarks and trade dress may not be used in 
                 connection with any product or service without our prior written consent.
               </p>
             </section>
@@ -76,7 +76,7 @@ const TermsOfServicePage: React.FC = () => {
                 non-infringement, or course of performance.
               </p>
               <p className="text-foreground mb-4">
-                In no event shall LeetFeedback, nor its directors, employees, partners, or agents, be liable for any 
+                In no event shall Traverse, nor its directors, employees, partners, or agents, be liable for any 
                 indirect, incidental, special, consequential, or punitive damages, including without limitation, 
                 loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or 
                 use of or inability to access or use the Service.
