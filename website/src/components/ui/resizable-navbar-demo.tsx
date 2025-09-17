@@ -13,11 +13,11 @@ import {
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
 import { Badge } from "./badge";
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import PlatformIcon from '../PlatformIcon';
-import { useAuth } from '../../contexts/AuthContext';
-import SignInModal from './SignInModal';
-import SimpleUserMenu from './SimpleUserMenu';
+import TrendingUpIcon from "@mui/icons-material/TrendingUp";
+import PlatformIcon from "../PlatformIcon";
+import { useAuth } from "../../contexts/AuthContext";
+import SignInModal from "./SignInModal";
+import SimpleUserMenu from "./SimpleUserMenu";
 
 export function ResizableNavbarDemo() {
   const navItems = [];
@@ -35,12 +35,17 @@ export function ResizableNavbarDemo() {
         {/* Desktop Navigation */}
         <NavBody>
           <div className="flex items-center space-x-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md border border-border bg-card">
-              <TrendingUpIcon className="h-4 w-4 text-foreground" />
-            </div>
+            <img
+              src={"/LogoNoBackground.svg"}
+              alt="Traverse Logo"
+              className="h-8 w-auto"
+            />
             <div className="flex items-center space-x-2">
               <span className="text-lg font-semibold mono">Traverse</span>
-              <Badge variant="outline" className="text-xs font-mono bg-muted/50">
+              <Badge
+                variant="outline"
+                className="text-xs font-mono bg-muted/50"
+              >
                 Beta
               </Badge>
             </div>
@@ -48,11 +53,31 @@ export function ResizableNavbarDemo() {
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
             <div className="flex items-center space-x-4 pl-4 border-l border-border">
-              <PlatformIcon platform="leetcode" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
-              <PlatformIcon platform="geeksforgeeks" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
-              <PlatformIcon platform="hackerrank" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
-              <PlatformIcon platform="codechef" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
-              <PlatformIcon platform="tufplus" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
+              <PlatformIcon
+                platform="leetcode"
+                size="sm"
+                className="opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <PlatformIcon
+                platform="geeksforgeeks"
+                size="sm"
+                className="opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <PlatformIcon
+                platform="hackerrank"
+                size="sm"
+                className="opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <PlatformIcon
+                platform="codechef"
+                size="sm"
+                className="opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <PlatformIcon
+                platform="tufplus"
+                size="sm"
+                className="opacity-70 hover:opacity-100 transition-opacity"
+              />
             </div>
             <div className="h-6 w-px bg-border"></div>
             <div className="flex items-center gap-3">
@@ -64,10 +89,15 @@ export function ResizableNavbarDemo() {
                   onClick={handleSignInClick}
                   disabled={isLoading}
                 >
-                  {isLoading ? 'Loading...' : 'Sign In'}
+                  {isLoading ? "Loading..." : "Sign In"}
                 </NavbarButton>
               )}
-              <NavbarButton variant="primary" onClick={() => window.location.href = '/roadmap'}>Roadmap</NavbarButton>
+              <NavbarButton
+                variant="primary"
+                onClick={() => (window.location.href = "/roadmap")}
+              >
+                Roadmap
+              </NavbarButton>
             </div>
           </div>
         </NavBody>
@@ -76,12 +106,17 @@ export function ResizableNavbarDemo() {
         <MobileNav>
           <MobileNavHeader>
             <div className="flex items-center space-x-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md border border-border bg-card">
-                <TrendingUpIcon className="h-4 w-4 text-foreground" />
-              </div>
+              <img
+                src={"/LogoNoBackground.svg"}
+                alt="Traverse Logo"
+                className="h-8 w-auto"
+              />
               <div className="flex items-center space-x-2">
                 <span className="text-lg font-semibold mono">Traverse</span>
-                <Badge variant="outline" className="text-xs font-mono bg-muted/50">
+                <Badge
+                  variant="outline"
+                  className="text-xs font-mono bg-muted/50"
+                >
                   Beta
                 </Badge>
               </div>
@@ -105,11 +140,31 @@ export function ResizableNavbarDemo() {
             ))}
 
             <div className="flex items-center justify-center space-x-4 py-4 border-y border-border w-full">
-              <PlatformIcon platform="leetcode" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
-              <PlatformIcon platform="geeksforgeeks" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
-              <PlatformIcon platform="hackerrank" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
-              <PlatformIcon platform="codechef" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
-              <PlatformIcon platform="tufplus" size="sm" className="opacity-70 hover:opacity-100 transition-opacity" />
+              <PlatformIcon
+                platform="leetcode"
+                size="sm"
+                className="opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <PlatformIcon
+                platform="geeksforgeeks"
+                size="sm"
+                className="opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <PlatformIcon
+                platform="hackerrank"
+                size="sm"
+                className="opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <PlatformIcon
+                platform="codechef"
+                size="sm"
+                className="opacity-70 hover:opacity-100 transition-opacity"
+              />
+              <PlatformIcon
+                platform="tufplus"
+                size="sm"
+                className="opacity-70 hover:opacity-100 transition-opacity"
+              />
             </div>
             <div className="flex w-full flex-col gap-3 px-4">
               {isAuthenticated ? (
@@ -124,14 +179,14 @@ export function ResizableNavbarDemo() {
                   className="w-full"
                   disabled={isLoading}
                 >
-                  {isLoading ? 'Loading...' : 'Sign In'}
+                  {isLoading ? "Loading..." : "Sign In"}
                 </NavbarButton>
               )}
 
               <NavbarButton
                 onClick={() => {
                   setIsMobileMenuOpen(false);
-                  window.location.href = '/roadmap';
+                  window.location.href = "/roadmap";
                 }}
                 variant="primary"
                 className="w-full"

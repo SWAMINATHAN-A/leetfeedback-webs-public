@@ -341,16 +341,16 @@ const Features: React.FC = () => {
             <div className="hidden md:block">
               <MagicBento
                 textAutoHide={false}
-                enableStars={true}
+                enableStars={false}
                 enableSpotlight={true}
-                enableBorderGlow={true}
+                enableBorderGlow={false}
                 disableAnimations={false}
                 spotlightRadius={300}
                 particleCount={12}
-                enableTilt={false}
+                enableTilt={true}
                 glowColor="255, 255, 255"
-                clickEffect={true}
-                enableMagnetism={true}
+                clickEffect={false}
+                enableMagnetism={false}
                 cardData={[
                   {
                     color: "#000000",
