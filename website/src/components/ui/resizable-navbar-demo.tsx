@@ -18,6 +18,7 @@ import PlatformIcon from "../PlatformIcon";
 import { useAuth } from "../../contexts/AuthContext";
 import SignInModal from "./SignInModal";
 import SimpleUserMenu from "./SimpleUserMenu";
+import LogoNoBackground from "@/assets/icons/LogoNoBackground.svg";
 
 export function ResizableNavbarDemo() {
   const navItems = [];
@@ -36,7 +37,7 @@ export function ResizableNavbarDemo() {
         <NavBody>
           <div className="flex items-center space-x-3">
             <img
-              src={"/LogoNoBackground.svg"}
+              src={LogoNoBackground}
               alt="Traverse Logo"
               className="h-8 w-auto"
             />
@@ -107,7 +108,7 @@ export function ResizableNavbarDemo() {
           <MobileNavHeader>
             <div className="flex items-center space-x-3">
               <img
-                src={"/LogoNoBackground.svg"}
+                src={LogoNoBackground}
                 alt="Traverse Logo"
                 className="h-8 w-auto"
               />

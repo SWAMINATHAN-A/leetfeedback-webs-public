@@ -28,6 +28,12 @@ import { IconCloud } from "./magicui/icon-cloud";
 import { LineShadowText } from "./magicui/line-shadow-text";
 import MagicBento from "./MagicBento";
 import { LampContainer } from "./ui/lamp";
+import progressIcon from "@/assets/support-icons/progress.svg";
+import progress2Icon from "@/assets/support-icons/Progress2.svg";
+import cloudSyncIcon from "@/assets/support-icons/cloudSync.svg";
+import growthIcon from "@/assets/support-icons/Growth.svg";
+import taskCompIcon from "@/assets/support-icons/TaskComp.svg";
+import liveCollabIcon from "@/assets/support-icons/LiveCollab.svg";
 import InsightsIcon from "@mui/icons-material/Insights";
 import GroupsIcon from "@mui/icons-material/Groups";
 import LinkIcon from "@mui/icons-material/Link";
@@ -357,42 +363,42 @@ const Features: React.FC = () => {
                     title: "Smart Tracking",
                     description: "Captures every run across all platforms",
                     label: "LIVE",
-                    backgroundIcon: "/support-icons/progress.svg",
+                    backgroundIcon: progressIcon,
                   },
                   {
                     color: "#000000",
                     title: "AI Analysis",
                     description: "Pattern recognition & insights",
                     label: "SMART",
-                    backgroundIcon: "/support-icons/Progress2.svg",
+                    backgroundIcon: progress2Icon,
                   },
                   {
                     color: "#000000",
                     title: "8 Platforms",
                     description: "LeetCode, HackerRank & more",
                     label: "CONNECT",
-                    backgroundIcon: "/support-icons/cloudSync.svg",
+                    backgroundIcon: cloudSyncIcon,
                   },
                   {
                     color: "#000000",
                     title: "Live Analytics",
                     description: "Real-time progress visualization",
                     label: "INSIGHTS",
-                    backgroundIcon: "/support-icons/Growth.svg",
+                    backgroundIcon: growthIcon,
                   },
                   {
                     color: "#000000",
                     title: "Gamification",
                     description: "Achievements & motivation boost",
                     label: "MOTIVATE",
-                    backgroundIcon: "/support-icons/TaskComp.svg",
+                    backgroundIcon: taskCompIcon,
                   },
                   {
                     color: "#000000",
                     title: "Team Collaboration",
                     description: "Share insights with your team",
                     label: "CONNECT",
-                    backgroundIcon: "/support-icons/LiveCollab.svg",
+                    backgroundIcon: liveCollabIcon,
                   },
                 ]}
               />

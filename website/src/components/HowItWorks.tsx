@@ -27,14 +27,21 @@ import {
 } from "./ui/glowing-stars";
 import DiscordIcon from "./icons/DiscordIcon";
 import TextPressure from "./TextPressure";
+import leetcodeIcon from "@/assets/support-icons/leetcode-svgrepo-com.svg";
+import geeksforgeeksIcon from "@/assets/support-icons/geeksforgeeks.svg";
+import hackerrankIcon from "@/assets/support-icons/hackerrank-svgrepo-com.svg";
+import codechefIcon from "@/assets/support-icons/codechef-svgrepo-com.svg";
+import tufIcon from "@/assets/support-icons/tuf.svg";
+import notionIcon from "@/assets/support-icons/notion.svg";
+import ankiIcon from "@/assets/support-icons/anki.svg";
+import geminiIcon from "@/assets/support-icons/gemini.svg";
 
 const HowItWorks: React.FC = () => {
   const steps = [
     {
       step: "01",
       title: "Install Extension",
-      description:
-        "Add Traverse to Chrome in seconds. No Sign-In required.",
+      description: "Add Traverse to Chrome in seconds. No Sign-In required.",
       icon: <GetAppIcon className="w-8 h-8" />,
       details: [
         "One-click installation",
@@ -172,7 +179,7 @@ const HowItWorks: React.FC = () => {
                   <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
                     <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
-                        src="/support-icons/leetcode-svgrepo-com.svg"
+                        src={leetcodeIcon}
                         alt="LeetCode"
                         className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200"
                       />
@@ -182,7 +189,7 @@ const HowItWorks: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
-                        src="/support-icons/geeksforgeeks.svg"
+                        src={geeksforgeeksIcon}
                         alt="GeeksforGeeks"
                         className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200"
                       />
@@ -192,7 +199,7 @@ const HowItWorks: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
-                        src="/support-icons/hackerrank-svgrepo-com.svg"
+                        src={hackerrankIcon}
                         alt="HackerRank"
                         className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200"
                       />
@@ -202,7 +209,7 @@ const HowItWorks: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
-                        src="/support-icons/codechef-svgrepo-com.svg"
+                        src={codechefIcon}
                         alt="CodeChef"
                         className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200"
                       />
@@ -212,7 +219,7 @@ const HowItWorks: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
-                        src="/support-icons/tuf.svg"
+                        src={tufIcon}
                         alt="TakeUforward"
                         className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200"
                       />
@@ -222,7 +229,7 @@ const HowItWorks: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
-                        src="/support-icons/notion.svg"
+                        src={notionIcon}
                         alt="Notion"
                         className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200"
                       />
@@ -232,7 +239,7 @@ const HowItWorks: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
-                        src="/support-icons/anki.svg"
+                        src={ankiIcon}
                         alt="Anki"
                         className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200"
                       />
@@ -242,7 +249,7 @@ const HowItWorks: React.FC = () => {
                     </div>
                     <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
-                        src="/support-icons/gemini.svg"
+                        src={geminiIcon}
                         alt="Gemini AI"
                         className="w-8 h-8"
                       />

@@ -1,5 +1,11 @@
 import React, { useRef, useEffect, useState, useCallback } from "react";
 import { gsap } from "gsap";
+import cloudSyncIcon from "@/assets/support-icons/cloudSync.svg";
+import growthIcon from "@/assets/support-icons/Growth.svg";
+import liveCollabIcon from "@/assets/support-icons/LiveCollab.svg";
+import progressIcon from "@/assets/support-icons/progress.svg";
+import progress2Icon from "@/assets/support-icons/Progress2.svg";
+import taskCompIcon from "@/assets/support-icons/TaskComp.svg";
 
 export interface BentoCardProps {
   color?: string;
@@ -37,42 +43,42 @@ const cardData: BentoCardProps[] = [
     title: "Cloud Sync",
     description: "Sync your progress across devices",
     label: "Sync",
-    backgroundIcon: "/support-icons/cloudSync.svg",
+    backgroundIcon: cloudSyncIcon,
   },
   {
     color: "#060010",
     title: "Track Growth",
     description: "Monitor your coding journey",
     label: "Growth",
-    backgroundIcon: "/support-icons/Growth.svg",
+    backgroundIcon: growthIcon,
   },
   {
     color: "#060010",
     title: "Live Collaboration",
     description: "Work together seamlessly",
     label: "Teamwork",
-    backgroundIcon: "/support-icons/LiveCollab.svg",
+    backgroundIcon: liveCollabIcon,
   },
   {
     color: "#060010",
     title: "Progress Tracking",
     description: "Visualize your achievements",
     label: "Progress",
-    backgroundIcon: "/support-icons/progress.svg",
+    backgroundIcon: progressIcon,
   },
   {
     color: "#060010",
     title: "Advanced Analytics",
     description: "Detailed performance insights",
     label: "Analytics",
-    backgroundIcon: "/support-icons/Progress2.svg",
+    backgroundIcon: progress2Icon,
   },
   {
     color: "#060010",
     title: "Task Completion",
     description: "Stay organized and focused",
     label: "Tasks",
-    backgroundIcon: "/support-icons/TaskComp.svg",
+    backgroundIcon: taskCompIcon,
   },
 ];
 
