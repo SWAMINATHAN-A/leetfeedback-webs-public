@@ -357,36 +357,42 @@ const Features: React.FC = () => {
                     title: "Smart Tracking",
                     description: "Captures every run across all platforms",
                     label: "LIVE",
+                    backgroundIcon: "/support-icons/progress.svg",
                   },
                   {
                     color: "#000000",
                     title: "AI Analysis",
                     description: "Pattern recognition & insights",
                     label: "SMART",
+                    backgroundIcon: "/support-icons/Progress2.svg",
                   },
                   {
                     color: "#000000",
                     title: "8 Platforms",
                     description: "LeetCode, HackerRank & more",
                     label: "CONNECT",
+                    backgroundIcon: "/support-icons/cloudSync.svg",
                   },
                   {
                     color: "#000000",
                     title: "Live Analytics",
                     description: "Real-time progress visualization",
                     label: "INSIGHTS",
+                    backgroundIcon: "/support-icons/Growth.svg",
                   },
                   {
                     color: "#000000",
                     title: "Gamification",
                     description: "Achievements & motivation boost",
                     label: "MOTIVATE",
+                    backgroundIcon: "/support-icons/TaskComp.svg",
                   },
                   {
                     color: "#000000",
                     title: "Team Collaboration",
                     description: "Share insights with your team",
                     label: "CONNECT",
+                    backgroundIcon: "/support-icons/LiveCollab.svg",
                   },
                 ]}
               />

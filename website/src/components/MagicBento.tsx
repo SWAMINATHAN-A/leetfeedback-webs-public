@@ -8,6 +8,7 @@ export interface BentoCardProps {
   label?: string;
   textAutoHide?: boolean;
   disableAnimations?: boolean;
+  backgroundIcon?: string;
 }
 
 export interface BentoProps {
@@ -33,39 +34,45 @@ const MOBILE_BREAKPOINT = 768;
 const cardData: BentoCardProps[] = [
   {
     color: "#060010",
-    title: "Analytics",
-    description: "Track user behavior",
-    label: "Insights",
+    title: "Cloud Sync",
+    description: "Sync your progress across devices",
+    label: "Sync",
+    backgroundIcon: "/support-icons/cloudSync.svg",
   },
   {
     color: "#060010",
-    title: "Dashboard",
-    description: "Centralized data view",
-    label: "Overview",
+    title: "Track Growth",
+    description: "Monitor your coding journey",
+    label: "Growth",
+    backgroundIcon: "/support-icons/Growth.svg",
   },
   {
     color: "#060010",
-    title: "Collaboration",
+    title: "Live Collaboration",
     description: "Work together seamlessly",
     label: "Teamwork",
+    backgroundIcon: "/support-icons/LiveCollab.svg",
   },
   {
     color: "#060010",
-    title: "Automation",
-    description: "Streamline workflows",
-    label: "Efficiency",
+    title: "Progress Tracking",
+    description: "Visualize your achievements",
+    label: "Progress",
+    backgroundIcon: "/support-icons/progress.svg",
   },
   {
     color: "#060010",
-    title: "Integration",
-    description: "Connect favorite tools",
-    label: "Connectivity",
+    title: "Advanced Analytics",
+    description: "Detailed performance insights",
+    label: "Analytics",
+    backgroundIcon: "/support-icons/Progress2.svg",
   },
   {
     color: "#060010",
-    title: "Security",
-    description: "Enterprise-grade protection",
-    label: "Protection",
+    title: "Task Completion",
+    description: "Stay organized and focused",
+    label: "Tasks",
+    backgroundIcon: "/support-icons/TaskComp.svg",
   },
 ];
 
@@ -744,10 +751,22 @@ const MagicBento: React.FC<BentoProps> = ({
                   clickEffect={clickEffect}
                   enableMagnetism={enableMagnetism}
                 >
-                  <div className="card__header flex justify-between gap-3 relative text-white">
+                  {card.backgroundIcon && (
+                    <div
+                      className="absolute inset-0 opacity-[0.08] pointer-events-none"
+                      style={{
+                        backgroundImage: `url(${card.backgroundIcon})`,
+                        backgroundSize: "60%",
+                        backgroundPosition: "center",
+                        backgroundRepeat: "no-repeat",
+                        filter: "invert(1)",
+                      }}
+                    />
+                  )}
+                  <div className="card__header flex justify-between gap-3 relative text-white z-10">
                     <span className="card__label text-base">{card.label}</span>
                   </div>
-                  <div className="card__content flex flex-col relative text-white">
+                  <div className="card__content flex flex-col relative text-white z-10">
                     <h3
                       className={`card__title font-normal text-base m-0 mb-1 ${textAutoHide ? "text-clamp-1" : ""}`}
                     >
@@ -878,10 +897,22 @@ const MagicBento: React.FC<BentoProps> = ({
                   el.addEventListener("click", handleClick);
                 }}
               >
-                <div className="card__header flex justify-between gap-3 relative text-white">
+                {card.backgroundIcon && (
+                  <div
+                    className="absolute inset-0 opacity-[0.08] pointer-events-none"
+                    style={{
+                      backgroundImage: `url(${card.backgroundIcon})`,
+                      backgroundSize: "60%",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                      filter: "invert(1)",
+                    }}
+                  />
+                )}
+                <div className="card__header flex justify-between gap-3 relative text-white z-10">
                   <span className="card__label text-base">{card.label}</span>
                 </div>
-                <div className="card__content flex flex-col relative text-white">
+                <div className="card__content flex flex-col relative text-white z-10">
                   <h3
                     className={`card__title font-normal text-base m-0 mb-1 ${textAutoHide ? "text-clamp-1" : ""}`}
                   >
