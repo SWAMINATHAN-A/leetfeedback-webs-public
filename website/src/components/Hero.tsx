@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "motion/react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { Card } from "./ui/card";
@@ -50,15 +51,21 @@ const Hero: React.FC = () => {
           </BlurFade>
 
           {/* Main Headline */}
-          <TextAnimate
-            as="h1"
+          <motion.h1
             className="text-5xl md:text-7xl font-bold text-foreground mb-8 leading-tight"
-            animation="blurInUp"
-            delay={0.5}
-            by="word"
+            initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{ 
+              delay: 0.5, 
+              duration: 0.8, 
+              ease: "easeOut",
+              opacity: { duration: 0.6 },
+              y: { duration: 0.8 },
+              filter: { duration: 0.6 }
+            }}
           >
             Master DSA with AI-Powered Insights
-          </TextAnimate>
+          </motion.h1>
 
           {/* Subheadline */}
           <BlurFade delay={0.75}>

@@ -335,10 +335,10 @@ const Features: React.FC = () => {
           </div>
 
           {/* Magic Bento Grid */}
-                    {/* Magic Bento Grid - Desktop & Mobile Responsive */}
-          <div className="bento-section w-full flex justify-center px-4">
+          {/* Magic Bento Grid - Desktop & Mobile Responsive */}
+          <div className="bento-section w-full flex justify-center">
             {/* Desktop: Bento Grid */}
-            <div className="hidden md:block w-full">
+            <div className="hidden md:block">
               <MagicBento
                 textAutoHide={false}
                 enableStars={true}
@@ -396,12 +396,36 @@ const Features: React.FC = () => {
             <div className="block md:hidden w-full max-w-sm mx-auto">
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { title: "Smart Tracking", label: "LIVE", icon: <TrackChangesIcon className="w-6 h-6" /> },
-                  { title: "AI Analysis", label: "SMART", icon: <SmartToyIcon className="w-6 h-6" /> },
-                  { title: "8 Platforms", label: "CONNECT", icon: <LinkIcon className="w-6 h-6" /> },
-                  { title: "Live Analytics", label: "INSIGHTS", icon: <InsightsIcon className="w-6 h-6" /> },
-                  { title: "Gamification", label: "MOTIVATE", icon: <EmojiEventsIcon className="w-6 h-6" /> },
-                  { title: "Team Collab", label: "CONNECT", icon: <GroupsIcon className="w-6 h-6" /> },
+                  {
+                    title: "Smart Tracking",
+                    label: "LIVE",
+                    icon: <TrackChangesIcon className="w-6 h-6" />,
+                  },
+                  {
+                    title: "AI Analysis",
+                    label: "SMART",
+                    icon: <SmartToyIcon className="w-6 h-6" />,
+                  },
+                  {
+                    title: "8 Platforms",
+                    label: "CONNECT",
+                    icon: <LinkIcon className="w-6 h-6" />,
+                  },
+                  {
+                    title: "Live Analytics",
+                    label: "INSIGHTS",
+                    icon: <InsightsIcon className="w-6 h-6" />,
+                  },
+                  {
+                    title: "Gamification",
+                    label: "MOTIVATE",
+                    icon: <EmojiEventsIcon className="w-6 h-6" />,
+                  },
+                  {
+                    title: "Team Collab",
+                    label: "CONNECT",
+                    icon: <GroupsIcon className="w-6 h-6" />,
+                  },
                 ].map((feature, index) => (
                   <BlurFade key={index} delay={0.8 + index * 0.1}>
                     <div className="bg-card/80 backdrop-blur-sm border border-border rounded-xl p-4 hover:bg-card/90 transition-all duration-300 group">
