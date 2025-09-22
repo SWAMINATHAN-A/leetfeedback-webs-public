@@ -17,9 +17,9 @@ import { ResponsiveChord } from "@nivo/chord";
 import { ResponsiveNetwork } from "@nivo/network";
 import { ResponsiveParallelCoordinates } from "@nivo/parallel-coordinates";
 import { NumberTicker } from "../components/magicui/number-ticker";
-import { Highlighter } from "../components/ui/highlighter";
 import { AuroraText } from "../components/ui/aurora-text";
 import { SparklesText } from "../components/ui/sparkles-text";
+import { Ripple } from "../components/magicui/ripple";
 import { X, Maximize2 } from "lucide-react";
 import {
   timeSpentData,
@@ -46,6 +46,7 @@ import {
   networkData,
   parallelData,
 } from "../data/sampleStatsData";
+import { useTheme } from "../contexts/ThemeContext";
 
 interface ModalData {
   isOpen: boolean;
@@ -59,6 +60,30 @@ interface ModalData {
 }
 
 const StatsPage: React.FC = () => {
+  const { isDark } = useTheme();
+
+  // Use lighter color schemes in dark mode
+  const getColorScheme = (defaultScheme: string) => {
+    if (isDark) {
+      // Lighter schemes for dark mode
+      const lightSchemes: { [key: string]: string } = {
+        paired: "pastel1",
+        greens: "pastel2",
+        oranges: "set3",
+        blues: "pastel1",
+        spectral: "set3",
+        reds: "pastel2",
+        accent: "set3",
+      };
+      return lightSchemes[defaultScheme] || "pastel1";
+    }
+    return defaultScheme;
+  };
+
+  const getColorsConfig = (scheme: string) => ({
+    scheme: getColorScheme(scheme),
+  });
+
   const [modal, setModal] = useState<ModalData>({
     isOpen: false,
     title: "",
@@ -168,35 +193,39 @@ const StatsPage: React.FC = () => {
   // Update pastel colors when theme changes
   useEffect(() => {
     const updateColors = () => {
-      const isDark = document.documentElement.classList.contains('dark');
-      setPastelColors(isDark ? [
-        '#FFB3BA', // pastel red
-        '#BAFFC9', // pastel green
-        '#BAE1FF', // pastel blue
-        '#FFFFBA', // pastel yellow
-        '#FFDFBA', // pastel orange
-        '#E0BAFF', // pastel purple
-        '#FFB3D9', // pastel pink
-        '#B3FFE3', // pastel mint
-      ] : [
-        '#FF9999', // darker pastel red
-        '#99FF99', // darker pastel green
-        '#9999FF', // darker pastel blue
-        '#FFFF99', // darker pastel yellow
-        '#FFCC99', // darker pastel orange
-        '#CC99FF', // darker pastel purple
-        '#FF99CC', // darker pastel pink
-        '#99FFCC', // darker pastel mint
-      ]);
+      const isDark = document.documentElement.classList.contains("dark");
+      setPastelColors(
+        isDark
+          ? [
+              "#FFB3BA", // pastel red
+              "#BAFFC9", // pastel green
+              "#BAE1FF", // pastel blue
+              "#FFFFBA", // pastel yellow
+              "#FFDFBA", // pastel orange
+              "#E0BAFF", // pastel purple
+              "#FFB3D9", // pastel pink
+              "#B3FFE3", // pastel mint
+            ]
+          : [
+              "#FF9999", // darker pastel red
+              "#99FF99", // darker pastel green
+              "#9999FF", // darker pastel blue
+              "#FFFF99", // darker pastel yellow
+              "#FFCC99", // darker pastel orange
+              "#CC99FF", // darker pastel purple
+              "#FF99CC", // darker pastel pink
+              "#99FFCC", // darker pastel mint
+            ]
+      );
     };
 
     updateColors();
-    
+
     // Listen for theme changes
     const observer = new MutationObserver(updateColors);
     observer.observe(document.documentElement, {
       attributes: true,
-      attributeFilter: ['class']
+      attributeFilter: ["class"],
     });
 
     return () => observer.disconnect();
@@ -462,7 +491,7 @@ const StatsPage: React.FC = () => {
           <ResponsiveBump
             data={data}
             margin={{ top: 40, right: 100, bottom: 40, left: 60 }}
-            colors={{ scheme: "paired" }}
+            colors={isDark ? { scheme: "pastel1" } : { scheme: "paired" }}
             theme={commonTheme}
             lineWidth={3}
             activeLineWidth={6}
@@ -538,7 +567,7 @@ const StatsPage: React.FC = () => {
             margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
             id="name"
             value="value"
-            colors={{ scheme: "paired" }}
+            colors={isDark ? { scheme: "pastel1" } : { scheme: "paired" }}
             theme={commonTheme}
             borderColor="hsl(var(--background))"
             childColor={{
@@ -556,7 +585,7 @@ const StatsPage: React.FC = () => {
             identity="name"
             value="value"
             margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
-            colors={{ scheme: "paired" }}
+            colors={isDark ? { scheme: "pastel1" } : { scheme: "paired" }}
             theme={commonTheme}
             labelSkipSize={12}
             labelTextColor="hsl(var(--background))"
@@ -589,6 +618,8 @@ const StatsPage: React.FC = () => {
             data={data}
             margin={{ top: 40, right: 160, bottom: 40, left: 50 }}
             colors={getPastelColors()}
+            theme={commonTheme}
+            nodeOpacity={1}
             nodeHoverOthersOpacity={0.35}
             nodeThickness={18}
             nodeSpacing={24}
@@ -597,8 +628,8 @@ const StatsPage: React.FC = () => {
               from: "color",
               modifiers: [["darker", 0.8]],
             }}
-            linkOpacity={0.5}
-            linkHoverOthersOpacity={0.1}
+            linkOpacity={0.7}
+            linkHoverOthersOpacity={0.2}
             linkContract={3}
             enableLinkGradient={true}
             labelPosition="outside"
@@ -757,8 +788,9 @@ const StatsPage: React.FC = () => {
             nodeColor="hsl(var(--primary))"
             nodeBorderWidth={1}
             nodeBorderColor="hsl(var(--background))"
-            linkThickness={2}
-            linkBlendMode="multiply"
+            linkThickness={3}
+            linkBlendMode="normal"
+            linkColor="hsl(var(--muted-foreground))"
             motionConfig="wobbly"
             theme={commonTheme}
           />
@@ -845,29 +877,48 @@ const StatsPage: React.FC = () => {
     <div className="min-h-screen bg-background text-foreground p-6">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-8xl font-extrabold mt-12 mb-12 text-center">
-          Statistics <AuroraText>Dashboard</AuroraText>
+          Your <AuroraText>Dashboard</AuroraText>
         </h1>
 
         {/* Overall Streak Card */}
-        <div className="mb-8">
-          <div className="bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
-            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+        <div className="mb-16 mt-20 flex justify-center">
+          <div className="bg-card border border-border rounded-xl px-8 py-8 max-w-lg w-full relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] overflow-hidden">
+            {(() => {
+              const getRippleColors = (streak: number) => {
+                if (streak >= 100) return "[&>div]:bg-yellow-500/25 [&>div]:border-yellow-500/50"; // Gold for legendary streaks
+                if (streak >= 50) return "[&>div]:bg-purple-500/25 [&>div]:border-purple-500/50"; // Purple for high streaks
+                if (streak >= 25) return "[&>div]:bg-red-600/25 [&>div]:border-red-600/50"; // Deep red for good streaks
+                if (streak >= 10) return "[&>div]:bg-red-500/25 [&>div]:border-red-500/50"; // Standard red for decent streaks
+                if (streak >= 5) return "[&>div]:bg-orange-500/25 [&>div]:border-orange-500/50"; // Orange for building streaks
+                return "[&>div]:bg-gray-400/25 [&>div]:border-gray-400/50"; // Gray for low streaks
+              };
+
+              return (
+                <Ripple
+                  className={`opacity-60 ${getRippleColors(overallStreak)}`}
+                  mainCircleSize={300}
+                  mainCircleOpacity={0.25}
+                  numCircles={6}
+                />
+              );
+            })()}
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-10">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
-            <h3 className="text-xl font-semibold mb-4">
-              <Highlighter
-                action="highlight"
-                color="#ffd1dc"
-                animationDuration={800}
-              >
-                Current Streak
-              </Highlighter>
-            </h3>
-            <div className="text-center">
-              <SparklesText className="text-6xl font-bold text-primary">
+            <div className="text-center relative z-10">
+              <SparklesText className={`text-8xl font-extrabold ${
+                overallStreak >= 100 ? "text-yellow-500" :
+                overallStreak >= 50 ? "text-purple-500" :
+                overallStreak >= 25 ? "text-red-600" :
+                overallStreak >= 10 ? "text-red-500" :
+                overallStreak >= 5 ? "text-orange-500" :
+                "text-gray-400"
+              }`}>
                 <NumberTicker value={overallStreak} />
               </SparklesText>
-              <p className="text-muted-foreground mt-2">consecutive days</p>
+              <p className="text-muted-foreground mt-4 text-lg">
+                Current Streak
+              </p>
             </div>
           </div>
         </div>
@@ -880,13 +931,7 @@ const StatsPage: React.FC = () => {
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
             <h3 className="text-xl font-semibold mb-4">
-              <Highlighter
-                action="highlight"
-                color="#ffd1dc"
-                animationDuration={800}
-              >
-                Platform Rankings Over Time
-              </Highlighter>
+              Platform Rankings Over Time
             </h3>
             <div
               className="h-96"
@@ -939,39 +984,44 @@ const StatsPage: React.FC = () => {
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
-            <h3 className="text-xl font-semibold mb-4">
-              <Highlighter
-                action="underline"
-                color="#4ade80"
-                strokeWidth={2}
-                animationDuration={600}
-              >
-                Daily Activity Heatmap
-              </Highlighter>
+            <h3 className="text-lg font-semibold mb-4">
+              Average Attempts by Difficulty
             </h3>
             <div
-              className="h-96"
+              className="h-64"
               onClick={() =>
                 openModal(
-                  "Daily Activity Calendar",
-                  "This calendar heatmap shows your daily coding activity. Darker colors indicate more intense practice days.",
-                  "calendar",
-                  calendarData
+                  "Average Attempts by Difficulty",
+                  "This chart shows the average number of attempts needed to solve problems of different difficulty levels. It helps understand how challenging each difficulty level is for you.",
+                  "bar",
+                  attemptsBarData,
+                  ["attempts"],
+                  "difficulty",
+                  "oranges"
                 )
               }
             >
-              <ResponsiveCalendar
-                data={calendarData}
-                from="2024-01-01"
-                to="2024-01-31"
-                emptyColor="hsl(var(--muted))"
-                colors={["hsl(var(--muted-foreground))", "hsl(var(--primary))"]}
-                margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-                yearSpacing={40}
-                monthBorderColor="hsl(var(--border))"
-                dayBorderWidth={1}
-                dayBorderColor="hsl(var(--background))"
+              <ResponsiveBar
+                data={attemptsBarData}
+                keys={["attempts"]}
+                indexBy="difficulty"
+                margin={{ top: 20, right: 20, bottom: 40, left: 50 }}
+                padding={0.3}
+                colors={{ scheme: "oranges" }}
                 theme={commonTheme}
+                axisBottom={{
+                  tickSize: 5,
+                  tickPadding: 5,
+                  tickRotation: 0,
+                }}
+                axisLeft={{
+                  tickSize: 5,
+                  tickPadding: 5,
+                  tickRotation: 0,
+                }}
+                labelSkipWidth={12}
+                labelSkipHeight={12}
+                labelTextColor="hsl(var(--background))"
               />
             </div>
           </div>
@@ -982,13 +1032,7 @@ const StatsPage: React.FC = () => {
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
             <h3 className="text-lg font-semibold mb-4">
-              <Highlighter
-                action="highlight"
-                color="#10b981"
-                animationDuration={600}
-              >
-                Time Spent by Platform
-              </Highlighter>
+              Time Spent by Platform
             </h3>
             <div
               className="h-64"
@@ -1035,14 +1079,7 @@ const StatsPage: React.FC = () => {
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
             <h3 className="text-lg font-semibold mb-4">
-              <Highlighter
-                action="circle"
-                color="#3b82f6"
-                strokeWidth={2}
-                animationDuration={700}
-              >
-                Questions Solved Distribution
-              </Highlighter>
+              Questions Solved Distribution
             </h3>
             <div
               className="h-64"
@@ -1069,20 +1106,48 @@ const StatsPage: React.FC = () => {
             </div>
           </div>
 
+          {/* Average Attempts by Difficulty - spans 4 columns */}
+          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              <Maximize2 className="w-5 h-5 text-muted-foreground" />
+            </div>
+            <h3 className="text-xl font-semibold mb-4">
+              Daily Activity Heatmap
+            </h3>
+            <div
+              className="h-96"
+              onClick={() =>
+                openModal(
+                  "Daily Activity Calendar",
+                  "This calendar heatmap shows your daily coding activity. Darker colors indicate more intense practice days.",
+                  "calendar",
+                  calendarData
+                )
+              }
+            >
+              <ResponsiveCalendar
+                data={calendarData}
+                from="2024-01-01"
+                to="2024-01-31"
+                emptyColor="hsl(var(--muted))"
+                colors={["hsl(var(--muted-foreground))", "hsl(var(--primary))"]}
+                margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
+                yearSpacing={40}
+                monthBorderColor="hsl(var(--border))"
+                dayBorderWidth={1}
+                dayBorderColor="hsl(var(--background))"
+                theme={commonTheme}
+              />
+            </div>
+          </div>
+
           {/* Medium Sunburst - spans 6 columns */}
           <div className="col-span-12 lg:col-span-6 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
             <h3 className="text-xl font-semibold mb-4">
-              <Highlighter
-                action="circle"
-                color="#f87171"
-                strokeWidth={2}
-                animationDuration={800}
-              >
-                Topic Hierarchy Breakdown
-              </Highlighter>
+              Topic Hierarchy Breakdown
             </h3>
             <div
               className="h-80"
@@ -1113,20 +1178,13 @@ const StatsPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Original Charts - Questions by Difficulty - spans 6 columns */}
+          {/* Original Charts - Questions by Difficulty - spans 2 columns */}
           <div className="col-span-12 lg:col-span-6 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
             <h3 className="text-lg font-semibold mb-4">
-              <Highlighter
-                action="underline"
-                color="#f59e0b"
-                strokeWidth={2}
-                animationDuration={600}
-              >
-                Questions by Difficulty
-              </Highlighter>
+              Questions by Difficulty
             </h3>
             <div
               className="h-64"
@@ -1167,23 +1225,14 @@ const StatsPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Original Charts - Monthly Time Trend - spans 6 columns */}
-          <div className="col-span-12 lg:col-span-6 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          {/* Original Charts - Monthly Time Trend - spans 12 columns (full width) */}
+          <div className="col-span-12 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
-            <h3 className="text-lg font-semibold mb-4">
-              <Highlighter
-                action="box"
-                color="#ef4444"
-                strokeWidth={2}
-                animationDuration={700}
-              >
-                Monthly Time Trend
-              </Highlighter>
-            </h3>
+            <h3 className="text-lg font-semibold mb-4">Monthly Time Trend</h3>
             <div
-              className="h-64"
+              className="h-80"
               onClick={() =>
                 openModal(
                   "Monthly Time Trend",
@@ -1236,14 +1285,7 @@ const StatsPage: React.FC = () => {
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
             <h3 className="text-xl font-semibold mb-4">
-              <Highlighter
-                action="bracket"
-                color="#a78bfa"
-                strokeWidth={2}
-                animationDuration={900}
-              >
-                Topic Distribution Treemap
-              </Highlighter>
+              Topic Distribution Treemap
             </h3>
             <div
               className="h-96"
@@ -1261,7 +1303,7 @@ const StatsPage: React.FC = () => {
                 identity="name"
                 value="value"
                 margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
-                colors={{ scheme: "paired" }}
+                colors={isDark ? { scheme: "pastel1" } : { scheme: "paired" }}
                 theme={commonTheme}
                 labelSkipSize={12}
                 labelTextColor="hsl(var(--background))"
@@ -1278,14 +1320,7 @@ const StatsPage: React.FC = () => {
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
             <h3 className="text-xl font-semibold mb-4">
-              <Highlighter
-                action="underline"
-                color="#06b6d4"
-                strokeWidth={2}
-                animationDuration={700}
-              >
-                Problem Solving Funnel
-              </Highlighter>
+              Problem Solving Funnel
             </h3>
             <div
               className="h-96"
@@ -1322,14 +1357,7 @@ const StatsPage: React.FC = () => {
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
             <h3 className="text-lg font-semibold mb-4">
-              <Highlighter
-                action="bracket"
-                color="#8b5cf6"
-                strokeWidth={2}
-                animationDuration={800}
-              >
-                Average Attempts per Question
-              </Highlighter>
+              Average Attempts per Question
             </h3>
             <div
               className="h-64"
@@ -1370,22 +1398,14 @@ const StatsPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Original Charts - Topics Frequency - spans 4 columns */}
-          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          {/* Topics Frequency - spans 8 columns (2/3 width) */}
+          <div className="col-span-12 lg:col-span-8 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
-            <h3 className="text-lg font-semibold mb-4">
-              <Highlighter
-                action="highlight"
-                color="#06b6d4"
-                animationDuration={600}
-              >
-                Topics Frequency
-              </Highlighter>
-            </h3>
+            <h3 className="text-lg font-semibold mb-4">Topics Frequency</h3>
             <div
-              className="h-64"
+              className="h-96"
               onClick={() =>
                 openModal(
                   "Topics Frequency Distribution",
@@ -1404,7 +1424,7 @@ const StatsPage: React.FC = () => {
                 indexBy="topic"
                 margin={{ top: 20, right: 20, bottom: 60, left: 50 }}
                 padding={0.3}
-                colors={{ scheme: "spectral" }}
+                colors={isDark ? { scheme: "set3" } : { scheme: "spectral" }}
                 theme={commonTheme}
                 axisBottom={{
                   tickSize: 5,
@@ -1423,73 +1443,13 @@ const StatsPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Full-width Sankey - spans 12 columns */}
-          <div className="col-span-12 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          {/* Medium Radial Bar - spans 4 columns */}
+          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
-            <h3 className="text-xl font-semibold mb-4">
-              <Highlighter
-                action="highlight"
-                color="#ec4899"
-                animationDuration={800}
-              >
-                Difficulty to Platform Flow
-              </Highlighter>
-            </h3>
-            <div
-              className="h-96"
-              onClick={() =>
-                openModal(
-                  "Difficulty to Platform Flow",
-                  "This Sankey diagram shows the flow of problems from difficulty levels to platforms, illustrating which platforms you prefer for different difficulty levels.",
-                  "sankey",
-                  sankeyData
-                )
-              }
-            >
-              <ResponsiveSankey
-                data={sankeyData}
-                margin={{ top: 40, right: 160, bottom: 40, left: 50 }}
-                colors={{ scheme: "paired" }}
-                theme={commonTheme}
-                nodeOpacity={1}
-                nodeHoverOthersOpacity={0.35}
-                nodeThickness={18}
-                nodeSpacing={24}
-                nodeBorderWidth={0}
-                nodeBorderColor={{
-                  from: "color",
-                  modifiers: [["darker", 0.8]],
-                }}
-                linkOpacity={0.5}
-                linkHoverOthersOpacity={0.1}
-                linkContract={3}
-                enableLinkGradient={true}
-                labelPosition="outside"
-                labelOrientation="horizontal"
-                labelPadding={16}
-                labelTextColor="hsl(var(--foreground))"
-                animate={true}
-                motionConfig="wobbly"
-              />
-            </div>
-          </div>
-
-          {/* Medium Radial Bar - spans 6 columns */}
-          <div className="col-span-12 lg:col-span-6 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
-            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <Maximize2 className="w-5 h-5 text-muted-foreground" />
-            </div>
-            <h3 className="text-xl font-semibold mb-4">
-              <Highlighter
-                action="box"
-                color="#10b981"
-                strokeWidth={2}
-                animationDuration={700}
-              >
-                Success Rates by Platform
-              </Highlighter>
+            <h3 className="text-lg font-semibold mb-4">
+              Success Rates by Platform
             </h3>
             <div
               className="h-80"
@@ -1537,19 +1497,12 @@ const StatsPage: React.FC = () => {
           </div>
 
           {/* Medium Waffle - spans 6 columns */}
-          <div className="col-span-12 lg:col-span-6 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          <div className="col-span-12 lg:col-span-8 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
             <h3 className="text-xl font-semibold mb-4">
-              <Highlighter
-                action="circle"
-                color="#8b5cf6"
-                strokeWidth={2}
-                animationDuration={800}
-              >
-                Difficulty Distribution
-              </Highlighter>
+              Difficulty Distribution
             </h3>
             <div
               className="h-80"
@@ -1591,8 +1544,8 @@ const StatsPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Original Charts - Mistakes by Difficulty - spans 4 columns */}
-          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          {/* Original Charts - Mistakes by Difficulty - spans 8 columns */}
+          <div className="col-span-12 lg:col-span-8 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1600,7 +1553,7 @@ const StatsPage: React.FC = () => {
               Mistakes by Difficulty
             </h3>
             <div
-              className="h-64"
+              className="h-80"
               onClick={() =>
                 openModal(
                   "Mistakes by Difficulty Level",
@@ -1643,16 +1596,7 @@ const StatsPage: React.FC = () => {
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
-            <h3 className="text-xl font-semibold mb-4">
-              <Highlighter
-                action="underline"
-                color="#ef4444"
-                strokeWidth={2}
-                animationDuration={700}
-              >
-                Topic Relationships
-              </Highlighter>
-            </h3>
+            <h3 className="text-lg font-semibold mb-4">Topic Relationships</h3>
             <div
               className="h-96"
               onClick={() =>
@@ -1675,8 +1619,9 @@ const StatsPage: React.FC = () => {
                 nodeColor="hsl(var(--primary))"
                 nodeBorderWidth={1}
                 nodeBorderColor="hsl(var(--background))"
-                linkThickness={2}
-                linkBlendMode="multiply"
+                linkThickness={3}
+                linkBlendMode="normal"
+                linkColor="hsl(var(--muted-foreground))"
                 motionConfig="wobbly"
                 theme={commonTheme}
               />
@@ -1689,13 +1634,7 @@ const StatsPage: React.FC = () => {
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
             <h3 className="text-xl font-semibold mb-4">
-              <Highlighter
-                action="highlight"
-                color="#06b6d4"
-                animationDuration={800}
-              >
-                Success Rate by Difficulty
-              </Highlighter>
+              Success Rate by Difficulty
             </h3>
             <div
               className="h-96"
