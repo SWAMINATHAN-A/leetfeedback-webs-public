@@ -95,9 +95,9 @@ export function ResizableNavbarDemo() {
               )}
               <NavbarButton
                 variant="primary"
-                onClick={() => (window.location.href = "/roadmap")}
+                onClick={() => (window.location.href = "/stats")}
               >
-                Roadmap
+                Stats
               </NavbarButton>
             </div>
           </div>
@@ -187,12 +187,12 @@ export function ResizableNavbarDemo() {
               <NavbarButton
                 onClick={() => {
                   setIsMobileMenuOpen(false);
-                  window.location.href = "/roadmap";
+                  window.location.href = "/stats";
                 }}
                 variant="primary"
                 className="w-full"
               >
-                Roadmap
+                Stats
               </NavbarButton>
             </div>
           </MobileNavExpandableContent>

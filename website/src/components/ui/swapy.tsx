@@ -30,6 +30,7 @@ type Config = {
   manualSwap: boolean;
   swapMode: SwapMode;
   autoScrollOnDrag: boolean;
+  enabled: boolean;
 };
 
 type SwapyLayoutProps = {
@@ -41,6 +42,33 @@ type SwapyLayoutProps = {
   children: React.ReactNode;
 };
 
+// Hook to detect if device is mobile
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      const userAgent = navigator.userAgent;
+      const mobileRegex =
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i;
+      const isTouchDevice =
+        "ontouchstart" in window || navigator.maxTouchPoints > 0;
+      const isSmallScreen = window.innerWidth <= 768;
+
+      setIsMobile(
+        mobileRegex.test(userAgent) || (isTouchDevice && isSmallScreen)
+      );
+    };
+
+    checkIsMobile();
+    window.addEventListener("resize", checkIsMobile);
+
+    return () => window.removeEventListener("resize", checkIsMobile);
+  }, []);
+
+  return isMobile;
+};
+
 export const SwapyLayout = ({
   id,
   onSwap,
@@ -50,21 +78,35 @@ export const SwapyLayout = ({
 }: SwapyLayoutProps) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const swapyRef = useRef<ReturnType<typeof createSwapy> | null>(null);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    swapyRef.current = createSwapy(container, config);
+    // Disable swapy on mobile devices
+    const swapyConfig = {
+      ...config,
+      enabled: !isMobile, // Disable on mobile
+    };
 
-    if (onSwap) {
+    swapyRef.current = createSwapy(container, swapyConfig);
+
+    if (onSwap && !isMobile) {
       swapyRef.current.onSwap(onSwap);
     }
 
     return () => {
       swapyRef.current?.destroy();
     };
-  }, [config, onSwap]);
+  }, [config, onSwap, isMobile]);
+
+  // Update swapy enabled state when mobile state changes
+  useEffect(() => {
+    if (swapyRef.current) {
+      swapyRef.current.enable(!isMobile);
+    }
+  }, [isMobile]);
 
   return (
     <div id={id} ref={containerRef} className={className}>
@@ -74,12 +116,19 @@ export const SwapyLayout = ({
 };
 
 export const DragHandle = ({ className }: { className?: string }) => {
+  const isMobile = useIsMobile();
+
+  // Don't render drag handle on mobile
+  if (isMobile) {
+    return null;
+  }
+
   return (
     <div
       data-swapy-handle
       className={cn(
-        "absolute top-2 left-2 cursor-grab  text-gray-500  rounded-md bg-transparent  active:cursor-grabbing  ",
-        className,
+        "absolute top-2 left-2 cursor-grab text-gray-500 rounded-md bg-transparent active:cursor-grabbing",
+        className
       )}
     >
       <svg
@@ -114,11 +163,15 @@ export const SwapySlot = ({
   className?: string;
   children: React.ReactNode;
 }) => {
+  const isMobile = useIsMobile();
+
   return (
     <div
       className={cn(
-        "data-[swapy-highlighted]:bg-neutral-200 data-[swapy-highlighted]:dark:bg-neutral-800",
-        className,
+        // Only apply swapy highlight styles on desktop
+        !isMobile &&
+          "data-[swapy-highlighted]:bg-neutral-200 data-[swapy-highlighted]:dark:bg-neutral-800",
+        className
       )}
       data-swapy-slot={id}
     >
@@ -144,17 +197,30 @@ export const SwapyItem = ({
   id,
   className,
   children,
-  dragItemOpacity = 100, // default to 100
+  dragItemOpacity = 100,
 }: {
   id: string;
   className?: string;
   children: React.ReactNode;
   dragItemOpacity?: number;
 }) => {
+  const isMobile = useIsMobile();
   const opacityClass =
     dragOpacityClassMap[dragItemOpacity] ?? "data-[swapy-dragging]:opacity-50";
+
   return (
-    <div className={cn(opacityClass, className)} data-swapy-item={id}>
+    <div
+      className={cn(
+        // Only apply drag opacity styles on desktop
+        !isMobile && opacityClass,
+        className
+      )}
+      data-swapy-item={id}
+      style={{
+        // Prevent touch actions that could interfere with scrolling on mobile
+        touchAction: isMobile ? "auto" : "none",
+      }}
+    >
       {children}
     </div>
   );
@@ -178,6 +244,7 @@ export function ProjectViewsCard() {
     </div>
   );
 }
+
 export function NewUsersCard() {
   return (
     <div className="bg-gray-600 rounded-xl h-full p-6 flex flex-col justify-center shadow-md">
@@ -192,9 +259,10 @@ export function NewUsersCard() {
     </div>
   );
 }
+
 export function TeamCard() {
   return (
-    <div className="bg-blue-100 rounded-xl p-6 h-full  flex flex-col justify-between relative overflow-hidden shadow-md">
+    <div className="bg-blue-100 rounded-xl p-6 h-full flex flex-col justify-between relative overflow-hidden shadow-md">
       <div className="bg-blue-300 text-black font-medium px-4 py-2 rounded-xl inline-block mb-4 max-w-fit">
         8 Coding Platforms
       </div>
@@ -222,6 +290,7 @@ export function LogoCard() {
     </div>
   );
 }
+
 export function UserTrustCard() {
   return (
     <div className="bg-blue-600 rounded-xl h-full p-4 flex flex-col justify-center items-center text-white shadow-lg">
@@ -250,6 +319,7 @@ export function UserTrustCard() {
     </div>
   );
 }
+
 export function FontCard() {
   return (
     <div className="bg-yellow-200 rounded-xl h-full p-6 col-span-1 shadow-md">
@@ -264,6 +334,7 @@ export function FontCard() {
     </div>
   );
 }
+
 export function DesignIndustryCard() {
   return (
     <div className="bg-orange-600 text-white rounded-xl h-full p-6 flex flex-col justify-between relative shadow-md">
@@ -275,6 +346,7 @@ export function DesignIndustryCard() {
     </div>
   );
 }
+
 export function CardBalanceCard() {
   return (
     <div className="bg-yellow-200 rounded-xl h-full p-6 shadow-lg">
@@ -358,12 +430,13 @@ const initialItems: Item[] = [
 
 function DefaultSwapy() {
   const [slotItemMap, setSlotItemMap] = useState<SlotItemMapArray>(
-    utils.initSlotItemMap(initialItems, "id"),
+    utils.initSlotItemMap(initialItems, "id")
   );
+  const isMobile = useIsMobile();
 
   const slottedItems = useMemo(
     () => utils.toSlottedItems(initialItems, "id", slotItemMap),
-    [initialItems, slotItemMap],
+    [slotItemMap]
   );
 
   return (
@@ -372,12 +445,16 @@ function DefaultSwapy() {
       className="w-full"
       config={{
         swapMode: "hover",
+        enabled: !isMobile, // Disable on mobile
       }}
       onSwap={(event: { newSlotItemMap: { asArray: any } }) => {
-        console.log("Swap detected!", event.newSlotItemMap.asArray);
+        if (!isMobile) {
+          console.log("Swap detected!", event.newSlotItemMap.asArray);
+          setSlotItemMap(event.newSlotItemMap.asArray);
+        }
       }}
     >
-      <div className="grid w-full  grid-cols-12 gap-2 md:gap-6 py-4">
+      <div className="grid w-full grid-cols-12 gap-2 md:gap-6 py-4">
         {slottedItems.map(({ slotId, itemId }) => {
           const item = initialItems.find((i) => i.id === itemId);
 
@@ -392,6 +469,7 @@ function DefaultSwapy() {
                 className="relative rounded-lg w-full h-full 2xl:text-xl text-sm"
                 key={itemId}
               >
+                <DragHandle />
                 {item?.widgets}
               </SwapyItem>
             </SwapySlot>

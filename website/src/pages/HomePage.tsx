@@ -12,7 +12,6 @@ const HomePage: React.FC = () => {
         <Hero />
         <Features />
         <HowItWorks />
-
       </main>
       <Footer />
     </>
