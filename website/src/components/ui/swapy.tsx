@@ -115,45 +115,6 @@ export const SwapyLayout = ({
   );
 };
 
-export const DragHandle = ({ className }: { className?: string }) => {
-  const isMobile = useIsMobile();
-
-  // Don't render drag handle on mobile
-  if (isMobile) {
-    return null;
-  }
-
-  return (
-    <div
-      data-swapy-handle
-      className={cn(
-        "absolute top-2 left-2 cursor-grab text-gray-500 rounded-md bg-transparent active:cursor-grabbing",
-        className
-      )}
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="lucide lucide-grip-vertical-icon lucide-grip-vertical opacity-80"
-      >
-        <circle cx="9" cy="12" r="1" />
-        <circle cx="9" cy="5" r="1" />
-        <circle cx="9" cy="19" r="1" />
-        <circle cx="15" cy="12" r="1" />
-        <circle cx="15" cy="5" r="1" />
-        <circle cx="15" cy="19" r="1" />
-      </svg>
-    </div>
-  );
-};
-
 export const SwapySlot = ({
   id,
   className,
@@ -445,7 +406,7 @@ function DefaultSwapy() {
       className="w-full"
       config={{
         swapMode: "hover",
-        enabled: !isMobile, // Disable on mobile
+        enabled: false, // Disable drag functionality
       }}
       onSwap={(event: { newSlotItemMap: { asArray: any } }) => {
         if (!isMobile) {
@@ -469,7 +430,6 @@ function DefaultSwapy() {
                 className="relative rounded-lg w-full h-full 2xl:text-xl text-sm"
                 key={itemId}
               >
-                <DragHandle />
                 {item?.widgets}
               </SwapyItem>
             </SwapySlot>
