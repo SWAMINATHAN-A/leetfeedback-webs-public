@@ -165,8 +165,8 @@ const Features: React.FC = () => {
         >
           <div className="flex flex-col items-center justify-center h-full w-full">
             <img
-              src="/src/assets/support-icons/screenshot.png"
-              alt="From ProbContainerScroll"
+              src="/screenshot.png"
+              alt="LeetFeedback Screenshot"
               className="w-full h-full object-cover"
             />
           </div>
