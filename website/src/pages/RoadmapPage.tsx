@@ -1,7 +1,5 @@
 import React from "react";
-import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { DockDemo } from "../components/DockDemo";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import {
@@ -240,7 +238,6 @@ const RoadmapPage: React.FC = () => {
 
   return (
     <>
-      <Header />
       <main>
         {/* Hero Section */}
         <section id="roadmap" className="relative overflow-hidden pt-20 pb-32">
@@ -565,7 +562,6 @@ const RoadmapPage: React.FC = () => {
         </section>
       </main>
       <Footer />
-      <DockDemo />
     </>
   );
 };

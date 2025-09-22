@@ -118,6 +118,14 @@ module.exports = {
                         opacity: "0.4",
                     },
                 },
+                aurora: {
+                    "0%, 100%": {
+                        backgroundPosition: "0% 50%",
+                    },
+                    "50%": {
+                        backgroundPosition: "100% 50%",
+                    },
+                },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
@@ -127,6 +135,7 @@ module.exports = {
                 ripple: "ripple 2s ease-in-out infinite",
                 "line-shadow": "line-shadow 35s linear infinite",
                 "cell-ripple": "cell-ripple var(--duration, 300ms) ease-out",
+                aurora: "aurora 4s ease-in-out infinite",
             },
         },
     },
