@@ -222,7 +222,7 @@ const StatsPage: React.FC = () => {
             indexBy={indexBy || "platform"}
             margin={{ top: 50, right: 130, bottom: 100, left: 80 }}
             padding={0.3}
-            colors={{ scheme: colorScheme || "paired" }}
+            colors={colorScheme || "paired"}
             theme={commonTheme}
             axisBottom={{
               tickSize: 5,
@@ -474,7 +474,7 @@ const StatsPage: React.FC = () => {
           <ResponsiveHeatMap
             data={data}
             margin={{ top: 60, right: 90, bottom: 60, left: 90 }}
-            colors={{ scheme: "greens" }}
+            colors={{ type: "quantize", scheme: "greens" }}
             theme={commonTheme}
             axisTop={null}
             axisRight={null}
@@ -488,9 +488,6 @@ const StatsPage: React.FC = () => {
               tickPadding: 5,
               tickRotation: 0,
             }}
-            cellOpacity={1}
-            cellBorderColor="hsl(var(--background))"
-            labelTextColor="hsl(var(--background))"
             animate={true}
             motionConfig="wobbly"
           />
@@ -617,7 +614,7 @@ const StatsPage: React.FC = () => {
             columns={10}
             fillDirection="top"
             padding={1}
-            cellComponent="circle"
+            // cellComponent="circle"
             animate={true}
             motionConfig="wobbly"
             legends={[
@@ -650,7 +647,6 @@ const StatsPage: React.FC = () => {
             axisTop={null}
             axisRight={null}
             axisBottom={{
-              orient: "bottom",
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
@@ -659,7 +655,6 @@ const StatsPage: React.FC = () => {
               legendOffset: 46,
             }}
             axisLeft={{
-              orient: "left",
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,

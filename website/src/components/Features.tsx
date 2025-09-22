@@ -37,6 +37,7 @@ import InsightsIcon from "@mui/icons-material/Insights";
 import GroupsIcon from "@mui/icons-material/Groups";
 import LinkIcon from "@mui/icons-material/Link";
 import DefaultSwapy from "./ui/swapy";
+import { ContainerScroll } from "./ui/container-scroll-animation";
 
 const Features: React.FC = () => {
   const primaryFeatures = [
@@ -149,6 +150,49 @@ const Features: React.FC = () => {
       className="py-24 bg-background border-t border-border/20"
     >
       <div className="container mx-auto px-4 md:px-8">
+        {/* Container Scroll Animation */}
+        <ContainerScroll
+          titleComponent={
+            <div className="text-center">
+              <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-4">
+                Transform Your Coding Journey
+              </h1>
+              <p className="text-xl text-muted-foreground">
+                Watch how AI turns your practice into progress
+              </p>
+            </div>
+          }
+        >
+          <div className="flex flex-col items-center justify-center h-full text-center p-8">
+            <div className="max-w-2xl">
+              <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                From Problems to Mastery
+              </h3>
+              <p className="text-lg text-muted-foreground mb-6">
+                Every solution you write gets analyzed, every mistake becomes a learning opportunity,
+                and every session builds your coding portfolio automatically.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
+                <div className="bg-card/50 p-4 rounded-lg border border-border">
+                  <GitHubIcon className="w-6 h-6 text-primary mb-2" />
+                  <h4 className="font-semibold text-foreground">Auto GitHub Push</h4>
+                  <p className="text-sm text-muted-foreground">Solutions committed instantly</p>
+                </div>
+                <div className="bg-card/50 p-4 rounded-lg border border-border">
+                  <NotesIcon className="w-6 h-6 text-primary mb-2" />
+                  <h4 className="font-semibold text-foreground">Notion Insights</h4>
+                  <p className="text-sm text-muted-foreground">Structured learning notes</p>
+                </div>
+                <div className="bg-card/50 p-4 rounded-lg border border-border">
+                  <StyleIcon className="w-6 h-6 text-primary mb-2" />
+                  <h4 className="font-semibold text-foreground">Anki Cards</h4>
+                  <p className="text-sm text-muted-foreground">Spaced repetition learning</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ContainerScroll>
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
           <BlurFade delay={0.25}>
