@@ -45,6 +45,7 @@ export function DockDemo() {
   const isHomePage = location.pathname === "/";
   const isRoadmapPage = location.pathname === "/roadmap";
   const isProfilePage = location.pathname === "/profile";
+  const isStatsPage = location.pathname === "/profile/stats";
 
   const renderRightSection = () => {
     if (isHomePage) {
@@ -110,6 +111,34 @@ export function DockDemo() {
       );
     } else if (isProfilePage) {
       // Profile page: Show home link + theme switch
+      return (
+        <>
+          <DockIcon>
+            <button
+              onClick={() => (window.location.href = "/")}
+              aria-label="Home"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
+              )}
+            >
+              <HomeIcon className="md:size-6 size-5 text-foreground" />
+            </button>
+          </DockIcon>
+          <DockIcon>
+            <div
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+              )}
+            >
+              <AnimatedThemeToggler />
+            </div>
+          </DockIcon>
+        </>
+      );
+    } else if (isStatsPage) {
+      // Stats page: Show home link + theme switch
       return (
         <>
           <DockIcon>

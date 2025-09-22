@@ -12,17 +12,20 @@ import { AuthProvider } from "./contexts/AuthContext";
 import HomePage from "./pages/HomePage";
 import RoadmapPage from "./pages/RoadmapPage";
 import SimpleProfilePage from "./pages/SimpleProfilePage";
+import StatsPage from "./pages/StatsPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import { ProgressiveBlur } from "./components/magicui/progressive-blur";
 import { MobileScrollNav } from "./components/MobileScrollNav";
 import { BackgroundRippleEffect } from "./components/ui/background-ripple-effect";
 import { DockDemo } from "./components/DockDemo";
+import Header from "./components/Header";
 import "./App.css";
 
 function AppContent() {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const isStatsPage = location.pathname === "/profile/stats";
 
   return (
     <div className="App min-h-screen relative">
@@ -37,10 +40,12 @@ function AppContent() {
 
       {/* Content overlay */}
       <div className="relative z-10">
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/roadmap" element={<RoadmapPage />} />
           <Route path="/profile" element={<SimpleProfilePage />} />
+          <Route path="/profile/stats" element={<StatsPage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/terms" element={<TermsOfServicePage />} />
         </Routes>
@@ -53,8 +58,8 @@ function AppContent() {
         className="fixed bottom-0 left-0 right-0 z-40 pointer-events-none"
       />
       
-      {/* Dock - only show on home page */}
-      {isHomePage && <DockDemo />}
+      {/* Dock - show on home page and stats page */}
+      {(isHomePage || isStatsPage) && <DockDemo />}
     </div>
   );
 }
