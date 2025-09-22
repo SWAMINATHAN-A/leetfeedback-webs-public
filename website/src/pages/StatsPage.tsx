@@ -885,11 +885,16 @@ const StatsPage: React.FC = () => {
           <div className="bg-card border border-border rounded-xl px-8 py-8 max-w-lg w-full relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] overflow-hidden">
             {(() => {
               const getRippleColors = (streak: number) => {
-                if (streak >= 100) return "[&>div]:bg-yellow-500/25 [&>div]:border-yellow-500/50"; // Gold for legendary streaks
-                if (streak >= 50) return "[&>div]:bg-purple-500/25 [&>div]:border-purple-500/50"; // Purple for high streaks
-                if (streak >= 25) return "[&>div]:bg-red-600/25 [&>div]:border-red-600/50"; // Deep red for good streaks
-                if (streak >= 10) return "[&>div]:bg-red-500/25 [&>div]:border-red-500/50"; // Standard red for decent streaks
-                if (streak >= 5) return "[&>div]:bg-orange-500/25 [&>div]:border-orange-500/50"; // Orange for building streaks
+                if (streak >= 100)
+                  return "[&>div]:bg-yellow-500/25 [&>div]:border-yellow-500/50"; // Gold for legendary streaks
+                if (streak >= 50)
+                  return "[&>div]:bg-purple-500/25 [&>div]:border-purple-500/50"; // Purple for high streaks
+                if (streak >= 25)
+                  return "[&>div]:bg-red-600/25 [&>div]:border-red-600/50"; // Deep red for good streaks
+                if (streak >= 10)
+                  return "[&>div]:bg-red-500/25 [&>div]:border-red-500/50"; // Standard red for decent streaks
+                if (streak >= 5)
+                  return "[&>div]:bg-orange-500/25 [&>div]:border-orange-500/50"; // Orange for building streaks
                 return "[&>div]:bg-gray-400/25 [&>div]:border-gray-400/50"; // Gray for low streaks
               };
 
@@ -906,14 +911,21 @@ const StatsPage: React.FC = () => {
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
             <div className="text-center relative z-10">
-              <SparklesText className={`text-8xl font-extrabold ${
-                overallStreak >= 100 ? "text-yellow-500" :
-                overallStreak >= 50 ? "text-purple-500" :
-                overallStreak >= 25 ? "text-red-600" :
-                overallStreak >= 10 ? "text-red-500" :
-                overallStreak >= 5 ? "text-orange-500" :
-                "text-gray-400"
-              }`}>
+              <SparklesText
+                className={`text-8xl font-extrabold ${
+                  overallStreak >= 100
+                    ? "text-yellow-500"
+                    : overallStreak >= 50
+                    ? "text-purple-500"
+                    : overallStreak >= 25
+                    ? "text-red-600"
+                    : overallStreak >= 10
+                    ? "text-red-500"
+                    : overallStreak >= 5
+                    ? "text-orange-500"
+                    : "text-gray-400"
+                }`}
+              >
                 <NumberTicker value={overallStreak} />
               </SparklesText>
               <p className="text-muted-foreground mt-4 text-lg">
