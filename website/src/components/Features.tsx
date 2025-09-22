@@ -272,49 +272,95 @@ const Features: React.FC = () => {
             </LampContainer>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {primaryFeatures.map((feature, index) => (
-              <BlurFade key={index} delay={1 + index * 0.2}>
-                <Card className="group hover:shadow-xl transition-all duration-300 border-2 border-border bg-card/50 relative overflow-hidden hover:border-white/20">
-                  {/* Highlight Badge */}
-                  <div className="absolute top-0 right-0 bg-foreground text-background text-xs px-3 py-1 rounded-bl-md font-mono font-semibold">
-                    FEATURED
-                  </div>
+            {/* GitHub Integration Card */}
+            <div className="bg-gray-800 text-white rounded-xl h-full p-6 flex flex-col justify-between relative shadow-lg hover:shadow-xl transition-all duration-300">
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <GitHubIcon className="w-8 h-8" />
+                  <Badge className="text-xs bg-gray-700 text-white font-mono">
+                    Core
+                  </Badge>
+                </div>
+                <h3 className="text-xl font-bold mb-3">GitHub Integration</h3>
+                <p className="text-gray-300 mb-4 leading-relaxed">
+                  Automatically push your solutions and AI feedback notes to a GitHub repo.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-center text-sm text-gray-300">
+                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
+                    Auto-commit solutions and AI analysis
+                  </li>
+                  <li className="flex items-center text-sm text-gray-300">
+                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
+                    Progress tracking
+                  </li>
+                  <li className="flex items-center text-sm text-gray-300">
+                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
+                    Portfolio building
+                  </li>
+                </ul>
+              </div>
+            </div>
 
-                  <CardHeader className="space-y-4 pt-8">
-                    <div className="flex items-center justify-between">
-                      <div className="text-foreground group-hover:scale-110 transition-transform duration-300">
-                        {feature.icon}
-                      </div>
-                      <Badge
-                        variant="outline"
-                        className="text-xs bg-muted/30 font-mono"
-                      >
-                        {feature.badge}
-                      </Badge>
-                    </div>
-                    <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                      {feature.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <CardDescription className="text-muted-foreground leading-relaxed">
-                      {feature.description}
-                    </CardDescription>
-                    <ul className="space-y-2">
-                      {feature.benefits.map((benefit, benefitIndex) => (
-                        <li
-                          key={benefitIndex}
-                          className="flex items-center text-sm text-muted-foreground"
-                        >
-                          <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
-                          {benefit}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </BlurFade>
-            ))}
+            {/* Notion Sync Card */}
+            <div className="bg-blue-600 text-white rounded-xl h-full p-6 flex flex-col justify-between relative shadow-lg hover:shadow-xl transition-all duration-300">
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <NotesIcon className="w-8 h-8" />
+                  <Badge className="text-xs bg-blue-500 text-white font-mono">
+                    Productivity
+                  </Badge>
+                </div>
+                <h3 className="text-xl font-bold mb-3">Notion Sync</h3>
+                <p className="text-blue-100 mb-4 leading-relaxed">
+                  Export insights and tagged mistakes your Notion workspace.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-center text-sm text-blue-100">
+                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
+                    Structured notes
+                  </li>
+                  <li className="flex items-center text-sm text-blue-100">
+                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
+                    Mistake tags
+                  </li>
+                  <li className="flex items-center text-sm text-blue-100">
+                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
+                    Team collaboration
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {/* Anki Cards Generation Card */}
+            <div className="bg-emerald-600 text-white rounded-xl h-full p-6 flex flex-col justify-between relative shadow-lg hover:shadow-xl transition-all duration-300">
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <StyleIcon className="w-8 h-8" />
+                  <Badge className="text-xs bg-emerald-500 text-white font-mono">
+                    Revision
+                  </Badge>
+                </div>
+                <h3 className="text-xl font-bold mb-3">Anki Cards Generation</h3>
+                <p className="text-emerald-100 mb-4 leading-relaxed">
+                  Generate Anki cards from your mistakes, Tagged by mistake type and questions.
+                </p>
+                <ul className="space-y-2">
+                  <li className="flex items-center text-sm text-emerald-100">
+                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
+                    Auto-generated cards
+                  </li>
+                  <li className="flex items-center text-sm text-emerald-100">
+                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
+                    Spaced repetition
+                  </li>
+                  <li className="flex items-center text-sm text-emerald-100">
+                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
+                    Memory retention
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 

@@ -64,7 +64,7 @@ const Hero: React.FC = () => {
               filter: { duration: 0.6 }
             }}
           >
-            Master DSA with AI-Powered Insights
+          The Complete Learning Ecosystem
           </motion.h1>
 
           {/* Subheadline */}

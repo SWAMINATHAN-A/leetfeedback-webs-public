@@ -95,7 +95,7 @@ export function ResizableNavbarDemo() {
               )}
               <NavbarButton
                 variant="primary"
-                onClick={() => (window.location.href = "/stats")}
+                onClick={() => (window.location.href = "/profile/stats")}
               >
                 Stats
               </NavbarButton>
@@ -187,7 +187,7 @@ export function ResizableNavbarDemo() {
               <NavbarButton
                 onClick={() => {
                   setIsMobileMenuOpen(false);
-                  window.location.href = "/stats";
+                  window.location.href = "/profile/stats";
                 }}
                 variant="primary"
                 className="w-full"

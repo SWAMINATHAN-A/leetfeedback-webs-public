@@ -1,8 +1,6 @@
 "use client";
 import type React from "react";
-import { useEffect, useRef, useMemo, useState } from "react";
-import { createSwapy, type SlotItemMapArray, utils } from "swapy";
-import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
 import {
   Heart,
   PlusCircle,
@@ -36,7 +34,7 @@ type Config = {
 type SwapyLayoutProps = {
   id: string;
   enable?: boolean;
-  onSwap?: (event: { newSlotItemMap: { asArray: SlotItemMapArray } }) => void;
+  onSwap?: (event: { newSlotItemMap: { asArray: any } }) => void;
   config?: Partial<Config>;
   className?: string;
   children: React.ReactNode;
@@ -67,124 +65,6 @@ const useIsMobile = () => {
   }, []);
 
   return isMobile;
-};
-
-export const SwapyLayout = ({
-  id,
-  onSwap,
-  config = {},
-  className,
-  children,
-}: SwapyLayoutProps) => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const swapyRef = useRef<ReturnType<typeof createSwapy> | null>(null);
-  const isMobile = useIsMobile();
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    // Disable swapy on mobile devices
-    const swapyConfig = {
-      ...config,
-      enabled: !isMobile, // Disable on mobile
-    };
-
-    swapyRef.current = createSwapy(container, swapyConfig);
-
-    if (onSwap && !isMobile) {
-      swapyRef.current.onSwap(onSwap);
-    }
-
-    return () => {
-      swapyRef.current?.destroy();
-    };
-  }, [config, onSwap, isMobile]);
-
-  // Update swapy enabled state when mobile state changes
-  useEffect(() => {
-    if (swapyRef.current) {
-      swapyRef.current.enable(!isMobile);
-    }
-  }, [isMobile]);
-
-  return (
-    <div id={id} ref={containerRef} className={className}>
-      {children}
-    </div>
-  );
-};
-
-export const SwapySlot = ({
-  id,
-  className,
-  children,
-}: {
-  id: string;
-  className?: string;
-  children: React.ReactNode;
-}) => {
-  const isMobile = useIsMobile();
-
-  return (
-    <div
-      className={cn(
-        // Only apply swapy highlight styles on desktop
-        !isMobile &&
-          "data-[swapy-highlighted]:bg-neutral-200 data-[swapy-highlighted]:dark:bg-neutral-800",
-        className
-      )}
-      data-swapy-slot={id}
-    >
-      {children}
-    </div>
-  );
-};
-
-const dragOpacityClassMap: Record<number, string> = {
-  10: "data-[swapy-dragging]:opacity-10",
-  20: "data-[swapy-dragging]:opacity-20",
-  30: "data-[swapy-dragging]:opacity-30",
-  40: "data-[swapy-dragging]:opacity-40",
-  50: "data-[swapy-dragging]:opacity-50",
-  60: "data-[swapy-dragging]:opacity-60",
-  70: "data-[swapy-dragging]:opacity-70",
-  80: "data-[swapy-dragging]:opacity-80",
-  90: "data-[swapy-dragging]:opacity-90",
-  100: "data-[swapy-dragging]:opacity-100",
-};
-
-export const SwapyItem = ({
-  id,
-  className,
-  children,
-  dragItemOpacity = 100,
-}: {
-  id: string;
-  className?: string;
-  children: React.ReactNode;
-  dragItemOpacity?: number;
-}) => {
-  const isMobile = useIsMobile();
-  const opacityClass =
-    dragOpacityClassMap[dragItemOpacity] ?? "data-[swapy-dragging]:opacity-50";
-
-  return (
-    <div
-      className={cn(
-        // Only apply drag opacity styles on desktop
-        !isMobile && opacityClass,
-        className
-      )}
-      data-swapy-item={id}
-      style={{
-        // Prevent touch actions that could interfere with scrolling on mobile
-        touchAction: isMobile ? "auto" : "none",
-      }}
-    >
-      {children}
-    </div>
-  );
 };
 
 export function ProjectViewsCard() {
@@ -338,105 +218,54 @@ type Item = {
   className?: string;
 };
 
-const initialItems: Item[] = [
-  {
-    id: "1",
-    title: "1",
-    widgets: <ProjectViewsCard />,
-    className: "lg:col-span-4 sm:col-span-7 col-span-12",
-  },
-  {
-    id: "2",
-    title: "2",
-    widgets: <NewUsersCard />,
-    className: "lg:col-span-3 sm:col-span-5 col-span-12",
-  },
-  {
-    id: "3",
-    title: "3",
-    widgets: <DesignIndustryCard />,
-    className: "lg:col-span-5 sm:col-span-5 col-span-12",
-  },
-  {
-    id: "4",
-    title: "4",
-    widgets: <TeamCard />,
-    className: "lg:col-span-5 sm:col-span-7 col-span-12",
-  },
-  {
-    id: "5",
-    title: "5",
-    widgets: <LogoCard />,
-    className: "lg:col-span-4 sm:col-span-6 col-span-12",
-  },
-  {
-    id: "6",
-    title: "6",
-    widgets: <FontCard />,
-    className: "lg:col-span-3 sm:col-span-6 col-span-12",
-  },
-  {
-    id: "8",
-    title: "8",
-    widgets: <UserTrustCard />,
-    className: "lg:col-span-4 sm:col-span-7 col-span-12",
-  },
-  {
-    id: "9",
-    title: "9",
-    widgets: <CardBalanceCard />,
-    className: "lg:col-span-4 sm:col-span-12 col-span-12",
-  },
-];
-
 function DefaultSwapy() {
-  const [slotItemMap, setSlotItemMap] = useState<SlotItemMapArray>(
-    utils.initSlotItemMap(initialItems, "id")
-  );
   const isMobile = useIsMobile();
 
-  const slottedItems = useMemo(
-    () => utils.toSlottedItems(initialItems, "id", slotItemMap),
-    [slotItemMap]
-  );
-
   return (
-    <SwapyLayout
-      id="swapy"
-      className="w-full"
-      config={{
-        swapMode: "hover",
-        enabled: false, // Disable drag functionality
-      }}
-      onSwap={(event: { newSlotItemMap: { asArray: any } }) => {
-        if (!isMobile) {
-          console.log("Swap detected!", event.newSlotItemMap.asArray);
-          setSlotItemMap(event.newSlotItemMap.asArray);
-        }
-      }}
-    >
+    <div className="w-full">
       <div className="grid w-full grid-cols-12 gap-2 md:gap-6 py-4">
-        {slottedItems.map(({ slotId, itemId }) => {
-          const item = initialItems.find((i) => i.id === itemId);
+        {/* Row 1 */}
+        <div className="lg:col-span-4 sm:col-span-7 col-span-12">
+          <ProjectViewsCard />
+        </div>
+        <div className="lg:col-span-3 sm:col-span-5 col-span-12">
+          <NewUsersCard />
+        </div>
+        <div className="lg:col-span-5 sm:col-span-5 col-span-12">
+          <DesignIndustryCard />
+        </div>
 
-          return (
-            <SwapySlot
-              key={slotId}
-              className={`swapyItem rounded-lg h-64 ${item?.className}`}
-              id={slotId}
-            >
-              <SwapyItem
-                id={itemId}
-                className="relative rounded-lg w-full h-full 2xl:text-xl text-sm"
-                key={itemId}
-              >
-                {item?.widgets}
-              </SwapyItem>
-            </SwapySlot>
-          );
-        })}
+        {/* Row 2 */}
+        <div className="lg:col-span-5 sm:col-span-7 col-span-12">
+          <TeamCard />
+        </div>
+        <div className="lg:col-span-4 sm:col-span-6 col-span-12">
+          <LogoCard />
+        </div>
+        <div className="lg:col-span-3 sm:col-span-6 col-span-12">
+          <FontCard />
+        </div>
+
+        {/* Row 3 */}
+        <div className="lg:col-span-4 sm:col-span-7 col-span-12">
+          <UserTrustCard />
+        </div>
+        <div className="lg:col-span-4 sm:col-span-12 col-span-12">
+          <CardBalanceCard />
+        </div>
+        <div className="lg:col-span-4 sm:col-span-6 col-span-12">
+          <div className="bg-purple-600 rounded-xl h-full p-6 flex flex-col justify-center items-center text-center shadow-md">
+            <div className="w-16 h-16 mb-4">
+              <Link className="w-full h-full text-purple-200" />
+            </div>
+            <h2 className="text-2xl font-bold text-white mb-2">
+              Mistake Learning
+            </h2>
+            <p className="text-purple-100 text-sm">AI-powered error analysis</p>
+          </div>
+        </div>
       </div>
-    </SwapyLayout>
+    </div>
   );
 }
 
