@@ -169,24 +169,35 @@ const Features: React.FC = () => {
                 From Problems to Mastery
               </h3>
               <p className="text-lg text-muted-foreground mb-6">
-                Every solution you write gets analyzed, every mistake becomes a learning opportunity,
-                and every session builds your coding portfolio automatically.
+                Every solution you write gets analyzed, every mistake becomes a
+                learning opportunity, and every session builds your coding
+                portfolio automatically.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-left">
                 <div className="bg-card/50 p-4 rounded-lg border border-border">
                   <GitHubIcon className="w-6 h-6 text-primary mb-2" />
-                  <h4 className="font-semibold text-foreground">Auto GitHub Push</h4>
-                  <p className="text-sm text-muted-foreground">Solutions committed instantly</p>
+                  <h4 className="font-semibold text-foreground">
+                    Auto GitHub Push
+                  </h4>
+                  <p className="text-sm text-muted-foreground">
+                    Solutions committed instantly
+                  </p>
                 </div>
                 <div className="bg-card/50 p-4 rounded-lg border border-border">
                   <NotesIcon className="w-6 h-6 text-primary mb-2" />
-                  <h4 className="font-semibold text-foreground">Notion Insights</h4>
-                  <p className="text-sm text-muted-foreground">Structured learning notes</p>
+                  <h4 className="font-semibold text-foreground">
+                    Notion Insights
+                  </h4>
+                  <p className="text-sm text-muted-foreground">
+                    Structured learning notes
+                  </p>
                 </div>
                 <div className="bg-card/50 p-4 rounded-lg border border-border">
                   <StyleIcon className="w-6 h-6 text-primary mb-2" />
                   <h4 className="font-semibold text-foreground">Anki Cards</h4>
-                  <p className="text-sm text-muted-foreground">Spaced repetition learning</p>
+                  <p className="text-sm text-muted-foreground">
+                    Spaced repetition learning
+                  </p>
                 </div>
               </div>
             </div>
@@ -327,7 +338,8 @@ const Features: React.FC = () => {
                 </div>
                 <h3 className="text-xl font-bold mb-3">GitHub Integration</h3>
                 <p className="text-gray-300 mb-4 leading-relaxed">
-                  Automatically push your solutions and AI feedback notes to a GitHub repo.
+                  Automatically push your solutions and AI feedback notes to a
+                  GitHub repo.
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-center text-sm text-gray-300">
@@ -385,9 +397,12 @@ const Features: React.FC = () => {
                     Revision
                   </Badge>
                 </div>
-                <h3 className="text-xl font-bold mb-3">Anki Cards Generation</h3>
+                <h3 className="text-xl font-bold mb-3">
+                  Anki Cards Generation
+                </h3>
                 <p className="text-emerald-100 mb-4 leading-relaxed">
-                  Generate Anki cards from your mistakes, Tagged by mistake type and questions.
+                  Generate Anki cards from your mistakes, Tagged by mistake type
+                  and questions.
                 </p>
                 <ul className="space-y-2">
                   <li className="flex items-center text-sm text-emerald-100">

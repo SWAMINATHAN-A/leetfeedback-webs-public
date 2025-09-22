@@ -163,6 +163,48 @@ const StatsPage: React.FC = () => {
     },
   };
 
+  const [pastelColors, setPastelColors] = useState<string[]>([]);
+
+  // Update pastel colors when theme changes
+  useEffect(() => {
+    const updateColors = () => {
+      const isDark = document.documentElement.classList.contains('dark');
+      setPastelColors(isDark ? [
+        '#FFB3BA', // pastel red
+        '#BAFFC9', // pastel green
+        '#BAE1FF', // pastel blue
+        '#FFFFBA', // pastel yellow
+        '#FFDFBA', // pastel orange
+        '#E0BAFF', // pastel purple
+        '#FFB3D9', // pastel pink
+        '#B3FFE3', // pastel mint
+      ] : [
+        '#FF9999', // darker pastel red
+        '#99FF99', // darker pastel green
+        '#9999FF', // darker pastel blue
+        '#FFFF99', // darker pastel yellow
+        '#FFCC99', // darker pastel orange
+        '#CC99FF', // darker pastel purple
+        '#FF99CC', // darker pastel pink
+        '#99FFCC', // darker pastel mint
+      ]);
+    };
+
+    updateColors();
+    
+    // Listen for theme changes
+    const observer = new MutationObserver(updateColors);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Pastel color schemes that adapt to dark/light mode
+  const getPastelColors = () => pastelColors;
+
   const openModal = (
     title: string,
     description: string,
@@ -222,7 +264,7 @@ const StatsPage: React.FC = () => {
             indexBy={indexBy || "platform"}
             margin={{ top: 50, right: 130, bottom: 100, left: 80 }}
             padding={0.3}
-            colors={colorScheme || "paired"}
+            colors={getPastelColors()}
             theme={commonTheme}
             axisBottom={{
               tickSize: 5,
@@ -275,7 +317,7 @@ const StatsPage: React.FC = () => {
             innerRadius={0.4}
             padAngle={1}
             cornerRadius={4}
-            colors={{ scheme: "paired" }}
+            colors={getPastelColors()}
             theme={commonTheme}
             borderWidth={2}
             borderColor="hsl(var(--background))"
@@ -331,9 +373,7 @@ const StatsPage: React.FC = () => {
               tickPadding: 5,
               tickRotation: 0,
             }}
-            colors={{ scheme: "paired" }}
-            theme={commonTheme}
-            pointSize={12}
+            colors={getPastelColors()}
             pointColor="hsl(var(--background))"
             pointBorderWidth={3}
             pointBorderColor="hsl(var(--foreground))"
@@ -389,8 +429,7 @@ const StatsPage: React.FC = () => {
             enableDotLabel={true}
             dotLabel="value"
             dotLabelYOffset={-12}
-            colors={{ scheme: "paired" }}
-            fillOpacity={0.25}
+            colors={getPastelColors()}
             blendMode="multiply"
             animate={true}
             motionConfig="wobbly"
@@ -460,7 +499,7 @@ const StatsPage: React.FC = () => {
             from="2024-01-01"
             to="2024-01-31"
             emptyColor="hsl(var(--muted))"
-            colors={["hsl(var(--muted-foreground))", "hsl(var(--primary))"]}
+            colors={getPastelColors().slice(0, 2)}
             margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
             yearSpacing={40}
             monthBorderColor="hsl(var(--border))"
@@ -549,9 +588,7 @@ const StatsPage: React.FC = () => {
           <ResponsiveSankey
             data={data}
             margin={{ top: 40, right: 160, bottom: 40, left: 50 }}
-            colors={{ scheme: "paired" }}
-            theme={commonTheme}
-            nodeOpacity={1}
+            colors={getPastelColors()}
             nodeHoverOthersOpacity={0.35}
             nodeThickness={18}
             nodeSpacing={24}
@@ -577,7 +614,7 @@ const StatsPage: React.FC = () => {
           <ResponsiveRadialBar
             data={data}
             margin={{ top: 40, right: 120, bottom: 40, left: 40 }}
-            colors={{ scheme: "paired" }}
+            colors={getPastelColors()}
             theme={commonTheme}
             borderColor="hsl(var(--background))"
             tracksColor="hsl(var(--muted))"
@@ -641,9 +678,7 @@ const StatsPage: React.FC = () => {
             xFormat=">-.2f"
             yScale={{ type: "linear", min: 0, max: "auto" }}
             yFormat=">-.2f"
-            colors={{ scheme: "paired" }}
-            theme={commonTheme}
-            blendMode="multiply"
+            colors={getPastelColors()}
             axisTop={null}
             axisRight={null}
             axisBottom={{
@@ -689,7 +724,7 @@ const StatsPage: React.FC = () => {
               "CodeForces",
             ]}
             margin={{ top: 60, right: 60, bottom: 90, left: 60 }}
-            colors={["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd"]}
+            colors={getPastelColors()}
             theme={commonTheme}
             padAngle={0.02}
             innerRadiusRatio={0.96}
@@ -795,9 +830,7 @@ const StatsPage: React.FC = () => {
               },
             ]}
             margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
-            colors={{ scheme: "paired" }}
-            theme={commonTheme}
-            strokeWidth={2}
+            colors={getPastelColors()}
             lineOpacity={0.35}
             animate={true}
             motionConfig="wobbly"
@@ -817,12 +850,25 @@ const StatsPage: React.FC = () => {
 
         {/* Overall Streak Card */}
         <div className="mb-8">
-          <div className="bg-card border border-border rounded-lg p-6 text-center">
-            <h2 className="text-2xl font-semibold mb-2">Current Streak</h2>
-            <SparklesText className="text-6xl font-bold text-primary">
-              <NumberTicker value={overallStreak} />
-            </SparklesText>
-            <p className="text-muted-foreground">consecutive days</p>
+          <div className="bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              <Maximize2 className="w-5 h-5 text-muted-foreground" />
+            </div>
+            <h3 className="text-xl font-semibold mb-4">
+              <Highlighter
+                action="highlight"
+                color="#ffd1dc"
+                animationDuration={800}
+              >
+                Current Streak
+              </Highlighter>
+            </h3>
+            <div className="text-center">
+              <SparklesText className="text-6xl font-bold text-primary">
+                <NumberTicker value={overallStreak} />
+              </SparklesText>
+              <p className="text-muted-foreground mt-2">consecutive days</p>
+            </div>
           </div>
         </div>
 
@@ -1019,57 +1065,6 @@ const StatsPage: React.FC = () => {
                 theme={commonTheme}
                 borderWidth={1}
                 borderColor="hsl(var(--background))"
-              />
-            </div>
-          </div>
-
-          {/* Medium Heatmap - spans 6 columns */}
-          <div className="col-span-12 lg:col-span-6 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
-            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <Maximize2 className="w-5 h-5 text-muted-foreground" />
-            </div>
-            <h3 className="text-xl font-semibold mb-4">
-              <Highlighter
-                action="box"
-                color="#fbbf24"
-                strokeWidth={2}
-                animationDuration={700}
-              >
-                Topic vs Difficulty Matrix
-              </Highlighter>
-            </h3>
-            <div
-              className="h-80"
-              onClick={() =>
-                openModal(
-                  "Topic vs Difficulty Correlation",
-                  "This heatmap shows the correlation between algorithmic topics and difficulty levels. Darker cells indicate more practice in that combination.",
-                  "heatmap",
-                  heatmapData
-                )
-              }
-            >
-              <ResponsiveHeatMap
-                data={heatmapData}
-                margin={{ top: 40, right: 60, bottom: 40, left: 60 }}
-                colors={{ type: "sequential", scheme: "greens" }}
-                theme={commonTheme}
-                axisTop={null}
-                axisRight={null}
-                axisBottom={{
-                  tickSize: 5,
-                  tickPadding: 5,
-                  tickRotation: -45,
-                }}
-                axisLeft={{
-                  tickSize: 5,
-                  tickPadding: 5,
-                  tickRotation: 0,
-                }}
-                borderColor="hsl(var(--background))"
-                labelTextColor="hsl(var(--background))"
-                animate={true}
-                motionConfig="wobbly"
               />
             </div>
           </div>
@@ -1643,77 +1638,6 @@ const StatsPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Large Scatter Plot - spans 8 columns */}
-          <div className="col-span-12 lg:col-span-8 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
-            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <Maximize2 className="w-5 h-5 text-muted-foreground" />
-            </div>
-            <h3 className="text-xl font-semibold mb-4">
-              <Highlighter
-                action="bracket"
-                color="#f59e0b"
-                strokeWidth={2}
-                animationDuration={900}
-              >
-                Time vs Attempts Correlation
-              </Highlighter>
-            </h3>
-            <div
-              className="h-96"
-              onClick={() =>
-                openModal(
-                  "Time vs Attempts Scatter Plot",
-                  "This scatter plot shows the correlation between time spent on problems and number of attempts. Each point represents a problem, with size indicating frequency.",
-                  "scatterplot",
-                  scatterData
-                )
-              }
-            >
-              <ResponsiveScatterPlot
-                data={scatterData}
-                margin={{ top: 60, right: 140, bottom: 70, left: 90 }}
-                xScale={{ type: "linear", min: 0, max: "auto" }}
-                xFormat=">-.2f"
-                yScale={{ type: "linear", min: 0, max: "auto" }}
-                yFormat=">-.2f"
-                colors={{ scheme: "paired" }}
-                theme={commonTheme}
-                blendMode="multiply"
-                axisTop={null}
-                axisRight={null}
-                axisBottom={{
-                  tickSize: 5,
-                  tickPadding: 5,
-                  tickRotation: 0,
-                  legend: "Time (minutes)",
-                  legendPosition: "middle",
-                  legendOffset: 46,
-                }}
-                axisLeft={{
-                  tickSize: 5,
-                  tickPadding: 5,
-                  tickRotation: 0,
-                  legend: "Attempts",
-                  legendPosition: "middle",
-                  legendOffset: -60,
-                }}
-                legends={[
-                  {
-                    anchor: "bottom-right",
-                    direction: "column",
-                    translateX: 130,
-                    translateY: 0,
-                    itemWidth: 100,
-                    itemHeight: 12,
-                    itemTextColor: "hsl(var(--foreground))",
-                    symbolSize: 12,
-                    symbolShape: "circle",
-                  },
-                ]}
-              />
-            </div>
-          </div>
-
           {/* Small Network - spans 4 columns */}
           <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
@@ -1838,105 +1762,6 @@ const StatsPage: React.FC = () => {
           </div>
 
           {/* Full-width Parallel Coordinates - spans 12 columns */}
-          <div className="col-span-12 bg-card border border-border rounded-lg p-6 mb-8 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
-            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <Maximize2 className="w-5 h-5 text-muted-foreground" />
-            </div>
-            <h3 className="text-xl font-semibold mb-4">
-              <Highlighter
-                action="box"
-                color="#8b5cf6"
-                strokeWidth={2}
-                animationDuration={900}
-              >
-                Multi-dimensional Performance Analysis
-              </Highlighter>
-            </h3>
-            <div
-              className="h-96"
-              onClick={() =>
-                openModal(
-                  "Multi-dimensional Performance Analysis",
-                  "This parallel coordinates plot shows relationships between multiple performance metrics simultaneously. Each line represents a problem type with different characteristics.",
-                  "parallel",
-                  parallelData
-                )
-              }
-            >
-              <ResponsiveParallelCoordinates
-                data={parallelData}
-                variables={[
-                  {
-                    key: "temp",
-                    type: "linear",
-                    min: "auto",
-                    max: "auto",
-                    ticksPosition: "before",
-                    legend: "Time",
-                    legendPosition: "start",
-                    legendOffset: 20,
-                  },
-                  {
-                    key: "cost",
-                    type: "linear",
-                    min: "auto",
-                    max: "auto",
-                    ticksPosition: "before",
-                    legend: "Attempts",
-                    legendPosition: "start",
-                    legendOffset: 20,
-                  },
-                  {
-                    key: "calories",
-                    type: "linear",
-                    min: "auto",
-                    max: "auto",
-                    ticksPosition: "before",
-                    legend: "Easy",
-                    legendPosition: "start",
-                    legendOffset: 20,
-                  },
-                  {
-                    key: "fat",
-                    type: "linear",
-                    min: "auto",
-                    max: "auto",
-                    ticksPosition: "before",
-                    legend: "Medium",
-                    legendPosition: "start",
-                    legendOffset: 20,
-                  },
-                  {
-                    key: "sugar",
-                    type: "linear",
-                    min: "auto",
-                    max: "auto",
-                    ticksPosition: "before",
-                    legend: "Hard",
-                    legendPosition: "start",
-                    legendOffset: 20,
-                  },
-                  {
-                    key: "protein",
-                    type: "linear",
-                    min: "auto",
-                    max: "auto",
-                    ticksPosition: "before",
-                    legend: "Count",
-                    legendPosition: "start",
-                    legendOffset: 20,
-                  },
-                ]}
-                margin={{ top: 50, right: 60, bottom: 50, left: 60 }}
-                colors={{ scheme: "paired" }}
-                theme={commonTheme}
-                strokeWidth={2}
-                lineOpacity={0.35}
-                animate={true}
-                motionConfig="wobbly"
-              />
-            </div>
-          </div>
         </div>
       </div>
 
