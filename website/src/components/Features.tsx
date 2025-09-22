@@ -26,7 +26,6 @@ import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import TextPressure from "./TextPressure";
 import { IconCloud } from "./magicui/icon-cloud";
 import { LineShadowText } from "./magicui/line-shadow-text";
-import MagicBento from "./MagicBento";
 import { LampContainer } from "./ui/lamp";
 import progressIcon from "@/assets/support-icons/progress.svg";
 import progress2Icon from "@/assets/support-icons/Progress2.svg";
@@ -37,6 +36,7 @@ import liveCollabIcon from "@/assets/support-icons/LiveCollab.svg";
 import InsightsIcon from "@mui/icons-material/Insights";
 import GroupsIcon from "@mui/icons-material/Groups";
 import LinkIcon from "@mui/icons-material/Link";
+import DefaultSwapy from "./ui/swapy";
 
 const Features: React.FC = () => {
   const primaryFeatures = [
@@ -343,120 +343,7 @@ const Features: React.FC = () => {
           {/* Magic Bento Grid */}
           {/* Magic Bento Grid - Desktop & Mobile Responsive */}
           <div className="bento-section w-full flex justify-center">
-            {/* Desktop: Bento Grid */}
-            <div className="hidden md:block">
-              <MagicBento
-                textAutoHide={false}
-                enableStars={false}
-                enableSpotlight={true}
-                enableBorderGlow={false}
-                disableAnimations={false}
-                spotlightRadius={300}
-                particleCount={12}
-                enableTilt={true}
-                glowColor="255, 255, 255"
-                clickEffect={false}
-                enableMagnetism={false}
-                cardData={[
-                  {
-                    color: "#000000",
-                    title: "Smart Tracking",
-                    description: "Captures every run across all platforms",
-                    label: "LIVE",
-                    backgroundIcon: progressIcon,
-                  },
-                  {
-                    color: "#000000",
-                    title: "AI Analysis",
-                    description: "Pattern recognition & insights",
-                    label: "SMART",
-                    backgroundIcon: progress2Icon,
-                  },
-                  {
-                    color: "#000000",
-                    title: "8 Platforms",
-                    description: "LeetCode, HackerRank & more",
-                    label: "CONNECT",
-                    backgroundIcon: cloudSyncIcon,
-                  },
-                  {
-                    color: "#000000",
-                    title: "Live Analytics",
-                    description: "Real-time progress visualization",
-                    label: "INSIGHTS",
-                    backgroundIcon: growthIcon,
-                  },
-                  {
-                    color: "#000000",
-                    title: "Gamification",
-                    description: "Achievements & motivation boost",
-                    label: "MOTIVATE",
-                    backgroundIcon: taskCompIcon,
-                  },
-                  {
-                    color: "#000000",
-                    title: "Team Collaboration",
-                    description: "Share insights with your team",
-                    label: "CONNECT",
-                    backgroundIcon: liveCollabIcon,
-                  },
-                ]}
-              />
-            </div>
-
-            {/* Mobile: Simple Grid */}
-            <div className="block md:hidden w-full max-w-sm mx-auto">
-              <div className="grid grid-cols-2 gap-3">
-                {[
-                  {
-                    title: "Smart Tracking",
-                    label: "LIVE",
-                    icon: <TrackChangesIcon className="w-6 h-6" />,
-                  },
-                  {
-                    title: "AI Analysis",
-                    label: "SMART",
-                    icon: <SmartToyIcon className="w-6 h-6" />,
-                  },
-                  {
-                    title: "8 Platforms",
-                    label: "CONNECT",
-                    icon: <LinkIcon className="w-6 h-6" />,
-                  },
-                  {
-                    title: "Live Analytics",
-                    label: "INSIGHTS",
-                    icon: <InsightsIcon className="w-6 h-6" />,
-                  },
-                  {
-                    title: "Gamification",
-                    label: "MOTIVATE",
-                    icon: <EmojiEventsIcon className="w-6 h-6" />,
-                  },
-                  {
-                    title: "Team Collab",
-                    label: "CONNECT",
-                    icon: <GroupsIcon className="w-6 h-6" />,
-                  },
-                ].map((feature, index) => (
-                  <BlurFade key={index} delay={0.8 + index * 0.1}>
-                    <div className="bg-card/80 backdrop-blur-sm border border-border rounded-xl p-4 hover:bg-card/90 transition-all duration-300 group">
-                      <div className="flex flex-col items-center text-center space-y-2">
-                        <div className="text-foreground group-hover:scale-110 transition-transform duration-300">
-                          {feature.icon}
-                        </div>
-                        <div className="text-xs font-mono text-muted-foreground bg-muted/30 px-2 py-1 rounded">
-                          {feature.label}
-                        </div>
-                        <h4 className="text-sm font-semibold text-foreground leading-tight">
-                          {feature.title}
-                        </h4>
-                      </div>
-                    </div>
-                  </BlurFade>
-                ))}
-              </div>
-            </div>
+            <DefaultSwapy />
           </div>
         </div>
 

@@ -170,7 +170,7 @@ const StatsPage: React.FC = () => {
     data: any,
     keys?: string[],
     indexBy?: string,
-    colorScheme?: string
+    colorScheme?: string,
   ) => {
     setIsAnimating(true);
     setModal({
@@ -222,7 +222,7 @@ const StatsPage: React.FC = () => {
             indexBy={indexBy || "platform"}
             margin={{ top: 50, right: 130, bottom: 100, left: 80 }}
             padding={0.3}
-            colors={{ scheme: colorScheme || "paired" }}
+            colors={{ scheme: (colorScheme as any) || "paired" }}
             theme={commonTheme}
             axisBottom={{
               tickSize: 5,
@@ -474,7 +474,7 @@ const StatsPage: React.FC = () => {
           <ResponsiveHeatMap
             data={data}
             margin={{ top: 60, right: 90, bottom: 60, left: 90 }}
-            colors={{ scheme: "greens" }}
+            colors={{ type: "sequential", scheme: "greens" }}
             theme={commonTheme}
             axisTop={null}
             axisRight={null}
@@ -488,8 +488,7 @@ const StatsPage: React.FC = () => {
               tickPadding: 5,
               tickRotation: 0,
             }}
-            cellOpacity={1}
-            cellBorderColor="hsl(var(--background))"
+            borderColor="hsl(var(--background))"
             labelTextColor="hsl(var(--background))"
             animate={true}
             motionConfig="wobbly"
@@ -617,7 +616,7 @@ const StatsPage: React.FC = () => {
             columns={10}
             fillDirection="top"
             padding={1}
-            cellComponent="circle"
+            cellComponent={"circle" as any}
             animate={true}
             motionConfig="wobbly"
             legends={[
@@ -650,7 +649,6 @@ const StatsPage: React.FC = () => {
             axisTop={null}
             axisRight={null}
             axisBottom={{
-              orient: "bottom",
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
@@ -659,7 +657,6 @@ const StatsPage: React.FC = () => {
               legendOffset: 46,
             }}
             axisLeft={{
-              orient: "left",
               tickSize: 5,
               tickPadding: 5,
               tickRotation: 0,
@@ -854,7 +851,7 @@ const StatsPage: React.FC = () => {
                   "Platform Rankings Over Time",
                   "This bump chart shows how platforms rank over time based on your activity. The lines represent ranking positions, with lower numbers indicating higher rankings.",
                   "bump",
-                  bumpData
+                  bumpData,
                 )
               }
             >
@@ -915,7 +912,7 @@ const StatsPage: React.FC = () => {
                   "Daily Activity Calendar",
                   "This calendar heatmap shows your daily coding activity. Darker colors indicate more intense practice days.",
                   "calendar",
-                  calendarData
+                  calendarData,
                 )
               }
             >
@@ -959,7 +956,7 @@ const StatsPage: React.FC = () => {
                   timeSpentData,
                   ["value"],
                   "platform",
-                  "paired"
+                  "paired",
                 )
               }
             >
@@ -1010,7 +1007,7 @@ const StatsPage: React.FC = () => {
                   "Questions Solved Distribution",
                   "This pie chart displays the distribution of questions solved across different platforms. Each segment represents the proportion of problems solved on that platform.",
                   "pie",
-                  pieData
+                  pieData,
                 )
               }
             >
@@ -1050,7 +1047,7 @@ const StatsPage: React.FC = () => {
                   "Topic vs Difficulty Correlation",
                   "This heatmap shows the correlation between algorithmic topics and difficulty levels. Darker cells indicate more practice in that combination.",
                   "heatmap",
-                  heatmapData
+                  heatmapData,
                 )
               }
             >
@@ -1101,7 +1098,7 @@ const StatsPage: React.FC = () => {
                   "Algorithmic Topic Hierarchy",
                   "This sunburst chart shows the hierarchical breakdown of algorithmic topics from general categories to specific subtopics.",
                   "sunburst",
-                  sunburstData
+                  sunburstData,
                 )
               }
             >
@@ -1148,7 +1145,7 @@ const StatsPage: React.FC = () => {
                   stackedBarData,
                   ["Easy", "Medium", "Hard"],
                   "platform",
-                  "greens"
+                  "greens",
                 )
               }
             >
@@ -1199,7 +1196,7 @@ const StatsPage: React.FC = () => {
                   "Monthly Time Trend",
                   "This line chart shows your monthly practice time trend over the year. It helps visualize your consistency and identify periods of high or low activity, useful for planning future study schedules.",
                   "line",
-                  lineData
+                  lineData,
                 )
               }
             >
@@ -1262,7 +1259,7 @@ const StatsPage: React.FC = () => {
                   "Topic Distribution Treemap",
                   "This treemap visualizes the relative sizes of different algorithmic topics based on your practice frequency. Larger rectangles represent more practiced topics.",
                   "treemap",
-                  treemapData
+                  treemapData,
                 )
               }
             >
@@ -1304,7 +1301,7 @@ const StatsPage: React.FC = () => {
                   "Problem Solving Conversion Funnel",
                   "This funnel chart shows the conversion from problems started to successfully solved, highlighting drop-off points in your problem-solving process.",
                   "funnel",
-                  funnelData
+                  funnelData,
                 )
               }
             >
@@ -1351,7 +1348,7 @@ const StatsPage: React.FC = () => {
                   attemptsBarData,
                   ["attempts"],
                   "difficulty",
-                  "blues"
+                  "blues",
                 )
               }
             >
@@ -1404,7 +1401,7 @@ const StatsPage: React.FC = () => {
                   topicsBarData,
                   ["count"],
                   "topic",
-                  "spectral"
+                  "spectral",
                 )
               }
             >
@@ -1454,7 +1451,7 @@ const StatsPage: React.FC = () => {
                   "Difficulty to Platform Flow",
                   "This Sankey diagram shows the flow of problems from difficulty levels to platforms, illustrating which platforms you prefer for different difficulty levels.",
                   "sankey",
-                  sankeyData
+                  sankeyData,
                 )
               }
             >
@@ -1508,7 +1505,7 @@ const StatsPage: React.FC = () => {
                   "Platform Success Rates",
                   "This radial bar chart shows success rates across different platforms. Longer bars indicate higher success percentages.",
                   "radialbar",
-                  radialBarData
+                  radialBarData,
                 )
               }
             >
@@ -1568,7 +1565,7 @@ const StatsPage: React.FC = () => {
                   "Problem Difficulty Distribution",
                   "This waffle chart shows the proportion of easy, medium, and hard problems you've solved. Each square represents a percentage of your total solved problems.",
                   "waffle",
-                  waffleData
+                  waffleData,
                 )
               }
             >
@@ -1619,7 +1616,7 @@ const StatsPage: React.FC = () => {
                   mistakesStackedData,
                   ["Easy", "Medium", "Hard"],
                   "platform",
-                  "reds"
+                  "reds",
                 )
               }
             >
@@ -1670,7 +1667,7 @@ const StatsPage: React.FC = () => {
                   "Time vs Attempts Scatter Plot",
                   "This scatter plot shows the correlation between time spent on problems and number of attempts. Each point represents a problem, with size indicating frequency.",
                   "scatterplot",
-                  scatterData
+                  scatterData,
                 )
               }
             >
@@ -1741,7 +1738,7 @@ const StatsPage: React.FC = () => {
                   "Algorithmic Topic Network",
                   "This network diagram shows relationships between different algorithmic topics. Connected nodes represent related concepts.",
                   "network",
-                  networkData
+                  networkData,
                 )
               }
             >
@@ -1787,7 +1784,7 @@ const StatsPage: React.FC = () => {
                   "radar",
                   successRateData,
                   ["easy", "medium", "hard"],
-                  "platform"
+                  "platform",
                 )
               }
             >
@@ -1864,7 +1861,7 @@ const StatsPage: React.FC = () => {
                   "Multi-dimensional Performance Analysis",
                   "This parallel coordinates plot shows relationships between multiple performance metrics simultaneously. Each line represents a problem type with different characteristics.",
                   "parallel",
-                  parallelData
+                  parallelData,
                 )
               }
             >
