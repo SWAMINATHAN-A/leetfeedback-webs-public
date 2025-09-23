@@ -26,6 +26,7 @@ function AppContent() {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const isStatsPage = location.pathname === "/profile/stats";
+  const isRoadmapPage = location.pathname === "/roadmap";
 
   return (
     <div className="App min-h-screen relative">
@@ -58,8 +59,8 @@ function AppContent() {
         className="fixed bottom-0 left-0 right-0 z-40 pointer-events-none"
       />
       
-      {/* Dock - show on home page and stats page */}
-      {(isHomePage || isStatsPage) && <DockDemo />}
+      {/* Dock - show on home page, stats page, and roadmap page */}
+      {(isHomePage || isStatsPage || isRoadmapPage) && <DockDemo />}
     </div>
   );
 }

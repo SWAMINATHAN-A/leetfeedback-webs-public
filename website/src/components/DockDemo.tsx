@@ -7,7 +7,7 @@ import { Button, buttonVariants } from "./ui/button";
 import { Separator } from "./ui/separator";
 import { useTheme } from "../contexts/ThemeContext";
 import { useAuth } from "../contexts/AuthContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ProfileImage from "./ui/ProfileImage";
 import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
 
@@ -16,6 +16,7 @@ import FeaturesIcon from "@mui/icons-material/Stars";
 import HowItWorksIcon from "@mui/icons-material/Build";
 import PricingIcon from "@mui/icons-material/AttachMoney";
 import HomeIcon from "@mui/icons-material/Home";
+import RoadmapIcon from "@mui/icons-material/Map";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -24,13 +25,14 @@ const DATA = {
     { href: "#home", icon: HomeIcon, label: "Home" },
     { href: "#features", icon: FeaturesIcon, label: "Features" },
     { href: "#how-it-works", icon: HowItWorksIcon, label: "How it Works" },
-    { href: "#pricing", icon: PricingIcon, label: "Pricing" },
+    { href: "/roadmap", icon: RoadmapIcon, label: "Roadmap" },
   ],
 };
 
 export function DockDemo() {
   const { user, isAuthenticated } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const scrollToSection = (href: string) => {
     if (href.startsWith("#")) {
@@ -38,6 +40,8 @@ export function DockDemo() {
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
+    } else if (href.startsWith("/")) {
+      navigate(href);
     }
   };
 
@@ -63,7 +67,7 @@ export function DockDemo() {
         </DockIcon>
       );
     } else if (isRoadmapPage) {
-      // Roadmap page: Show home link + theme switch + profile (if authenticated)
+      // Roadmap page: Show home link + theme switch (no profile icon)
       return (
         <>
           <DockIcon>
@@ -88,25 +92,6 @@ export function DockDemo() {
               <AnimatedThemeToggler />
             </div>
           </DockIcon>
-          {isAuthenticated && user && (
-            <DockIcon>
-              <button
-                onClick={() => (window.location.href = "/profile")}
-                aria-label="Profile"
-                className={cn(
-                  buttonVariants({ variant: "ghost", size: "icon" }),
-                  "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 p-1"
-                )}
-              >
-                <ProfileImage
-                  src={user.photoURL}
-                  alt={user.displayName || "User"}
-                  size="sm"
-                  className="w-full h-full border-0"
-                />
-              </button>
-            </DockIcon>
-          )}
         </>
       );
     } else if (isProfilePage) {
