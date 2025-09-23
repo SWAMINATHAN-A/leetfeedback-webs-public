@@ -165,6 +165,18 @@ const HowItWorks: React.FC = () => {
         </div>
 
         {/* Integration Showcase */}
+        <div className="text-center mb-8">
+          <TextPressure
+            text="Why Choose Us"
+            className="text-4xl md:text-5xl font-bold italic"
+            textColor="hsl(var(--foreground))"
+            minFontSize={32}
+            width={true}
+            weight={true}
+            italic={true}
+            flex={false}
+          />
+        </div>
         <div className="bg-card/20 border border-border rounded-lg shadow-xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Left Side - Integration Visual */}
@@ -280,21 +292,10 @@ const HowItWorks: React.FC = () => {
             {/* Right Side - Benefits */}
             <div className="p-8 flex flex-col h-full">
               <div className="flex-shrink-0">
-                <div className="mb-6 h-20 flex items-center">
-                  <TextPressure
-                    text="Why Choose Us"
-                    className="text-4xl md:text-5xl font-bold italic"
-                    textColor="hsl(var(--foreground))"
-                    minFontSize={32}
-                    width={true}
-                    weight={true}
-                    italic={true}
-                    flex={false}
-                  />
-                </div>
-                <p className="text-muted-foreground leading-relaxed mb-6">
-                  The only tool that integrates and personalises your learning
-                  experience.
+                <p className="text-muted-foreground leading-relaxed mb-6 text-lg">
+                  Experience the most comprehensive coding learning platform
+                  that seamlessly integrates with your entire workflow, from
+                  problem-solving to portfolio building.
                 </p>
               </div>
 

@@ -448,10 +448,10 @@ const Features: React.FC = () => {
                 </div>
                 <div className="text-center">
                   <div className="text-3xl font-bold text-green-400 mb-2 font-mono">
-                    0%
+                    100%
                   </div>
                   <div className="text-sm text-muted-foreground">
-                    Developers hired faster (give me a job pls)
+                    Developers Find themselves more productive
                   </div>
                 </div>
               </div>
@@ -476,7 +476,8 @@ const Features: React.FC = () => {
                       AI Feedback:
                     </div>
                     <div className="text-foreground text-xs">
-                      "Your solution is shit. Do this instead..."
+                      "Your solution works but some edge cases are not
+                      covered..."
                     </div>
                   </div>
                 </div>

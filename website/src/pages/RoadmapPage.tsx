@@ -2,42 +2,28 @@ import React from "react";
 import Footer from "../components/Footer";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../components/ui/card";
+import { Card, CardContent } from "../components/ui/card";
 import { BlurFade } from "../components/magicui/blur-fade";
 import { TextAnimate } from "../components/magicui/text-animate";
 import { RainbowButton } from "../components/magicui/rainbow-button";
-import {
-  ArcTimeline,
-  ArcTimelineItem,
-} from "../components/magicui/arc-timeline";
+import { Timeline } from "../components/ui/timeline";
+import { Phase1Swapy, Phase2Swapy, Phase3Swapy, Phase4Swapy } from "../components/roadmap/PhaseSwapy";
 import { analytics } from "../utils/analytics";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CodeIcon from "@mui/icons-material/Code";
-import ExtensionIcon from "@mui/icons-material/Extension";
 import PsychologyIcon from "@mui/icons-material/Psychology";
-import StyleIcon from "@mui/icons-material/Style";
-import IntegrationInstructionsIcon from "@mui/icons-material/IntegrationInstructions";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
-import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-import SecurityIcon from "@mui/icons-material/Security";
 import DevicesIcon from "@mui/icons-material/Devices";
-import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
-import GroupsIcon from "@mui/icons-material/Groups";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import FlagIcon from "@mui/icons-material/Flag";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import TargetIcon from "@mui/icons-material/MyLocation";
+import GroupsIcon from "@mui/icons-material/Groups";
 
-interface RoadmapItem {
+interface RoadmapPhase {
   id: number;
   title: string;
   description: string;
@@ -46,195 +32,183 @@ interface RoadmapItem {
   milestone?: string;
   icon: React.ComponentType<any>;
   features: string[];
+  timeline: string;
 }
 
 const RoadmapPage: React.FC = () => {
-  const roadmapItems: RoadmapItem[] = [
+  const roadmapPhases: RoadmapPhase[] = [
     {
       id: 1,
       title: "Foundation & Core Features",
-      description:
-        "Basic tracking functionality and user interface development",
+      description: "Basic tracking functionality and platform integrations",
       completed: true,
       phase: "Phase 1",
+      timeline: "2025 Q1-Q2",
+      milestone: "Beta Launch",
       icon: CodeIcon,
       features: [
-        "LeetCode & GeeksforGeeks platform integration",
-        "Extension popup interface",
+        "LeetCode & GeeksforGeeks integration",
+        "Extension popup interface", 
         "Basic problem tracking",
         "User authentication system",
+        "GitHub repository creation",
+        "Solution auto-commit functionality"
       ],
     },
     {
       id: 2,
-      title: "AI-Powered Intelligence",
-      description: "Advanced AI analysis and automated reporting systems",
+      title: "AI Intelligence & Productivity Tools",
+      description: "AI-powered analysis and workspace integrations",
       completed: true,
       phase: "Phase 2",
-      milestone: "Public Beta Launch",
+      timeline: "2025 Q2-Q3",
+      milestone: "Public Beta",
       icon: PsychologyIcon,
       features: [
         "AI mistake pattern recognition",
         "Automated GitHub analysis reports",
-        "Smart insights generation",
-        "Performance trend analysis",
+        "Smart insights generation", 
+        "Notion workspace integration",
+        "ANKI flashcard generation",
+        "Revision scheduling system"
       ],
     },
     {
       id: 3,
-      title: "Study & Productivity Tools",
-      description: "Enhanced learning tools and workspace integrations",
+      title: "Analytics & Visualization",
+      description: "Comprehensive performance analytics and data insights",
       completed: false,
-      phase: "Phase 3",
-      icon: StyleIcon,
-      features: [
-        "ANKI flashcard auto-generation",
-        "Notion workspace integration",
-        "Study session planning",
-        "Progress tracking dashboard",
-      ],
-    },
-    {
-      id: 4,
-      title: "Analytics & Insights",
-      description: "Comprehensive performance analytics and reporting",
-      completed: false,
-      phase: "Phase 4",
+      phase: "Phase 3", 
+      timeline: "2025 Q3-Q4",
       icon: AnalyticsIcon,
       features: [
         "Advanced analytics dashboard",
         "Performance metrics visualization",
-        "Progress comparison tools",
+        "Progress comparison tools", 
         "Custom reporting features",
+        "Time tracking analytics",
+        "Difficulty progression insights"
       ],
     },
     {
-      id: 5,
-      title: "Gamification & Engagement",
-      description: "Achievement system and motivation features",
+      id: 4,
+      title: "Platform Expansion & Advanced Features",
+      description: "Extended platform support and enterprise features",
       completed: false,
-      phase: "Phase 5",
-      icon: EmojiEventsIcon,
-      features: [
-        "Achievement badges & streaks",
-        "Leaderboards & competitions",
-        "Goal setting & tracking",
-        "Motivation system",
-      ],
-    },
-    {
-      id: 6,
-      title: "Platform Expansion",
-      description: "Extended platform support and mobile experience",
-      completed: false,
-      phase: "Phase 6",
-      milestone: "Public Release",
+      phase: "Phase 4",
+      timeline: "2026 Q1+",
+      milestone: "Full Release",
       icon: DevicesIcon,
       features: [
         "TUF+, CodeChef, HackerRank support",
-        "Codeforces integration",
+        "Codeforces integration", 
         "Mobile companion app",
-        "Cross-platform synchronization",
-      ],
-    },
-    {
-      id: 7,
-      title: "Enterprise & Teams",
-      description: "Team collaboration and organizational features",
-      completed: false,
-      phase: "Phase 7",
-      icon: GroupsIcon,
-      features: [
-        "Team analytics dashboards",
-        "Organization management",
-        "Bootcamp integration tools",
-        "Advanced admin controls",
-      ],
-    },
-    {
-      id: 8,
-      title: "Security & Compliance",
-      description: "Advanced security features and data protection",
-      completed: false,
-      phase: "Phase 8",
-      icon: SecurityIcon,
-      features: [
-        "End-to-end encryption",
-        "GDPR compliance",
-        "Data anonymization",
-        "Advanced privacy controls",
+        "Team collaboration features",
+        "Achievement system & gamification",
+        "Enterprise admin controls"
       ],
     },
   ];
 
-  const completedCount = roadmapItems.filter((item) => item.completed).length;
+  const completedCount = roadmapPhases.filter((item) => item.completed).length;
   const progressPercentage = Math.round(
-    (completedCount / roadmapItems.length) * 100
+    (completedCount / roadmapPhases.length) * 100
   );
 
-  // Arc Timeline Data
-  const arcTimelineData: ArcTimelineItem[] = [
-    {
-      time: "2025 Q1-Q2",
-      steps: [
-        {
-          icon: <CodeIcon className="w-6 h-6" />,
-          content:
-            "Foundation & Core Features - Basic tracking functionality and user interface development",
-        },
-        {
-          icon: <PsychologyIcon className="w-6 h-6" />,
-          content:
-            "AI-Powered Intelligence - Advanced AI analysis and automated reporting systems",
-        },
-      ],
-    },
-    {
-      time: "2025 Q3-Q4",
-      steps: [
-        {
-          icon: <StyleIcon className="w-6 h-6" />,
-          content:
-            "Study & Productivity Tools - Enhanced learning tools and workspace integrations",
-        },
-        {
-          icon: <AnalyticsIcon className="w-6 h-6" />,
-          content:
-            "Analytics & Insights - Comprehensive performance analytics and reporting",
-        },
-      ],
-    },
-    {
-      time: "2025 Q1-Q2",
-      steps: [
-        {
-          icon: <EmojiEventsIcon className="w-6 h-6" />,
-          content:
-            "Gamification & Engagement - Achievement system and motivation features",
-        },
-        {
-          icon: <DevicesIcon className="w-6 h-6" />,
-          content:
-            "Platform Expansion - Extended platform support and mobile experience",
-        },
-      ],
-    },
-    {
-      time: "2025 Q3+",
-      steps: [
-        {
-          icon: <GroupsIcon className="w-6 h-6" />,
-          content:
-            "Enterprise & Teams - Team collaboration and organizational features",
-        },
-        {
-          icon: <SecurityIcon className="w-6 h-6" />,
-          content:
-            "Security & Compliance - Advanced security features and data protection",
-        },
-      ],
-    },
-  ];
+  // Timeline data for the new Timeline component
+  const timelineData = roadmapPhases.map((phase, index) => {
+    const getPhaseComponent = () => {
+      switch(phase.id) {
+        case 1: return <Phase1Swapy />;
+        case 2: return <Phase2Swapy />;
+        case 3: return <Phase3Swapy />;
+        case 4: return <Phase4Swapy />;
+        default: return <Phase1Swapy />;
+      }
+    };
+
+    return {
+      title: `${phase.phase} - ${phase.timeline}`,
+      content: (
+        <div className="space-y-6">
+          {/* Phase Header */}
+          <div className={`p-6 rounded-xl border-2 transition-all duration-300 ${
+            phase.completed 
+              ? 'bg-emerald-50 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-800' 
+              : 'bg-muted/20 border-muted-foreground/20'
+          }`}>
+            <div className="flex items-center gap-4 mb-4">
+              <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                phase.completed 
+                  ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400' 
+                  : 'bg-muted text-muted-foreground'
+              }`}>
+                <phase.icon className="w-6 h-6" />
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-2">
+                  <h3 className={`text-xl font-bold ${
+                    phase.completed 
+                      ? 'text-emerald-700 dark:text-emerald-300' 
+                      : 'text-foreground'
+                  }`}>
+                    {phase.title}
+                  </h3>
+                  {phase.completed ? (
+                    <CheckCircleIcon className="w-5 h-5 text-emerald-600" />
+                  ) : (
+                    <RadioButtonUncheckedIcon className="w-5 h-5 text-muted-foreground" />
+                  )}
+                </div>
+                <p className="text-muted-foreground">
+                  {phase.description}
+                </p>
+              </div>
+              {phase.milestone && (
+                <Badge className={`${
+                  phase.completed 
+                    ? 'bg-emerald-100 text-emerald-700 border-emerald-300' 
+                    : 'bg-muted text-muted-foreground border-muted-foreground/20'
+                } font-mono text-xs`}>
+                  <TargetIcon className="w-3 h-3 mr-1" />
+                  {phase.milestone}
+                </Badge>
+              )}
+            </div>
+            
+            {/* Features List */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
+              {phase.features.map((feature, featureIndex) => (
+                <div key={featureIndex} className="flex items-start gap-2">
+                  <div className="text-sm leading-relaxed">
+                    {feature}
+                  </div>
+                </div>
+              ))}
+            </div>
+            
+            {/* Status Footer */}
+            <div className="pt-4 border-t border-border/20 flex items-center justify-between">
+              <span className={`text-sm font-medium ${
+                phase.completed ? 'text-emerald-600' : 'text-muted-foreground'
+              }`}>
+                {phase.completed ? "Completed" : "In Development"}
+              </span>
+              <span className="text-xs text-muted-foreground font-mono">
+                {phase.features.length} features
+              </span>
+            </div>
+          </div>
+          
+          {/* Phase-specific Swapy Component */}
+          <div className="mt-6">
+            <h4 className="text-lg font-semibold mb-4 text-foreground">Interactive Preview</h4>
+            {getPhaseComponent()}
+          </div>
+        </div>
+      ),
+    };
+  });
 
   return (
     <>
@@ -303,7 +277,7 @@ const RoadmapPage: React.FC = () => {
                       <div className="text-center">
                         <AutoAwesomeIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
                         <div className="text-2xl font-bold text-foreground">
-                          {roadmapItems.length - completedCount}
+                          {roadmapPhases.length - completedCount}
                         </div>
                         <div className="text-sm text-muted-foreground">
                           In Development
@@ -316,7 +290,7 @@ const RoadmapPage: React.FC = () => {
                       <div className="text-center">
                         <FlagIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
                         <div className="text-2xl font-bold text-foreground">
-                          {roadmapItems.filter((item) => item.milestone).length}
+                          {roadmapPhases.filter((item) => item.milestone).length}
                         </div>
                         <div className="text-sm text-muted-foreground">
                           Major Milestones
@@ -333,136 +307,14 @@ const RoadmapPage: React.FC = () => {
         {/* Roadmap Timeline */}
         <section className="py-24 bg-background border-t border-border/20">
           <div className="container mx-auto px-4 md:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-20">
-              <TextAnimate
-                as="h2"
-                className="text-4xl md:text-5xl font-bold text-foreground mb-6"
-                animation="blurInUp"
-                delay={0.5}
-                by="word"
-              >
-                Feature Timeline
-              </TextAnimate>
-              <BlurFade delay={0.75}>
-                <p className="text-xl text-muted-foreground leading-relaxed">
-                  Our development phases and the exciting features coming your
-                  way
-                </p>
-              </BlurFade>
-            </div>
+            
 
-            {/* Arc Timeline */}
+            {/* Timeline Component */}
             <BlurFade delay={1}>
               <div className="w-full max-w-6xl mx-auto">
-                <ArcTimeline
-                  data={arcTimelineData}
-                  className="mb-16"
-                  defaultActiveStep={{
-                    time: "2026 Q1-Q2",
-                    stepIndex: 0,
-                  }}
-                />
+                <Timeline data={timelineData} />
               </div>
             </BlurFade>
-
-            {/* Detailed Features Grid */}
-            <div className="mt-20">
-              <div className="text-center max-w-3xl mx-auto mb-12">
-                <h3 className="text-3xl font-bold text-foreground mb-4">
-                  Detailed Features
-                </h3>
-                <p className="text-lg text-muted-foreground">
-                  Dive deeper into each development phase and discover what's
-                  coming
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {roadmapItems.map((item, index) => (
-                  <BlurFade key={item.id} delay={1 + index * 0.1}>
-                    <Card className="relative h-full bg-card border border-border">
-                      {/* Milestone Badge */}
-                      {item.milestone && (
-                        <div className="absolute top-4 right-4">
-                          <Badge className="bg-muted text-muted-foreground border border-border text-xs font-mono">
-                            <TargetIcon className="w-3 h-3 mr-1" />
-                            {item.milestone}
-                          </Badge>
-                        </div>
-                      )}
-
-                      {/* Phase Badge */}
-                      <div className="absolute top-4 left-4">
-                        <Badge className="bg-muted text-muted-foreground border border-border font-mono text-xs">
-                          {item.phase}
-                        </Badge>
-                      </div>
-
-                      <CardHeader className="pt-16 pb-4">
-                        <div className="flex items-start gap-4">
-                          {/* Icon */}
-                          <div className="w-12 h-12 rounded-lg flex items-center justify-center bg-muted border border-border text-muted-foreground">
-                            <item.icon className="w-6 h-6" />
-                          </div>
-
-                          {/* Title and Description */}
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center gap-2 mb-2">
-                              <CardTitle className="text-lg font-bold text-foreground">
-                                {item.title}
-                              </CardTitle>
-                              {item.completed ? (
-                                <CheckCircleIcon className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                              ) : (
-                                <RadioButtonUncheckedIcon className="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                              )}
-                            </div>
-                            <CardDescription className="text-sm text-muted-foreground">
-                              {item.description}
-                            </CardDescription>
-                          </div>
-                        </div>
-                      </CardHeader>
-
-                      <CardContent className="pt-0 pb-6">
-                        {/* Features List */}
-                        <div className="space-y-3">
-                          <h4 className="text-sm font-semibold text-foreground border-b border-border pb-2">
-                            Key Features
-                          </h4>
-                          <ul className="space-y-2">
-                            {item.features.map((feature, featureIndex) => (
-                              <li
-                                key={featureIndex}
-                                className="flex items-start gap-3"
-                              >
-                                <div className="w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-muted-foreground" />
-                                <span className="text-sm text-muted-foreground leading-relaxed">
-                                  {feature}
-                                </span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        {/* Status Footer */}
-                        <div className="flex items-center justify-between pt-4 mt-4 border-t border-border">
-                          <div className="flex items-center gap-2">
-                            <div className="w-2 h-2 rounded-full bg-muted-foreground" />
-                            <span className="text-xs font-medium text-muted-foreground">
-                              {item.completed ? "Completed" : "In Development"}
-                            </span>
-                          </div>
-                          <div className="text-xs text-muted-foreground font-mono">
-                            {item.features.length} features
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </BlurFade>
-                ))}
-              </div>
-            </div>
           </div>
         </section>
 

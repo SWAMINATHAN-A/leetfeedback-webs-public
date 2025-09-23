@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
@@ -11,14 +11,61 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import LockIcon from "@mui/icons-material/Lock";
 import StarIcon from "@mui/icons-material/Star";
+import StarBorderIcon from "@mui/icons-material/StarBorder";
 import PlatformIcon from "./PlatformIcon";
 import { BlurFade } from "./magicui/blur-fade";
 import { TextAnimate } from "./magicui/text-animate";
 import { NumberTicker } from "./magicui/number-ticker";
 import { RainbowButton } from "./magicui/rainbow-button";
+import ElasticSlider from "./ElasticSlider";
 import { analytics } from "../utils/analytics";
 
 const Hero: React.FC = () => {
+  const [showRatingSlider, setShowRatingSlider] = useState(false);
+  const [currentRating, setCurrentRating] = useState(4.5);
+  const [userRating, setUserRating] = useState<number | null>(null);
+  const [sliderRating, setSliderRating] = useState(3);
+
+  // Load rating from localStorage on component mount
+  useEffect(() => {
+    const savedRatings = localStorage.getItem("userRatings");
+    if (savedRatings) {
+      const ratings = JSON.parse(savedRatings);
+      const average =
+        ratings.reduce((sum: number, rating: number) => sum + rating, 0) /
+        ratings.length;
+      setCurrentRating(Math.round(average * 10) / 10); // Round to 1 decimal place
+    }
+  }, []);
+
+  const handleRatingSubmit = (rating: number) => {
+    setUserRating(rating);
+    setShowRatingSlider(false);
+
+    // Save rating to localStorage
+    const savedRatings = localStorage.getItem("userRatings");
+    const ratings = savedRatings ? JSON.parse(savedRatings) : [];
+    ratings.push(rating);
+    localStorage.setItem("userRatings", JSON.stringify(ratings));
+
+    // Calculate new average
+    const average =
+      ratings.reduce((sum: number, rating: number) => sum + rating, 0) /
+      ratings.length;
+    setCurrentRating(Math.round(average * 10) / 10);
+  };
+
+  const renderStars = (rating: number) => {
+    return Array.from({ length: 5 }, (_, i) => (
+      <StarIcon
+        key={i}
+        className={`w-4 h-4 ${
+          i < Math.floor(rating) ? "text-yellow-400" : "text-gray-400"
+        }`}
+      />
+    ));
+  };
+
   return (
     <section id="home" className="relative overflow-hidden pt-20 pb-32">
       {/* Floating Elements - Minimal */}
@@ -55,16 +102,16 @@ const Hero: React.FC = () => {
             className="text-5xl md:text-7xl font-bold text-foreground mb-8 leading-tight"
             initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ 
-              delay: 0.5, 
-              duration: 0.8, 
+            transition={{
+              delay: 0.5,
+              duration: 0.8,
               ease: "easeOut",
               opacity: { duration: 0.6 },
               y: { duration: 0.8 },
-              filter: { duration: 0.6 }
+              filter: { duration: 0.6 },
             }}
           >
-          The Complete Learning Ecosystem
+            The Complete Learning Ecosystem
           </motion.h1>
 
           {/* Subheadline */}
@@ -139,20 +186,89 @@ const Hero: React.FC = () => {
           {/* Trust Indicators */}
           <BlurFade delay={1.5}>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-8 text-sm text-muted-foreground mb-20">
-              <div className="flex items-center gap-2">
-                <CheckCircleIcon className="w-4 h-4 text-green-400" />
-                Free Forever
-              </div>
-              <div className="flex items-center gap-2">
-                <LockIcon className="w-4 h-4 text-blue-400" />
-                Open source
-              </div>
-              <div className="flex items-center gap-2">
-                <StarIcon className="w-4 h-4 text-yellow-400" />
-                <NumberTicker value={5} decimalPlaces={1} />/ 5 Rating (I rated)
+              <div
+                className="flex items-center gap-2 cursor-pointer hover:text-foreground transition-colors"
+                onClick={() => setShowRatingSlider(true)}
+              >
+                {renderStars(currentRating)}
+                <NumberTicker value={currentRating} decimalPlaces={1} />/ 5
+                Rating
               </div>
             </div>
           </BlurFade>
+
+          {/* Rating Slider Modal */}
+          {showRatingSlider && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+              onClick={() => setShowRatingSlider(false)}
+            >
+              <motion.div
+                className="bg-card border border-border rounded-lg p-6 max-w-md w-full mx-4"
+                onClick={(e) => e.stopPropagation()}
+                initial={{ y: 20 }}
+                animate={{ y: 0 }}
+              >
+                <h3 className="text-lg font-semibold text-foreground mb-4 text-center">
+                  Rate LeetFeedback
+                </h3>
+                <p className="text-muted-foreground text-center mb-6">
+                  How would you rate your experience?
+                </p>
+
+                <div className="flex justify-center mb-6">
+                  <ElasticSlider
+                    defaultValue={3}
+                    startingValue={1}
+                    maxValue={5}
+                    isStepped={true}
+                    stepSize={1}
+                    leftIcon={
+                      <StarBorderIcon className="w-6 h-6 text-yellow-400" />
+                    }
+                    rightIcon={<StarIcon className="w-6 h-6 text-yellow-400" />}
+                    className="mb-4"
+                    onChange={setSliderRating}
+                  />
+                </div>
+
+                <div className="text-center mb-4">
+                  <div className="flex justify-center gap-1">
+                    {Array.from({ length: 5 }, (_, i) => (
+                      <StarIcon
+                        key={i}
+                        className={`w-5 h-5 ${
+                          i < sliderRating ? "text-yellow-400" : "text-gray-300"
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <p className="text-sm text-muted-foreground mt-2">
+                    {sliderRating} out of 5 stars
+                  </p>
+                </div>
+
+                <div className="flex gap-3">
+                  <Button
+                    variant="outline"
+                    onClick={() => setShowRatingSlider(false)}
+                    className="flex-1"
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    onClick={() => handleRatingSubmit(sliderRating)}
+                    className="flex-1"
+                  >
+                    Submit Rating
+                  </Button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
 
           {/* Platform Showcase */}
           <BlurFade delay={1.7}>

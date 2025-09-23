@@ -62,28 +62,6 @@ interface ModalData {
 const StatsPage: React.FC = () => {
   const { isDark } = useTheme();
 
-  // Use lighter color schemes in dark mode
-  const getColorScheme = (defaultScheme: string) => {
-    if (isDark) {
-      // Lighter schemes for dark mode
-      const lightSchemes: { [key: string]: string } = {
-        paired: "pastel1",
-        greens: "pastel2",
-        oranges: "set3",
-        blues: "pastel1",
-        spectral: "set3",
-        reds: "pastel2",
-        accent: "set3",
-      };
-      return lightSchemes[defaultScheme] || "pastel1";
-    }
-    return defaultScheme;
-  };
-
-  const getColorsConfig = (scheme: string) => ({
-    scheme: getColorScheme(scheme),
-  });
-
   const [modal, setModal] = useState<ModalData>({
     isOpen: false,
     title: "",
@@ -188,51 +166,125 @@ const StatsPage: React.FC = () => {
     },
   };
 
-  const [pastelColors, setPastelColors] = useState<string[]>([]);
-
-  // Update pastel colors when theme changes
-  useEffect(() => {
-    const updateColors = () => {
-      const isDark = document.documentElement.classList.contains("dark");
-      setPastelColors(
-        isDark
-          ? [
-              "#FFB3BA", // pastel red
-              "#BAFFC9", // pastel green
-              "#BAE1FF", // pastel blue
-              "#FFFFBA", // pastel yellow
-              "#FFDFBA", // pastel orange
-              "#E0BAFF", // pastel purple
-              "#FFB3D9", // pastel pink
-              "#B3FFE3", // pastel mint
-            ]
-          : [
-              "#FF9999", // darker pastel red
-              "#99FF99", // darker pastel green
-              "#9999FF", // darker pastel blue
-              "#FFFF99", // darker pastel yellow
-              "#FFCC99", // darker pastel orange
-              "#CC99FF", // darker pastel purple
-              "#FF99CC", // darker pastel pink
-              "#99FFCC", // darker pastel mint
-            ]
-      );
-    };
-
-    updateColors();
-
-    // Listen for theme changes
-    const observer = new MutationObserver(updateColors);
-    observer.observe(document.documentElement, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
-    return () => observer.disconnect();
-  }, []);
+  const [pastelColors, setPastelColors] = useState<string[]>(() =>
+    isDark
+      ? [
+          "#FFB3BA", // pastel rose pink
+          "#FFDFBA", // pastel peach
+          "#FFFFBA", // pastel lemon
+          "#BAFFC9", // pastel mint green
+          "#BAE1FF", // pastel sky blue
+          "#E0BAFF", // pastel lavender
+          "#FFB3D9", // pastel blush pink
+          "#FFD1DC", // pastel rose
+          "#F1948A", // pastel coral
+          "#82E0AA", // pastel emerald
+          "#85C1E9", // pastel powder blue
+          "#F7DC6F", // pastel gold
+          "#BB8FCE", // pastel violet
+          "#F8C471", // pastel amber
+          "#AED6F1", // pastel ice blue
+          "#B5EAD7", // pastel sage
+          "#D7BDE2", // pastel plum
+          "#FFE5B4", // pastel apricot
+          "#C7CEEA", // pastel periwinkle
+          "#A8E6CF", // pastel aqua
+          "#FFD3A5", // pastel melon
+          "#B19CD9", // pastel lilac
+          "#B3FFE3", // pastel seafoam
+          "#D4A5A5", // pastel dusty rose
+        ]
+      : [
+          "#E74C3C", // coral red
+          "#F39C12", // bright orange
+          "#F1C40F", // sunny yellow
+          "#27AE60", // forest green
+          "#3498DB", // ocean blue
+          "#9B59B6", // royal purple
+          "#E67E22", // burnt orange
+          "#16A085", // teal
+          "#8E44AD", // eggplant purple
+          "#D35400", // pumpkin orange
+          "#2C3E50", // navy blue
+          "#C0392B", // brick red
+          "#E83E8C", // hot pink
+          "#17A2B8", // cyan blue
+          "#28A745", // lime green
+          "#FFC107", // amber yellow
+          "#6F42C1", // indigo
+          "#20C997", // mint green
+          "#6C757D", // slate gray
+          "#DC3545", // raspberry red
+          "#FD7E14", // orange
+          "#007BFF", // bright blue
+          "#28A745", // green
+        ]
+  );
 
   // Pastel color schemes that adapt to dark/light mode
-  const getPastelColors = () => pastelColors;
+  const getPastelColors = () => {
+    // Shuffle the array to get random colors each time
+    return [...pastelColors].sort(() => Math.random() - 0.5);
+  };
+
+  // Specific color schemes with some pinkish shades for certain charts
+  const getNonPinkColors = () => {
+    const baseColors = isDark
+      ? [
+          "#FFB3BA", // pastel rose pink
+          "#FFDFBA", // pastel peach
+          "#FFFFBA", // pastel lemon
+          "#BAFFC9", // pastel mint green
+          "#BAE1FF", // pastel sky blue
+          "#E0BAFF", // pastel lavender
+          "#FFB3D9", // pastel blush pink
+          "#FFD1DC", // pastel rose
+          "#F1948A", // pastel coral
+          "#82E0AA", // pastel emerald
+          "#85C1E9", // pastel powder blue
+          "#F7DC6F", // pastel gold
+          "#BB8FCE", // pastel violet
+          "#F8C471", // pastel amber
+          "#AED6F1", // pastel ice blue
+          "#B5EAD7", // pastel sage
+          "#D7BDE2", // pastel plum
+          "#FFE5B4", // pastel apricot
+          "#C7CEEA", // pastel periwinkle
+          "#A8E6CF", // pastel aqua
+          "#FFD3A5", // pastel melon
+          "#B19CD9", // pastel lilac
+          "#B3FFE3", // pastel seafoam
+          "#D4A5A5", // pastel dusty rose
+        ]
+      : [
+          "#E74C3C", // coral red
+          "#F39C12", // bright orange
+          "#F1C40F", // sunny yellow
+          "#27AE60", // forest green
+          "#3498DB", // ocean blue
+          "#9B59B6", // royal purple
+          "#E67E22", // burnt orange
+          "#16A085", // teal
+          "#8E44AD", // eggplant purple
+          "#D35400", // pumpkin orange
+          "#2C3E50", // navy blue
+          "#C0392B", // brick red
+          "#E83E8C", // hot pink
+          "#17A2B8", // cyan blue
+          "#28A745", // lime green
+          "#FFC107", // amber yellow
+          "#6F42C1", // indigo
+          "#20C997", // mint green
+          "#6C757D", // slate gray
+          "#DC3545", // raspberry red
+          "#FD7E14", // orange
+          "#007BFF", // bright blue
+          "#28A745", // green
+        ];
+
+    // Shuffle the array to get random colors each time
+    return baseColors.sort(() => Math.random() - 0.5);
+  };
 
   const openModal = (
     title: string,
@@ -491,7 +543,7 @@ const StatsPage: React.FC = () => {
           <ResponsiveBump
             data={data}
             margin={{ top: 40, right: 100, bottom: 40, left: 60 }}
-            colors={isDark ? { scheme: "pastel1" } : { scheme: "paired" }}
+            colors={getPastelColors()}
             theme={commonTheme}
             lineWidth={3}
             activeLineWidth={6}
@@ -542,7 +594,7 @@ const StatsPage: React.FC = () => {
           <ResponsiveHeatMap
             data={data}
             margin={{ top: 60, right: 90, bottom: 60, left: 90 }}
-            colors={{ type: "quantize", scheme: "greens" }}
+            colors={{ type: "quantize", colors: getPastelColors() }}
             theme={commonTheme}
             axisTop={null}
             axisRight={null}
@@ -567,7 +619,7 @@ const StatsPage: React.FC = () => {
             margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
             id="name"
             value="value"
-            colors={isDark ? { scheme: "pastel1" } : { scheme: "paired" }}
+            colors={getPastelColors()}
             theme={commonTheme}
             borderColor="hsl(var(--background))"
             childColor={{
@@ -585,7 +637,7 @@ const StatsPage: React.FC = () => {
             identity="name"
             value="value"
             margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
-            colors={isDark ? { scheme: "pastel1" } : { scheme: "paired" }}
+            colors={getPastelColors()}
             theme={commonTheme}
             labelSkipSize={12}
             labelTextColor="hsl(var(--background))"
@@ -599,7 +651,7 @@ const StatsPage: React.FC = () => {
           <ResponsiveFunnel
             data={data}
             margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-            colors={{ scheme: "paired" }}
+            colors={getPastelColors()}
             theme={commonTheme}
             borderWidth={20}
             labelColor="hsl(var(--background))"
@@ -675,7 +727,7 @@ const StatsPage: React.FC = () => {
           <ResponsiveWaffle
             data={data}
             margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
-            colors={{ scheme: "paired" }}
+            colors={getPastelColors()}
             theme={commonTheme}
             total={100}
             rows={10}
@@ -959,7 +1011,7 @@ const StatsPage: React.FC = () => {
               <ResponsiveBump
                 data={bumpData}
                 margin={{ top: 40, right: 100, bottom: 40, left: 60 }}
-                colors={{ scheme: "paired" }}
+                colors={getPastelColors()}
                 theme={commonTheme}
                 lineWidth={3}
                 activeLineWidth={6}
@@ -1019,7 +1071,7 @@ const StatsPage: React.FC = () => {
                 indexBy="difficulty"
                 margin={{ top: 20, right: 20, bottom: 40, left: 50 }}
                 padding={0.3}
-                colors={{ scheme: "oranges" }}
+                colors={getNonPinkColors()}
                 theme={commonTheme}
                 axisBottom={{
                   tickSize: 5,
@@ -1066,7 +1118,7 @@ const StatsPage: React.FC = () => {
                 indexBy="platform"
                 margin={{ top: 20, right: 20, bottom: 40, left: 50 }}
                 padding={0.3}
-                colors={{ scheme: "paired" }}
+                colors={getNonPinkColors()}
                 theme={commonTheme}
                 axisBottom={{
                   tickSize: 5,
@@ -1110,7 +1162,7 @@ const StatsPage: React.FC = () => {
                 innerRadius={0.5}
                 padAngle={0.7}
                 cornerRadius={3}
-                colors={{ scheme: "paired" }}
+                colors={getPastelColors()}
                 theme={commonTheme}
                 borderWidth={1}
                 borderColor="hsl(var(--background))"
@@ -1142,7 +1194,7 @@ const StatsPage: React.FC = () => {
                 from="2024-01-01"
                 to="2024-01-31"
                 emptyColor="hsl(var(--muted))"
-                colors={["hsl(var(--muted-foreground))", "hsl(var(--primary))"]}
+                colors={getPastelColors().slice(0, 2)}
                 margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
                 yearSpacing={40}
                 monthBorderColor="hsl(var(--border))"
@@ -1177,7 +1229,7 @@ const StatsPage: React.FC = () => {
                 margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
                 id="name"
                 value="value"
-                colors={{ scheme: "paired" }}
+                colors={getNonPinkColors()}
                 theme={commonTheme}
                 borderColor="hsl(var(--background))"
                 childColor={{
@@ -1218,7 +1270,7 @@ const StatsPage: React.FC = () => {
                 indexBy="platform"
                 margin={{ top: 20, right: 20, bottom: 40, left: 50 }}
                 padding={0.3}
-                colors={{ scheme: "greens" }}
+                colors={getPastelColors()}
                 theme={commonTheme}
                 axisBottom={{
                   tickSize: 5,
@@ -1279,7 +1331,7 @@ const StatsPage: React.FC = () => {
                   tickPadding: 5,
                   tickRotation: 0,
                 }}
-                colors={{ scheme: "paired" }}
+                colors={getNonPinkColors()}
                 theme={commonTheme}
                 pointSize={8}
                 pointColor="hsl(var(--background))"
@@ -1315,7 +1367,7 @@ const StatsPage: React.FC = () => {
                 identity="name"
                 value="value"
                 margin={{ top: 10, right: 10, bottom: 10, left: 10 }}
-                colors={isDark ? { scheme: "pastel1" } : { scheme: "paired" }}
+                colors={getPastelColors()}
                 theme={commonTheme}
                 labelSkipSize={12}
                 labelTextColor="hsl(var(--background))"
@@ -1348,7 +1400,7 @@ const StatsPage: React.FC = () => {
               <ResponsiveFunnel
                 data={funnelData}
                 margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
-                colors={{ scheme: "paired" }}
+                colors={getPastelColors()}
                 theme={commonTheme}
                 borderWidth={20}
                 labelColor="hsl(var(--background))"
@@ -1359,53 +1411,6 @@ const StatsPage: React.FC = () => {
                 currentPartSizeExtension={10}
                 currentBorderWidth={40}
                 motionConfig="wobbly"
-              />
-            </div>
-          </div>
-
-          {/* Original Charts - Attempts per Question - spans 4 columns */}
-          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
-            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <Maximize2 className="w-5 h-5 text-muted-foreground" />
-            </div>
-            <h3 className="text-lg font-semibold mb-4">
-              Average Attempts per Question
-            </h3>
-            <div
-              className="h-64"
-              onClick={() =>
-                openModal(
-                  "Average Attempts per Question",
-                  "This metric shows how many attempts on average it takes to solve a question of each difficulty level. Lower values indicate better problem-solving efficiency and understanding.",
-                  "bar",
-                  attemptsBarData,
-                  ["attempts"],
-                  "difficulty",
-                  "blues"
-                )
-              }
-            >
-              <ResponsiveBar
-                data={attemptsBarData}
-                keys={["attempts"]}
-                indexBy="difficulty"
-                margin={{ top: 20, right: 20, bottom: 40, left: 50 }}
-                padding={0.3}
-                colors={{ scheme: "blues" }}
-                theme={commonTheme}
-                axisBottom={{
-                  tickSize: 5,
-                  tickPadding: 5,
-                  tickRotation: 0,
-                }}
-                axisLeft={{
-                  tickSize: 5,
-                  tickPadding: 5,
-                  tickRotation: 0,
-                }}
-                labelSkipWidth={12}
-                labelSkipHeight={12}
-                labelTextColor="hsl(var(--background))"
               />
             </div>
           </div>
@@ -1436,7 +1441,7 @@ const StatsPage: React.FC = () => {
                 indexBy="topic"
                 margin={{ top: 20, right: 20, bottom: 60, left: 50 }}
                 padding={0.3}
-                colors={isDark ? { scheme: "set3" } : { scheme: "spectral" }}
+                colors={getNonPinkColors()}
                 theme={commonTheme}
                 axisBottom={{
                   tickSize: 5,
@@ -1454,62 +1459,8 @@ const StatsPage: React.FC = () => {
               />
             </div>
           </div>
-
-          {/* Medium Radial Bar - spans 4 columns */}
+          {/* Small Waffle - spans 4 columns */}
           <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
-            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <Maximize2 className="w-5 h-5 text-muted-foreground" />
-            </div>
-            <h3 className="text-lg font-semibold mb-4">
-              Success Rates by Platform
-            </h3>
-            <div
-              className="h-80"
-              onClick={() =>
-                openModal(
-                  "Platform Success Rates",
-                  "This radial bar chart shows success rates across different platforms. Longer bars indicate higher success percentages.",
-                  "radialbar",
-                  radialBarData
-                )
-              }
-            >
-              <ResponsiveRadialBar
-                data={radialBarData}
-                margin={{ top: 40, right: 120, bottom: 40, left: 40 }}
-                colors={{ scheme: "paired" }}
-                theme={commonTheme}
-                borderColor="hsl(var(--background))"
-                tracksColor="hsl(var(--muted))"
-                radialAxisStart={{
-                  tickSize: 5,
-                  tickPadding: 5,
-                  tickRotation: 0,
-                }}
-                circularAxisOuter={{
-                  tickSize: 5,
-                  tickPadding: 12,
-                  tickRotation: 0,
-                }}
-                legends={[
-                  {
-                    anchor: "right",
-                    direction: "column",
-                    translateX: 80,
-                    translateY: 0,
-                    itemWidth: 80,
-                    itemHeight: 14,
-                    itemTextColor: "hsl(var(--foreground))",
-                    symbolSize: 12,
-                    symbolShape: "square",
-                  },
-                ]}
-              />
-            </div>
-          </div>
-
-          {/* Medium Waffle - spans 6 columns */}
-          <div className="col-span-12 lg:col-span-8 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1530,7 +1481,7 @@ const StatsPage: React.FC = () => {
               <ResponsiveWaffle
                 data={waffleData}
                 margin={{ top: 40, right: 40, bottom: 40, left: 40 }}
-                colors={{ scheme: "paired" }}
+                colors={getPastelColors()}
                 theme={commonTheme}
                 total={100}
                 rows={10}
@@ -1584,7 +1535,7 @@ const StatsPage: React.FC = () => {
                 indexBy="platform"
                 margin={{ top: 20, right: 20, bottom: 40, left: 50 }}
                 padding={0.3}
-                colors={{ scheme: "reds" }}
+                colors={getPastelColors()}
                 theme={commonTheme}
                 axisBottom={{
                   tickSize: 5,
@@ -1681,7 +1632,7 @@ const StatsPage: React.FC = () => {
                 enableDotLabel={true}
                 dotLabel="value"
                 dotLabelYOffset={-12}
-                colors={{ scheme: "paired" }}
+                colors={getPastelColors()}
                 fillOpacity={0.25}
                 blendMode="multiply"
                 animate={true}
