@@ -77,7 +77,7 @@ export const registerUser = async (userData: RegisterRequest): Promise<AuthRespo
     if (response.ok && data.user) {
       // Store auth token if provided
       if (data.token) {
-        setCookie('auth_token', data.token);
+        setCookie('auth_token', data.token, 3650);
       }
       
       // Store user data in localStorage for persistence
@@ -120,7 +120,7 @@ export const loginUser = async (credentials: LoginRequest): Promise<AuthResponse
     if (response.ok && data.user) {
       // Store auth token if provided
       if (data.token) {
-        setCookie('auth_token', data.token);
+        setCookie('auth_token', data.token, 3650);
       }
       
       // Store user data in localStorage for persistence
@@ -192,30 +192,17 @@ export const getBackendUser = (): BackendUser | null => {
 
 // Validate token and refresh user data if needed
 export const validateBackendAuth = async (): Promise<BackendUser | null> => {
+  const cachedUser = getBackendUser();
   const token = getCookie('auth_token');
-  if (!token) return null;
-  
-  try {
-    const response = await fetch(`${API_BASE_URL}/auth/me`, {
-      headers: {
-        'Authorization': `Bearer ${token}`,
-      },
-      credentials: 'include',
-    });
-    
-    if (response.ok) {
-      const data = await response.json();
-      if (data.user) {
-        localStorage.setItem('backend_user', JSON.stringify(data.user));
-        return data.user;
-      }
-    }
-    
-    // Token is invalid, clear auth data
-    logoutBackendUser();
-    return null;
-  } catch (error) {
-    console.error('Auth validation error:', error);
+
+  if (!cachedUser) {
     return null;
   }
+
+  if (!token) {
+    await logoutBackendUser();
+    return null;
+  }
+
+  return cachedUser;
 };

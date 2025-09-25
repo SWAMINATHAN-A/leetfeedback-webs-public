@@ -109,30 +109,35 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     const initializeAuth = async () => {
       setIsLoading(true);
       
-      // Check for backend user
-      const backendUser = getBackendUser();
-      if (backendUser) {
-        // Validate backend auth
-        const validatedUser = await validateBackendAuth();
-        if (validatedUser) {
-          const userData: User = {
-            uid: validatedUser.id,
-            email: validatedUser.email,
-            displayName: validatedUser.username,
-            photoURL: null,
-            provider: 'backend',
-            username: validatedUser.username,
-            role: validatedUser.role,
-            github: validatedUser.github,
-            authType: 'backend',
-          };
-          setUserState(userData);
-          setIsLoading(false);
-          return;
+      try {
+        // Check if user was previously authenticated with backend
+        const authType = localStorage.getItem('auth_type');
+        if (authType === 'backend') {
+          // Try to validate with backend using httpOnly cookie
+          const validatedUser = await validateBackendAuth();
+          if (validatedUser) {
+            const userData: User = {
+              uid: validatedUser.id,
+              email: validatedUser.email,
+              displayName: validatedUser.username,
+              photoURL: null,
+              provider: 'backend',
+              username: validatedUser.username,
+              role: validatedUser.role,
+              github: validatedUser.github,
+              authType: 'backend',
+            };
+            setUserState(userData);
+            setIsLoading(false);
+            return;
+          }
+          // If validation fails, user will be signed out
         }
+      } catch (error) {
+        console.error('Auth initialization error:', error);
       }
       
-      // If no backend user, continue with Firebase auth check
+      // If no backend user or validation failed, continue with Firebase auth check
       setIsLoading(false);
     };
 
