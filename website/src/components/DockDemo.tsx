@@ -171,7 +171,7 @@ export function DockDemo() {
   const showNavigation = isHomePage;
 
   return (
-    <div 
+    <div
       className="fixed bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block"
       style={{ zIndex: 100 }}
     >

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { useAuth } from "../../contexts/AuthContext";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { X, LogIn, Lock, RefreshCw, Code2 } from "lucide-react";
 import { MagicCard } from "../magicui/magic-card";
@@ -10,20 +9,13 @@ interface SignInModalProps {
 }
 
 const SignInModal: React.FC<SignInModalProps> = ({ isOpen, onClose }) => {
-  const { signInWithGoogle, isLoading } = useAuth();
   const navigate = useNavigate();
-  const [error, setError] = useState<string | null>(null);
 
   if (!isOpen) return null;
 
-  const handleGoogleSignIn = async () => {
-    try {
-      setError(null);
-      await signInWithGoogle();
-      onClose();
-    } catch (error) {
-      setError("Failed to sign in with Google. Please try again.");
-    }
+  const handleSignInRedirect = () => {
+    onClose();
+    navigate("/login");
   };
 
   const handleTermsClick = () => {
@@ -76,25 +68,15 @@ const SignInModal: React.FC<SignInModalProps> = ({ isOpen, onClose }) => {
 
           {/* Content */}
           <div className="p-8">
-            {error && (
-              <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm mb-6 dark:bg-red-950/20 dark:border-red-800 dark:text-red-400">
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-red-500"></div>
-                  {error}
-                </div>
-              </div>
-            )}
-
             <div className="space-y-4">
-              {/* Google Sign In */}
+              {/* Sign In Button */}
               <button
-                onClick={handleGoogleSignIn}
-                disabled={isLoading}
-                className="w-full group relative overflow-hidden bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 rounded-xl px-6 py-4 font-medium transition-all duration-200 hover:scale-[1.02] hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 disabled:hover:shadow-none"
+                onClick={handleSignInRedirect}
+                className="w-full group relative overflow-hidden bg-white hover:bg-gray-50 text-gray-900 border border-gray-200 rounded-xl px-6 py-4 font-medium transition-all duration-200 hover:scale-[1.02] hover:shadow-lg"
               >
                 <div className="flex items-center justify-center gap-3">
                   <LogIn className="h-5 w-5 text-blue-500" />
-                  <span>Continue with Google</span>
+                  <span>Sign In to Continue</span>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-green-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               </button>

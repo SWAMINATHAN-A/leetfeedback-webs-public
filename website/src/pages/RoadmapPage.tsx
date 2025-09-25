@@ -7,7 +7,12 @@ import { BlurFade } from "../components/magicui/blur-fade";
 import { TextAnimate } from "../components/magicui/text-animate";
 import { RainbowButton } from "../components/magicui/rainbow-button";
 import { Timeline } from "../components/ui/timeline";
-import { Phase1Swapy, Phase2Swapy, Phase3Swapy, Phase4Swapy } from "../components/roadmap/PhaseSwapy";
+import {
+  Phase1Swapy,
+  Phase2Swapy,
+  Phase3Swapy,
+  Phase4Swapy,
+} from "../components/roadmap/PhaseSwapy";
 import { analytics } from "../utils/analytics";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
@@ -48,11 +53,11 @@ const RoadmapPage: React.FC = () => {
       icon: CodeIcon,
       features: [
         "LeetCode & GeeksforGeeks integration",
-        "Extension popup interface", 
+        "Extension popup interface",
         "Basic problem tracking",
         "User authentication system",
         "GitHub repository creation",
-        "Solution auto-commit functionality"
+        "Solution auto-commit functionality",
       ],
     },
     {
@@ -67,10 +72,10 @@ const RoadmapPage: React.FC = () => {
       features: [
         "AI mistake pattern recognition",
         "Automated GitHub analysis reports",
-        "Smart insights generation", 
+        "Smart insights generation",
         "Notion workspace integration",
         "ANKI flashcard generation",
-        "Revision scheduling system"
+        "Revision scheduling system",
       ],
     },
     {
@@ -78,16 +83,16 @@ const RoadmapPage: React.FC = () => {
       title: "Analytics & Visualization",
       description: "Comprehensive performance analytics and data insights",
       completed: false,
-      phase: "Phase 3", 
+      phase: "Phase 3",
       timeline: "2025 Q3-Q4",
       icon: AnalyticsIcon,
       features: [
         "Advanced analytics dashboard",
         "Performance metrics visualization",
-        "Progress comparison tools", 
+        "Progress comparison tools",
         "Custom reporting features",
         "Time tracking analytics",
-        "Difficulty progression insights"
+        "Difficulty progression insights",
       ],
     },
     {
@@ -101,11 +106,11 @@ const RoadmapPage: React.FC = () => {
       icon: DevicesIcon,
       features: [
         "TUF+, CodeChef, HackerRank support",
-        "Codeforces integration", 
+        "Codeforces integration",
         "Mobile companion app",
         "Team collaboration features",
         "Achievement system & gamification",
-        "Enterprise admin controls"
+        "Enterprise admin controls",
       ],
     },
   ];
@@ -118,12 +123,17 @@ const RoadmapPage: React.FC = () => {
   // Timeline data for the new Timeline component
   const timelineData = roadmapPhases.map((phase, index) => {
     const getPhaseComponent = () => {
-      switch(phase.id) {
-        case 1: return <Phase1Swapy />;
-        case 2: return <Phase2Swapy />;
-        case 3: return <Phase3Swapy />;
-        case 4: return <Phase4Swapy />;
-        default: return <Phase1Swapy />;
+      switch (phase.id) {
+        case 1:
+          return <Phase1Swapy />;
+        case 2:
+          return <Phase2Swapy />;
+        case 3:
+          return <Phase3Swapy />;
+        case 4:
+          return <Phase4Swapy />;
+        default:
+          return <Phase1Swapy />;
       }
     };
 
@@ -132,26 +142,32 @@ const RoadmapPage: React.FC = () => {
       content: (
         <div className="space-y-6">
           {/* Phase Header */}
-          <div className={`p-6 rounded-xl border-2 transition-all duration-300 ${
-            phase.completed 
-              ? 'bg-emerald-50 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-800' 
-              : 'bg-muted/20 border-muted-foreground/20'
-          }`}>
+          <div
+            className={`p-6 rounded-xl border-2 transition-all duration-300 ${
+              phase.completed
+                ? "bg-emerald-50 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-800"
+                : "bg-muted/20 border-muted-foreground/20"
+            }`}
+          >
             <div className="flex items-center gap-4 mb-4">
-              <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${
-                phase.completed 
-                  ? 'bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400' 
-                  : 'bg-muted text-muted-foreground'
-              }`}>
+              <div
+                className={`w-12 h-12 rounded-lg flex items-center justify-center ${
+                  phase.completed
+                    ? "bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-400"
+                    : "bg-muted text-muted-foreground"
+                }`}
+              >
                 <phase.icon className="w-6 h-6" />
               </div>
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-2">
-                  <h3 className={`text-xl font-bold ${
-                    phase.completed 
-                      ? 'text-emerald-700 dark:text-emerald-300' 
-                      : 'text-foreground'
-                  }`}>
+                  <h3
+                    className={`text-xl font-bold ${
+                      phase.completed
+                        ? "text-emerald-700 dark:text-emerald-300"
+                        : "text-foreground"
+                    }`}
+                  >
                     {phase.title}
                   </h3>
                   {phase.completed ? (
@@ -160,38 +176,38 @@ const RoadmapPage: React.FC = () => {
                     <RadioButtonUncheckedIcon className="w-5 h-5 text-muted-foreground" />
                   )}
                 </div>
-                <p className="text-muted-foreground">
-                  {phase.description}
-                </p>
+                <p className="text-muted-foreground">{phase.description}</p>
               </div>
               {phase.milestone && (
-                <Badge className={`${
-                  phase.completed 
-                    ? 'bg-emerald-100 text-emerald-700 border-emerald-300' 
-                    : 'bg-muted text-muted-foreground border-muted-foreground/20'
-                } font-mono text-xs`}>
+                <Badge
+                  className={`${
+                    phase.completed
+                      ? "bg-emerald-100 text-emerald-700 border-emerald-300"
+                      : "bg-muted text-muted-foreground border-muted-foreground/20"
+                  } font-mono text-xs`}
+                >
                   <TargetIcon className="w-3 h-3 mr-1" />
                   {phase.milestone}
                 </Badge>
               )}
             </div>
-            
+
             {/* Features List */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mb-4">
               {phase.features.map((feature, featureIndex) => (
                 <div key={featureIndex} className="flex items-start gap-2">
-                  <div className="text-sm leading-relaxed">
-                    {feature}
-                  </div>
+                  <div className="text-sm leading-relaxed">{feature}</div>
                 </div>
               ))}
             </div>
-            
+
             {/* Status Footer */}
             <div className="pt-4 border-t border-border/20 flex items-center justify-between">
-              <span className={`text-sm font-medium ${
-                phase.completed ? 'text-emerald-600' : 'text-muted-foreground'
-              }`}>
+              <span
+                className={`text-sm font-medium ${
+                  phase.completed ? "text-emerald-600" : "text-muted-foreground"
+                }`}
+              >
                 {phase.completed ? "Completed" : "In Development"}
               </span>
               <span className="text-xs text-muted-foreground font-mono">
@@ -199,10 +215,12 @@ const RoadmapPage: React.FC = () => {
               </span>
             </div>
           </div>
-          
+
           {/* Phase-specific Swapy Component */}
           <div className="mt-6">
-            <h4 className="text-lg font-semibold mb-4 text-foreground">Interactive Preview</h4>
+            <h4 className="text-lg font-semibold mb-4 text-foreground">
+              Interactive Preview
+            </h4>
             {getPhaseComponent()}
           </div>
         </div>
@@ -290,7 +308,10 @@ const RoadmapPage: React.FC = () => {
                       <div className="text-center">
                         <FlagIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
                         <div className="text-2xl font-bold text-foreground">
-                          {roadmapPhases.filter((item) => item.milestone).length}
+                          {
+                            roadmapPhases.filter((item) => item.milestone)
+                              .length
+                          }
                         </div>
                         <div className="text-sm text-muted-foreground">
                           Major Milestones
@@ -307,8 +328,6 @@ const RoadmapPage: React.FC = () => {
         {/* Roadmap Timeline */}
         <section className="py-24 bg-background border-t border-border/20">
           <div className="container mx-auto px-4 md:px-8">
-            
-
             {/* Timeline Component */}
             <BlurFade delay={1}>
               <div className="w-full max-w-6xl mx-auto">

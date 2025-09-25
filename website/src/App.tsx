@@ -10,6 +10,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
 import RoadmapPage from "./pages/RoadmapPage";
 import SimpleProfilePage from "./pages/SimpleProfilePage";
 import StatsPage from "./pages/StatsPage";
@@ -32,11 +33,7 @@ function AppContent() {
     <div className="App min-h-screen relative">
       {/* Background Ripple Effect */}
       <div className="fixed inset-0 w-full h-full z-0">
-        <BackgroundRippleEffect
-          rows={8}
-          cols={27}
-          cellSize={56}
-        />
+        <BackgroundRippleEffect rows={8} cols={27} cellSize={56} />
       </div>
 
       {/* Content overlay */}
@@ -44,6 +41,7 @@ function AppContent() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/roadmap" element={<RoadmapPage />} />
           <Route path="/profile" element={<SimpleProfilePage />} />
           <Route path="/profile/stats" element={<StatsPage />} />
@@ -58,7 +56,7 @@ function AppContent() {
         height="10vh"
         className="fixed bottom-0 left-0 right-0 z-40 pointer-events-none"
       />
-      
+
       {/* Dock - show on home page, stats page, and roadmap page */}
       {(isHomePage || isStatsPage || isRoadmapPage) && <DockDemo />}
     </div>

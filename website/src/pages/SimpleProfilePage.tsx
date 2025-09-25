@@ -1,9 +1,12 @@
 import React from "react";
 import { useAuth } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import Footer from "../components/Footer";
-import { User, LogOut } from "lucide-react";
+import { User, LogOut, Github, Mail, Calendar, Code } from "lucide-react";
 import ProfileImage from "../components/ui/ProfileImage";
+import { Card, CardContent, CardHeader, CardTitle } from "../components/ui/card";
+import { Badge } from "../components/ui/badge";
+import { Button } from "../components/ui/button";
 
 const SimpleProfilePage: React.FC = () => {
   const { user, signOut, isAuthenticated } = useAuth();
@@ -25,49 +28,237 @@ const SimpleProfilePage: React.FC = () => {
   };
 
   if (!isAuthenticated || !user) {
-    return <div>Loading...</div>;
-  }
+    return (
+      <div className="min-h-screen bg-background flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading...</p>
+        </div>
+      </div>
+    );
+  };
+
+  const isBackendUser = user.authType === 'backend';
+  const isFirebaseUser = user.authType === 'firebase';
+
+  // Debug: log user data to see what's being received
+  React.useEffect(() => {
+    if (user) {
+      console.log('User data:', user);
+      console.log('GitHub data:', user.github);
+      console.log('GitHub linked:', user.github?.linked);
+    }
+  }, [user]);
 
   return (
     <div className="min-h-screen bg-background">
-      <main className="container mx-auto px-4 py-12 max-w-2xl">
-        <div className="bg-card border border-border rounded-lg p-8">
-          <div className="text-center mb-8">
-            <div className="mx-auto mb-4">
-              <ProfileImage src={user.photoURL} alt="User" size="lg" />
-            </div>
-            <h1 className="text-2xl font-bold">{user.displayName || "User"}</h1>
-            <p className="text-muted-foreground">{user.email}</p>
-          </div>
+      <main className="container mx-auto px-4 py-12 max-w-4xl">
+        <div className="grid gap-6">
+          {/* Profile Header */}
+          <Card>
+            <CardHeader>
+              <div className="flex items-center gap-6">
+                <div className="relative">
+                  <ProfileImage 
+                    src={user.photoURL} 
+                    alt={user.displayName || user.username || "User"} 
+                    size="lg" 
+                  />
+                  <Badge 
+                    variant={isBackendUser ? "default" : "secondary"}
+                    className="absolute -bottom-2 -right-2"
+                  >
+                    {isBackendUser ? "Backend" : "Google"}
+                  </Badge>
+                </div>
+                <div className="flex-1">
+                  <CardTitle className="text-3xl mb-2">
+                    {user.displayName || user.username || "User"}
+                  </CardTitle>
+                  <div className="flex items-center gap-2 text-muted-foreground mb-4">
+                    <Mail className="w-4 h-4" />
+                    <span>{user.email}</span>
+                  </div>
+                  {isBackendUser && user.github?.username && (
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <Github className="w-4 h-4" />
+                      <a 
+                        href={`https://github.com/${user.github.username}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-primary transition-colors"
+                      >
+                        @{user.github.username}
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </CardHeader>
+          </Card>
 
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-1">
-                Display Name
-              </label>
-              <p className="text-muted-foreground">
-                {user.displayName || "Not set"}
-              </p>
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Email</label>
-              <p className="text-muted-foreground">{user.email}</p>
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-1">Provider</label>
-              <p className="text-muted-foreground">{user.provider}</p>
-            </div>
-          </div>
+          {/* Account Information */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <User className="w-5 h-5" />
+                Account Information
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid gap-4 md:grid-cols-2">
+                <div>
+                  <label className="block text-sm font-medium mb-1">
+                    {isBackendUser ? "Username" : "Display Name"}
+                  </label>
+                  <p className="text-muted-foreground bg-muted/50 rounded-md p-2">
+                    {isBackendUser ? user.username : user.displayName || "Not set"}
+                  </p>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Email</label>
+                  <p className="text-muted-foreground bg-muted/50 rounded-md p-2">
+                    {user.email}
+                  </p>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Authentication Type</label>
+                  <div className="flex items-center gap-2">
+                    <Badge variant={isBackendUser ? "default" : "secondary"}>
+                      {isBackendUser ? "Backend Account" : "Google Account"}
+                    </Badge>
+                  </div>
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Provider</label>
+                  <p className="text-muted-foreground bg-muted/50 rounded-md p-2">
+                    {user.provider}
+                  </p>
+                </div>
+                {isBackendUser && user.role && (
+                  <div>
+                    <label className="block text-sm font-medium mb-1">Role</label>
+                    <p className="text-muted-foreground bg-muted/50 rounded-md p-2">
+                      {user.role}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </CardContent>
+          </Card>
 
-          <div className="mt-8 pt-8 border-t border-border">
-            <button
-              onClick={handleSignOut}
-              className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors"
-            >
-              <LogOut className="w-4 h-4" />
-              Sign Out
-            </button>
-          </div>
+          {/* GitHub Information (Backend users only) */}
+          {isBackendUser && (
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <Github className="w-5 h-5" />
+                  GitHub Configuration
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                {user.github?.linked ? (
+                  <>
+                    <div className="mb-4">
+                      <Badge variant="default" className="bg-green-500 hover:bg-green-600">
+                        GitHub Linked
+                      </Badge>
+                    </div>
+                    <div className="grid gap-4 md:grid-cols-3">
+                      <div>
+                        <label className="block text-sm font-medium mb-1">GitHub Username</label>
+                        <p className="text-muted-foreground bg-muted/50 rounded-md p-2">
+                          {user.github.username || "Not set"}
+                        </p>
+                        {user.github.username && (
+                          <a 
+                            href={`https://github.com/${user.github.username}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-primary hover:underline mt-1 inline-block"
+                          >
+                            View Profile →
+                          </a>
+                        )}
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Repository</label>
+                        <p className="text-muted-foreground bg-muted/50 rounded-md p-2">
+                          {user.github.repo || "Not set"}
+                        </p>
+                        {user.github.username && user.github.repo && (
+                          <a 
+                            href={`https://github.com/${user.github.username}/${user.github.repo}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-primary hover:underline mt-1 inline-block"
+                          >
+                            View Repository →
+                          </a>
+                        )}
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium mb-1">Branch</label>
+                        <p className="text-muted-foreground bg-muted/50 rounded-md p-2">
+                          {user.github.branch || "main"}
+                        </p>
+                      </div>
+                    </div>
+                    
+                    {user.github.username && user.github.repo && (
+                      <div className="mt-4 p-4 bg-muted/30 rounded-lg">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Code className="w-4 h-4" />
+                          <span className="text-sm font-medium">Repository URL</span>
+                        </div>
+                        <code className="text-xs bg-muted p-2 rounded block break-all">
+                          https://github.com/{user.github.username}/{user.github.repo}/tree/{user.github.branch || 'main'}
+                        </code>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className="text-center py-8">
+                    <Github className="w-16 h-16 mx-auto text-muted-foreground mb-4" />
+                    <h3 className="text-lg font-medium mb-2">GitHub Not Linked</h3>
+                    <p className="text-muted-foreground mb-4">
+                      Connect your GitHub account to enable code feedback and tracking.
+                    </p>
+                    <Badge variant="secondary">
+                      GitHub Linking Coming Soon
+                    </Badge>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
+          )}
+
+          {/* Actions */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Account Actions</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-wrap gap-4">
+                <Button 
+                  variant="outline" 
+                  onClick={() => navigate("/")}
+                  className="flex items-center gap-2"
+                >
+                  <User className="w-4 h-4" />
+                  Back to Home
+                </Button>
+                <Button 
+                  variant="destructive" 
+                  onClick={handleSignOut}
+                  className="flex items-center gap-2"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Sign Out
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </main>
 

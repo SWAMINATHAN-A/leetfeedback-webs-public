@@ -53,7 +53,9 @@ export function GitHubIntegrationCard() {
         <GitHubIcon className="w-6 h-6 flex-shrink-0" />
         <h3 className="text-lg font-bold truncate">GitHub</h3>
       </div>
-      <p className="text-gray-300 text-xs line-clamp-2">Auto-commit solutions</p>
+      <p className="text-gray-300 text-xs line-clamp-2">
+        Auto-commit solutions
+      </p>
     </div>
   );
 }
@@ -63,7 +65,9 @@ export function PlatformIntegrationCard() {
     <div className="bg-blue-600 rounded-xl h-full p-4 flex flex-col justify-start items-start shadow-md overflow-hidden">
       <CodeIcon className="w-8 h-8 text-white mb-2 flex-shrink-0" />
       <h3 className="text-lg font-bold text-white mb-1 truncate">Platform</h3>
-      <p className="text-blue-100 text-xs text-left line-clamp-2">LeetCode & GeeksforGeeks</p>
+      <p className="text-blue-100 text-xs text-left line-clamp-2">
+        LeetCode & GeeksforGeeks
+      </p>
     </div>
   );
 }
@@ -73,7 +77,9 @@ export function AuthSystemCard() {
     <div className="bg-green-600 rounded-xl h-full p-4 flex flex-col justify-start shadow-md overflow-hidden">
       <AccountCircleIcon className="w-8 h-8 text-white mb-2 flex-shrink-0" />
       <h3 className="text-lg font-bold text-white truncate">User Auth</h3>
-      <p className="text-green-100 text-xs line-clamp-2">Secure Authentication</p>
+      <p className="text-green-100 text-xs line-clamp-2">
+        Secure Authentication
+      </p>
     </div>
   );
 }
@@ -83,18 +89,22 @@ export function ExtensionCard() {
     <div className="bg-purple-600 rounded-xl h-full p-4 flex flex-col justify-start items-start shadow-md overflow-hidden">
       <IntegrationInstructionsIcon className="w-8 h-8 text-white mb-2 flex-shrink-0" />
       <h3 className="text-lg font-bold text-white truncate">Extension</h3>
-      <p className="text-purple-100 text-xs text-left line-clamp-2">Popup Interface</p>
+      <p className="text-purple-100 text-xs text-left line-clamp-2">
+        Popup Interface
+      </p>
     </div>
   );
 }
 
-// Phase 2 Components  
+// Phase 2 Components
 export function AIAnalysisCard() {
   return (
     <div className="bg-gradient-to-br from-purple-600 to-pink-600 text-white rounded-xl h-full p-4 flex flex-col justify-start shadow-md overflow-hidden">
       <PsychologyIcon className="w-8 h-8 mb-2 flex-shrink-0" />
       <h3 className="text-lg font-bold mb-1 truncate">AI Analysis</h3>
-      <p className="text-purple-100 text-xs line-clamp-1">Pattern Recognition</p>
+      <p className="text-purple-100 text-xs line-clamp-1">
+        Pattern Recognition
+      </p>
       <p className="text-pink-200 font-medium text-xs mt-1">Smart Insights</p>
     </div>
   );
@@ -105,7 +115,9 @@ export function NotionSyncCard() {
     <div className="bg-gray-100 text-gray-900 rounded-xl h-full p-4 flex flex-col justify-start shadow-md overflow-hidden">
       <NotesIcon className="w-8 h-8 text-gray-700 mb-2 flex-shrink-0" />
       <h3 className="text-lg font-bold mb-1 truncate">Notion Sync</h3>
-      <p className="text-gray-600 text-xs line-clamp-2">Workspace Integration</p>
+      <p className="text-gray-600 text-xs line-clamp-2">
+        Workspace Integration
+      </p>
     </div>
   );
 }
@@ -217,96 +229,160 @@ export function TeamFeaturesCard() {
 // Custom Swapy Layout Components
 export function Phase1Swapy() {
   const isMobile = useIsMobile();
-  
+
   if (isMobile) {
     return (
       <div className="grid grid-cols-2 gap-4 w-full max-w-md mx-auto">
-        <div className="h-28"><GitHubIntegrationCard /></div>
-        <div className="h-28"><PlatformIntegrationCard /></div>
-        <div className="h-28"><AuthSystemCard /></div>
-        <div className="h-28"><ExtensionCard /></div>
+        <div className="h-28">
+          <GitHubIntegrationCard />
+        </div>
+        <div className="h-28">
+          <PlatformIntegrationCard />
+        </div>
+        <div className="h-28">
+          <AuthSystemCard />
+        </div>
+        <div className="h-28">
+          <ExtensionCard />
+        </div>
       </div>
     );
   }
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-      <div className="h-32"><GitHubIntegrationCard /></div>
-      <div className="h-32"><PlatformIntegrationCard /></div>
-      <div className="h-32"><AuthSystemCard /></div>
-      <div className="h-32"><ExtensionCard /></div>
+      <div className="h-32">
+        <GitHubIntegrationCard />
+      </div>
+      <div className="h-32">
+        <PlatformIntegrationCard />
+      </div>
+      <div className="h-32">
+        <AuthSystemCard />
+      </div>
+      <div className="h-32">
+        <ExtensionCard />
+      </div>
     </div>
   );
 }
 
 export function Phase2Swapy() {
   const isMobile = useIsMobile();
-  
+
   if (isMobile) {
     return (
       <div className="grid grid-cols-2 gap-4 w-full max-w-md mx-auto">
-        <div className="h-28"><AIAnalysisCard /></div>
-        <div className="h-28"><NotionSyncCard /></div>
-        <div className="h-28"><AnkiCardsCard /></div>
-        <div className="h-28"><RevisionScheduleCard /></div>
+        <div className="h-28">
+          <AIAnalysisCard />
+        </div>
+        <div className="h-28">
+          <NotionSyncCard />
+        </div>
+        <div className="h-28">
+          <AnkiCardsCard />
+        </div>
+        <div className="h-28">
+          <RevisionScheduleCard />
+        </div>
       </div>
     );
   }
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-      <div className="h-32"><AIAnalysisCard /></div>
-      <div className="h-32"><NotionSyncCard /></div>
-      <div className="h-32"><AnkiCardsCard /></div>
-      <div className="h-32"><RevisionScheduleCard /></div>
+      <div className="h-32">
+        <AIAnalysisCard />
+      </div>
+      <div className="h-32">
+        <NotionSyncCard />
+      </div>
+      <div className="h-32">
+        <AnkiCardsCard />
+      </div>
+      <div className="h-32">
+        <RevisionScheduleCard />
+      </div>
     </div>
   );
 }
 
 export function Phase3Swapy() {
   const isMobile = useIsMobile();
-  
+
   if (isMobile) {
     return (
       <div className="grid grid-cols-2 gap-4 w-full max-w-md mx-auto">
-        <div className="h-28"><AnalyticsDashboardCard /></div>
-        <div className="h-28"><DataVisualizationCard /></div>
-        <div className="h-28"><ProgressTrackingCard /></div>
-        <div className="h-28"><CustomReportsCard /></div>
+        <div className="h-28">
+          <AnalyticsDashboardCard />
+        </div>
+        <div className="h-28">
+          <DataVisualizationCard />
+        </div>
+        <div className="h-28">
+          <ProgressTrackingCard />
+        </div>
+        <div className="h-28">
+          <CustomReportsCard />
+        </div>
       </div>
     );
   }
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-      <div className="h-32"><AnalyticsDashboardCard /></div>
-      <div className="h-32"><DataVisualizationCard /></div>
-      <div className="h-32"><ProgressTrackingCard /></div>
-      <div className="h-32"><CustomReportsCard /></div>
+      <div className="h-32">
+        <AnalyticsDashboardCard />
+      </div>
+      <div className="h-32">
+        <DataVisualizationCard />
+      </div>
+      <div className="h-32">
+        <ProgressTrackingCard />
+      </div>
+      <div className="h-32">
+        <CustomReportsCard />
+      </div>
     </div>
   );
 }
 
 export function Phase4Swapy() {
   const isMobile = useIsMobile();
-  
+
   if (isMobile) {
     return (
       <div className="grid grid-cols-2 gap-4 w-full max-w-md mx-auto">
-        <div className="h-28"><PlatformExpansionCard /></div>
-        <div className="h-28"><MobileAppCard /></div>
-        <div className="h-28"><GamificationCard /></div>
-        <div className="h-28"><TeamFeaturesCard /></div>
+        <div className="h-28">
+          <PlatformExpansionCard />
+        </div>
+        <div className="h-28">
+          <MobileAppCard />
+        </div>
+        <div className="h-28">
+          <GamificationCard />
+        </div>
+        <div className="h-28">
+          <TeamFeaturesCard />
+        </div>
       </div>
     );
   }
 
   return (
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-      <div className="h-32"><PlatformExpansionCard /></div>
-      <div className="h-32"><MobileAppCard /></div>
-      <div className="h-32"><GamificationCard /></div>
-      <div className="h-32"><TeamFeaturesCard /></div>
+      <div className="h-32">
+        <PlatformExpansionCard />
+      </div>
+      <div className="h-32">
+        <MobileAppCard />
+      </div>
+      <div className="h-32">
+        <GamificationCard />
+      </div>
+      <div className="h-32">
+        <TeamFeaturesCard />
+      </div>
     </div>
   );
 }

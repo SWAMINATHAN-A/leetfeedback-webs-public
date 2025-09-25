@@ -402,7 +402,7 @@ const Features: React.FC = () => {
             >
               BEYOND BASICS
             </LineShadowText>
-            <p className="text-2xl text-muted-foreground font-light">
+            <div className="text-2xl text-muted-foreground font-light">
               Six features that{" "}
               <FlipWords
                 words={["transform", "accelerate", "supercharge"]}
@@ -410,7 +410,7 @@ const Features: React.FC = () => {
                 duration={2500}
               />{" "}
               your growth
-            </p>
+            </div>
           </div>
 
           {/* Magic Bento Grid */}
