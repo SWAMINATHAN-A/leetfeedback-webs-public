@@ -172,6 +172,118 @@ const Features: React.FC = () => {
           </div>
         </ContainerScroll>
 
+        {/* Mobile Screenshots Section */}
+        <div className="py-16 from-background to-muted/20">
+          <div className="text-center mb-12">
+            <BlurFade delay={0.1} inView={true}>
+              <Badge className="mb-4 bg-primary/10 text-primary border border-primary/20 font-mono">
+                <AppsIcon className="w-4 h-4 mr-1" />
+                Mobile Experience
+              </Badge>
+            </BlurFade>
+            <TextAnimate
+              as="h3"
+              className="text-3xl md:text-4xl font-bold text-foreground mb-4"
+              animation="blurInUp"
+              delay={0.3}
+              by="word"
+            >
+              Seamless mobile experience
+            </TextAnimate>
+            <BlurFade delay={0.5} inView={true}>
+              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+                Take your coding practice anywhere with our responsive mobile interface
+              </p>
+            </BlurFade>
+          </div>
+
+          {/* Mobile Screenshots Grid */}
+          <div className="flex justify-center items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto px-4">
+              {/* Screenshot 1 */}
+              <BlurFade delay={0.6} duration={0.4} inView={true}>
+                <div className="relative group">
+                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-2 shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
+                    <div className="bg-black rounded-2xl overflow-hidden">
+                      {/* Placeholder for mobile screenshot 1 */}
+                      <img 
+                      src="ms1.jpg" 
+                      alt="Mobile Dashboard View"
+                      className="w-full h-full object-cover"
+                    />
+                    </div>
+                  </div>
+                </div>
+              </BlurFade>
+
+              {/* Screenshot 2 */}
+              <BlurFade delay={1.0} duration={0.4} inView={true}>
+                <div className="relative group">
+                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-2 shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
+                    <div className="bg-black rounded-2xl overflow-hidden">
+                      {/* Placeholder for mobile screenshot 2 */}
+                      <img 
+                      src="ms2.jpg" 
+                      alt="Mobile Dashboard View"
+                      className="w-full h-full object-cover"
+                    />
+                    </div>
+                  </div>
+                </div>
+              </BlurFade>
+
+              {/* Screenshot 3 */}
+              <BlurFade delay={1.4} duration={0.4} className="sm:col-span-2 lg:col-span-1" inView={true}>
+                <div className="relative group">
+                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-2 shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
+                    <div className="bg-black rounded-2xl overflow-hidden">
+                      {/* Placeholder for mobile screenshot 3 */}
+                      <img 
+                      src="ms3.jpg" 
+                      alt="Mobile Dashboard View"
+                      className="w-full h-full object-cover"
+                    />
+                    </div>
+                  </div>
+                </div>
+              </BlurFade>
+            </div>
+          </div>
+
+          {/* Optional: Feature highlights under screenshots */}
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto px-4">
+            <BlurFade delay={0.8} duration={0.8} inView={true}>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <AppsIcon className="w-6 h-6 text-primary" />
+                </div>
+                <h4 className="font-semibold text-foreground mb-2">Intuitive Interface</h4>
+                <p className="text-sm text-muted-foreground">Clean, mobile-first design that works seamlessly on all devices</p>
+              </div>
+            </BlurFade>
+
+            <BlurFade delay={0.9} duration={0.8} inView={true}>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <TrackChangesIcon className="w-6 h-6 text-primary" />
+                </div>
+                <h4 className="font-semibold text-foreground mb-2">Real-time Tracking</h4>
+                <p className="text-sm text-muted-foreground">Monitor your progress instantly, wherever you are</p>
+              </div>
+            </BlurFade>
+
+            <BlurFade delay={1.0} duration={0.8} inView={true}>
+              <div className="text-center">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <AnalyticsIcon className="w-6 h-6 text-primary" />
+                </div>
+                <h4 className="font-semibold text-foreground mb-2">Smart Analytics</h4>
+                <p className="text-sm text-muted-foreground">Get insights into your coding patterns on the go</p>
+              </div>
+            </BlurFade>
+          </div>
+        </div>
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <BlurFade delay={0.25}>
