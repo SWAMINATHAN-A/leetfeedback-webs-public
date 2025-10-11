@@ -126,6 +126,18 @@ module.exports = {
                         backgroundPosition: "100% 50%",
                     },
                 },
+                "background-position-spin": {
+                    "0%": {
+                        backgroundPosition: "top center",
+                    },
+                    "100%": {
+                        backgroundPosition: "bottom center",
+                    },
+                },
+                move: {
+                    "0%": { transform: "translateX(0px)" },
+                    "100%": { transform: "translateX(calc(100vw - 10rem))" },
+                },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
@@ -136,6 +148,8 @@ module.exports = {
                 "line-shadow": "line-shadow 35s linear infinite",
                 "cell-ripple": "cell-ripple var(--duration, 300ms) ease-out",
                 aurora: "aurora 4s ease-in-out infinite",
+                "background-position-spin": "background-position-spin 3s infinite alternate",
+                move: "move 5s linear infinite",
             },
         },
     },

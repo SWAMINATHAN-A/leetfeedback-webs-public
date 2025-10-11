@@ -27,6 +27,7 @@ import BugReportIcon from "@mui/icons-material/BugReport";
 import OpenSourceIcon from "@mui/icons-material/OpenInNew";
 import DiscordIcon from "./icons/DiscordIcon";
 import { CardSpotlight } from "./ui/card-spotlight";
+import { CardDemo } from "./cards-demo-1";
 
 const Pricing: React.FC = () => {
   const [showUPI, setShowUPI] = useState(false);
@@ -112,121 +113,10 @@ const Pricing: React.FC = () => {
           </BlurFade>
         </div>
 
-        {/* Single Free Plan Card with CardSpotlight - Compact Design */}
-        <div className="max-w-6xl mx-auto mb-16">
+        {/* Free Card Demo */}
+        <div className="flex justify-center mb-16">
           <BlurFade delay={1}>
-            <CardSpotlight
-              radius={300}
-              color="transparent"
-              className="relative overflow-hidden border border-border bg-background/80 shadow-xl backdrop-blur-sm"
-            >
-              <div className="absolute top-0 left-0 right-0 bg-muted/20 border-b border-border text-center py-2 text-sm font-semibold font-mono">
-                <CelebrationIcon className="w-4 h-4 inline mr-1" /> Everything
-                Included - Always Free
-              </div>
-
-              <div className="p-4 sm:p-8 pt-8 sm:pt-12 relative z-10">
-                {/* Header Section - Horizontal Layout on Desktop */}
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-8">
-                  {/* Left: Title and Price */}
-                  <div className="lg:col-span-1 space-y-4">
-                    <div className="flex items-center gap-3">
-                      <CardTitle className="text-2xl font-bold text-foreground">
-                        Traverse
-                      </CardTitle>
-                      <Badge className="bg-blue-500/20 text-blue-400 border border-blue-500/30 text-xs">
-                        Free Forever
-                      </Badge>
-                    </div>
-
-                    <div className="space-y-1">
-                      <div className="flex items-end space-x-1">
-                        <span className="text-4xl font-bold text-foreground font-mono">
-                          ₹0
-                        </span>
-                        <span className="text-muted-foreground pb-1 font-mono text-sm">
-                          /forever
-                        </span>
-                      </div>
-                      <CardDescription className="text-muted-foreground">
-                        All features included. No limitations.
-                      </CardDescription>
-                    </div>
-
-                    <RainbowButton
-                      size="lg"
-                      className="w-full py-3 font-semibold"
-                      onClick={() => {
-                        analytics.trackPricingPlanView("Free Forever");
-                        window.open(
-                          "https://github.com/lqSky7/leetFeedback-extension",
-                          "_blank"
-                        );
-                      }}
-                    >
-                      <CheckCircleIcon className="w-5 h-5 mr-2" />
-                      Get Started - It's Free!
-                    </RainbowButton>
-                  </div>
-
-                  {/* Right: Features Grid - More Compact */}
-                  <div className="lg:col-span-2">
-                    <h4 className="font-semibold text-foreground mb-4 font-mono">
-                      Everything included (Refer roadmap):
-                    </h4>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-                      {features.slice(0, 12).map((feature, featureIndex) => (
-                        <div key={featureIndex} className="flex items-start">
-                          <CheckCircleIcon className="w-4 h-4 mr-2 text-blue-400 flex-shrink-0 mt-0.5" />
-                          <span className="text-xs text-muted-foreground">
-                            {feature}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
-                    {features.length > 12 && (
-                      <p className="text-xs text-muted-foreground mt-2 text-center">
-                        + {features.length - 12} more features
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                {/* Open Source Message - Compact */}
-                <div className="bg-muted/10 border border-border rounded-lg p-4 backdrop-blur-sm">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <GitHubIcon className="w-5 h-5 text-foreground" />
-                      <div>
-                        <h4 className="font-semibold text-foreground font-mono text-sm">
-                          Open Source & Community Driven
-                        </h4>
-                        <p className="text-xs text-muted-foreground">
-                          Built with love by the coding community. Free tools
-                          for everyone.
-                        </p>
-                      </div>
-                    </div>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() =>
-                        window.open(
-                          "https://github.com/lqSky7/leetFeedback-extension",
-                          "_blank"
-                        )
-                      }
-                      className="border-border hover:bg-muted/50 text-xs flex-shrink-0"
-                    >
-                      <GitHubIcon className="w-3 h-3" />
-                      <span className="ml-1 hidden sm:inline">
-                        View on GitHub
-                      </span>
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </CardSpotlight>
+            <CardDemo />
           </BlurFade>
         </div>
 
