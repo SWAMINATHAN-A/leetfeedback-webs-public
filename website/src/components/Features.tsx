@@ -149,7 +149,7 @@ const Features: React.FC = () => {
       id="features"
       className="py-12 bg-background border-t border-border/20"
     >
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="w-full px-0">
         {/* Container Scroll Animation */}
         <ContainerScroll
           titleComponent={
@@ -163,15 +163,15 @@ const Features: React.FC = () => {
             </div>
           }
         >
-          <div className="flex flex-col items-center justify-center h-full w-full">
-            <img
-              src="/screenshot.png"
-              alt="LeetFeedback Screenshot"
-              className="w-full h-full object-cover"
-            />
-          </div>
+          <img
+            src="/screenshot.png"
+            alt="LeetFeedback Screenshot"
+            className="w-full h-full object-contain"
+          />
         </ContainerScroll>
+      </div>
 
+      <div className="container mx-auto px-4 md:px-8">
         {/* Mobile Screenshots Section */}
         <div className="py-16 from-background to-muted/20">
           <div className="text-center mb-12">
@@ -209,7 +209,7 @@ const Features: React.FC = () => {
                       <img 
                       src="ms1.jpg" 
                       alt="Mobile Dashboard View"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-contain"
                     />
                     </div>
                   </div>
