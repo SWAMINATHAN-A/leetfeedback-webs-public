@@ -138,6 +138,10 @@ module.exports = {
                     "0%": { transform: "translateX(0px)" },
                     "100%": { transform: "translateX(calc(100vw - 10rem))" },
                 },
+                shine: {
+                    "0%": { backgroundPosition: "100%" },
+                    "100%": { backgroundPosition: "-100%" },
+                },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
@@ -150,6 +154,7 @@ module.exports = {
                 aurora: "aurora 4s ease-in-out infinite",
                 "background-position-spin": "background-position-spin 3s infinite alternate",
                 move: "move 5s linear infinite",
+                shine: "shine 5s linear infinite",
             },
         },
     },

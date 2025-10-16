@@ -28,6 +28,7 @@ import OpenSourceIcon from "@mui/icons-material/OpenInNew";
 import DiscordIcon from "./icons/DiscordIcon";
 import { CardSpotlight } from "./ui/card-spotlight";
 import { CardDemo } from "./cards-demo-1";
+import ShinyText from "./ShinyText";
 
 const Pricing: React.FC = () => {
   const [showUPI, setShowUPI] = useState(false);
@@ -65,10 +66,10 @@ const Pricing: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-4xl mx-auto mb-20">
           <BlurFade delay={0.25}>
-            <Badge className="mb-4 bg-red-500/20 text-red-400 border border-red-500/30 font-mono hover:bg-red-500/30 hover:text-red-300">
-              <FavoriteIcon className="w-4 h-4 mr-1" />
-              Free Forever
-            </Badge>
+            <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-red-500/50 rounded-full px-4 py-2 inline-flex items-center hover:bg-[rgba(40,40,40,1)] transition-colors">
+              <FavoriteIcon className="w-4 h-4 mr-1 text-red-400" />
+              <ShinyText text="Free Forever" speed={3} className="font-mono text-sm" />
+            </div>
           </BlurFade>
           <TextAnimate
             as="h2"

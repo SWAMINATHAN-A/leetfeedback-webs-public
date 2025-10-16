@@ -28,6 +28,7 @@ import {
 import DiscordIcon from "./icons/DiscordIcon";
 import TextPressure from "./TextPressure";
 import leetcodeIcon from "@/assets/support-icons/leetcode-svgrepo-com.svg";
+import ShinyText from "./ShinyText";
 import geeksforgeeksIcon from "@/assets/support-icons/geeksforgeeks.svg";
 import hackerrankIcon from "@/assets/support-icons/hackerrank-svgrepo-com.svg";
 import codechefIcon from "@/assets/support-icons/codechef-svgrepo-com.svg";
@@ -96,10 +97,10 @@ const HowItWorks: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
           <BlurFade delay={0.25}>
-            <Badge className="mb-4 bg-muted/50 text-foreground border border-border font-mono hover:bg-white dark:hover:bg-white hover:text-black dark:hover:text-black">
-              <AutoFixHighIcon className="w-4 h-4 mr-1" />
-              Simple Process
-            </Badge>
+            <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-4 py-2 inline-flex items-center hover:bg-[rgba(40,40,40,1)] transition-colors">
+              <AutoFixHighIcon className="w-4 h-4 mr-1 text-white" />
+              <ShinyText text="Simple Process" speed={3} className="font-mono text-sm" />
+            </div>
           </BlurFade>
           <TextAnimate
             as="h2"

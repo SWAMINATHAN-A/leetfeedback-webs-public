@@ -98,38 +98,73 @@ const Skeleton = () => {
 
   useEffect(() => {
     // @ts-ignore
-    const controls = animate(sequence as any, {
-      repeat: Infinity,
-      repeatDelay: 1,
-    } as any);
+    const controls = animate(
+      sequence as any,
+      {
+        repeat: Infinity,
+        repeatDelay: 1,
+      } as any
+    );
     return () => controls.stop();
   }, []);
   return (
     <div className="p-8 overflow-hidden h-full relative flex items-center justify-center">
       <div className="flex flex-row shrink-0 justify-center items-center gap-3 md:gap-4">
         <Container className="h-10 w-10 md:h-12 md:w-12 circle-1">
-          <img src={leetcodeIcon} alt="LeetCode" className="h-5 w-5 md:h-6 md:w-6 brightness-0 invert" />
+          <img
+            src={leetcodeIcon}
+            alt="LeetCode"
+            className="h-5 w-5 md:h-6 md:w-6 brightness-0 invert"
+          />
         </Container>
         <Container className="h-12 w-12 md:h-14 md:w-14 circle-2">
-          <img src={geeksforgeeksIcon} alt="GeeksforGeeks" className="h-6 w-6 md:h-7 md:w-7 brightness-0 invert" />
+          <img
+            src={geeksforgeeksIcon}
+            alt="GeeksforGeeks"
+            className="h-6 w-6 md:h-7 md:w-7 brightness-0 invert"
+          />
         </Container>
         <Container className="h-14 w-14 md:h-16 md:w-16 circle-3">
-          <img src={hackerrankIcon} alt="HackerRank" className="h-7 w-7 md:h-8 md:w-8 brightness-0 invert" />
+          <img
+            src={hackerrankIcon}
+            alt="HackerRank"
+            className="h-7 w-7 md:h-8 md:w-8 brightness-0 invert"
+          />
         </Container>
         <Container className="h-16 w-16 md:h-20 md:w-20 circle-4">
-          <img src={codechefIcon} alt="CodeChef" className="h-8 w-8 md:h-10 md:w-10 brightness-0 invert" />
+          <img
+            src={codechefIcon}
+            alt="CodeChef"
+            className="h-8 w-8 md:h-10 md:w-10 brightness-0 invert"
+          />
         </Container>
         <Container className="h-14 w-14 md:h-16 md:w-16 circle-5">
-          <img src={tufIcon} alt="TakeUforward" className="h-7 w-7 md:h-8 md:w-8 brightness-0 invert" />
+          <img
+            src={tufIcon}
+            alt="TakeUforward"
+            className="h-7 w-7 md:h-8 md:w-8 brightness-0 invert"
+          />
         </Container>
         <Container className="h-12 w-12 md:h-14 md:w-14 circle-6">
-          <img src={notionIcon} alt="Notion" className="h-6 w-6 md:h-7 md:w-7 brightness-0 invert" />
+          <img
+            src={notionIcon}
+            alt="Notion"
+            className="h-6 w-6 md:h-7 md:w-7 brightness-0 invert"
+          />
         </Container>
         <Container className="h-14 w-14 md:h-16 md:w-16 circle-7">
-          <img src={ankiIcon} alt="Anki" className="h-7 w-7 md:h-8 md:w-8 brightness-0 invert" />
+          <img
+            src={ankiIcon}
+            alt="Anki"
+            className="h-7 w-7 md:h-8 md:w-8 brightness-0 invert"
+          />
         </Container>
         <Container className="h-12 w-12 md:h-14 md:w-14 circle-8">
-          <img src={geminiIcon} alt="Gemini AI" className="h-6 w-6 md:h-7 md:w-7 brightness-0 invert" />
+          <img
+            src={geminiIcon}
+            alt="Gemini AI"
+            className="h-6 w-6 md:h-7 md:w-7 brightness-0 invert"
+          />
         </Container>
       </div>
 
@@ -204,12 +239,7 @@ export const CardTitle = ({
   className?: string;
 }) => {
   return (
-    <h3
-      className={cn(
-        "text-lg font-semibold text-white py-2",
-        className
-      )}
-    >
+    <h3 className={cn("text-lg font-semibold text-white py-2", className)}>
       {children}
     </h3>
   );
@@ -224,10 +254,7 @@ export const CardDescription = ({
 }) => {
   return (
     <p
-      className={cn(
-        "text-sm font-normal text-neutral-300 max-w-sm",
-        className
-      )}
+      className={cn("text-sm font-normal text-neutral-300 max-w-sm", className)}
     >
       {children}
     </p>
@@ -244,12 +271,7 @@ export const CardSkeletonContainer = ({
   showGradient?: boolean;
 }) => {
   return (
-    <div
-      className={cn(
-        "h-[15rem] md:h-[20rem] rounded-xl z-40",
-        className
-      )}
-    >
+    <div className={cn("h-[15rem] md:h-[20rem] rounded-xl z-40", className)}>
       {children}
     </div>
   );

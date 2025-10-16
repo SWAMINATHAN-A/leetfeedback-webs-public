@@ -19,6 +19,7 @@ import { NumberTicker } from "./magicui/number-ticker";
 import { RainbowButton } from "./magicui/rainbow-button";
 import ElasticSlider from "./ElasticSlider";
 import { analytics } from "../utils/analytics";
+import ShinyText from "./ShinyText";
 
 const Hero: React.FC = () => {
   const [showRatingSlider, setShowRatingSlider] = useState(false);
@@ -89,10 +90,10 @@ const Hero: React.FC = () => {
                 className="inline-block"
                 onClick={() => analytics.trackRoadmapView()}
               >
-                <Badge className="bg-muted/50 text-foreground border border-border px-4 py-2 text-sm font-mono hover:bg-white dark:hover:bg-white hover:text-black dark:hover:text-black">
-                  <RocketLaunchIcon className="w-4 h-4 mr-2" />
-                  Public Beta is out!
-                </Badge>
+                <div className="bg-[rgba(40,40,40,0.9)] border border-white/20 px-4 py-2 rounded-full hover:bg-[rgba(40,40,40,1)] transition-colors inline-flex items-center">
+                  <RocketLaunchIcon className="w-4 h-4 mr-2 text-white" />
+                  <ShinyText text="Public Beta is out!" speed={3} className="text-sm font-mono" />
+                </div>
               </a>
             </div>
           </BlurFade>

@@ -38,6 +38,7 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import LinkIcon from "@mui/icons-material/Link";
 import DefaultSwapy from "./ui/swapy";
 import { ContainerScroll } from "./ui/container-scroll-animation";
+import ShinyText from "./ShinyText";
 
 const Features: React.FC = () => {
   const primaryFeatures = [
@@ -176,10 +177,10 @@ const Features: React.FC = () => {
         <div className="py-16 from-background to-muted/20">
           <div className="text-center mb-12">
             <BlurFade delay={0.1} inView={true}>
-              <Badge className="mb-4 bg-primary/10 text-primary border border-primary/20 font-mono">
-                <AppsIcon className="w-4 h-4 mr-1" />
-                Mobile Experience
-              </Badge>
+              <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-4 py-2 inline-flex items-center">
+                <AppsIcon className="w-4 h-4 mr-1 text-white" />
+                <ShinyText text="Mobile Experience" speed={3} className="font-mono text-sm" />
+              </div>
             </BlurFade>
             <TextAnimate
               as="h2"
@@ -306,10 +307,10 @@ const Features: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <BlurFade delay={0.25}>
-            <Badge className="mb-4 bg-muted/50 text-foreground border border-border font-mono">
-              <AutoFixHighIcon className="w-4 h-4 mr-1" />
-              Core Features
-            </Badge>
+            <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-4 py-2 inline-flex items-center">
+              <AutoFixHighIcon className="w-4 h-4 mr-1 text-white" />
+              <ShinyText text="Core Features" speed={3} className="font-mono text-sm" />
+            </div>
           </BlurFade>
           <TextAnimate
             as="h2"
@@ -555,10 +556,10 @@ const Features: React.FC = () => {
         <div className="bg-muted/20 border border-border rounded-lg p-8 md:p-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <Badge className="mb-4 bg-card/50 text-foreground border border-border font-mono">
-                <GitHubIcon className="w-4 h-4 mr-1" />
-                GitHub Integration
-              </Badge>
+              <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-4 py-2 inline-flex items-center">
+                <GitHubIcon className="w-4 h-4 mr-1 text-white" />
+                <ShinyText text="GitHub Integration" speed={3} className="font-mono text-sm" />
+              </div>
               <h3 className="text-3xl font-bold mb-6 text-foreground">
                 Build your coding portfolio automatically
               </h3>

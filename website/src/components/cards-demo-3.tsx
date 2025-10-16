@@ -2,7 +2,7 @@
 import { animate, motion } from "motion/react";
 import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { GoCopilot } from "react-icons/go";
+import SmartToyIcon from "@mui/icons-material/SmartToy";
 
 export default function CardDemo() {
   return (
@@ -79,7 +79,7 @@ const Skeleton = () => {
           <ClaudeLogo className="h-4 w-4 " />
         </Container>
         <Container className="h-12 w-12 circle-2">
-          <GoCopilot className="h-6 w-6 dark:text-white" />
+          <SmartToyIcon className="h-6 w-6 dark:text-white" />
         </Container>
         <Container className="circle-3">
           <OpenAILogo className="h-8 w-8 dark:text-white" />
