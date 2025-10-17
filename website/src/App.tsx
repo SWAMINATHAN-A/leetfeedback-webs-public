@@ -53,7 +53,6 @@ function AppContent() {
 
       <ProgressiveBlur
         position="bottom"
-        height="10vh"
         className="fixed bottom-0 left-0 right-0 z-40 pointer-events-none"
       />
 

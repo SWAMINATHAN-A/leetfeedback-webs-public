@@ -351,7 +351,7 @@ const Features: React.FC = () => {
               style={{
                 backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
               }}
-              className="absolute inset-auto right-1/2 h-32 overflow-visible w-[16rem] bg-gradient-conic from-cyan-500 via-transparent to-transparent text-white [--conic-position:from_70deg_at_center_top]"
+              className="absolute inset-auto right-1/2 h-32 overflow-visible w-[16rem] bg-gradient-conic from-[#00E0FE] via-transparent to-transparent text-white [--conic-position:from_70deg_at_center_top]"
             >
               <div className="absolute w-[100%] left-0 bg-background h-20 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
               <div className="absolute w-20 h-[100%] left-0 bg-background bottom-0 z-20 [mask-image:linear-gradient(to_right,white,transparent)]" />
@@ -367,13 +367,13 @@ const Features: React.FC = () => {
               style={{
                 backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
               }}
-              className="absolute inset-auto left-1/2 h-32 w-[16rem] bg-gradient-conic from-transparent via-transparent to-cyan-500 text-white [--conic-position:from_290deg_at_center_top]"
+              className="absolute inset-auto left-1/2 h-32 w-[16rem] bg-gradient-conic from-transparent via-transparent to-[#00E0FE] text-white [--conic-position:from_290deg_at_center_top]"
             >
               <div className="absolute w-20 h-[100%] right-0 bg-background bottom-0 z-20 [mask-image:linear-gradient(to_left,white,transparent)]" />
               <div className="absolute w-[100%] right-0 bg-background h-20 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
             </motion.div>
             <div className="absolute top-1/2 h-24 w-full translate-y-6 scale-x-150 bg-background blur-2xl"></div>
-            <div className="absolute inset-auto z-50 h-18 w-[14rem] -translate-y-1/2 rounded-full bg-cyan-500 opacity-50 blur-3xl"></div>
+            <div className="absolute inset-auto z-50 h-18 w-[14rem] -translate-y-1/2 rounded-full bg-[#197CDB] opacity-50 blur-3xl"></div>
             <motion.div
               initial={{ width: "4rem" }}
               whileInView={{ width: "8rem" }}
@@ -382,17 +382,17 @@ const Features: React.FC = () => {
                 duration: 0.8,
                 ease: "easeInOut",
               }}
-              className="absolute inset-auto z-30 h-18 w-32 -translate-y-[3rem] rounded-full bg-cyan-400 blur-2xl"
+              className="absolute inset-auto z-30 h-18 w-32 -translate-y-[3rem] rounded-full bg-[#1B78D6] blur-2xl"
             ></motion.div>
             <motion.div
               initial={{ width: "8rem" }}
-              whileInView={{ width: "16rem" }}
+              whileInView={{ opacity: 1, width: "16rem" }}
               transition={{
                 delay: 0.3,
                 duration: 0.8,
                 ease: "easeInOut",
               }}
-              className="absolute inset-auto z-50 h-0.5 w-[16rem] -translate-y-[3.5rem] bg-cyan-400"
+              className="absolute inset-auto z-50 h-0.5 w-[16rem] -translate-y-[3.5rem] bg-[#1B78D6]"
             ></motion.div>
             <div className="absolute inset-auto z-40 h-22 w-full -translate-y-[6rem] bg-background"></div>
 
