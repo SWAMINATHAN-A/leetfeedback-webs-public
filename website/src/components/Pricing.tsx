@@ -1,59 +1,58 @@
-import React, { useState } from "react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
+import React from "react";
 import { Button } from "./ui/button";
-import { Badge } from "./ui/badge";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
-import CelebrationIcon from "@mui/icons-material/Celebration";
+import { Card } from "./ui/card";
+import { 
+  Code2, 
+  Infinity, 
+  Smartphone, 
+  Headphones, 
+  Github, 
+  Trophy, 
+  CheckCircle, 
+  Brain, 
+  Grid3x3, 
+  Zap, 
+  Watch, 
+  RefreshCw, 
+  TrendingUp,
+  Users,
+  Bug,
+  Sparkles
+} from "lucide-react";
 import { BlurFade } from "./magicui/blur-fade";
 import { TextAnimate } from "./magicui/text-animate";
 import { RainbowButton } from "./magicui/rainbow-button";
-import { Ripple } from "./magicui/ripple";
-import { LineShadowText } from "./magicui/line-shadow-text";
-import { ScriptCopyBtn } from "./magicui/script-copy-btn";
 import { analytics } from "../utils/analytics";
-import GroupsIcon from "@mui/icons-material/Groups";
-import CodeIcon from "@mui/icons-material/Code";
-import BugReportIcon from "@mui/icons-material/BugReport";
-import OpenSourceIcon from "@mui/icons-material/OpenInNew";
 import DiscordIcon from "./icons/DiscordIcon";
-import { CardSpotlight } from "./ui/card-spotlight";
-import ShinyText from "./ShinyText";
 
 const Pricing: React.FC = () => {
-  const [showUPI, setShowUPI] = useState(false);
-
-  const features = [
-    "Unlimited tracked submissions",
-    "GitHub auto-commit with AI notes",
-    "Notion workspace integration",
-    "Anki flashcard generation",
-    "Advanced AI analysis & insights",
-    "All platforms supported",
-    "Advanced mistake pattern analysis",
-    "Detailed progress reports",
-    "Export data to CSV/PDF",
-    "Custom learning goals",
-    "Team collaboration features",
-    "Analytics dashboard",
-    "Community support",
-    "Priority email support",
-    "Slack/Discord integrations",
-    "Custom reporting",
+  const freeFeatures = [
+    { text: "LeetCode & GeeksforGeeks integration", icon: Code2 },
+    { text: "Unlimited Daily Problem Solves", icon: Infinity },
+    { text: "iOS and Android Application Support", icon: Smartphone },
+    { text: "Priority Support untill userbase is small", icon: Headphones },
+    { text: "Unlimited GitHub pushes", icon: Github },
+    { text: "All Duolingo-like features", icon: Trophy },
   ];
 
-  const handleDonateClick = () => {
-    setShowUPI(!showUPI);
-    analytics.trackFeatureClick("donation_button");
+  const premiumFeatures = [
+    { text: "Everything in Free", icon: CheckCircle },
+    { text: "Premium ML based Revision Scheduler", icon: Brain },
+    { text: "All Platforms support", icon: Grid3x3 },
+    { text: "Early Access to features", icon: Zap },
+    { text: "WatchOS app support", icon: Watch },
+    { text: "Anki and notion sync", icon: RefreshCw },
+    { text: "Premium AI powered insights based on performance trends", icon: TrendingUp },
+  ];
+
+  const handleGetAccessClick = () => {
+    analytics.trackFeatureClick("get_free_access");
+    // Add your action here
+  };
+
+  const handleComingSoonClick = () => {
+    analytics.trackFeatureClick("premium_coming_soon");
+    // Add your action here
   };
 
   return (
@@ -63,125 +62,114 @@ const Pricing: React.FC = () => {
     >
       <div className="container mx-auto px-4 md:px-8">
         {/* Section Header */}
-        <div className="text-center max-w-4xl mx-auto mb-20">
-          <BlurFade delay={0.25}>
-            <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-red-500/50 rounded-full px-4 py-2 inline-flex items-center hover:bg-[rgba(40,40,40,1)] transition-colors">
-              <FavoriteIcon className="w-4 h-4 mr-1 text-red-400" />
-              <ShinyText
-                text="Free Forever"
-                speed={3}
-                className="font-mono text-sm"
-              />
-            </div>
-          </BlurFade>
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <TextAnimate
             as="h2"
-            className="text-4xl md:text-5xl font-bold text-foreground mb-6"
+            className="text-4xl md:text-5xl font-bold text-foreground mb-4"
             animation="blurInUp"
-            delay={0.5}
+            delay={0.25}
             by="word"
           >
-            Everything is Free Forever
+            Simple Pricing
           </TextAnimate>
-          <BlurFade delay={0.75}>
-            <p className="text-xl text-muted-foreground leading-relaxed mb-6">
-              Made with <FavoriteIcon className="w-5 h-5 inline text-red-400" />{" "}
-              and open source. All features, unlimited usage, forever free.
+          <BlurFade delay={0.5}>
+            <p className="text-xl text-muted-foreground">
+              Choose the plan that works for you
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <OpenSourceIcon className="w-4 h-4 flex-shrink-0" />
-                </div>
-                <span className="text-sm leading-relaxed">
-                  Open Source until I get featured on githubRetards (again)
-                </span>
-              </div>
-              <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <FavoriteIcon className="w-4 h-4 text-red-400 flex-shrink-0" />
-                </div>
-                <span className="text-sm leading-relaxed">
-                  Made with Love (AI is love)
-                </span>
-              </div>
-              <div className="bg-card/50 border border-border rounded-lg p-4 backdrop-blur-sm text-center">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  <GitHubIcon className="w-4 h-4 flex-shrink-0" />
-                </div>
-                <span className="text-sm leading-relaxed">
-                  Community Driven (I am the community)
-                </span>
-              </div>
-            </div>
           </BlurFade>
         </div>
 
-        {/* Donation Section with Ripple Background */}
-        <div className="max-w-4xl mx-auto mb-16">
-          <BlurFade delay={1}>
-            <div className="relative bg-background/80 border border-border rounded-lg backdrop-blur-sm overflow-hidden min-h-[400px] flex items-center justify-center">
-              {/* Ripple Background */}
-              <Ripple
-                mainCircleSize={200}
-                mainCircleOpacity={0.12}
-                numCircles={8}
-              />
-
-              {/* Content */}
-              <div className="p-4 sm:p-8 relative z-10 flex flex-col items-center justify-center text-center">
-                {/* Line Shadow Donate Text */}
-                <div className="mb-8">
-                  <LineShadowText
-                    as="h1"
-                    shadowColor="hsl(var(--muted-foreground))"
-                    className="text-5xl sm:text-7xl md:text-8xl font-black text-foreground tracking-tight italic"
-                  >
-                    DONATE
-                  </LineShadowText>
-                  <div className="flex justify-center mt-6 mb-4">
-                    <VolunteerActivismIcon className="w-16 h-16 text-red-400" />
-                  </div>
-                  <p className="text-lg text-muted-foreground max-w-md">
-                    If we have helped you in your coding journey, consider
-                    supporting us
-                  </p>
+        {/* Pricing Cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16">
+          {/* Free Plan */}
+          <BlurFade delay={0.5}>
+            <div className="relative rounded-3xl overflow-hidden border border-border bg-card/50 backdrop-blur-sm h-full flex flex-col">
+              {/* Free Plan Content */}
+              <div className="p-6 flex flex-col h-full">
+                <h3 className="text-xl font-bold text-foreground mb-2">Free</h3>
+                <div className="mb-6">
+                  <span className="text-5xl font-bold text-foreground">$0</span>
                 </div>
 
-                <div className="space-y-6 w-full max-w-sm">
-                  <RainbowButton
-                    size="lg"
-                    className="px-8 py-4 text-xl font-bold w-full"
-                    onClick={handleDonateClick}
-                  >
-                    <VolunteerActivismIcon className="w-6 h-6 mr-3" />
-                    Support Us
-                  </RainbowButton>
-
-                  {showUPI && (
-                    <BlurFade delay={0.3}>
-                      <div className="bg-card/60 border border-border rounded-lg p-4 backdrop-blur-sm">
-                        <p className="text-sm text-muted-foreground mb-3 font-medium">
-                          UPI ID:
-                        </p>
-                        <ScriptCopyBtn
-                          textToCopy="d.singh.55@superyes"
-                          className="w-full max-w-none"
-                        />
-                        <p className="text-xs text-muted-foreground mt-3 text-center opacity-70">
-                          Thank you for funding my gambling addiction.
-                        </p>
+                {/* Features List */}
+                <div className="space-y-2.5 mb-6 flex-grow">
+                  {freeFeatures.map((feature, index) => {
+                    const IconComponent = feature.icon;
+                    return (
+                      <div key={index} className="flex items-center gap-3">
+                        <IconComponent className="w-5 h-5 text-white flex-shrink-0" strokeWidth={2} />
+                        <span className="text-sm text-muted-foreground leading-tight">
+                          {feature.text}
+                        </span>
                       </div>
-                    </BlurFade>
-                  )}
+                    );
+                  })}
                 </div>
+
+                {/* CTA Button */}
+                <Button
+                  className="w-full py-5 text-base font-semibold rounded-full mt-auto"
+                  onClick={handleGetAccessClick}
+                >
+                  Get Instant access
+                </Button>
+              </div>
+            </div>
+          </BlurFade>
+
+          {/* Premium Plan */}
+          <BlurFade delay={0.7}>
+            <div className="relative rounded-3xl overflow-hidden border border-border h-full flex flex-col">
+              {/* Video Background */}
+              <div className="absolute inset-0 z-0">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-full h-full object-cover"
+                >
+                  <source
+                    src="https://cdn.skiper-ui.com/loopbg.mp4"
+                    type="video/mp4"
+                  />
+                </video>
+              </div>
+
+              {/* Premium Plan Content */}
+              <div className="relative z-10 p-6 flex flex-col h-full">
+                <h3 className="text-xl font-bold text-white mb-2">Premium</h3>
+                <div className="mb-6">
+                  <span className="text-5xl font-bold text-white">$129</span>
+                </div>
+
+                {/* Features List */}
+                <div className="space-y-2.5 mb-6 flex-grow">
+                  {premiumFeatures.map((feature, index) => {
+                    const IconComponent = feature.icon;
+                    return (
+                      <div key={index} className="flex items-center gap-3">
+                        <IconComponent className="w-5 h-5 text-white flex-shrink-0" strokeWidth={2} />
+                        <span className="text-sm text-white/90 leading-tight">{feature.text}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                {/* CTA Button */}
+                <Button
+                  className="w-full py-5 text-base font-semibold rounded-full bg-white text-black hover:bg-white/90 mt-auto"
+                  onClick={handleComingSoonClick}
+                >
+                  Coming Soon
+                </Button>
               </div>
             </div>
           </BlurFade>
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-muted/10 border border-border rounded-lg p-8 md:p-12 mb-16">
+        <div className="bg-muted/10 border border-border rounded-lg p-8 md:p-12 mb-16 max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-foreground mb-4">
               Frequently Asked Questions
@@ -234,23 +222,23 @@ const Pricing: React.FC = () => {
           </div>
         </div>
 
-        {/* Help Us Section with CardSpotlight */}
-        <div className="text-center mt-16">
+        {/* Help Us Section */}
+        <div className="text-center mt-16 max-w-4xl mx-auto">
           <Card className="bg-background/80 border border-border rounded-lg backdrop-blur-sm">
             <div className="p-4 sm:p-8 relative z-10">
               <div className="flex justify-center space-x-6 mb-6">
                 <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                  <GroupsIcon className="w-8 h-8 text-foreground" />
+                  <Users className="w-8 h-8 text-foreground" />
                 </div>
                 <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                  <CodeIcon className="w-8 h-8 text-foreground" />
+                  <Code2 className="w-8 h-8 text-foreground" />
                 </div>
                 <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                  <BugReportIcon className="w-8 h-8 text-foreground" />
+                  <Bug className="w-8 h-8 text-foreground" />
                 </div>
               </div>
               <h3 className="text-2xl font-bold mb-4 text-foreground">
-                <AutoAwesomeIcon className="w-6 h-6 mr-2 inline" />
+                <Sparkles className="w-6 h-6 mr-2 inline" />
                 Join Our Open Source Community
               </h3>
               <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
@@ -268,7 +256,7 @@ const Pricing: React.FC = () => {
                     )
                   }
                 >
-                  <GitHubIcon className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
+                  <Github className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
                   <span className="text-center">Contribute on GitHub</span>
                 </RainbowButton>
                 <RainbowButton
