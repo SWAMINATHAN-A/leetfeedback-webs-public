@@ -212,7 +212,7 @@ const Hero: React.FC = () => {
               onClick={() => setShowRatingSlider(false)}
             >
               <motion.div
-                className="bg-card border border-border rounded-lg p-6 max-w-md w-full mx-4"
+                className="bg-card border border-border rounded-3xl p-6 max-w-md w-full mx-4"
                 onClick={(e) => e.stopPropagation()}
                 initial={{ y: 20 }}
                 animate={{ y: 0 }}

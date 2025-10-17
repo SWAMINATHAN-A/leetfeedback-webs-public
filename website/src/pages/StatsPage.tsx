@@ -934,7 +934,7 @@ const StatsPage: React.FC = () => {
 
         {/* Overall Streak Card */}
         <div className="mb-16 mt-20 flex justify-center">
-          <div className="bg-card border border-border rounded-xl px-8 py-8 max-w-lg w-full relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] overflow-hidden">
+          <div className="bg-card border border-border rounded-3xl px-8 py-8 max-w-lg w-full relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] overflow-hidden">
             {(() => {
               const getRippleColors = (streak: number) => {
                 if (streak >= 100)
@@ -990,7 +990,7 @@ const StatsPage: React.FC = () => {
         {/* Charts Grid - Inconsistent Layout */}
         <div className="grid grid-cols-12 gap-6 mb-8">
           {/* Large Bump Chart - spans 8 columns */}
-          <div className="col-span-12 lg:col-span-8 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          <div className="col-span-12 lg:col-span-8 bg-card border border-border rounded-3xl p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1044,7 +1044,7 @@ const StatsPage: React.FC = () => {
           </div>
 
           {/* Small Calendar - spans 4 columns */}
-          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-3xl p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1091,7 +1091,7 @@ const StatsPage: React.FC = () => {
           </div>
 
           {/* Original Charts - Time Spent Bar - spans 4 columns */}
-          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-3xl p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1138,7 +1138,7 @@ const StatsPage: React.FC = () => {
           </div>
 
           {/* Original Charts - Questions Solved Pie - spans 4 columns */}
-          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-3xl p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1171,7 +1171,7 @@ const StatsPage: React.FC = () => {
           </div>
 
           {/* Average Attempts by Difficulty - spans 4 columns */}
-          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-3xl p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1206,7 +1206,7 @@ const StatsPage: React.FC = () => {
           </div>
 
           {/* Medium Sunburst - spans 6 columns */}
-          <div className="col-span-12 lg:col-span-6 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          <div className="col-span-12 lg:col-span-6 bg-card border border-border rounded-3xl p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1243,7 +1243,7 @@ const StatsPage: React.FC = () => {
           </div>
 
           {/* Original Charts - Questions by Difficulty - spans 2 columns */}
-          <div className="col-span-12 lg:col-span-6 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          <div className="col-span-12 lg:col-span-6 bg-card border border-border rounded-3xl p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1290,7 +1290,7 @@ const StatsPage: React.FC = () => {
           </div>
 
           {/* Original Charts - Monthly Time Trend - spans 12 columns (full width) */}
-          <div className="col-span-12 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          <div className="col-span-12 bg-card border border-border rounded-3xl p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1344,7 +1344,7 @@ const StatsPage: React.FC = () => {
           </div>
 
           {/* Large Treemap - spans 8 columns */}
-          <div className="col-span-12 lg:col-span-8 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          <div className="col-span-12 lg:col-span-8 bg-card border border-border rounded-3xl p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1379,7 +1379,7 @@ const StatsPage: React.FC = () => {
           </div>
 
           {/* Small Funnel - spans 4 columns */}
-          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-3xl p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1416,7 +1416,7 @@ const StatsPage: React.FC = () => {
           </div>
 
           {/* Topics Frequency - spans 8 columns (2/3 width) */}
-          <div className="col-span-12 lg:col-span-8 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          <div className="col-span-12 lg:col-span-8 bg-card border border-border rounded-3xl p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1460,7 +1460,7 @@ const StatsPage: React.FC = () => {
             </div>
           </div>
           {/* Small Waffle - spans 4 columns */}
-          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-3xl p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1508,7 +1508,7 @@ const StatsPage: React.FC = () => {
           </div>
 
           {/* Original Charts - Mistakes by Difficulty - spans 8 columns */}
-          <div className="col-span-12 lg:col-span-8 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          <div className="col-span-12 lg:col-span-8 bg-card border border-border rounded-3xl p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1555,7 +1555,7 @@ const StatsPage: React.FC = () => {
           </div>
 
           {/* Small Network - spans 4 columns */}
-          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-lg p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
+          <div className="col-span-12 lg:col-span-4 bg-card border border-border rounded-3xl p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
             </div>
@@ -1684,7 +1684,7 @@ const StatsPage: React.FC = () => {
 
           {/* Modal Content with iOS-style bouncy animation */}
           <div
-            className={`relative bg-card border border-border rounded-2xl shadow-2xl w-[90vw] h-[85vh] max-w-6xl transition-all duration-500 ease-out ${
+            className={`relative bg-card border border-border rounded-3xl shadow-2xl w-[90vw] h-[85vh] max-w-6xl transition-all duration-500 ease-out ${
               isAnimating
                 ? "scale-100 opacity-100 translate-y-0"
                 : "scale-75 opacity-0 translate-y-8"

@@ -143,7 +143,7 @@ const RoadmapPage: React.FC = () => {
         <div className="space-y-6">
           {/* Phase Header */}
           <div
-            className={`p-6 rounded-xl border-2 transition-all duration-300 ${
+            className={`p-6 rounded-3xl border-2 transition-all duration-300 ${
               phase.completed
                 ? "bg-emerald-50 dark:bg-emerald-950/20 border-emerald-200 dark:border-emerald-800"
                 : "bg-muted/20 border-muted-foreground/20"

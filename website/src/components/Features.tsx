@@ -210,7 +210,7 @@ const Features: React.FC = () => {
               <BlurFade delay={0.6} duration={0.4} inView={true}>
                 <div className="relative group">
                   <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-2 shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
-                    <div className="bg-black rounded-2xl overflow-hidden">
+                    <div className="bg-black rounded-3xl overflow-hidden">
                       {/* Placeholder for mobile screenshot 1 */}
                       <img
                         src="ms1.jpg"
@@ -226,7 +226,7 @@ const Features: React.FC = () => {
               <BlurFade delay={1.0} duration={0.4} inView={true}>
                 <div className="relative group">
                   <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-2 shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
-                    <div className="bg-black rounded-2xl overflow-hidden">
+                    <div className="bg-black rounded-3xl overflow-hidden">
                       {/* Placeholder for mobile screenshot 2 */}
                       <img
                         src="ms2.jpg"
@@ -247,7 +247,7 @@ const Features: React.FC = () => {
               >
                 <div className="relative group">
                   <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-2 shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
-                    <div className="bg-black rounded-2xl overflow-hidden">
+                    <div className="bg-black rounded-3xl overflow-hidden">
                       {/* Placeholder for mobile screenshot 3 */}
                       <img
                         src="ms3.jpg"
@@ -436,7 +436,7 @@ const Features: React.FC = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* GitHub Integration Card */}
-            <div className="bg-gray-800 text-white rounded-xl h-full p-6 flex flex-col justify-between relative shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-gray-800 text-white rounded-3xl h-full p-6 flex flex-col justify-between relative shadow-lg hover:shadow-xl transition-all duration-300">
               <div>
                 <div className="flex items-center gap-3 mb-4">
                   <GitHubIcon className="w-8 h-8" />
@@ -467,7 +467,7 @@ const Features: React.FC = () => {
             </div>
 
             {/* Notion Sync Card */}
-            <div className="bg-blue-600 text-white rounded-xl h-full p-6 flex flex-col justify-between relative shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-blue-600 text-white rounded-3xl h-full p-6 flex flex-col justify-between relative shadow-lg hover:shadow-xl transition-all duration-300">
               <div>
                 <div className="flex items-center gap-3 mb-4">
                   <NotesIcon className="w-8 h-8" />
@@ -497,7 +497,7 @@ const Features: React.FC = () => {
             </div>
 
             {/* Anki Cards Generation Card */}
-            <div className="bg-emerald-600 text-white rounded-xl h-full p-6 flex flex-col justify-between relative shadow-lg hover:shadow-xl transition-all duration-300">
+            <div className="bg-emerald-600 text-white rounded-3xl h-full p-6 flex flex-col justify-between relative shadow-lg hover:shadow-xl transition-all duration-300">
               <div>
                 <div className="flex items-center gap-3 mb-4">
                   <StyleIcon className="w-8 h-8" />
@@ -561,7 +561,7 @@ const Features: React.FC = () => {
         </div>
 
         {/* Feature Highlight Section - GitHub Integration Focus */}
-        <div className="bg-muted/20 border border-border rounded-lg p-8 md:p-12">
+        <div className="bg-muted/20 border border-border rounded-3xl p-8 md:p-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-4 py-2 inline-flex items-center">
@@ -601,7 +601,7 @@ const Features: React.FC = () => {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-background/50 border border-border rounded-lg shadow-xl p-6 font-mono text-sm">
+              <div className="bg-background/50 border border-border rounded-3xl shadow-xl p-6 font-mono text-sm">
                 <div className="flex items-center justify-between mb-4 text-muted-foreground">
                   <span className="font-mono">📁 my-dsa-journey</span>
                   <GitHubIcon className="w-5 h-5" />

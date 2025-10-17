@@ -90,7 +90,7 @@ const ProfilePage: React.FC = () => {
 
       <main className="container mx-auto px-4 py-12 max-w-4xl">
         {/* Profile Header */}
-        <div className="bg-card border border-border rounded-lg p-8 mb-8">
+        <div className="bg-card border border-border rounded-3xl p-8 mb-8">
           <div className="flex flex-col md:flex-row gap-8">
             {/* Avatar Section */}
             <div className="flex flex-col items-center md:items-start">
@@ -202,7 +202,7 @@ const ProfilePage: React.FC = () => {
         {/* Profile Details */}
         <div className="grid md:grid-cols-2 gap-8">
           {/* Additional Information */}
-          <div className="bg-card border border-border rounded-lg p-6">
+          <div className="bg-card border border-border rounded-3xl p-6">
             <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
               <Settings className="w-5 h-5" />
               Additional Information
@@ -303,7 +303,7 @@ const ProfilePage: React.FC = () => {
           </div>
 
           {/* Account Settings */}
-          <div className="bg-card border border-border rounded-lg p-6">
+          <div className="bg-card border border-border rounded-3xl p-6">
             <h2 className="text-xl font-semibold mb-4">Account Settings</h2>
 
             <div className="space-y-4">
@@ -345,7 +345,7 @@ const ProfilePage: React.FC = () => {
         </div>
 
         {/* Statistics (Future Enhancement) */}
-        <div className="bg-card border border-border rounded-lg p-6 mt-8">
+        <div className="bg-card border border-border rounded-3xl p-6 mt-8">
           <h2 className="text-xl font-semibold mb-4">Statistics</h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="text-center p-4 bg-muted rounded-lg">

@@ -182,7 +182,7 @@ const HowItWorks: React.FC = () => {
             flex={false}
           />
         </div>
-        <div className="bg-card/20 border border-border rounded-lg shadow-xl overflow-hidden">
+        <div className="bg-card/20 border border-border rounded-3xl shadow-xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Left Side - Integration Visual */}
             <div className="bg-muted/10 flex items-center justify-center min-h-[400px] border-r border-border overflow-hidden">
@@ -194,7 +194,7 @@ const HowItWorks: React.FC = () => {
 
                   {/* Platform Icons Grid */}
                   <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={leetcodeIcon}
                         alt="LeetCode"
@@ -204,7 +204,7 @@ const HowItWorks: React.FC = () => {
                         LeetCode
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={geeksforgeeksIcon}
                         alt="GeeksforGeeks"
@@ -214,7 +214,7 @@ const HowItWorks: React.FC = () => {
                         GeeksforGeeks
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={hackerrankIcon}
                         alt="HackerRank"
@@ -224,7 +224,7 @@ const HowItWorks: React.FC = () => {
                         HackerRank
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={codechefIcon}
                         alt="CodeChef"
@@ -234,7 +234,7 @@ const HowItWorks: React.FC = () => {
                         CodeChef
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={tufIcon}
                         alt="TakeUforward"
@@ -244,7 +244,7 @@ const HowItWorks: React.FC = () => {
                         TakeUforward
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={notionIcon}
                         alt="Notion"
@@ -254,7 +254,7 @@ const HowItWorks: React.FC = () => {
                         Notion
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={ankiIcon}
                         alt="Anki"
@@ -264,7 +264,7 @@ const HowItWorks: React.FC = () => {
                         Anki
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-lg bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={geminiIcon}
                         alt="Gemini AI"
@@ -349,7 +349,7 @@ const HowItWorks: React.FC = () => {
 
               <div className="flex-shrink-0 pt-6 border-t border-border mt-auto">
                 <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
-                  <div className="bg-card/50 border border-border rounded-lg p-2 sm:p-4 backdrop-blur-sm">
+                  <div className="bg-card/50 border border-border rounded-3xl p-2 sm:p-4 backdrop-blur-sm">
                     <div className="text-lg sm:text-2xl font-bold text-foreground font-mono">
                       2 min
                     </div>
@@ -357,7 +357,7 @@ const HowItWorks: React.FC = () => {
                       Setup
                     </div>
                   </div>
-                  <div className="bg-card/50 border border-border rounded-lg p-2 sm:p-4 backdrop-blur-sm">
+                  <div className="bg-card/50 border border-border rounded-3xl p-2 sm:p-4 backdrop-blur-sm">
                     <div className="text-lg sm:text-2xl font-bold text-green-400 font-mono">
                       100%
                     </div>
@@ -365,7 +365,7 @@ const HowItWorks: React.FC = () => {
                       Automated
                     </div>
                   </div>
-                  <div className="bg-card/50 border border-border rounded-lg p-2 sm:p-4 backdrop-blur-sm">
+                  <div className="bg-card/50 border border-border rounded-3xl p-2 sm:p-4 backdrop-blur-sm">
                     <div className="text-lg sm:text-2xl font-bold text-blue-400 font-mono">
                       8
                     </div>

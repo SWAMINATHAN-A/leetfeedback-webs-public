@@ -169,7 +169,7 @@ const Pricing: React.FC = () => {
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-muted/10 border border-border rounded-lg p-8 md:p-12 mb-16 max-w-4xl mx-auto">
+        <div className="bg-muted/10 border border-border rounded-3xl p-8 md:p-12 mb-16 max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h3 className="text-3xl font-bold text-foreground mb-4">
               Frequently Asked Questions
@@ -224,7 +224,7 @@ const Pricing: React.FC = () => {
 
         {/* Help Us Section */}
         <div className="text-center mt-16 max-w-4xl mx-auto">
-          <Card className="bg-background/80 border border-border rounded-lg backdrop-blur-sm">
+          <Card className="bg-background/80 border border-border rounded-3xl backdrop-blur-sm">
             <div className="p-4 sm:p-8 relative z-10">
               <div className="flex justify-center space-x-6 mb-6">
                 <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
