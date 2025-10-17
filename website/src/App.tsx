@@ -29,6 +29,9 @@ function AppContent() {
   const isHomePage = location.pathname === "/";
   const isStatsPage = location.pathname === "/profile/stats";
   const isRoadmapPage = location.pathname === "/roadmap";
+  const isPolicyPage = location.pathname === "/privacy" || 
+                        location.pathname === "/terms" || 
+                        location.pathname === "/cookies";
 
   return (
     <div className="App min-h-screen relative">
@@ -58,8 +61,8 @@ function AppContent() {
         className="fixed bottom-0 left-0 right-0 z-40 pointer-events-none"
       />
 
-      {/* Dock - show on home page, stats page, and roadmap page */}
-      {(isHomePage || isStatsPage || isRoadmapPage) && <DockDemo />}
+      {/* Dock - show on home page, stats page, roadmap page, and policy pages */}
+      {(isHomePage || isStatsPage || isRoadmapPage || isPolicyPage) && <DockDemo />}
     </div>
   );
 }
