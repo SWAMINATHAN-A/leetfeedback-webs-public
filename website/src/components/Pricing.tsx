@@ -1,23 +1,23 @@
 import React from "react";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
-import { 
-  Code2, 
-  Infinity, 
-  Smartphone, 
-  Headphones, 
-  Github, 
-  Trophy, 
-  CheckCircle, 
-  Brain, 
-  Grid3x3, 
-  Zap, 
-  Watch, 
-  RefreshCw, 
+import {
+  Code2,
+  Infinity,
+  Smartphone,
+  Headphones,
+  Github,
+  Trophy,
+  CheckCircle,
+  Brain,
+  Grid3x3,
+  Zap,
+  Watch,
+  RefreshCw,
   TrendingUp,
   Users,
   Bug,
-  Sparkles
+  Sparkles,
 } from "lucide-react";
 import { BlurFade } from "./magicui/blur-fade";
 import { TextAnimate } from "./magicui/text-animate";
@@ -43,7 +43,10 @@ const Pricing: React.FC = () => {
     { text: "Early Access to features", icon: Zap },
     { text: "WatchOS app support", icon: Watch },
     { text: "Anki and notion sync", icon: RefreshCw },
-    { text: "Premium AI powered insights based on performance trends", icon: TrendingUp },
+    {
+      text: "Premium AI powered insights based on performance trends",
+      icon: TrendingUp,
+    },
   ];
 
   const handleGetAccessClick = () => {
@@ -107,7 +110,10 @@ const Pricing: React.FC = () => {
                     const IconComponent = feature.icon;
                     return (
                       <div key={index} className="flex items-center gap-3">
-                        <IconComponent className="w-5 h-5 text-white flex-shrink-0" strokeWidth={2} />
+                        <IconComponent
+                          className="w-5 h-5 text-white flex-shrink-0"
+                          strokeWidth={2}
+                        />
                         <span className="text-sm text-muted-foreground leading-tight">
                           {feature.text}
                         </span>
@@ -159,8 +165,13 @@ const Pricing: React.FC = () => {
                     const IconComponent = feature.icon;
                     return (
                       <div key={index} className="flex items-center gap-3">
-                        <IconComponent className="w-5 h-5 text-white flex-shrink-0" strokeWidth={2} />
-                        <span className="text-sm text-white/90 leading-tight">{feature.text}</span>
+                        <IconComponent
+                          className="w-5 h-5 text-white flex-shrink-0"
+                          strokeWidth={2}
+                        />
+                        <span className="text-sm text-white/90 leading-tight">
+                          {feature.text}
+                        </span>
                       </div>
                     );
                   })}
