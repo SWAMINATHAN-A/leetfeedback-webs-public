@@ -1,168 +1,49 @@
 import React from "react";
 import Footer from "../components/Footer";
+import { PolicyNavbar } from "../components/PolicyNavbar";
+
+const sections = [
+  { id: "agreement", title: "Agreement" },
+  { id: "use-license", title: "Use License" },
+  { id: "user-accounts", title: "User Accounts" },
+  { id: "user-responsibilities", title: "Responsibilities" },
+  { id: "prohibited-conduct", title: "Prohibited Conduct" },
+  { id: "intellectual-property", title: "IP Rights" },
+  { id: "user-content", title: "User Content" },
+  { id: "recruiter-terms", title: "Recruiter Terms" },
+  { id: "integrity-enforcement", title: "Integrity" },
+  { id: "limitation-liability", title: "Liability" },
+  { id: "indemnification", title: "Indemnification" },
+  { id: "disclaimer", title: "Disclaimers" },
+  { id: "termination", title: "Termination" },
+  { id: "modifications", title: "Modifications" },
+  { id: "governing-law", title: "Governing Law" },
+  { id: "contact", title: "Contact" },
+];
 
 const TermsOfServicePage: React.FC = () => {
   return (
     <>
+      <PolicyNavbar sections={sections} />
       <main className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 md:px-8 py-16 max-w-4xl">
+        <div className="container mx-auto px-4 md:px-8 lg:pl-80 py-16 max-w-6xl">
           <div className="space-y-8">
             <div>
               <h1 className="text-5xl font-bold mb-4 text-foreground">
                 Terms of Service
               </h1>
               <p className="text-muted-foreground">
-                Effective Date: January 1, 2027
+                Effective Date: January 1, 2025
               </p>
               <p className="text-muted-foreground">
                 Last Updated: October 17, 2025
               </p>
             </div>
+          </div>
+        </div>
 
-            {/* Table of Contents */}
-            <section className="p-8 bg-muted/10 rounded-2xl border border-border">
-              <h2 className="text-2xl font-bold mb-6 text-foreground">
-                Table of Contents
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <ol className="list-decimal pl-6 space-y-2 text-foreground text-sm">
-                  <li>
-                    <a
-                      href="#agreement"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Agreement to Terms
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#use-license"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Use License
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#user-accounts"
-                      className="text-blue-500 hover:underline"
-                    >
-                      User Accounts
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#user-responsibilities"
-                      className="text-blue-500 hover:underline"
-                    >
-                      User Responsibilities
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#prohibited-conduct"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Prohibited Conduct
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#intellectual-property"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Intellectual Property Rights
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#user-content"
-                      className="text-blue-500 hover:underline"
-                    >
-                      User-Generated Content
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#recruiter-terms"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Recruiter Platform Terms
-                    </a>
-                  </li>
-                </ol>
-                <ol
-                  className="list-decimal pl-6 space-y-2 text-foreground text-sm"
-                  start={9}
-                >
-                  <li>
-                    <a
-                      href="#integrity-enforcement"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Integrity & Enforcement
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#limitation-liability"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Limitation of Liability
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#indemnification"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Indemnification
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#disclaimer"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Disclaimers
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#termination"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Termination
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#modifications"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Modifications to Service
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#governing-law"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Governing Law
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#contact"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Contact Us
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </section>
-
+        <div className="container mx-auto px-4 md:px-8 lg:pl-80 pb-16 max-w-6xl">
+          <div className="space-y-8">
             {/* 1. Agreement to Terms */}
             <section id="agreement" className="space-y-4">
               <h2 className="text-3xl font-bold text-foreground">

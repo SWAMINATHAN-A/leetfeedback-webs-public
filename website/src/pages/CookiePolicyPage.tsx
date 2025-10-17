@@ -1,112 +1,42 @@
 import React from "react";
 import Footer from "../components/Footer";
+import { PolicyNavbar } from "../components/PolicyNavbar";
+
+const sections = [
+  { id: "introduction", title: "Introduction" },
+  { id: "what-are-cookies", title: "What Are Cookies?" },
+  { id: "cookie-types", title: "Cookie Types" },
+  { id: "essential-cookies", title: "Essential Cookies" },
+  { id: "analytics-cookies", title: "Analytics Cookies" },
+  { id: "third-party-cookies", title: "Third-Party Cookies" },
+  { id: "cookie-management", title: "Cookie Management" },
+  { id: "your-choices", title: "Your Choices" },
+  { id: "contact", title: "Contact" },
+];
 
 const CookiePolicyPage: React.FC = () => {
   return (
     <>
+      <PolicyNavbar sections={sections} />
       <main className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 md:px-8 py-16 max-w-4xl">
+        <div className="container mx-auto px-4 md:px-8 lg:pl-80 py-16 max-w-6xl">
           <div className="space-y-8">
             <div>
               <h1 className="text-5xl font-bold mb-4 text-foreground">
                 Cookie Policy
               </h1>
               <p className="text-muted-foreground">
-                Effective Date: January 1, 2027
+                Effective Date: January 1, 2025
               </p>
               <p className="text-muted-foreground">
                 Last Updated: October 17, 2025
               </p>
             </div>
+          </div>
+        </div>
 
-            {/* Table of Contents */}
-            <section className="p-8 bg-muted/10 rounded-2xl border border-border">
-              <h2 className="text-2xl font-bold mb-6 text-foreground">
-                Table of Contents
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <ol className="list-decimal pl-6 space-y-2 text-foreground text-sm">
-                  <li>
-                    <a
-                      href="#introduction"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Introduction
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#what-are-cookies"
-                      className="text-blue-500 hover:underline"
-                    >
-                      What Are Cookies?
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#cookie-types"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Types of Cookies We Use
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#essential-cookies"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Essential Cookies
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#analytics-cookies"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Analytics Cookies
-                    </a>
-                  </li>
-                </ol>
-                <ol
-                  className="list-decimal pl-6 space-y-2 text-foreground text-sm"
-                  start={6}
-                >
-                  <li>
-                    <a
-                      href="#third-party-cookies"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Third-Party Cookies
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#cookie-management"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Cookie Management
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#your-choices"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Your Choices
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#contact"
-                      className="text-blue-500 hover:underline"
-                    >
-                      Contact Us
-                    </a>
-                  </li>
-                </ol>
-              </div>
-            </section>
-
+        <div className="container mx-auto px-4 md:px-8 lg:pl-80 pb-16 max-w-6xl">
+          <div className="space-y-8">
             {/* 1. Introduction */}
             <section id="introduction" className="space-y-4">
               <h2 className="text-3xl font-bold text-foreground">
