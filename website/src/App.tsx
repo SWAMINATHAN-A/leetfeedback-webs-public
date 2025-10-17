@@ -16,6 +16,7 @@ import SimpleProfilePage from "./pages/SimpleProfilePage";
 import StatsPage from "./pages/StatsPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
+import CookiePolicyPage from "./pages/CookiePolicyPage";
 import { ProgressiveBlur } from "./components/magicui/progressive-blur";
 import { MobileScrollNav } from "./components/MobileScrollNav";
 import { BackgroundRippleEffect } from "./components/ui/background-ripple-effect";
@@ -47,6 +48,7 @@ function AppContent() {
           <Route path="/profile/stats" element={<StatsPage />} />
           <Route path="/privacy" element={<PrivacyPolicyPage />} />
           <Route path="/terms" element={<TermsOfServicePage />} />
+          <Route path="/cookies" element={<CookiePolicyPage />} />
         </Routes>
         {isHomePage && <MobileScrollNav />}
       </div>

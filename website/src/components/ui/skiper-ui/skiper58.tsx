@@ -26,6 +26,11 @@ const navigationItems = [
     href: "/terms",
     description: "[3]",
   },
+  {
+    name: "Cookie Policy",
+    href: "/cookies",
+    description: "[4]",
+  },
 ];
 
 export const Skiper58 = () => {

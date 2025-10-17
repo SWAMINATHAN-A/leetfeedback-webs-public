@@ -1,7 +1,6 @@
-import React from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import { DockDemo } from '../components/DockDemo';
+import React from "react";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const TermsOfServicePage: React.FC = () => {
   return (
@@ -9,116 +8,590 @@ const TermsOfServicePage: React.FC = () => {
       <Header />
       <main className="min-h-screen bg-background">
         <div className="container mx-auto px-4 md:px-8 py-16 max-w-4xl">
-          <div className="prose prose-lg max-w-none">
-            <h1 className="text-4xl font-bold mb-8 text-foreground">Terms of Service for Traverse</h1>
-            <p className="text-muted-foreground mb-8">Effective Date: January 1, 2025</p>
-
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4 text-foreground">1. Agreement to Terms</h2>
-              <p className="text-foreground mb-4">
-                Welcome to Traverse (the "Service"), provided by Traverse ("we," "us," or "our"). 
-                These Terms of Service ("Terms") govern your access to and use of our website, applications, and services.
+          <div className="space-y-8">
+            <div>
+              <h1 className="text-5xl font-bold mb-4 text-foreground">
+                Terms of Service
+              </h1>
+              <p className="text-muted-foreground">
+                Effective Date: January 1, 2027
               </p>
-              <p className="text-foreground mb-4">
-                By accessing or using the Service, you agree to be bound by these Terms. If you disagree with any part 
-                of the terms, then you may not access the Service.
+              <p className="text-muted-foreground">
+                Last Updated: October 17, 2025
+              </p>
+            </div>
+
+            {/* Table of Contents */}
+            <section className="p-8 bg-muted/10 rounded-2xl border border-border">
+              <h2 className="text-2xl font-bold mb-6 text-foreground">
+                Table of Contents
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <ol className="list-decimal pl-6 space-y-2 text-foreground text-sm">
+                  <li>
+                    <a
+                      href="#agreement"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Agreement to Terms
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#use-license"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Use License
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#user-accounts"
+                      className="text-blue-500 hover:underline"
+                    >
+                      User Accounts
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#user-responsibilities"
+                      className="text-blue-500 hover:underline"
+                    >
+                      User Responsibilities
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#prohibited-conduct"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Prohibited Conduct
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#intellectual-property"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Intellectual Property Rights
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#user-content"
+                      className="text-blue-500 hover:underline"
+                    >
+                      User-Generated Content
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#recruiter-terms"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Recruiter Platform Terms
+                    </a>
+                  </li>
+                </ol>
+                <ol
+                  className="list-decimal pl-6 space-y-2 text-foreground text-sm"
+                  start={9}
+                >
+                  <li>
+                    <a
+                      href="#integrity-enforcement"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Integrity & Enforcement
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#limitation-liability"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Limitation of Liability
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#indemnification"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Indemnification
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#disclaimer"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Disclaimers
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#termination"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Termination
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#modifications"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Modifications to Service
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#governing-law"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Governing Law
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="#contact"
+                      className="text-blue-500 hover:underline"
+                    >
+                      Contact Us
+                    </a>
+                  </li>
+                </ol>
+              </div>
+            </section>
+
+            {/* 1. Agreement to Terms */}
+            <section id="agreement" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                1. Agreement to Terms
+              </h2>
+              <p className="text-foreground leading-relaxed">
+                By accessing and using LeetFeedback ("Platform"), you accept and
+                agree to be bound by the terms and provision of this agreement.
+                If you do not agree to abide by the above, please do not use
+                this service. We reserve the right to modify these Terms of
+                Service at any time without notice.
+              </p>
+              <p className="text-foreground leading-relaxed">
+                Your continued use of the Platform following the posting of
+                revised Terms means you accept and agree to the changes.
               </p>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4 text-foreground">2. Use of Our Service</h2>
-              <p className="text-foreground mb-4">
-                We grant you a limited, non-exclusive, non-transferable, and revocable license to use our Service 
-                for your personal, non-commercial purposes, subject to these Terms.
+            {/* 2. Use License */}
+            <section id="use-license" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                2. Use License
+              </h2>
+              <p className="text-foreground leading-relaxed">
+                Permission is granted to temporarily download one copy of the
+                materials (information or software) on LeetFeedback for
+                personal, non-commercial transitory viewing only. This is the
+                grant of a license, not a transfer of title, and under this
+                license you may not:
               </p>
-              <p className="text-foreground mb-4">You agree not to:</p>
-              <ul className="list-disc pl-6 mb-4 text-foreground">
-                <li>Use the Service for any illegal or unauthorized purpose.</li>
-                <li>Modify, adapt, hack, or reverse-engineer the Service.</li>
-                <li>Introduce any viruses, worms, trojan horses, or other malicious code to the Service.</li>
-                <li>Attempt to gain unauthorized access to our systems or networks.</li>
-                <li>Scrape, crawl, or otherwise collect data from the Service without our express written permission.</li>
+              <ul className="list-disc pl-6 space-y-2 text-foreground">
+                <li>Modifying or copying the materials</li>
+                <li>
+                  Using the materials for any commercial purpose or for any
+                  public display
+                </li>
+                <li>
+                  Attempting to decompile or reverse engineer any software
+                  contained on the Platform
+                </li>
+                <li>
+                  Removing any copyright or other proprietary notations from the
+                  materials
+                </li>
+                <li>
+                  Transferring the materials to another person or "mirroring"
+                  the materials on any other server
+                </li>
+                <li>Violating any applicable laws or regulations</li>
               </ul>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4 text-foreground">3. Intellectual Property</h2>
-              <p className="text-foreground mb-4">
-                The Service and its original content, features, and functionality are and will remain the exclusive 
-                property of Traverse and its licensors. Our trademarks and trade dress may not be used in 
-                connection with any product or service without our prior written consent.
+            {/* 3. User Accounts */}
+            <section id="user-accounts" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                3. User Accounts
+              </h2>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    3.1 Account Creation
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    To use certain features of LeetFeedback, you must create an
+                    account. You agree to provide accurate, current, and
+                    complete information during registration and to update such
+                    information to keep it accurate, current, and complete.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    3.2 Account Security
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    You are responsible for maintaining the confidentiality of
+                    your account credentials and password. You agree to accept
+                    responsibility for all activities that occur under your
+                    account. You agree to notify us immediately of any
+                    unauthorized use of your account or any other breach of
+                    security.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    3.3 Age Requirement
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    By creating an account, you represent that you are at least
+                    13 years of age. If you are under 18, you represent that you
+                    have obtained parental or guardian consent to use the
+                    Platform.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* 4. User Responsibilities */}
+            <section id="user-responsibilities" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                4. User Responsibilities
+              </h2>
+              <p className="text-foreground leading-relaxed">
+                You agree to use the Platform only for lawful purposes and in a
+                way that does not infringe upon the rights of others or restrict
+                their use and enjoyment of the Platform. You are solely
+                responsible for the quality and legality of any content you
+                submit to the Platform.
+              </p>
+              <ul className="list-disc pl-6 space-y-2 text-foreground">
+                <li>Complete problems accurately and honestly</li>
+                <li>Not use unfair means or cheat in any form</li>
+                <li>Respect the intellectual property rights of others</li>
+                <li>Not engage in any form of harassment or abuse</li>
+                <li>Maintain the integrity and security of your account</li>
+              </ul>
+            </section>
+
+            {/* 5. Prohibited Conduct */}
+            <section id="prohibited-conduct" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                5. Prohibited Conduct
+              </h2>
+              <p className="text-foreground leading-relaxed">
+                You agree not to engage in any of the following prohibited
+                conduct:
+              </p>
+              <ul className="list-disc pl-6 space-y-2 text-foreground">
+                <li>
+                  <strong>Cheating/Unfair Means:</strong> Using external
+                  solutions, automated tools, or copying code from other sources
+                  without attribution
+                </li>
+                <li>
+                  <strong>Plagiarism:</strong> Submitting code or content that
+                  belongs to others
+                </li>
+                <li>
+                  <strong>Harassment:</strong> Harassing, threatening, or
+                  abusing other users
+                </li>
+                <li>
+                  <strong>System Abuse:</strong> Attempting to gain unauthorized
+                  access or disrupt the Platform
+                </li>
+                <li>
+                  <strong>Spam:</strong> Posting spam, advertisements, or
+                  promotional content
+                </li>
+                <li>
+                  <strong>Malicious Activity:</strong> Uploading viruses,
+                  malware, or any malicious code
+                </li>
+                <li>
+                  <strong>Account Sharing:</strong> Sharing your account
+                  credentials with others
+                </li>
+                <li>
+                  <strong>Data Mining:</strong> Attempting to scrape or extract
+                  data from the Platform
+                </li>
+              </ul>
+            </section>
+
+            {/* 6. Intellectual Property Rights */}
+            <section id="intellectual-property" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                6. Intellectual Property Rights
+              </h2>
+              <p className="text-foreground leading-relaxed">
+                All content on LeetFeedback, including but not limited to text,
+                graphics, logos, images, audio clips, video clips, digital
+                downloads, data compilations, and software, is the property of
+                LeetFeedback or its content suppliers and is protected by
+                international copyright laws.
+              </p>
+              <p className="text-foreground leading-relaxed">
+                You may not reproduce, republish, distribute, or transmit any
+                content from the Platform without prior written permission from
+                LeetFeedback or the copyright holder.
               </p>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4 text-foreground">4. No User-Generated Content</h2>
-              <p className="text-foreground mb-4">
-                Our service does not allow users to post, link, store, share, or otherwise make available any content. 
-                As such, you are not permitted to upload or transmit any information to the Service.
+            {/* 7. User-Generated Content */}
+            <section id="user-content" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                7. User-Generated Content
+              </h2>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    7.1 Your Content Rights
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    You retain all rights to any content you submit to the
+                    Platform. By submitting content, you grant LeetFeedback a
+                    worldwide, non-exclusive, royalty-free license to use your
+                    content solely for improving and operating the Platform.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    7.2 No Harmful Content
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    You agree not to submit any content that is illegal,
+                    offensive, defamatory, infringing, or violates any
+                    third-party rights. We reserve the right to remove such
+                    content at any time.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* 8. Recruiter Platform Terms */}
+            <section id="recruiter-terms" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                8. Recruiter Platform Terms
+              </h2>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    8.1 Data Visibility
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    If you opt into the recruiter analytics platform, recruiters
+                    may see anonymized aggregate data about your performance.
+                    You can opt-out at any time in your account settings.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    8.2 Recruiter Conduct
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    Recruiters using our platform agree to use the data only for
+                    legitimate hiring purposes and to respect user privacy. They
+                    may not share, sell, or misuse any data obtained from the
+                    Platform.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    8.3 Communication
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    Communication between recruiters and students is handled
+                    anonymously through our platform unless you choose to reveal
+                    your identity. We are not responsible for communications
+                    conducted outside our platform.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* 9. Integrity & Enforcement */}
+            <section id="integrity-enforcement" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                9. Integrity & Enforcement
+              </h2>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    9.1 AI Monitoring
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    We use AI and machine learning to detect unfair means and
+                    maintain platform integrity. Our systems analyze submission
+                    patterns, code similarities, and behavioral anomalies.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    9.2 Enforcement Actions
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    If we detect violations of these Terms, we may:
+                  </p>
+                  <ul className="list-disc pl-6 space-y-2 text-foreground">
+                    <li>Issue a warning or notification</li>
+                    <li>Temporarily suspend your account</li>
+                    <li>Permanently terminate your account</li>
+                    <li>
+                      Report violations to relevant authorities if required by
+                      law
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    9.3 Right to Appeal
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    If we flag your account for violations, you have the right
+                    to appeal within 14 days. You can provide context, request
+                    human review, or present evidence to dispute the allegation.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    9.4 Confidentiality
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    Integrity investigation findings are kept confidential and
+                    disclosed only as required by law or as part of legal
+                    proceedings.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* 10. Limitation of Liability */}
+            <section id="limitation-liability" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                10. Limitation of Liability
+              </h2>
+              <p className="text-foreground leading-relaxed">
+                IN NO EVENT SHALL LEETFEEDBACK, ITS DIRECTORS, EMPLOYEES, OR
+                AGENTS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL,
+                CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFITS, EVEN
+                IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+              </p>
+              <p className="text-foreground leading-relaxed">
+                TO THE MAXIMUM EXTENT PERMITTED BY LAW, LEETFEEDBACK SHALL NOT
+                BE LIABLE FOR ANY DAMAGES EXCEEDING THE TOTAL AMOUNT PAID BY YOU
+                TO LEETFEEDBACK IN THE 12 MONTHS PRECEDING THE CLAIM.
               </p>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4 text-foreground">5. Termination</h2>
-              <p className="text-foreground mb-4">
-                We may terminate or suspend your access to our Service immediately, without prior notice or liability, 
-                for any reason whatsoever, including, without limitation, if you breach the Terms. Upon termination, 
-                your right to use the Service will immediately cease.
+            {/* 11. Indemnification */}
+            <section id="indemnification" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                11. Indemnification
+              </h2>
+              <p className="text-foreground leading-relaxed">
+                You agree to indemnify and hold harmless LeetFeedback, its
+                directors, employees, and agents from any claim, demand, loss,
+                liability, or expense (including reasonable attorneys' fees)
+                arising out of or related to: (a) your use of the Platform; (b)
+                your violation of these Terms; (c) your violation of any law or
+                the rights of a third party; or (d) any content you submit.
               </p>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4 text-foreground">6. Disclaimer of Warranties; Limitation of Liability</h2>
-              <p className="text-foreground mb-4">
-                The Service is provided on an "AS IS" and "AS AVAILABLE" basis. Your use of the Service is at your 
-                sole risk. The Service is provided without warranties of any kind, whether express or implied, 
-                including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, 
-                non-infringement, or course of performance.
+            {/* 12. Disclaimers */}
+            <section id="disclaimer" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                12. Disclaimers
+              </h2>
+              <p className="text-foreground leading-relaxed">
+                THE PLATFORM IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT ANY
+                WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED. LEETFEEDBACK
+                DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO THE
+                IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+                PURPOSE, AND NON-INFRINGEMENT.
               </p>
-              <p className="text-foreground mb-4">
-                In no event shall Traverse, nor its directors, employees, partners, or agents, be liable for any 
-                indirect, incidental, special, consequential, or punitive damages, including without limitation, 
-                loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or 
-                use of or inability to access or use the Service.
-              </p>
-            </section>
-
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4 text-foreground">7. Governing Law</h2>
-              <p className="text-foreground mb-4">
-                These Terms shall be governed and construed in accordance with the laws of the United States, 
-                without regard to its conflict of law provisions.
+              <p className="text-foreground leading-relaxed">
+                LEETFEEDBACK DOES NOT GUARANTEE THAT THE PLATFORM WILL BE
+                ERROR-FREE, UNINTERRUPTED, OR SECURE.
               </p>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4 text-foreground">8. Changes to Terms</h2>
-              <p className="text-foreground mb-4">
-                We reserve the right, at our sole discretion, to modify or replace these Terms at any time. 
-                We will provide notice of any changes by posting the new Terms on this page. By continuing to 
-                access or use our Service after those revisions become effective, you agree to be bound by the revised terms.
+            {/* 13. Termination */}
+            <section id="termination" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                13. Termination
+              </h2>
+              <p className="text-foreground leading-relaxed">
+                LeetFeedback reserves the right to terminate or suspend your
+                account and access to the Platform at any time, for any reason,
+                with or without notice, including if you violate these Terms.
+              </p>
+              <p className="text-foreground leading-relaxed">
+                Upon termination, your right to use the Platform immediately
+                ceases. LeetFeedback is not liable for any consequences of
+                termination, including loss of data.
               </p>
             </section>
 
-            <section className="mb-12">
-              <h2 className="text-2xl font-semibold mb-4 text-foreground">9. Contact Us</h2>
-              <p className="text-foreground mb-4">
-                If you have any questions about these Terms, you can contact us at:
+            {/* 14. Modifications to Service */}
+            <section id="modifications" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                14. Modifications to Service
+              </h2>
+              <p className="text-foreground leading-relaxed">
+                LeetFeedback reserves the right to modify or discontinue the
+                Platform (or any part thereof) at any time, with or without
+                notice. We will not be liable to you or any third party for any
+                modification, suspension, or discontinuation of the Platform.
               </p>
-              <div className="bg-muted/10 p-4 rounded-lg border border-border">
-                <p className="text-foreground mb-2">
-                  <strong>Discord Server:</strong>{' '}
-                  <a 
-                    href="https://discord.gg/BZDb22gz" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-primary hover:text-primary/80 underline"
-                  >
-                    https://discord.gg/BZDb22gz
-                  </a>
+            </section>
+
+            {/* 15. Governing Law */}
+            <section id="governing-law" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                15. Governing Law
+              </h2>
+              <p className="text-foreground leading-relaxed">
+                These Terms of Service are governed by and construed in
+                accordance with the laws of [Your Jurisdiction], and you
+                irrevocably submit to the exclusive jurisdiction of the courts
+                located in [Your Jurisdiction].
+              </p>
+            </section>
+
+            {/* 16. Contact Us */}
+            <section id="contact" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                16. Contact Us
+              </h2>
+              <p className="text-foreground leading-relaxed">
+                If you have any questions about these Terms of Service, please
+                contact us:
+              </p>
+              <div className="p-6 bg-muted/10 rounded-lg border border-border space-y-3">
+                <p className="text-foreground">
+                  <strong>Email:</strong> legal@leetfeedback.com
                 </p>
-                <p className="text-muted-foreground text-sm">
-                  Join our Discord community for support and updates.
+                <p className="text-foreground">
+                  <strong>Support:</strong> support@leetfeedback.com
                 </p>
               </div>
             </section>
@@ -126,9 +599,8 @@ const TermsOfServicePage: React.FC = () => {
         </div>
       </main>
       <Footer />
-      <DockDemo />
     </>
   );
 };
 
-export default TermsOfServicePage; 
+export default TermsOfServicePage;

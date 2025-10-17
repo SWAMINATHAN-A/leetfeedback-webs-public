@@ -278,7 +278,7 @@ const Pricing: React.FC = () => {
           <Card className="relative overflow-hidden bg-background/10 border border-border rounded-3xl backdrop-blur-sm">
             {/* Silk Background */}
             <div className="absolute inset-0 opacity-20">
-              <Silk 
+              <Silk
                 speed={2}
                 scale={1}
                 color="#197CDB"
