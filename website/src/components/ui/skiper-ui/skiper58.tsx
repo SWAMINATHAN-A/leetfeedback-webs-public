@@ -12,48 +12,38 @@ const navigationItems = [
     description: "[0]",
   },
   {
-    name: "Components",
-    href: "/components",
+    name: "Roadmap",
+    href: "/roadmap",
     description: "[1]",
   },
   {
-    name: "Pricing",
-    href: "/pricing",
+    name: "Privacy Policy",
+    href: "/privacy",
     description: "[2]",
   },
   {
-    name: "How to use",
-    href: "/docs/quick-start",
+    name: "Terms of Service",
+    href: "/terms",
     description: "[3]",
-  },
-  {
-    name: "Account",
-    href: "/user",
-    description: "[4]",
-  },
-  {
-    name: "Login",
-    href: "/login",
-    description: "[7]",
   },
 ];
 
 export const Skiper58 = () => {
   return (
-    <ul className="bs flex min-h-full w-full flex-1 flex-col items-center justify-center gap-1.5 rounded-2xl px-7 py-3 backdrop-blur-sm">
+    <ul className="bs flex min-h-full w-full flex-1 flex-col items-start justify-start gap-1.5 rounded-2xl px-7 py-3 backdrop-blur-sm">
       {navigationItems.map((item, index) => (
         <li
-          className="relative flex cursor-pointer flex-col items-center overflow-visible"
+          className="relative flex cursor-pointer flex-col items-start overflow-visible"
           key={index}
         >
-          <div className="relative flex items-start">
+          <a href={item.href} className="relative flex items-start">
             <TextRoll
-              center
+              center={false}
               className="text-4xl font-extrabold uppercase leading-[0.8] tracking-[-0.03em] transition-colors lg:text-5xl"
             >
               {item.name}
             </TextRoll>
-          </div>
+          </a>
         </li>
       ))}
     </ul>
