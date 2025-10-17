@@ -196,7 +196,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
                         {hovered === idx && (
                             <motion.div
                                 layoutId="hovered"
-                                className="absolute inset-0 h-full w-full rounded-lg bg-white/20 dark:bg-white/10"
+                                className="absolute inset-0 h-full w-full rounded-3xl bg-white/20 dark:bg-white/10"
                                 initial={{ scale: 0.8, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
                                 exit={{ scale: 0.8, opacity: 0 }}
@@ -413,7 +413,7 @@ export const NavbarButton = ({
     [key: string]: any;
 }) => {
     const baseStyles =
-        "px-4 py-2 rounded-md text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
+        "px-4 py-2 rounded-3xl text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
 
     const variantStyles = {
         primary:
