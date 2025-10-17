@@ -92,7 +92,11 @@ const Hero: React.FC = () => {
               >
                 <div className="bg-[rgba(40,40,40,0.9)] border border-white/20 px-4 py-2 rounded-full hover:bg-[rgba(40,40,40,1)] transition-colors inline-flex items-center">
                   <RocketLaunchIcon className="w-4 h-4 mr-2 text-white" />
-                  <ShinyText text="Public Beta is out!" speed={3} className="text-sm font-mono" />
+                  <ShinyText
+                    text="Public Beta is out!"
+                    speed={3}
+                    className="text-sm font-mono"
+                  />
                 </div>
               </a>
             </div>

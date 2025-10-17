@@ -99,7 +99,11 @@ const HowItWorks: React.FC = () => {
           <BlurFade delay={0.25}>
             <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-4 py-2 inline-flex items-center hover:bg-[rgba(40,40,40,1)] transition-colors">
               <AutoFixHighIcon className="w-4 h-4 mr-1 text-white" />
-              <ShinyText text="Simple Process" speed={3} className="font-mono text-sm" />
+              <ShinyText
+                text="Simple Process"
+                speed={3}
+                className="font-mono text-sm"
+              />
             </div>
           </BlurFade>
           <TextAnimate

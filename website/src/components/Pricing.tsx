@@ -27,7 +27,6 @@ import BugReportIcon from "@mui/icons-material/BugReport";
 import OpenSourceIcon from "@mui/icons-material/OpenInNew";
 import DiscordIcon from "./icons/DiscordIcon";
 import { CardSpotlight } from "./ui/card-spotlight";
-import { CardDemo } from "./cards-demo-1";
 import ShinyText from "./ShinyText";
 
 const Pricing: React.FC = () => {
@@ -68,7 +67,11 @@ const Pricing: React.FC = () => {
           <BlurFade delay={0.25}>
             <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-red-500/50 rounded-full px-4 py-2 inline-flex items-center hover:bg-[rgba(40,40,40,1)] transition-colors">
               <FavoriteIcon className="w-4 h-4 mr-1 text-red-400" />
-              <ShinyText text="Free Forever" speed={3} className="font-mono text-sm" />
+              <ShinyText
+                text="Free Forever"
+                speed={3}
+                className="font-mono text-sm"
+              />
             </div>
           </BlurFade>
           <TextAnimate
@@ -114,16 +117,9 @@ const Pricing: React.FC = () => {
           </BlurFade>
         </div>
 
-        {/* Free Card Demo */}
-        <div className="flex justify-center mb-16">
-          <BlurFade delay={1}>
-            <CardDemo />
-          </BlurFade>
-        </div>
-
         {/* Donation Section with Ripple Background */}
         <div className="max-w-4xl mx-auto mb-16">
-          <BlurFade delay={1.2}>
+          <BlurFade delay={1}>
             <div className="relative bg-background/80 border border-border rounded-lg backdrop-blur-sm overflow-hidden min-h-[400px] flex items-center justify-center">
               {/* Ripple Background */}
               <Ripple
