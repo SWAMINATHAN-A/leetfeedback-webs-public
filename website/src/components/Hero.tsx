@@ -133,19 +133,19 @@ const Hero: React.FC = () => {
           {/* Key Features Highlight */}
           <BlurFade delay={1}>
             <div className="flex flex-wrap justify-center gap-4 mb-12">
-              <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-md px-4 py-2 border border-border">
+              <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
                 <GitHubIcon className="w-4 h-4 mr-2 text-muted-foreground" />
                 <span className="text-sm font-medium text-foreground">
                   Auto GitHub Push
                 </span>
               </div>
-              <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-md px-4 py-2 border border-border">
+              <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
                 <NotesIcon className="w-4 h-4 mr-2 text-muted-foreground" />
                 <span className="text-sm font-medium text-foreground">
                   Notion Integration
                 </span>
               </div>
-              <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-md px-4 py-2 border border-border">
+              <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
                 <StyleIcon className="w-4 h-4 mr-2 text-muted-foreground" />
                 <span className="text-sm font-medium text-foreground">
                   Anki Cards
@@ -311,9 +311,9 @@ const Hero: React.FC = () => {
             ].map((platform, index) => (
               <BlurFade key={platform.name} delay={1.75 + index * 0.1}>
                 <Card
-                  className={`p-6 text-center border-2 border-border hover:bg-muted/20 transition-all duration-300 bg-card/50`}
+                  className={`p-6 text-center border-2 border-border hover:bg-muted/20 transition-all duration-300 bg-card/50 rounded-3xl`}
                 >
-                  <div className="w-12 h-12 mx-auto mb-3 rounded-md bg-muted/50 flex items-center justify-center border border-border">
+                  <div className="w-12 h-12 mx-auto mb-3 rounded-3xl bg-muted/50 flex items-center justify-center border border-border">
                     <PlatformIcon platform={platform.key as any} size="lg" />
                   </div>
                   <p className="font-semibold text-foreground text-sm">

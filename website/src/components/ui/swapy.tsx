@@ -93,7 +93,9 @@ export function ProjectViewsCard() {
         </div>
       </div>
       <p className="text-yellow-200 font-medium relative z-10">Tracking</p>
-      <p className="text-yellow-200/80 text-sm relative z-10">Every run captured</p>
+      <p className="text-yellow-200/80 text-sm relative z-10">
+        Every run captured
+      </p>
     </div>
   );
 }
@@ -109,7 +111,9 @@ export function NewUsersCard() {
       <h2 className="text-yellow-200 2xl:text-6xl text-4xl font-bold leading-none relative z-10">
         Pattern
       </h2>
-      <p className="text-green-400 font-medium mt-2 relative z-10">Recognition</p>
+      <p className="text-green-400 font-medium mt-2 relative z-10">
+        Recognition
+      </p>
     </div>
   );
 }
@@ -136,24 +140,46 @@ export function LogoCard() {
   return (
     <div className="bg-gradient-to-br from-pink-300 via-pink-200 to-rose-200 rounded-xl h-full p-6 flex flex-col items-center justify-center shadow-lg relative overflow-hidden">
       <GamificationIllustration />
-      
+
       {/* Custom geometric trophy */}
       <div className="relative z-10 mb-6">
-        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="80"
+          height="80"
+          viewBox="0 0 80 80"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           {/* Trophy cup */}
-          <path d="M25 25L20 45C20 50 25 55 30 55H50C55 55 60 50 60 45L55 25H25Z" fill="#1F2937" />
+          <path
+            d="M25 25L20 45C20 50 25 55 30 55H50C55 55 60 50 60 45L55 25H25Z"
+            fill="#1F2937"
+          />
           <rect x="35" y="55" width="10" height="15" fill="#1F2937" />
           <rect x="28" y="70" width="24" height="4" rx="2" fill="#1F2937" />
-          
+
           {/* Handles */}
-          <path d="M20 30C15 30 12 35 12 38C12 41 15 43 18 43L20 40" stroke="#1F2937" strokeWidth="3" fill="none" />
-          <path d="M60 30C65 30 68 35 68 38C68 41 65 43 62 43L60 40" stroke="#1F2937" strokeWidth="3" fill="none" />
-          
+          <path
+            d="M20 30C15 30 12 35 12 38C12 41 15 43 18 43L20 40"
+            stroke="#1F2937"
+            strokeWidth="3"
+            fill="none"
+          />
+          <path
+            d="M60 30C65 30 68 35 68 38C68 41 65 43 62 43L60 40"
+            stroke="#1F2937"
+            strokeWidth="3"
+            fill="none"
+          />
+
           {/* Shine effect */}
           <ellipse cx="35" cy="35" rx="4" ry="8" fill="white" opacity="0.3" />
-          
+
           {/* Star on trophy */}
-          <path d="M40 35L42 40L47 41L43 45L44 50L40 47L36 50L37 45L33 41L38 40Z" fill="#FCD34D" />
+          <path
+            d="M40 35L42 40L47 41L43 45L44 50L40 47L36 50L37 45L33 41L38 40Z"
+            fill="#FCD34D"
+          />
         </svg>
       </div>
 
@@ -161,7 +187,7 @@ export function LogoCard() {
       <h2 className="text-3xl font-black text-gray-900 relative z-10 mb-2 tracking-tight">
         Gamification
       </h2>
-      
+
       {/* Achievement level bars */}
       <div className="flex gap-1.5 mb-3 relative z-10">
         <div className="w-2 h-6 bg-pink-600 rounded-full"></div>
@@ -170,8 +196,10 @@ export function LogoCard() {
         <div className="w-2 h-8 bg-pink-300 rounded-full"></div>
         <div className="w-2 h-6 bg-pink-200 rounded-full"></div>
       </div>
-      
-      <p className="text-gray-700 text-center relative z-10 font-medium text-sm">Achievements & Motivation</p>
+
+      <p className="text-gray-700 text-center relative z-10 font-medium text-sm">
+        Achievements & Motivation
+      </p>
     </div>
   );
 }
@@ -210,7 +238,9 @@ export function FontCard() {
   return (
     <div className="bg-yellow-200 rounded-xl h-full p-6 col-span-1 shadow-md relative overflow-hidden">
       <GitHubIllustration />
-      <h2 className="text-3xl font-bold mb-1 text-gray-900 relative z-10">GitHub</h2>
+      <h2 className="text-3xl font-bold mb-1 text-gray-900 relative z-10">
+        GitHub
+      </h2>
       <p className="mb-6 text-gray-700 relative z-10">Auto-commit solutions</p>
 
       <div className="flex gap-3 mt-4 relative z-10">
@@ -243,7 +273,9 @@ export function CardBalanceCard() {
         <h3 className="text-xl font-bold mb-4 text-neutral-950">Progress</h3>
         <BarChart3 className="w-6 h-6 text-neutral-950" />
       </div>
-      <h2 className="text-3xl font-bold mb-6 text-neutral-800 relative z-10">Analytics</h2>
+      <h2 className="text-3xl font-bold mb-6 text-neutral-800 relative z-10">
+        Analytics
+      </h2>
 
       <div className="bg-black text-white rounded-lg p-4 shadow-sm relative z-10">
         <div className="flex justify-between text-sm mb-2">
@@ -304,17 +336,23 @@ function DefaultSwapy() {
         <div className="lg:col-span-4 sm:col-span-6 col-span-12">
           <div className="bg-gradient-to-br from-purple-600 via-purple-500 to-indigo-600 rounded-xl h-full p-6 flex flex-col justify-center items-center text-center shadow-lg relative overflow-hidden">
             <MistakeLearningIllustration />
-            
+
             {/* Custom brain/learning icon */}
             <div className="w-20 h-20 mb-4 relative z-10">
-              <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg
+                width="80"
+                height="80"
+                viewBox="0 0 80 80"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
                 {/* Brain outline */}
-                <path 
-                  d="M25 30C20 30 15 35 15 40C15 42 16 44 17 45C15 47 14 50 16 53C18 56 22 57 25 56C25 60 28 65 35 65H45C52 65 55 60 55 56C58 57 62 56 64 53C66 50 65 47 63 45C64 44 65 42 65 40C65 35 60 30 55 30C54 25 50 20 40 20C30 20 26 25 25 30Z" 
-                  fill="white" 
+                <path
+                  d="M25 30C20 30 15 35 15 40C15 42 16 44 17 45C15 47 14 50 16 53C18 56 22 57 25 56C25 60 28 65 35 65H45C52 65 55 60 55 56C58 57 62 56 64 53C66 50 65 47 63 45C64 44 65 42 65 40C65 35 60 30 55 30C54 25 50 20 40 20C30 20 26 25 25 30Z"
+                  fill="white"
                   opacity="0.9"
                 />
-                
+
                 {/* Neural pathways */}
                 <circle cx="30" cy="35" r="2" fill="#8B5CF6" />
                 <circle cx="40" cy="32" r="2" fill="#8B5CF6" />
@@ -322,16 +360,23 @@ function DefaultSwapy() {
                 <circle cx="35" cy="45" r="2" fill="#8B5CF6" />
                 <circle cx="45" cy="45" r="2" fill="#8B5CF6" />
                 <circle cx="40" cy="55" r="2" fill="#8B5CF6" />
-                
-                <path 
-                  d="M30 35L40 32M40 32L50 35M30 35L35 45M50 35L45 45M35 45L40 55M45 45L40 55" 
-                  stroke="#8B5CF6" 
-                  strokeWidth="1.5" 
+
+                <path
+                  d="M30 35L40 32M40 32L50 35M30 35L35 45M50 35L45 45M35 45L40 55M45 45L40 55"
+                  stroke="#8B5CF6"
+                  strokeWidth="1.5"
                   opacity="0.6"
                 />
-                
+
                 {/* Lightbulb moment */}
-                <circle cx="60" cy="25" r="6" stroke="white" strokeWidth="2" fill="none" />
+                <circle
+                  cx="60"
+                  cy="25"
+                  r="6"
+                  stroke="white"
+                  strokeWidth="2"
+                  fill="none"
+                />
                 <path d="M57 31L63 31" stroke="white" strokeWidth="2" />
                 <path d="M58.5 33L61.5 33" stroke="white" strokeWidth="2" />
               </svg>
@@ -340,7 +385,7 @@ function DefaultSwapy() {
             <h2 className="text-2xl font-black text-white mb-2 relative z-10 tracking-tight">
               Learn from Mistakes
             </h2>
-            
+
             {/* Progress indicator */}
             <div className="flex items-center gap-2 mb-2 relative z-10">
               <div className="flex gap-1">
@@ -349,7 +394,13 @@ function DefaultSwapy() {
                 <div className="w-1.5 h-1.5 rounded-full bg-white opacity-40"></div>
               </div>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M5 10L9 14L15 6" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path
+                  d="M5 10L9 14L15 6"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
               </svg>
               <div className="flex gap-1">
                 <div className="w-1.5 h-1.5 rounded-full bg-white opacity-40"></div>
@@ -357,8 +408,10 @@ function DefaultSwapy() {
                 <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
               </div>
             </div>
-            
-            <p className="text-purple-100 text-sm relative z-10 font-medium">AI-powered error analysis</p>
+
+            <p className="text-purple-100 text-sm relative z-10 font-medium">
+              AI-powered error analysis
+            </p>
           </div>
         </div>
       </div>

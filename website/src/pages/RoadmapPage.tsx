@@ -14,6 +14,7 @@ import {
   Phase4Swapy,
 } from "../components/roadmap/PhaseSwapy";
 import { analytics } from "../utils/analytics";
+import Silk from "../components/Silk";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import CodeIcon from "@mui/icons-material/Code";
@@ -27,6 +28,7 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import VolunteerActivismIcon from "@mui/icons-material/VolunteerActivism";
 import TargetIcon from "@mui/icons-material/MyLocation";
 import GroupsIcon from "@mui/icons-material/Groups";
+import { Users, Code2, Bug, Sparkles } from "lucide-react";
 
 interface RoadmapPhase {
   id: number;
@@ -342,92 +344,54 @@ const RoadmapPage: React.FC = () => {
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto">
               {/* Open Source Contribution */}
-              <div className="text-center p-8 bg-muted/10 border border-border rounded-lg mb-16">
-                <div className="flex justify-center space-x-6 mb-6">
-                  <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                    <GroupsIcon className="w-8 h-8 text-foreground" />
-                  </div>
-                  <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                    <CodeIcon className="w-8 h-8 text-foreground" />
-                  </div>
-                  <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                    <AutoAwesomeIcon className="w-8 h-8 text-foreground" />
-                  </div>
+              <Card className="relative overflow-hidden bg-background/10 border border-border rounded-3xl backdrop-blur-sm">
+                {/* Silk Background */}
+                <div className="absolute inset-0 opacity-20">
+                  <Silk 
+                    speed={2}
+                    scale={1}
+                    color="#197CDB"
+                    noiseIntensity={1}
+                    rotation={0.2}
+                  />
                 </div>
-                <h3 className="text-3xl font-bold mb-4 text-foreground">
-                  <VolunteerActivismIcon className="w-8 h-8 mr-2 inline" />
-                  Join Our Open Source Journey
-                </h3>
-                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto text-lg">
-                  Help us build the future of coding practice! We're looking for
-                  passionate developers, designers, and testers to contribute to
-                  this open source project.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <RainbowButton
-                    size="lg"
-                    className="px-8 py-4 text-lg font-semibold"
-                    onClick={() => {
-                      analytics.trackFeatureClick("contribute_github");
-                      window.open(
-                        "https://github.com/lqSky7/leetFeedback-extension",
-                        "_blank"
-                      );
-                    }}
-                  >
-                    <GitHubIcon className="w-5 h-5 mr-2" />
-                    Contribute on GitHub
-                  </RainbowButton>
-                  <Button
-                    variant="outline"
-                    size="lg"
-                    className="px-8 py-4 text-lg font-semibold border-border hover:bg-muted/50"
-                    onClick={() =>
-                      (window.location.href = "mailto:catince@outlook.com")
-                    }
-                  >
-                    Join Our Team
-                  </Button>
-                </div>
-              </div>
 
-              {/* Community & Feedback */}
-              <div className="text-center">
-                <h3 className="text-2xl font-bold mb-4 text-foreground">
-                  Shape the Future
-                </h3>
-                <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                  Your feedback drives our development. Join our community and
-                  help us prioritize features that matter most to developers
-                  like you.
-                </p>
-                <div className="flex justify-center gap-4">
-                  <Button
-                    variant="outline"
-                    onClick={() =>
-                      window.open(
-                        "https://github.com/lqSky7/leetFeedback-extension/issues",
-                        "_blank"
-                      )
-                    }
-                    className="border-border hover:bg-muted/50"
-                  >
-                    Request Features
-                  </Button>
-                  <Button
-                    variant="outline"
-                    onClick={() =>
-                      window.open(
-                        "https://github.com/lqSky7/leetFeedback-extension/discussions",
-                        "_blank"
-                      )
-                    }
-                    className="border-border hover:bg-muted/50"
-                  >
-                    Join Discussion
-                  </Button>
+                <div className="relative z-10 p-8 sm:p-10">
+                  <h3 className="text-2xl sm:text-3xl font-bold mb-3 text-foreground text-center">
+                    Join Our Open Source Journey
+                  </h3>
+                  <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto mb-6 text-center">
+                    Help us build the future of coding practice tools
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                    <RainbowButton
+                      size="lg"
+                      className="px-6 py-3 text-base font-semibold"
+                      onClick={() => {
+                        analytics.trackFeatureClick("contribute_github");
+                        window.open(
+                          "https://github.com/lqSky7/leetFeedback-extension",
+                          "_blank"
+                        );
+                      }}
+                    >
+                      <GitHubIcon className="w-4 h-4 mr-2" />
+                      Contribute on GitHub
+                    </RainbowButton>
+                    <RainbowButton
+                      variant="outline"
+                      size="lg"
+                      className="px-6 py-3 text-base font-semibold"
+                      onClick={() =>
+                        (window.location.href = "mailto:catince@outlook.com")
+                      }
+                    >
+                      Join Our Team
+                    </RainbowButton>
+                  </div>
                 </div>
-              </div>
+              </Card>
             </div>
           </div>
         </section>

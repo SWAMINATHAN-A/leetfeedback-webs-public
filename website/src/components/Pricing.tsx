@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import {
@@ -25,6 +25,78 @@ import { RainbowButton } from "./magicui/rainbow-button";
 import { analytics } from "../utils/analytics";
 import DiscordIcon from "./icons/DiscordIcon";
 import ShinyText from "./ShinyText";
+import Silk from "./Silk";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "./ui/accordion";
+
+const FAQAccordion: React.FC = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "Is this really free forever?",
+      answer:
+        "I initially decided to make it paid but no one's paying for this crap idea. So yeah it's free forever now.",
+    },
+    {
+      question: "How do you sustain the project?",
+      answer: "Midnight motivation bursts.",
+    },
+    {
+      question:
+        "Any deadlines or something of that sort for phases and upcoming features?",
+      answer:
+        "If reality hits hard this will be completed entirely within 1 non-working-day.",
+    },
+    {
+      question: "Is my code data secure?",
+      answer:
+        "Yes, It is only stored locally (for now), refer to Gemini Policy for Ai stuff, requests are made direcctly from you, there's no middleware.",
+    },
+    {
+      question:
+        "We are XYZ/MNC and are looking to buy this for XYZ million dollars...",
+      answer: "Not selling.",
+    },
+    {
+      question: "How do I request a new feature/idea?",
+      answer:
+        "Just mail catinice@outlook.com. You get instant reply even if it's 3AM.",
+    },
+  ];
+
+  return (
+    <Accordion className="max-w-3xl mx-auto">
+      {faqs.map((faq, index) => (
+        <AccordionItem key={index} value={`item-${index}`}>
+          <AccordionTrigger
+            isOpen={openIndex === index}
+            onClick={() => setOpenIndex(openIndex === index ? null : index)}
+            className="text-white hover:text-gray-200"
+          >
+            {faq.question}
+          </AccordionTrigger>
+          <AccordionContent
+            isOpen={openIndex === index}
+            className="text-gray-300"
+          >
+            {openIndex === index ? (
+              <BlurFade delay={0.05} inView key={`content-${index}`}>
+                {faq.answer}
+              </BlurFade>
+            ) : (
+              faq.answer
+            )}
+          </AccordionContent>
+        </AccordionItem>
+      ))}
+    </Accordion>
+  );
+};
 
 const Pricing: React.FC = () => {
   const freeFeatures = [
@@ -190,86 +262,43 @@ const Pricing: React.FC = () => {
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-muted/10 border border-border rounded-3xl p-8 md:p-12 mb-16 max-w-4xl mx-auto">
+        <div className="bg-zinc-900 border border-gray-800 rounded-3xl p-8 md:p-12 mb-16 max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-foreground mb-4">
+            <h3 className="text-3xl font-bold text-white mb-4">
               Frequently Asked Questions
             </h3>
-            <p className="text-muted-foreground">Everything you need to know</p>
+            <p className="text-gray-300">Everything you need to know</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                question: "Is this really free forever?",
-                answer:
-                  "I initially decided to make it paid but no one's paying for this crap idea. So yeah it's free forever now.",
-              },
-              {
-                question: "How do you sustain the project?",
-                answer: "Midnight motivation bursts.",
-              },
-              {
-                question:
-                  "Any deadlines or something of that sort for phases and upcoming features?",
-                answer:
-                  "If reality hits hard this will be completed entirely within 1 non-working-day.",
-              },
-              {
-                question: "Is my code data secure?",
-                answer:
-                  "Yes, It is only stored locally (for now), refer to Gemini Policy for Ai stuff, requests are made direcctly from you, there's no middleware.",
-              },
-              {
-                question:
-                  "We are XYZ/MNC and are looking to buy this for XYZ million dollars...",
-                answer: "Not selling.",
-              },
-              {
-                question: "How do I request a new feature/idea?",
-                answer:
-                  "Just mail catinice@outlook.com. You get instant reply even if it's 3AM.",
-              },
-            ].map((faq, index) => (
-              <div key={index} className="space-y-3">
-                <h4 className="font-semibold text-foreground">
-                  {faq.question}
-                </h4>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {faq.answer}
-                </p>
-              </div>
-            ))}
-          </div>
+          <FAQAccordion />
         </div>
 
         {/* Help Us Section */}
         <div className="text-center mt-16 max-w-4xl mx-auto">
-          <Card className="bg-background/80 border border-border rounded-3xl backdrop-blur-sm">
-            <div className="p-4 sm:p-8 relative z-10">
-              <div className="flex justify-center space-x-6 mb-6">
-                <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                  <Users className="w-8 h-8 text-foreground" />
-                </div>
-                <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                  <Code2 className="w-8 h-8 text-foreground" />
-                </div>
-                <div className="w-16 h-16 bg-card/50 border border-border rounded-lg flex items-center justify-center backdrop-blur-sm">
-                  <Bug className="w-8 h-8 text-foreground" />
-                </div>
-              </div>
-              <h3 className="text-2xl font-bold mb-4 text-foreground">
-                <Sparkles className="w-6 h-6 mr-2 inline" />
+          <Card className="relative overflow-hidden bg-background/10 border border-border rounded-3xl backdrop-blur-sm">
+            {/* Silk Background */}
+            <div className="absolute inset-0 opacity-20">
+              <Silk 
+                speed={2}
+                scale={1}
+                color="#197CDB"
+                noiseIntensity={1}
+                rotation={0.2}
+              />
+            </div>
+
+            <div className="relative z-10 p-8 sm:p-10">
+              <h3 className="text-2xl sm:text-3xl font-bold mb-3 text-foreground">
                 Join Our Open Source Community
               </h3>
-              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Looking for someone to design icon and fix some AI generated
-                slop.
+              <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto mb-6">
+                Contribute to the future of coding practice tools
               </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4 px-4">
+
+              <div className="flex flex-col sm:flex-row justify-center gap-3 px-4">
                 <RainbowButton
                   size="lg"
-                  className="px-4 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold w-full sm:w-auto"
+                  className="px-6 py-3 text-base font-semibold w-full sm:w-auto"
                   onClick={() =>
                     window.open(
                       "https://github.com/lqSky7/leetFeedback-extension",
@@ -277,19 +306,19 @@ const Pricing: React.FC = () => {
                     )
                   }
                 >
-                  <Github className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
-                  <span className="text-center">Contribute on GitHub</span>
+                  <Github className="w-4 h-4 mr-2 flex-shrink-0" />
+                  <span>Contribute on GitHub</span>
                 </RainbowButton>
                 <RainbowButton
                   variant="outline"
                   size="lg"
-                  className="px-4 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold w-full sm:w-auto"
+                  className="px-6 py-3 text-base font-semibold w-full sm:w-auto"
                   onClick={() =>
                     window.open("https://discord.gg/BZDb22gz", "_blank")
                   }
                 >
-                  <DiscordIcon className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" />
-                  <span className="text-center">Join Discord Community</span>
+                  <DiscordIcon className="w-4 h-4 mr-2 flex-shrink-0" />
+                  <span>Join Discord</span>
                 </RainbowButton>
               </div>
             </div>

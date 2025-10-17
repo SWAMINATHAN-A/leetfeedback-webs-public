@@ -134,9 +134,9 @@ const HowItWorks: React.FC = () => {
                   </div>
                 )}
 
-                <Card className="relative z-10 h-full bg-card/30 border border-border hover:border-white/20 hover:bg-card/50 transition-all duration-300 group flex flex-col">
+                <Card className="relative z-10 h-full bg-card/30 border border-border hover:border-white/20 hover:bg-card/50 transition-all duration-300 group flex flex-col rounded-3xl">
                   <CardHeader className="text-center space-y-4 flex-shrink-0">
-                    <div className="mx-auto w-16 h-16 bg-muted/50 border border-border rounded-md flex items-center justify-center text-foreground font-bold text-xl shadow-lg group-hover:scale-105 transition-transform duration-300 font-mono">
+                    <div className="mx-auto w-16 h-16 bg-muted/50 border border-border rounded-3xl flex items-center justify-center text-foreground font-bold text-xl shadow-lg group-hover:scale-105 transition-transform duration-300 font-mono">
                       {step.step}
                     </div>
                     <div className="text-foreground group-hover:scale-105 transition-transform duration-300">
