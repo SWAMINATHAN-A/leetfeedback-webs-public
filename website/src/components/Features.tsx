@@ -150,7 +150,7 @@ const Features: React.FC = () => {
       id="features"
       className="py-12 bg-background border-t border-border/20"
     >
-      <div className="w-full px-0">
+      <div className="w-full px-0 hidden md:block">
         {/* Container Scroll Animation */}
         <ContainerScroll
           titleComponent={
@@ -174,15 +174,14 @@ const Features: React.FC = () => {
 
       <div className="container mx-auto px-4 md:px-8">
         {/* Mobile Screenshots Section */}
-        <div className="py-16 from-background to-muted/20">
+        <div className="py-16 from-background to-muted/20 hidden md:block">
           <div className="text-center mb-12">
             <BlurFade delay={0.1} inView={true}>
-              <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-4 py-2 inline-flex items-center">
-                <AppsIcon className="w-4 h-4 mr-1 text-white" />
+              <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-3 py-1.5 inline-flex items-center">
                 <ShinyText
                   text="Mobile Experience"
                   speed={3}
-                  className="font-mono text-sm"
+                  className="font-mono text-xs"
                 />
               </div>
             </BlurFade>
@@ -311,12 +310,11 @@ const Features: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <BlurFade delay={0.25}>
-            <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-4 py-2 inline-flex items-center">
-              <AutoFixHighIcon className="w-4 h-4 mr-1 text-white" />
+            <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-3 py-1.5 inline-flex items-center">
               <ShinyText
                 text="Core Features"
                 speed={3}
-                className="font-mono text-sm"
+                className="font-mono text-xs"
               />
             </div>
           </BlurFade>
@@ -564,12 +562,11 @@ const Features: React.FC = () => {
         <div className="bg-muted/20 border border-border rounded-3xl p-8 md:p-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-4 py-2 inline-flex items-center">
-                <GitHubIcon className="w-4 h-4 mr-1 text-white" />
+              <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-3 py-1.5 inline-flex items-center">
                 <ShinyText
                   text="GitHub Integration"
                   speed={3}
-                  className="font-mono text-sm"
+                  className="font-mono text-xs"
                 />
               </div>
               <h3 className="text-3xl font-bold mb-6 text-foreground">

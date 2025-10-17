@@ -24,6 +24,7 @@ import { TextAnimate } from "./magicui/text-animate";
 import { RainbowButton } from "./magicui/rainbow-button";
 import { analytics } from "../utils/analytics";
 import DiscordIcon from "./icons/DiscordIcon";
+import ShinyText from "./ShinyText";
 
 const Pricing: React.FC = () => {
   const freeFeatures = [
@@ -63,6 +64,15 @@ const Pricing: React.FC = () => {
       <div className="container mx-auto px-4 md:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
+          <BlurFade delay={0.15}>
+            <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-3 py-1.5 inline-flex items-center">
+              <ShinyText
+                text="One time payment"
+                speed={3}
+                className="font-mono text-xs"
+              />
+            </div>
+          </BlurFade>
           <TextAnimate
             as="h2"
             className="text-4xl md:text-5xl font-bold text-foreground mb-4"
@@ -140,7 +150,7 @@ const Pricing: React.FC = () => {
               <div className="relative z-10 p-6 flex flex-col h-full">
                 <h3 className="text-xl font-bold text-white mb-2">Premium</h3>
                 <div className="mb-6">
-                  <span className="text-5xl font-bold text-white">$129</span>
+                  <span className="text-5xl font-bold text-white">$100</span>
                 </div>
 
                 {/* Features List */}

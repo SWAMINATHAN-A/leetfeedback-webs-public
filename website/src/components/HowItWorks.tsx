@@ -97,12 +97,11 @@ const HowItWorks: React.FC = () => {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-20">
           <BlurFade delay={0.25}>
-            <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-4 py-2 inline-flex items-center hover:bg-[rgba(40,40,40,1)] transition-colors">
-              <AutoFixHighIcon className="w-4 h-4 mr-1 text-white" />
+            <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-3 py-1.5 inline-flex items-center hover:bg-[rgba(40,40,40,1)] transition-colors">
               <ShinyText
                 text="Simple Process"
                 speed={3}
-                className="font-mono text-sm"
+                className="font-mono text-xs"
               />
             </div>
           </BlurFade>
