@@ -4,6 +4,7 @@ import geeksforgeeksIcon from "@/assets/support-icons/geeksforgeeks.svg";
 import hackerrankIcon from "@/assets/support-icons/hackerrank-svgrepo-com.svg";
 import codechefIcon from "@/assets/support-icons/codechef-svgrepo-com.svg";
 import tufIcon from "@/assets/support-icons/tuf.svg";
+import codeforcesIcon from "@/assets/support-icons/codeforces.svg";
 
 interface PlatformIconProps {
   platform:
@@ -11,7 +12,8 @@ interface PlatformIconProps {
     | "geeksforgeeks"
     | "hackerrank"
     | "codechef"
-    | "tufplus";
+    | "tufplus"
+    | "codeforces";
   className?: string;
   size?: "sm" | "md" | "lg";
 }
@@ -33,6 +35,7 @@ const PlatformIcon: React.FC<PlatformIconProps> = ({
     hackerrank: hackerrankIcon,
     codechef: codechefIcon,
     tufplus: tufIcon,
+    codeforces: codeforcesIcon,
   };
 
   return (

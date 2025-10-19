@@ -6,9 +6,21 @@ module.exports = {
         'animate-cell-ripple',
         'mask-radial-from-20%',
         'mask-radial-at-top',
+        'mask-b-from-35%',
+        'mask-b-to-90%',
+        'mask-b-from-55%',
     ],
     theme: {
         extend: {
+            spacing: {
+                '60': '15rem',
+                '87.5': '21.875rem',
+                '140': '35rem',
+                '320': '80rem',
+            },
+            height: {
+                '10.5': '2.625rem',
+            },
             colors: {
                 border: "hsl(var(--border))",
                 input: "hsl(var(--input))",
@@ -168,6 +180,27 @@ module.exports = {
                 '.mask-radial-at-top': {
                     '-webkit-mask-position': 'top center',
                     'mask-position': 'top center',
+                },
+                '.mask-b-from-35\\%': {
+                    '-webkit-mask-image': 'linear-gradient(to bottom, black 35%, transparent 100%)',
+                    'mask-image': 'linear-gradient(to bottom, black 35%, transparent 100%)',
+                },
+                '.mask-b-to-90\\%': {
+                    '-webkit-mask-image': 'linear-gradient(to bottom, black 0%, black 90%, transparent 100%)',
+                    'mask-image': 'linear-gradient(to bottom, black 0%, black 90%, transparent 100%)',
+                },
+                '.mask-b-from-55\\%': {
+                    '-webkit-mask-image': 'linear-gradient(to bottom, black 55%, transparent 100%)',
+                    'mask-image': 'linear-gradient(to bottom, black 55%, transparent 100%)',
+                },
+                '.contain-strict': {
+                    'contain': 'strict',
+                },
+                '.inset-shadow-2xs': {
+                    'box-shadow': 'inset 0 0 0 1px rgba(0, 0, 0, 0.05)',
+                },
+                '.inset-shadow-white\\/20': {
+                    'box-shadow': 'inset 0 0 0 1px rgba(255, 255, 255, 0.2)',
                 },
             };
             addUtilities(newUtilities);
