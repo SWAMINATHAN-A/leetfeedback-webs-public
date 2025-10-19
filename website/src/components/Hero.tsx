@@ -18,6 +18,7 @@ import ShinyText from "./ShinyText";
 import { TextEffect } from "./ui/text-effect";
 import { AnimatedGroup } from "./ui/animated-group";
 import LogoCloud from "./logo-cloud";
+import graphImage from "../assets/support-icons/graph3.png";
 
 const transitionVariants = {
   item: {
@@ -103,70 +104,70 @@ const Hero: React.FC = () => {
           className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--background)_75%)]"
         />
 
-        <div className="container relative mx-auto px-4 md:px-8 max-w-7xl">
-          <div className="text-left sm:mx-0 lg:mr-auto lg:mt-0">
-            {/* Beta Badge - Original Design */}
-            <BlurFade delay={0.25}>
-              <div className="mb-10">
-                <Link
-                  to="/roadmap"
-                  className="inline-block"
-                  onClick={() => analytics.trackRoadmapView()}
-                >
-                  <div className="bg-[rgba(40,40,40,0.9)] border border-white/20 px-3 py-1.5 rounded-full hover:bg-[rgba(40,40,40,1)] transition-colors inline-flex items-center">
-                    <ShinyText
-                      text="Public Beta is out!"
-                      speed={3}
-                      className="text-xs font-mono"
-                    />
-                  </div>
-                </Link>
-              </div>
-            </BlurFade>
+        <div className="container relative mx-auto px-4 md:px-8 max-w-7xl overflow-visible">
+          <div className="grid lg:grid-cols-2 gap-12 items-start overflow-visible">
+            <div className="text-left sm:mx-0 lg:mr-auto lg:mt-0">
+              {/* Beta Badge - Original Design */}
+              <BlurFade delay={0.25}>
+                <div className="mb-10">
+                  <Link
+                    to="/roadmap"
+                    className="inline-block"
+                    onClick={() => analytics.trackRoadmapView()}
+                  >
+                    <div className="bg-[rgba(40,40,40,0.9)] border border-white/20 px-3 py-1.5 rounded-full hover:bg-[rgba(40,40,40,1)] transition-colors inline-flex items-center">
+                      <ShinyText
+                        text="Public Beta is out!"
+                        speed={3}
+                        className="text-xs font-mono"
+                      />
+                    </div>
+                  </Link>
+                </div>
+              </BlurFade>
 
-            {/* Main Headline with TextEffect */}
-            <TextEffect
-              preset="fade-in-blur"
-              speedSegment={0.3}
-              as="h1"
-              className="mt-0 max-w-4xl text-balance text-5xl md:text-7xl leading-tight"
-            >
-              The Complete Learning Ecosystem
-            </TextEffect>
+              {/* Main Headline with TextEffect */}
+              <TextEffect
+                preset="fade-in-blur"
+                speedSegment={0.3}
+                as="h1"
+                className="mt-0 max-w-4xl text-balance text-5xl md:text-7xl leading-tight"
+              >
+                The Complete Learning Ecosystem
+              </TextEffect>
 
-            {/* Subheadline with TextEffect */}
-            <TextEffect
-              per="line"
-              preset="fade-in-blur"
-              speedSegment={0.3}
-              delay={0.5}
-              as="p"
-              className="mt-8 max-w-3xl text-balance text-xl md:text-2xl text-muted-foreground leading-relaxed"
-            >
-              Automatically push solutions to GitHub, sync insights to Notion,
-              and create Anki flashcards from your coding mistakes. The complete
-              learning ecosystem.
-            </TextEffect>
+              {/* Subheadline with TextEffect */}
+              <TextEffect
+                per="line"
+                preset="fade-in-blur"
+                speedSegment={0.3}
+                delay={0.5}
+                as="p"
+                className="mt-8 max-w-3xl text-balance text-xl md:text-2xl text-muted-foreground leading-relaxed"
+              >
+                Automatically push solutions to GitHub, sync insights to Notion,
+                and create Anki flashcards from your coding mistakes. The
+                complete learning ecosystem.
+              </TextEffect>
 
-            {/* CTA Buttons */}
-            <AnimatedGroup
-              variants={{
-                container: {
-                  visible: {
-                    transition: {
-                      staggerChildren: 0.05,
-                      delayChildren: 0.75,
+              {/* CTA Buttons */}
+              <AnimatedGroup
+                variants={{
+                  container: {
+                    visible: {
+                      transition: {
+                        staggerChildren: 0.05,
+                        delayChildren: 0.75,
+                      },
                     },
                   },
-                },
-                ...transitionVariants,
-              }}
-              className="mt-12 flex flex-col items-start gap-4 md:flex-row"
-            >
-              <div className="bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5">
+                  ...transitionVariants,
+                }}
+                className="mt-12 flex flex-col items-start gap-4 md:flex-row"
+              >
                 <Button
                   size="lg"
-                  className="rounded-xl px-5 text-base"
+                  className="h-10.5 rounded-xl px-5 text-base bg-black dark:bg-white text-white dark:text-black border border-gray-800 dark:border-gray-200 hover:bg-gray-900 dark:hover:bg-gray-100"
                   onClick={() => {
                     analytics.trackDownloadClick("hero_primary_cta");
                     window.open(
@@ -178,80 +179,98 @@ const Hero: React.FC = () => {
                   <CheckCircleIcon className="w-5 h-5 mr-2" />
                   <span className="text-nowrap">Add to Chrome - Free</span>
                 </Button>
-              </div>
-              <Button
-                size="lg"
-                variant="ghost"
-                className="h-10.5 rounded-xl px-5"
-                onClick={() => {
-                  analytics.trackFeatureClick("follow_development");
-                  window.location.href = "/roadmap";
+                <Button
+                  size="lg"
+                  variant="ghost"
+                  className="h-10.5 rounded-xl px-5"
+                  onClick={() => {
+                    analytics.trackFeatureClick("follow_development");
+                    window.location.href = "/roadmap";
+                  }}
+                >
+                  <RocketLaunchIcon className="w-5 h-5 mr-2" />
+                  <span className="text-nowrap">Follow Development</span>
+                </Button>
+              </AnimatedGroup>
+
+              {/* Trust Indicators */}
+              <AnimatedGroup
+                variants={{
+                  container: {
+                    visible: {
+                      transition: {
+                        staggerChildren: 0.05,
+                        delayChildren: 1,
+                      },
+                    },
+                  },
+                  ...transitionVariants,
                 }}
+                className="mt-14 flex flex-col sm:flex-row items-start gap-8"
               >
-                <RocketLaunchIcon className="w-5 h-5 mr-2" />
-                <span className="text-nowrap">Follow Development</span>
-              </Button>
-            </AnimatedGroup>
+                <div
+                  className="flex items-center gap-2 cursor-pointer hover:text-foreground transition-colors text-sm text-muted-foreground"
+                  onClick={() => setShowRatingSlider(true)}
+                >
+                  {renderStars(currentRating)}
+                  <NumberTicker value={currentRating} decimalPlaces={1} />/ 5
+                  Rating
+                </div>
+              </AnimatedGroup>
 
-            {/* Trust Indicators */}
-            <AnimatedGroup
-              variants={{
-                container: {
-                  visible: {
-                    transition: {
-                      staggerChildren: 0.05,
-                      delayChildren: 1,
+              {/* Key Features Highlight */}
+              <AnimatedGroup
+                variants={{
+                  container: {
+                    visible: {
+                      transition: {
+                        staggerChildren: 0.05,
+                        delayChildren: 1.1,
+                      },
                     },
                   },
-                },
-                ...transitionVariants,
-              }}
-              className="mt-14 flex flex-col sm:flex-row items-start gap-8"
-            >
-              <div
-                className="flex items-center gap-2 cursor-pointer hover:text-foreground transition-colors text-sm text-muted-foreground"
-                onClick={() => setShowRatingSlider(true)}
+                  ...transitionVariants,
+                }}
+                className="flex flex-wrap justify-start gap-4 mt-12"
               >
-                {renderStars(currentRating)}
-                <NumberTicker value={currentRating} decimalPlaces={1} />/ 5
-                Rating
-              </div>
-            </AnimatedGroup>
+                <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
+                  <GitHubIcon className="w-4 h-4 mr-2 text-muted-foreground" />
+                  <span className="text-sm font-medium text-foreground">
+                    Auto GitHub Push
+                  </span>
+                </div>
+                <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
+                  <NotesIcon className="w-4 h-4 mr-2 text-muted-foreground" />
+                  <span className="text-sm font-medium text-foreground">
+                    Notion Integration
+                  </span>
+                </div>
+                <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
+                  <StyleIcon className="w-4 h-4 mr-2 text-muted-foreground" />
+                  <span className="text-sm font-medium text-foreground">
+                    Anki Cards
+                  </span>
+                </div>
+              </AnimatedGroup>
+            </div>
 
-            {/* Key Features Highlight */}
-            <AnimatedGroup
-              variants={{
-                container: {
-                  visible: {
-                    transition: {
-                      staggerChildren: 0.05,
-                      delayChildren: 1.1,
-                    },
-                  },
-                },
-                ...transitionVariants,
-              }}
-              className="flex flex-wrap justify-start gap-4 mt-12"
-            >
-              <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
-                <GitHubIcon className="w-4 h-4 mr-2 text-muted-foreground" />
-                <span className="text-sm font-medium text-foreground">
-                  Auto GitHub Push
-                </span>
+            {/* Graph Image on the right */}
+            <BlurFade delay={0.5} direction="up" duration={1.5} offset={12} blur="12px" className="hidden lg:block relative mt-10">
+              <div className="relative w-full">
+                <img
+                  src={graphImage}
+                  alt="Analytics Graph"
+                  className="w-[200%] max-w-none h-auto rounded-t-3xl grayscale"
+                  style={{
+                    maskImage:
+                      "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
+                    WebkitMaskImage:
+                      "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
+                    filter: "grayscale(100%)",
+                  }}
+                />
               </div>
-              <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
-                <NotesIcon className="w-4 h-4 mr-2 text-muted-foreground" />
-                <span className="text-sm font-medium text-foreground">
-                  Notion Integration
-                </span>
-              </div>
-              <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
-                <StyleIcon className="w-4 h-4 mr-2 text-muted-foreground" />
-                <span className="text-sm font-medium text-foreground">
-                  Anki Cards
-                </span>
-              </div>
-            </AnimatedGroup>
+            </BlurFade>
           </div>
         </div>
 
