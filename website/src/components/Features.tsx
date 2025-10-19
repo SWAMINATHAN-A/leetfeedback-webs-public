@@ -155,10 +155,10 @@ const Features: React.FC = () => {
         <ContainerScroll
           titleComponent={
             <div className="text-center">
-              <h1 className="text-4xl md:text-6xl font-bold text-foreground mb-4">
+              <h1 className="text-5xl md:text-7xl text-foreground mb-4">
                 Transform Your Coding Journey
               </h1>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-xl md:text-2xl text-muted-foreground">
                 Watch how AI turns your practice into progress
               </p>
             </div>
@@ -187,7 +187,7 @@ const Features: React.FC = () => {
             </BlurFade>
             <TextAnimate
               as="h2"
-              className="text-4xl md:text-5xl font-bold text-foreground mb-6"
+              className="text-5xl md:text-7xl text-foreground mb-6"
               animation="blurInUp"
               delay={0.3}
               by="word"
@@ -195,7 +195,7 @@ const Features: React.FC = () => {
               Seamless mobile experience
             </TextAnimate>
             <BlurFade delay={0.5} inView={true}>
-              <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Take your coding practice anywhere with our responsive mobile
                 interface
               </p>
@@ -320,7 +320,7 @@ const Features: React.FC = () => {
           </BlurFade>
           <TextAnimate
             as="h2"
-            className="text-4xl md:text-5xl font-bold text-foreground mb-6"
+            className="text-5xl md:text-7xl text-foreground mb-6"
             animation="blurInUp"
             delay={0.5}
             by="word"
@@ -328,7 +328,7 @@ const Features: React.FC = () => {
             100% Automated, Install and forget.
           </TextAnimate>
           <BlurFade delay={0.75}>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
               Transform your coding practice with powerful integrations and
               AI-driven insights that actually help you improve.
             </p>
@@ -569,7 +569,7 @@ const Features: React.FC = () => {
                   className="font-mono text-xs"
                 />
               </div>
-              <h3 className="text-3xl font-bold mb-6 text-foreground">
+              <h3 className="text-3xl mb-6 text-foreground">
                 Build your coding portfolio automatically
               </h3>
               <p className="text-lg text-muted-foreground mb-8 leading-relaxed">

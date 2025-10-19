@@ -107,7 +107,7 @@ const HowItWorks: React.FC = () => {
           </BlurFade>
           <TextAnimate
             as="h2"
-            className="text-4xl md:text-5xl font-bold text-foreground mb-6"
+            className="text-5xl md:text-7xl text-foreground mb-6"
             animation="blurInUp"
             delay={0.5}
             by="word"
@@ -115,7 +115,7 @@ const HowItWorks: React.FC = () => {
             How Traverse Works
           </TextAnimate>
           <BlurFade delay={0.75}>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
               From installation to building your coding portfolio - everything
               happens automatically in the background.
             </p>
@@ -172,7 +172,7 @@ const HowItWorks: React.FC = () => {
         <div className="text-center mb-8">
           <TextPressure
             text="Why Choose Us"
-            className="text-4xl md:text-5xl font-bold italic"
+            className="text-5xl md:text-7xl italic"
             textColor="hsl(var(--foreground))"
             minFontSize={32}
             width={true}

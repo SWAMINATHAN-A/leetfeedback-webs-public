@@ -150,7 +150,7 @@ const Pricing: React.FC = () => {
           </BlurFade>
           <TextAnimate
             as="h2"
-            className="text-4xl md:text-5xl font-bold text-foreground mb-4"
+            className="text-5xl md:text-7xl text-foreground mb-4"
             animation="blurInUp"
             delay={0.25}
             by="word"
@@ -158,7 +158,7 @@ const Pricing: React.FC = () => {
             Simple Pricing
           </TextAnimate>
           <BlurFade delay={0.5}>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-xl md:text-2xl text-muted-foreground">
               Choose the plan that works for you
             </p>
           </BlurFade>
@@ -264,7 +264,7 @@ const Pricing: React.FC = () => {
         {/* FAQ Section */}
         <div className="bg-zinc-900 border border-gray-800 rounded-3xl p-8 md:p-12 mb-16 max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-white mb-4">
+            <h3 className="text-3xl text-white mb-4">
               Frequently Asked Questions
             </h3>
             <p className="text-gray-300">Everything you need to know</p>
@@ -288,7 +288,7 @@ const Pricing: React.FC = () => {
             </div>
 
             <div className="relative z-10 p-8 sm:p-10">
-              <h3 className="text-2xl sm:text-3xl font-bold mb-3 text-foreground">
+              <h3 className="text-2xl sm:text-3xl mb-3 text-foreground">
                 Join Our Open Source Community
               </h3>
               <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto mb-6">
