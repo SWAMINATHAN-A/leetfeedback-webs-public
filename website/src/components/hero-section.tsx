@@ -1,27 +1,25 @@
 import React from 'react'
-import Link from 'next/link'
 import { ArrowRight, ChevronRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import Image from 'next/image'
 import { TextEffect } from '@/components/ui/text-effect'
 import { AnimatedGroup } from '@/components/ui/animated-group'
-import { HeroHeader } from './header'
+import HeroHeader from './Header'
 
 const transitionVariants = {
     item: {
         hidden: {
             opacity: 0,
-            filter: 'blur(12px)',
-            y: 12,
+            filter: 'blur(10px)',
+            y: 20,
         },
         visible: {
             opacity: 1,
             filter: 'blur(0px)',
             y: 0,
             transition: {
-                type: 'spring',
+                type: 'spring' as const,
                 bounce: 0.3,
-                duration: 1.5,
+                duration: 0.8,
             },
         },
     },
@@ -59,7 +57,7 @@ export default function HeroSection() {
                                         opacity: 1,
                                         y: 0,
                                         transition: {
-                                            type: 'spring',
+                                            type: 'spring' as const,
                                             bounce: 0.3,
                                             duration: 2,
                                         },
@@ -67,7 +65,7 @@ export default function HeroSection() {
                                 },
                             }}
                             className="mask-b-from-35% mask-b-to-90% absolute inset-0 top-56 -z-20 lg:top-32">
-                            <Image
+                            <img
                                 src="https://ik.imagekit.io/lrigu76hy/tailark/night-background.jpg?updatedAt=1745733451120"
                                 alt="background"
                                 className="hidden size-full dark:block"
@@ -84,7 +82,7 @@ export default function HeroSection() {
                         <div className="mx-auto max-w-7xl px-6">
                             <div className="text-center sm:mx-auto lg:mr-auto lg:mt-0">
                                 <AnimatedGroup variants={transitionVariants}>
-                                    <Link
+                                    <a
                                         href="#link"
                                         className="hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950">
                                         <span className="text-foreground text-sm">Introducing Support for AI Models</span>
@@ -100,7 +98,7 @@ export default function HeroSection() {
                                                 </span>
                                             </div>
                                         </div>
-                                    </Link>
+                                    </a>
                                 </AnimatedGroup>
 
                                 <TextEffect
@@ -140,9 +138,9 @@ export default function HeroSection() {
                                             asChild
                                             size="lg"
                                             className="rounded-xl px-5 text-base">
-                                            <Link href="#link">
+                                            <a href="#link">
                                                 <span className="text-nowrap">Start Building</span>
-                                            </Link>
+                                            </a>
                                         </Button>
                                     </div>
                                     <Button
@@ -151,9 +149,9 @@ export default function HeroSection() {
                                         size="lg"
                                         variant="ghost"
                                         className="h-10.5 rounded-xl px-5">
-                                        <Link href="#link">
+                                        <a href="#link">
                                             <span className="text-nowrap">Request a demo</span>
-                                        </Link>
+                                        </a>
                                     </Button>
                                 </AnimatedGroup>
                             </div>
@@ -173,14 +171,14 @@ export default function HeroSection() {
                             }}>
                             <div className="mask-b-from-55% relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20">
                                 <div className="inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1">
-                                    <Image
+                                    <img
                                         className="bg-background aspect-15/8 relative hidden rounded-2xl dark:block"
                                         src="/mail2.png"
                                         alt="app screen"
                                         width="2700"
                                         height="1440"
                                     />
-                                    <Image
+                                    <img
                                         className="z-2 border-border/25 aspect-15/8 relative rounded-2xl border dark:hidden"
                                         src="/mail2-light.png"
                                         alt="app screen"
@@ -195,13 +193,13 @@ export default function HeroSection() {
                 <section className="bg-background pb-16 pt-16 md:pb-32">
                     <div className="group relative m-auto max-w-5xl px-6">
                         <div className="absolute inset-0 z-10 flex scale-95 items-center justify-center opacity-0 duration-500 group-hover:scale-100 group-hover:opacity-100">
-                            <Link
+                            <a
                                 href="/"
                                 className="block text-sm duration-150 hover:opacity-75">
                                 <span> Meet Our Customers</span>
 
                                 <ChevronRight className="ml-1 inline-block size-3" />
-                            </Link>
+                            </a>
                         </div>
                         <div className="group-hover:blur-xs mx-auto mt-12 grid max-w-2xl grid-cols-4 gap-x-12 gap-y-8 transition-all duration-500 group-hover:opacity-50 sm:gap-x-16 sm:gap-y-14">
                             <div className="flex">
