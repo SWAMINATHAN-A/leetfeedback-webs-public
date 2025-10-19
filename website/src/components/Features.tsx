@@ -311,223 +311,191 @@ const Features: React.FC = () => {
           </div>
         </div>
 
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <BlurFade delay={0.25}>
-            <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-3 py-1.5 inline-flex items-center">
-              <ShinyText
-                text="Core Features"
-                speed={3}
-                className="font-mono text-xs"
-              />
-            </div>
-          </BlurFade>
-          <TextAnimate
-            as="h2"
-            className="text-5xl md:text-7xl text-foreground mb-6"
-            animation="blurInUp"
-            delay={0.5}
-            by="word"
-          >
-            100% Automated, Install and forget.
-          </TextAnimate>
-          <BlurFade delay={0.75}>
-            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-              Transform your coding practice with powerful integrations and
-              AI-driven insights that actually help you improve.
-            </p>
-          </BlurFade>
-        </div>
-
-        {/* Primary Features - Highlighted */}
-        <div className="mb-20">
-          {/* Mobile: Compact Lamp Effect */}
-          <div className="md:hidden relative h-32 w-full flex items-center justify-center overflow-hidden mb-4">
-            {/* Compact lamp elements for mobile */}
-            <motion.div
-              initial={{ opacity: 0.5, width: "8rem" }}
-              whileInView={{ opacity: 1, width: "16rem" }}
-              transition={{
-                delay: 0.3,
-                duration: 0.8,
-                ease: "easeInOut",
-              }}
-              style={{
-                backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
-              }}
-              className="absolute inset-auto right-1/2 h-32 overflow-visible w-[16rem] bg-gradient-conic from-[#00E0FE] via-transparent to-transparent text-white [--conic-position:from_70deg_at_center_top]"
+        {/* Primary Features - Bento Grid Style */}
+        <div className="mb-20 mt-20">
+          <div className="text-center mb-12">
+            <BlurFade delay={0.1} inView={true}>
+              <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-3 py-1.5 inline-flex items-center">
+                <ShinyText
+                  text="Core Features"
+                  speed={3}
+                  className="font-mono text-xs"
+                />
+              </div>
+            </BlurFade>
+            <TextAnimate
+              as="h2"
+              className="text-5xl md:text-7xl text-foreground mb-6"
+              animation="blurInUp"
+              delay={0.3}
+              by="word"
             >
-              <div className="absolute w-[100%] left-0 bg-background h-20 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
-              <div className="absolute w-20 h-[100%] left-0 bg-background bottom-0 z-20 [mask-image:linear-gradient(to_right,white,transparent)]" />
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0.5, width: "8rem" }}
-              whileInView={{ opacity: 1, width: "16rem" }}
-              transition={{
-                delay: 0.3,
-                duration: 0.8,
-                ease: "easeInOut",
-              }}
-              style={{
-                backgroundImage: `conic-gradient(var(--conic-position), var(--tw-gradient-stops))`,
-              }}
-              className="absolute inset-auto left-1/2 h-32 w-[16rem] bg-gradient-conic from-transparent via-transparent to-[#00E0FE] text-white [--conic-position:from_290deg_at_center_top]"
-            >
-              <div className="absolute w-20 h-[100%] right-0 bg-background bottom-0 z-20 [mask-image:linear-gradient(to_left,white,transparent)]" />
-              <div className="absolute w-[100%] right-0 bg-background h-20 bottom-0 z-20 [mask-image:linear-gradient(to_top,white,transparent)]" />
-            </motion.div>
-            <div className="absolute top-1/2 h-24 w-full translate-y-6 scale-x-150 bg-background blur-2xl"></div>
-            <div className="absolute inset-auto z-50 h-18 w-[14rem] -translate-y-1/2 rounded-full bg-[#197CDB] opacity-50 blur-3xl"></div>
-            <motion.div
-              initial={{ width: "4rem" }}
-              whileInView={{ width: "8rem" }}
-              transition={{
-                delay: 0.3,
-                duration: 0.8,
-                ease: "easeInOut",
-              }}
-              className="absolute inset-auto z-30 h-18 w-32 -translate-y-[3rem] rounded-full bg-[#1B78D6] blur-2xl"
-            ></motion.div>
-            <motion.div
-              initial={{ width: "8rem" }}
-              whileInView={{ opacity: 1, width: "16rem" }}
-              transition={{
-                delay: 0.3,
-                duration: 0.8,
-                ease: "easeInOut",
-              }}
-              className="absolute inset-auto z-50 h-0.5 w-[16rem] -translate-y-[3.5rem] bg-[#1B78D6]"
-            ></motion.div>
-            <div className="absolute inset-auto z-40 h-22 w-full -translate-y-[6rem] bg-background"></div>
-
-            {/* Text */}
-            <motion.div
-              initial={{ opacity: 0.5, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                delay: 0.3,
-                duration: 0.8,
-                ease: "easeInOut",
-              }}
-              className="absolute z-50 text-center"
-            >
-              <h3 className="text-5xl font-black text-foreground tracking-tight">
-                THE BASICS
-              </h3>
-            </motion.div>
+              Everything you need to excel
+            </TextAnimate>
           </div>
 
-          {/* Desktop: Full Lamp Effect */}
-          <div className="hidden md:block">
-            <LampContainer className="relative flex h-96 flex-col items-center justify-center overflow-hidden bg-background w-full rounded-md z-0 mb-8">
-              <motion.div
-                initial={{ opacity: 0.5, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{
-                  delay: 0.3,
-                  duration: 0.8,
-                  ease: "easeInOut",
-                }}
-                className="absolute z-50 translate-y-0 text-center"
-              >
-                <h3 className="text-7xl md:text-8xl font-black text-foreground tracking-tight">
-                  THE BASICS
-                </h3>
-              </motion.div>
-            </LampContainer>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* GitHub Integration Card */}
-            <div className="bg-gray-800 text-white rounded-3xl h-full p-6 flex flex-col justify-between relative shadow-lg hover:shadow-xl transition-all duration-300">
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <GitHubIcon className="w-8 h-8" />
-                  <Badge className="text-xs bg-gray-700 text-white font-mono">
-                    Core
-                  </Badge>
+          {/* Bento Grid Layout */}
+          <div className="mx-auto max-w-7xl">
+            <div className="grid grid-cols-1 md:grid-cols-2 border">
+              {/* GitHub Integration Card - Large */}
+              <div className="col-span-full md:col-span-1">
+                <div className="p-6 sm:p-12 border-b md:border-b-0 md:border-r">
+                  <span className="text-muted-foreground flex items-center gap-2 text-sm">
+                    <GitHubIcon className="size-4" />
+                    GitHub Integration
+                  </span>
+                  <p className="mt-8 text-2xl font-semibold">
+                    Automatically push your solutions and AI feedback notes to your GitHub repo.
+                  </p>
+                  <ul className="space-y-3 mt-6">
+                    <li className="flex items-start text-sm text-muted-foreground">
+                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span>Auto-commit solutions with AI analysis</span>
+                    </li>
+                    <li className="flex items-start text-sm text-muted-foreground">
+                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span>Track your progress over time</span>
+                    </li>
+                    <li className="flex items-start text-sm text-muted-foreground">
+                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span>Build an impressive portfolio</span>
+                    </li>
+                  </ul>
                 </div>
-                <h3 className="text-xl font-bold mb-3">GitHub Integration</h3>
-                <p className="text-gray-300 mb-4 leading-relaxed">
-                  Automatically push your solutions and AI feedback notes to a
-                  GitHub repo.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-center text-sm text-gray-300">
-                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
-                    Auto-commit solutions and AI analysis
-                  </li>
-                  <li className="flex items-center text-sm text-gray-300">
-                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
-                    Progress tracking
-                  </li>
-                  <li className="flex items-center text-sm text-gray-300">
-                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
-                    Portfolio building
-                  </li>
-                </ul>
+                <div aria-hidden className="relative border-t">
+                  <div className="absolute inset-0 z-10 m-auto size-fit top-8">
+                    <div className="relative flex size-fit w-fit items-center gap-2 border rounded-lg px-3 py-1.5 text-xs font-medium shadow-lg bg-background dark:bg-muted">
+                      <GitHubIcon className="size-4" />
+                      <span>Pushed 247 solutions this month</span>
+                    </div>
+                    <div className="absolute inset-2 -bottom-2 mx-auto border rounded-lg px-3 py-4 text-xs font-medium shadow-md bg-background/80 dark:bg-zinc-900/80"></div>
+                  </div>
+                  <div className="relative overflow-hidden h-64 bg-white dark:bg-zinc-950">
+                    <div className="absolute inset-0 from-transparent to-background via-background/50 to-90% bg-gradient-to-b z-10 pointer-events-none"></div>
+                    {/* GitHub Contribution Heatmap */}
+                    <div className="p-8 pt-16">
+                      <svg
+                        className="w-full h-full"
+                        viewBox="0 0 320 100"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <text x="0" y="18" className="fill-muted-foreground text-[8px]">Mon</text>
+                        <text x="0" y="42" className="fill-muted-foreground text-[8px]">Wed</text>
+                        <text x="0" y="66" className="fill-muted-foreground text-[8px]">Fri</text>
+                        {/* Simplified heatmap grid */}
+                        {Array.from({ length: 21 }).map((_, weekIndex) => (
+                          <g key={weekIndex}>
+                            {Array.from({ length: 7 }).map((_, dayIndex) => {
+                              const opacity = Math.random() > 0.3 ? (0.5 + Math.random() * 0.5) : 0.2;
+                              const isHighActivity = opacity > 0.8;
+                              return (
+                                <rect
+                                  key={dayIndex}
+                                  x={30 + weekIndex * 13}
+                                  y={10 + dayIndex * 12}
+                                  width="10"
+                                  height="10"
+                                  rx="2"
+                                  className={isHighActivity ? "fill-green-600 dark:fill-green-400" : "fill-green-500 dark:fill-green-500"}
+                                  opacity={opacity}
+                                />
+                              );
+                            })}
+                          </g>
+                        ))}
+                      </svg>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            {/* Notion Sync Card */}
-            <div className="bg-blue-600 text-white rounded-3xl h-full p-6 flex flex-col justify-between relative shadow-lg hover:shadow-xl transition-all duration-300">
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <NotesIcon className="w-8 h-8" />
-                  <Badge className="text-xs bg-blue-500 text-white font-mono">
-                    Productivity
-                  </Badge>
+              {/* Notion Sync Card */}
+              <div className="overflow-hidden border-b md:border-b-0 md:border-l bg-zinc-50/50 dark:bg-zinc-900/20 p-6 sm:p-12">
+                <div className="relative z-10">
+                  <span className="text-muted-foreground flex items-center gap-2 text-sm">
+                    <NotesIcon className="size-4" />
+                    Notion Sync
+                  </span>
+                  <p className="my-8 text-2xl font-semibold">
+                    Export insights and tagged mistakes to your Notion workspace.
+                  </p>
                 </div>
-                <h3 className="text-xl font-bold mb-3">Notion Sync</h3>
-                <p className="text-blue-100 mb-4 leading-relaxed">
-                  Export insights and tagged mistakes your Notion workspace.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-center text-sm text-blue-100">
-                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
-                    Structured notes
-                  </li>
-                  <li className="flex items-center text-sm text-blue-100">
-                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
-                    Mistake tags
-                  </li>
-                  <li className="flex items-center text-sm text-blue-100">
-                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
-                    Team collaboration
-                  </li>
-                </ul>
+                <div aria-hidden className="flex flex-col gap-6 mt-8">
+                  <div>
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="flex size-6 rounded-full border items-center justify-center bg-background">
+                        <NotesIcon className="size-3" />
+                      </span>
+                      <span className="text-muted-foreground text-xs">Synced today</span>
+                    </div>
+                    <div className="w-4/5 border rounded-lg p-4 text-sm bg-background shadow-sm">
+                      <div className="font-medium mb-2">Two Sum - Mistake Analysis</div>
+                      <div className="text-xs text-muted-foreground">Edge cases not covered • Hash table optimization</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div className="ml-auto w-4/5 bg-blue-600 rounded-lg p-4 text-sm text-white mb-2 shadow-sm">
+                      <div className="font-medium mb-1">Successfully synced</div>
+                      <div className="text-xs opacity-90">3 new entries added to database</div>
+                    </div>
+                    <span className="text-muted-foreground block text-right text-xs">Just now</span>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            {/* Anki Cards Generation Card */}
-            <div className="bg-emerald-600 text-white rounded-3xl h-full p-6 flex flex-col justify-between relative shadow-lg hover:shadow-xl transition-all duration-300">
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <StyleIcon className="w-8 h-8" />
-                  <Badge className="text-xs bg-emerald-500 text-white font-mono">
-                    Revision
-                  </Badge>
+              {/* Stats Card - Full Width */}
+              <div className="col-span-full border-b p-12 bg-gradient-to-br from-background via-primary/5 to-background">
+                <div className="text-center">
+                  <div className="text-5xl md:text-7xl font-bold mb-4">
+                    <NumberTicker value={23} className="text-foreground" />
+                    <span className="text-primary">+</span>
+                  </div>
+                  <p className="text-xl text-muted-foreground">Happy users</p>
                 </div>
-                <h3 className="text-xl font-bold mb-3">
-                  Anki Cards Generation
-                </h3>
-                <p className="text-emerald-100 mb-4 leading-relaxed">
-                  Generate Anki cards from your mistakes, Tagged by mistake type
-                  and questions.
-                </p>
-                <ul className="space-y-2">
-                  <li className="flex items-center text-sm text-emerald-100">
-                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
-                    Auto-generated cards
-                  </li>
-                  <li className="flex items-center text-sm text-emerald-100">
-                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
-                    Spaced repetition
-                  </li>
-                  <li className="flex items-center text-sm text-emerald-100">
-                    <TrendingUpIcon className="w-4 h-4 mr-2 text-green-400 flex-shrink-0" />
-                    Memory retention
-                  </li>
-                </ul>
+              </div>
+
+              {/* Anki Cards Generation Card - Full Width with Chart */}
+              <div className="relative col-span-full">
+                <div className="absolute z-10 max-w-2xl px-6 pr-12 pt-6 md:px-12 md:pt-12">
+                  <span className="text-muted-foreground flex items-center gap-2 text-sm">
+                    <StyleIcon className="size-4" />
+                    Anki Cards Generation
+                  </span>
+                  <p className="my-8 text-2xl font-semibold">
+                    Generate Anki cards from your mistakes, tagged by mistake type.{" "}
+                    <span className="text-muted-foreground">Spaced repetition for better memory retention.</span>
+                  </p>
+                  <ul className="space-y-3">
+                    <li className="flex items-start text-sm text-muted-foreground">
+                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span>Auto-generated flashcards</span>
+                    </li>
+                    <li className="flex items-start text-sm text-muted-foreground">
+                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span>Organized by mistake categories</span>
+                    </li>
+                    <li className="flex items-start text-sm text-muted-foreground">
+                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span>Track learning progress</span>
+                    </li>
+                  </ul>
+                </div>
+                {/* Visual representation of cards */}
+                <div className="relative h-96 overflow-hidden bg-gradient-to-br from-emerald-50/50 to-background dark:from-emerald-950/20 dark:to-background">
+                  <div className="absolute inset-0 flex items-center justify-end pr-6 md:pr-12 pb-12">
+                    <div className="relative w-56 sm:w-64">
+                      {/* Stacked cards effect */}
+                      <div className="absolute right-0 top-0 w-full h-36 sm:h-40 bg-background dark:bg-zinc-900 border rounded-xl shadow-lg transform rotate-6 opacity-30"></div>
+                      <div className="absolute right-0 top-0 w-full h-36 sm:h-40 bg-background dark:bg-zinc-900 border rounded-xl shadow-lg transform rotate-3 opacity-50"></div>
+                      <div className="relative w-full h-36 sm:h-40 bg-background dark:bg-zinc-900 border rounded-xl shadow-2xl p-4 sm:p-6 overflow-hidden">
+                        <div className="text-[10px] sm:text-xs text-muted-foreground mb-1 sm:mb-2">Array • Two Pointer</div>
+                        <div className="text-sm sm:text-lg font-semibold mb-2 sm:mb-3 line-clamp-2">Container With Most Water</div>
+                        <div className="text-xs sm:text-sm text-muted-foreground line-clamp-2">Start from both ends, move pointer with smaller height</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
