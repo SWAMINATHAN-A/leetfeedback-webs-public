@@ -1068,31 +1068,31 @@ const Features: React.FC = () => {
         </div>
 
         {/* Feature Highlight Section - GitHub Integration Focus */}
-        <div className="bg-muted/20 border border-border rounded-3xl p-8 md:p-12">
+        <div className="bg-zinc-900 dark:bg-zinc-900 border border-zinc-800 dark:border-zinc-800 rounded-3xl p-8 md:p-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-3 py-1.5 inline-flex items-center">
+              <div className="mb-4 bg-zinc-800 border border-zinc-700 rounded-full px-3 py-1.5 inline-flex items-center">
                 <ShinyText
                   text="GitHub Integration"
                   speed={3}
-                  className="font-mono text-xs"
+                  className="font-mono text-xs text-white"
                 />
               </div>
-              <h3 className="text-3xl mb-6 text-foreground">
+              <h3 className="text-3xl mb-6 text-white">
                 Build your coding portfolio automatically
               </h3>
-              <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+              <p className="text-lg text-zinc-300 mb-8 leading-relaxed">
                 Every solution you complete gets automatically committed to your
                 GitHub with AI-generated feedback notes, creating a kind of{" "}
-                <span className="text-red-400 text-bold">coding journal</span>{" "}
+                <span className="text-red-400 font-bold">coding journal</span>{" "}
                 that showcases your growth to employers.
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-foreground mb-2 font-mono">
+                  <div className="text-3xl font-bold text-white mb-2 font-mono">
                     500+
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-sm text-zinc-400">
                     Auto-commits per month
                   </div>
                 </div>
@@ -1100,19 +1100,19 @@ const Features: React.FC = () => {
                   <div className="text-3xl font-bold text-green-400 mb-2 font-mono">
                     100%
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-sm text-zinc-400">
                     Developers Find themselves more productive
                   </div>
                 </div>
               </div>
             </div>
             <div className="relative">
-              <div className="bg-background/50 border border-border rounded-3xl shadow-xl p-6 font-mono text-sm">
-                <div className="flex items-center justify-between mb-4 text-muted-foreground">
+              <div className="bg-zinc-800 border border-zinc-700 rounded-3xl shadow-xl p-6 font-mono text-sm">
+                <div className="flex items-center justify-between mb-4 text-zinc-400">
                   <span className="font-mono">📁 my-dsa-journey</span>
-                  <GitHubIcon className="w-5 h-5" />
+                  <GitHubIcon className="w-5 h-5 text-white" />
                 </div>
-                <div className="space-y-2 text-muted-foreground">
+                <div className="space-y-2 text-zinc-400">
                   <div className="flex items-center">
                     <span className="text-green-400 mr-2">+</span>
                     <span>solutions/two-sum.py</span>
@@ -1121,18 +1121,18 @@ const Features: React.FC = () => {
                     <span className="text-green-400 mr-2">+</span>
                     <span>feedback/two-sum-analysis.md</span>
                   </div>
-                  <div className="mt-4 p-3 bg-muted/20 rounded border-l-4 border-blue-400">
+                  <div className="mt-4 p-3 bg-zinc-900/50 rounded border-l-4 border-blue-400">
                     <div className="text-blue-400 text-xs mb-1 font-mono">
                       AI Feedback:
                     </div>
-                    <div className="text-foreground text-xs">
+                    <div className="text-zinc-200 text-xs">
                       "Your solution works but some edge cases are not
                       covered..."
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-green-300 rounded-full flex items-center justify-center text-background text-sm font-bold animate-pulse">
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-green-400 rounded-full flex items-center justify-center text-zinc-900 text-sm font-bold animate-pulse">
                 ✓
               </div>
             </div>

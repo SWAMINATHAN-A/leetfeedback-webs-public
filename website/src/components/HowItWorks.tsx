@@ -181,101 +181,101 @@ const HowItWorks: React.FC = () => {
             flex={false}
           />
         </div>
-        <div className="bg-card/20 border border-border rounded-3xl shadow-xl overflow-hidden">
+        <div className="bg-zinc-900 dark:bg-zinc-900 border border-zinc-800 dark:border-zinc-800 rounded-3xl shadow-xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Left Side - Integration Visual */}
-            <div className="bg-muted/10 flex items-center justify-center min-h-[400px] border-r border-border overflow-hidden">
+            <div className="bg-zinc-950 dark:bg-zinc-950 flex items-center justify-center min-h-[400px] border-r border-zinc-800 dark:border-zinc-800 overflow-hidden">
               <GlowingStarsBackgroundCard className="w-full h-full max-w-none max-h-none rounded-none border-0 m-0 p-8">
                 <div className="text-center space-y-6">
-                  <GlowingStarsTitle className="text-gray-900 dark:text-white">
+                  <GlowingStarsTitle className="text-white dark:text-white">
                     All Your Tools Connected
                   </GlowingStarsTitle>
 
                   {/* Platform Icons Grid */}
                   <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={leetcodeIcon}
                         alt="LeetCode"
-                        className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200"
+                        className="w-8 h-8 invert brightness-0 contrast-200"
                       />
-                      <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
                         LeetCode
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={geeksforgeeksIcon}
                         alt="GeeksforGeeks"
-                        className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200"
+                        className="w-8 h-8 invert brightness-0 contrast-200"
                       />
-                      <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
                         GeeksforGeeks
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={hackerrankIcon}
                         alt="HackerRank"
-                        className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200"
+                        className="w-8 h-8 invert brightness-0 contrast-200"
                       />
-                      <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
                         HackerRank
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={codechefIcon}
                         alt="CodeChef"
-                        className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200"
+                        className="w-8 h-8 invert brightness-0 contrast-200"
                       />
-                      <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
                         CodeChef
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={tufIcon}
                         alt="TakeUforward"
-                        className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200"
+                        className="w-8 h-8 invert brightness-0 contrast-200"
                       />
-                      <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
                         TakeUforward
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={notionIcon}
                         alt="Notion"
-                        className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200"
+                        className="w-8 h-8 invert brightness-0 contrast-200"
                       />
-                      <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
                         Notion
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={ankiIcon}
                         alt="Anki"
-                        className="w-8 h-8 dark:invert dark:brightness-0 dark:contrast-200"
+                        className="w-8 h-8 invert brightness-0 contrast-200"
                       />
-                      <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
                         Anki
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-white/10 dark:bg-black/20 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
                       <img
                         src={geminiIcon}
                         alt="Gemini AI"
                         className="w-8 h-8"
                       />
-                      <span className="text-xs text-gray-600 dark:text-gray-400 font-medium">
+                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
                         Gemini AI
                       </span>
                     </div>
                   </div>
 
-                  <GlowingStarsDescription className="max-w-none text-gray-700 dark:text-gray-300">
+                  <GlowingStarsDescription className="max-w-none text-zinc-300 dark:text-zinc-300">
                     We seamlessly integrate with all major coding platforms,
                     study tools, and AI assistants to create the best unified
                     learning ecosystem.
@@ -283,8 +283,8 @@ const HowItWorks: React.FC = () => {
 
                   <div className="flex items-center justify-center space-x-6 pt-2">
                     <div className="flex items-center space-x-2">
-                      <div className="w-3 h-3 bg-green-300 rounded-full"></div>
-                      <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">
+                      <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+                      <span className="text-sm text-zinc-300 dark:text-zinc-300 font-medium">
                         8 Platforms
                       </span>
                     </div>
