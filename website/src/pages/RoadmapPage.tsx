@@ -47,7 +47,7 @@ interface RoadmapPhase {
 
 const RoadmapPage: React.FC = () => {
   const heroRef = useRef<HTMLElement>(null);
-  
+
   // Hero scroll tracking
   const { scrollYProgress: heroScrollProgress } = useScroll({
     target: heroRef,
@@ -59,14 +59,19 @@ const RoadmapPage: React.FC = () => {
 
   // Animation values for the hero SVG
   const svgScale = useTransform(heroScrollProgress, [0, 0.5], [1, 1.1]);
-  const svgOpacity = useTransform(heroScrollProgress, [0, 0.3, 0.5], [1, 0.9, 0.7]);
+  const svgOpacity = useTransform(
+    heroScrollProgress,
+    [0, 0.3, 0.5],
+    [1, 0.9, 0.7]
+  );
   const svgY = useTransform(heroScrollProgress, [0, 0.5], [0, -30]);
 
   const roadmapPhases: RoadmapPhase[] = [
     {
       id: 1,
       title: "Foundation & Core Features",
-      description: "We built the essential groundwork with seamless integrations for LeetCode and GeeksforGeeks, creating an intuitive extension popup interface. The foundation includes robust user authentication, automatic GitHub repository creation, and intelligent solution auto-commit functionality that tracks your problem-solving journey from the very first line of code.",
+      description:
+        "We built the essential groundwork with seamless integrations for LeetCode and GeeksforGeeks, creating an intuitive extension popup interface. The foundation includes robust user authentication, automatic GitHub repository creation, and intelligent solution auto-commit functionality that tracks your problem-solving journey from the very first line of code.",
       completed: true,
       phase: "Phase 1",
       timeline: "2025 Q1-Q2",
@@ -84,7 +89,8 @@ const RoadmapPage: React.FC = () => {
     {
       id: 2,
       title: "AI Intelligence & Productivity Tools",
-      description: "Leveraging cutting-edge AI technology, we introduced intelligent mistake pattern recognition that learns from your coding patterns. This phase brought automated GitHub analysis reports, smart insights generation, and seamless Notion workspace integration. Enhanced with ANKI flashcard generation and a sophisticated revision scheduling system to optimize your learning workflow.",
+      description:
+        "Leveraging cutting-edge AI technology, we introduced intelligent mistake pattern recognition that learns from your coding patterns. This phase brought automated GitHub analysis reports, smart insights generation, and seamless Notion workspace integration. Enhanced with ANKI flashcard generation and a sophisticated revision scheduling system to optimize your learning workflow.",
       completed: true,
       phase: "Phase 2",
       timeline: "2025 Q2-Q3",
@@ -102,7 +108,8 @@ const RoadmapPage: React.FC = () => {
     {
       id: 3,
       title: "Analytics & Visualization",
-      description: "Transform your coding data into actionable insights with our comprehensive analytics dashboard. Featuring advanced performance metrics visualization, progress comparison tools, and custom reporting features. Track your time investment, analyze difficulty progression, and gain deep insights into your learning patterns to accelerate your growth.",
+      description:
+        "Transform your coding data into actionable insights with our comprehensive analytics dashboard. Featuring advanced performance metrics visualization, progress comparison tools, and custom reporting features. Track your time investment, analyze difficulty progression, and gain deep insights into your learning patterns to accelerate your growth.",
       completed: false,
       phase: "Phase 3",
       timeline: "2025 Q3-Q4",
@@ -119,7 +126,8 @@ const RoadmapPage: React.FC = () => {
     {
       id: 4,
       title: "Platform Expansion & Advanced Features",
-      description: "Expanding our reach across the coding practice ecosystem with support for TUF+, CodeChef, HackerRank, and Codeforces. This phase introduces a powerful mobile companion app for learning on-the-go, team collaboration features for group practice, an engaging achievement system with gamification elements, and enterprise-grade admin controls for organizations.",
+      description:
+        "Expanding our reach across the coding practice ecosystem with support for TUF+, CodeChef, HackerRank, and Codeforces. This phase introduces a powerful mobile companion app for learning on-the-go, team collaboration features for group practice, an engaging achievement system with gamification elements, and enterprise-grade admin controls for organizations.",
       completed: false,
       phase: "Phase 4",
       timeline: "2026 Q1+",
@@ -163,15 +171,17 @@ const RoadmapPage: React.FC = () => {
       content: (
         <div className="space-y-8">
           {/* Phase Card - Text and Description Focused */}
-          <Card className={`overflow-hidden rounded-3xl transition-all duration-300 backdrop-blur-xl ${
-            phase.id === 1
-              ? "bg-gradient-to-br from-rose-200/10 via-background/95 to-background/95 border-rose-300/30"
-              : phase.id === 2
-              ? "bg-gradient-to-br from-blue-200/10 via-background/95 to-background/95 border-blue-300/30"
-              : phase.completed
-              ? "bg-gradient-to-br from-background/95 via-background/95 to-background/95 border-border/30 opacity-90"
-              : "bg-gradient-to-br from-primary/5 via-background/95 to-background/95 border-border/30"
-          }`}>
+          <Card
+            className={`overflow-hidden rounded-3xl transition-all duration-300 backdrop-blur-xl ${
+              phase.id === 1
+                ? "bg-gradient-to-br from-rose-200/10 via-background/95 to-background/95 border-rose-300/30"
+                : phase.id === 2
+                ? "bg-gradient-to-br from-blue-200/10 via-background/95 to-background/95 border-blue-300/30"
+                : phase.completed
+                ? "bg-gradient-to-br from-background/95 via-background/95 to-background/95 border-border/30 opacity-90"
+                : "bg-gradient-to-br from-primary/5 via-background/95 to-background/95 border-border/30"
+            }`}
+          >
             <CardContent className="p-8">
               {/* Header with Icon and Status */}
               <div className="flex items-start justify-between mb-6">
@@ -189,19 +199,21 @@ const RoadmapPage: React.FC = () => {
                         : "bg-gradient-to-br from-primary/80 to-primary"
                     }`}
                   >
-                    <phase.icon className={`w-7 h-7 ${
-                      phase.id === 1
-                        ? "text-rose-500 dark:text-rose-400"
-                        : phase.id === 2
-                        ? "text-blue-500 dark:text-blue-400"
-                        : phase.id === 3
-                        ? "text-purple-500 dark:text-purple-400"
-                        : phase.id === 4
-                        ? "text-pink-500 dark:text-pink-400"
-                        : "text-white"
-                    }`} />
+                    <phase.icon
+                      className={`w-7 h-7 ${
+                        phase.id === 1
+                          ? "text-rose-500 dark:text-rose-400"
+                          : phase.id === 2
+                          ? "text-blue-500 dark:text-blue-400"
+                          : phase.id === 3
+                          ? "text-purple-500 dark:text-purple-400"
+                          : phase.id === 4
+                          ? "text-pink-500 dark:text-pink-400"
+                          : "text-white"
+                      }`}
+                    />
                   </div>
-                  
+
                   <div className="flex-1">
                     <h3 className="text-2xl font-semibold text-foreground mb-2">
                       {phase.title}
@@ -214,23 +226,29 @@ const RoadmapPage: React.FC = () => {
 
                 {phase.milestone && (
                   <div className="px-4 py-2 rounded-full bg-background/50 backdrop-blur-sm border border-border/50">
-                    <ShinyText text={phase.milestone} speed={3} className="text-sm font-normal" />
+                    <ShinyText
+                      text={phase.milestone}
+                      speed={3}
+                      className="text-sm font-normal"
+                    />
                   </div>
                 )}
               </div>
 
               {/* Features as flowing text description */}
-              <div className={`p-6 rounded-2xl mb-6 ${
-                phase.id === 1
-                  ? "bg-rose-200/10 border border-rose-300/30"
-                  : phase.id === 2
-                  ? "bg-blue-200/10 border border-blue-300/30"
-                  : phase.id === 3
-                  ? "bg-purple-200/10 border border-purple-300/30"
-                  : phase.id === 4
-                  ? "bg-pink-200/10 border border-pink-300/30"
-                  : "bg-muted/20 border border-border/30"
-              }`}>
+              <div
+                className={`p-6 rounded-2xl mb-6 ${
+                  phase.id === 1
+                    ? "bg-rose-200/10 border border-rose-300/30"
+                    : phase.id === 2
+                    ? "bg-blue-200/10 border border-blue-300/30"
+                    : phase.id === 3
+                    ? "bg-purple-200/10 border border-purple-300/30"
+                    : phase.id === 4
+                    ? "bg-pink-200/10 border border-pink-300/30"
+                    : "bg-muted/20 border border-border/30"
+                }`}
+              >
                 <p className="text-sm text-foreground leading-relaxed font-light">
                   {phase.features.join(" • ")}
                 </p>
@@ -238,32 +256,38 @@ const RoadmapPage: React.FC = () => {
 
               {/* Status Footer */}
               <div className="flex items-center justify-between">
-                <div className={`flex items-center gap-2 px-4 py-2 rounded-full ${
-                  phase.id === 1
-                    ? "bg-rose-200/20 border border-rose-300/30"
-                    : phase.id === 2
-                    ? "bg-blue-200/20 border border-blue-300/30"
-                    : "bg-muted/30 border border-border/30"
-                }`}>
+                <div
+                  className={`flex items-center gap-2 px-4 py-2 rounded-full ${
+                    phase.id === 1
+                      ? "bg-rose-200/20 border border-rose-300/30"
+                      : phase.id === 2
+                      ? "bg-blue-200/20 border border-blue-300/30"
+                      : "bg-muted/30 border border-border/30"
+                  }`}
+                >
                   {phase.completed ? (
                     <>
-                      <CheckCircleIcon className={`w-4 h-4 ${
-                        phase.id === 1
-                          ? "text-rose-600 dark:text-rose-400"
-                          : phase.id === 2
-                          ? "text-blue-600 dark:text-blue-400"
-                          : "text-muted-foreground"
-                      }`} />
-                      <div className={`${
-                        phase.id === 1
-                          ? "text-rose-700 dark:text-rose-300"
-                          : phase.id === 2
-                          ? "text-blue-700 dark:text-blue-300"
-                          : "text-muted-foreground"
-                      }`}>
-                        <ShinyText 
-                          text="Completed" 
-                          speed={3} 
+                      <CheckCircleIcon
+                        className={`w-4 h-4 ${
+                          phase.id === 1
+                            ? "text-rose-600 dark:text-rose-400"
+                            : phase.id === 2
+                            ? "text-blue-600 dark:text-blue-400"
+                            : "text-muted-foreground"
+                        }`}
+                      />
+                      <div
+                        className={`${
+                          phase.id === 1
+                            ? "text-rose-700 dark:text-rose-300"
+                            : phase.id === 2
+                            ? "text-blue-700 dark:text-blue-300"
+                            : "text-muted-foreground"
+                        }`}
+                      >
+                        <ShinyText
+                          text="Completed"
+                          speed={3}
                           className="text-sm font-normal"
                         />
                       </div>
@@ -277,7 +301,7 @@ const RoadmapPage: React.FC = () => {
                     </>
                   )}
                 </div>
-                
+
                 <span className="text-sm font-mono text-muted-foreground">
                   {phase.timeline}
                 </span>
@@ -418,7 +442,7 @@ const RoadmapPage: React.FC = () => {
                   blur="12px"
                   className="hidden lg:block relative mt-10"
                 >
-                  <motion.div 
+                  <motion.div
                     className="relative w-full overflow-visible max-h-96"
                     style={{
                       scale: svgScale,
@@ -454,10 +478,10 @@ const RoadmapPage: React.FC = () => {
           {/* Background Blur Effect - More Visible */}
           <div className="absolute inset-0 bg-muted/30 backdrop-blur-2xl" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/40" />
-          
+
           {/* Animated SVG Path Overlay */}
           <RoadmapPath scrollYProgress={scrollYProgress} />
-          
+
           <div className="container relative z-10 mx-auto px-4 md:px-8">
             {/* Timeline Component */}
             <BlurFade delay={1}>
@@ -531,11 +555,7 @@ const RoadmapPage: React.FC = () => {
 };
 
 // Animated SVG Path Component
-const RoadmapPath = ({
-  scrollYProgress,
-}: {
-  scrollYProgress: any;
-}) => {
+const RoadmapPath = ({ scrollYProgress }: { scrollYProgress: any }) => {
   const pathLength = useTransform(scrollYProgress, [0.2, 0.8], [0, 1]);
 
   return (
