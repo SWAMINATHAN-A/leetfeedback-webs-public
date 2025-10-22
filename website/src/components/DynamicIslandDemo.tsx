@@ -30,20 +30,27 @@ const DynamicIslandContent = ({ onComplete }: DynamicIslandDemoProps) => {
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
     if (consent === "accepted") {
       setHasConsent(true);
-      // Skip directly to completion if already accepted
+      // Show loading animation for 700ms, then complete
       setTimeout(() => {
         setSize("empty");
         setTimeout(onComplete, 400);
-      }, 100);
+      }, 700);
     }
   }, [onComplete, setSize]);
 
-  // Schedule animations: default -> large (loading) -> medium (cookie consent)
-  useScheduledAnimations([
-    { size: "default", delay: 0 },
-    { size: "large", delay: 100 },
-    { size: "medium", delay: 1200 },
-  ]);
+  // Schedule animations based on consent status
+  useScheduledAnimations(
+    hasConsent
+      ? [
+          { size: "default", delay: 0 },
+          { size: "large", delay: 100 }, // Show loading for 700ms total
+        ]
+      : [
+          { size: "default", delay: 0 },
+          { size: "large", delay: 100 },
+          { size: "medium", delay: 1200 },
+        ]
+  );
 
   const handleAccept = () => {
     localStorage.setItem(COOKIE_CONSENT_KEY, "accepted");
@@ -85,16 +92,16 @@ const DynamicIslandContent = ({ onComplete }: DynamicIslandDemoProps) => {
   const renderCookieConsentState = () => (
     <DynamicContainer className="flex flex-col justify-between px-3 pt-4 text-left text-white h-full">
       <div className="flex items-center gap-2 pl-2 mb-2">
-        <BlurFade delay={0.1} inView>
+        <BlurFade delay={0.1}>
           <Cookie className="h-7 w-7 text-white" />
         </BlurFade>
-        <BlurFade delay={0.15} inView>
+        <BlurFade delay={0.15}>
           <DynamicTitle className="text-2xl font-black tracking-tighter">
             Cookie Consent
           </DynamicTitle>
         </BlurFade>
       </div>
-      <BlurFade delay={0.2} inView>
+      <BlurFade delay={0.2}>
         <DynamicDescription className="leading-6 text-neutral-300 pl-2 text-base mb-3">
           We use cookies to enhance your experience. View our{" "}
           <a href="/cookies" className="text-[#fcba70] hover:underline">
@@ -105,7 +112,7 @@ const DynamicIslandContent = ({ onComplete }: DynamicIslandDemoProps) => {
       </BlurFade>
 
       <div className="flex flex-row gap-2 mb-2 px-2">
-        <BlurFade delay={0.25} inView className="flex-1">
+        <BlurFade delay={0.25} className="flex-1">
           <Button
             onClick={handleAccept}
             className="w-full bg-[#fcba70]/80 hover:bg-[#fcba70]/80 text-white font-semibold rounded-3xl"
@@ -113,7 +120,7 @@ const DynamicIslandContent = ({ onComplete }: DynamicIslandDemoProps) => {
             Accept
           </Button>
         </BlurFade>
-        <BlurFade delay={0.3} inView className="flex-1">
+        <BlurFade delay={0.3} className="flex-1">
           <Button
             onClick={handleDecline}
             variant="outline"

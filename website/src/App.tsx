@@ -27,6 +27,7 @@ import { MobileScrollNav } from "./components/MobileScrollNav";
 import { BackgroundRippleEffect } from "./components/ui/background-ripple-effect";
 import { DockDemo } from "./components/DockDemo";
 import { DynamicIslandDemo } from "./components/DynamicIslandDemo";
+import { SignInDynamicIsland } from "./components/SignInDynamicIsland";
 import { NavigationIsland } from "./components/NavigationIsland";
 import { ThemeSwitchIsland } from "./components/ThemeSwitchIsland";
 import { motion, AnimatePresence } from "motion/react";
@@ -38,9 +39,10 @@ const COOKIE_CONSENT_KEY = "leetfeedback_cookie_consent";
 function AppContent() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isNavigating, navigationTarget, completeNavigation } =
+  const { isNavigating, navigationTarget, completeNavigation, isSignInIslandOpen, closeSignInIsland } =
     useNavigation();
-  const { isThemeSwitching, completeThemeSwitch, isDark, targetTheme } = useTheme();
+  const { isThemeSwitching, completeThemeSwitch, isDark, targetTheme } =
+    useTheme();
 
   const isHomePage = location.pathname === "/";
   const isStatsPage = location.pathname === "/profile/stats";
@@ -52,23 +54,38 @@ function AppContent() {
 
   const [showDynamicIsland, setShowDynamicIsland] = useState(false);
   const [showDock, setShowDock] = useState(false);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  // Check if we should show the dynamic island on mount
+  // Show loading animation on initial load, then show appropriate UI
   useEffect(() => {
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
     const shouldShowPages =
       isHomePage || isStatsPage || isRoadmapPage || isPolicyPage;
 
-    if (!consent && shouldShowPages) {
-      // No consent stored, show dynamic island
+    if (shouldShowPages && isInitialLoad) {
+      // Always show loading animation on first load
       setShowDynamicIsland(true);
       setShowDock(false);
-    } else if (shouldShowPages) {
-      // Already has consent, show dock directly
-      setShowDynamicIsland(false);
-      setShowDock(true);
+
+      // After 0.7 seconds, check what to show next
+      const timer = setTimeout(() => {
+        setIsInitialLoad(false);
+
+        if (!consent) {
+          // No consent, keep showing dynamic island for cookie prompt
+          // Island will handle its own completion
+        } else {
+          // Has consent, transition to dock
+          setShowDynamicIsland(false);
+          setTimeout(() => {
+            setShowDock(true);
+          }, 300);
+        }
+      }, 800);
+
+      return () => clearTimeout(timer);
     }
-  }, [isHomePage, isStatsPage, isRoadmapPage, isPolicyPage]);
+  }, [isHomePage, isStatsPage, isRoadmapPage, isPolicyPage, isInitialLoad]);
 
   const handleDynamicIslandComplete = () => {
     setShowDynamicIsland(false);
@@ -76,6 +93,10 @@ function AppContent() {
     setTimeout(() => {
       setShowDock(true);
     }, 300);
+  };
+
+  const handleSignInComplete = () => {
+    closeSignInIsland();
   };
 
   const handleNavigationComplete = () => {
@@ -168,9 +189,25 @@ function AppContent() {
           )}
       </AnimatePresence>
 
+      {/* Sign In Dynamic Island */}
+      <AnimatePresence>
+        {isSignInIslandOpen && !isNavigating && !isThemeSwitching && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="fixed bottom-8 left-0 right-0 z-50 flex justify-center"
+          >
+            <SignInDynamicIsland onComplete={handleSignInComplete} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Dock - shows after dynamic island completes */}
       {!isNavigating &&
         !isThemeSwitching &&
+        !isSignInIslandOpen &&
         showDock &&
         (isHomePage || isStatsPage || isRoadmapPage || isPolicyPage) && (
           <DockDemo />

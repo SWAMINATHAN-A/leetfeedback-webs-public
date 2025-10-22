@@ -16,18 +16,18 @@ import { Badge } from "./badge";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import PlatformIcon from "../PlatformIcon";
 import { useAuth } from "../../contexts/AuthContext";
-import SignInModal from "./SignInModal";
+import { useNavigation } from "../../contexts/NavigationContext";
 import SimpleUserMenu from "./SimpleUserMenu";
 import LogoNoBackground from "@/assets/icons/LogoNoBackground.svg";
 
 export function ResizableNavbarDemo() {
   const navItems = [];
   const { isAuthenticated, isLoading } = useAuth();
+  const { isSignInIslandOpen, openSignInIsland } = useNavigation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
 
   const handleSignInClick = () => {
-    setIsSignInModalOpen(true);
+    openSignInIsland();
   };
 
   return (
@@ -198,12 +198,6 @@ export function ResizableNavbarDemo() {
           </MobileNavExpandableContent>
         </MobileNav>
       </Navbar>
-
-      {/* Sign In Modal */}
-      <SignInModal
-        isOpen={isSignInModalOpen}
-        onClose={() => setIsSignInModalOpen(false)}
-      />
     </div>
   );
 }

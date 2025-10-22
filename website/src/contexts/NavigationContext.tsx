@@ -5,6 +5,9 @@ interface NavigationContextType {
   navigationTarget: string | null;
   startNavigation: (target: string) => void;
   completeNavigation: () => void;
+  isSignInIslandOpen: boolean;
+  openSignInIsland: () => void;
+  closeSignInIsland: () => void;
 }
 
 const NavigationContext = createContext<NavigationContextType | undefined>(
@@ -14,6 +17,7 @@ const NavigationContext = createContext<NavigationContextType | undefined>(
 export const NavigationProvider = ({ children }: { children: ReactNode }) => {
   const [isNavigating, setIsNavigating] = useState(false);
   const [navigationTarget, setNavigationTarget] = useState<string | null>(null);
+  const [isSignInIslandOpen, setIsSignInIslandOpen] = useState(false);
 
   const startNavigation = (target: string) => {
     setIsNavigating(true);
@@ -25,6 +29,14 @@ export const NavigationProvider = ({ children }: { children: ReactNode }) => {
     setNavigationTarget(null);
   };
 
+  const openSignInIsland = () => {
+    setIsSignInIslandOpen(true);
+  };
+
+  const closeSignInIsland = () => {
+    setIsSignInIslandOpen(false);
+  };
+
   return (
     <NavigationContext.Provider
       value={{
@@ -32,6 +44,9 @@ export const NavigationProvider = ({ children }: { children: ReactNode }) => {
         navigationTarget,
         startNavigation,
         completeNavigation,
+        isSignInIslandOpen,
+        openSignInIsland,
+        closeSignInIsland,
       }}
     >
       {children}
