@@ -39,8 +39,13 @@ const COOKIE_CONSENT_KEY = "leetfeedback_cookie_consent";
 function AppContent() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { isNavigating, navigationTarget, completeNavigation, isSignInIslandOpen, closeSignInIsland } =
-    useNavigation();
+  const {
+    isNavigating,
+    navigationTarget,
+    completeNavigation,
+    isSignInIslandOpen,
+    closeSignInIsland,
+  } = useNavigation();
   const { isThemeSwitching, completeThemeSwitch, isDark, targetTheme } =
     useTheme();
 
@@ -103,6 +108,8 @@ function AppContent() {
     if (navigationTarget) {
       navigate(navigationTarget);
       completeNavigation();
+      // Scroll to top of page
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
@@ -131,7 +138,7 @@ function AppContent() {
 
       <ProgressiveBlur
         position="bottom"
-        className="fixed bottom-0 left-0 right-0 z-40 pointer-events-none"
+        className="fixed bottom-0 left-0 right-0 pointer-events-none"
       />
 
       {/* Navigation Island - shows during page navigation */}

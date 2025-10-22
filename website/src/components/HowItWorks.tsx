@@ -184,7 +184,7 @@ const HowItWorks: React.FC = () => {
         <div className="bg-card dark:bg-zinc-900 border border-border dark:border-zinc-800 rounded-3xl shadow-xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Left Side - Integration Visual */}
-            <div className="bg-muted dark:bg-zinc-950 flex items-center justify-center min-h-[400px] border-r border-border dark:border-zinc-800 overflow-hidden">
+            <div className="bg-zinc-900 dark:bg-zinc-950 flex items-center justify-center min-h-[400px] border-r border-border dark:border-zinc-800 overflow-hidden">
               <GlowingStarsBackgroundCard className="w-full h-full max-w-none max-h-none rounded-none border-0 m-0 p-8">
                 <div className="text-center space-y-6">
                   <GlowingStarsTitle className="text-white dark:text-white">

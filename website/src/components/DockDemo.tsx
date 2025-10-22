@@ -33,7 +33,7 @@ const DATA = {
 
 export function DockDemo() {
   const { user, isAuthenticated } = useAuth();
-  const { startNavigation } = useNavigation();
+  const { startNavigation, isNavigating } = useNavigation();
   const location = useLocation();
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(false);
@@ -182,6 +182,11 @@ export function DockDemo() {
 
   // Only show navigation items on home page
   const showNavigation = isHomePage;
+
+  // Don't render if navigation is in progress
+  if (isNavigating) {
+    return null;
+  }
 
   return (
     <motion.div

@@ -23,7 +23,7 @@ export function ProgressiveBlur({
   return (
     <div
       className={cn(
-        "pointer-events-none absolute inset-x-0 z-6",
+        "pointer-events-none z-20",
         position === "top" ? "top-0" : "bottom-0",
         className
       )}

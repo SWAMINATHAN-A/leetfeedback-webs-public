@@ -1,10 +1,12 @@
 import React from "react";
 import { useAuth } from "../../contexts/AuthContext";
+import { useNavigation } from "../../contexts/NavigationContext";
 import { useNavigate } from "react-router-dom";
 import ProfileImage from "./ProfileImage";
 
 const SimpleUserMenu: React.FC = () => {
   const { user, isAuthenticated } = useAuth();
+  const { startNavigation } = useNavigation();
   const navigate = useNavigate();
 
   if (!isAuthenticated || !user) {
@@ -12,7 +14,7 @@ const SimpleUserMenu: React.FC = () => {
   }
 
   const handleProfileClick = () => {
-    navigate("/profile");
+    startNavigation("/profile");
   };
 
   return (
