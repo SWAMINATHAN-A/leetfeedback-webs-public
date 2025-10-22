@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
@@ -9,6 +10,156 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Separator } from "../components/ui/separator";
 import { Alert, AlertDescription } from "../components/ui/alert";
+
+// Utility function
+const cn = (...classes: (string | undefined | null | boolean)[]): string =>
+  classes.filter(Boolean).join(" ");
+
+// TextMorph Component
+function TextMorph({ children }: { children: React.ReactNode }) {
+  return (
+    <motion.span
+      key={String(children)}
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 10 }}
+      transition={{ duration: 0.2 }}
+    >
+      {children}
+    </motion.span>
+  );
+}
+
+// GlowEffect Component
+interface GlowEffectProps {
+  className?: string;
+  style?: React.CSSProperties;
+  colors?: string[];
+  mode?: "rotate" | "pulse" | "breathe" | "colorShift" | "flowHorizontal" | "static";
+  blur?: string | number;
+  transition?: any;
+  scale?: number;
+  duration?: number;
+}
+
+function GlowEffect({
+  className,
+  style,
+  colors = ["#FF5733", "#33FF57", "#3357FF", "#F1C40F"],
+  mode = "rotate",
+  blur = "medium",
+  transition,
+  scale = 1,
+  duration = 5,
+}: GlowEffectProps) {
+  const BASE_TRANSITION = {
+    repeat: Infinity,
+    duration: duration,
+    ease: "linear",
+  };
+
+  const animations: Record<string, any> = {
+    rotate: {
+      background: [
+        `conic-gradient(from 0deg at 50% 50%, ${colors.join(", ")})`,
+        `conic-gradient(from 360deg at 50% 50%, ${colors.join(", ")})`,
+      ],
+      transition: {
+        ...(transition ?? BASE_TRANSITION),
+      },
+    },
+    pulse: {
+      background: colors.map(
+        (color) =>
+          `radial-gradient(circle at 50% 50%, ${color} 0%, transparent 100%)`
+      ),
+      scale: [1 * scale, 1.1 * scale, 1 * scale],
+      opacity: [0.5, 0.8, 0.5],
+      transition: {
+        ...(transition ?? {
+          ...BASE_TRANSITION,
+          repeatType: "mirror",
+        }),
+      },
+    },
+    breathe: {
+      background: [
+        ...colors.map(
+          (color) =>
+            `radial-gradient(circle at 50% 50%, ${color} 0%, transparent 100%)`
+        ),
+      ],
+      scale: [1 * scale, 1.05 * scale, 1 * scale],
+      transition: {
+        ...(transition ?? {
+          ...BASE_TRANSITION,
+          repeatType: "mirror",
+        }),
+      },
+    },
+    colorShift: {
+      background: colors.map((color, index) => {
+        const nextColor = colors[(index + 1) % colors.length];
+        return `conic-gradient(from 0deg at 50% 50%, ${color} 0%, ${nextColor} 50%, ${color} 100%)`;
+      }),
+      transition: {
+        ...(transition ?? {
+          ...BASE_TRANSITION,
+          repeatType: "mirror",
+        }),
+      },
+    },
+    flowHorizontal: {
+      background: colors.map((color) => {
+        const nextColor = colors[(colors.indexOf(color) + 1) % colors.length];
+        return `linear-gradient(to right, ${color}, ${nextColor})`;
+      }),
+      transition: {
+        ...(transition ?? {
+          ...BASE_TRANSITION,
+          repeatType: "mirror",
+        }),
+      },
+    },
+    static: {
+      background: `linear-gradient(to right, ${colors.join(", ")})`,
+    },
+  };
+
+  const getBlurClass = (blur: string | number) => {
+    if (typeof blur === "number") {
+      return `blur-[${blur}px]`;
+    }
+    const presets: Record<string, string> = {
+      softest: "blur-sm",
+      soft: "blur-md",
+      medium: "blur-lg",
+      strong: "blur-xl",
+      stronger: "blur-2xl",
+      strongest: "blur-3xl",
+      none: "blur-none",
+    };
+    return presets[blur] || "blur-lg";
+  };
+
+  return (
+    <motion.div
+      style={{
+        ...style,
+        "--scale": scale,
+        willChange: "transform",
+        backfaceVisibility: "hidden",
+      } as any}
+      animate={animations[mode]}
+      className={cn(
+        "pointer-events-none absolute inset-0 h-full w-full",
+        "transform-gpu",
+        getBlurClass(blur),
+        className
+      )}
+    />
+  );
+}
 
 interface LoginFormData {
   username: string;
@@ -124,25 +275,46 @@ const LoginPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
-        <Card>
-          <CardHeader className="text-center">
-            <CardTitle className="text-2xl font-bold">
-              {isRegisterMode ? "Create Account" : "Welcome Back"}
-            </CardTitle>
-            <CardDescription>
-              {isRegisterMode 
-                ? "Sign up to get started with LeetFeedback" 
-                : "Sign in to your account"
-              }
-            </CardDescription>
-          </CardHeader>
-          
-          <CardContent className="space-y-4">
+        <div className="relative">
+          {/* Glow Effect Background */}
+          <motion.div
+            className="pointer-events-none absolute inset-0"
+            animate={{
+              opacity: isSubmitting ? 1 : 0.5,
+            }}
+            transition={{
+              duration: 0.2,
+              ease: "easeOut",
+            }}
+          >
+            <GlowEffect
+              colors={["#0894FF", "#C959DD", "#FF2E54", "#FF9004"]}
+              mode="colorShift"
+              blur="medium"
+              duration={4}
+              className="rounded-3xl"
+            />
+          </motion.div>
+
+          <Card className="relative rounded-3xl border-0 backdrop-blur-sm">
+            <CardHeader className="text-center rounded-t-3xl">
+              <CardTitle className="text-2xl font-bold">
+                {isRegisterMode ? "Create Account" : "Welcome Back"}
+              </CardTitle>
+              <CardDescription>
+                {isRegisterMode 
+                  ? "Sign up to get started with LeetFeedback" 
+                  : "Sign in to your account"
+                }
+              </CardDescription>
+            </CardHeader>
+            
+            <CardContent className="space-y-4 rounded-b-3xl">
             {/* Google Sign In */}
             <Button
               onClick={handleGoogleSignIn}
               variant="outline"
-              className="w-full"
+              className="w-full rounded-3xl"
               disabled={isLoading || isSubmitting}
             >
               {isLoading ? (
@@ -197,6 +369,7 @@ const LoginPage: React.FC = () => {
                       value={registerData.username}
                       onChange={handleRegisterInputChange}
                       placeholder="johndoe"
+                      className="rounded-3xl"
                     />
                   </div>
                   <div className="space-y-2">
@@ -209,6 +382,7 @@ const LoginPage: React.FC = () => {
                       value={registerData.email}
                       onChange={handleRegisterInputChange}
                       placeholder="john@example.com"
+                      className="rounded-3xl"
                     />
                   </div>
                 </div>
@@ -224,7 +398,7 @@ const LoginPage: React.FC = () => {
                       value={registerData.password}
                       onChange={handleRegisterInputChange}
                       placeholder="Enter your password"
-                      className="pr-10"
+                      className="pr-10 rounded-3xl"
                     />
                     <button
                       type="button"
@@ -250,6 +424,7 @@ const LoginPage: React.FC = () => {
                     value={registerData.github_username}
                     onChange={handleRegisterInputChange}
                     placeholder="your-github-username"
+                    className="rounded-3xl"
                   />
                 </div>
 
@@ -264,6 +439,7 @@ const LoginPage: React.FC = () => {
                       value={registerData.github_repo}
                       onChange={handleRegisterInputChange}
                       placeholder="repository-name"
+                      className="rounded-3xl"
                     />
                   </div>
                   <div className="space-y-2">
@@ -276,11 +452,12 @@ const LoginPage: React.FC = () => {
                       value={registerData.github_branch}
                       onChange={handleRegisterInputChange}
                       placeholder="main"
+                      className="rounded-3xl"
                     />
                   </div>
                 </div>
 
-                <Button type="submit" className="w-full" disabled={isSubmitting}>
+                <Button type="submit" className="w-full rounded-3xl" disabled={isSubmitting}>
                   {isSubmitting ? (
                     <>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -303,6 +480,7 @@ const LoginPage: React.FC = () => {
                     value={loginData.username}
                     onChange={handleLoginInputChange}
                     placeholder="Enter your username"
+                    className="rounded-3xl"
                   />
                 </div>
 
@@ -316,6 +494,7 @@ const LoginPage: React.FC = () => {
                     value={loginData.email}
                     onChange={handleLoginInputChange}
                     placeholder="Enter your email"
+                    className="rounded-3xl"
                   />
                 </div>
 
@@ -330,7 +509,7 @@ const LoginPage: React.FC = () => {
                       value={loginData.password}
                       onChange={handleLoginInputChange}
                       placeholder="Enter your password"
-                      className="pr-10"
+                      className="pr-10 rounded-3xl"
                     />
                     <button
                       type="button"
@@ -346,7 +525,7 @@ const LoginPage: React.FC = () => {
                   </div>
                 </div>
 
-                <Button type="submit" className="w-full" disabled={isSubmitting}>
+                <Button type="submit" className="w-full rounded-3xl" disabled={isSubmitting}>
                   {isSubmitting ? (
                     <>
                       <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -386,7 +565,8 @@ const LoginPage: React.FC = () => {
               </Link>
             </div>
           </CardContent>
-        </Card>
+          </Card>
+        </div>
       </div>
       
       <Footer />
