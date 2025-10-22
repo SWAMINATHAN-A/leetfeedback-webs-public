@@ -1,20 +1,7 @@
-declare global {
-  interface Document {
-    startViewTransition?: (callback: () => void) => ViewTransition;
-  }
-
-  interface ViewTransition {
-    finished: Promise<void>;
-    ready: Promise<void>;
-    updateCallbackDone: Promise<void>;
-  }
-}
-
 ("use client");
 
 import { Moon, SunDim } from "lucide-react";
-import { useRef } from "react";
-import { flushSync } from "react-dom";
+import { useRef, useCallback } from "react";
 import { cn } from "../../lib/utils";
 import { useTheme } from "../../contexts/ThemeContext";
 
@@ -22,47 +9,113 @@ type props = {
   className?: string;
 };
 
+const styleId = "theme-transition-styles";
+
+const updateStyles = (css: string) => {
+  if (typeof window === "undefined") return;
+
+  let styleElement = document.getElementById(styleId) as HTMLStyleElement;
+
+  if (!styleElement) {
+    styleElement = document.createElement("style");
+    styleElement.id = styleId;
+    document.head.appendChild(styleElement);
+  }
+
+  styleElement.textContent = css;
+};
+
+const createCircleBlurAnimation = () => {
+  const css = `
+    ::view-transition-group(root) {
+      animation-duration: 1.1s;
+      animation-timing-function: ease-out;
+    }
+          
+    ::view-transition-new(root) {
+      animation-name: reveal-light-blur;
+      z-index: 1;
+    }
+
+    ::view-transition-old(root),
+    .dark::view-transition-old(root) {
+      animation: none;
+      z-index: -1;
+    }
+    
+    .dark::view-transition-new(root) {
+      animation-name: reveal-dark-blur;
+      z-index: 1;
+    }
+
+    @keyframes reveal-dark-blur {
+      0% {
+        clip-path: circle(0% at 50% 100%);
+        filter: blur(12px);
+      }
+      45% {
+        clip-path: circle(60% at 50% 100%);
+        filter: blur(5px);
+      }
+      55% {
+        clip-path: circle(65% at 50% 100%);
+        filter: blur(4px);
+      }
+      100% {
+        clip-path: circle(150% at 50% 100%);
+        filter: blur(0px);
+      }
+    }
+
+    @keyframes reveal-light-blur {
+      0% {
+        clip-path: circle(0% at 50% 100%);
+        filter: blur(12px);
+      }
+      45% {
+        clip-path: circle(60% at 50% 100%);
+        filter: blur(5px);
+      }
+      55% {
+        clip-path: circle(65% at 50% 100%);
+        filter: blur(4px);
+      }
+      100% {
+        clip-path: circle(150% at 50% 100%);
+        filter: blur(0px);
+      }
+    }
+  `;
+
+  return css;
+};
 export const AnimatedThemeToggler = ({ className }: props) => {
-  const { isDark, toggleTheme } = useTheme();
+  const { isDark, toggleTheme, startThemeSwitch } = useTheme();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const changeTheme = async () => {
+
+  const changeTheme = useCallback(async () => {
     if (!buttonRef.current) return;
+
+    // Update styles for the transition FIRST
+    const animation = createCircleBlurAnimation();
+    updateStyles(animation);
+
+    // Start the theme switch island animation
+    startThemeSwitch();
+
+    // Small delay to ensure styles are applied
+    await new Promise((resolve) => setTimeout(resolve, 50));
 
     // Check if startViewTransition is available
     if (document.startViewTransition) {
-      await document.startViewTransition(() => {
-        flushSync(() => {
-          toggleTheme();
-        });
-      }).ready;
-
-      const { top, left, width, height } =
-        buttonRef.current.getBoundingClientRect();
-      const y = top + height / 2;
-      const x = left + width / 2;
-
-      const right = window.innerWidth - left;
-      const bottom = window.innerHeight - top;
-      const maxRad = Math.hypot(Math.max(left, right), Math.max(top, bottom));
-
-      document.documentElement.animate(
-        {
-          clipPath: [
-            `circle(0px at ${x}px ${y}px)`,
-            `circle(${maxRad}px at ${x}px ${y}px)`,
-          ],
-        },
-        {
-          duration: 700,
-          easing: "ease-in-out",
-          pseudoElement: "::view-transition-new(root)",
-        }
-      );
+      document.startViewTransition(() => {
+        toggleTheme();
+      });
     } else {
       // Fallback for browsers without startViewTransition
       toggleTheme();
     }
-  };
+  }, [toggleTheme, startThemeSwitch]);
   return (
     <button
       ref={buttonRef}

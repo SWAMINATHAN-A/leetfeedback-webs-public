@@ -606,10 +606,6 @@
         visibility: hidden !important;
     }
 }
-::view-transition-old(root), ::view-transition-new(root) {
-    animation: none;
-    mix-blend-mode: normal;
-}
 
 /* Background ripple effect animations */
 @keyframes cell-ripple {

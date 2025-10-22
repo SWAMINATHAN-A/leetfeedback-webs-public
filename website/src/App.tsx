@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
-import { ThemeProvider } from "./contexts/ThemeContext";
+import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
 import { AuthProvider } from "./contexts/AuthContext";
 import {
   NavigationProvider,
@@ -28,6 +28,7 @@ import { BackgroundRippleEffect } from "./components/ui/background-ripple-effect
 import { DockDemo } from "./components/DockDemo";
 import { DynamicIslandDemo } from "./components/DynamicIslandDemo";
 import { NavigationIsland } from "./components/NavigationIsland";
+import { ThemeSwitchIsland } from "./components/ThemeSwitchIsland";
 import { motion, AnimatePresence } from "motion/react";
 import Header from "./components/Header";
 import "./App.css";
@@ -39,6 +40,7 @@ function AppContent() {
   const navigate = useNavigate();
   const { isNavigating, navigationTarget, completeNavigation } =
     useNavigation();
+  const { isThemeSwitching, completeThemeSwitch, isDark } = useTheme();
 
   const isHomePage = location.pathname === "/";
   const isStatsPage = location.pathname === "/profile/stats";
@@ -129,9 +131,29 @@ function AppContent() {
         )}
       </AnimatePresence>
 
+      {/* Theme Switch Island - shows during theme switching */}
+      <AnimatePresence>
+        {isThemeSwitching && !isNavigating && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed bottom-8 left-0 right-0 flex justify-center"
+            style={{ zIndex: 10000 }}
+          >
+            <ThemeSwitchIsland
+              isTogglingToDark={isDark}
+              onComplete={completeThemeSwitch}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Dynamic Island - shows on first load for cookie consent */}
       <AnimatePresence>
         {!isNavigating &&
+          !isThemeSwitching &&
           showDynamicIsland &&
           (isHomePage || isStatsPage || isRoadmapPage || isPolicyPage) && (
             <motion.div
@@ -148,6 +170,7 @@ function AppContent() {
 
       {/* Dock - shows after dynamic island completes */}
       {!isNavigating &&
+        !isThemeSwitching &&
         showDock &&
         (isHomePage || isStatsPage || isRoadmapPage || isPolicyPage) && (
           <DockDemo />
