@@ -1,12 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { motion } from "motion/react";
 import { cn } from "../lib/utils";
 import { Dock, DockIcon } from "./magicui/dock";
 import { Button, buttonVariants } from "./ui/button";
 import { Separator } from "./ui/separator";
 import { useTheme } from "../contexts/ThemeContext";
 import { useAuth } from "../contexts/AuthContext";
+import { useNavigation } from "../contexts/NavigationContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import ProfileImage from "./ui/ProfileImage";
 import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
@@ -31,8 +33,18 @@ const DATA = {
 
 export function DockDemo() {
   const { user, isAuthenticated } = useAuth();
+  const { startNavigation } = useNavigation();
   const location = useLocation();
   const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Trigger animation on mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 50);
+    return () => clearTimeout(timer);
+  }, []);
 
   const scrollToSection = (href: string) => {
     if (href.startsWith("#")) {
@@ -41,7 +53,8 @@ export function DockDemo() {
         element.scrollIntoView({ behavior: "smooth" });
       }
     } else if (href.startsWith("/")) {
-      navigate(href);
+      // Use navigation island for internal links
+      startNavigation(href);
     }
   };
 
@@ -72,14 +85,14 @@ export function DockDemo() {
         <>
           <DockIcon>
             <button
-              onClick={() => (window.location.href = "/")}
+              onClick={() => startNavigation("/")}
               aria-label="Home"
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
                 "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
               )}
             >
-              <HomeIcon className="md:size-6 size-5 text-foreground" />
+              <HomeIcon className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
             </button>
           </DockIcon>
           <DockIcon>
@@ -100,14 +113,14 @@ export function DockDemo() {
         <>
           <DockIcon>
             <button
-              onClick={() => (window.location.href = "/")}
+              onClick={() => startNavigation("/")}
               aria-label="Home"
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
                 "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
               )}
             >
-              <HomeIcon className="md:size-6 size-5 text-foreground" />
+              <HomeIcon className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
             </button>
           </DockIcon>
           <DockIcon>
@@ -128,14 +141,14 @@ export function DockDemo() {
         <>
           <DockIcon>
             <button
-              onClick={() => (window.location.href = "/")}
+              onClick={() => startNavigation("/")}
               aria-label="Home"
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
                 "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
               )}
             >
-              <HomeIcon className="md:size-6 size-5 text-foreground" />
+              <HomeIcon className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
             </button>
           </DockIcon>
           <DockIcon>
@@ -171,9 +184,22 @@ export function DockDemo() {
   const showNavigation = isHomePage;
 
   return (
-    <div
-      className="fixed bottom-4 md:bottom-8 left-1/2 transform -translate-x-1/2 hidden md:block"
-      style={{ zIndex: 100 }}
+    <motion.div
+      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+      animate={
+        isVisible
+          ? { opacity: 1, y: 0, scale: 1 }
+          : { opacity: 0, y: 20, scale: 0.95 }
+      }
+      transition={{
+        duration: 0.6,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+      className="fixed bottom-4 md:bottom-8 left-1/2 hidden md:block"
+      style={{
+        zIndex: 100,
+        x: "-50%",
+      }}
     >
       <Dock
         direction="middle"
@@ -201,6 +227,6 @@ export function DockDemo() {
         )}
         {renderRightSection()}
       </Dock>
-    </div>
+    </motion.div>
   );
 }

@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   useLocation,
+  useNavigate,
 } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import { AuthProvider } from "./contexts/AuthContext";
+import {
+  NavigationProvider,
+  useNavigation,
+} from "./contexts/NavigationContext";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RoadmapPage from "./pages/RoadmapPage";
@@ -21,11 +26,20 @@ import { ProgressiveBlur } from "./components/magicui/progressive-blur";
 import { MobileScrollNav } from "./components/MobileScrollNav";
 import { BackgroundRippleEffect } from "./components/ui/background-ripple-effect";
 import { DockDemo } from "./components/DockDemo";
+import { DynamicIslandDemo } from "./components/DynamicIslandDemo";
+import { NavigationIsland } from "./components/NavigationIsland";
+import { motion, AnimatePresence } from "motion/react";
 import Header from "./components/Header";
 import "./App.css";
 
+const COOKIE_CONSENT_KEY = "leetfeedback_cookie_consent";
+
 function AppContent() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const { isNavigating, navigationTarget, completeNavigation } =
+    useNavigation();
+
   const isHomePage = location.pathname === "/";
   const isStatsPage = location.pathname === "/profile/stats";
   const isRoadmapPage = location.pathname === "/roadmap";
@@ -33,6 +47,41 @@ function AppContent() {
     location.pathname === "/privacy" ||
     location.pathname === "/terms" ||
     location.pathname === "/cookies";
+
+  const [showDynamicIsland, setShowDynamicIsland] = useState(false);
+  const [showDock, setShowDock] = useState(false);
+
+  // Check if we should show the dynamic island on mount
+  useEffect(() => {
+    const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
+    const shouldShowPages =
+      isHomePage || isStatsPage || isRoadmapPage || isPolicyPage;
+
+    if (!consent && shouldShowPages) {
+      // No consent stored, show dynamic island
+      setShowDynamicIsland(true);
+      setShowDock(false);
+    } else if (shouldShowPages) {
+      // Already has consent, show dock directly
+      setShowDynamicIsland(false);
+      setShowDock(true);
+    }
+  }, [isHomePage, isStatsPage, isRoadmapPage, isPolicyPage]);
+
+  const handleDynamicIslandComplete = () => {
+    setShowDynamicIsland(false);
+    // Wait before showing dock for smooth transition
+    setTimeout(() => {
+      setShowDock(true);
+    }, 300);
+  };
+
+  const handleNavigationComplete = () => {
+    if (navigationTarget) {
+      navigate(navigationTarget);
+      completeNavigation();
+    }
+  };
 
   return (
     <div className="App min-h-screen relative">
@@ -62,10 +111,47 @@ function AppContent() {
         className="fixed bottom-0 left-0 right-0 z-40 pointer-events-none"
       />
 
-      {/* Dock - show on home page, stats page, roadmap page, and policy pages */}
-      {(isHomePage || isStatsPage || isRoadmapPage || isPolicyPage) && (
-        <DockDemo />
-      )}
+      {/* Navigation Island - shows during page navigation */}
+      <AnimatePresence>
+        {isNavigating && navigationTarget && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="fixed bottom-8 left-0 right-0 z-50 flex justify-center"
+          >
+            <NavigationIsland
+              target={navigationTarget}
+              onComplete={handleNavigationComplete}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Dynamic Island - shows on first load for cookie consent */}
+      <AnimatePresence>
+        {!isNavigating &&
+          showDynamicIsland &&
+          (isHomePage || isStatsPage || isRoadmapPage || isPolicyPage) && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="fixed bottom-8 left-0 right-0 z-50 flex justify-center"
+            >
+              <DynamicIslandDemo onComplete={handleDynamicIslandComplete} />
+            </motion.div>
+          )}
+      </AnimatePresence>
+
+      {/* Dock - shows after dynamic island completes */}
+      {!isNavigating &&
+        showDock &&
+        (isHomePage || isStatsPage || isRoadmapPage || isPolicyPage) && (
+          <DockDemo />
+        )}
     </div>
   );
 }
@@ -74,11 +160,13 @@ function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <Router>
-          <AppContent />
-          <Analytics />
-          <SpeedInsights />
-        </Router>
+        <NavigationProvider>
+          <Router>
+            <AppContent />
+            <Analytics />
+            <SpeedInsights />
+          </Router>
+        </NavigationProvider>
       </AuthProvider>
     </ThemeProvider>
   );

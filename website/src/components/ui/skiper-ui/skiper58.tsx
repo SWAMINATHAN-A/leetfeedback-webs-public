@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import React from "react";
+import { NavigatingLink } from "@/components/NavigatingLink";
 
 import { cn } from "@/lib/utils";
 
@@ -41,14 +42,14 @@ export const Skiper58 = () => {
           className="relative flex cursor-pointer flex-col items-start overflow-visible"
           key={index}
         >
-          <a href={item.href} className="relative flex items-start">
+          <NavigatingLink to={item.href} className="relative flex items-start">
             <TextRoll
               center={false}
               className="text-4xl font-extrabold uppercase leading-[0.8] tracking-[-0.03em] transition-colors lg:text-5xl"
             >
               {item.name}
             </TextRoll>
-          </a>
+          </NavigatingLink>
         </li>
       ))}
     </ul>

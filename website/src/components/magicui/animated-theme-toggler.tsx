@@ -10,7 +10,7 @@ declare global {
   }
 }
 
-"use client";
+("use client");
 
 import { Moon, SunDim } from "lucide-react";
 import { useRef } from "react";
@@ -56,7 +56,7 @@ export const AnimatedThemeToggler = ({ className }: props) => {
           duration: 700,
           easing: "ease-in-out",
           pseudoElement: "::view-transition-new(root)",
-        },
+        }
       );
     } else {
       // Fallback for browsers without startViewTransition
@@ -64,8 +64,19 @@ export const AnimatedThemeToggler = ({ className }: props) => {
     }
   };
   return (
-    <button ref={buttonRef} onClick={changeTheme} className={cn("w-full h-full flex items-center justify-center", className)}>
-      {isDark ? <SunDim className="w-6 h-6 md:w-7 md:h-7" /> : <Moon className="w-6 h-6 md:w-7 md:h-7" />}
+    <button
+      ref={buttonRef}
+      onClick={changeTheme}
+      className={cn(
+        "w-full h-full flex items-center justify-center",
+        className
+      )}
+    >
+      {isDark ? (
+        <SunDim className="w-10 h-10 md:w-8 md:h-8" />
+      ) : (
+        <Moon className="w-7 h-7 md:w-8 md:h-8" />
+      )}
     </button>
   );
 };
