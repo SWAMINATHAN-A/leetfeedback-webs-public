@@ -11,6 +11,17 @@ type props = {
 
 const styleId = "theme-transition-styles";
 
+const isChromeBased = () => {
+  if (typeof window === "undefined") return false;
+  
+  const userAgent = navigator.userAgent.toLowerCase();
+  const isChrome = /chrome|chromium|edg/.test(userAgent);
+  const isNotFirefox = !/firefox/.test(userAgent);
+  const isNotSafari = !/safari/.test(userAgent) || /chrome|chromium/.test(userAgent);
+  
+  return isChrome && isNotFirefox && isNotSafari;
+};
+
 const updateStyles = (css: string) => {
   if (typeof window === "undefined") return;
 
@@ -96,23 +107,35 @@ export const AnimatedThemeToggler = ({ className }: props) => {
   const changeTheme = useCallback(async () => {
     if (!buttonRef.current) return;
 
-    // Update styles for the transition FIRST
-    const animation = createCircleBlurAnimation();
-    updateStyles(animation);
-
-    // Start the theme switch island animation
+    // Always start the theme switch island animation
     startThemeSwitch();
 
-    // Small delay to ensure styles are applied
-    await new Promise((resolve) => setTimeout(resolve, 50));
+    // Only use circle blur animation on Chrome-based browsers
+    const shouldUseAnimation = isChromeBased();
 
-    // Check if startViewTransition is available
-    if ('startViewTransition' in document && typeof (document as any).startViewTransition === 'function') {
-      (document as any).startViewTransition(() => {
+    if (shouldUseAnimation) {
+      // Update styles for the transition FIRST
+      const animation = createCircleBlurAnimation();
+      updateStyles(animation);
+
+      // Small delay to ensure styles are applied
+      await new Promise((resolve) => setTimeout(resolve, 50));
+
+      // Check if startViewTransition is available
+      if (
+        "startViewTransition" in document &&
+        typeof (document as any).startViewTransition === "function"
+      ) {
+        (document as any).startViewTransition(() => {
+          toggleTheme();
+        });
+      } else {
+        // Fallback for browsers without startViewTransition
         toggleTheme();
-      });
+      }
     } else {
-      // Fallback for browsers without startViewTransition
+      // For Safari and Firefox, just toggle theme without circle blur animation
+      // (but island animation already started above)
       toggleTheme();
     }
   }, [toggleTheme, startThemeSwitch]);
