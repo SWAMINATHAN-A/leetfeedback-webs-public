@@ -413,7 +413,7 @@ export const NavbarButton = ({
   [key: string]: any;
 }) => {
   const baseStyles =
-    "px-4 py-2 rounded-3xl text-sm font-bold relative cursor-pointer hover:-translate-y-0.5 transition duration-200 inline-block text-center";
+    "px-4 py-2 rounded-3xl text-sm font-bold relative cursor-pointer transition duration-200 inline-block text-center";
 
   const variantStyles = {
     primary:
@@ -428,7 +428,6 @@ export const NavbarButton = ({
     <motion.div
       whileHover={{
         scale: 1.05,
-        y: -2,
         transition: { type: "spring", stiffness: 400, damping: 15 },
       }}
       whileTap={{ scale: 0.95 }}
