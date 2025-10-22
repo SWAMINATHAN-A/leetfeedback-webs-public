@@ -170,9 +170,9 @@ const RoadmapPage: React.FC = () => {
       title: `${phase.phase} - ${phase.timeline}`,
       content: (
         <div className="space-y-8">
-          {/* Phase Card - Text and Description Focused */}
+          {/* Phase Card - Text and Description Focused - Hidden on Mobile */}
           <Card
-            className={`overflow-hidden rounded-3xl transition-all duration-300 backdrop-blur-xl ${
+            className={`hidden md:block overflow-hidden rounded-3xl transition-all duration-300 backdrop-blur-xl ${
               phase.id === 1
                 ? "bg-gradient-to-br from-rose-200/10 via-background/95 to-background/95 border-rose-300/30"
                 : phase.id === 2
@@ -353,9 +353,13 @@ const RoadmapPage: React.FC = () => {
                   {/* Progress Badge */}
                   <BlurFade delay={0.25}>
                     <div className="mb-10">
-                      <Badge className="bg-blue-500/20 text-blue-400 border border-blue-500/30 px-4 py-2 text-sm font-mono hover:bg-blue-500/30">
-                        <TrendingUpIcon className="w-4 h-4 mr-2" />
-                        {progressPercentage}% Complete
+                      <Badge className="bg-blue-500/20 text-blue-400 border border-blue-500/30 px-4 py-2 text-sm font-mono hover:bg-blue-500/30 opacity-90">
+                        <CheckCircleIcon className="w-4 h-4 mr-2" />
+                        <ShinyText
+                          text={`${progressPercentage}% Complete`}
+                          speed={3}
+                          className="text-sm font-mono"
+                        />
                       </Badge>
                     </div>
                   </BlurFade>
@@ -386,10 +390,10 @@ const RoadmapPage: React.FC = () => {
 
                   {/* Progress Stats */}
                   <BlurFade delay={1}>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-12">
-                      <Card className="bg-card/50 border border-border backdrop-blur-sm">
-                        <CardContent className="pt-6">
-                          <div className="text-center">
+                    <Card className="bg-card/50 border border-border backdrop-blur-sm rounded-3xl mt-12">
+                      <CardContent className="p-6">
+                        <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
+                          <div className="text-center py-4 md:py-0">
                             <CheckCircleIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
                             <div className="text-2xl font-bold text-foreground">
                               {completedCount}
@@ -398,11 +402,7 @@ const RoadmapPage: React.FC = () => {
                               Phases Complete
                             </div>
                           </div>
-                        </CardContent>
-                      </Card>
-                      <Card className="bg-card/50 border border-border backdrop-blur-sm">
-                        <CardContent className="pt-6">
-                          <div className="text-center">
+                          <div className="text-center py-4 md:py-0">
                             <AutoAwesomeIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
                             <div className="text-2xl font-bold text-foreground">
                               {roadmapPhases.length - completedCount}
@@ -411,11 +411,7 @@ const RoadmapPage: React.FC = () => {
                               In Development
                             </div>
                           </div>
-                        </CardContent>
-                      </Card>
-                      <Card className="bg-card/50 border border-border backdrop-blur-sm">
-                        <CardContent className="pt-6">
-                          <div className="text-center">
+                          <div className="text-center py-4 md:py-0">
                             <FlagIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
                             <div className="text-2xl font-bold text-foreground">
                               {
@@ -427,9 +423,9 @@ const RoadmapPage: React.FC = () => {
                               Major Milestones
                             </div>
                           </div>
-                        </CardContent>
-                      </Card>
-                    </div>
+                        </div>
+                      </CardContent>
+                    </Card>
                   </BlurFade>
                 </div>
 
