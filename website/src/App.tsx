@@ -40,7 +40,7 @@ function AppContent() {
   const navigate = useNavigate();
   const { isNavigating, navigationTarget, completeNavigation } =
     useNavigation();
-  const { isThemeSwitching, completeThemeSwitch, isDark } = useTheme();
+  const { isThemeSwitching, completeThemeSwitch, isDark, targetTheme } = useTheme();
 
   const isHomePage = location.pathname === "/";
   const isStatsPage = location.pathname === "/profile/stats";
@@ -143,7 +143,7 @@ function AppContent() {
             style={{ zIndex: 10000 }}
           >
             <ThemeSwitchIsland
-              isTogglingToDark={isDark}
+              isTogglingToDark={targetTheme}
               onComplete={completeThemeSwitch}
             />
           </motion.div>

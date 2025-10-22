@@ -4,6 +4,7 @@ interface ThemeContextType {
   isDark: boolean;
   toggleTheme: () => void;
   isThemeSwitching: boolean;
+  targetTheme: boolean;
   startThemeSwitch: () => void;
   completeThemeSwitch: () => void;
 }
@@ -18,6 +19,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     return saved ? saved === "dark" : true; // Default to dark theme
   });
   const [isThemeSwitching, setIsThemeSwitching] = useState(false);
+  const [targetTheme, setTargetTheme] = useState(isDark);
 
   useEffect(() => {
     localStorage.setItem("theme", isDark ? "dark" : "light");
@@ -33,6 +35,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const startThemeSwitch = () => {
+    setTargetTheme(!isDark);
     setIsThemeSwitching(true);
   };
 
@@ -46,6 +49,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
         isDark,
         toggleTheme,
         isThemeSwitching,
+        targetTheme,
         startThemeSwitch,
         completeThemeSwitch,
       }}

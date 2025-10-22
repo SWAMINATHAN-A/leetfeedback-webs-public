@@ -13,12 +13,13 @@ const styleId = "theme-transition-styles";
 
 const isChromeBased = () => {
   if (typeof window === "undefined") return false;
-  
+
   const userAgent = navigator.userAgent.toLowerCase();
   const isChrome = /chrome|chromium|edg/.test(userAgent);
   const isNotFirefox = !/firefox/.test(userAgent);
-  const isNotSafari = !/safari/.test(userAgent) || /chrome|chromium/.test(userAgent);
-  
+  const isNotSafari =
+    !/safari/.test(userAgent) || /chrome|chromium/.test(userAgent);
+
   return isChrome && isNotFirefox && isNotSafari;
 };
 
@@ -44,41 +45,16 @@ const createCircleBlurAnimation = () => {
     }
           
     ::view-transition-new(root) {
-      animation-name: reveal-light-blur;
+      animation-name: reveal-blur;
       z-index: 1;
     }
 
-    ::view-transition-old(root),
-    .dark::view-transition-old(root) {
+    ::view-transition-old(root) {
       animation: none;
       z-index: -1;
     }
-    
-    .dark::view-transition-new(root) {
-      animation-name: reveal-dark-blur;
-      z-index: 1;
-    }
 
-    @keyframes reveal-dark-blur {
-      0% {
-        clip-path: circle(0% at 50% 100%);
-        filter: blur(12px);
-      }
-      45% {
-        clip-path: circle(60% at 50% 100%);
-        filter: blur(5px);
-      }
-      55% {
-        clip-path: circle(65% at 50% 100%);
-        filter: blur(4px);
-      }
-      100% {
-        clip-path: circle(150% at 50% 100%);
-        filter: blur(0px);
-      }
-    }
-
-    @keyframes reveal-light-blur {
+    @keyframes reveal-blur {
       0% {
         clip-path: circle(0% at 50% 100%);
         filter: blur(12px);
@@ -103,23 +79,24 @@ const createCircleBlurAnimation = () => {
 export const AnimatedThemeToggler = ({ className }: props) => {
   const { isDark, toggleTheme, startThemeSwitch } = useTheme();
   const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const stylesInitialized = useRef(false);
 
-  const changeTheme = useCallback(async () => {
+  const changeTheme = useCallback(() => {
     if (!buttonRef.current) return;
-
-    // Always start the theme switch island animation
-    startThemeSwitch();
 
     // Only use circle blur animation on Chrome-based browsers
     const shouldUseAnimation = isChromeBased();
 
     if (shouldUseAnimation) {
-      // Update styles for the transition FIRST
-      const animation = createCircleBlurAnimation();
-      updateStyles(animation);
+      // Initialize styles once
+      if (!stylesInitialized.current) {
+        const animation = createCircleBlurAnimation();
+        updateStyles(animation);
+        stylesInitialized.current = true;
+      }
 
-      // Small delay to ensure styles are applied
-      await new Promise((resolve) => setTimeout(resolve, 50));
+      // Start the theme switch island animation
+      startThemeSwitch();
 
       // Check if startViewTransition is available
       if (
@@ -134,8 +111,8 @@ export const AnimatedThemeToggler = ({ className }: props) => {
         toggleTheme();
       }
     } else {
-      // For Safari and Firefox, just toggle theme without circle blur animation
-      // (but island animation already started above)
+      // For Safari and Firefox, start island animation and toggle theme
+      startThemeSwitch();
       toggleTheme();
     }
   }, [toggleTheme, startThemeSwitch]);

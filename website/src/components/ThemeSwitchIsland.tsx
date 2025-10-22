@@ -29,7 +29,7 @@ const ThemeSwitchIslandContent = ({
   ]);
 
   useEffect(() => {
-    // After 1400ms, start closing animation (stay visible during the smooth transition)
+    // Consistent timing: island shows for 1400ms total (matching the theme transition)
     const timer = setTimeout(() => {
       setSize("empty");
       setTimeout(onComplete, 300);

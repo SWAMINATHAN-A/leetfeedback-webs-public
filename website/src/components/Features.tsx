@@ -613,8 +613,7 @@ const Features: React.FC = () => {
                           Secure by default
                         </h2>
                         <p className="text-foreground text-sm">
-                          Provident fugit and vero voluptate. magnam magni
-                          doloribus dolores voluptates a sapiente nisi.
+                          Your coding data and progress are protected with enterprise-grade security and privacy standards.
                         </p>
                       </div>
                     </CardContent>
