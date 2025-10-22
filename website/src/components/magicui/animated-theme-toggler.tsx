@@ -107,8 +107,8 @@ export const AnimatedThemeToggler = ({ className }: props) => {
     await new Promise((resolve) => setTimeout(resolve, 50));
 
     // Check if startViewTransition is available
-    if (document.startViewTransition) {
-      document.startViewTransition(() => {
+    if ('startViewTransition' in document && typeof (document as any).startViewTransition === 'function') {
+      (document as any).startViewTransition(() => {
         toggleTheme();
       });
     } else {
