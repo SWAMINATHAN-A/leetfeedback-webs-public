@@ -295,7 +295,7 @@ const SimpleProfilePage: React.FC = () => {
                 <Button
                   variant="outline"
                   onClick={() => navigate("/")}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 rounded-3xl"
                 >
                   <User className="w-4 h-4" />
                   Back to Home
@@ -303,7 +303,7 @@ const SimpleProfilePage: React.FC = () => {
                 <Button
                   variant="destructive"
                   onClick={handleSignOut}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-2 rounded-3xl"
                 >
                   <LogOut className="w-4 h-4" />
                   Sign Out

@@ -16,6 +16,7 @@ import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
 import { Separator } from "../components/ui/separator";
 import { Alert, AlertDescription } from "../components/ui/alert";
+import { LoginFeaturesDynamicIsland } from "../components/LoginFeaturesDynamicIsland";
 
 // Utility function
 const cn = (...classes: (string | undefined | null | boolean)[]): string =>
@@ -294,91 +295,208 @@ const LoginPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
-      <div className="w-full max-w-md">
-        <div className="relative">
-          {/* Glow Effect Background */}
-          <motion.div
-            className="pointer-events-none absolute inset-0"
-            animate={{
-              opacity: isSubmitting ? 1 : 0.5,
-            }}
-            transition={{
-              duration: 0.2,
-              ease: "easeOut",
-            }}
-          >
-            <GlowEffect
-              colors={["#0894FF", "#C959DD", "#FF2E54", "#FF9004"]}
-              mode="colorShift"
-              blur="medium"
-              duration={4}
-              className="rounded-3xl"
-            />
-          </motion.div>
+    <div className="min-h-screen bg-background flex flex-col p-4 gap-8">
+      <div className="flex-1 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
+        {/* Login/Register Card */}
+        <div className="w-full max-w-md">
+          <div className="relative">
+            {/* Glow Effect Background */}
+            <motion.div
+              className="pointer-events-none absolute inset-0"
+              animate={{
+                opacity: isSubmitting ? 1 : 0.5,
+              }}
+              transition={{
+                duration: 0.2,
+                ease: "easeOut",
+              }}
+            >
+              <GlowEffect
+                colors={["#0894FF", "#C959DD", "#FF2E54", "#FF9004"]}
+                mode="colorShift"
+                blur="medium"
+                duration={4}
+                className="rounded-3xl"
+              />
+            </motion.div>
 
-          <Card className="relative rounded-3xl border-0 backdrop-blur-sm">
-            <CardHeader className="text-center rounded-t-3xl">
-              <CardTitle className="text-2xl font-bold">
-                {isRegisterMode ? "Create Account" : "Welcome Back"}
-              </CardTitle>
-              <CardDescription>
-                {isRegisterMode
-                  ? "Sign up to get started with LeetFeedback"
-                  : "Sign in to your account"}
-              </CardDescription>
-            </CardHeader>
+            <Card className="relative rounded-3xl border-0 backdrop-blur-sm">
+              <CardHeader className="text-center rounded-t-3xl">
+                <CardTitle className="text-2xl font-bold">
+                  {isRegisterMode ? "Create Account" : "Welcome Back"}
+                </CardTitle>
+                <CardDescription>
+                  {isRegisterMode
+                    ? "Sign up to get started with LeetFeedback"
+                    : "Sign in to your account"}
+                </CardDescription>
+              </CardHeader>
 
-            <CardContent className="space-y-4 rounded-b-3xl">
-              {/* Google Sign In */}
-              <Button
-                onClick={handleGoogleSignIn}
-                variant="outline"
-                className="w-full rounded-3xl"
-                disabled={isLoading || isSubmitting}
-              >
-                {isLoading ? (
-                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                ) : (
-                  <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24">
-                    <path
-                      fill="currentColor"
-                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                    />
-                    <path
-                      fill="currentColor"
-                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                    />
-                    <path
-                      fill="currentColor"
-                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                    />
-                    <path
-                      fill="currentColor"
-                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                    />
-                  </svg>
+              <CardContent className="space-y-4 rounded-b-3xl">
+                {/* Google Sign In */}
+                <Button
+                  onClick={handleGoogleSignIn}
+                  variant="outline"
+                  className="w-full rounded-3xl"
+                  disabled={isLoading || isSubmitting}
+                >
+                  {isLoading ? (
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  ) : (
+                    <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24">
+                      <path
+                        fill="currentColor"
+                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                      />
+                      <path
+                        fill="currentColor"
+                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                      />
+                      <path
+                        fill="currentColor"
+                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                      />
+                      <path
+                        fill="currentColor"
+                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                      />
+                    </svg>
+                  )}
+                  Continue with Google
+                </Button>
+
+                <div className="flex items-center gap-4">
+                  <Separator className="flex-1" />
+                  <span className="text-sm text-muted-foreground">OR</span>
+                  <Separator className="flex-1" />
+                </div>
+
+                {/* Error Alert */}
+                {error && (
+                  <Alert variant="destructive">
+                    <AlertDescription>{error}</AlertDescription>
+                  </Alert>
                 )}
-                Continue with Google
-              </Button>
 
-              <div className="flex items-center gap-4">
-                <Separator className="flex-1" />
-                <span className="text-sm text-muted-foreground">OR</span>
-                <Separator className="flex-1" />
-              </div>
+                {/* Login/Register Form */}
+                {isRegisterMode ? (
+                  <form onSubmit={handleRegisterSubmit} className="space-y-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="username">Username</Label>
+                        <Input
+                          id="username"
+                          name="username"
+                          type="text"
+                          required
+                          value={registerData.username}
+                          onChange={handleRegisterInputChange}
+                          placeholder="johndoe"
+                          className="rounded-3xl"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email</Label>
+                        <Input
+                          id="email"
+                          name="email"
+                          type="email"
+                          required
+                          value={registerData.email}
+                          onChange={handleRegisterInputChange}
+                          placeholder="john@example.com"
+                          className="rounded-3xl"
+                        />
+                      </div>
+                    </div>
 
-              {/* Error Alert */}
-              {error && (
-                <Alert variant="destructive">
-                  <AlertDescription>{error}</AlertDescription>
-                </Alert>
-              )}
+                    <div className="space-y-2">
+                      <Label htmlFor="password">Password</Label>
+                      <div className="relative">
+                        <Input
+                          id="password"
+                          name="password"
+                          type={showPassword ? "text" : "password"}
+                          required
+                          value={registerData.password}
+                          onChange={handleRegisterInputChange}
+                          placeholder="Enter your password"
+                          className="pr-10 rounded-3xl"
+                        />
+                        <button
+                          type="button"
+                          className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? (
+                            <EyeOff className="h-4 w-4 text-gray-400" />
+                          ) : (
+                            <Eye className="h-4 w-4 text-gray-400" />
+                          )}
+                        </button>
+                      </div>
+                    </div>
 
-              {/* Login/Register Form */}
-              {isRegisterMode ? (
-                <form onSubmit={handleRegisterSubmit} className="space-y-4">
-                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <Label htmlFor="github_username">GitHub Username</Label>
+                      <Input
+                        id="github_username"
+                        name="github_username"
+                        type="text"
+                        required
+                        value={registerData.github_username}
+                        onChange={handleRegisterInputChange}
+                        placeholder="your-github-username"
+                        className="rounded-3xl"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="github_repo">GitHub Repository</Label>
+                        <Input
+                          id="github_repo"
+                          name="github_repo"
+                          type="text"
+                          required
+                          value={registerData.github_repo}
+                          onChange={handleRegisterInputChange}
+                          placeholder="repository-name"
+                          className="rounded-3xl"
+                        />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="github_branch">Branch</Label>
+                        <Input
+                          id="github_branch"
+                          name="github_branch"
+                          type="text"
+                          required
+                          value={registerData.github_branch}
+                          onChange={handleRegisterInputChange}
+                          placeholder="main"
+                          className="rounded-3xl"
+                        />
+                      </div>
+                    </div>
+
+                    <Button
+                      type="submit"
+                      className="w-full rounded-3xl"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Creating Account...
+                        </>
+                      ) : (
+                        "Create Account"
+                      )}
+                    </Button>
+                  </form>
+                ) : (
+                  <form onSubmit={handleLoginSubmit} className="space-y-4">
                     <div className="space-y-2">
                       <Label htmlFor="username">Username</Label>
                       <Input
@@ -386,12 +504,13 @@ const LoginPage: React.FC = () => {
                         name="username"
                         type="text"
                         required
-                        value={registerData.username}
-                        onChange={handleRegisterInputChange}
-                        placeholder="johndoe"
+                        value={loginData.username}
+                        onChange={handleLoginInputChange}
+                        placeholder="Enter your username"
                         className="rounded-3xl"
                       />
                     </div>
+
                     <div className="space-y-2">
                       <Label htmlFor="email">Email</Label>
                       <Input
@@ -399,207 +518,96 @@ const LoginPage: React.FC = () => {
                         name="email"
                         type="email"
                         required
-                        value={registerData.email}
-                        onChange={handleRegisterInputChange}
-                        placeholder="john@example.com"
-                        className="rounded-3xl"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="password">Password</Label>
-                    <div className="relative">
-                      <Input
-                        id="password"
-                        name="password"
-                        type={showPassword ? "text" : "password"}
-                        required
-                        value={registerData.password}
-                        onChange={handleRegisterInputChange}
-                        placeholder="Enter your password"
-                        className="pr-10 rounded-3xl"
-                      />
-                      <button
-                        type="button"
-                        className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? (
-                          <EyeOff className="h-4 w-4 text-gray-400" />
-                        ) : (
-                          <Eye className="h-4 w-4 text-gray-400" />
-                        )}
-                      </button>
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="github_username">GitHub Username</Label>
-                    <Input
-                      id="github_username"
-                      name="github_username"
-                      type="text"
-                      required
-                      value={registerData.github_username}
-                      onChange={handleRegisterInputChange}
-                      placeholder="your-github-username"
-                      className="rounded-3xl"
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="github_repo">GitHub Repository</Label>
-                      <Input
-                        id="github_repo"
-                        name="github_repo"
-                        type="text"
-                        required
-                        value={registerData.github_repo}
-                        onChange={handleRegisterInputChange}
-                        placeholder="repository-name"
-                        className="rounded-3xl"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="github_branch">Branch</Label>
-                      <Input
-                        id="github_branch"
-                        name="github_branch"
-                        type="text"
-                        required
-                        value={registerData.github_branch}
-                        onChange={handleRegisterInputChange}
-                        placeholder="main"
-                        className="rounded-3xl"
-                      />
-                    </div>
-                  </div>
-
-                  <Button
-                    type="submit"
-                    className="w-full rounded-3xl"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        Creating Account...
-                      </>
-                    ) : (
-                      "Create Account"
-                    )}
-                  </Button>
-                </form>
-              ) : (
-                <form onSubmit={handleLoginSubmit} className="space-y-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="username">Username</Label>
-                    <Input
-                      id="username"
-                      name="username"
-                      type="text"
-                      required
-                      value={loginData.username}
-                      onChange={handleLoginInputChange}
-                      placeholder="Enter your username"
-                      className="rounded-3xl"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      value={loginData.email}
-                      onChange={handleLoginInputChange}
-                      placeholder="Enter your email"
-                      className="rounded-3xl"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="password">Password</Label>
-                    <div className="relative">
-                      <Input
-                        id="password"
-                        name="password"
-                        type={showPassword ? "text" : "password"}
-                        required
-                        value={loginData.password}
+                        value={loginData.email}
                         onChange={handleLoginInputChange}
-                        placeholder="Enter your password"
-                        className="pr-10 rounded-3xl"
+                        placeholder="Enter your email"
+                        className="rounded-3xl"
                       />
-                      <button
-                        type="button"
-                        className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                        onClick={() => setShowPassword(!showPassword)}
-                      >
-                        {showPassword ? (
-                          <EyeOff className="h-4 w-4 text-gray-400" />
-                        ) : (
-                          <Eye className="h-4 w-4 text-gray-400" />
-                        )}
-                      </button>
                     </div>
-                  </div>
 
-                  <Button
-                    type="submit"
-                    className="w-full rounded-3xl"
-                    disabled={isSubmitting}
+                    <div className="space-y-2">
+                      <Label htmlFor="password">Password</Label>
+                      <div className="relative">
+                        <Input
+                          id="password"
+                          name="password"
+                          type={showPassword ? "text" : "password"}
+                          required
+                          value={loginData.password}
+                          onChange={handleLoginInputChange}
+                          placeholder="Enter your password"
+                          className="pr-10 rounded-3xl"
+                        />
+                        <button
+                          type="button"
+                          className="absolute inset-y-0 right-0 pr-3 flex items-center"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          {showPassword ? (
+                            <EyeOff className="h-4 w-4 text-gray-400" />
+                          ) : (
+                            <Eye className="h-4 w-4 text-gray-400" />
+                          )}
+                        </button>
+                      </div>
+                    </div>
+
+                    <Button
+                      type="submit"
+                      className="w-full rounded-3xl"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                          Signing In...
+                        </>
+                      ) : (
+                        "Sign In"
+                      )}
+                    </Button>
+                  </form>
+                )}
+
+                {/* Toggle between login and register */}
+                <div className="text-center text-sm">
+                  <span className="text-muted-foreground">
+                    {isRegisterMode
+                      ? "Already have an account? "
+                      : "Don't have an account? "}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsRegisterMode(!isRegisterMode);
+                      setError("");
+                    }}
+                    className="text-primary hover:underline font-medium"
                   >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                        Signing In...
-                      </>
-                    ) : (
-                      "Sign In"
-                    )}
-                  </Button>
-                </form>
-              )}
+                    {isRegisterMode ? "Sign In" : "Sign Up"}
+                  </button>
+                </div>
 
-              {/* Toggle between login and register */}
-              <div className="text-center text-sm">
-                <span className="text-muted-foreground">
-                  {isRegisterMode
-                    ? "Already have an account? "
-                    : "Don't have an account? "}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsRegisterMode(!isRegisterMode);
-                    setError("");
-                  }}
-                  className="text-primary hover:underline font-medium"
-                >
-                  {isRegisterMode ? "Sign In" : "Sign Up"}
-                </button>
-              </div>
+                {/* Back to home */}
+                <div className="text-center text-sm">
+                  <Link
+                    to="/"
+                    className="text-muted-foreground hover:text-primary transition-colors"
+                  >
+                    ← Back to Home
+                  </Link>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
 
-              {/* Back to home */}
-              <div className="text-center text-sm">
-                <Link
-                  to="/"
-                  className="text-muted-foreground hover:text-primary transition-colors"
-                >
-                  ← Back to Home
-                </Link>
-              </div>
-            </CardContent>
-          </Card>
+        {/* Dynamic Island Feature Showcase & Footer - To the right of card on desktop */}
+        <div className="w-full max-w-2xl lg:max-w-xl flex flex-col gap-1">
+          <LoginFeaturesDynamicIsland />
+          <Footer />
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };
