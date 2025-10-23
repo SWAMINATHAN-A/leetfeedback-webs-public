@@ -605,6 +605,34 @@
         display: none !important;
         visibility: hidden !important;
     }
+
+    /* Mobile safe area utilities */
+    .mb-safe-area-inset-bottom {
+        margin-bottom: env(safe-area-inset-bottom);
+    }
+
+    .pb-safe-area-inset-bottom {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    /* Mobile dock positioning */
+    .mobile-dock {
+        bottom: max(2rem, env(safe-area-inset-bottom, 2rem));
+        max-height: calc(100vh - 6rem);
+        overflow: visible;
+    }
+
+    /* Mobile dynamic island adjustments */
+    .mobile-dynamic-island {
+        @media (max-width: 768px) {
+            height: auto !important;
+            min-height: 6rem;
+            max-height: calc(100vh - 10rem);
+            align-items: flex-end !important;
+            justify-content: center;
+            position: relative;
+        }
+    }
 }
 
 /* Background ripple effect animations */

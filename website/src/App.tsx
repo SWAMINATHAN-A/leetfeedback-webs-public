@@ -59,6 +59,7 @@ function AppContent() {
 
   const [showDynamicIsland, setShowDynamicIsland] = useState(false);
   const [showDock, setShowDock] = useState(false);
+  const [showProgressiveBlur, setShowProgressiveBlur] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   // Show loading animation on initial load, then show appropriate UI
@@ -84,6 +85,7 @@ function AppContent() {
           setShowDynamicIsland(false);
           setTimeout(() => {
             setShowDock(true);
+            setShowProgressiveBlur(true);
           }, 300);
         }
       }, 800);
@@ -94,9 +96,10 @@ function AppContent() {
 
   const handleDynamicIslandComplete = () => {
     setShowDynamicIsland(false);
-    // Wait before showing dock for smooth transition
+    // Wait before showing dock and progressive blur for smooth transition
     setTimeout(() => {
       setShowDock(true);
+      setShowProgressiveBlur(true);
     }, 300);
   };
 
@@ -136,10 +139,25 @@ function AppContent() {
         {isHomePage && <MobileScrollNav />}
       </div>
 
-      <ProgressiveBlur
-        position="bottom"
-        className="fixed bottom-0 left-0 right-0 pointer-events-none"
-      />
+      {/* Progressive Blur - shows after dynamic island completes */}
+      <AnimatePresence>
+        {showProgressiveBlur &&
+          !isNavigating &&
+          !isThemeSwitching &&
+          (isHomePage || isStatsPage || isRoadmapPage || isPolicyPage) && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <ProgressiveBlur
+                position="bottom"
+                className="fixed bottom-0 left-0 right-0 pointer-events-none"
+              />
+            </motion.div>
+          )}
+      </AnimatePresence>
 
       {/* Navigation Island - shows during page navigation */}
       <AnimatePresence>
