@@ -498,9 +498,9 @@ const LoginFeatureShowcase = () => {
 export function LoginFeaturesDynamicIsland() {
   return (
     <DynamicIslandProvider initialSize="compactLong">
-      <div 
+      <div
         className="w-full h-auto flex items-start justify-center mobile-dynamic-island relative z-50"
-        style={{ transform: 'translateZ(0)', willChange: 'transform' }}
+        style={{ transform: "translateZ(0)", willChange: "transform" }}
       >
         <LoginFeatureShowcase />
       </div>

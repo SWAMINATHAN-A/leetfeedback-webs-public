@@ -16,11 +16,6 @@ const HomePage: React.FC = () => {
         <Pricing />
       </main>
       <Footer />
-
-      {/* Mobile-only Dynamic Island Dock */}
-      <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 block md:hidden max-w-[90vw] mobile-dock">
-        <LoginFeaturesDynamicIsland />
-      </div>
     </>
   );
 };

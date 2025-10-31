@@ -281,9 +281,9 @@ const useScheduledAnimations = (
 
 const DynamicIslandContainer = ({ children }: { children: ReactNode }) => {
   return (
-    <div 
+    <div
       className="z-50 flex h-full w-full items-center justify-center bg-transparent relative"
-      style={{ transform: 'translateZ(0)', willChange: 'transform' }}
+      style={{ transform: "translateZ(0)", willChange: "transform" }}
     >
       {children}
     </div>
