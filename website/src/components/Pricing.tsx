@@ -165,7 +165,10 @@ const Pricing: React.FC = () => {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16">
+        <div
+          id="pricing-plans"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16"
+        >
           {/* Free Plan */}
           <BlurFade delay={0.5}>
             <div className="relative rounded-3xl overflow-hidden border border-border bg-card/50 backdrop-blur-sm h-full flex flex-col">

@@ -151,111 +151,120 @@ const Hero: React.FC = () => {
               </TextEffect>
 
               {/* CTA Buttons */}
-              <AnimatedGroup
-                variants={{
-                  container: {
-                    visible: {
-                      transition: {
-                        staggerChildren: 0.05,
-                        delayChildren: 0.75,
+              <div id="hero-content">
+                <AnimatedGroup
+                  variants={{
+                    container: {
+                      visible: {
+                        transition: {
+                          staggerChildren: 0.05,
+                          delayChildren: 0.75,
+                        },
                       },
                     },
-                  },
-                  ...transitionVariants,
-                }}
-                className="mt-12 flex flex-col items-start gap-4 md:flex-row"
-              >
-                <Button
-                  size="lg"
-                  className="h-10.5 rounded-xl px-5 text-base bg-black dark:bg-white text-white dark:text-black border border-gray-800 dark:border-gray-200 hover:bg-gray-900 dark:hover:bg-gray-100"
-                  onClick={() => {
-                    analytics.trackDownloadClick("hero_primary_cta");
-                    window.open(
-                      "https://github.com/lqSky7/leetFeedback-extension",
-                      "_blank"
-                    );
+                    ...transitionVariants,
                   }}
+                  className="mt-12 flex flex-col items-start gap-4 md:flex-row"
                 >
-                  <CheckCircleIcon className="w-5 h-5 mr-2" />
-                  <span className="text-nowrap">Add to Chrome - Free</span>
-                </Button>
-                <Button
-                  size="lg"
-                  variant="ghost"
-                  className="h-10.5 rounded-xl px-5"
-                  onClick={() => {
-                    analytics.trackFeatureClick("follow_development");
-                    window.location.href = "/roadmap";
+                  <Button
+                    size="lg"
+                    className="h-10.5 rounded-xl px-5 text-base bg-black dark:bg-white text-white dark:text-black border border-gray-800 dark:border-gray-200 hover:bg-gray-900 dark:hover:bg-gray-100"
+                    onClick={() => {
+                      analytics.trackDownloadClick("hero_primary_cta");
+                      window.open(
+                        "https://github.com/lqSky7/leetFeedback-extension",
+                        "_blank"
+                      );
+                    }}
+                  >
+                    <CheckCircleIcon className="w-5 h-5 mr-2" />
+                    <span className="text-nowrap">Add to Chrome - Free</span>
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="ghost"
+                    className="h-10.5 rounded-xl px-5"
+                    onClick={() => {
+                      analytics.trackFeatureClick("follow_development");
+                      window.location.href = "/roadmap";
+                    }}
+                  >
+                    <RocketLaunchIcon className="w-5 h-5 mr-2" />
+                    <span className="text-nowrap">Follow Development</span>
+                  </Button>
+                </AnimatedGroup>
+
+                {/* Trust Indicators */}
+                <AnimatedGroup
+                  variants={{
+                    container: {
+                      visible: {
+                        transition: {
+                          staggerChildren: 0.05,
+                          delayChildren: 1,
+                        },
+                      },
+                    },
+                    ...transitionVariants,
                   }}
+                  className="mt-14 flex flex-col sm:flex-row items-start gap-8"
                 >
-                  <RocketLaunchIcon className="w-5 h-5 mr-2" />
-                  <span className="text-nowrap">Follow Development</span>
-                </Button>
-              </AnimatedGroup>
+                  <div
+                    className="flex items-center gap-2 cursor-pointer hover:text-foreground transition-colors text-sm text-muted-foreground"
+                    onClick={() => setShowRatingSlider(true)}
+                  >
+                    {renderStars(currentRating)}
+                    <NumberTicker value={currentRating} decimalPlaces={1} />/ 5
+                    Rating
+                  </div>
+                </AnimatedGroup>
 
-              {/* Trust Indicators */}
-              <AnimatedGroup
-                variants={{
-                  container: {
-                    visible: {
-                      transition: {
-                        staggerChildren: 0.05,
-                        delayChildren: 1,
+                {/* Key Features Highlight */}
+                <AnimatedGroup
+                  variants={{
+                    container: {
+                      visible: {
+                        transition: {
+                          staggerChildren: 0.05,
+                          delayChildren: 1.1,
+                        },
                       },
                     },
-                  },
-                  ...transitionVariants,
-                }}
-                className="mt-14 flex flex-col sm:flex-row items-start gap-8"
-              >
-                <div
-                  className="flex items-center gap-2 cursor-pointer hover:text-foreground transition-colors text-sm text-muted-foreground"
-                  onClick={() => setShowRatingSlider(true)}
+                    ...transitionVariants,
+                  }}
+                  className="flex flex-wrap justify-start gap-4 mt-12"
                 >
-                  {renderStars(currentRating)}
-                  <NumberTicker value={currentRating} decimalPlaces={1} />/ 5
-                  Rating
-                </div>
-              </AnimatedGroup>
-
-              {/* Key Features Highlight */}
-              <AnimatedGroup
-                variants={{
-                  container: {
-                    visible: {
-                      transition: {
-                        staggerChildren: 0.05,
-                        delayChildren: 1.1,
-                      },
-                    },
-                  },
-                  ...transitionVariants,
-                }}
-                className="flex flex-wrap justify-start gap-4 mt-12"
-              >
-                <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
-                  <GitHubIcon className="w-4 h-4 mr-2 text-muted-foreground" />
-                  <span className="text-sm font-medium text-foreground">
-                    Auto GitHub Push
-                  </span>
-                </div>
-                <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
-                  <NotesIcon className="w-4 h-4 mr-2 text-muted-foreground" />
-                  <span className="text-sm font-medium text-foreground">
-                    Notion Integration
-                  </span>
-                </div>
-                <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
-                  <StyleIcon className="w-4 h-4 mr-2 text-muted-foreground" />
-                  <span className="text-sm font-medium text-foreground">
-                    Anki Cards
-                  </span>
-                </div>
-              </AnimatedGroup>
+                  <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
+                    <GitHubIcon className="w-4 h-4 mr-2 text-muted-foreground" />
+                    <span className="text-sm font-medium text-foreground">
+                      Auto GitHub Push
+                    </span>
+                  </div>
+                  <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
+                    <NotesIcon className="w-4 h-4 mr-2 text-muted-foreground" />
+                    <span className="text-sm font-medium text-foreground">
+                      Notion Integration
+                    </span>
+                  </div>
+                  <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
+                    <StyleIcon className="w-4 h-4 mr-2 text-muted-foreground" />
+                    <span className="text-sm font-medium text-foreground">
+                      Anki Cards
+                    </span>
+                  </div>
+                </AnimatedGroup>
+              </div>
             </div>
 
             {/* Graph Image on the right */}
-            <BlurFade delay={0.5} direction="up" duration={1.5} offset={12} blur="12px" className="hidden lg:block relative mt-10">
+            <BlurFade
+              delay={0.5}
+              direction="up"
+              duration={1.5}
+              offset={12}
+              blur="12px"
+              className="hidden lg:block relative mt-10"
+            >
               <div className="relative w-full">
                 <img
                   src={graphImage}

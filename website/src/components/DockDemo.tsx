@@ -12,6 +12,7 @@ import { useNavigation } from "../contexts/NavigationContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import ProfileImage from "./ui/ProfileImage";
 import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
+import { smoothScrollToElement } from "../utils/smoothScroll";
 
 // Material Icons
 import FeaturesIcon from "@mui/icons-material/Stars";
@@ -48,10 +49,8 @@ export function DockDemo() {
 
   const scrollToSection = (href: string) => {
     if (href.startsWith("#")) {
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
+      // Use anime.js smooth scroll for anchor links
+      smoothScrollToElement(href, 800, "easeInOutCubic");
     } else if (href.startsWith("/")) {
       // Use navigation island for internal links
       startNavigation(href);

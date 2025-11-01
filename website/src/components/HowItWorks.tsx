@@ -123,7 +123,10 @@ const HowItWorks: React.FC = () => {
         </div>
 
         {/* Steps */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
+        <div
+          id="how-it-works-steps"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
+        >
           {steps.map((step, index) => (
             <BlurFade key={index} delay={1 + index * 0.2}>
               <div className="relative h-full">

@@ -207,12 +207,12 @@ const Features: React.FC = () => {
           </div>
 
           {/* Mobile Screenshots Grid */}
-          <div className="flex justify-center items-center">
+          <div id="features-grid" className="flex justify-center items-center">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto px-4">
               {/* Screenshot 1 */}
               <BlurFade delay={0.6} duration={0.4} inView={true}>
                 <div className="relative group">
-                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-2 shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
+                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-2 shadow-2xl transition-shadow duration-300">
                     <div className="bg-black rounded-3xl overflow-hidden">
                       {/* Placeholder for mobile screenshot 1 */}
                       <img
@@ -228,7 +228,7 @@ const Features: React.FC = () => {
               {/* Screenshot 2 */}
               <BlurFade delay={1.0} duration={0.4} inView={true}>
                 <div className="relative group">
-                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-2 shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
+                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-2 shadow-2xl transition-shadow duration-300">
                     <div className="bg-black rounded-3xl overflow-hidden">
                       {/* Placeholder for mobile screenshot 2 */}
                       <img
@@ -249,7 +249,7 @@ const Features: React.FC = () => {
                 inView={true}
               >
                 <div className="relative group">
-                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-2 shadow-2xl transform group-hover:scale-105 transition-transform duration-300">
+                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-2 shadow-2xl transition-shadow duration-300">
                     <div className="bg-black rounded-3xl overflow-hidden">
                       {/* Placeholder for mobile screenshot 3 */}
                       <img
@@ -345,7 +345,8 @@ const Features: React.FC = () => {
                     GitHub Integration
                   </span>
                   <p className="mt-8 text-2xl font-semibold">
-                    Automatically push your solutions and AI feedback notes to your GitHub repo.
+                    Automatically push your solutions and AI feedback notes to
+                    your GitHub repo.
                   </p>
                   <ul className="space-y-3 mt-6">
                     <li className="flex items-start text-sm text-muted-foreground">
@@ -380,14 +381,35 @@ const Features: React.FC = () => {
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <text x="0" y="18" className="fill-muted-foreground text-[8px]">Mon</text>
-                        <text x="0" y="42" className="fill-muted-foreground text-[8px]">Wed</text>
-                        <text x="0" y="66" className="fill-muted-foreground text-[8px]">Fri</text>
+                        <text
+                          x="0"
+                          y="18"
+                          className="fill-muted-foreground text-[8px]"
+                        >
+                          Mon
+                        </text>
+                        <text
+                          x="0"
+                          y="42"
+                          className="fill-muted-foreground text-[8px]"
+                        >
+                          Wed
+                        </text>
+                        <text
+                          x="0"
+                          y="66"
+                          className="fill-muted-foreground text-[8px]"
+                        >
+                          Fri
+                        </text>
                         {/* Simplified heatmap grid */}
                         {Array.from({ length: 21 }).map((_, weekIndex) => (
                           <g key={weekIndex}>
                             {Array.from({ length: 7 }).map((_, dayIndex) => {
-                              const opacity = Math.random() > 0.3 ? (0.5 + Math.random() * 0.5) : 0.2;
+                              const opacity =
+                                Math.random() > 0.3
+                                  ? 0.5 + Math.random() * 0.5
+                                  : 0.2;
                               const isHighActivity = opacity > 0.8;
                               return (
                                 <rect
@@ -397,7 +419,11 @@ const Features: React.FC = () => {
                                   width="10"
                                   height="10"
                                   rx="2"
-                                  className={isHighActivity ? "fill-green-600 dark:fill-green-400" : "fill-green-500 dark:fill-green-500"}
+                                  className={
+                                    isHighActivity
+                                      ? "fill-green-600 dark:fill-green-400"
+                                      : "fill-green-500 dark:fill-green-500"
+                                  }
                                   opacity={opacity}
                                 />
                               );
@@ -418,7 +444,8 @@ const Features: React.FC = () => {
                     Notion Sync
                   </span>
                   <p className="my-8 text-2xl font-semibold">
-                    Export insights and tagged mistakes to your Notion workspace.
+                    Export insights and tagged mistakes to your Notion
+                    workspace.
                   </p>
                 </div>
                 <div aria-hidden className="flex flex-col gap-6 mt-8">
@@ -427,19 +454,31 @@ const Features: React.FC = () => {
                       <span className="flex size-6 rounded-full border items-center justify-center bg-background">
                         <NotesIcon className="size-3" />
                       </span>
-                      <span className="text-muted-foreground text-xs">Synced today</span>
+                      <span className="text-muted-foreground text-xs">
+                        Synced today
+                      </span>
                     </div>
                     <div className="w-4/5 border rounded-lg p-4 text-sm bg-background shadow-sm">
-                      <div className="font-medium mb-2">Two Sum - Mistake Analysis</div>
-                      <div className="text-xs text-muted-foreground">Edge cases not covered • Hash table optimization</div>
+                      <div className="font-medium mb-2">
+                        Two Sum - Mistake Analysis
+                      </div>
+                      <div className="text-xs text-muted-foreground">
+                        Edge cases not covered • Hash table optimization
+                      </div>
                     </div>
                   </div>
                   <div>
                     <div className="ml-auto w-4/5 bg-blue-600 rounded-lg p-4 text-sm text-white mb-2 shadow-sm">
-                      <div className="font-medium mb-1">Successfully synced</div>
-                      <div className="text-xs opacity-90">3 new entries added to database</div>
+                      <div className="font-medium mb-1">
+                        Successfully synced
+                      </div>
+                      <div className="text-xs opacity-90">
+                        3 new entries added to database
+                      </div>
                     </div>
-                    <span className="text-muted-foreground block text-right text-xs">Just now</span>
+                    <span className="text-muted-foreground block text-right text-xs">
+                      Just now
+                    </span>
                   </div>
                 </div>
               </div>
@@ -463,8 +502,11 @@ const Features: React.FC = () => {
                     Anki Cards Generation
                   </span>
                   <p className="my-8 text-2xl font-semibold">
-                    Generate Anki cards from your mistakes, tagged by mistake type.{" "}
-                    <span className="text-muted-foreground">Spaced repetition for better memory retention.</span>
+                    Generate Anki cards from your mistakes, tagged by mistake
+                    type.{" "}
+                    <span className="text-muted-foreground">
+                      Spaced repetition for better memory retention.
+                    </span>
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-start text-sm text-muted-foreground">
@@ -489,9 +531,15 @@ const Features: React.FC = () => {
                       <div className="absolute right-0 top-0 w-full h-36 sm:h-40 bg-background dark:bg-zinc-900 border rounded-xl shadow-lg transform rotate-6 opacity-30"></div>
                       <div className="absolute right-0 top-0 w-full h-36 sm:h-40 bg-background dark:bg-zinc-900 border rounded-xl shadow-lg transform rotate-3 opacity-50"></div>
                       <div className="relative w-full h-36 sm:h-40 bg-background dark:bg-zinc-900 border rounded-xl shadow-2xl p-4 sm:p-6 overflow-hidden">
-                        <div className="text-[10px] sm:text-xs text-muted-foreground mb-1 sm:mb-2">Array • Two Pointer</div>
-                        <div className="text-sm sm:text-lg font-semibold mb-2 sm:mb-3 line-clamp-2">Container With Most Water</div>
-                        <div className="text-xs sm:text-sm text-muted-foreground line-clamp-2">Start from both ends, move pointer with smaller height</div>
+                        <div className="text-[10px] sm:text-xs text-muted-foreground mb-1 sm:mb-2">
+                          Array • Two Pointer
+                        </div>
+                        <div className="text-sm sm:text-lg font-semibold mb-2 sm:mb-3 line-clamp-2">
+                          Container With Most Water
+                        </div>
+                        <div className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
+                          Start from both ends, move pointer with smaller height
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -613,7 +661,8 @@ const Features: React.FC = () => {
                           Secure by default
                         </h2>
                         <p className="text-foreground text-sm">
-                          Your coding data and progress are protected with enterprise-grade security and privacy standards.
+                          Your coding data and progress are protected with
+                          enterprise-grade security and privacy standards.
                         </p>
                       </div>
                     </CardContent>
@@ -805,198 +854,1392 @@ const Features: React.FC = () => {
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           {/* Days of week labels */}
-                          <text x="0" y="18" className="fill-muted-foreground text-[8px]">Mon</text>
-                          <text x="0" y="42" className="fill-muted-foreground text-[8px]">Wed</text>
-                          <text x="0" y="66" className="fill-muted-foreground text-[8px]">Fri</text>
-                          
+                          <text
+                            x="0"
+                            y="18"
+                            className="fill-muted-foreground text-[8px]"
+                          >
+                            Mon
+                          </text>
+                          <text
+                            x="0"
+                            y="42"
+                            className="fill-muted-foreground text-[8px]"
+                          >
+                            Wed
+                          </text>
+                          <text
+                            x="0"
+                            y="66"
+                            className="fill-muted-foreground text-[8px]"
+                          >
+                            Fri
+                          </text>
+
                           {/* Heatmap grid - Week 1 */}
-                          <rect x="30" y="10" width="10" height="10" rx="2" className="fill-muted" opacity="0.3"/>
-                          <rect x="30" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.4"/>
-                          <rect x="30" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
-                          <rect x="30" y="46" width="10" height="10" rx="2" className="fill-muted" opacity="0.3"/>
-                          <rect x="30" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          <rect x="30" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="30" y="82" width="10" height="10" rx="2" className="fill-muted" opacity="0.3"/>
-                          
+                          <rect
+                            x="30"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-muted"
+                            opacity="0.3"
+                          />
+                          <rect
+                            x="30"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.4"
+                          />
+                          <rect
+                            x="30"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
+                          <rect
+                            x="30"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-muted"
+                            opacity="0.3"
+                          />
+                          <rect
+                            x="30"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+                          <rect
+                            x="30"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="30"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-muted"
+                            opacity="0.3"
+                          />
+
                           {/* Week 2 */}
-                          <rect x="43" y="10" width="10" height="10" rx="2" className="fill-green-400" opacity="0.4"/>
-                          <rect x="43" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="43" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="43" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
-                          <rect x="43" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="43" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="43" y="82" width="10" height="10" rx="2" className="fill-green-400" opacity="0.4"/>
-                          
+                          <rect
+                            x="43"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.4"
+                          />
+                          <rect
+                            x="43"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="43"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="43"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
+                          <rect
+                            x="43"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="43"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="43"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.4"
+                          />
+
                           {/* Week 3 */}
-                          <rect x="56" y="10" width="10" height="10" rx="2" className="fill-muted" opacity="0.3"/>
-                          <rect x="56" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          <rect x="56" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="56" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
-                          <rect x="56" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="56" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="56" y="82" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          
+                          <rect
+                            x="56"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-muted"
+                            opacity="0.3"
+                          />
+                          <rect
+                            x="56"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+                          <rect
+                            x="56"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="56"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
+                          <rect
+                            x="56"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="56"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="56"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+
                           {/* Week 4 */}
-                          <rect x="69" y="10" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
-                          <rect x="69" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="69" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="69" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="69" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="69" y="70" width="10" height="10" rx="2" className="fill-primary" opacity="1"/>
-                          <rect x="69" y="82" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
-                          
+                          <rect
+                            x="69"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
+                          <rect
+                            x="69"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="69"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="69"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="69"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="69"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-primary"
+                            opacity="1"
+                          />
+                          <rect
+                            x="69"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
+
                           {/* Week 5 */}
-                          <rect x="82" y="10" width="10" height="10" rx="2" className="fill-muted" opacity="0.3"/>
-                          <rect x="82" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
-                          <rect x="82" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="82" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="82" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          <rect x="82" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="82" y="82" width="10" height="10" rx="2" className="fill-muted" opacity="0.3"/>
-                          
+                          <rect
+                            x="82"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-muted"
+                            opacity="0.3"
+                          />
+                          <rect
+                            x="82"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
+                          <rect
+                            x="82"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="82"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="82"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+                          <rect
+                            x="82"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="82"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-muted"
+                            opacity="0.3"
+                          />
+
                           {/* Week 6 */}
-                          <rect x="95" y="10" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          <rect x="95" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="95" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="95" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="95" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="95" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="95" y="82" width="10" height="10" rx="2" className="fill-green-400" opacity="0.4"/>
-                          
+                          <rect
+                            x="95"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+                          <rect
+                            x="95"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="95"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="95"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="95"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="95"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="95"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.4"
+                          />
+
                           {/* Week 7 */}
-                          <rect x="108" y="10" width="10" height="10" rx="2" className="fill-green-400" opacity="0.4"/>
-                          <rect x="108" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          <rect x="108" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="108" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="108" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="108" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="108" y="82" width="10" height="10" rx="2" className="fill-muted" opacity="0.3"/>
-                          
+                          <rect
+                            x="108"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.4"
+                          />
+                          <rect
+                            x="108"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+                          <rect
+                            x="108"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="108"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="108"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="108"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="108"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-muted"
+                            opacity="0.3"
+                          />
+
                           {/* Week 8 */}
-                          <rect x="121" y="10" width="10" height="10" rx="2" className="fill-muted" opacity="0.3"/>
-                          <rect x="121" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="121" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="121" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          <rect x="121" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="121" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="121" y="82" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
-                          
+                          <rect
+                            x="121"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-muted"
+                            opacity="0.3"
+                          />
+                          <rect
+                            x="121"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="121"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="121"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+                          <rect
+                            x="121"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="121"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="121"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
+
                           {/* Week 9 */}
-                          <rect x="134" y="10" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
-                          <rect x="134" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="134" y="34" width="10" height="10" rx="2" className="fill-primary" opacity="1"/>
-                          <rect x="134" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="134" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="134" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="134" y="82" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          
+                          <rect
+                            x="134"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
+                          <rect
+                            x="134"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="134"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-primary"
+                            opacity="1"
+                          />
+                          <rect
+                            x="134"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="134"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="134"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="134"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+
                           {/* Week 10 */}
-                          <rect x="147" y="10" width="10" height="10" rx="2" className="fill-green-400" opacity="0.4"/>
-                          <rect x="147" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          <rect x="147" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="147" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="147" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="147" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="147" y="82" width="10" height="10" rx="2" className="fill-muted" opacity="0.3"/>
-                          
+                          <rect
+                            x="147"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.4"
+                          />
+                          <rect
+                            x="147"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+                          <rect
+                            x="147"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="147"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="147"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="147"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="147"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-muted"
+                            opacity="0.3"
+                          />
+
                           {/* Week 11 */}
-                          <rect x="160" y="10" width="10" height="10" rx="2" className="fill-muted" opacity="0.3"/>
-                          <rect x="160" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
-                          <rect x="160" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="160" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="160" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          <rect x="160" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="160" y="82" width="10" height="10" rx="2" className="fill-green-400" opacity="0.4"/>
-                          
+                          <rect
+                            x="160"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-muted"
+                            opacity="0.3"
+                          />
+                          <rect
+                            x="160"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
+                          <rect
+                            x="160"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="160"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="160"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+                          <rect
+                            x="160"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="160"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.4"
+                          />
+
                           {/* Week 12 */}
-                          <rect x="173" y="10" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          <rect x="173" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="173" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="173" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="173" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="173" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="173" y="82" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
-                          
+                          <rect
+                            x="173"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+                          <rect
+                            x="173"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="173"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="173"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="173"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="173"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="173"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
+
                           {/* Week 13 */}
-                          <rect x="186" y="10" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="186" y="22" width="10" height="10" rx="2" className="fill-primary" opacity="1"/>
-                          <rect x="186" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="186" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="186" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="186" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="186" y="82" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          
+                          <rect
+                            x="186"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="186"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-primary"
+                            opacity="1"
+                          />
+                          <rect
+                            x="186"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="186"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="186"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="186"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="186"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+
                           {/* Week 14 */}
-                          <rect x="199" y="10" width="10" height="10" rx="2" className="fill-muted" opacity="0.3"/>
-                          <rect x="199" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
-                          <rect x="199" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="199" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="199" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          <rect x="199" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="199" y="82" width="10" height="10" rx="2" className="fill-muted" opacity="0.3"/>
-                          
+                          <rect
+                            x="199"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-muted"
+                            opacity="0.3"
+                          />
+                          <rect
+                            x="199"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
+                          <rect
+                            x="199"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="199"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="199"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+                          <rect
+                            x="199"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="199"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-muted"
+                            opacity="0.3"
+                          />
+
                           {/* Week 15 */}
-                          <rect x="212" y="10" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          <rect x="212" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="212" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="212" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="212" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="212" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="212" y="82" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
-                          
+                          <rect
+                            x="212"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+                          <rect
+                            x="212"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="212"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="212"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="212"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="212"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="212"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
+
                           {/* Week 16 */}
-                          <rect x="225" y="10" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
-                          <rect x="225" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="225" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="225" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="225" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="225" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="225" y="82" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          
+                          <rect
+                            x="225"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
+                          <rect
+                            x="225"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="225"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="225"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="225"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="225"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="225"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+
                           {/* Week 17 */}
-                          <rect x="238" y="10" width="10" height="10" rx="2" className="fill-muted" opacity="0.3"/>
-                          <rect x="238" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          <rect x="238" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="238" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="238" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="238" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="238" y="82" width="10" height="10" rx="2" className="fill-muted" opacity="0.3"/>
-                          
+                          <rect
+                            x="238"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-muted"
+                            opacity="0.3"
+                          />
+                          <rect
+                            x="238"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+                          <rect
+                            x="238"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="238"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="238"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="238"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="238"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-muted"
+                            opacity="0.3"
+                          />
+
                           {/* Week 18 */}
-                          <rect x="251" y="10" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="251" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="251" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="251" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="251" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="251" y="70" width="10" height="10" rx="2" className="fill-primary" opacity="1"/>
-                          <rect x="251" y="82" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
-                          
+                          <rect
+                            x="251"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="251"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="251"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="251"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="251"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="251"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-primary"
+                            opacity="1"
+                          />
+                          <rect
+                            x="251"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
+
                           {/* Week 19 */}
-                          <rect x="264" y="10" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          <rect x="264" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="264" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="264" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="264" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="264" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="264" y="82" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          
+                          <rect
+                            x="264"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+                          <rect
+                            x="264"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="264"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="264"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="264"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="264"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="264"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+
                           {/* Week 20 */}
-                          <rect x="277" y="10" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
-                          <rect x="277" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="277" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="277" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="277" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="277" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="277" y="82" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          
+                          <rect
+                            x="277"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
+                          <rect
+                            x="277"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="277"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="277"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="277"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="277"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="277"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+
                           {/* Week 21 */}
-                          <rect x="290" y="10" width="10" height="10" rx="2" className="fill-muted" opacity="0.3"/>
-                          <rect x="290" y="22" width="10" height="10" rx="2" className="fill-green-400" opacity="0.6"/>
-                          <rect x="290" y="34" width="10" height="10" rx="2" className="fill-green-400" opacity="0.8"/>
-                          <rect x="290" y="46" width="10" height="10" rx="2" className="fill-green-400" opacity="1"/>
-                          <rect x="290" y="58" width="10" height="10" rx="2" className="fill-green-400" opacity="0.7"/>
-                          <rect x="290" y="70" width="10" height="10" rx="2" className="fill-green-400" opacity="0.9"/>
-                          <rect x="290" y="82" width="10" height="10" rx="2" className="fill-green-400" opacity="0.5"/>
+                          <rect
+                            x="290"
+                            y="10"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-muted"
+                            opacity="0.3"
+                          />
+                          <rect
+                            x="290"
+                            y="22"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.6"
+                          />
+                          <rect
+                            x="290"
+                            y="34"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.8"
+                          />
+                          <rect
+                            x="290"
+                            y="46"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="1"
+                          />
+                          <rect
+                            x="290"
+                            y="58"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.7"
+                          />
+                          <rect
+                            x="290"
+                            y="70"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.9"
+                          />
+                          <rect
+                            x="290"
+                            y="82"
+                            width="10"
+                            height="10"
+                            rx="2"
+                            className="fill-green-400"
+                            opacity="0.5"
+                          />
                         </svg>
                       </div>
                     </CardContent>
@@ -1014,7 +2257,8 @@ const Features: React.FC = () => {
                             Compete with Friends
                           </h2>
                           <p className="text-foreground text-sm">
-                            Add friends and compete on leaderboards for a Duolingo-style experience that keeps you motivated.
+                            Add friends and compete on leaderboards for a
+                            Duolingo-style experience that keeps you motivated.
                           </p>
                         </div>
                       </div>

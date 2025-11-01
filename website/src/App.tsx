@@ -23,7 +23,7 @@ import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import TermsOfServicePage from "./pages/TermsOfServicePage";
 import CookiePolicyPage from "./pages/CookiePolicyPage";
 import { ProgressiveBlur } from "./components/magicui/progressive-blur";
-import { MobileScrollNav } from "./components/MobileScrollNav";
+import { ScrollbarNav } from "./components/ScrollbarNav";
 import { BackgroundRippleEffect } from "./components/ui/background-ripple-effect";
 import { DockDemo } from "./components/DockDemo";
 import { DynamicIslandDemo } from "./components/DynamicIslandDemo";
@@ -136,7 +136,7 @@ function AppContent() {
           <Route path="/terms" element={<TermsOfServicePage />} />
           <Route path="/cookies" element={<CookiePolicyPage />} />
         </Routes>
-        {isHomePage && <MobileScrollNav />}
+        {isHomePage && <ScrollbarNav />}
       </div>
 
       {/* Progressive Blur - shows after dynamic island completes */}
