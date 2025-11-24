@@ -98,7 +98,7 @@ const FAQAccordion: React.FC = () => {
   );
 };
 
-const Pricing: React.FC = () => {
+const Pricing: React.FC = React.memo(() => {
   const freeFeatures = [
     { text: "LeetCode & GeeksforGeeks integration", icon: Code2 },
     { text: "Unlimited Daily Problem Solves", icon: Infinity },
@@ -330,6 +330,6 @@ const Pricing: React.FC = () => {
       </div>
     </section>
   );
-};
+});
 
 export default Pricing;

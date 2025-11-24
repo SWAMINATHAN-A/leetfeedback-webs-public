@@ -21,7 +21,7 @@ interface ElasticSliderProps {
   onChange?: (value: number) => void;
 }
 
-const ElasticSlider: React.FC<ElasticSliderProps> = ({
+const ElasticSlider: React.FC<ElasticSliderProps> = React.memo(({
   defaultValue = 50,
   startingValue = 0,
   maxValue = 100,
@@ -48,7 +48,7 @@ const ElasticSlider: React.FC<ElasticSliderProps> = ({
       />
     </div>
   );
-};
+});
 
 interface SliderProps {
   defaultValue: number;
@@ -61,7 +61,7 @@ interface SliderProps {
   onChange?: (value: number) => void;
 }
 
-const Slider: React.FC<SliderProps> = ({
+const Slider: React.FC<SliderProps> = React.memo(({
   defaultValue,
   startingValue,
   maxValue,
@@ -217,7 +217,7 @@ const Slider: React.FC<SliderProps> = ({
       </p>
     </>
   );
-};
+});
 
 function decay(value: number, max: number): number {
   if (max === 0) {

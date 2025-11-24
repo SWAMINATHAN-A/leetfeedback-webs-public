@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useMemo,
+  ReactNode,
+} from "react";
 
 interface NavigationContextType {
   isNavigating: boolean;
@@ -37,18 +43,21 @@ export const NavigationProvider = ({ children }: { children: ReactNode }) => {
     setIsSignInIslandOpen(false);
   };
 
+  const value = useMemo(
+    () => ({
+      isNavigating,
+      navigationTarget,
+      startNavigation,
+      completeNavigation,
+      isSignInIslandOpen,
+      openSignInIsland,
+      closeSignInIsland,
+    }),
+    [isNavigating, navigationTarget, isSignInIslandOpen]
+  );
+
   return (
-    <NavigationContext.Provider
-      value={{
-        isNavigating,
-        navigationTarget,
-        startNavigation,
-        completeNavigation,
-        isSignInIslandOpen,
-        openSignInIsland,
-        closeSignInIsland,
-      }}
-    >
+    <NavigationContext.Provider value={value}>
       {children}
     </NavigationContext.Provider>
   );

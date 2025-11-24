@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, lazy, Suspense } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -15,13 +15,6 @@ import {
   useNavigation,
 } from "./contexts/NavigationContext";
 import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import RoadmapPage from "./pages/RoadmapPage";
-import SimpleProfilePage from "./pages/SimpleProfilePage";
-import StatsPage from "./pages/StatsPage";
-import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
-import TermsOfServicePage from "./pages/TermsOfServicePage";
-import CookiePolicyPage from "./pages/CookiePolicyPage";
 import { ProgressiveBlur } from "./components/magicui/progressive-blur";
 import { ScrollbarNav } from "./components/ScrollbarNav";
 import { BackgroundRippleEffect } from "./components/ui/background-ripple-effect";
@@ -34,6 +27,15 @@ import { motion, AnimatePresence } from "motion/react";
 import Header from "./components/Header";
 import { smoothScrollTo } from "./utils/smoothScroll";
 import "./App.css";
+
+// Lazy load non-critical pages
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const RoadmapPage = lazy(() => import("./pages/RoadmapPage"));
+const SimpleProfilePage = lazy(() => import("./pages/SimpleProfilePage"));
+const StatsPage = lazy(() => import("./pages/StatsPage"));
+const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
+const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage"));
+const CookiePolicyPage = lazy(() => import("./pages/CookiePolicyPage"));
 
 const COOKIE_CONSENT_KEY = "leetfeedback_cookie_consent";
 
@@ -95,27 +97,27 @@ function AppContent() {
     }
   }, [isHomePage, isStatsPage, isRoadmapPage, isPolicyPage, isInitialLoad]);
 
-  const handleDynamicIslandComplete = () => {
+  const handleDynamicIslandComplete = useCallback(() => {
     setShowDynamicIsland(false);
     // Wait before showing dock and progressive blur for smooth transition
     setTimeout(() => {
       setShowDock(true);
       setShowProgressiveBlur(true);
     }, 300);
-  };
+  }, []);
 
-  const handleSignInComplete = () => {
+  const handleSignInComplete = useCallback(() => {
     closeSignInIsland();
-  };
+  }, [closeSignInIsland]);
 
-  const handleNavigationComplete = () => {
+  const handleNavigationComplete = useCallback(() => {
     if (navigationTarget) {
       navigate(navigationTarget);
       completeNavigation();
       // Scroll to top of page with anime.js
       smoothScrollTo(0, 600, "easeInOutCubic");
     }
-  };
+  }, [navigationTarget, navigate, completeNavigation]);
 
   return (
     <div className="App min-h-screen relative">
@@ -127,16 +129,18 @@ function AppContent() {
       {/* Content overlay */}
       <div className="relative z-10">
         <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/roadmap" element={<RoadmapPage />} />
-          <Route path="/profile" element={<SimpleProfilePage />} />
-          <Route path="/profile/stats" element={<StatsPage />} />
-          <Route path="/privacy" element={<PrivacyPolicyPage />} />
-          <Route path="/terms" element={<TermsOfServicePage />} />
-          <Route path="/cookies" element={<CookiePolicyPage />} />
-        </Routes>
+        <Suspense fallback={<div className="min-h-screen" />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/roadmap" element={<RoadmapPage />} />
+            <Route path="/profile" element={<SimpleProfilePage />} />
+            <Route path="/profile/stats" element={<StatsPage />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms" element={<TermsOfServicePage />} />
+            <Route path="/cookies" element={<CookiePolicyPage />} />
+          </Routes>
+        </Suspense>
         {isHomePage && <ScrollbarNav />}
       </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useInView, useMotionValue, useSpring } from "motion/react";
-import { ComponentPropsWithoutRef, useEffect, useRef } from "react";
+import React, { ComponentPropsWithoutRef, useEffect, useRef } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -13,7 +13,7 @@ interface NumberTickerProps extends ComponentPropsWithoutRef<"span"> {
   decimalPlaces?: number;
 }
 
-export function NumberTicker({
+export const NumberTicker = React.memo(function NumberTicker({
   value,
   startValue = 0,
   direction = "up",
@@ -64,4 +64,4 @@ export function NumberTicker({
       {startValue}
     </span>
   );
-}
+});

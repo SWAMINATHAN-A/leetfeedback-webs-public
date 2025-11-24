@@ -44,7 +44,7 @@ import DefaultSwapy from "./ui/swapy";
 import { ContainerScroll } from "./ui/container-scroll-animation";
 import ShinyText from "./ShinyText";
 
-const Features: React.FC = () => {
+const Features: React.FC = React.memo(() => {
   const primaryFeatures = [
     {
       icon: <GitHubIcon className="w-8 h-8" />,
@@ -560,7 +560,7 @@ const Features: React.FC = () => {
             >
               BEYOND BASICS
             </LineShadowText>
-            <p className="text-2xl text-muted-foreground font-light">
+            <div className="text-2xl text-muted-foreground font-light">
               Six features that{" "}
               <FlipWords
                 words={["transform", "accelerate", "supercharge"]}
@@ -568,7 +568,7 @@ const Features: React.FC = () => {
                 duration={2500}
               />{" "}
               your growth
-            </p>
+            </div>
           </div>
 
           {/* Professional Features Grid */}
@@ -2384,6 +2384,6 @@ const Features: React.FC = () => {
       </div>
     </section>
   );
-};
+});
 
 export default Features;

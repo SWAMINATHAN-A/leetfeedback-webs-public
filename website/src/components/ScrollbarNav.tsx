@@ -171,10 +171,18 @@ export function ScrollbarNav() {
     });
   }, [scrollProgress, isDragging]);
 
-  // Handle scroll events
+  // Handle scroll events with throttling
   useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      updateScrollPosition();
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          updateScrollPosition();
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });

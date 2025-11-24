@@ -8,7 +8,7 @@ import {
   Variants,
   MotionProps,
 } from "motion/react";
-import { useRef } from "react";
+import React, { useRef } from "react";
 
 type MarginType = UseInViewOptions["margin"];
 
@@ -28,7 +28,7 @@ interface BlurFadeProps extends MotionProps {
   blur?: string;
 }
 
-export function BlurFade({
+export const BlurFade = React.memo(function BlurFade({
   children,
   className,
   variant,
@@ -78,4 +78,4 @@ export function BlurFade({
       </motion.div>
     </AnimatePresence>
   );
-}
+});

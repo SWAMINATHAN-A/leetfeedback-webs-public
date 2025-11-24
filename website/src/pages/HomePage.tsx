@@ -4,7 +4,6 @@ import Features from "../components/Features";
 import HowItWorks from "../components/HowItWorks";
 import Pricing from "../components/Pricing";
 import Footer from "../components/Footer";
-import { LoginFeaturesDynamicIsland } from "../components/LoginFeaturesDynamicIsland";
 
 const HomePage: React.FC = () => {
   return (

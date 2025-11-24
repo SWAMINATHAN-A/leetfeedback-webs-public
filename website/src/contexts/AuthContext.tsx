@@ -3,6 +3,8 @@ import React, {
   useContext,
   useState,
   useEffect,
+  useCallback,
+  useMemo,
   ReactNode,
 } from "react";
 import {
@@ -13,16 +15,16 @@ import {
   UserCredential,
 } from "firebase/auth";
 import { auth, googleProvider } from "../config/firebase";
-import { 
-  BackendUser, 
-  getBackendUser, 
+import {
+  BackendUser,
+  getBackendUser,
   validateBackendAuth,
   loginUser,
   registerUser,
   logoutBackendUser,
   LoginRequest,
   RegisterRequest,
-  AuthResponse
+  AuthResponse,
 } from "../utils/backendAuth";
 
 interface User {
@@ -39,7 +41,7 @@ interface User {
     branch: string | null;
     linked: boolean;
   };
-  authType: 'firebase' | 'backend';
+  authType: "firebase" | "backend";
 }
 
 interface AuthContextType {
@@ -65,10 +67,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   // Helper function to set user state and handle notifications
   const setUserState = (userData: User | null) => {
     setUser(userData);
-    
+
     if (userData) {
       // Store user data for extension communication with timestamp
-      const storageKey = userData.authType === 'firebase' ? "firebase_user" : "backend_user";
+      const storageKey =
+        userData.authType === "firebase" ? "firebase_user" : "backend_user";
       localStorage.setItem(storageKey, JSON.stringify(userData));
       localStorage.setItem("auth_timestamp", Date.now().toString());
 
@@ -108,11 +111,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     // Check for existing backend user first
     const initializeAuth = async () => {
       setIsLoading(true);
-      
+
       try {
         // Check if user was previously authenticated with backend
-        const authType = localStorage.getItem('auth_type');
-        if (authType === 'backend') {
+        const authType = localStorage.getItem("auth_type");
+        if (authType === "backend") {
           // Try to validate with backend using httpOnly cookie
           const validatedUser = await validateBackendAuth();
           if (validatedUser) {
@@ -121,11 +124,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
               email: validatedUser.email,
               displayName: validatedUser.username,
               photoURL: null,
-              provider: 'backend',
+              provider: "backend",
               username: validatedUser.username,
               role: validatedUser.role,
               github: validatedUser.github,
-              authType: 'backend',
+              authType: "backend",
             };
             setUserState(userData);
             setIsLoading(false);
@@ -134,9 +137,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           // If validation fails, user will be signed out
         }
       } catch (error) {
-        console.error('Auth initialization error:', error);
+        console.error("Auth initialization error:", error);
       }
-      
+
       // If no backend user or validation failed, continue with Firebase auth check
       setIsLoading(false);
     };
@@ -147,8 +150,8 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       auth,
       (firebaseUser: FirebaseUser | null) => {
         // Only process Firebase auth if no backend user is already authenticated
-        const currentAuthType = localStorage.getItem('auth_type');
-        if (currentAuthType === 'backend' && user?.authType === 'backend') {
+        const currentAuthType = localStorage.getItem("auth_type");
+        if (currentAuthType === "backend" && user?.authType === "backend") {
           return; // Don't override backend auth with Firebase
         }
 
@@ -159,10 +162,10 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             displayName: firebaseUser.displayName,
             photoURL: firebaseUser.photoURL,
             provider: firebaseUser.providerData[0]?.providerId || "unknown",
-            authType: 'firebase',
+            authType: "firebase",
           };
           setUserState(userData);
-        } else if (user?.authType === 'firebase') {
+        } else if (user?.authType === "firebase") {
           // Only clear if the current user was Firebase-authenticated
           setUserState(null);
         }
@@ -234,7 +237,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     };
   }, []);
 
-  const signInWithGoogle = async (): Promise<void> => {
+  const signInWithGoogle = useCallback(async (): Promise<void> => {
     try {
       setIsLoading(true);
       // Clear any existing backend auth
@@ -250,87 +253,93 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, []);
 
-  const signInWithCredentials = async (credentials: LoginRequest): Promise<AuthResponse> => {
-    try {
-      setIsLoading(true);
-      // Clear any existing Firebase auth
-      if (user?.authType === 'firebase') {
-        await firebaseSignOut(auth);
-      }
-      
-      const response = await loginUser(credentials);
-      
-      if (response.success && response.user) {
-        const userData: User = {
-          uid: response.user.id,
-          email: response.user.email,
-          displayName: response.user.username,
-          photoURL: null,
-          provider: 'backend',
-          username: response.user.username,
-          role: response.user.role,
-          github: response.user.github,
-          authType: 'backend',
+  const signInWithCredentials = useCallback(
+    async (credentials: LoginRequest): Promise<AuthResponse> => {
+      try {
+        setIsLoading(true);
+        // Clear any existing Firebase auth
+        if (user?.authType === "firebase") {
+          await firebaseSignOut(auth);
+        }
+
+        const response = await loginUser(credentials);
+
+        if (response.success && response.user) {
+          const userData: User = {
+            uid: response.user.id,
+            email: response.user.email,
+            displayName: response.user.username,
+            photoURL: null,
+            provider: "backend",
+            username: response.user.username,
+            role: response.user.role,
+            github: response.user.github,
+            authType: "backend",
+          };
+          setUserState(userData);
+        }
+
+        return response;
+      } catch (error) {
+        console.error("Backend sign-in error:", error);
+        return {
+          success: false,
+          message: "Sign-in failed. Please try again.",
         };
-        setUserState(userData);
+      } finally {
+        setIsLoading(false);
       }
-      
-      return response;
-    } catch (error) {
-      console.error("Backend sign-in error:", error);
-      return {
-        success: false,
-        message: 'Sign-in failed. Please try again.',
-      };
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    },
+    [user]
+  );
 
-  const registerWithCredentials = async (userData: RegisterRequest): Promise<AuthResponse> => {
-    try {
-      setIsLoading(true);
-      // Clear any existing Firebase auth
-      if (user?.authType === 'firebase') {
-        await firebaseSignOut(auth);
-      }
-      
-      const response = await registerUser(userData);
-      
-      if (response.success && response.user) {
-        const userState: User = {
-          uid: response.user.id,
-          email: response.user.email,
-          displayName: response.user.username,
-          photoURL: null,
-          provider: 'backend',
-          username: response.user.username,
-          role: response.user.role,
-          github: response.user.github,
-          authType: 'backend',
+  const registerWithCredentials = useCallback(
+    async (userData: RegisterRequest): Promise<AuthResponse> => {
+      try {
+        setIsLoading(true);
+        // Clear any existing Firebase auth
+        if (user?.authType === "firebase") {
+          await firebaseSignOut(auth);
+        }
+
+        const response = await registerUser(userData);
+
+        if (response.success && response.user) {
+          const userState: User = {
+            uid: response.user.id,
+            email: response.user.email,
+            displayName: response.user.username,
+            photoURL: null,
+            provider: "backend",
+            username: response.user.username,
+            role: response.user.role,
+            github: response.user.github,
+            authType: "backend",
+          };
+          setUserState(userState);
+        }
+
+        return response;
+      } catch (error) {
+        console.error("Backend registration error:", error);
+        return {
+          success: false,
+          message: "Registration failed. Please try again.",
         };
-        setUserState(userState);
+      } finally {
+        setIsLoading(false);
       }
-      
-      return response;
-    } catch (error) {
-      console.error("Backend registration error:", error);
-      return {
-        success: false,
-        message: 'Registration failed. Please try again.',
-      };
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    },
+    [user]
+  );
 
-  const signOut = async (): Promise<void> => {
+  const signOut = useCallback(async (): Promise<void> => {
     try {
-      if (user?.authType === 'firebase') {
+      if (user?.authType === "firebase") {
         await firebaseSignOut(auth);
-      } else if (user?.authType === 'backend') {
+      } else if (user?.authType === "backend") {
         await logoutBackendUser();
         setUserState(null);
       }
@@ -338,17 +347,27 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       console.error("Sign-out error:", error);
       throw error;
     }
-  };
+  }, [user]);
 
-  const value: AuthContextType = {
-    user,
-    isLoading,
-    signInWithGoogle,
-    signInWithCredentials,
-    registerWithCredentials,
-    signOut,
-    isAuthenticated: !!user,
-  };
+  const value: AuthContextType = useMemo(
+    () => ({
+      user,
+      isLoading,
+      signInWithGoogle,
+      signInWithCredentials,
+      registerWithCredentials,
+      signOut,
+      isAuthenticated: !!user,
+    }),
+    [
+      user,
+      isLoading,
+      signInWithGoogle,
+      signInWithCredentials,
+      registerWithCredentials,
+      signOut,
+    ]
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

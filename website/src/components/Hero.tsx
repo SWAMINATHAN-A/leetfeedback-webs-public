@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
@@ -40,7 +40,7 @@ const transitionVariants = {
   },
 };
 
-const Hero: React.FC = () => {
+const Hero: React.FC = React.memo(() => {
   const [showRatingSlider, setShowRatingSlider] = useState(false);
   const [currentRating, setCurrentRating] = useState(4.5);
   const [userRating, setUserRating] = useState<number | null>(null);
@@ -58,7 +58,7 @@ const Hero: React.FC = () => {
     }
   }, []);
 
-  const handleRatingSubmit = (rating: number) => {
+  const handleRatingSubmit = useCallback((rating: number) => {
     setUserRating(rating);
     setShowRatingSlider(false);
 
@@ -73,18 +73,21 @@ const Hero: React.FC = () => {
       ratings.reduce((sum: number, rating: number) => sum + rating, 0) /
       ratings.length;
     setCurrentRating(Math.round(average * 10) / 10);
-  };
+  }, []);
 
-  const renderStars = (rating: number) => {
-    return Array.from({ length: 5 }, (_, i) => (
-      <StarIcon
-        key={i}
-        className={`w-4 h-4 ${
-          i < Math.floor(rating) ? "text-yellow-400" : "text-gray-400"
-        }`}
-      />
-    ));
-  };
+  const renderStars = useMemo(
+    () => (rating: number) => {
+      return Array.from({ length: 5 }, (_, i) => (
+        <StarIcon
+          key={i}
+          className={`w-4 h-4 ${
+            i < Math.floor(rating) ? "text-yellow-400" : "text-gray-400"
+          }`}
+        />
+      ));
+    },
+    []
+  );
 
   return (
     <section id="home" className="relative overflow-hidden -mt-20 pt-28 pb-32">
@@ -366,6 +369,6 @@ const Hero: React.FC = () => {
       <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-border to-transparent mt-32"></div>
     </section>
   );
-};
+});
 
 export default Hero;

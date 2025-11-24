@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useMemo,
+} from "react";
 
 interface ThemeContextType {
   isDark: boolean;
@@ -43,19 +49,20 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
     setIsThemeSwitching(false);
   };
 
+  const value = useMemo(
+    () => ({
+      isDark,
+      toggleTheme,
+      isThemeSwitching,
+      targetTheme,
+      startThemeSwitch,
+      completeThemeSwitch,
+    }),
+    [isDark, isThemeSwitching, targetTheme]
+  );
+
   return (
-    <ThemeContext.Provider
-      value={{
-        isDark,
-        toggleTheme,
-        isThemeSwitching,
-        targetTheme,
-        startThemeSwitch,
-        completeThemeSwitch,
-      }}
-    >
-      {children}
-    </ThemeContext.Provider>
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
   );
 };
 

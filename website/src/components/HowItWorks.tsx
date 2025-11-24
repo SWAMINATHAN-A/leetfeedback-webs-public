@@ -37,7 +37,7 @@ import notionIcon from "@/assets/support-icons/notion.svg";
 import ankiIcon from "@/assets/support-icons/anki.svg";
 import geminiIcon from "@/assets/support-icons/gemini.svg";
 
-const HowItWorks: React.FC = () => {
+const HowItWorks: React.FC = React.memo(() => {
   const steps = [
     {
       step: "01",
@@ -383,6 +383,6 @@ const HowItWorks: React.FC = () => {
       </div>
     </section>
   );
-};
+});
 
 export default HowItWorks;

@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { cn } from "@/lib/utils";
 
 interface ProgressiveBlurProps {
@@ -14,7 +15,7 @@ const blurLayers = [
   { blur: 12, opacity: "75% 100%" },
 ];
 
-export function ProgressiveBlur({
+export const ProgressiveBlur = React.memo(function ProgressiveBlur({
   className,
   position = "bottom",
 }: ProgressiveBlurProps) {
@@ -47,6 +48,6 @@ export function ProgressiveBlur({
       ))}
     </div>
   );
-}
+});
 
 export default ProgressiveBlur;

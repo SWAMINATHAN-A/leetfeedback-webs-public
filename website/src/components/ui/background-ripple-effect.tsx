@@ -19,12 +19,7 @@ export const BackgroundRippleEffect = ({
   const ref = useRef<any>(null);
 
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "absolute inset-0 h-full w-full",
-      )}
-    >
+    <div ref={ref} className={cn("absolute inset-0 h-full w-full")}>
       <div className="relative h-auto w-auto overflow-hidden">
         <div className="pointer-events-none absolute inset-0 z-[2] h-full w-full overflow-hidden" />
         <DivGrid
@@ -60,64 +55,66 @@ type CellStyle = React.CSSProperties & {
   ["--duration"]?: string;
 };
 
-const DivGrid = ({
-  className,
-  rows = 7,
-  cols = 30,
-  cellSize = 56,
-  clickedCell = null,
-  onCellClick = () => {},
-  interactive = true,
-}: DivGridProps) => {
-  const cells = useMemo(
-    () => Array.from({ length: rows * cols }, (_, idx) => idx),
-    [rows, cols],
-  );
+const DivGrid = React.memo(
+  ({
+    className,
+    rows = 7,
+    cols = 30,
+    cellSize = 56,
+    clickedCell = null,
+    onCellClick = () => {},
+    interactive = true,
+  }: DivGridProps) => {
+    const cells = useMemo(
+      () => Array.from({ length: rows * cols }, (_, idx) => idx),
+      [rows, cols]
+    );
 
-  const gridStyle: React.CSSProperties = {
-    display: "grid",
-    gridTemplateColumns: `repeat(${cols}, ${cellSize}px)`,
-    gridTemplateRows: `repeat(${rows}, ${cellSize}px)`,
-    width: cols * cellSize,
-    height: rows * cellSize,
-    marginInline: "auto",
-  };
+    const gridStyle: React.CSSProperties = {
+      display: "grid",
+      gridTemplateColumns: `repeat(${cols}, ${cellSize}px)`,
+      gridTemplateRows: `repeat(${rows}, ${cellSize}px)`,
+      width: cols * cellSize,
+      height: rows * cellSize,
+      marginInline: "auto",
+    };
 
-  return (
-    <div className={cn("relative z-[3]", className)} style={gridStyle}>
-      {cells.map((idx) => {
-        const rowIdx = Math.floor(idx / cols);
-        const colIdx = idx % cols;
-        const distance = clickedCell
-          ? Math.hypot(clickedCell.row - rowIdx, clickedCell.col - colIdx)
-          : 0;
-        const delay = clickedCell ? Math.max(0, distance * 55) : 0; // ms
-        const duration = 200 + distance * 80; // ms
+    return (
+      <div className={cn("relative z-[3]", className)} style={gridStyle}>
+        {cells.map((idx) => {
+          const rowIdx = Math.floor(idx / cols);
+          const colIdx = idx % cols;
+          const distance = clickedCell
+            ? Math.hypot(clickedCell.row - rowIdx, clickedCell.col - colIdx)
+            : 0;
+          const delay = clickedCell ? Math.max(0, distance * 55) : 0; // ms
+          const duration = 200 + distance * 80; // ms
 
-        const style: CellStyle = clickedCell
-          ? {
-              "--delay": `${delay}ms`,
-              "--duration": `${duration}ms`,
-            }
-          : {};
+          const style: CellStyle = clickedCell
+            ? {
+                "--delay": `${delay}ms`,
+                "--duration": `${duration}ms`,
+              }
+            : {};
 
-        return (
-          <div
-            key={idx}
-            className={cn(
-              "cell relative border-[0.5px] opacity-40 transition-opacity duration-150 will-change-transform hover:opacity-80",
-              "bg-neutral-100 border-neutral-300 dark:bg-neutral-800 dark:border-neutral-600",
-              "dark:shadow-[0px_0px_40px_1px_rgba(115,115,115,0.3)_inset]",
-              clickedCell && "animate-cell-ripple [animation-fill-mode:none]",
-              !interactive && "pointer-events-none",
-            )}
-            style={style}
-            onClick={
-              interactive ? () => onCellClick?.(rowIdx, colIdx) : undefined
-            }
-          />
-        );
-      })}
-    </div>
-  );
-};
+          return (
+            <div
+              key={idx}
+              className={cn(
+                "cell relative border-[0.5px] opacity-40 transition-opacity duration-150 will-change-transform hover:opacity-80",
+                "bg-neutral-100 border-neutral-300 dark:bg-neutral-800 dark:border-neutral-600",
+                "dark:shadow-[0px_0px_40px_1px_rgba(115,115,115,0.3)_inset]",
+                clickedCell && "animate-cell-ripple [animation-fill-mode:none]",
+                !interactive && "pointer-events-none"
+              )}
+              style={style}
+              onClick={
+                interactive ? () => onCellClick?.(rowIdx, colIdx) : undefined
+              }
+            />
+          );
+        })}
+      </div>
+    );
+  }
+);

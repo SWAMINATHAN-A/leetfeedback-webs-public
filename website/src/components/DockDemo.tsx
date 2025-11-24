@@ -32,7 +32,7 @@ const DATA = {
   ],
 };
 
-export function DockDemo() {
+export const DockDemo = React.memo(function DockDemo() {
   const { user, isAuthenticated } = useAuth();
   const { startNavigation, isNavigating } = useNavigation();
   const location = useLocation();
@@ -233,4 +233,4 @@ export function DockDemo() {
       </Dock>
     </motion.div>
   );
-}
+});

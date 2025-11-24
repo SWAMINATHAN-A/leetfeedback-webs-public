@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import { useScroll, useTransform, motion, MotionValue } from "motion/react";
 
-export const ContainerScroll = ({
+export const ContainerScroll = React.memo(({
   titleComponent,
   children,
 }: {
@@ -19,10 +19,23 @@ export const ContainerScroll = ({
     const checkMobile = () => {
       setIsMobile(window.innerWidth <= 768);
     };
+    
     checkMobile();
-    window.addEventListener("resize", checkMobile);
+    
+    let timeoutId: number;
+    const debouncedCheckMobile = () => {
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
+      timeoutId = window.setTimeout(checkMobile, 100);
+    };
+    
+    window.addEventListener("resize", debouncedCheckMobile);
     return () => {
-      window.removeEventListener("resize", checkMobile);
+      window.removeEventListener("resize", debouncedCheckMobile);
+      if (timeoutId) {
+        window.clearTimeout(timeoutId);
+      }
     };
   }, []);
 
@@ -52,9 +65,9 @@ export const ContainerScroll = ({
       </div>
     </div>
   );
-};
+});
 
-export const Header = ({ translate, titleComponent }: any) => {
+export const Header = React.memo(({ translate, titleComponent }: any) => {
   return (
     <motion.div
       style={{
@@ -65,9 +78,9 @@ export const Header = ({ translate, titleComponent }: any) => {
       {titleComponent}
     </motion.div>
   );
-};
+});
 
-export const Card = ({
+export const Card = React.memo(({
   rotate,
   scale,
   children,
@@ -90,4 +103,4 @@ export const Card = ({
       </div>
     </motion.div>
   );
-};
+});
