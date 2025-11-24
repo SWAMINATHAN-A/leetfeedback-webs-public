@@ -69,7 +69,7 @@ const TextRoll: React.FC<{
       whileHover="hovered"
       className={cn("relative block overflow-hidden", className)}
       style={{
-        lineHeight: 0.75,
+        lineHeight: 0.85,
       }}
     >
       <div>

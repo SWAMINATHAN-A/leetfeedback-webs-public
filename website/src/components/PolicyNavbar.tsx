@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
+import { smoothScrollTo } from "../utils/smoothScroll";
 
 interface PolicySection {
   id: string;
@@ -50,7 +51,7 @@ export const PolicyNavbar: React.FC<PolicyNavbarProps> = ({ sections }) => {
       const yOffset = -100;
       const y =
         element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: "smooth" });
+      smoothScrollTo(y, 800, "easeInOutCubic");
     }
   };
 

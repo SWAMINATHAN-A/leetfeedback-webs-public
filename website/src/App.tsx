@@ -32,6 +32,7 @@ import { NavigationIsland } from "./components/NavigationIsland";
 import { ThemeSwitchIsland } from "./components/ThemeSwitchIsland";
 import { motion, AnimatePresence } from "motion/react";
 import Header from "./components/Header";
+import { smoothScrollTo } from "./utils/smoothScroll";
 import "./App.css";
 
 const COOKIE_CONSENT_KEY = "leetfeedback_cookie_consent";
@@ -111,8 +112,8 @@ function AppContent() {
     if (navigationTarget) {
       navigate(navigationTarget);
       completeNavigation();
-      // Scroll to top of page
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // Scroll to top of page with anime.js
+      smoothScrollTo(0, 600, "easeInOutCubic");
     }
   };
 
