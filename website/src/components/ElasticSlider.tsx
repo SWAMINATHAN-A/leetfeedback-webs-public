@@ -21,34 +21,36 @@ interface ElasticSliderProps {
   onChange?: (value: number) => void;
 }
 
-const ElasticSlider: React.FC<ElasticSliderProps> = React.memo(({
-  defaultValue = 50,
-  startingValue = 0,
-  maxValue = 100,
-  className = "",
-  isStepped = false,
-  stepSize = 1,
-  leftIcon = <>-</>,
-  rightIcon = <>+</>,
-  onChange,
-}) => {
-  return (
-    <div
-      className={`flex flex-col items-center justify-center gap-4 w-48 ${className}`}
-    >
-      <Slider
-        defaultValue={defaultValue}
-        startingValue={startingValue}
-        maxValue={maxValue}
-        isStepped={isStepped}
-        stepSize={stepSize}
-        leftIcon={leftIcon}
-        rightIcon={rightIcon}
-        onChange={onChange}
-      />
-    </div>
-  );
-});
+const ElasticSlider: React.FC<ElasticSliderProps> = React.memo(
+  ({
+    defaultValue = 50,
+    startingValue = 0,
+    maxValue = 100,
+    className = "",
+    isStepped = false,
+    stepSize = 1,
+    leftIcon = <>-</>,
+    rightIcon = <>+</>,
+    onChange,
+  }) => {
+    return (
+      <div
+        className={`flex flex-col items-center justify-center gap-4 w-48 ${className}`}
+      >
+        <Slider
+          defaultValue={defaultValue}
+          startingValue={startingValue}
+          maxValue={maxValue}
+          isStepped={isStepped}
+          stepSize={stepSize}
+          leftIcon={leftIcon}
+          rightIcon={rightIcon}
+          onChange={onChange}
+        />
+      </div>
+    );
+  }
+);
 
 interface SliderProps {
   defaultValue: number;
@@ -61,163 +63,165 @@ interface SliderProps {
   onChange?: (value: number) => void;
 }
 
-const Slider: React.FC<SliderProps> = React.memo(({
-  defaultValue,
-  startingValue,
-  maxValue,
-  isStepped,
-  stepSize,
-  leftIcon,
-  rightIcon,
-  onChange,
-}) => {
-  const [value, setValue] = useState<number>(defaultValue);
-  const sliderRef = useRef<HTMLDivElement>(null);
-  const [region, setRegion] = useState<"left" | "middle" | "right">("middle");
-  const clientX = useMotionValue(0);
-  const overflow = useMotionValue(0);
-  const scale = useMotionValue(1);
+const Slider: React.FC<SliderProps> = React.memo(
+  ({
+    defaultValue,
+    startingValue,
+    maxValue,
+    isStepped,
+    stepSize,
+    leftIcon,
+    rightIcon,
+    onChange,
+  }) => {
+    const [value, setValue] = useState<number>(defaultValue);
+    const sliderRef = useRef<HTMLDivElement>(null);
+    const [region, setRegion] = useState<"left" | "middle" | "right">("middle");
+    const clientX = useMotionValue(0);
+    const overflow = useMotionValue(0);
+    const scale = useMotionValue(1);
 
-  useEffect(() => {
-    setValue(defaultValue);
-  }, [defaultValue]);
+    useEffect(() => {
+      setValue(defaultValue);
+    }, [defaultValue]);
 
-  useMotionValueEvent(clientX, "change", (latest: number) => {
-    if (sliderRef.current) {
-      const { left, right } = sliderRef.current.getBoundingClientRect();
-      let newValue: number;
-      if (latest < left) {
-        setRegion("left");
-        newValue = left - latest;
-      } else if (latest > right) {
-        setRegion("right");
-        newValue = latest - right;
-      } else {
-        setRegion("middle");
-        newValue = 0;
+    useMotionValueEvent(clientX, "change", (latest: number) => {
+      if (sliderRef.current) {
+        const { left, right } = sliderRef.current.getBoundingClientRect();
+        let newValue: number;
+        if (latest < left) {
+          setRegion("left");
+          newValue = left - latest;
+        } else if (latest > right) {
+          setRegion("right");
+          newValue = latest - right;
+        } else {
+          setRegion("middle");
+          newValue = 0;
+        }
+        overflow.jump(decay(newValue, MAX_OVERFLOW));
       }
-      overflow.jump(decay(newValue, MAX_OVERFLOW));
-    }
-  });
+    });
 
-  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (e.buttons > 0 && sliderRef.current) {
-      const { left, width } = sliderRef.current.getBoundingClientRect();
-      let newValue =
-        startingValue +
-        ((e.clientX - left) / width) * (maxValue - startingValue);
-      if (isStepped) {
-        newValue = Math.round(newValue / stepSize) * stepSize;
+    const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+      if (e.buttons > 0 && sliderRef.current) {
+        const { left, width } = sliderRef.current.getBoundingClientRect();
+        let newValue =
+          startingValue +
+          ((e.clientX - left) / width) * (maxValue - startingValue);
+        if (isStepped) {
+          newValue = Math.round(newValue / stepSize) * stepSize;
+        }
+        newValue = Math.min(Math.max(newValue, startingValue), maxValue);
+        setValue(newValue);
+        clientX.jump(e.clientX);
+        onChange?.(newValue);
       }
-      newValue = Math.min(Math.max(newValue, startingValue), maxValue);
-      setValue(newValue);
-      clientX.jump(e.clientX);
-      onChange?.(newValue);
-    }
-  };
+    };
 
-  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    handlePointerMove(e);
-    e.currentTarget.setPointerCapture(e.pointerId);
-  };
+    const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+      handlePointerMove(e);
+      e.currentTarget.setPointerCapture(e.pointerId);
+    };
 
-  const handlePointerUp = () => {
-    animate(overflow, 0, { type: "spring", bounce: 0.5 });
-  };
+    const handlePointerUp = () => {
+      animate(overflow, 0, { type: "spring", bounce: 0.5 });
+    };
 
-  const getRangePercentage = (): number => {
-    const totalRange = maxValue - startingValue;
-    if (totalRange === 0) return 0;
-    return ((value - startingValue) / totalRange) * 100;
-  };
+    const getRangePercentage = (): number => {
+      const totalRange = maxValue - startingValue;
+      if (totalRange === 0) return 0;
+      return ((value - startingValue) / totalRange) * 100;
+    };
 
-  return (
-    <>
-      <motion.div
-        onHoverStart={() => animate(scale, 1.2)}
-        onHoverEnd={() => animate(scale, 1)}
-        onTouchStart={() => animate(scale, 1.2)}
-        onTouchEnd={() => animate(scale, 1)}
-        style={{
-          scale,
-          opacity: useTransform(scale, [1, 1.2], [0.7, 1]),
-        }}
-        className="flex w-full touch-none select-none items-center justify-center gap-4"
-      >
+    return (
+      <>
         <motion.div
-          animate={{
-            scale: region === "left" ? [1, 1.4, 1] : 1,
-            transition: { duration: 0.25 },
-          }}
+          onHoverStart={() => animate(scale, 1.2)}
+          onHoverEnd={() => animate(scale, 1)}
+          onTouchStart={() => animate(scale, 1.2)}
+          onTouchEnd={() => animate(scale, 1)}
           style={{
-            x: useTransform(() =>
-              region === "left" ? -overflow.get() / scale.get() : 0
-            ),
+            scale,
+            opacity: useTransform(scale, [1, 1.2], [0.7, 1]),
           }}
-        >
-          {leftIcon}
-        </motion.div>
-
-        <div
-          ref={sliderRef}
-          className="relative flex w-full max-w-xs flex-grow cursor-grab touch-none select-none items-center py-4"
-          onPointerMove={handlePointerMove}
-          onPointerDown={handlePointerDown}
-          onPointerUp={handlePointerUp}
+          className="flex w-full touch-none select-none items-center justify-center gap-4"
         >
           <motion.div
-            style={{
-              scaleX: useTransform(() => {
-                if (sliderRef.current) {
-                  const { width } = sliderRef.current.getBoundingClientRect();
-                  return 1 + overflow.get() / width;
-                }
-                return 1;
-              }),
-              scaleY: useTransform(overflow, [0, MAX_OVERFLOW], [1, 0.8]),
-              transformOrigin: useTransform(() => {
-                if (sliderRef.current) {
-                  const { left, width } =
-                    sliderRef.current.getBoundingClientRect();
-                  return clientX.get() < left + width / 2 ? "right" : "left";
-                }
-                return "center";
-              }),
-              height: useTransform(scale, [1, 1.2], [6, 12]),
-              marginTop: useTransform(scale, [1, 1.2], [0, -3]),
-              marginBottom: useTransform(scale, [1, 1.2], [0, -3]),
+            animate={{
+              scale: region === "left" ? [1, 1.4, 1] : 1,
+              transition: { duration: 0.25 },
             }}
-            className="flex flex-grow"
+            style={{
+              x: useTransform(() =>
+                region === "left" ? -overflow.get() / scale.get() : 0
+              ),
+            }}
           >
-            <div className="relative h-full flex-grow overflow-hidden rounded-full bg-gray-400">
-              <div
-                className="absolute h-full bg-gray-500 rounded-full"
-                style={{ width: `${getRangePercentage()}%` }}
-              />
-            </div>
+            {leftIcon}
           </motion.div>
-        </div>
 
-        <motion.div
-          animate={{
-            scale: region === "right" ? [1, 1.4, 1] : 1,
-            transition: { duration: 0.25 },
-          }}
-          style={{
-            x: useTransform(() =>
-              region === "right" ? overflow.get() / scale.get() : 0
-            ),
-          }}
-        >
-          {rightIcon}
+          <div
+            ref={sliderRef}
+            className="relative flex w-full max-w-xs flex-grow cursor-grab touch-none select-none items-center py-4"
+            onPointerMove={handlePointerMove}
+            onPointerDown={handlePointerDown}
+            onPointerUp={handlePointerUp}
+          >
+            <motion.div
+              style={{
+                scaleX: useTransform(() => {
+                  if (sliderRef.current) {
+                    const { width } = sliderRef.current.getBoundingClientRect();
+                    return 1 + overflow.get() / width;
+                  }
+                  return 1;
+                }),
+                scaleY: useTransform(overflow, [0, MAX_OVERFLOW], [1, 0.8]),
+                transformOrigin: useTransform(() => {
+                  if (sliderRef.current) {
+                    const { left, width } =
+                      sliderRef.current.getBoundingClientRect();
+                    return clientX.get() < left + width / 2 ? "right" : "left";
+                  }
+                  return "center";
+                }),
+                height: useTransform(scale, [1, 1.2], [6, 12]),
+                marginTop: useTransform(scale, [1, 1.2], [0, -3]),
+                marginBottom: useTransform(scale, [1, 1.2], [0, -3]),
+              }}
+              className="flex flex-grow"
+            >
+              <div className="relative h-full flex-grow overflow-hidden rounded-full bg-gray-400">
+                <div
+                  className="absolute h-full bg-gray-500 rounded-full"
+                  style={{ width: `${getRangePercentage()}%` }}
+                />
+              </div>
+            </motion.div>
+          </div>
+
+          <motion.div
+            animate={{
+              scale: region === "right" ? [1, 1.4, 1] : 1,
+              transition: { duration: 0.25 },
+            }}
+            style={{
+              x: useTransform(() =>
+                region === "right" ? overflow.get() / scale.get() : 0
+              ),
+            }}
+          >
+            {rightIcon}
+          </motion.div>
         </motion.div>
-      </motion.div>
-      <p className="absolute text-gray-400 transform -translate-y-4 text-xs font-medium tracking-wide">
-        {Math.round(value)}
-      </p>
-    </>
-  );
-});
+        <p className="absolute text-gray-400 transform -translate-y-4 text-xs font-medium tracking-wide">
+          {Math.round(value)}
+        </p>
+      </>
+    );
+  }
+);
 
 function decay(value: number, max: number): number {
   if (max === 0) {

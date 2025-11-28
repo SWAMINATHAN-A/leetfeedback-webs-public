@@ -23,6 +23,7 @@ import { DynamicIslandDemo } from "./components/DynamicIslandDemo";
 import { SignInDynamicIsland } from "./components/SignInDynamicIsland";
 import { NavigationIsland } from "./components/NavigationIsland";
 import { ThemeSwitchIsland } from "./components/ThemeSwitchIsland";
+import { Preloader } from "./components/Preloader";
 import { motion, AnimatePresence } from "motion/react";
 import Header from "./components/Header";
 import { smoothScrollTo } from "./utils/smoothScroll";
@@ -64,6 +65,12 @@ function AppContent() {
   const [showDock, setShowDock] = useState(false);
   const [showProgressiveBlur, setShowProgressiveBlur] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [showPreloader, setShowPreloader] = useState(true);
+
+  // Handle preloader completion
+  const handlePreloaderComplete = useCallback(() => {
+    setShowPreloader(false);
+  }, []);
 
   // Show loading animation on initial load, then show appropriate UI
   useEffect(() => {
@@ -121,6 +128,9 @@ function AppContent() {
 
   return (
     <div className="App min-h-screen relative">
+      {/* Preloader - shows on initial load */}
+      {showPreloader && <Preloader onComplete={handlePreloaderComplete} />}
+
       {/* Background Ripple Effect */}
       <div className="fixed inset-0 w-full h-full z-0">
         <BackgroundRippleEffect rows={8} cols={27} cellSize={56} />
@@ -168,11 +178,12 @@ function AppContent() {
       <AnimatePresence>
         {isNavigating && navigationTarget && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
             className="fixed bottom-8 left-0 right-0 z-50 flex justify-center"
+            style={{ willChange: "opacity, transform" }}
           >
             <NavigationIsland
               target={navigationTarget}
@@ -186,12 +197,12 @@ function AppContent() {
       <AnimatePresence>
         {isThemeSwitching && !isNavigating && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
             className="fixed bottom-8 left-0 right-0 flex justify-center"
-            style={{ zIndex: 10000 }}
+            style={{ zIndex: 10000, willChange: "opacity, transform" }}
           >
             <ThemeSwitchIsland
               isTogglingToDark={targetTheme}
@@ -208,11 +219,12 @@ function AppContent() {
           showDynamicIsland &&
           (isHomePage || isStatsPage || isRoadmapPage || isPolicyPage) && (
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
               className="fixed bottom-8 left-0 right-0 z-50 flex justify-center"
+              style={{ willChange: "opacity, transform" }}
             >
               <DynamicIslandDemo onComplete={handleDynamicIslandComplete} />
             </motion.div>
@@ -223,11 +235,12 @@ function AppContent() {
       <AnimatePresence>
         {isSignInIslandOpen && !isNavigating && !isThemeSwitching && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             className="fixed bottom-8 left-0 right-0 z-50 flex justify-center"
+            style={{ willChange: "opacity, transform" }}
           >
             <SignInDynamicIsland onComplete={handleSignInComplete} />
           </motion.div>

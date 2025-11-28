@@ -24,7 +24,7 @@ function easeOutCubic(t: number): number {
 export function IconCloud({ icons, images }: IconCloudProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [iconPositions, setIconPositions] = useState<Icon[]>([]);
-  
+
   // Use refs for animation state to avoid re-renders
   const rotationRef = useRef({ x: 0, y: 0 });
   const isDraggingRef = useRef(false);
@@ -39,7 +39,7 @@ export function IconCloud({ icons, images }: IconCloudProps) {
     startTime: number;
     duration: number;
   } | null>(null);
-  
+
   const animationFrameRef = useRef<number | null>(null);
   const iconCanvasesRef = useRef<HTMLCanvasElement[]>([]);
   const imagesLoadedRef = useRef<boolean[]>([]);
@@ -139,10 +139,10 @@ export function IconCloud({ icons, images }: IconCloudProps) {
 
     // Check for clicks on icons
     let clickedIcon = false;
-    
+
     iconPositions.forEach((icon) => {
       if (clickedIcon) return;
-      
+
       const cosX = Math.cos(rotationRef.current.x);
       const sinX = Math.sin(rotationRef.current.x);
       const cosY = Math.cos(rotationRef.current.y);
@@ -164,14 +164,14 @@ export function IconCloud({ icons, images }: IconCloudProps) {
         clickedIcon = true;
         const targetX = -Math.atan2(
           icon.y,
-          Math.sqrt(icon.x * icon.x + icon.z * icon.z),
+          Math.sqrt(icon.x * icon.x + icon.z * icon.z)
         );
         const targetY = Math.atan2(icon.x, icon.z);
 
         const currentX = rotationRef.current.x;
         const currentY = rotationRef.current.y;
         const distance = Math.sqrt(
-          Math.pow(targetX - currentX, 2) + Math.pow(targetY - currentY, 2),
+          Math.pow(targetX - currentX, 2) + Math.pow(targetY - currentY, 2)
         );
 
         const duration = Math.min(2000, Math.max(800, distance * 1000));
@@ -243,12 +243,8 @@ export function IconCloud({ icons, images }: IconCloudProps) {
         const easedProgress = easeOutCubic(progress);
 
         rotationRef.current = {
-          x:
-            target.startX +
-            (target.x - target.startX) * easedProgress,
-          y:
-            target.startY +
-            (target.y - target.startY) * easedProgress,
+          x: target.startX + (target.x - target.startX) * easedProgress,
+          y: target.startY + (target.y - target.startY) * easedProgress,
         };
 
         if (progress >= 1) {
@@ -277,7 +273,7 @@ export function IconCloud({ icons, images }: IconCloudProps) {
         ctx.save();
         ctx.translate(
           canvas.width / 2 + rotatedX,
-          canvas.height / 2 + rotatedY,
+          canvas.height / 2 + rotatedY
         );
         ctx.scale(scale, scale);
         ctx.globalAlpha = opacity;
