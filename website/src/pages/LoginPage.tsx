@@ -294,7 +294,7 @@ const LoginPage: React.FC = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             className="fixed inset-0 pointer-events-none z-50"
-            style={{ 
+            style={{
               WebkitBackfaceVisibility: "hidden",
               backfaceVisibility: "hidden",
               transform: "translateZ(0)",
@@ -364,7 +364,8 @@ const LoginPage: React.FC = () => {
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="absolute -top-2 -left-2 w-16 h-16"
               style={{
-                background: "radial-gradient(circle, #0894FF 0%, transparent 70%)",
+                background:
+                  "radial-gradient(circle, #0894FF 0%, transparent 70%)",
                 filter: "blur(14px)",
                 transform: "translateZ(0)",
               }}
@@ -376,7 +377,8 @@ const LoginPage: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
               className="absolute -top-2 -right-2 w-16 h-16"
               style={{
-                background: "radial-gradient(circle, #FF9004 0%, transparent 70%)",
+                background:
+                  "radial-gradient(circle, #FF9004 0%, transparent 70%)",
                 filter: "blur(14px)",
                 transform: "translateZ(0)",
               }}
@@ -388,7 +390,8 @@ const LoginPage: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
               className="absolute -bottom-2 -right-2 w-16 h-16"
               style={{
-                background: "radial-gradient(circle, #FF9004 0%, transparent 70%)",
+                background:
+                  "radial-gradient(circle, #FF9004 0%, transparent 70%)",
                 filter: "blur(14px)",
                 transform: "translateZ(0)",
               }}
@@ -400,7 +403,8 @@ const LoginPage: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
               className="absolute -bottom-2 -left-2 w-16 h-16"
               style={{
-                background: "radial-gradient(circle, #C959DD 0%, transparent 70%)",
+                background:
+                  "radial-gradient(circle, #C959DD 0%, transparent 70%)",
                 filter: "blur(14px)",
                 transform: "translateZ(0)",
               }}

@@ -105,8 +105,8 @@ const FAQAccordion: React.FC = () => {
 // GitHub stats hook
 const useGitHubStats = () => {
   const [stats, setStats] = useState({
-    stars: 0,
-    lastCommitDays: 0,
+    stars: 9, // Fallback value
+    lastCommitDays: 23, // Fallback value
     loading: true,
   });
 
@@ -131,12 +131,13 @@ const useGitHubStats = () => {
         const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
         setStats({
-          stars: repoData.stargazers_count || 0,
-          lastCommitDays: diffDays,
+          stars: repoData.stargazers_count || 9,
+          lastCommitDays: isNaN(diffDays) ? 23 : diffDays,
           loading: false,
         });
       } catch (error) {
         console.error("Failed to fetch GitHub stats:", error);
+        // Keep fallback values, just set loading to false
         setStats((prev) => ({ ...prev, loading: false }));
       }
     };
