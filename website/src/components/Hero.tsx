@@ -134,7 +134,7 @@ const Hero: React.FC = React.memo(() => {
                 preset="fade-in-blur"
                 speedSegment={0.3}
                 as="h1"
-                className="mt-0 max-w-4xl text-balance text-5xl md:text-7xl leading-tight"
+                className="mt-0 text-5xl md:text-7xl leading-tight"
               >
                 The Complete Learning Ecosystem
               </TextEffect>
