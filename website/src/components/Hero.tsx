@@ -212,14 +212,29 @@ const Hero: React.FC = React.memo(() => {
                   }}
                   className="mt-14 flex flex-col sm:flex-row items-start gap-8"
                 >
-                  <div
-                    className="flex items-center gap-2 cursor-pointer hover:text-foreground transition-colors text-sm text-muted-foreground"
+                  <motion.div
+                    className="group relative flex items-center gap-3 cursor-pointer bg-gradient-to-r from-yellow-500/10 via-amber-500/10 to-orange-500/10 hover:from-yellow-500/20 hover:via-amber-500/20 hover:to-orange-500/20 border border-yellow-500/20 hover:border-yellow-500/40 rounded-full px-4 py-2.5 transition-all duration-300"
                     onClick={() => setShowRatingSlider(true)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    {renderStars(currentRating)}
-                    <NumberTicker value={currentRating} decimalPlaces={1} />/ 5
-                    Rating
-                  </div>
+                    {/* Glow effect on hover */}
+                    <div className="absolute inset-0 rounded-full bg-yellow-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
+                    
+                    <div className="relative flex items-center gap-1">
+                      {renderStars(currentRating)}
+                    </div>
+                    <div className="relative flex items-center gap-1.5">
+                      <span className="text-lg font-semibold text-yellow-500">
+                        <NumberTicker value={currentRating} decimalPlaces={1} />
+                      </span>
+                      <span className="text-sm text-muted-foreground">/ 5</span>
+                    </div>
+                    <div className="relative h-4 w-px bg-yellow-500/30" />
+                    <span className="relative text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors">
+                      User Rating
+                    </span>
+                  </motion.div>
                 </AnimatedGroup>
 
                 {/* Key Features Highlight */}
@@ -269,10 +284,25 @@ const Hero: React.FC = React.memo(() => {
               className="hidden lg:block relative mt-10"
             >
               <div className="relative w-full">
+                {/* Ambient glow effect - positioned to match image bounds */}
+                <div 
+                  className="absolute top-8 left-0 w-[180%] h-[70%] bg-gradient-to-br from-white/[0.08] via-white/[0.04] to-transparent blur-3xl opacity-50 pointer-events-none"
+                  aria-hidden="true"
+                />
+                {/* Subtle connecting gradient line */}
+                <div 
+                  className="absolute -left-16 top-1/4 w-16 h-px bg-gradient-to-r from-transparent to-white/20"
+                  aria-hidden="true"
+                />
+                {/* Left edge glow accent */}
+                <div 
+                  className="absolute left-0 top-12 w-px h-32 bg-gradient-to-b from-white/30 via-white/10 to-transparent"
+                  aria-hidden="true"
+                />
                 <img
                   src={graphImage}
                   alt="Analytics Graph"
-                  className="w-[200%] max-w-none h-auto rounded-t-3xl grayscale"
+                  className="relative w-[200%] max-w-none h-auto rounded-t-3xl grayscale"
                   style={{
                     maskImage:
                       "linear-gradient(to bottom, black 0%, black 60%, transparent 100%)",
