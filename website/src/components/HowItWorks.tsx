@@ -117,7 +117,7 @@ const HowItWorks: React.FC = React.memo(() => {
           <BlurFade delay={0.75}>
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
               From installation to building your coding portfolio - everything
-              happens automatically in the background.
+              happens <span style={{ fontFamily: "'Figurlce', sans-serif" }} className="font-bold italic text-foreground">automatically</span> in the background.
             </p>
           </BlurFade>
         </div>

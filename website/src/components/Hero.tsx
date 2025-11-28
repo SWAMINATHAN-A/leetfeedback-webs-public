@@ -139,19 +139,14 @@ const Hero: React.FC = React.memo(() => {
                 The Complete Learning Ecosystem
               </TextEffect>
 
-              {/* Subheadline with TextEffect */}
-              <TextEffect
-                per="line"
-                preset="fade-in-blur"
-                speedSegment={0.3}
-                delay={0.5}
-                as="p"
-                className="mt-8 max-w-3xl text-balance text-xl md:text-2xl text-muted-foreground leading-relaxed"
-              >
-                Automatically push solutions to GitHub, sync insights to Notion,
-                and create Anki flashcards from your coding mistakes. The
-                complete learning ecosystem.
-              </TextEffect>
+              {/* Subheadline with BlurFade */}
+              <BlurFade delay={0.5}>
+                <p className="mt-8 max-w-3xl text-balance text-xl md:text-2xl text-muted-foreground leading-relaxed">
+                  Automatically push solutions to GitHub, sync insights to Notion,
+                  and create Anki flashcards from your coding mistakes. The{" "}
+                  <span style={{ fontFamily: "'Diehl Deco', serif" }} className="font-bold italic text-foreground">complete learning ecosystem</span>.
+                </p>
+              </BlurFade>
 
               {/* CTA Buttons */}
               <div id="hero-content">

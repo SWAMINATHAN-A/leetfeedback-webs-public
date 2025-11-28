@@ -211,7 +211,7 @@ const Pricing: React.FC = React.memo(() => {
           </TextAnimate>
           <BlurFade delay={0.5}>
             <p className="text-xl md:text-2xl text-muted-foreground">
-              Choose the plan that works for you
+              Choose the plan that <span style={{ fontFamily: "'Diehl Deco', serif" }} className="font-bold italic text-foreground">works for you</span>
             </p>
           </BlurFade>
         </div>
@@ -346,7 +346,7 @@ const Pricing: React.FC = React.memo(() => {
                     Build with us
                   </h3>
                   <p className="text-gray-400 max-w-md mx-auto">
-                    Join our growing community and help shape the future of coding practice
+                    Join our growing community and help <span style={{ fontFamily: "'Figurlce', sans-serif" }} className="font-bold italic text-white">shape the future</span> of coding practice
                   </p>
                 </div>
 

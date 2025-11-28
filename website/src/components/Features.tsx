@@ -163,7 +163,7 @@ const Features: React.FC = React.memo(() => {
                 Transform Your Coding Journey
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground">
-                Watch how AI turns your practice into progress
+                Watch how <span style={{ fontFamily: "'Diehl Deco', serif" }} className="font-bold italic text-foreground">AI turns your practice into progress</span>
               </p>
             </div>
           }

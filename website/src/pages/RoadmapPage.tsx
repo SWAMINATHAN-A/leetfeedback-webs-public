@@ -1,12 +1,12 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { animate, stagger } from "animejs";
 import Footer from "../components/Footer";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 import { Card, CardContent } from "../components/ui/card";
 import { BlurFade } from "../components/magicui/blur-fade";
 import { TextAnimate } from "../components/magicui/text-animate";
-import { RainbowButton } from "../components/magicui/rainbow-button";
 import { Timeline } from "../components/ui/timeline";
 import { TextEffect } from "../components/ui/text-effect";
 import {
@@ -16,7 +16,6 @@ import {
   Phase4Swapy,
 } from "../components/roadmap/PhaseSwapy";
 import { analytics } from "../utils/analytics";
-import Silk from "../components/Silk";
 import ShinyText from "../components/ShinyText";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
@@ -45,8 +44,36 @@ interface RoadmapPhase {
   timeline: string;
 }
 
+// Animated progress bar component
+const AnimatedProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
+  const barRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!barRef.current) return;
+
+    animate(barRef.current, {
+      width: `${progress}%`,
+      duration: 1800,
+      ease: "outExpo",
+      delay: 300,
+    });
+  }, [progress]);
+
+  return (
+    <div className="relative w-full h-2 bg-muted/30 rounded-full overflow-hidden mt-4">
+      <div
+        ref={barRef}
+        className="absolute top-0 left-0 h-full bg-gradient-to-r from-primary via-blue-500 to-primary rounded-full"
+        style={{ width: "0%" }}
+      />
+    </div>
+  );
+};
+
 const RoadmapPage: React.FC = () => {
   const heroRef = useRef<HTMLElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+  const phaseCardsRef = useRef<HTMLDivElement>(null);
 
   // Hero scroll tracking
   const { scrollYProgress: heroScrollProgress } = useScroll({
@@ -56,6 +83,22 @@ const RoadmapPage: React.FC = () => {
 
   // Page-wide scroll tracking for the animated path
   const { scrollYProgress } = useScroll();
+
+  // Simple fade-in animation for stats
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      animate(".stat-card", {
+        opacity: [0, 1],
+        delay: stagger(100),
+        duration: 600,
+        ease: "outQuad",
+      });
+    }, 400);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  // Removed complex phase card animations - cards now visible by default
 
   // Animation values for the hero SVG
   const svgScale = useTransform(heroScrollProgress, [0, 0.5], [1, 1.1]);
@@ -172,7 +215,7 @@ const RoadmapPage: React.FC = () => {
         <div className="space-y-8">
           {/* Phase Card - Text and Description Focused - Hidden on Mobile */}
           <Card
-            className={`hidden md:block overflow-hidden rounded-3xl transition-all duration-300 backdrop-blur-xl ${
+            className={`hidden md:block rounded-3xl transition-all duration-300 backdrop-blur-xl ${
               phase.id === 1
                 ? "bg-gradient-to-br from-rose-200/10 via-background/95 to-background/95 border-rose-300/30"
                 : phase.id === 2
@@ -182,12 +225,12 @@ const RoadmapPage: React.FC = () => {
                 : "bg-gradient-to-br from-primary/5 via-background/95 to-background/95 border-border/30"
             }`}
           >
-            <CardContent className="p-8">
+            <CardContent className="p-6 lg:p-8">
               {/* Header with Icon and Status */}
-              <div className="flex items-start justify-between mb-6">
-                <div className="flex items-start gap-4">
+              <div className="flex flex-col lg:flex-row lg:items-start gap-4 mb-5">
+                <div className="flex items-start gap-4 flex-1 min-w-0">
                   <div
-                    className={`w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0 ${
+                    className={`w-12 h-12 lg:w-14 lg:h-14 rounded-2xl flex items-center justify-center shadow-lg flex-shrink-0 ${
                       phase.id === 1
                         ? "bg-rose-200/20"
                         : phase.id === 2
@@ -200,7 +243,7 @@ const RoadmapPage: React.FC = () => {
                     }`}
                   >
                     <phase.icon
-                      className={`w-7 h-7 ${
+                      className={`w-6 h-6 lg:w-7 lg:h-7 ${
                         phase.id === 1
                           ? "text-rose-500 dark:text-rose-400"
                           : phase.id === 2
@@ -214,30 +257,30 @@ const RoadmapPage: React.FC = () => {
                     />
                   </div>
 
-                  <div className="flex-1">
-                    <h3 className="text-2xl font-semibold text-foreground mb-2">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-xl lg:text-2xl font-semibold text-foreground mb-2 break-words">
                       {phase.title}
                     </h3>
-                    <p className="text-base text-muted-foreground leading-relaxed font-light">
+                    <p className="text-sm lg:text-base text-muted-foreground leading-relaxed font-light">
                       {phase.description}
                     </p>
                   </div>
                 </div>
 
                 {phase.milestone && (
-                  <div className="px-4 py-2 rounded-full bg-background/50 backdrop-blur-sm border border-border/50">
+                  <div className="px-3 py-1.5 lg:px-4 lg:py-2 rounded-full bg-background/50 backdrop-blur-sm border border-border/50 flex-shrink-0 self-start">
                     <ShinyText
                       text={phase.milestone}
                       speed={3}
-                      className="text-sm font-normal"
+                      className="text-xs lg:text-sm font-normal whitespace-nowrap"
                     />
                   </div>
                 )}
               </div>
 
-              {/* Features as flowing text description */}
+              {/* Features as chips/tags layout */}
               <div
-                className={`p-6 rounded-2xl mb-6 ${
+                className={`p-4 lg:p-5 rounded-2xl mb-5 ${
                   phase.id === 1
                     ? "bg-rose-200/10 border border-rose-300/30"
                     : phase.id === 2
@@ -249,15 +292,32 @@ const RoadmapPage: React.FC = () => {
                     : "bg-muted/20 border border-border/30"
                 }`}
               >
-                <p className="text-sm text-foreground leading-relaxed font-light">
-                  {phase.features.join(" • ")}
-                </p>
+                <div className="flex flex-wrap gap-2">
+                  {phase.features.map((feature, featureIndex) => (
+                    <span
+                      key={featureIndex}
+                      className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                        phase.id === 1
+                          ? "bg-rose-100/30 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300"
+                          : phase.id === 2
+                          ? "bg-blue-100/30 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                          : phase.id === 3
+                          ? "bg-purple-100/30 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300"
+                          : phase.id === 4
+                          ? "bg-pink-100/30 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300"
+                          : "bg-muted/40 text-muted-foreground"
+                      }`}
+                    >
+                      {feature}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               {/* Status Footer */}
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-3">
                 <div
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full ${
+                  className={`flex items-center gap-2 px-3 py-1.5 lg:px-4 lg:py-2 rounded-full ${
                     phase.id === 1
                       ? "bg-rose-200/20 border border-rose-300/30"
                       : phase.id === 2
@@ -288,21 +348,21 @@ const RoadmapPage: React.FC = () => {
                         <ShinyText
                           text="Completed"
                           speed={3}
-                          className="text-sm font-normal"
+                          className="text-xs lg:text-sm font-normal"
                         />
                       </div>
                     </>
                   ) : (
                     <>
                       <RadioButtonUncheckedIcon className="w-4 h-4 text-muted-foreground" />
-                      <span className="text-sm font-normal text-muted-foreground">
+                      <span className="text-xs lg:text-sm font-normal text-muted-foreground">
                         In Development
                       </span>
                     </>
                   )}
                 </div>
 
-                <span className="text-sm font-mono text-muted-foreground">
+                <span className="text-xs lg:text-sm font-mono text-muted-foreground">
                   {phase.timeline}
                 </span>
               </div>
@@ -390,10 +450,16 @@ const RoadmapPage: React.FC = () => {
 
                   {/* Progress Stats */}
                   <BlurFade delay={1}>
-                    <Card className="bg-card/50 border border-border backdrop-blur-sm rounded-3xl mt-12">
-                      <CardContent className="p-6">
+                    <Card
+                      ref={statsRef}
+                      className="bg-card/50 border border-border backdrop-blur-sm rounded-3xl mt-12 relative overflow-hidden"
+                    >
+                      <CardContent className="p-6 relative z-10">
                         <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-border">
-                          <div className="text-center py-4 md:py-0">
+                          <div
+                            className="stat-card text-center py-4 md:py-0"
+                            style={{ opacity: 0 }}
+                          >
                             <CheckCircleIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
                             <div className="text-2xl font-bold text-foreground">
                               {completedCount}
@@ -402,7 +468,10 @@ const RoadmapPage: React.FC = () => {
                               Phases Complete
                             </div>
                           </div>
-                          <div className="text-center py-4 md:py-0">
+                          <div
+                            className="stat-card text-center py-4 md:py-0"
+                            style={{ opacity: 0 }}
+                          >
                             <AutoAwesomeIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
                             <div className="text-2xl font-bold text-foreground">
                               {roadmapPhases.length - completedCount}
@@ -411,7 +480,10 @@ const RoadmapPage: React.FC = () => {
                               In Development
                             </div>
                           </div>
-                          <div className="text-center py-4 md:py-0">
+                          <div
+                            className="stat-card text-center py-4 md:py-0"
+                            style={{ opacity: 0 }}
+                          >
                             <FlagIcon className="w-8 h-8 text-foreground mx-auto mb-2" />
                             <div className="text-2xl font-bold text-foreground">
                               {
@@ -424,6 +496,7 @@ const RoadmapPage: React.FC = () => {
                             </div>
                           </div>
                         </div>
+                        <AnimatedProgressBar progress={progressPercentage} />
                       </CardContent>
                     </Card>
                   </BlurFade>
@@ -488,59 +561,97 @@ const RoadmapPage: React.FC = () => {
           </div>
         </section>
 
-        {/* Call to Action Section */}
+        {/* Open Source Community Section */}
         <section className="py-24 bg-background border-t border-border/20">
           <div className="container mx-auto px-4 md:px-8">
             <div className="max-w-4xl mx-auto">
-              {/* Open Source Contribution */}
-              <Card className="relative overflow-hidden bg-background/10 border border-border rounded-3xl backdrop-blur-sm">
-                {/* Silk Background */}
-                <div className="absolute inset-0 opacity-20">
-                  <Silk
-                    speed={2}
-                    scale={1}
-                    color="#197CDB"
-                    noiseIntensity={1}
-                    rotation={0.2}
-                  />
-                </div>
+              <BlurFade delay={0.1}>
+                <div className="bg-zinc-900 dark:bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden">
+                  <div className="p-8 md:p-12">
+                    {/* Header */}
+                    <div className="text-center mb-10">
+                      <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-3 py-1.5 inline-flex items-center">
+                        <ShinyText
+                          text="Open Source"
+                          speed={3}
+                          className="font-mono text-xs"
+                        />
+                      </div>
+                      <h3 className="text-3xl md:text-4xl font-semibold text-white mb-3">
+                        Join Our Open Source Journey
+                      </h3>
+                      <p className="text-gray-400 max-w-md mx-auto">
+                        Help us build the future of coding practice tools
+                      </p>
+                    </div>
 
-                <div className="relative z-10 p-8 sm:p-10">
-                  <h3 className="text-2xl sm:text-3xl font-bold mb-3 text-foreground text-center">
-                    Join Our Open Source Journey
-                  </h3>
-                  <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto mb-6 text-center">
-                    Help us build the future of coding practice tools
-                  </p>
+                    {/* Stats Row */}
+                    <div className="grid grid-cols-3 gap-4 mb-10">
+                      <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-2xl p-4 text-center">
+                        <div className="flex items-center justify-center gap-1.5 mb-1">
+                          <Users className="w-4 h-4 text-green-400" />
+                          <span className="text-xl font-bold text-white font-mono">
+                            50+
+                          </span>
+                        </div>
+                        <span className="text-xs text-gray-400">
+                          Contributors
+                        </span>
+                      </div>
+                      <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-2xl p-4 text-center">
+                        <div className="flex items-center justify-center gap-1.5 mb-1">
+                          <Code2 className="w-4 h-4 text-blue-400" />
+                          <span className="text-xl font-bold text-white font-mono">
+                            10k+
+                          </span>
+                        </div>
+                        <span className="text-xs text-gray-400">
+                          Lines of Code
+                        </span>
+                      </div>
+                      <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-2xl p-4 text-center">
+                        <div className="flex items-center justify-center gap-1.5 mb-1">
+                          <Sparkles className="w-4 h-4 text-yellow-400" />
+                          <span className="text-xl font-bold text-white font-mono">
+                            4
+                          </span>
+                        </div>
+                        <span className="text-xs text-gray-400">
+                          Phases Planned
+                        </span>
+                      </div>
+                    </div>
 
-                  <div className="flex flex-col sm:flex-row gap-3 justify-center">
-                    <RainbowButton
-                      size="lg"
-                      className="px-6 py-3 text-base font-semibold"
-                      onClick={() => {
-                        analytics.trackFeatureClick("contribute_github");
-                        window.open(
-                          "https://github.com/lqSky7/leetFeedback-extension",
-                          "_blank"
-                        );
-                      }}
-                    >
-                      <GitHubIcon className="w-4 h-4 mr-2" />
-                      Contribute on GitHub
-                    </RainbowButton>
-                    <RainbowButton
-                      variant="outline"
-                      size="lg"
-                      className="px-6 py-3 text-base font-semibold"
-                      onClick={() =>
-                        (window.location.href = "mailto:catince@outlook.com")
-                      }
-                    >
-                      Join Our Team
-                    </RainbowButton>
+                    {/* CTA Buttons */}
+                    <div className="flex flex-col sm:flex-row justify-center gap-3">
+                      <Button
+                        size="lg"
+                        className="bg-white text-black hover:bg-gray-100 rounded-full px-6 font-medium"
+                        onClick={() => {
+                          analytics.trackFeatureClick("contribute_github");
+                          window.open(
+                            "https://github.com/lqSky7/leetFeedback-extension",
+                            "_blank"
+                          );
+                        }}
+                      >
+                        <GitHubIcon className="w-4 h-4 mr-2" />
+                        Contribute on GitHub
+                      </Button>
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        className="border-zinc-700 text-white hover:bg-zinc-800 rounded-full px-6 font-medium"
+                        onClick={() =>
+                          (window.location.href = "mailto:catince@outlook.com")
+                        }
+                      >
+                        Join Our Team
+                      </Button>
+                    </div>
                   </div>
                 </div>
-              </Card>
+              </BlurFade>
             </div>
           </div>
         </section>

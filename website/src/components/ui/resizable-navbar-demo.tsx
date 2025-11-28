@@ -41,15 +41,7 @@ export function ResizableNavbarDemo() {
               alt="Traverse Logo"
               className="h-8 w-auto"
             />
-            <div className="flex items-center space-x-2">
-              <span className="text-lg font-semibold mono">Traverse</span>
-              <Badge
-                variant="outline"
-                className="text-xs font-mono bg-muted/50"
-              >
-                Beta
-              </Badge>
-            </div>
+            <span className="text-2xl font-semibold" style={{ fontFamily: "'Belisa Plumilla Manual', cursive" }}>Traverse</span>
           </div>
           <NavItems items={navItems} />
           <div className="flex items-center gap-4">
@@ -112,15 +104,7 @@ export function ResizableNavbarDemo() {
                 alt="Traverse Logo"
                 className="h-8 w-auto"
               />
-              <div className="flex items-center space-x-2">
-                <span className="text-lg font-semibold mono">Traverse</span>
-                <Badge
-                  variant="outline"
-                  className="text-xs font-mono bg-muted/50"
-                >
-                  Beta
-                </Badge>
-              </div>
+              <span className="text-2xl font-semibold" style={{ fontFamily: "'Belisa Plumilla Manual', cursive" }}>Traverse</span>
             </div>
             <MobileNavToggle
               isOpen={isMobileMenuOpen}
