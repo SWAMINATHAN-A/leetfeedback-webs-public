@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "motion/react";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
 import {
@@ -25,7 +26,7 @@ import { RainbowButton } from "./magicui/rainbow-button";
 import { analytics } from "../utils/analytics";
 import DiscordIcon from "./icons/DiscordIcon";
 import ShinyText from "./ShinyText";
-import Silk from "./Silk";
+import GradientMesh from "./GradientMesh";
 import {
   Accordion,
   AccordionItem,
@@ -276,56 +277,76 @@ const Pricing: React.FC = React.memo(() => {
           <FAQAccordion />
         </div>
 
-        {/* Help Us Section */}
-        <div className="text-center mt-16 max-w-4xl mx-auto">
-          <Card className="relative overflow-hidden bg-background/10 border border-border rounded-3xl backdrop-blur-sm">
-            {/* Silk Background */}
-            <div className="absolute inset-0 opacity-20">
-              <Silk
-                speed={2}
-                scale={1}
-                color="#197CDB"
-                noiseIntensity={1}
-                rotation={0.2}
+        {/* Help Us Section - Ultra-minimal Apple Style */}
+        <div className="mt-24 mb-8 max-w-5xl mx-auto">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-black/[0.02] dark:bg-white/[0.02]">
+            {/* Animated Gradient Mesh Background */}
+            <div className="absolute inset-0 opacity-40 dark:opacity-30">
+              <GradientMesh
+                colors={["#6366F1", "#8B5CF6", "#EC4899", "#14B8A6"]}
+                speed={0.002}
               />
             </div>
 
-            <div className="relative z-10 p-8 sm:p-10">
-              <h3 className="text-2xl sm:text-3xl mb-3 text-foreground">
-                Join Our Open Source Community
-              </h3>
-              <p className="text-muted-foreground text-sm sm:text-base max-w-xl mx-auto mb-6">
-                Contribute to the future of coding practice tools
-              </p>
+            {/* Subtle grain overlay for texture */}
+            <div
+              className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+              }}
+            />
 
-              <div className="flex flex-col sm:flex-row justify-center gap-3 px-4">
-                <RainbowButton
-                  size="lg"
-                  className="px-6 py-3 text-base font-semibold w-full sm:w-auto"
-                  onClick={() =>
-                    window.open(
-                      "https://github.com/lqSky7/leetFeedback-extension",
-                      "_blank"
-                    )
-                  }
-                >
-                  <Github className="w-4 h-4 mr-2 flex-shrink-0" />
-                  <span>Contribute on GitHub</span>
-                </RainbowButton>
-                <RainbowButton
-                  variant="outline"
-                  size="lg"
-                  className="px-6 py-3 text-base font-semibold w-full sm:w-auto"
-                  onClick={() =>
-                    window.open("https://discord.gg/BZDb22gz", "_blank")
-                  }
-                >
-                  <DiscordIcon className="w-4 h-4 mr-2 flex-shrink-0" />
-                  <span>Join Discord</span>
-                </RainbowButton>
-              </div>
+            {/* Content */}
+            <div className="relative z-10 px-8 py-20 sm:px-16 sm:py-28 text-center">
+              {/* Headline */}
+              <BlurFade delay={0.1}>
+                <h3 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-foreground mb-6">
+                  Build with us
+                </h3>
+              </BlurFade>
+
+              {/* Subline */}
+              <BlurFade delay={0.2}>
+                <p className="text-lg sm:text-xl text-muted-foreground max-w-md mx-auto mb-12 font-light">
+                  Join our open source community and shape the future of coding practice
+                </p>
+              </BlurFade>
+
+              {/* Buttons */}
+              <BlurFade delay={0.3}>
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                  {/* GitHub Button - Glass effect */}
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() =>
+                      window.open(
+                        "https://github.com/lqSky7/leetFeedback-extension",
+                        "_blank"
+                      )
+                    }
+                    className="group relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-base font-medium transition-all duration-300 bg-foreground text-background hover:bg-foreground/90 min-w-[200px]"
+                  >
+                    <Github className="w-5 h-5" />
+                    <span>Contribute</span>
+                  </motion.button>
+
+                  {/* Discord Button - Subtle glass outline */}
+                  <motion.button
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    onClick={() =>
+                      window.open("https://discord.gg/BZDb22gz", "_blank")
+                    }
+                    className="group relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-base font-medium transition-all duration-300 bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-white/20 dark:border-white/10 text-foreground hover:bg-white/20 dark:hover:bg-white/10 min-w-[200px]"
+                  >
+                    <DiscordIcon className="w-5 h-5" />
+                    <span>Join Discord</span>
+                  </motion.button>
+                </div>
+              </BlurFade>
             </div>
-          </Card>
+          </div>
         </div>
       </div>
     </section>
