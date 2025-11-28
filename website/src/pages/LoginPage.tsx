@@ -294,110 +294,115 @@ const LoginPage: React.FC = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.5 }}
             className="fixed inset-0 pointer-events-none z-50"
+            style={{ 
+              WebkitBackfaceVisibility: "hidden",
+              backfaceVisibility: "hidden",
+              transform: "translateZ(0)",
+            }}
           >
             {/* Top edge glow */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              initial={{ opacity: 0, scaleX: 0.8 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
               className="absolute -top-4 left-0 right-0 h-12"
               style={{
                 background:
                   "linear-gradient(90deg, #0894FF 0%, #C959DD 50%, #FF2E54 100%)",
                 filter: "blur(24px)",
+                transform: "translateZ(0)",
               }}
             />
 
             {/* Right edge glow */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              initial={{ opacity: 0, scaleY: 0.8 }}
+              animate={{ opacity: 1, scaleY: 1 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
               className="absolute top-0 -right-4 bottom-0 w-12"
               style={{
                 background:
                   "linear-gradient(180deg, #FF9004 0%, #FF2E54 50%, #C959DD 100%)",
                 filter: "blur(24px)",
+                transform: "translateZ(0)",
               }}
             />
 
             {/* Bottom edge glow */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              initial={{ opacity: 0, scaleX: 0.8 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
               className="absolute -bottom-4 left-0 right-0 h-12"
               style={{
                 background:
                   "linear-gradient(270deg, #0894FF 0%, #C959DD 50%, #FF9004 100%)",
                 filter: "blur(24px)",
+                transform: "translateZ(0)",
               }}
             />
 
             {/* Left edge glow */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+              initial={{ opacity: 0, scaleY: 0.8 }}
+              animate={{ opacity: 1, scaleY: 1 }}
+              transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
               className="absolute top-0 -left-4 bottom-0 w-12"
               style={{
                 background:
                   "linear-gradient(0deg, #FF9004 0%, #C959DD 50%, #0894FF 100%)",
                 filter: "blur(24px)",
+                transform: "translateZ(0)",
               }}
             />
 
             {/* Corner accents for smoother blending */}
             {/* Top-left corner */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 0.6, scale: 1 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
               className="absolute -top-2 -left-2 w-16 h-16"
               style={{
                 background: "radial-gradient(circle, #0894FF 0%, transparent 70%)",
                 filter: "blur(14px)",
+                transform: "translateZ(0)",
               }}
             />
             {/* Top-right corner */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 0.6, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
               className="absolute -top-2 -right-2 w-16 h-16"
               style={{
                 background: "radial-gradient(circle, #FF9004 0%, transparent 70%)",
                 filter: "blur(14px)",
+                transform: "translateZ(0)",
               }}
             />
             {/* Bottom-right corner */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 0.6, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
               className="absolute -bottom-2 -right-2 w-16 h-16"
               style={{
                 background: "radial-gradient(circle, #FF9004 0%, transparent 70%)",
                 filter: "blur(14px)",
+                transform: "translateZ(0)",
               }}
             />
             {/* Bottom-left corner */}
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.6 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 0.6, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
               className="absolute -bottom-2 -left-2 w-16 h-16"
               style={{
                 background: "radial-gradient(circle, #C959DD 0%, transparent 70%)",
                 filter: "blur(14px)",
+                transform: "translateZ(0)",
               }}
             />
           </motion.div>

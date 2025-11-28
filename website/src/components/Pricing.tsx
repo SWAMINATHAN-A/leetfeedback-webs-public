@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Button } from "./ui/button";
 import { Card } from "./ui/card";
@@ -19,6 +19,10 @@ import {
   Users,
   Bug,
   Sparkles,
+  Star,
+  GitFork,
+  MessageCircle,
+  Clock,
 } from "lucide-react";
 import { BlurFade } from "./magicui/blur-fade";
 import { TextAnimate } from "./magicui/text-animate";
@@ -26,7 +30,6 @@ import { RainbowButton } from "./magicui/rainbow-button";
 import { analytics } from "../utils/analytics";
 import DiscordIcon from "./icons/DiscordIcon";
 import ShinyText from "./ShinyText";
-import GradientMesh from "./GradientMesh";
 import {
   Accordion,
   AccordionItem,
@@ -99,7 +102,54 @@ const FAQAccordion: React.FC = () => {
   );
 };
 
+// GitHub stats hook
+const useGitHubStats = () => {
+  const [stats, setStats] = useState({
+    stars: 0,
+    lastCommitDays: 0,
+    loading: true,
+  });
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        // Fetch repo info for stars
+        const repoRes = await fetch(
+          "https://api.github.com/repos/lqSky7/leetFeedback-extension"
+        );
+        const repoData = await repoRes.json();
+
+        // Fetch commits for last commit date
+        const commitsRes = await fetch(
+          "https://api.github.com/repos/lqSky7/leetFeedback-extension/commits?per_page=1"
+        );
+        const commitsData = await commitsRes.json();
+
+        const lastCommitDate = new Date(commitsData[0]?.commit?.committer?.date);
+        const now = new Date();
+        const diffTime = Math.abs(now.getTime() - lastCommitDate.getTime());
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+        setStats({
+          stars: repoData.stargazers_count || 0,
+          lastCommitDays: diffDays,
+          loading: false,
+        });
+      } catch (error) {
+        console.error("Failed to fetch GitHub stats:", error);
+        setStats((prev) => ({ ...prev, loading: false }));
+      }
+    };
+
+    fetchStats();
+  }, []);
+
+  return stats;
+};
+
 const Pricing: React.FC = React.memo(() => {
+  const gitHubStats = useGitHubStats();
+
   const freeFeatures = [
     { text: "LeetCode & GeeksforGeeks integration", icon: Code2 },
     { text: "Unlimited Daily Problem Solves", icon: Infinity },
@@ -277,76 +327,91 @@ const Pricing: React.FC = React.memo(() => {
           <FAQAccordion />
         </div>
 
-        {/* Help Us Section - Ultra-minimal Apple Style */}
-        <div className="mt-24 mb-8 max-w-5xl mx-auto">
-          <div className="relative overflow-hidden rounded-[2.5rem] bg-black/[0.02] dark:bg-white/[0.02]">
-            {/* Animated Gradient Mesh Background */}
-            <div className="absolute inset-0 opacity-40 dark:opacity-30">
-              <GradientMesh
-                colors={["#6366F1", "#8B5CF6", "#EC4899", "#14B8A6"]}
-                speed={0.002}
-              />
-            </div>
+        {/* Open Source Community Section */}
+        <div className="mt-16 max-w-4xl mx-auto">
+          <BlurFade delay={0.1}>
+            <div className="bg-zinc-900 dark:bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden">
+              <div className="p-8 md:p-12">
+                {/* Header */}
+                <div className="text-center mb-10">
+                  <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-3 py-1.5 inline-flex items-center">
+                    <ShinyText
+                      text="Open Source"
+                      speed={3}
+                      className="font-mono text-xs"
+                    />
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-semibold text-white mb-3">
+                    Build with us
+                  </h3>
+                  <p className="text-gray-400 max-w-md mx-auto">
+                    Join our growing community and help shape the future of coding practice
+                  </p>
+                </div>
 
-            {/* Subtle grain overlay for texture */}
-            <div
-              className="absolute inset-0 opacity-[0.015] dark:opacity-[0.03]"
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-              }}
-            />
+                {/* Stats Row */}
+                <div className="grid grid-cols-3 gap-4 mb-10">
+                  <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-2xl p-4 text-center">
+                    <div className="flex items-center justify-center gap-1.5 mb-1">
+                      <Star className="w-4 h-4 text-yellow-400" />
+                      <span className="text-xl font-bold text-white font-mono">
+                        {gitHubStats.loading ? "--" : gitHubStats.stars}
+                      </span>
+                    </div>
+                    <span className="text-xs text-gray-400">Stars</span>
+                  </div>
+                  <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-2xl p-4 text-center">
+                    <div className="flex items-center justify-center gap-1.5 mb-1">
+                      <Clock className="w-4 h-4 text-blue-400" />
+                      <span className="text-xl font-bold text-white font-mono">
+                        {gitHubStats.loading
+                          ? "--"
+                          : gitHubStats.lastCommitDays === 0
+                            ? "Today"
+                            : `${gitHubStats.lastCommitDays}d`}
+                      </span>
+                    </div>
+                    <span className="text-xs text-gray-400">Last commit</span>
+                  </div>
+                  <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-2xl p-4 text-center">
+                    <div className="flex items-center justify-center gap-1.5 mb-1">
+                      <Users className="w-4 h-4 text-green-400" />
+                      <span className="text-xl font-bold text-white font-mono">50+</span>
+                    </div>
+                    <span className="text-xs text-gray-400">Members</span>
+                  </div>
+                </div>
 
-            {/* Content */}
-            <div className="relative z-10 px-8 py-20 sm:px-16 sm:py-28 text-center">
-              {/* Headline */}
-              <BlurFade delay={0.1}>
-                <h3 className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tight text-foreground mb-6">
-                  Build with us
-                </h3>
-              </BlurFade>
-
-              {/* Subline */}
-              <BlurFade delay={0.2}>
-                <p className="text-lg sm:text-xl text-muted-foreground max-w-md mx-auto mb-12 font-light">
-                  Join our open source community and shape the future of coding practice
-                </p>
-              </BlurFade>
-
-              {/* Buttons */}
-              <BlurFade delay={0.3}>
-                <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                  {/* GitHub Button - Glass effect */}
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row justify-center gap-3">
+                  <Button
+                    size="lg"
+                    className="bg-white text-black hover:bg-gray-100 rounded-full px-6 font-medium"
                     onClick={() =>
                       window.open(
                         "https://github.com/lqSky7/leetFeedback-extension",
                         "_blank"
                       )
                     }
-                    className="group relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-base font-medium transition-all duration-300 bg-foreground text-background hover:bg-foreground/90 min-w-[200px]"
                   >
-                    <Github className="w-5 h-5" />
-                    <span>Contribute</span>
-                  </motion.button>
-
-                  {/* Discord Button - Subtle glass outline */}
-                  <motion.button
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    <Github className="w-4 h-4 mr-2" />
+                    Contribute on GitHub
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-zinc-700 text-white hover:bg-zinc-800 rounded-full px-6 font-medium"
                     onClick={() =>
                       window.open("https://discord.gg/BZDb22gz", "_blank")
                     }
-                    className="group relative inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full text-base font-medium transition-all duration-300 bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-white/20 dark:border-white/10 text-foreground hover:bg-white/20 dark:hover:bg-white/10 min-w-[200px]"
                   >
-                    <DiscordIcon className="w-5 h-5" />
-                    <span>Join Discord</span>
-                  </motion.button>
+                    <DiscordIcon className="w-4 h-4 mr-2" />
+                    Join Discord
+                  </Button>
                 </div>
-              </BlurFade>
+              </div>
             </div>
-          </div>
+          </BlurFade>
         </div>
       </div>
     </section>

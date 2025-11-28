@@ -65,7 +65,8 @@ function AppContent() {
   const [showDock, setShowDock] = useState(false);
   const [showProgressiveBlur, setShowProgressiveBlur] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const [showPreloader, setShowPreloader] = useState(true);
+  // Only show preloader on root path
+  const [showPreloader, setShowPreloader] = useState(isHomePage);
 
   // Handle preloader completion
   const handlePreloaderComplete = useCallback(() => {
