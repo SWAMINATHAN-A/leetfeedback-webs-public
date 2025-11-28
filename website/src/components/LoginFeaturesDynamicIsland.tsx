@@ -498,11 +498,20 @@ const LoginFeatureShowcase = () => {
 export function LoginFeaturesDynamicIsland() {
   return (
     <DynamicIslandProvider initialSize="compactLong">
+      {/* Fixed height container to prevent layout shift when island expands/contracts */}
       <div
-        className="w-full h-auto flex items-start justify-center mobile-dynamic-island relative z-50"
-        style={{ transform: "translateZ(0)", willChange: "transform" }}
+        className="w-full flex items-start justify-center mobile-dynamic-island relative z-50"
+        style={{
+          transform: "translateZ(0)",
+          willChange: "transform",
+          height: "220px", // Fixed height to accommodate largest size (tall/medium)
+          minHeight: "220px",
+        }}
       >
-        <LoginFeatureShowcase />
+        {/* Absolutely positioned island within the fixed container */}
+        <div className="absolute top-0 left-0 right-0 flex justify-center">
+          <LoginFeatureShowcase />
+        </div>
       </div>
     </DynamicIslandProvider>
   );

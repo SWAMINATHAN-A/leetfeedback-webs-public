@@ -1,188 +1,29 @@
-import React, { useState } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "../contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
-import { Eye, EyeOff, Loader2 } from "lucide-react";
-import Footer from "../components/Footer";
-import { Button } from "../components/ui/button";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "../components/ui/card";
-import { Input } from "../components/ui/input";
-import { Label } from "../components/ui/label";
-import { Separator } from "../components/ui/separator";
-import { Alert, AlertDescription } from "../components/ui/alert";
+  ArrowRight,
+  Eye,
+  EyeOff,
+  Loader2,
+  Check,
+  ChevronLeft,
+} from "lucide-react";
+import Footer from "../components/Footer";
 import { LoginFeaturesDynamicIsland } from "../components/LoginFeaturesDynamicIsland";
 
 // Utility function
 const cn = (...classes: (string | undefined | null | boolean)[]): string =>
   classes.filter(Boolean).join(" ");
 
-// TextMorph Component
-function TextMorph({ children }: { children: React.ReactNode }) {
-  return (
-    <motion.span
-      key={String(children)}
-      initial={{ opacity: 0, y: -10 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: 10 }}
-      transition={{ duration: 0.2 }}
-    >
-      {children}
-    </motion.span>
-  );
-}
+// Form steps for registration flow
+type FormStep = "email" | "password" | "username" | "github" | "complete";
 
-// GlowEffect Component
-interface GlowEffectProps {
-  className?: string;
-  style?: React.CSSProperties;
-  colors?: string[];
-  mode?:
-    | "rotate"
-    | "pulse"
-    | "breathe"
-    | "colorShift"
-    | "flowHorizontal"
-    | "static";
-  blur?: string | number;
-  transition?: any;
-  scale?: number;
-  duration?: number;
-}
-
-function GlowEffect({
-  className,
-  style,
-  colors = ["#FF5733", "#33FF57", "#3357FF", "#F1C40F"],
-  mode = "rotate",
-  blur = "medium",
-  transition,
-  scale = 1,
-  duration = 5,
-}: GlowEffectProps) {
-  const BASE_TRANSITION = {
-    repeat: Infinity,
-    duration: duration,
-    ease: "linear",
-  };
-
-  const animations: Record<string, any> = {
-    rotate: {
-      background: [
-        `conic-gradient(from 0deg at 50% 50%, ${colors.join(", ")})`,
-        `conic-gradient(from 360deg at 50% 50%, ${colors.join(", ")})`,
-      ],
-      transition: {
-        ...(transition ?? BASE_TRANSITION),
-      },
-    },
-    pulse: {
-      background: colors.map(
-        (color) =>
-          `radial-gradient(circle at 50% 50%, ${color} 0%, transparent 100%)`
-      ),
-      scale: [1 * scale, 1.1 * scale, 1 * scale],
-      opacity: [0.5, 0.8, 0.5],
-      transition: {
-        ...(transition ?? {
-          ...BASE_TRANSITION,
-          repeatType: "mirror",
-        }),
-      },
-    },
-    breathe: {
-      background: [
-        ...colors.map(
-          (color) =>
-            `radial-gradient(circle at 50% 50%, ${color} 0%, transparent 100%)`
-        ),
-      ],
-      scale: [1 * scale, 1.05 * scale, 1 * scale],
-      transition: {
-        ...(transition ?? {
-          ...BASE_TRANSITION,
-          repeatType: "mirror",
-        }),
-      },
-    },
-    colorShift: {
-      background: colors.map((color, index) => {
-        const nextColor = colors[(index + 1) % colors.length];
-        return `conic-gradient(from 0deg at 50% 50%, ${color} 0%, ${nextColor} 50%, ${color} 100%)`;
-      }),
-      transition: {
-        ...(transition ?? {
-          ...BASE_TRANSITION,
-          repeatType: "mirror",
-        }),
-      },
-    },
-    flowHorizontal: {
-      background: colors.map((color) => {
-        const nextColor = colors[(colors.indexOf(color) + 1) % colors.length];
-        return `linear-gradient(to right, ${color}, ${nextColor})`;
-      }),
-      transition: {
-        ...(transition ?? {
-          ...BASE_TRANSITION,
-          repeatType: "mirror",
-        }),
-      },
-    },
-    static: {
-      background: `linear-gradient(to right, ${colors.join(", ")})`,
-    },
-  };
-
-  const getBlurClass = (blur: string | number) => {
-    if (typeof blur === "number") {
-      return `blur-[${blur}px]`;
-    }
-    const presets: Record<string, string> = {
-      softest: "blur-sm",
-      soft: "blur-md",
-      medium: "blur-lg",
-      strong: "blur-xl",
-      stronger: "blur-2xl",
-      strongest: "blur-3xl",
-      none: "blur-none",
-    };
-    return presets[blur] || "blur-lg";
-  };
-
-  return (
-    <motion.div
-      style={
-        {
-          ...style,
-          "--scale": scale,
-          willChange: "transform",
-          backfaceVisibility: "hidden",
-        } as any
-      }
-      animate={animations[mode]}
-      className={cn(
-        "pointer-events-none absolute inset-0 h-full w-full",
-        "transform-gpu",
-        getBlurClass(blur),
-        className
-      )}
-    />
-  );
-}
-
-interface LoginFormData {
-  username: string;
+interface FormData {
   email: string;
   password: string;
-}
-
-interface RegisterFormData extends LoginFormData {
+  username: string;
   github_username: string;
   github_repo: string;
   github_branch: string;
@@ -197,50 +38,106 @@ const LoginPage: React.FC = () => {
   } = useAuth();
   const navigate = useNavigate();
 
-  const [isRegisterMode, setIsRegisterMode] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
+  const [isGlowing, setIsGlowing] = useState(false);
+  const [currentStep, setCurrentStep] = useState<FormStep>("email");
+  const [isSignUp, setIsSignUp] = useState(false);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
-  const [loginData, setLoginData] = useState<LoginFormData>({
-    username: "",
+  const [formData, setFormData] = useState<FormData>({
     email: "",
     password: "",
-  });
-
-  const [registerData, setRegisterData] = useState<RegisterFormData>({
     username: "",
-    email: "",
-    password: "",
     github_username: "",
     github_repo: "",
     github_branch: "main",
   });
 
-  const handleGoogleSignIn = async () => {
-    try {
-      setError("");
-      await signInWithGoogle();
-      navigate("/profile");
-    } catch (error: any) {
-      setError(error.message || "Google sign-in failed");
+  // Focus input when step changes
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [currentStep]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+    setError("");
+  };
+
+  const triggerGlow = () => {
+    setIsGlowing(true);
+    setTimeout(() => setIsGlowing(false), 1500);
+  };
+
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const handleNext = async () => {
+    triggerGlow();
+
+    if (currentStep === "email") {
+      if (!validateEmail(formData.email)) {
+        setError("Please enter a valid email");
+        return;
+      }
+      setCurrentStep("password");
+    } else if (currentStep === "password") {
+      if (formData.password.length < 6) {
+        setError("Password must be at least 6 characters");
+        return;
+      }
+      if (isSignUp) {
+        setCurrentStep("username");
+      } else {
+        // Login flow - submit credentials
+        await handleLogin();
+      }
+    } else if (currentStep === "username") {
+      if (formData.username.length < 3) {
+        setError("Username must be at least 3 characters");
+        return;
+      }
+      setCurrentStep("github");
+    } else if (currentStep === "github") {
+      if (!formData.github_username || !formData.github_repo) {
+        setError("Please fill in all GitHub details");
+        return;
+      }
+      await handleRegister();
     }
   };
 
-  const handleLoginSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleBack = () => {
+    if (currentStep === "password") {
+      setCurrentStep("email");
+    } else if (currentStep === "username") {
+      setCurrentStep("password");
+    } else if (currentStep === "github") {
+      setCurrentStep("username");
+    }
+  };
+
+  const handleLogin = async () => {
     setIsSubmitting(true);
     setError("");
+    triggerGlow();
 
     try {
       const response = await signInWithCredentials({
-        username: loginData.username,
-        email: loginData.email,
-        password: loginData.password,
+        username: formData.username || formData.email.split("@")[0],
+        email: formData.email,
+        password: formData.password,
       });
 
       if (response.success) {
-        navigate("/profile");
+        setCurrentStep("complete");
+        setTimeout(() => navigate("/profile"), 1000);
       } else {
         setError(response.message || "Login failed");
       }
@@ -251,23 +148,24 @@ const LoginPage: React.FC = () => {
     }
   };
 
-  const handleRegisterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleRegister = async () => {
     setIsSubmitting(true);
     setError("");
+    triggerGlow();
 
     try {
       const response = await registerWithCredentials({
-        username: registerData.username,
-        email: registerData.email,
-        password: registerData.password,
-        github_username: registerData.github_username,
-        github_repo: registerData.github_repo,
-        github_branch: registerData.github_branch,
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+        github_username: formData.github_username,
+        github_repo: formData.github_repo,
+        github_branch: formData.github_branch,
       });
 
       if (response.success) {
-        navigate("/profile");
+        setCurrentStep("complete");
+        setTimeout(() => navigate("/profile"), 1000);
       } else {
         setError(response.message || "Registration failed");
       }
@@ -278,336 +176,383 @@ const LoginPage: React.FC = () => {
     }
   };
 
-  const handleLoginInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLoginData({
-      ...loginData,
-      [e.target.name]: e.target.value,
-    });
+  const handleGoogleSignIn = async () => {
+    try {
+      setError("");
+      triggerGlow();
+      await signInWithGoogle();
+      navigate("/profile");
+    } catch (error: any) {
+      setError(error.message || "Google sign-in failed");
+    }
   };
 
-  const handleRegisterInputChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRegisterData({
-      ...registerData,
-      [e.target.name]: e.target.value,
-    });
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter" && !isSubmitting) {
+      handleNext();
+    }
   };
+
+  const getPlaceholder = () => {
+    switch (currentStep) {
+      case "email":
+        return "yo@example.com";
+      case "password":
+        return "Enter your password";
+      case "username":
+        return "Choose a username";
+      case "github":
+        return "GitHub username";
+      default:
+        return "";
+    }
+  };
+
+  const getCurrentValue = () => {
+    switch (currentStep) {
+      case "email":
+        return formData.email;
+      case "password":
+        return formData.password;
+      case "username":
+        return formData.username;
+      case "github":
+        return formData.github_username;
+      default:
+        return "";
+    }
+  };
+
+  const getInputName = () => {
+    switch (currentStep) {
+      case "email":
+        return "email";
+      case "password":
+        return "password";
+      case "username":
+        return "username";
+      case "github":
+        return "github_username";
+      default:
+        return "";
+    }
+  };
+
+  const getInputType = () => {
+    if (currentStep === "password") return "password";
+    if (currentStep === "email") return "email";
+    return "text";
+  };
+
+  const renderGitHubFields = () => (
+    <div className="flex flex-col gap-4 w-full">
+      <div className="relative">
+        <input
+          ref={inputRef}
+          type="text"
+          name="github_username"
+          value={formData.github_username}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          placeholder="GitHub username"
+          className="w-full bg-transparent text-foreground text-2xl md:text-4xl font-light tracking-tight border-b-2 border-muted-foreground/30 focus:border-foreground pb-3 outline-none transition-colors placeholder:text-muted-foreground/50"
+        />
+      </div>
+      <div className="relative">
+        <input
+          type="text"
+          name="github_repo"
+          value={formData.github_repo}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          placeholder="Repository name"
+          className="w-full bg-transparent text-foreground text-2xl md:text-4xl font-light tracking-tight border-b-2 border-muted-foreground/30 focus:border-foreground pb-3 outline-none transition-colors placeholder:text-muted-foreground/50"
+        />
+      </div>
+      <div className="relative">
+        <input
+          type="text"
+          name="github_branch"
+          value={formData.github_branch}
+          onChange={handleInputChange}
+          onKeyDown={handleKeyDown}
+          placeholder="Branch (default: main)"
+          className="w-full bg-transparent text-foreground text-xl md:text-2xl font-light tracking-tight border-b-2 border-muted-foreground/30 focus:border-foreground pb-3 outline-none transition-colors placeholder:text-muted-foreground/50"
+        />
+      </div>
+    </div>
+  );
 
   return (
-    <div className="min-h-screen bg-background flex flex-col p-4 gap-8">
-      <div className="flex-1 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
-        {/* Login/Register Card */}
-        <div className="w-full max-w-md">
-          <div className="relative">
-            {/* Glow Effect Background */}
+    <div className="min-h-screen bg-background flex flex-col relative overflow-hidden">
+      {/* Animated border glow effect */}
+      <AnimatePresence>
+        {isGlowing && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 pointer-events-none z-50"
+          >
+            {/* Top border glow */}
             <motion.div
-              className="pointer-events-none absolute inset-0"
-              animate={{
-                opacity: isSubmitting ? 1 : 0.5,
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
+              exit={{ scaleX: 0, opacity: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="absolute top-0 left-0 right-0 h-1 origin-left"
+              style={{
+                background:
+                  "linear-gradient(90deg, #0894FF, #C959DD, #FF2E54, #FF9004)",
+                boxShadow:
+                  "0 0 30px 10px rgba(200, 89, 221, 0.5), 0 0 60px 20px rgba(8, 148, 255, 0.3)",
               }}
-              transition={{
-                duration: 0.2,
-                ease: "easeOut",
+            />
+            {/* Right border glow */}
+            <motion.div
+              initial={{ scaleY: 0, opacity: 0 }}
+              animate={{ scaleY: 1, opacity: 1 }}
+              exit={{ scaleY: 0, opacity: 0 }}
+              transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+              className="absolute top-0 right-0 bottom-0 w-1 origin-top"
+              style={{
+                background:
+                  "linear-gradient(180deg, #FF9004, #FF2E54, #C959DD, #0894FF)",
+                boxShadow:
+                  "-10px 0 30px 10px rgba(255, 46, 84, 0.5), -20px 0 60px 20px rgba(255, 144, 4, 0.3)",
               }}
-            >
-              <GlowEffect
-                colors={["#0894FF", "#C959DD", "#FF2E54", "#FF9004"]}
-                mode="colorShift"
-                blur="medium"
-                duration={4}
-                className="rounded-3xl"
-              />
-            </motion.div>
+            />
+            {/* Bottom border glow */}
+            <motion.div
+              initial={{ scaleX: 0, opacity: 0 }}
+              animate={{ scaleX: 1, opacity: 1 }}
+              exit={{ scaleX: 0, opacity: 0 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+              className="absolute bottom-0 left-0 right-0 h-1 origin-right"
+              style={{
+                background:
+                  "linear-gradient(270deg, #0894FF, #C959DD, #FF2E54, #FF9004)",
+                boxShadow:
+                  "0 0 30px 10px rgba(255, 144, 4, 0.5), 0 0 60px 20px rgba(255, 46, 84, 0.3)",
+              }}
+            />
+            {/* Left border glow */}
+            <motion.div
+              initial={{ scaleY: 0, opacity: 0 }}
+              animate={{ scaleY: 1, opacity: 1 }}
+              exit={{ scaleY: 0, opacity: 0 }}
+              transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+              className="absolute top-0 left-0 bottom-0 w-1 origin-bottom"
+              style={{
+                background:
+                  "linear-gradient(0deg, #FF9004, #FF2E54, #C959DD, #0894FF)",
+                boxShadow:
+                  "10px 0 30px 10px rgba(8, 148, 255, 0.5), 20px 0 60px 20px rgba(200, 89, 221, 0.3)",
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-            <Card className="relative rounded-3xl border-0 backdrop-blur-sm">
-              <CardHeader className="text-center rounded-t-3xl">
-                <CardTitle className="text-2xl font-bold">
-                  {isRegisterMode ? "Create Account" : "Welcome Back"}
-                </CardTitle>
-                <CardDescription>
-                  {isRegisterMode
-                    ? "Sign up to get started with LeetFeedback"
-                    : "Sign in to your account"}
-                </CardDescription>
-              </CardHeader>
-
-              <CardContent className="space-y-4 rounded-b-3xl">
-                {/* Google Sign In */}
-                <Button
-                  onClick={handleGoogleSignIn}
-                  variant="outline"
-                  className="w-full rounded-3xl"
-                  disabled={isLoading || isSubmitting}
-                >
-                  {isLoading ? (
-                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                  ) : (
-                    <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24">
-                      <path
-                        fill="currentColor"
-                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                      />
-                      <path
-                        fill="currentColor"
-                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                      />
-                      <path
-                        fill="currentColor"
-                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                      />
-                      <path
-                        fill="currentColor"
-                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                      />
-                    </svg>
-                  )}
-                  Continue with Google
-                </Button>
-
-                <div className="flex items-center gap-4">
-                  <Separator className="flex-1" />
-                  <span className="text-sm text-muted-foreground">OR</span>
-                  <Separator className="flex-1" />
-                </div>
-
-                {/* Error Alert */}
-                {error && (
-                  <Alert variant="destructive">
-                    <AlertDescription>{error}</AlertDescription>
-                  </Alert>
-                )}
-
-                {/* Login/Register Form */}
-                {isRegisterMode ? (
-                  <form onSubmit={handleRegisterSubmit} className="space-y-4">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="username">Username</Label>
-                        <Input
-                          id="username"
-                          name="username"
-                          type="text"
-                          required
-                          value={registerData.username}
-                          onChange={handleRegisterInputChange}
-                          placeholder="johndoe"
-                          className="rounded-3xl"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="email">Email</Label>
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          required
-                          value={registerData.email}
-                          onChange={handleRegisterInputChange}
-                          placeholder="john@example.com"
-                          className="rounded-3xl"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="password">Password</Label>
-                      <div className="relative">
-                        <Input
-                          id="password"
-                          name="password"
-                          type={showPassword ? "text" : "password"}
-                          required
-                          value={registerData.password}
-                          onChange={handleRegisterInputChange}
-                          placeholder="Enter your password"
-                          className="pr-10 rounded-3xl"
-                        />
-                        <button
-                          type="button"
-                          className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          {showPassword ? (
-                            <EyeOff className="h-4 w-4 text-gray-400" />
-                          ) : (
-                            <Eye className="h-4 w-4 text-gray-400" />
-                          )}
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="github_username">GitHub Username</Label>
-                      <Input
-                        id="github_username"
-                        name="github_username"
-                        type="text"
-                        required
-                        value={registerData.github_username}
-                        onChange={handleRegisterInputChange}
-                        placeholder="your-github-username"
-                        className="rounded-3xl"
-                      />
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="github_repo">GitHub Repository</Label>
-                        <Input
-                          id="github_repo"
-                          name="github_repo"
-                          type="text"
-                          required
-                          value={registerData.github_repo}
-                          onChange={handleRegisterInputChange}
-                          placeholder="repository-name"
-                          className="rounded-3xl"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="github_branch">Branch</Label>
-                        <Input
-                          id="github_branch"
-                          name="github_branch"
-                          type="text"
-                          required
-                          value={registerData.github_branch}
-                          onChange={handleRegisterInputChange}
-                          placeholder="main"
-                          className="rounded-3xl"
-                        />
-                      </div>
-                    </div>
-
-                    <Button
-                      type="submit"
-                      className="w-full rounded-3xl"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          Creating Account...
-                        </>
-                      ) : (
-                        "Create Account"
-                      )}
-                    </Button>
-                  </form>
-                ) : (
-                  <form onSubmit={handleLoginSubmit} className="space-y-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="username">Username</Label>
-                      <Input
-                        id="username"
-                        name="username"
-                        type="text"
-                        required
-                        value={loginData.username}
-                        onChange={handleLoginInputChange}
-                        placeholder="Enter your username"
-                        className="rounded-3xl"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        required
-                        value={loginData.email}
-                        onChange={handleLoginInputChange}
-                        placeholder="Enter your email"
-                        className="rounded-3xl"
-                      />
-                    </div>
-
-                    <div className="space-y-2">
-                      <Label htmlFor="password">Password</Label>
-                      <div className="relative">
-                        <Input
-                          id="password"
-                          name="password"
-                          type={showPassword ? "text" : "password"}
-                          required
-                          value={loginData.password}
-                          onChange={handleLoginInputChange}
-                          placeholder="Enter your password"
-                          className="pr-10 rounded-3xl"
-                        />
-                        <button
-                          type="button"
-                          className="absolute inset-y-0 right-0 pr-3 flex items-center"
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          {showPassword ? (
-                            <EyeOff className="h-4 w-4 text-gray-400" />
-                          ) : (
-                            <Eye className="h-4 w-4 text-gray-400" />
-                          )}
-                        </button>
-                      </div>
-                    </div>
-
-                    <Button
-                      type="submit"
-                      className="w-full rounded-3xl"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-                          Signing In...
-                        </>
-                      ) : (
-                        "Sign In"
-                      )}
-                    </Button>
-                  </form>
-                )}
-
-                {/* Toggle between login and register */}
-                <div className="text-center text-sm">
-                  <span className="text-muted-foreground">
-                    {isRegisterMode
-                      ? "Already have an account? "
-                      : "Don't have an account? "}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setIsRegisterMode(!isRegisterMode);
-                      setError("");
-                    }}
-                    className="text-primary hover:underline font-medium"
-                  >
-                    {isRegisterMode ? "Sign In" : "Sign Up"}
-                  </button>
-                </div>
-
-                {/* Back to home */}
-                <div className="text-center text-sm">
-                  <Link
-                    to="/"
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
-                    ← Back to Home
-                  </Link>
-                </div>
-              </CardContent>
-            </Card>
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
+        {/* Main content area */}
+        <div className="w-full max-w-4xl flex flex-col items-center gap-8">
+          {/* Dynamic Island Feature Showcase - Fixed height container */}
+          <div className="w-full flex justify-center">
+            <LoginFeaturesDynamicIsland />
           </div>
-        </div>
 
-        {/* Dynamic Island Feature Showcase & Footer - To the right of card on desktop */}
-        <div className="w-full max-w-2xl lg:max-w-xl flex flex-col gap-1">
-          <LoginFeaturesDynamicIsland />
-          <Footer />
+          {/* Sign-in form area */}
+          <div className="w-full max-w-2xl">
+            <AnimatePresence mode="wait">
+              {currentStep === "complete" ? (
+                <motion.div
+                  key="complete"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  className="flex flex-col items-center justify-center gap-4"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: "spring", delay: 0.2 }}
+                    className="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center"
+                  >
+                    <Check className="w-8 h-8 text-white" />
+                  </motion.div>
+                  <p className="text-xl text-foreground">Welcome aboard!</p>
+                </motion.div>
+              ) : (
+                <motion.div
+                  key={currentStep}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex flex-col gap-6"
+                >
+                  {/* Step indicator */}
+                  <div className="flex items-center gap-2 mb-4">
+                    {currentStep !== "email" && (
+                      <button
+                        onClick={handleBack}
+                        className="p-2 hover:bg-muted rounded-full transition-colors"
+                      >
+                        <ChevronLeft className="w-5 h-5 text-muted-foreground" />
+                      </button>
+                    )}
+                    <span className="text-sm text-muted-foreground uppercase tracking-wider">
+                      {currentStep === "email" &&
+                        (isSignUp ? "Step 1 of 4" : "Step 1 of 2")}
+                      {currentStep === "password" &&
+                        (isSignUp ? "Step 2 of 4" : "Step 2 of 2")}
+                      {currentStep === "username" && "Step 3 of 4"}
+                      {currentStep === "github" && "Step 4 of 4"}
+                    </span>
+                  </div>
+
+                  {/* Input field */}
+                  {currentStep === "github" ? (
+                    renderGitHubFields()
+                  ) : (
+                    <div className="relative">
+                      <input
+                        ref={inputRef}
+                        type={getInputType()}
+                        name={getInputName()}
+                        value={getCurrentValue()}
+                        onChange={handleInputChange}
+                        onKeyDown={handleKeyDown}
+                        placeholder={getPlaceholder()}
+                        disabled={isSubmitting}
+                        className="w-full bg-transparent text-foreground text-3xl md:text-5xl font-light tracking-tight border-b-2 border-muted-foreground/30 focus:border-foreground pb-4 outline-none transition-colors placeholder:text-muted-foreground/50 disabled:opacity-50"
+                        autoComplete={
+                          currentStep === "email"
+                            ? "email"
+                            : currentStep === "password"
+                            ? "current-password"
+                            : "off"
+                        }
+                      />
+                    </div>
+                  )}
+
+                  {/* Error message */}
+                  <AnimatePresence>
+                    {error && (
+                      <motion.p
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        className="text-red-500 text-sm"
+                      >
+                        {error}
+                      </motion.p>
+                    )}
+                  </AnimatePresence>
+
+                  {/* Submit button */}
+                  <div className="flex items-center justify-between gap-4">
+                    <button
+                      onClick={handleNext}
+                      disabled={isSubmitting}
+                      className="group flex items-center gap-3 text-foreground hover:text-primary transition-colors disabled:opacity-50"
+                    >
+                      <span className="text-lg font-medium">
+                        {isSubmitting
+                          ? "Processing..."
+                          : currentStep === "github" ||
+                            (!isSignUp && currentStep === "password")
+                          ? "Submit"
+                          : "Continue"}
+                      </span>
+                      {isSubmitting ? (
+                        <Loader2 className="w-6 h-6 animate-spin" />
+                      ) : (
+                        <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                      )}
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Alternative sign-in options */}
+          {currentStep === "email" && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="flex flex-col items-center gap-4"
+            >
+              <div className="flex items-center gap-4 w-full max-w-md">
+                <div className="flex-1 h-px bg-muted-foreground/30" />
+                <span className="text-sm text-muted-foreground">or</span>
+                <div className="flex-1 h-px bg-muted-foreground/30" />
+              </div>
+
+              <button
+                onClick={handleGoogleSignIn}
+                disabled={isLoading}
+                className="flex items-center gap-3 px-6 py-3 bg-muted hover:bg-muted/80 rounded-full transition-colors disabled:opacity-50"
+              >
+                {isLoading ? (
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                ) : (
+                  <svg className="w-5 h-5" viewBox="0 0 24 24">
+                    <path
+                      fill="currentColor"
+                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                    />
+                    <path
+                      fill="currentColor"
+                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                    />
+                    <path
+                      fill="currentColor"
+                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                    />
+                    <path
+                      fill="currentColor"
+                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                    />
+                  </svg>
+                )}
+                <span className="text-sm font-medium">
+                  Continue with Google
+                </span>
+              </button>
+
+              {/* Toggle sign up / sign in */}
+              <button
+                onClick={() => {
+                  setIsSignUp(!isSignUp);
+                  setError("");
+                }}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {isSignUp
+                  ? "Already have an account? Sign in"
+                  : "New here? Create an account"}
+              </button>
+            </motion.div>
+          )}
+
+          {/* Back to home */}
+          <Link
+            to="/"
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
+            ← Back to Home
+          </Link>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

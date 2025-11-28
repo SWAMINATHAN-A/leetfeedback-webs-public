@@ -219,8 +219,11 @@ const Hero: React.FC = React.memo(() => {
                     whileTap={{ scale: 0.98 }}
                   >
                     {/* Glow effect on hover */}
-                    <div className="absolute inset-0 rounded-full bg-yellow-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
-                    
+                    <div
+                      className="absolute inset-0 rounded-full bg-yellow-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      aria-hidden="true"
+                    />
+
                     <div className="relative flex items-center gap-1">
                       {renderStars(currentRating)}
                     </div>
@@ -285,17 +288,17 @@ const Hero: React.FC = React.memo(() => {
             >
               <div className="relative w-full">
                 {/* Ambient glow effect - positioned to match image bounds */}
-                <div 
+                <div
                   className="absolute top-8 left-0 w-[180%] h-[70%] bg-gradient-to-br from-white/[0.08] via-white/[0.04] to-transparent blur-3xl opacity-50 pointer-events-none"
                   aria-hidden="true"
                 />
                 {/* Subtle connecting gradient line */}
-                <div 
+                <div
                   className="absolute -left-16 top-1/4 w-16 h-px bg-gradient-to-r from-transparent to-white/20"
                   aria-hidden="true"
                 />
                 {/* Left edge glow accent */}
-                <div 
+                <div
                   className="absolute left-0 top-12 w-px h-32 bg-gradient-to-b from-white/30 via-white/10 to-transparent"
                   aria-hidden="true"
                 />
