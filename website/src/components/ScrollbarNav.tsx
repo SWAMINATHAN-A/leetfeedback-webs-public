@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { animate } from "animejs";
 import { cn } from "../lib/utils";
 import { smoothScrollTo } from "../utils/smoothScroll";
 
@@ -44,12 +43,9 @@ const SECTIONS: Section[] = [
 
 export function ScrollbarNav() {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [isDragging, setIsDragging] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
-  const thumbRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<any>(null);
 
   // Delay visibility slightly to prevent initial jump
   useEffect(() => {
@@ -61,8 +57,6 @@ export function ScrollbarNav() {
 
   // Calculate scroll progress
   const updateScrollPosition = useCallback(() => {
-    if (isDragging) return;
-
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
     const scrollTop = window.scrollY;
@@ -71,27 +65,7 @@ export function ScrollbarNav() {
       maxScroll > 0 ? Math.min(1, Math.max(0, scrollTop / maxScroll)) : 0;
 
     setScrollProgress(progress);
-  }, [isDragging]);
-
-  // Animate thumb position with anime.js
-  useEffect(() => {
-    if (!thumbRef.current || !trackRef.current) return;
-
-    const trackHeight = trackRef.current.offsetHeight;
-    const thumbHeight = thumbRef.current.offsetHeight;
-    const maxThumbPosition = trackHeight - thumbHeight;
-    const targetY = scrollProgress * maxThumbPosition;
-
-    if (animationRef.current) {
-      animationRef.current.pause();
-    }
-
-    animationRef.current = animate(thumbRef.current, {
-      translateY: targetY,
-      duration: isDragging ? 0 : 400,
-      easing: "out(3)",
-    });
-  }, [scrollProgress, isDragging]);
+  }, []);
 
   // Handle scroll events with throttling
   useEffect(() => {
@@ -115,99 +89,15 @@ export function ScrollbarNav() {
     };
   }, [updateScrollPosition]);
 
-  // Handle drag start
-  const handleDragStart = useCallback((clientY: number) => {
-    setIsDragging(true);
-
-    if (!trackRef.current || !thumbRef.current) return null;
-
-    const trackRect = trackRef.current.getBoundingClientRect();
-    const trackHeight = trackRect.height;
-    const thumbHeight = thumbRef.current.offsetHeight;
-    const maxThumbPosition = trackHeight - thumbHeight;
-
-    const handleMove = (moveY: number) => {
-      const relativeY = moveY - trackRect.top;
-      const clampedY = Math.max(
-        0,
-        Math.min(relativeY - thumbHeight / 2, maxThumbPosition)
-      );
-      const progress = clampedY / maxThumbPosition;
-
-      setScrollProgress(progress);
-
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      const maxScroll = documentHeight - windowHeight;
-      const targetScroll = progress * maxScroll;
-
-      window.scrollTo({ top: targetScroll, behavior: "auto" });
-    };
-
-    return handleMove;
-  }, []);
-
-  // Mouse events
-  const handleMouseDown = useCallback(
-    (e: React.MouseEvent) => {
-      e.preventDefault();
-      const handleMove = handleDragStart(e.clientY);
-
-      const handleMouseMove = (e: MouseEvent) => {
-        handleMove?.(e.clientY);
-      };
-
-      const handleMouseUp = () => {
-        setIsDragging(false);
-        document.removeEventListener("mousemove", handleMouseMove);
-        document.removeEventListener("mouseup", handleMouseUp);
-      };
-
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
-    },
-    [handleDragStart]
-  );
-
-  // Touch events
-  const handleTouchStart = useCallback(
-    (e: React.TouchEvent) => {
-      e.preventDefault();
-      const handleMove = handleDragStart(e.touches[0].clientY);
-
-      const handleTouchMove = (e: TouchEvent) => {
-        e.preventDefault();
-        handleMove?.(e.touches[0].clientY);
-      };
-
-      const handleTouchEnd = () => {
-        setIsDragging(false);
-        document.removeEventListener("touchmove", handleTouchMove);
-        document.removeEventListener("touchend", handleTouchEnd);
-      };
-
-      document.addEventListener("touchmove", handleTouchMove, {
-        passive: false,
-      });
-      document.addEventListener("touchend", handleTouchEnd);
-    },
-    [handleDragStart]
-  );
-
   // Handle track click
   const handleTrackClick = useCallback((e: React.MouseEvent) => {
-    if (!trackRef.current || !thumbRef.current) return;
+    if (!trackRef.current) return;
 
     const trackRect = trackRef.current.getBoundingClientRect();
     const clickY = e.clientY - trackRect.top;
     const trackHeight = trackRect.height;
-    const thumbHeight = thumbRef.current.offsetHeight;
-    const maxThumbPosition = trackHeight - thumbHeight;
 
-    const progress = Math.max(
-      0,
-      Math.min((clickY - thumbHeight / 2) / maxThumbPosition, 1)
-    );
+    const progress = Math.max(0, Math.min(clickY / trackHeight, 1));
 
     setScrollProgress(progress);
 
@@ -276,32 +166,6 @@ export function ScrollbarNav() {
               </div>
             );
           })}
-
-          {/* Draggable thumb - red indicator (mobile only) */}
-          <div
-            ref={thumbRef}
-            className={cn(
-              "absolute left-1/2 -translate-x-1/2 w-10 h-12 -ml-5",
-              "cursor-grab active:cursor-grabbing",
-              "flex items-center justify-center",
-              "md:hidden"
-            )}
-            onMouseDown={handleMouseDown}
-            onTouchStart={handleTouchStart}
-            style={{ transform: "translateY(0) translateX(-50%)" }}
-          >
-            {/* Red indicator bar */}
-            <div
-              className={cn(
-                "w-2 h-10 bg-red-500 rounded-full shadow-lg shadow-red-500/60",
-                "transition-all duration-200 relative",
-                isDragging ? "h-12 w-2.5 shadow-red-500/80" : ""
-              )}
-            >
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-red-400 rounded-full blur-sm opacity-50" />
-            </div>
-          </div>
         </div>
       </div>
     </div>

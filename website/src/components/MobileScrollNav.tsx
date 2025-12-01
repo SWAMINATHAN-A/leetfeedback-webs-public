@@ -17,7 +17,6 @@ const SECTIONS: Section[] = [
 
 export function MobileScrollNav() {
   const [activeSection, setActiveSection] = useState<string>("home");
-  const [isDragging, setIsDragging] = useState(false);
 
   // Scroll to section
   const scrollToSection = useCallback((sectionId: string) => {
@@ -30,8 +29,6 @@ export function MobileScrollNav() {
   // Handle scroll detection
   useEffect(() => {
     const handleScroll = () => {
-      if (isDragging) return; // Don't update active section while dragging
-
       const sections = SECTIONS.map((section) => ({
         ...section,
         element: document.querySelector(`#${section.id}`),
@@ -57,82 +54,7 @@ export function MobileScrollNav() {
     handleScroll(); // Initial check
 
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isDragging]);
-
-  // Handle drag navigation
-  const handleMouseDown = (e: React.MouseEvent, sectionId: string) => {
-    setIsDragging(true);
-    setActiveSection(sectionId);
-    scrollToSection(sectionId);
-
-    const startY = e.clientY;
-    const startIndex = SECTIONS.findIndex((s) => s.id === sectionId);
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const deltaY = e.clientY - startY;
-      const sensitivity = 30; // pixels per section
-      const newIndex = Math.max(
-        0,
-        Math.min(
-          SECTIONS.length - 1,
-          startIndex - Math.round(deltaY / sensitivity)
-        )
-      );
-
-      if (newIndex !== startIndex) {
-        const newSection = SECTIONS[newIndex];
-        setActiveSection(newSection.id);
-        scrollToSection(newSection.id);
-      }
-    };
-
-    const handleMouseUp = () => {
-      setIsDragging(false);
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-    };
-
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
-  };
-
-  // Handle touch events for mobile
-  const handleTouchStart = (e: React.TouchEvent, sectionId: string) => {
-    setIsDragging(true);
-    setActiveSection(sectionId);
-    scrollToSection(sectionId);
-
-    const startY = e.touches[0].clientY;
-    const startIndex = SECTIONS.findIndex((s) => s.id === sectionId);
-
-    const handleTouchMove = (e: TouchEvent) => {
-      e.preventDefault();
-      const deltaY = e.touches[0].clientY - startY;
-      const sensitivity = 30;
-      const newIndex = Math.max(
-        0,
-        Math.min(
-          SECTIONS.length - 1,
-          startIndex - Math.round(deltaY / sensitivity)
-        )
-      );
-
-      if (newIndex !== startIndex) {
-        const newSection = SECTIONS[newIndex];
-        setActiveSection(newSection.id);
-        scrollToSection(newSection.id);
-      }
-    };
-
-    const handleTouchEnd = () => {
-      setIsDragging(false);
-      document.removeEventListener("touchmove", handleTouchMove);
-      document.removeEventListener("touchend", handleTouchEnd);
-    };
-
-    document.addEventListener("touchmove", handleTouchMove, { passive: false });
-    document.addEventListener("touchend", handleTouchEnd);
-  };
+  }, []);
 
   return (
     <div className="fixed right-4 top-1/2 transform -translate-y-1/2 z-40 md:hidden opacity-60">
@@ -159,8 +81,6 @@ export function MobileScrollNav() {
                 setActiveSection(section.id);
                 scrollToSection(section.id);
               }}
-              onMouseDown={(e) => handleMouseDown(e, section.id)}
-              onTouchStart={(e) => handleTouchStart(e, section.id)}
               aria-label={`Navigate to ${section.label}`}
               role="button"
               tabIndex={0}
