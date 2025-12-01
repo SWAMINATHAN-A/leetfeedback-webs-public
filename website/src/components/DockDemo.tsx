@@ -57,21 +57,76 @@ export const DockDemo = React.memo(function DockDemo() {
     }
   };
 
-  // Determine what to show based on current page
+  // Determine what to show based on current page and device
   const isHomePage = location.pathname === "/";
   const isRoadmapPage = location.pathname === "/roadmap";
   const isProfilePage = location.pathname === "/profile";
   const isStatsPage = location.pathname === "/profile/stats";
 
+  // Check if we're on mobile
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768); // md breakpoint
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const renderRightSection = () => {
+    if (isMobile) {
+      // Mobile: Always show home, roadmap, and theme
+      return (
+        <>
+          <DockIcon>
+            <button
+              onClick={() => startNavigation("/")}
+              aria-label="Home"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
+              )}
+            >
+              <HomeIcon className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
+            </button>
+          </DockIcon>
+          <DockIcon>
+            <button
+              onClick={() => startNavigation("/roadmap")}
+              aria-label="Roadmap"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
+              )}
+            >
+              <RoadmapIcon className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
+            </button>
+          </DockIcon>
+          <DockIcon>
+            <div
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+              )}
+            >
+              <AnimatedThemeToggler />
+            </div>
+          </DockIcon>
+        </>
+      );
+    }
+
     if (isHomePage) {
-      // Home page: Show theme switch only
+      // Desktop Home page: Show theme switch only
       return (
         <DockIcon>
           <div
             className={cn(
               buttonVariants({ variant: "ghost", size: "icon" }),
-              "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+              "hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
             )}
           >
             <AnimatedThemeToggler />
@@ -79,7 +134,7 @@ export const DockDemo = React.memo(function DockDemo() {
         </DockIcon>
       );
     } else if (isRoadmapPage) {
-      // Roadmap page: Show home link + theme switch (no profile icon)
+      // Desktop Roadmap page: Show home link + theme switch (no profile icon)
       return (
         <>
           <DockIcon>
@@ -98,7 +153,7 @@ export const DockDemo = React.memo(function DockDemo() {
             <div
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
-                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+                "hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
               )}
             >
               <AnimatedThemeToggler />
@@ -107,7 +162,7 @@ export const DockDemo = React.memo(function DockDemo() {
         </>
       );
     } else if (isProfilePage) {
-      // Profile page: Show home link + theme switch
+      // Desktop Profile page: Show home link + theme switch
       return (
         <>
           <DockIcon>
@@ -126,7 +181,7 @@ export const DockDemo = React.memo(function DockDemo() {
             <div
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
-                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+                "hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
               )}
             >
               <AnimatedThemeToggler />
@@ -135,7 +190,7 @@ export const DockDemo = React.memo(function DockDemo() {
         </>
       );
     } else if (isStatsPage) {
-      // Stats page: Show home link + theme switch
+      // Desktop Stats page: Show home link + theme switch
       return (
         <>
           <DockIcon>
@@ -170,7 +225,7 @@ export const DockDemo = React.memo(function DockDemo() {
         <div
           className={cn(
             buttonVariants({ variant: "ghost", size: "icon" }),
-            "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+            "hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
           )}
         >
           <AnimatedThemeToggler />
@@ -179,8 +234,8 @@ export const DockDemo = React.memo(function DockDemo() {
     );
   };
 
-  // Only show navigation items on home page
-  const showNavigation = isHomePage;
+  // Only show navigation items on home page and desktop
+  const showNavigation = isHomePage && !isMobile;
 
   // Don't render if navigation is in progress
   if (isNavigating) {
@@ -199,7 +254,7 @@ export const DockDemo = React.memo(function DockDemo() {
         duration: 0.6,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className="fixed bottom-4 md:bottom-8 left-1/2 hidden md:block"
+      className="fixed bottom-4 md:bottom-8 left-1/2"
       style={{
         zIndex: 100,
         x: "-50%",

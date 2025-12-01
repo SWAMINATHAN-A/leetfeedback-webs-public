@@ -11,18 +11,6 @@ type props = {
 
 const styleId = "theme-transition-styles";
 
-const isChromeBased = () => {
-  if (typeof window === "undefined") return false;
-
-  const userAgent = navigator.userAgent.toLowerCase();
-  const isChrome = /chrome|chromium|edg/.test(userAgent);
-  const isNotFirefox = !/firefox/.test(userAgent);
-  const isNotSafari =
-    !/safari/.test(userAgent) || /chrome|chromium/.test(userAgent);
-
-  return isChrome && isNotFirefox && isNotSafari;
-};
-
 const updateStyles = (css: string) => {
   if (typeof window === "undefined") return;
 
@@ -84,10 +72,12 @@ export const AnimatedThemeToggler = ({ className }: props) => {
   const changeTheme = useCallback(() => {
     if (!buttonRef.current) return;
 
-    // Only use circle blur animation on Chrome-based browsers
-    const shouldUseAnimation = isChromeBased();
+    // Check if startViewTransition is available (works in modern browsers)
+    const supportsViewTransition =
+      "startViewTransition" in document &&
+      typeof (document as any).startViewTransition === "function";
 
-    if (shouldUseAnimation) {
+    if (supportsViewTransition) {
       // Initialize styles once
       if (!stylesInitialized.current) {
         const animation = createCircleBlurAnimation();
@@ -98,20 +88,12 @@ export const AnimatedThemeToggler = ({ className }: props) => {
       // Start the theme switch island animation
       startThemeSwitch();
 
-      // Check if startViewTransition is available
-      if (
-        "startViewTransition" in document &&
-        typeof (document as any).startViewTransition === "function"
-      ) {
-        (document as any).startViewTransition(() => {
-          toggleTheme();
-        });
-      } else {
-        // Fallback for browsers without startViewTransition
+      // Use view transition API for smooth theme change
+      (document as any).startViewTransition(() => {
         toggleTheme();
-      }
+      });
     } else {
-      // For Safari and Firefox, start island animation and toggle theme
+      // Fallback for browsers without startViewTransition
       startThemeSwitch();
       toggleTheme();
     }
@@ -121,12 +103,12 @@ export const AnimatedThemeToggler = ({ className }: props) => {
       ref={buttonRef}
       onClick={changeTheme}
       className={cn(
-        "w-full h-full flex items-center justify-center",
+        "flex items-center justify-center",
         className
       )}
     >
       {isDark ? (
-        <SunDim className="w-10 h-10 md:w-8 md:h-8" />
+        <SunDim className="w-7 h-7 md:w-8 md:h-8" />
       ) : (
         <Moon className="w-7 h-7 md:w-8 md:h-8" />
       )}
