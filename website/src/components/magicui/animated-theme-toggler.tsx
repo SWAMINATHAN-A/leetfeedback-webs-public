@@ -102,10 +102,7 @@ export const AnimatedThemeToggler = ({ className }: props) => {
     <button
       ref={buttonRef}
       onClick={changeTheme}
-      className={cn(
-        "flex items-center justify-center",
-        className
-      )}
+      className={cn("flex items-center justify-center", className)}
     >
       {isDark ? (
         <SunDim className="w-7 h-7 md:w-8 md:h-8" />

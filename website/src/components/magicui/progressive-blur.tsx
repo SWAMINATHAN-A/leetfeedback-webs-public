@@ -9,10 +9,10 @@ interface ProgressiveBlurProps {
 }
 
 const blurLayers = [
-  { blur: 2, opacity: "0 25%" },
-  { blur: 4, opacity: "25% 50%" },
-  { blur: 8, opacity: "50% 75%" },
-  { blur: 12, opacity: "75% 100%" },
+  { blur: 1, opacity: "0 25%" },
+  { blur: 2, opacity: "25% 50%" },
+  { blur: 3, opacity: "50% 75%" },
+  { blur: 4, opacity: "75% 100%" },
 ];
 
 export const ProgressiveBlur = React.memo(function ProgressiveBlur({
@@ -20,6 +20,7 @@ export const ProgressiveBlur = React.memo(function ProgressiveBlur({
   position = "bottom",
 }: ProgressiveBlurProps) {
   const direction = position === "top" ? "to top" : "to bottom";
+  const gradientDirClass = position === "top" ? "bg-gradient-to-t" : "bg-gradient-to-b";
 
   return (
     <div
@@ -46,6 +47,17 @@ export const ProgressiveBlur = React.memo(function ProgressiveBlur({
           }}
         />
       ))}
+
+      {/* Opacity overlay: matches blur height and direction. Exists only in dark mode with a black mask. */}
+      <div
+        aria-hidden
+        className={cn(
+          "absolute inset-0 pointer-events-none",
+          gradientDirClass,
+          // transparent in light mode, black mask in dark mode
+          "from-transparent dark:to-black/40"
+        )}
+      />
     </div>
   );
 });
