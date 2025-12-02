@@ -115,7 +115,7 @@ export function ScrollbarNav() {
   return (
     <div
       className={cn(
-        "fixed right-6 top-1/2 z-40 transition-opacity duration-200",
+        "fixed right-6 top-1/2 z-40 transition-opacity duration-200 hidden md:block",
         isVisible ? "opacity-100" : "opacity-0"
       )}
       style={{ transform: "translateY(-50%)" }}

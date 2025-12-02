@@ -142,9 +142,7 @@ const Hero: React.FC = React.memo(() => {
               {/* Subheadline with BlurFade */}
               <BlurFade delay={0.5}>
                 <p className="mt-8 max-w-3xl text-balance text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                  Automatically push solutions to GitHub, sync insights to Notion,
-                  and create Anki flashcards from your coding mistakes. The{" "}
-                  <span style={{ fontFamily: "'Diehl Deco', serif" }} className="font-bold italic text-foreground">complete learning ecosystem</span>.
+                  Turn DSA into a habit: Streaks, Leaderboards, Friends and Achievements — right on your existing coding platforms.
                 </p>
               </BlurFade>
 

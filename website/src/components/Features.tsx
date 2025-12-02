@@ -163,7 +163,13 @@ const Features: React.FC = React.memo(() => {
                 Transform Your Coding Journey
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground">
-                Watch how <span style={{ fontFamily: "'Diehl Deco', serif" }} className="font-bold italic text-foreground">AI turns your practice into progress</span>
+                Watch how{" "}
+                <span
+                  style={{ fontFamily: "'Diehl Deco', serif" }}
+                  className="font-bold italic text-foreground"
+                >
+                  AI turns your practice into progress
+                </span>
               </p>
             </div>
           }
@@ -495,8 +501,8 @@ const Features: React.FC = React.memo(() => {
               </div>
 
               {/* Anki Cards Generation Card - Full Width with Chart */}
-              <div className="relative col-span-full">
-                <div className="absolute z-10 max-w-2xl px-6 pr-12 pt-6 md:px-12 md:pt-12">
+              <div className="relative col-span-full flex flex-col md:flex-row">
+                <div className="flex-1 z-10 px-6 pt-6 md:px-12 md:pt-12 md:max-w-2xl">
                   <span className="text-muted-foreground flex items-center gap-2 text-sm">
                     <StyleIcon className="size-4" />
                     Anki Cards Generation
@@ -524,7 +530,7 @@ const Features: React.FC = React.memo(() => {
                   </ul>
                 </div>
                 {/* Visual representation of cards */}
-                <div className="relative h-96 overflow-hidden bg-gradient-to-br from-emerald-50/50 to-background dark:from-emerald-950/20 dark:to-background">
+                <div className="relative h-96 md:h-auto md:flex-1 overflow-hidden bg-gradient-to-br from-emerald-50/50 to-background dark:from-emerald-950/20 dark:to-background">
                   <div className="absolute inset-0 flex items-center justify-end pr-6 md:pr-12 pb-12">
                     <div className="relative w-56 sm:w-64">
                       {/* Stacked cards effect */}

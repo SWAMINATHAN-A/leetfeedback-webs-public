@@ -20,7 +20,8 @@ export const ProgressiveBlur = React.memo(function ProgressiveBlur({
   position = "bottom",
 }: ProgressiveBlurProps) {
   const direction = position === "top" ? "to top" : "to bottom";
-  const gradientDirClass = position === "top" ? "bg-gradient-to-t" : "bg-gradient-to-b";
+  const gradientDirClass =
+    position === "top" ? "bg-gradient-to-t" : "bg-gradient-to-b";
 
   return (
     <div
