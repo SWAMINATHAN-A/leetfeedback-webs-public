@@ -388,7 +388,7 @@ const HowItWorks: React.FC = React.memo(() => {
                         <div className="flex items-center gap-4">
                           <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center text-zinc-500">
                             <div className="w-10 h-10 md:w-12 md:h-12">
-                              {React.cloneElement(step.icon as React.ReactElement, { className: "w-full h-full" })}
+{React.cloneElement(step.icon as React.ReactElement<any>, { className: "w-full h-full" })}
                             </div>
                           </div>
                           <div style={{ fontFamily: "'Figurlce', sans-serif" }} className="text-6xl md:text-7xl font-bold text-zinc-600">
