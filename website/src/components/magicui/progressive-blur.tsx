@@ -11,8 +11,8 @@ interface ProgressiveBlurProps {
 const blurLayers = [
   { blur: 1, opacity: "0 25%" },
   { blur: 2, opacity: "25% 50%" },
-  { blur: 3, opacity: "50% 75%" },
-  { blur: 4, opacity: "75% 100%" },
+  { blur: 2, opacity: "50% 75%" },
+  { blur: 2, opacity: "75% 100%" },
 ];
 
 export const ProgressiveBlur = React.memo(function ProgressiveBlur({
@@ -30,7 +30,7 @@ export const ProgressiveBlur = React.memo(function ProgressiveBlur({
         position === "top" ? "top-0" : "bottom-0",
         className
       )}
-      style={{ 
+      style={{
         height: "70px",
         willChange: "auto",
         transform: "translateZ(0)",

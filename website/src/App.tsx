@@ -174,10 +174,7 @@ function AppContent() {
                 WebkitBackfaceVisibility: "hidden",
               }}
             >
-              <ProgressiveBlur
-                position="bottom"
-                className=""
-              />
+              <ProgressiveBlur position="bottom" className="" />
             </motion.div>
           )}
       </AnimatePresence>
