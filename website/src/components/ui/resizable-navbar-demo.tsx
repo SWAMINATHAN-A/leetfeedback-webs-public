@@ -18,7 +18,6 @@ import PlatformIcon from "../PlatformIcon";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigation } from "../../contexts/NavigationContext";
 import SimpleUserMenu from "./SimpleUserMenu";
-import LogoNoBackground from "@/assets/icons/LogoNoBackground.svg";
 
 export function ResizableNavbarDemo() {
   const navItems = [];
@@ -37,9 +36,14 @@ export function ResizableNavbarDemo() {
         <NavBody>
           <div className="flex items-center space-x-3">
             <img
-              src={LogoNoBackground}
+              src="/navbar.svg"
               alt="Traverse Logo"
-              className="h-8 w-auto"
+              className="h-8 w-auto dark:hidden"
+            />
+            <img
+              src="/navbar-dark.svg"
+              alt="Traverse Logo"
+              className="h-8 w-auto hidden dark:block"
             />
             <span className="text-2xl font-semibold" style={{ fontFamily: "'Belisa Plumilla Manual', cursive" }}>Traverse</span>
           </div>
@@ -100,9 +104,14 @@ export function ResizableNavbarDemo() {
           <MobileNavHeader>
             <div className="flex items-center space-x-3">
               <img
-                src={LogoNoBackground}
+                src="/navbar.svg"
                 alt="Traverse Logo"
-                className="h-8 w-auto"
+                className="h-8 w-auto dark:hidden"
+              />
+              <img
+                src="/navbar-dark.svg"
+                alt="Traverse Logo"
+                className="h-8 w-auto hidden dark:block"
               />
               <span className="text-2xl font-semibold" style={{ fontFamily: "'Belisa Plumilla Manual', cursive" }}>Traverse</span>
             </div>
