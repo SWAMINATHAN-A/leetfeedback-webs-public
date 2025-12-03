@@ -529,25 +529,93 @@ const Features: React.FC = React.memo(() => {
                     </li>
                   </ul>
                 </div>
-                {/* Visual representation of cards */}
-                <div className="relative h-96 md:h-auto md:flex-1 overflow-hidden bg-gradient-to-br from-emerald-50/50 to-background dark:from-emerald-950/20 dark:to-background">
-                  <div className="absolute inset-0 flex items-center justify-end pr-6 md:pr-12 pb-12">
-                    <div className="relative w-56 sm:w-64">
-                      {/* Stacked cards effect */}
-                      <div className="absolute right-0 top-0 w-full h-36 sm:h-40 bg-background dark:bg-zinc-900 border rounded-xl shadow-lg transform rotate-6 opacity-30"></div>
-                      <div className="absolute right-0 top-0 w-full h-36 sm:h-40 bg-background dark:bg-zinc-900 border rounded-xl shadow-lg transform rotate-3 opacity-50"></div>
-                      <div className="relative w-full h-36 sm:h-40 bg-background dark:bg-zinc-900 border rounded-xl shadow-2xl p-4 sm:p-6 overflow-hidden">
-                        <div className="text-[10px] sm:text-xs text-muted-foreground mb-1 sm:mb-2">
-                          Array • Two Pointer
-                        </div>
-                        <div className="text-sm sm:text-lg font-semibold mb-2 sm:mb-3 line-clamp-2">
-                          Container With Most Water
-                        </div>
-                        <div className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
-                          Start from both ends, move pointer with smaller height
-                        </div>
+                {/* Visual representation of cards - extends beneath text */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                  {/* Fanned card deck - positioned to go under the text */}
+                  <div className="absolute top-1/2 left-[30%] -translate-y-1/2 md:left-[40%]">
+                    {/* Card 5 - furthest back */}
+                    <div className="absolute w-64 h-44 bg-background dark:bg-zinc-900 border rounded-xl shadow-lg -rotate-12 -translate-x-16">
+                      <div className="absolute top-0 left-0 right-0 h-0.5 bg-muted-foreground/20 rounded-t-xl"></div>
+                      <div className="p-5">
+                        <div className="text-xs text-muted-foreground mb-2">DP • Memoization</div>
+                        <div className="text-base font-semibold mb-2">Coin Change</div>
+                        <div className="text-sm text-muted-foreground">Build solution from smallest subproblem</div>
                       </div>
                     </div>
+                    
+                    {/* Card 4 */}
+                    <div className="absolute w-64 h-44 bg-background dark:bg-zinc-900 border rounded-xl shadow-lg -rotate-6 -translate-x-8">
+                      <div className="absolute top-0 left-0 right-0 h-0.5 bg-muted-foreground/20 rounded-t-xl"></div>
+                      <div className="p-5">
+                        <div className="text-xs text-muted-foreground mb-2">Graph • BFS</div>
+                        <div className="text-base font-semibold mb-2">Shortest Path</div>
+                        <div className="text-sm text-muted-foreground">Use queue for level-order exploration</div>
+                      </div>
+                    </div>
+                    
+                    {/* Card 3 - center */}
+                    <div className="absolute w-64 h-44 bg-background dark:bg-zinc-900 border rounded-xl shadow-lg rotate-0">
+                      <div className="absolute top-0 left-0 right-0 h-0.5 bg-muted-foreground/20 rounded-t-xl"></div>
+                      <div className="p-5">
+                        <div className="text-xs text-muted-foreground mb-2">Array • Two Pointer</div>
+                        <div className="text-base font-semibold mb-2">Container With Most Water</div>
+                        <div className="text-sm text-muted-foreground">Start from both ends, move pointer with smaller height</div>
+                      </div>
+                    </div>
+                    
+                    {/* Card 2 */}
+                    <div className="absolute w-64 h-44 bg-background dark:bg-zinc-900 border rounded-xl shadow-lg rotate-6 translate-x-8">
+                      <div className="absolute top-0 left-0 right-0 h-0.5 bg-muted-foreground/20 rounded-t-xl"></div>
+                      <div className="p-5">
+                        <div className="text-xs text-muted-foreground mb-2">String • Sliding Window</div>
+                        <div className="text-base font-semibold mb-2">Longest Substring</div>
+                        <div className="text-sm text-muted-foreground">Track characters with hashmap</div>
+                      </div>
+                    </div>
+                    
+                    {/* Card 1 - front */}
+                    <div className="absolute w-64 h-44 bg-background dark:bg-zinc-900 border rounded-xl shadow-lg rotate-12 translate-x-16">
+                      <div className="absolute top-0 left-0 right-0 h-0.5 bg-muted-foreground/20 rounded-t-xl"></div>
+                      <div className="p-5">
+                        <div className="text-xs text-muted-foreground mb-2">Tree • BFS</div>
+                        <div className="text-base font-semibold mb-2">Level Order Traversal</div>
+                        <div className="text-sm text-muted-foreground">Use queue, process level by level</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Text content with blur backdrop */}
+                <div className="flex-1 z-10 px-6 pt-6 pb-8 md:px-12 md:pt-12 md:pb-12 md:max-w-2xl relative">
+                  {/* Blur layer behind text */}
+                  <div className="absolute inset-0 backdrop-blur-md bg-background/60 dark:bg-background/70"></div>
+                  
+                  <div className="relative z-10">
+                    <span className="text-muted-foreground flex items-center gap-2 text-sm">
+                      <StyleIcon className="size-4" />
+                      Anki Cards Generation
+                    </span>
+                    <p className="my-8 text-2xl font-semibold">
+                      Generate Anki cards from your mistakes, tagged by mistake
+                      type.{" "}
+                      <span className="text-muted-foreground">
+                        Spaced repetition for better memory retention.
+                      </span>
+                    </p>
+                    <ul className="space-y-3">
+                      <li className="flex items-start text-sm text-muted-foreground">
+                        <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                        <span>Auto-generated flashcards</span>
+                      </li>
+                      <li className="flex items-start text-sm text-muted-foreground">
+                        <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                        <span>Organized by mistake categories</span>
+                      </li>
+                      <li className="flex items-start text-sm text-muted-foreground">
+                        <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                        <span>Track learning progress</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>

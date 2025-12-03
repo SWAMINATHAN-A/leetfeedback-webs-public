@@ -166,10 +166,17 @@ function AppContent() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.5 }}
+              className="fixed bottom-0 left-0 right-0 pointer-events-none z-20"
+              style={{
+                willChange: "auto",
+                transform: "translateZ(0)",
+                backfaceVisibility: "hidden",
+                WebkitBackfaceVisibility: "hidden",
+              }}
             >
               <ProgressiveBlur
                 position="bottom"
-                className="fixed bottom-0 left-0 right-0 pointer-events-none"
+                className=""
               />
             </motion.div>
           )}

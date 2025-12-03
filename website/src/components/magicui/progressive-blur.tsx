@@ -26,11 +26,16 @@ export const ProgressiveBlur = React.memo(function ProgressiveBlur({
   return (
     <div
       className={cn(
-        "pointer-events-none z-20",
+        "pointer-events-none z-20 relative",
         position === "top" ? "top-0" : "bottom-0",
         className
       )}
-      style={{ height: "7%" }}
+      style={{ 
+        height: "70px",
+        willChange: "auto",
+        transform: "translateZ(0)",
+        backfaceVisibility: "hidden",
+      }}
     >
       {blurLayers.map((layer, i) => (
         <div

@@ -536,8 +536,9 @@
 .fixed.bottom-8 {
     position: fixed !important;
     will-change: auto;
-    transform: translateX(-50%) translateZ(0);
+    transform: translateZ(0);
     backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 /* Prevent layout shifts from filter changes */
@@ -545,6 +546,27 @@
     .liquidGlass-wrapper {
         transform: translateZ(0);
         backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+}
+
+/* Mobile Chrome scroll stability fix */
+@supports (-webkit-touch-callout: none) {
+    /* iOS Safari and Chrome */
+    .fixed {
+        transform: translateZ(0);
+        -webkit-transform: translateZ(0);
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+}
+
+/* Use small viewport height for more stable mobile behavior */
+@supports (height: 100svh) {
+    .fixed.bottom-4,
+    .fixed.bottom-8 {
+        /* Use small viewport units which don't change with address bar */
+        bottom: max(1rem, env(safe-area-inset-bottom, 1rem));
     }
 }
 

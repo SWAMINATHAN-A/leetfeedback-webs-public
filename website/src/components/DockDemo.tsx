@@ -254,10 +254,13 @@ export const DockDemo = React.memo(function DockDemo() {
         duration: 0.6,
         ease: [0.16, 1, 0.3, 1],
       }}
-      className="fixed bottom-4 md:bottom-8 left-1/2"
+      className="fixed bottom-4 md:bottom-8 left-0 right-0 flex justify-center"
       style={{
         zIndex: 100,
-        x: "-50%",
+        willChange: "auto",
+        transform: "translateZ(0)",
+        backfaceVisibility: "hidden",
+        WebkitBackfaceVisibility: "hidden",
       }}
     >
       <Dock
