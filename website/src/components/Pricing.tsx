@@ -236,7 +236,12 @@ const Pricing: React.FC = React.memo(() => {
               <div className="p-6 flex flex-col h-full">
                 <h3 className="text-xl font-bold text-foreground mb-2">Free</h3>
                 <div className="mb-6">
-                  <span className="text-5xl font-bold text-foreground" style={{ fontFamily: "'Stinger', sans-serif" }}>$0</span>
+                  <span
+                    className="text-5xl font-bold text-foreground"
+                    style={{ fontFamily: "'Stinger', sans-serif" }}
+                  >
+                    $0
+                  </span>
                 </div>
 
                 {/* Features List */}
@@ -291,7 +296,12 @@ const Pricing: React.FC = React.memo(() => {
               <div className="relative z-10 p-6 flex flex-col h-full">
                 <h3 className="text-xl font-bold text-white mb-2">Premium</h3>
                 <div className="mb-6">
-                  <span className="text-5xl font-bold text-white" style={{ fontFamily: "'Stinger', sans-serif" }}>$100</span>
+                  <span
+                    className="text-5xl font-bold text-white"
+                    style={{ fontFamily: "'Stinger', sans-serif" }}
+                  >
+                    $100
+                  </span>
                 </div>
 
                 {/* Features List */}
@@ -376,7 +386,10 @@ const Pricing: React.FC = React.memo(() => {
                   <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-2xl p-4 text-center">
                     <div className="flex items-center justify-center gap-1.5 mb-1">
                       <Star className="w-4 h-4 text-yellow-400" />
-                      <span className="text-xl font-bold text-white font-mono" style={{ fontFamily: "'Stinger', sans-serif" }}>
+                      <span
+                        className="text-xl font-bold text-white font-mono"
+                        style={{ fontFamily: "'Stinger', sans-serif" }}
+                      >
                         {gitHubStats.loading ? "--" : gitHubStats.stars}
                       </span>
                     </div>
@@ -385,7 +398,10 @@ const Pricing: React.FC = React.memo(() => {
                   <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-2xl p-4 text-center">
                     <div className="flex items-center justify-center gap-1.5 mb-1">
                       <Clock className="w-4 h-4 text-blue-400" />
-                      <span className="text-xl font-bold text-white font-mono" style={{ fontFamily: "'Stinger', sans-serif" }}>
+                      <span
+                        className="text-xl font-bold text-white font-mono"
+                        style={{ fontFamily: "'Stinger', sans-serif" }}
+                      >
                         {gitHubStats.loading
                           ? "--"
                           : gitHubStats.lastCommitDays === 0
@@ -398,7 +414,10 @@ const Pricing: React.FC = React.memo(() => {
                   <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-2xl p-4 text-center">
                     <div className="flex items-center justify-center gap-1.5 mb-1">
                       <Users className="w-4 h-4 text-green-400" />
-                      <span className="text-xl font-bold text-white font-mono">
+                      <span
+                        className="text-xl font-bold text-white font-mono"
+                        style={{ fontFamily: "'Stinger', sans-serif" }}
+                      >
                         50+
                       </span>
                     </div>

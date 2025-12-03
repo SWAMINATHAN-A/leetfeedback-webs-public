@@ -581,7 +581,7 @@ const Features: React.FC = React.memo(() => {
         {/* Power Features - Professional Cards */}
         <div className="mb-20">
           {/* Section Title */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-16 overflow-hidden">
             <LineShadowText
               as="h2"
               shadowColor="hsl(var(--muted-foreground))"
@@ -589,11 +589,14 @@ const Features: React.FC = React.memo(() => {
             >
               BEYOND BASICS
             </LineShadowText>
-            <div className="text-2xl text-muted-foreground font-light">
-              Six features that{" "}
+            <div
+              className="text-md sm:text-lg md:text-xl lg:text-2xl text-muted-foreground font-light break-words"
+              style={{ fontFamily: "'Stinger', sans-serif" }}
+            >
+              Features to{" "}
               <FlipWords
                 words={["transform", "accelerate", "supercharge"]}
-                className="text-foreground font-bold"
+                className="text-foreground font-bold inline-block"
                 duration={2500}
               />{" "}
               your growth
