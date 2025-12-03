@@ -1,5 +1,19 @@
 @import url("/harmonyos-fonts/css/harmonyos_sans_optimized.css");
 
+@font-face {
+    font-family: 'Britanica';
+    src: url('/brit.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Stinger';
+    src: url('/stinger.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

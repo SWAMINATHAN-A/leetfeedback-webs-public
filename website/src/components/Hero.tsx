@@ -141,8 +141,12 @@ const Hero: React.FC = React.memo(() => {
 
               {/* Subheadline with BlurFade */}
               <BlurFade delay={0.5}>
-                <p className="mt-8 max-w-3xl text-balance text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                  Turn DSA into a habit: Streaks, Leaderboards, Friends and Achievements — right on your existing coding platforms.
+                <p
+                  className="mt-8 max-w-3xl text-balance text-xl md:text-2xl text-muted-foreground leading-relaxed"
+                  style={{ fontFamily: "'Britanica', sans-serif" }}
+                >
+                  Turn DSA into a habit: Streaks, Leaderboards, Friends and
+                  Achievements — right on your existing coding platforms.
                 </p>
               </BlurFade>
 

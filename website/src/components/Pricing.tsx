@@ -125,7 +125,9 @@ const useGitHubStats = () => {
         );
         const commitsData = await commitsRes.json();
 
-        const lastCommitDate = new Date(commitsData[0]?.commit?.committer?.date);
+        const lastCommitDate = new Date(
+          commitsData[0]?.commit?.committer?.date
+        );
         const now = new Date();
         const diffTime = Math.abs(now.getTime() - lastCommitDate.getTime());
         const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
@@ -211,7 +213,13 @@ const Pricing: React.FC = React.memo(() => {
           </TextAnimate>
           <BlurFade delay={0.5}>
             <p className="text-xl md:text-2xl text-muted-foreground">
-              Choose the plan that <span style={{ fontFamily: "'Diehl Deco', serif" }} className="font-bold italic text-foreground">works for you</span>
+              Choose the plan that{" "}
+              <span
+                style={{ fontFamily: "'Diehl Deco', serif" }}
+                className="font-bold italic text-foreground"
+              >
+                works for you
+              </span>
             </p>
           </BlurFade>
         </div>
@@ -228,7 +236,7 @@ const Pricing: React.FC = React.memo(() => {
               <div className="p-6 flex flex-col h-full">
                 <h3 className="text-xl font-bold text-foreground mb-2">Free</h3>
                 <div className="mb-6">
-                  <span className="text-5xl font-bold text-foreground">$0</span>
+                  <span className="text-5xl font-bold text-foreground" style={{ fontFamily: "'Stinger', sans-serif" }}>$0</span>
                 </div>
 
                 {/* Features List */}
@@ -283,7 +291,7 @@ const Pricing: React.FC = React.memo(() => {
               <div className="relative z-10 p-6 flex flex-col h-full">
                 <h3 className="text-xl font-bold text-white mb-2">Premium</h3>
                 <div className="mb-6">
-                  <span className="text-5xl font-bold text-white">$100</span>
+                  <span className="text-5xl font-bold text-white" style={{ fontFamily: "'Stinger', sans-serif" }}>$100</span>
                 </div>
 
                 {/* Features List */}
@@ -319,7 +327,10 @@ const Pricing: React.FC = React.memo(() => {
         {/* FAQ Section */}
         <div className="bg-zinc-900 border border-gray-800 rounded-3xl p-8 md:p-12 mb-16 max-w-4xl mx-auto">
           <div className="text-center mb-12">
-            <h3 className="text-3xl text-white mb-4">
+            <h3
+              className="text-3xl text-white mb-4"
+              style={{ fontFamily: "'Stinger', sans-serif" }}
+            >
               Frequently Asked Questions
             </h3>
             <p className="text-gray-300">Everything you need to know</p>
@@ -342,11 +353,21 @@ const Pricing: React.FC = React.memo(() => {
                       className="font-mono text-xs"
                     />
                   </div>
-                  <h3 className="text-3xl md:text-4xl font-semibold text-white mb-3">
+                  <h3
+                    className="text-4xl md:text-4xl  text-white mb-3"
+                    style={{ fontFamily: "'Stinger', sans-serif" }}
+                  >
                     Build with us
                   </h3>
                   <p className="text-gray-400 max-w-md mx-auto">
-                    Join our growing community and help <span style={{ fontFamily: "'Figurlce', sans-serif" }} className="font-bold italic text-white">shape the future</span> of coding practice
+                    Join our growing community and help{" "}
+                    <span
+                      style={{ fontFamily: "'Figurlce', sans-serif" }}
+                      className="font-bold italic text-white"
+                    >
+                      shape the future
+                    </span>{" "}
+                    of coding practice
                   </p>
                 </div>
 
@@ -355,7 +376,7 @@ const Pricing: React.FC = React.memo(() => {
                   <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-2xl p-4 text-center">
                     <div className="flex items-center justify-center gap-1.5 mb-1">
                       <Star className="w-4 h-4 text-yellow-400" />
-                      <span className="text-xl font-bold text-white font-mono">
+                      <span className="text-xl font-bold text-white font-mono" style={{ fontFamily: "'Stinger', sans-serif" }}>
                         {gitHubStats.loading ? "--" : gitHubStats.stars}
                       </span>
                     </div>
@@ -364,12 +385,12 @@ const Pricing: React.FC = React.memo(() => {
                   <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-2xl p-4 text-center">
                     <div className="flex items-center justify-center gap-1.5 mb-1">
                       <Clock className="w-4 h-4 text-blue-400" />
-                      <span className="text-xl font-bold text-white font-mono">
+                      <span className="text-xl font-bold text-white font-mono" style={{ fontFamily: "'Stinger', sans-serif" }}>
                         {gitHubStats.loading
                           ? "--"
                           : gitHubStats.lastCommitDays === 0
-                            ? "Today"
-                            : `${gitHubStats.lastCommitDays}d`}
+                          ? "Today"
+                          : `${gitHubStats.lastCommitDays}d`}
                       </span>
                     </div>
                     <span className="text-xs text-gray-400">Last commit</span>
@@ -377,7 +398,9 @@ const Pricing: React.FC = React.memo(() => {
                   <div className="bg-zinc-800/50 border border-zinc-700/50 rounded-2xl p-4 text-center">
                     <div className="flex items-center justify-center gap-1.5 mb-1">
                       <Users className="w-4 h-4 text-green-400" />
-                      <span className="text-xl font-bold text-white font-mono">50+</span>
+                      <span className="text-xl font-bold text-white font-mono">
+                        50+
+                      </span>
                     </div>
                     <span className="text-xs text-gray-400">Members</span>
                   </div>

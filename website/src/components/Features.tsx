@@ -163,12 +163,12 @@ const Features: React.FC = React.memo(() => {
                 Transform Your Coding Journey
               </h1>
               <p className="text-xl md:text-2xl text-muted-foreground">
-                Watch how{" "}
+                Watch how AI turns your{" "}
                 <span
-                  style={{ fontFamily: "'Diehl Deco', serif" }}
                   className="font-bold italic text-foreground"
+                  style={{ fontFamily: "'Stinger', sans-serif" }}
                 >
-                  AI turns your practice into progress
+                  practice into progress
                 </span>
               </p>
             </div>
@@ -270,8 +270,10 @@ const Features: React.FC = React.memo(() => {
             </div>
           </div>
 
-          {/* Optional: Feature highlights under screenshots */}
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto px-4">
+          <div
+            className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto px-4"
+            style={{ fontFamily: "'Britanica', sans-serif" }}
+          >
             <BlurFade delay={0.8} duration={0.8} inView={true}>
               <div className="text-center">
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -306,7 +308,10 @@ const Features: React.FC = React.memo(() => {
                 <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
                   <AnalyticsIcon className="w-6 h-6 text-primary" />
                 </div>
-                <h4 className="font-semibold text-foreground mb-2">
+                <h4
+                  className="font-semibold text-foreground mb-2"
+                  style={{ fontFamily: "'Stinger', sans-serif" }}
+                >
                   Smart Analytics
                 </h4>
                 <p className="text-sm text-muted-foreground">
@@ -346,7 +351,10 @@ const Features: React.FC = React.memo(() => {
               {/* GitHub Integration Card - Large */}
               <div className="col-span-full md:col-span-1">
                 <div className="p-6 sm:p-12 border-b md:border-b-0 md:border-r">
-                  <span className="text-muted-foreground flex items-center gap-2 text-sm">
+                  <span
+                    className="text-muted-foreground flex items-center gap-2 text-sm"
+                    style={{ fontFamily: "'Stinger', sans-serif" }}
+                  >
                     <GitHubIcon className="size-4" />
                     GitHub Integration
                   </span>
@@ -445,7 +453,10 @@ const Features: React.FC = React.memo(() => {
               {/* Notion Sync Card */}
               <div className="overflow-hidden border-b md:border-b-0 md:border-l bg-zinc-50/50 dark:bg-zinc-900/20 p-6 sm:p-12">
                 <div className="relative z-10">
-                  <span className="text-muted-foreground flex items-center gap-2 text-sm">
+                  <span
+                    className="text-muted-foreground flex items-center gap-2 text-sm"
+                    style={{ fontFamily: "'Stinger', sans-serif" }}
+                  >
                     <NotesIcon className="size-4" />
                     Notion Sync
                   </span>
@@ -490,11 +501,22 @@ const Features: React.FC = React.memo(() => {
               </div>
 
               {/* Stats Card - Full Width */}
-              <div className="col-span-full border-b p-12 bg-gradient-to-br from-background via-primary/5 to-background">
+              <div
+                className="col-span-full border-b p-12 bg-gradient-to-br from-background via-primary/5 to-background"
+                style={{ fontFamily: "'Figurlce', sans-serif" }}
+              >
                 <div className="text-center">
-                  <div className="text-5xl md:text-7xl font-bold mb-4">
+                  <div
+                    className="text-5xl md:text-7xl font-bold mb-4"
+                    style={{ fontFamily: "'Figurlce', sans-serif" }}
+                  >
                     <NumberTicker value={23} className="text-foreground" />
-                    <span className="text-primary">+</span>
+                    <span
+                      className="text-primary"
+                      style={{ fontFamily: "'Figurlce', sans-serif" }}
+                    >
+                      +
+                    </span>
                   </div>
                   <p className="text-xl text-muted-foreground">Happy users</p>
                 </div>
@@ -504,24 +526,28 @@ const Features: React.FC = React.memo(() => {
               <div className="relative col-span-full min-h-[320px] overflow-hidden">
                 {/* Large rotated Anki icon - hidden on mobile */}
                 <div className="hidden md:block absolute right-[-10%] top-1/2 -translate-y-1/2 pointer-events-none z-0">
-                  <img 
-                    src="/icons8-anki.svg" 
-                    alt="" 
+                  <img
+                    src="/icons8-anki.svg"
+                    alt=""
                     className="w-[400px] h-[400px] rotate-[-12deg] opacity-90"
                   />
                 </div>
-                
+
                 {/* Smooth progressive fade overlay - hidden on mobile */}
-                <div 
+                <div
                   className="hidden md:block absolute right-[19%] top-0 bottom-0 w-[120px] z-[1] pointer-events-none"
                   style={{
-                    background: 'linear-gradient(to right, hsl(var(--background)) 0%, hsl(var(--background) / 0.8) 30%, hsl(var(--background) / 0.4) 60%, transparent 100%)',
+                    background:
+                      "linear-gradient(to right, hsl(var(--background)) 0%, hsl(var(--background) / 0.8) 30%, hsl(var(--background) / 0.4) 60%, transparent 100%)",
                   }}
                 ></div>
-                
+
                 {/* Text content - left side */}
                 <div className="relative z-10 md:max-w-md px-6 pt-6 pb-8 md:px-12 md:pt-12 md:pb-12">
-                  <span className="text-muted-foreground flex items-center gap-2 text-sm">
+                  <span
+                    className="text-muted-foreground flex items-center gap-2 text-sm"
+                    style={{ fontFamily: "'Stinger', sans-serif" }}
+                  >
                     <StyleIcon className="size-4" />
                     Anki Cards Generation
                   </span>
@@ -598,7 +624,10 @@ const Features: React.FC = React.memo(() => {
                           100%
                         </span>
                       </div>
-                      <h2 className="mt-6 text-center text-3xl font-semibold">
+                      <h2
+                        className="mt-6 text-center text-3xl font-semibold"
+                        style={{ fontFamily: "'Stinger', sans-serif" }}
+                      >
                         Automated
                       </h2>
                     </CardContent>
@@ -660,7 +689,10 @@ const Features: React.FC = React.memo(() => {
                         </svg>
                       </div>
                       <div className="relative z-10 mt-6 space-y-2 text-center">
-                        <h2 className="group-hover:text-secondary-950 text-lg font-medium transition dark:text-white">
+                        <h2
+                          className="group-hover:text-secondary-950 text-lg font-medium transition dark:text-white"
+                          style={{ fontFamily: "'Stinger', sans-serif" }}
+                        >
                           Secure by default
                         </h2>
                         <p className="text-foreground text-sm">
@@ -748,7 +780,10 @@ const Features: React.FC = React.memo(() => {
                         </svg>
                       </div>
                       <div className="relative z-10 mt-14 space-y-2 text-center">
-                        <h2 className="text-lg font-medium transition">
+                        <h2
+                          className="text-lg font-medium transition"
+                          style={{ fontFamily: "'Stinger', sans-serif" }}
+                        >
                           Smart Analytics
                         </h2>
                         <p className="text-foreground text-sm">
@@ -767,7 +802,10 @@ const Features: React.FC = React.memo(() => {
                           <Activity className="m-auto size-5" strokeWidth={1} />
                         </div>
                         <div className="space-y-2">
-                          <h2 className="group-hover:text-secondary-950 text-lg font-medium text-zinc-800 transition dark:text-white">
+                          <h2
+                            className="group-hover:text-secondary-950 text-lg font-medium text-zinc-800 transition dark:text-white"
+                            style={{ fontFamily: "'Stinger', sans-serif" }}
+                          >
                             AI Pattern Recognition
                           </h2>
                           <p className="text-foreground text-sm">
@@ -834,7 +872,10 @@ const Features: React.FC = React.memo(() => {
                           <GitHubIcon className="m-auto size-6" />
                         </div>
                         <div className="space-y-2">
-                          <h2 className="group-hover:text-secondary-950 text-lg font-medium text-zinc-800 transition dark:text-white">
+                          <h2
+                            className="group-hover:text-secondary-950 text-lg font-medium text-zinc-800 transition dark:text-white"
+                            style={{ fontFamily: "'Stinger', sans-serif" }}
+                          >
                             GitHub Integration
                           </h2>
                           <p className="text-foreground text-sm">
@@ -2256,7 +2297,10 @@ const Features: React.FC = React.memo(() => {
                           <Users className="m-auto size-6" strokeWidth={1} />
                         </div>
                         <div className="space-y-2">
-                          <h2 className="text-lg font-medium transition">
+                          <h2
+                            className="text-lg font-medium transition"
+                            style={{ fontFamily: "'Stinger', sans-serif" }}
+                          >
                             Compete with Friends
                           </h2>
                           <p className="text-foreground text-sm">
