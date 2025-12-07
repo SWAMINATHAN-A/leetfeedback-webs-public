@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Copyright */}
-        <div className="text-left pb-8">
+        <div className="text-left pb-4">
           <p className="text-muted-foreground text-sm font-mono">
             2025 LeetFeedback. All rights reserved.
           </p>

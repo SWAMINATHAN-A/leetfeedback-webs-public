@@ -149,7 +149,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         }}
         className={cn(
           "liquidGlass-content flex flex-row items-center w-full",
-          !visible && "px-6 py-3"
+          !visible && "px-6 py-2"
         )}
       >
         {children}

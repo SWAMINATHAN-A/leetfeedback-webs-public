@@ -48,7 +48,7 @@ export function ResizableNavbarDemo() {
             <span className="text-2xl font-semibold" style={{ fontFamily: "'Belisa Plumilla Manual', cursive" }}>Traverse</span>
           </div>
           <NavItems items={navItems} />
-          <div className="flex items-center gap-4">
+          <div className="flex items-center">
             <div className="flex items-center space-x-4 pl-4 border-l border-border">
               <PlatformIcon
                 platform="leetcode"
@@ -76,8 +76,8 @@ export function ResizableNavbarDemo() {
                 className="opacity-70 hover:opacity-100 transition-opacity"
               />
             </div>
-            <div className="h-6 w-px bg-border"></div>
-            <div className="flex items-center gap-3">
+            <div className="h-6 w-px bg-border mx-2"></div>
+            <div className="flex items-center gap-3 flex-1">
               {isAuthenticated ? (
                 <SimpleUserMenu />
               ) : (
@@ -85,16 +85,11 @@ export function ResizableNavbarDemo() {
                   variant="secondary"
                   onClick={handleSignInClick}
                   disabled={isLoading}
+                  className="bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
                 >
                   {isLoading ? "Loading..." : "Sign In"}
                 </NavbarButton>
               )}
-              <NavbarButton
-                variant="primary"
-                onClick={() => (window.location.href = "/profile/stats")}
-              >
-                Stats
-              </NavbarButton>
             </div>
           </div>
         </NavBody>
@@ -170,23 +165,12 @@ export function ResizableNavbarDemo() {
                     handleSignInClick();
                   }}
                   variant="secondary"
-                  className="w-full"
+                  className="w-full bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
                   disabled={isLoading}
                 >
                   {isLoading ? "Loading..." : "Sign In"}
                 </NavbarButton>
               )}
-
-              <NavbarButton
-                onClick={() => {
-                  setIsMobileMenuOpen(false);
-                  window.location.href = "/profile/stats";
-                }}
-                variant="primary"
-                className="w-full"
-              >
-                Stats
-              </NavbarButton>
             </div>
           </MobileNavExpandableContent>
         </MobileNav>
