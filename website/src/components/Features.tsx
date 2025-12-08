@@ -591,8 +591,8 @@ const Features: React.FC = React.memo(() => {
             </LineShadowText>
             <div
               className="text-md sm:text-lg md:text-xl lg:text-2xl text-muted-foreground font-light break-words"
-              style={{ fontFamilyw: "'Stinger', sans-serif" }}
-            ç>
+              style={{ fontFamily: "'Stinger', sans-serif" }}
+            >
               Features to{" "}
               <FlipWords
                 words={["transform", "accelerate", "supercharge"]}
