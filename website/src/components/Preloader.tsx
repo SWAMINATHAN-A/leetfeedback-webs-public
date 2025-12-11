@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
+import ChromaText from "./chromaText";
 
 // ============================================
 // CONFIGURATION - Edit these values as needed
@@ -7,22 +8,22 @@ import gsap from "gsap";
 const CONFIG = {
   // Array of greetings to cycle through
   greetings: [
-    "Hello", // English
-    "مرحبا", // Arabic
-    "Bonjour", // French
-    "Ciao", // Italian
-    "やあ", // Japanese
-    "Hola", // Spanish
-    "ਸਤ ਸ੍ਰੀ ਅਕਾਲ", // Punjabi
+    "Begin", // English
+    "ابدأ", // Arabic
+    "ਸ਼ੁਰੂ", // Punjabi
+    "Inizia", // Italian
+    "開始", // Japanese
+    "Débute", // French
+    "ahora", // Spanish
   ],
 
   // Timing configuration (in milliseconds)
   timings: {
     initialHold: 700, // How long to show "Hello" initially
-    cycleMin: 80, // Minimum time per greeting during quick cycle
-    cycleMax: 120, // Maximum time per greeting during quick cycle
-    finalHold: 400, // How long to hold the final greeting before exit
-    exitDuration: 1.1, // Exit animation duration in seconds (matching theme switch)
+    cycleMin: 100, // Minimum time per greeting during quick cycle
+    cycleMax: 140, // Maximum time per greeting during quick cycle
+    finalHold: 500, // How long to hold the final greeting before exit
+    exitDuration: 0.7, // Exit animation duration in seconds (matching theme switch)
   },
 };
 
@@ -36,11 +37,9 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
 
   const overlayRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLSpanElement>(null);
-  const blurOverlayRef = useRef<HTMLDivElement>(null);
 
   const runExitAnimation = useCallback(() => {
-    if (!overlayRef.current || !textRef.current || !blurOverlayRef.current)
-      return;
+    if (!overlayRef.current || !textRef.current) return;
 
     const { exitDuration } = CONFIG.timings;
 
@@ -51,12 +50,6 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       centerY: 100, // Start at bottom
     };
 
-    // Blur state for the backdrop blur overlay
-    const blurState = {
-      blur: 30, // Start with strong blur
-      opacity: 1,
-    };
-
     const tl = gsap.timeline({
       onComplete: () => {
         setIsVisible(false);
@@ -64,54 +57,19 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       },
     });
 
-    // Animate text fade out with slight upward motion
-    tl.to(textRef.current, {
-      opacity: 0,
-      y: -30,
-      scale: 0.95,
-      filter: "blur(10px)",
-      duration: 0.3,
-      ease: "power4.out",
-    });
-
     // Circular reveal animation - same style as theme switch but towards TOP
     // The circle shrinks from bottom-center upward, revealing content behind
-    tl.to(
-      clipState,
-      {
-        radius: 0,
-        centerY: 0, // Move to top
-        duration: exitDuration,
-        ease: "power4.out",
-        onUpdate: () => {
-          if (overlayRef.current) {
-            overlayRef.current.style.clipPath = `circle(${clipState.radius}% at 50% ${clipState.centerY}%)`;
-          }
-        },
+    tl.to(clipState, {
+      radius: 0,
+      centerY: 0, // Move to top
+      duration: exitDuration,
+      ease: "none",
+      onUpdate: () => {
+        if (overlayRef.current) {
+          overlayRef.current.style.clipPath = `circle(${clipState.radius}% at 50% ${clipState.centerY}%)`;
+        }
       },
-      "-=0.15"
-    );
-
-    // Backdrop blur animation - creates frosted glass effect on revealed content
-    tl.to(
-      blurState,
-      {
-        blur: 0,
-        opacity: 0,
-        duration: exitDuration * 0.9,
-        ease: "power3.out",
-        onUpdate: () => {
-          if (blurOverlayRef.current) {
-            blurOverlayRef.current.style.backdropFilter = `blur(${blurState.blur}px)`;
-            (
-              blurOverlayRef.current.style as any
-            ).webkitBackdropFilter = `blur(${blurState.blur}px)`;
-            blurOverlayRef.current.style.opacity = String(blurState.opacity);
-          }
-        },
-      },
-      "<+0.1" // Start slightly after clip animation begins
-    );
+    });
   }, [onComplete]);
 
   useEffect(() => {
@@ -134,6 +92,7 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       }
 
       // Phase 3: Hold final greeting
+      setCurrentGreeting(greetings[greetings.length - 1]);
       await new Promise((resolve) => setTimeout(resolve, timings.finalHold));
       if (!isMounted) return;
 
@@ -156,18 +115,6 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
       aria-live="polite"
       aria-label="Loading"
     >
-      {/* Blur overlay - applies backdrop blur to revealed content */}
-      <div
-        ref={blurOverlayRef}
-        className="absolute inset-0"
-        style={{
-          backdropFilter: "blur(40px)",
-          WebkitBackdropFilter: "blur(40px)",
-          opacity: 0,
-          willChange: "backdrop-filter, opacity",
-        }}
-      />
-
       {/* Overlay with circular clip-path - starts at bottom, reveals upward */}
       <div
         ref={overlayRef}
@@ -178,16 +125,18 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
         }}
       >
         {/* Greeting text */}
-        <span
+        <ChromaText
           ref={textRef}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold text-foreground select-none"
+          words={[currentGreeting]}
+          autoCycle={false}
+          fontFamily="'HarmonyOS Sans', system-ui, sans-serif"
+          fontWeight="300"
+          fontSize="3rem"
+          className="text-foreground select-none"
           style={{
-            fontFamily: "'HarmonyOS Sans', system-ui, sans-serif",
             willChange: "transform, opacity, filter",
           }}
-        >
-          {currentGreeting}
-        </span>
+        />
       </div>
     </div>
   );
