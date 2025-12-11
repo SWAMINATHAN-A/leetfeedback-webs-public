@@ -142,7 +142,7 @@ function AppContent() {
 
       {/* Content overlay */}
       <div className="relative z-10">
-        <Header />
+        {location.pathname !== '/login' && <Header />}
         <Suspense fallback={<div className="min-h-screen" />}>
           <Routes>
             <Route path="/" element={<HomePage />} />

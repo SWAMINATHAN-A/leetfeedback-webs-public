@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LogIn, Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -23,6 +24,9 @@ const SignInDynamicIslandContent = ({
 }: SignInDynamicIslandProps) => {
   const { state, setSize } = useDynamicIslandSize();
   const navigate = useNavigate();
+  const [lastAction, setLastAction] = useState<"sign-in" | "cancel" | null>(
+    null
+  );
 
   // Schedule animations - show loading briefly, then sign in prompt
   useScheduledAnimations([
@@ -33,6 +37,7 @@ const SignInDynamicIslandContent = ({
 
   const handleSignIn = () => {
     // Animate to compact, then navigate
+    setLastAction("sign-in");
     setSize("compact");
     setTimeout(() => {
       setSize("empty");
@@ -44,6 +49,7 @@ const SignInDynamicIslandContent = ({
   };
 
   const handleClose = () => {
+    setLastAction("cancel");
     setSize("compact");
     setTimeout(() => {
       setSize("empty");
@@ -112,8 +118,10 @@ const SignInDynamicIslandContent = ({
     <DynamicContainer className="flex items-center justify-center h-full w-full">
       <div className="relative w-full flex items-center justify-center">
         <BlurFade delay={0.1} inView>
-          <DynamicDescription className="text-2xl font-medium tracking-tighter text-white">
-            ✓
+          <DynamicDescription className="text-sm font-sm tracking-tighter text-white">
+            {lastAction === "sign-in"
+              ? "can't wait to have you on board (:"
+              : ":("}
           </DynamicDescription>
         </BlurFade>
       </div>
