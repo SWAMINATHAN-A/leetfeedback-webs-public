@@ -36,6 +36,8 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "./ui/accordion";
+import { useTheme } from "../contexts/ThemeContext";
+import { cn } from "../lib/utils";
 
 const FAQAccordion: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -152,6 +154,7 @@ const useGitHubStats = () => {
 
 const Pricing: React.FC = React.memo(() => {
   const gitHubStats = useGitHubStats();
+  const { isDark } = useTheme();
 
   const freeFeatures = [
     { text: "LeetCode & GeeksforGeeks integration", icon: Code2 },
@@ -442,8 +445,11 @@ const Pricing: React.FC = React.memo(() => {
                   </Button>
                   <Button
                     size="lg"
-                    variant="outline"
-                    className="border-zinc-700 text-white hover:bg-zinc-800 rounded-full px-6 font-medium"
+                    variant={isDark ? "outline" : "default"}
+                    className={cn(
+                      "rounded-full px-6 font-medium",
+                      isDark ? "border-zinc-700 text-white hover:bg-zinc-800" : ""
+                    )}
                     onClick={() =>
                       window.open("https://discord.gg/BZDb22gz", "_blank")
                     }
