@@ -18,7 +18,9 @@ interface SignInDynamicIslandProps {
   onComplete: () => void;
 }
 
-const SignInDynamicIslandContent = ({ onComplete }: SignInDynamicIslandProps) => {
+const SignInDynamicIslandContent = ({
+  onComplete,
+}: SignInDynamicIslandProps) => {
   const { state, setSize } = useDynamicIslandSize();
   const navigate = useNavigate();
 
@@ -77,7 +79,8 @@ const SignInDynamicIslandContent = ({ onComplete }: SignInDynamicIslandProps) =>
       </div>
       <BlurFade delay={0.15}>
         <DynamicDescription className="leading-6 text-neutral-300 text-center text-base mb-4 px-2">
-          Sign in to unlock your coding journey and sync progress across all your devices.
+          Sign in to unlock your coding journey and sync progress across all
+          your devices.
         </DynamicDescription>
       </BlurFade>
 
@@ -85,7 +88,7 @@ const SignInDynamicIslandContent = ({ onComplete }: SignInDynamicIslandProps) =>
         <BlurFade delay={0.2} className="flex-1">
           <Button
             onClick={handleSignIn}
-            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold rounded-3xl"
+            className="w-full bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 text-white font-semibold rounded-3xl"
           >
             <LogIn className="h-4 w-4 mr-2" />
             Sign In
@@ -132,9 +135,7 @@ const SignInDynamicIslandContent = ({ onComplete }: SignInDynamicIslandProps) =>
     }
   };
 
-  return (
-    <DynamicIsland id="sign-in-island">{renderState()}</DynamicIsland>
-  );
+  return <DynamicIsland id="sign-in-island">{renderState()}</DynamicIsland>;
 };
 
 export function SignInDynamicIsland({ onComplete }: SignInDynamicIslandProps) {
