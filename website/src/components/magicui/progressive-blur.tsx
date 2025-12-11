@@ -10,9 +10,9 @@ interface ProgressiveBlurProps {
 
 const blurLayers = [
   { blur: 1, opacity: "0 25%" },
-  { blur: 1, opacity: "25% 50%" },
+  { blur: 1.5, opacity: "25% 50%" },
   { blur: 2, opacity: "50% 75%" },
-  { blur: 2, opacity: "75% 100%" },
+  { blur: 2.5, opacity: "75% 100%" },
 ];
 
 export const ProgressiveBlur = React.memo(function ProgressiveBlur({
