@@ -305,11 +305,11 @@ const LoginPage: React.FC = () => {
               initial={{ opacity: 0, scaleX: 0.8 }}
               animate={{ opacity: 1, scaleX: 1 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="absolute -top-4 left-0 right-0 h-12"
+              className="absolute -top-2 md:-top-4 left-0 right-0 h-6 md:h-12"
               style={{
                 background:
                   "linear-gradient(90deg, #0894FF 0%, #C959DD 50%, #FF2E54 100%)",
-                filter: "blur(24px)",
+                filter: "blur(25px)",
                 transform: "translateZ(0)",
               }}
             />
@@ -319,11 +319,11 @@ const LoginPage: React.FC = () => {
               initial={{ opacity: 0, scaleY: 0.8 }}
               animate={{ opacity: 1, scaleY: 1 }}
               transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-              className="absolute top-0 -right-4 bottom-0 w-12"
+              className="absolute top-0 -right-2 md:-right-4 bottom-0 w-6 md:w-12"
               style={{
                 background:
                   "linear-gradient(180deg, #FF9004 0%, #FF2E54 50%, #C959DD 100%)",
-                filter: "blur(24px)",
+                filter: "blur(25px)",
                 transform: "translateZ(0)",
               }}
             />
@@ -333,11 +333,11 @@ const LoginPage: React.FC = () => {
               initial={{ opacity: 0, scaleX: 0.8 }}
               animate={{ opacity: 1, scaleX: 1 }}
               transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-              className="absolute -bottom-4 left-0 right-0 h-12"
+              className="absolute -bottom-2 md:-bottom-4 left-0 right-0 h-6 md:h-12"
               style={{
                 background:
                   "linear-gradient(270deg, #0894FF 0%, #C959DD 50%, #FF9004 100%)",
-                filter: "blur(24px)",
+                filter: "blur(25px)",
                 transform: "translateZ(0)",
               }}
             />
@@ -347,11 +347,11 @@ const LoginPage: React.FC = () => {
               initial={{ opacity: 0, scaleY: 0.8 }}
               animate={{ opacity: 1, scaleY: 1 }}
               transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-              className="absolute top-0 -left-4 bottom-0 w-12"
+              className="absolute top-0 -left-2 md:-left-4 bottom-0 w-6 md:w-12"
               style={{
                 background:
                   "linear-gradient(0deg, #FF9004 0%, #C959DD 50%, #0894FF 100%)",
-                filter: "blur(24px)",
+                filter: "blur(25px)",
                 transform: "translateZ(0)",
               }}
             />
@@ -362,11 +362,11 @@ const LoginPage: React.FC = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 0.6, scale: 1 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="absolute -top-2 -left-2 w-16 h-16"
+              className="absolute -top-1 md:-top-2 -left-1 md:-left-2 w-12 h-12 md:w-16 md:h-16"
               style={{
                 background:
                   "radial-gradient(circle, #0894FF 0%, transparent 70%)",
-                filter: "blur(14px)",
+                filter: "blur(10px)",
                 transform: "translateZ(0)",
               }}
             />
@@ -375,11 +375,11 @@ const LoginPage: React.FC = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 0.6, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
-              className="absolute -top-2 -right-2 w-16 h-16"
+              className="absolute -top-1 md:-top-2 -right-1 md:-right-2 w-12 h-12 md:w-16 md:h-16"
               style={{
                 background:
                   "radial-gradient(circle, #FF9004 0%, transparent 70%)",
-                filter: "blur(14px)",
+                filter: "blur(10px)",
                 transform: "translateZ(0)",
               }}
             />
@@ -388,11 +388,11 @@ const LoginPage: React.FC = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 0.6, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-              className="absolute -bottom-2 -right-2 w-16 h-16"
+              className="absolute -bottom-1 md:-bottom-2 -right-1 md:-right-2 w-12 h-12 md:w-16 md:h-16"
               style={{
                 background:
                   "radial-gradient(circle, #FF9004 0%, transparent 70%)",
-                filter: "blur(14px)",
+                filter: "blur(10px)",
                 transform: "translateZ(0)",
               }}
             />
@@ -401,11 +401,11 @@ const LoginPage: React.FC = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 0.6, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-              className="absolute -bottom-2 -left-2 w-16 h-16"
+              className="absolute -bottom-1 md:-bottom-2 -left-1 md:-left-2 w-12 h-12 md:w-16 md:h-16"
               style={{
                 background:
                   "radial-gradient(circle, #C959DD 0%, transparent 70%)",
-                filter: "blur(14px)",
+                filter: "blur(10px)",
                 transform: "translateZ(0)",
               }}
             />
