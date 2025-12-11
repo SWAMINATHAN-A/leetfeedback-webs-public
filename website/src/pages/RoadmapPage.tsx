@@ -408,7 +408,7 @@ const RoadmapPage: React.FC = () => {
             />
 
             <div className="container relative mx-auto px-4 md:px-8 max-w-7xl overflow-visible">
-              <div className="grid lg:grid-cols-2 gap-12 items-start overflow-visible">
+              <div className="grid lg:grid-cols-2 gap-12 items-center overflow-visible">
                 <div className="text-left sm:mx-0 lg:mr-auto lg:mt-0">
                   {/* Progress Badge */}
                   <BlurFade delay={0.25}>
@@ -429,7 +429,7 @@ const RoadmapPage: React.FC = () => {
                     preset="fade-in-blur"
                     speedSegment={0.3}
                     as="h1"
-                    className="mt-0 max-w-4xl text-balance text-5xl md:text-7xl leading-tight"
+                    className="mt-0 text-5xl md:text-7xl leading-tight"
                   >
                     Development Roadmap
                   </TextEffect>

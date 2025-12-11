@@ -26,6 +26,7 @@ import { ThemeSwitchIsland } from "./components/ThemeSwitchIsland";
 import { Preloader } from "./components/Preloader";
 import { motion, AnimatePresence } from "motion/react";
 import Header from "./components/Header";
+import ScrollToTop from "./components/ScrollToTop";
 import { smoothScrollTo } from "./utils/smoothScroll";
 import "./App.css";
 
@@ -129,6 +130,8 @@ function AppContent() {
 
   return (
     <div className="App min-h-screen relative">
+      <ScrollToTop />
+
       {/* Preloader - shows on initial load */}
       {showPreloader && <Preloader onComplete={handlePreloaderComplete} />}
 
