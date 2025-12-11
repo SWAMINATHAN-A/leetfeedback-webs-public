@@ -15,19 +15,16 @@ import { AnimatedThemeToggler } from "./magicui/animated-theme-toggler";
 import { smoothScrollToElement } from "../utils/smoothScroll";
 
 // Material Icons
-import FeaturesIcon from "@mui/icons-material/Stars";
-import HowItWorksIcon from "@mui/icons-material/Build";
-import PricingIcon from "@mui/icons-material/AttachMoney";
 import HomeIcon from "@mui/icons-material/Home";
 import RoadmapIcon from "@mui/icons-material/Map";
+import AnalyticsIcon from "@mui/icons-material/Analytics";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
 const DATA = {
   navbar: [
     { href: "#home", icon: HomeIcon, label: "Home" },
-    { href: "#features", icon: FeaturesIcon, label: "Features" },
-    { href: "#how-it-works", icon: HowItWorksIcon, label: "How it Works" },
+    { href: "/profile/stats", icon: AnalyticsIcon, label: "Stats" },
     { href: "/roadmap", icon: RoadmapIcon, label: "Roadmap" },
   ],
 };
@@ -285,7 +282,7 @@ export const DockDemo = React.memo(function DockDemo() {
             </DockIcon>
           ))}
         {showNavigation && (
-          <Separator orientation="vertical" className="h-full py-2" />
+          <Separator orientation="vertical" className="h-full mx-2" />
         )}
         {renderRightSection()}
       </Dock>
