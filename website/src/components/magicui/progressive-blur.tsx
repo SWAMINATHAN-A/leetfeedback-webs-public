@@ -31,7 +31,7 @@ export const ProgressiveBlur = React.memo(function ProgressiveBlur({
         className
       )}
       style={{
-        height: "70px",
+        height: "100px",
         willChange: "auto",
         transform: "translateZ(0)",
         backfaceVisibility: "hidden",
@@ -61,7 +61,7 @@ export const ProgressiveBlur = React.memo(function ProgressiveBlur({
           "absolute inset-0 pointer-events-none",
           gradientDirClass,
           // transparent in light mode, black mask in dark mode
-          "from-transparent dark:to-black/80"
+          "from-transparent dark:to-black/95"
         )}
       />
     </div>
