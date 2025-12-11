@@ -352,11 +352,11 @@ const Features: React.FC = React.memo(() => {
               <div className="col-span-full md:col-span-1">
                 <div className="p-6 sm:p-12 border-b md:border-b-0 md:border-r">
                   <span
-                    className="text-muted-foreground flex items-center gap-2 text-sm"
+                    className="flex items-center gap-2 text-sm"
                     style={{ fontFamily: "'Stinger', sans-serif" }}
                   >
                     <GitHubIcon className="size-4" />
-                    GitHub Integration
+                    <ShinyText text="GitHub Integration" speed={3} className="text-sm" />
                   </span>
                   <p className="mt-8 text-2xl font-semibold">
                     Automatically push your solutions and AI feedback notes to
@@ -2364,11 +2364,11 @@ const Features: React.FC = React.memo(() => {
         <div className="bg-zinc-900 dark:bg-zinc-900 border border-zinc-800 dark:border-zinc-800 rounded-3xl p-8 md:p-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="mb-4 bg-zinc-800 border border-zinc-700 rounded-full px-3 py-1.5 inline-flex items-center">
+              <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-3 py-1.5 inline-flex items-center">
                 <ShinyText
                   text="GitHub Integration"
                   speed={3}
-                  className="font-mono text-xs text-white"
+                  className="font-mono text-xs"
                 />
               </div>
               <h3 className="text-3xl mb-6 text-white">
