@@ -11,6 +11,7 @@ import {
   MobileNavExpandableContent,
   MobileNavToggle,
 } from "@/components/ui/resizable-navbar";
+import { AnimatedClipButton } from "@/components/ui/animated-clip-button";
 import { useState } from "react";
 import { Badge } from "./badge";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
@@ -81,14 +82,14 @@ export function ResizableNavbarDemo() {
               {isAuthenticated ? (
                 <SimpleUserMenu />
               ) : (
-                <NavbarButton
-                  variant="secondary"
+                <AnimatedClipButton
+                  text={isLoading ? "Loading..." : "Sign In"}
+                  variant="default"
+                  size="default"
                   onClick={handleSignInClick}
                   disabled={isLoading}
                   className="bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
-                >
-                  {isLoading ? "Loading..." : "Sign In"}
-                </NavbarButton>
+                />
               )}
             </div>
           </div>
@@ -159,17 +160,17 @@ export function ResizableNavbarDemo() {
               {isAuthenticated ? (
                 <SimpleUserMenu />
               ) : (
-                <NavbarButton
+                <AnimatedClipButton
+                  text={isLoading ? "Loading..." : "Sign In"}
+                  variant="default"
+                  size="default"
                   onClick={() => {
                     setIsMobileMenuOpen(false);
                     handleSignInClick();
                   }}
-                  variant="secondary"
-                  className="w-full bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
                   disabled={isLoading}
-                >
-                  {isLoading ? "Loading..." : "Sign In"}
-                </NavbarButton>
+                  className="w-full bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+                />
               )}
             </div>
           </MobileNavExpandableContent>

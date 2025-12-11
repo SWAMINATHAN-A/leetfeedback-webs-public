@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { animate, stagger } from "animejs";
 import Footer from "../components/Footer";
 import { Button } from "../components/ui/button";
+import { AnimatedClipButton } from "../components/ui/animated-clip-button";
 import { Badge } from "../components/ui/badge";
 import { Card, CardContent } from "../components/ui/card";
 import { BlurFade } from "../components/magicui/blur-fade";
@@ -623,10 +624,14 @@ const RoadmapPage: React.FC = () => {
                     </div>
 
                     {/* CTA Buttons */}
-                    <div className="flex flex-col sm:flex-row justify-center gap-3">
-                      <Button
+                    <div className="flex flex-col sm:flex-row gap-4">
+                      <AnimatedClipButton
+                        text="Contribute on GitHub"
+                        icon={<GitHubIcon className="w-4 h-4" />}
+                        iconPosition="left"
+                        variant="white"
                         size="lg"
-                        className="bg-white text-black hover:bg-gray-100 rounded-full px-6 font-medium"
+                        className="rounded-full px-6 font-medium"
                         onClick={() => {
                           analytics.trackFeatureClick("contribute_github");
                           window.open(
@@ -634,10 +639,7 @@ const RoadmapPage: React.FC = () => {
                             "_blank"
                           );
                         }}
-                      >
-                        <GitHubIcon className="w-4 h-4 mr-2" />
-                        Contribute on GitHub
-                      </Button>
+                      />
                       <Button
                         size="lg"
                         variant="outline"

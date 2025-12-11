@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { Button } from "./ui/button";
+import { AnimatedClipButton } from "./ui/animated-clip-button";
 import { Card } from "./ui/card";
 import {
   Code2,
@@ -266,12 +267,13 @@ const Pricing: React.FC = React.memo(() => {
                 </div>
 
                 {/* CTA Button */}
-                <Button
+                <AnimatedClipButton
+                  text="Get Instant Access"
+                  variant="default"
+                  size="lg"
                   className="w-full py-5 text-base font-semibold rounded-full mt-auto"
                   onClick={handleGetAccessClick}
-                >
-                  Get Instant access
-                </Button>
+                />
               </div>
             </div>
           </BlurFade>
@@ -326,12 +328,13 @@ const Pricing: React.FC = React.memo(() => {
                 </div>
 
                 {/* CTA Button */}
-                <Button
-                  className="w-full py-5 text-base font-semibold rounded-full bg-white text-black hover:bg-white/90 mt-auto"
+                <AnimatedClipButton
+                  text="Coming Soon"
+                  variant="white"
+                  size="lg"
+                  className="w-full py-5 text-base font-semibold rounded-full mt-auto"
                   onClick={handleComingSoonClick}
-                >
-                  Coming Soon
-                </Button>
+                />
               </div>
             </div>
           </BlurFade>
@@ -430,22 +433,26 @@ const Pricing: React.FC = React.memo(() => {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-col sm:flex-row justify-center gap-3">
-                  <Button
+                  <AnimatedClipButton
+                    text="Contribute on GitHub"
+                    icon={<Github className="w-4 h-4" />}
+                    iconPosition="left"
+                    variant="white"
                     size="lg"
-                    className="bg-white text-black hover:bg-gray-100 rounded-full px-6 font-medium"
+                    className="rounded-full px-6 font-medium"
                     onClick={() =>
                       window.open(
                         "https://github.com/lqSky7/leetFeedback-extension",
                         "_blank"
                       )
                     }
-                  >
-                    <Github className="w-4 h-4 mr-2" />
-                    Contribute on GitHub
-                  </Button>
-                  <Button
-                    size="lg"
+                  />
+                  <AnimatedClipButton
+                    text="Join Discord"
+                    icon={<DiscordIcon className="w-4 h-4" />}
+                    iconPosition="left"
                     variant={isDark ? "outline" : "default"}
+                    size="lg"
                     className={cn(
                       "rounded-full px-6 font-medium",
                       isDark ? "border-zinc-700 text-white hover:bg-zinc-800" : ""
@@ -453,10 +460,7 @@ const Pricing: React.FC = React.memo(() => {
                     onClick={() =>
                       window.open("https://discord.gg/BZDb22gz", "_blank")
                     }
-                  >
-                    <DiscordIcon className="w-4 h-4 mr-2" />
-                    Join Discord
-                  </Button>
+                  />
                 </div>
               </div>
             </div>

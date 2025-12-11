@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
+import { AnimatedClipButton } from "./ui/animated-clip-button";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import StarIcon from "@mui/icons-material/Star";
@@ -163,9 +164,12 @@ const Hero: React.FC = React.memo(() => {
                   }}
                   className="mt-12 flex flex-col items-start gap-4 md:flex-row"
                 >
-                  <Button
+                  <AnimatedClipButton
+                    text="Add to Chrome - Free"
+                    icon={<CheckCircleIcon className="w-5 h-5" />}
+                    iconPosition="left"
+                    variant="default"
                     size="lg"
-                    className="h-10.5 rounded-xl px-5 text-base bg-black dark:bg-white text-white dark:text-black border border-gray-800 dark:border-gray-200 hover:bg-gray-900 dark:hover:bg-gray-100"
                     onClick={() => {
                       analytics.trackDownloadClick("hero_primary_cta");
                       window.open(
@@ -173,22 +177,18 @@ const Hero: React.FC = React.memo(() => {
                         "_blank"
                       );
                     }}
-                  >
-                    <CheckCircleIcon className="w-5 h-5 mr-2" />
-                    <span className="text-nowrap">Add to Chrome - Free</span>
-                  </Button>
-                  <Button
-                    size="lg"
+                  />
+                  <AnimatedClipButton
+                    text="Follow Development"
+                    icon={<RocketLaunchIcon className="w-5 h-5" />}
+                    iconPosition="left"
                     variant="ghost"
-                    className="h-10.5 rounded-xl px-5"
+                    size="lg"
                     onClick={() => {
                       analytics.trackFeatureClick("follow_development");
                       window.location.href = "/roadmap";
                     }}
-                  >
-                    <RocketLaunchIcon className="w-5 h-5 mr-2" />
-                    <span className="text-nowrap">Follow Development</span>
-                  </Button>
+                  />
                 </AnimatedGroup>
 
                 {/* Trust Indicators */}
