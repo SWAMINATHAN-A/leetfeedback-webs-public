@@ -61,7 +61,7 @@ export const ProgressiveBlur = React.memo(function ProgressiveBlur({
           "absolute inset-0 pointer-events-none",
           gradientDirClass,
           // transparent in light mode, black mask in dark mode
-          "from-transparent dark:to-black/95GitHub Integration"
+          "from-transparent dark:to-black/95 GitHub Integration"
         )}
       />
     </div>

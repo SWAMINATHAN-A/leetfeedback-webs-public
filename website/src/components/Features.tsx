@@ -356,7 +356,11 @@ const Features: React.FC = React.memo(() => {
                     style={{ fontFamily: "'Stinger', sans-serif" }}
                   >
                     <GitHubIcon className="size-4" />
-                    <ShinyText text="GitHub Integration" speed={3} className="text-sm" />
+                    <ShinyText
+                      text="GitHub Integration"
+                      speed={3}
+                      className="text-sm"
+                    />
                   </span>
                   <p className="mt-8 text-2xl font-semibold">
                     Automatically push your solutions and AI feedback notes to
