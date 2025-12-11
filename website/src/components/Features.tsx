@@ -2382,7 +2382,10 @@ const Features: React.FC = React.memo(() => {
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-white mb-2 font-mono">
+                  <div
+                    className="text-3xl font-bold text-white mb-2"
+                    style={{ fontFamily: "'Figurlce', sans-serif" }}
+                  >
                     500+
                   </div>
                   <div className="text-sm text-zinc-400">
@@ -2390,7 +2393,10 @@ const Features: React.FC = React.memo(() => {
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold text-green-400 mb-2 font-mono">
+                  <div
+                    className="text-3xl font-bold text-green-400 mb-2"
+                    style={{ fontFamily: "'Figurlce', sans-serif" }}
+                  >
                     100%
                   </div>
                   <div className="text-sm text-zinc-400">

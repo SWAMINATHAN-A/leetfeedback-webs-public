@@ -44,7 +44,7 @@ export const GlowingStarsDescription = ({
   return (
     <p
       className={cn(
-        "text-base text-gray-700 dark:text-gray-300 max-w-[16rem]",
+        "text-base text-gray-700 dark:text-gray-300 max-w-[16rem] font-['Stinger',sans-serif]",
         className
       )}
     >
@@ -63,7 +63,7 @@ export const GlowingStarsTitle = ({
   return (
     <h2
       className={cn(
-        "font-bold text-2xl text-gray-900 dark:text-gray-100",
+        "font-bold text-2xl text-gray-900 dark:text-gray-100 font-['Stinger',sans-serif]",
         className
       )}
     >

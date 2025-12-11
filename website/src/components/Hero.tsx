@@ -2,9 +2,6 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { motion } from "motion/react";
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import NotesIcon from "@mui/icons-material/Notes";
-import StyleIcon from "@mui/icons-material/Style";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import StarIcon from "@mui/icons-material/Star";
@@ -235,41 +232,6 @@ const Hero: React.FC = React.memo(() => {
                       User Rating
                     </span>
                   </motion.div>
-                </AnimatedGroup>
-
-                {/* Key Features Highlight */}
-                <AnimatedGroup
-                  variants={{
-                    container: {
-                      visible: {
-                        transition: {
-                          staggerChildren: 0.05,
-                          delayChildren: 1.1,
-                        },
-                      },
-                    },
-                    ...transitionVariants,
-                  }}
-                  className="flex flex-wrap justify-start gap-4 mt-12"
-                >
-                  <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
-                    <GitHubIcon className="w-4 h-4 mr-2 text-muted-foreground" />
-                    <span className="text-sm font-medium text-foreground">
-                      Auto GitHub Push
-                    </span>
-                  </div>
-                  <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
-                    <NotesIcon className="w-4 h-4 mr-2 text-muted-foreground" />
-                    <span className="text-sm font-medium text-foreground">
-                      Notion Integration
-                    </span>
-                  </div>
-                  <div className="flex items-center bg-card/50 backdrop-blur-sm rounded-3xl px-4 py-2 border border-border">
-                    <StyleIcon className="w-4 h-4 mr-2 text-muted-foreground" />
-                    <span className="text-sm font-medium text-foreground">
-                      Anki Cards
-                    </span>
-                  </div>
                 </AnimatedGroup>
               </div>
             </div>

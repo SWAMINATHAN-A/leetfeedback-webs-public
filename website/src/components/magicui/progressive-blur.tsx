@@ -10,7 +10,7 @@ interface ProgressiveBlurProps {
 
 const blurLayers = [
   { blur: 1, opacity: "0 25%" },
-  { blur: 2, opacity: "25% 50%" },
+  { blur: 1, opacity: "25% 50%" },
   { blur: 2, opacity: "50% 75%" },
   { blur: 2, opacity: "75% 100%" },
 ];
@@ -61,7 +61,7 @@ export const ProgressiveBlur = React.memo(function ProgressiveBlur({
           "absolute inset-0 pointer-events-none",
           gradientDirClass,
           // transparent in light mode, black mask in dark mode
-          "from-transparent dark:to-black/40"
+          "from-transparent dark:to-black/80"
         )}
       />
     </div>

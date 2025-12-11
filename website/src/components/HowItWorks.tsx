@@ -6,7 +6,20 @@ import SecurityIcon from "@mui/icons-material/Security";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import { Download, Code2, Share2, BarChart3 } from "lucide-react";
+import {
+  Zap,
+  Brain,
+  Target,
+  Rocket,
+  Eye,
+  TrendingUp,
+  Briefcase,
+  Lock,
+  Puzzle,
+  Terminal,
+  ArrowRight,
+  Activity,
+} from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
 import { animate, stagger } from "animejs";
 import { BlurFade } from "./magicui/blur-fade";
@@ -59,13 +72,21 @@ const doodlePaths = {
 };
 
 // Different reveal animation patterns for each doodle
-type RevealPattern = 'circleBottomLeft' | 'circleTopRight' | 'horizontalWipe' | 'diagonalReveal';
+type RevealPattern =
+  | "circleBottomLeft"
+  | "circleTopRight"
+  | "horizontalWipe"
+  | "diagonalReveal";
 
 const revealPatterns: Record<RevealPattern, string> = {
-  circleBottomLeft: 'radial-gradient(circle at 0% 100%, white var(--reveal-size), transparent var(--reveal-size))',
-  circleTopRight: 'radial-gradient(circle at 100% 0%, white var(--reveal-size), transparent var(--reveal-size))',
-  horizontalWipe: 'linear-gradient(90deg, white var(--reveal-size), transparent var(--reveal-size))',
-  diagonalReveal: 'linear-gradient(135deg, white var(--reveal-size), transparent var(--reveal-size))',
+  circleBottomLeft:
+    "radial-gradient(circle at 0% 100%, white var(--reveal-size), transparent var(--reveal-size))",
+  circleTopRight:
+    "radial-gradient(circle at 100% 0%, white var(--reveal-size), transparent var(--reveal-size))",
+  horizontalWipe:
+    "linear-gradient(90deg, white var(--reveal-size), transparent var(--reveal-size))",
+  diagonalReveal:
+    "linear-gradient(135deg, white var(--reveal-size), transparent var(--reveal-size))",
 };
 
 interface DoodleProps {
@@ -75,7 +96,12 @@ interface DoodleProps {
   strokeColor?: string;
 }
 
-const AnimatedDoodle: React.FC<DoodleProps> = ({ path, pattern, isActive, strokeColor = 'rgba(255,255,255,0.15)' }) => {
+const AnimatedDoodle: React.FC<DoodleProps> = ({
+  path,
+  pattern,
+  isActive,
+  strokeColor = "rgba(255,255,255,0.15)",
+}) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const maskRef = useRef<HTMLDivElement>(null);
 
@@ -84,36 +110,36 @@ const AnimatedDoodle: React.FC<DoodleProps> = ({ path, pattern, isActive, stroke
 
     if (isActive) {
       // Reset and animate the path drawing
-      const pathElement = svgRef.current.querySelector('path');
+      const pathElement = svgRef.current.querySelector("path");
       if (pathElement) {
         const length = pathElement.getTotalLength();
         pathElement.style.strokeDasharray = `${length}`;
         pathElement.style.strokeDashoffset = `${length}`;
-        
+
         // Animate path drawing
         animate(pathElement, {
           strokeDashoffset: [length, 0],
           duration: 2000,
-          easing: 'easeOutQuad',
+          easing: "easeOutQuad",
         });
       }
 
       // Animate the color reveal mask
       animate(maskRef.current, {
-        '--reveal-size': ['0%', '150%'],
+        "--reveal-size": ["0%", "150%"],
         duration: 2500,
-        easing: 'easeOutQuad',
+        easing: "easeOutQuad",
         delay: 300,
       });
     } else {
       // Reset when not active
-      const pathElement = svgRef.current.querySelector('path');
+      const pathElement = svgRef.current.querySelector("path");
       if (pathElement) {
         const length = pathElement.getTotalLength();
         pathElement.style.strokeDashoffset = `${length}`;
       }
       if (maskRef.current) {
-        maskRef.current.style.setProperty('--reveal-size', '0%');
+        maskRef.current.style.setProperty("--reveal-size", "0%");
       }
     }
   }, [isActive]);
@@ -136,16 +162,18 @@ const AnimatedDoodle: React.FC<DoodleProps> = ({ path, pattern, isActive, stroke
           strokeLinejoin="round"
         />
       </svg>
-      
+
       {/* Colored path with mask reveal */}
       <div
         ref={maskRef}
         className="absolute inset-0"
-        style={{
-          '--reveal-size': '0%',
-          maskImage: revealPatterns[pattern],
-          WebkitMaskImage: revealPatterns[pattern],
-        } as React.CSSProperties}
+        style={
+          {
+            "--reveal-size": "0%",
+            maskImage: revealPatterns[pattern],
+            WebkitMaskImage: revealPatterns[pattern],
+          } as React.CSSProperties
+        }
       >
         <svg
           viewBox="0 0 1000 600"
@@ -167,7 +195,7 @@ const AnimatedDoodle: React.FC<DoodleProps> = ({ path, pattern, isActive, stroke
 };
 
 const HowItWorks: React.FC = React.memo(() => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+  const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     align: "center",
     skipSnaps: false,
@@ -181,7 +209,7 @@ const HowItWorks: React.FC = React.memo(() => {
       step: "01",
       title: "Install Extension",
       description: "Add Traverse to Chrome in seconds. No Sign-In required.",
-      icon: <Download strokeWidth={1.5} />,
+      icon: <Puzzle strokeWidth={1.5} />,
       details: [
         "One-click installation from the Chrome Web Store - no complicated setup wizards",
         "Automatic detection of supported platforms like LeetCode, GeeksforGeeks, and HackerRank",
@@ -189,15 +217,15 @@ const HowItWorks: React.FC = React.memo(() => {
         "Zero configuration needed - works out of the box with sensible defaults",
       ],
       doodlePath: doodlePaths.install,
-      revealPattern: 'circleBottomLeft' as RevealPattern,
-      doodleColor: 'rgba(96, 165, 250, 0.25)', // blue
+      revealPattern: "circleBottomLeft" as RevealPattern,
+      doodleColor: "rgba(96, 165, 250, 0.25)", // blue
     },
     {
       step: "02",
       title: "Code & Practice",
       description:
         "Continue your normal coding practice. We silently track your runs and submissions in the background.",
-      icon: <Code2 strokeWidth={1.5} />,
+      icon: <Terminal strokeWidth={1.5} />,
       details: [
         "Seamless integration - no interruption to your workflow or coding rhythm",
         "Tracks every 'Run' and 'Submit' button click for comprehensive analytics",
@@ -205,15 +233,15 @@ const HowItWorks: React.FC = React.memo(() => {
         "Works across multiple platforms simultaneously - one extension for everything",
       ],
       doodlePath: doodlePaths.code,
-      revealPattern: 'circleTopRight' as RevealPattern,
-      doodleColor: 'rgba(192, 132, 252, 0.25)', // purple
+      revealPattern: "circleTopRight" as RevealPattern,
+      doodleColor: "rgba(192, 132, 252, 0.25)", // purple
     },
     {
       step: "03",
       title: "Auto-Export Everything",
       description:
         "Your solutions and insights automatically sync to GitHub, Notion, and Anki cards.",
-      icon: <Share2 strokeWidth={1.5} />,
+      icon: <ArrowRight strokeWidth={1.5} />,
       details: [
         "GitHub commits with AI-generated feedback notes and code documentation",
         "Structured Notion database entries for organized problem tracking",
@@ -221,15 +249,15 @@ const HowItWorks: React.FC = React.memo(() => {
         "Full control over what gets exported - customize your workflow",
       ],
       doodlePath: doodlePaths.export,
-      revealPattern: 'horizontalWipe' as RevealPattern,
-      doodleColor: 'rgba(74, 222, 128, 0.25)', // green
+      revealPattern: "horizontalWipe" as RevealPattern,
+      doodleColor: "rgba(74, 222, 128, 0.25)", // green
     },
     {
       step: "04",
       title: "Track Progress",
       description:
         "Watch your coding journey unfold across all platforms with comprehensive analytics and insights.",
-      icon: <BarChart3 strokeWidth={1.5} />,
+      icon: <Activity strokeWidth={1.5} />,
       details: [
         "Your portfolio builds automatically as you solve more problems",
         "Mistake patterns identified through AI analysis to improve faster",
@@ -237,8 +265,8 @@ const HowItWorks: React.FC = React.memo(() => {
         "Visualize your growth with beautiful charts and progress metrics",
       ],
       doodlePath: doodlePaths.track,
-      revealPattern: 'diagonalReveal' as RevealPattern,
-      doodleColor: 'rgba(251, 146, 60, 0.25)', // orange
+      revealPattern: "diagonalReveal" as RevealPattern,
+      doodleColor: "rgba(251, 146, 60, 0.25)", // orange
     },
   ];
 
@@ -316,7 +344,14 @@ const HowItWorks: React.FC = React.memo(() => {
           <BlurFade delay={0.75}>
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
               From installation to building your coding portfolio - everything
-              happens <span style={{ fontFamily: "'Figurlce', sans-serif" }} className="font-bold italic text-foreground">automatically</span> in the background.
+              happens{" "}
+              <span
+                style={{ fontFamily: "'Figurlce', sans-serif" }}
+                className="font-bold italic text-foreground"
+              >
+                automatically
+              </span>{" "}
+              in the background.
             </p>
           </BlurFade>
         </div>
@@ -362,69 +397,76 @@ const HowItWorks: React.FC = React.memo(() => {
 
           <div className="bg-zinc-900 border border-gray-800 rounded-3xl overflow-hidden">
             {/* Embla Carousel */}
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex">
-              {steps.map((step, index) => (
-                <div
-                  key={index}
-                  className="flex-[0_0_100%] min-w-0"
-                >
-                  <div
-                    ref={(el) => { cardRefs.current[index] = el; }}
-                    className="relative min-h-[500px] flex flex-col"
-                  >
-                    {/* Animated Doodle Background - Full bleed */}
-                    <AnimatedDoodle
-                      path={step.doodlePath}
-                      pattern={step.revealPattern}
-                      isActive={selectedIndex === index}
-                      strokeColor={step.doodleColor}
-                    />
-                    
-                    {/* Card Content - With padding */}
-                    <div className="flex flex-col h-full relative z-10 p-6 md:p-10">
-                      {/* Step Number & Icon */}
-                      <div className="flex items-center justify-between mb-8 animate-item">
-                        <div className="flex items-center gap-4">
-                          <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center text-zinc-500">
-                            <div className="w-10 h-10 md:w-12 md:h-12">
-{React.cloneElement(step.icon as React.ReactElement<any>, { className: "w-full h-full" })}
+            <div className="overflow-hidden" ref={emblaRef}>
+              <div className="flex">
+                {steps.map((step, index) => (
+                  <div key={index} className="flex-[0_0_100%] min-w-0">
+                    <div
+                      ref={(el) => {
+                        cardRefs.current[index] = el;
+                      }}
+                      className="relative min-h-[500px] flex flex-col"
+                    >
+                      {/* Animated Doodle Background - Full bleed */}
+                      <AnimatedDoodle
+                        path={step.doodlePath}
+                        pattern={step.revealPattern}
+                        isActive={selectedIndex === index}
+                        strokeColor={step.doodleColor}
+                      />
+
+                      {/* Card Content - With padding */}
+                      <div className="flex flex-col h-full relative z-10 p-6 md:p-10">
+                        {/* Step Number & Icon */}
+                        <div className="flex items-center justify-between mb-8 animate-item">
+                          <div className="flex items-center gap-4">
+                            <div className="w-14 h-14 md:w-16 md:h-16 flex items-center justify-center text-zinc-500">
+                              <div className="w-10 h-10 md:w-12 md:h-12">
+                                {React.cloneElement(
+                                  step.icon as React.ReactElement<any>,
+                                  { className: "w-full h-full" }
+                                )}
+                              </div>
+                            </div>
+                            <div
+                              style={{ fontFamily: "'Figurlce', sans-serif" }}
+                              className="text-6xl md:text-7xl font-bold text-zinc-600"
+                            >
+                              {step.step}
                             </div>
                           </div>
-                          <div style={{ fontFamily: "'Figurlce', sans-serif" }} className="text-6xl md:text-7xl font-bold text-zinc-600">
-                            {step.step}
-                          </div>
                         </div>
+
+                        {/* Title */}
+                        <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 animate-item">
+                          {step.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed animate-item">
+                          {step.description}
+                        </p>
+
+                        {/* Details List */}
+                        <ul className="space-y-4 flex-grow animate-item">
+                          {step.details.map((detail, detailIndex) => (
+                            <li
+                              key={detailIndex}
+                              className="flex items-start gap-3 text-gray-300"
+                            >
+                              <CheckCircleIcon className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
+                              <span className="text-base md:text-lg">
+                                {detail}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-
-                      {/* Title */}
-                      <h3 className="text-3xl md:text-4xl font-bold text-white mb-4 animate-item">
-                        {step.title}
-                      </h3>
-
-                      {/* Description */}
-                      <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed animate-item">
-                        {step.description}
-                      </p>
-
-                      {/* Details List */}
-                      <ul className="space-y-4 flex-grow animate-item">
-                        {step.details.map((detail, detailIndex) => (
-                          <li
-                            key={detailIndex}
-                            className="flex items-start gap-3 text-gray-300"
-                          >
-                            <CheckCircleIcon className="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" />
-                            <span className="text-base md:text-lg">{detail}</span>
-                          </li>
-                        ))}
-                      </ul>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
           </div>
         </div>
 
@@ -453,7 +495,7 @@ const HowItWorks: React.FC = React.memo(() => {
 
                   {/* Platform Icons Grid */}
                   <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
                       <img
                         src={leetcodeIcon}
                         alt="LeetCode"
@@ -463,7 +505,7 @@ const HowItWorks: React.FC = React.memo(() => {
                         LeetCode
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
                       <img
                         src={geeksforgeeksIcon}
                         alt="GeeksforGeeks"
@@ -473,7 +515,7 @@ const HowItWorks: React.FC = React.memo(() => {
                         GeeksforGeeks
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
                       <img
                         src={hackerrankIcon}
                         alt="HackerRank"
@@ -483,7 +525,7 @@ const HowItWorks: React.FC = React.memo(() => {
                         HackerRank
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
                       <img
                         src={codechefIcon}
                         alt="CodeChef"
@@ -493,7 +535,7 @@ const HowItWorks: React.FC = React.memo(() => {
                         CodeChef
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
                       <img
                         src={tufIcon}
                         alt="TakeUforward"
@@ -503,7 +545,7 @@ const HowItWorks: React.FC = React.memo(() => {
                         TakeUforward
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
                       <img
                         src={notionIcon}
                         alt="Notion"
@@ -513,7 +555,7 @@ const HowItWorks: React.FC = React.memo(() => {
                         Notion
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
                       <img
                         src={ankiIcon}
                         alt="Anki"
@@ -523,7 +565,7 @@ const HowItWorks: React.FC = React.memo(() => {
                         Anki
                       </span>
                     </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl bg-zinc-800/50 dark:bg-zinc-800/50 backdrop-blur-sm transition-all hover:scale-105">
+                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
                       <img
                         src={geminiIcon}
                         alt="Gemini AI"
@@ -556,49 +598,77 @@ const HowItWorks: React.FC = React.memo(() => {
             {/* Right Side - Benefits */}
             <div className="p-8 flex flex-col h-full">
               <div className="flex-shrink-0">
-                <p className="text-muted-foreground leading-relaxed mb-6 text-lg">
+                <p
+                  className="text-muted-foreground leading-relaxed mb-6 text-lg"
+                  style={{ fontFamily: "'Stinger', sans-serif" }}
+                >
                   Experience the most comprehensive coding learning platform
                   that seamlessly integrates with your entire workflow, from
                   problem-solving to portfolio building.
                 </p>
               </div>
 
-              <div className="flex-grow space-y-4">
+              <div className="flex-grow space-y-3">
                 {[
                   {
-                    icon: <GitHubIcon className="w-5 h-5" />,
-                    title: "Portfolio Building",
-                    description:
-                      "Every solution automatically becomes part of your portfolio",
+                    icon: <Zap className="w-4 h-4" />,
+                    title: "Auto GitHub Push",
+                    description: "Solutions automatically commit to your repo",
                   },
                   {
-                    icon: <NotesIcon className="w-5 h-5" />,
-                    title: "Uninterrupted Learning",
+                    icon: <NotesIcon className="w-4 h-4" />,
+                    title: "Notion Integration",
                     description:
-                      "no extra input required from you after inital setup",
+                      "Structured notes and insights sync seamlessly",
                   },
                   {
-                    icon: <StyleIcon className="w-5 h-5" />,
-                    title: "Memory Retention",
-                    description:
-                      "Anki cards ensure you never forget important concepts",
+                    icon: <Brain className="w-4 h-4" />,
+                    title: "Anki Cards",
+                    description: "AI-generated flashcards from your mistakes",
                   },
                   {
-                    icon: <SecurityIcon className="w-5 h-5" />,
-                    title: "Privacy Focused",
-                    description:
-                      "Your data stays yours - full control over what gets shared",
+                    icon: <Rocket className="w-4 h-4" />,
+                    title: "Zero Setup",
+                    description: "Works instantly across all coding platforms",
+                  },
+                  {
+                    icon: <Target className="w-4 h-4" />,
+                    title: "Smart Tracking",
+                    description: "Captures every coding session automatically",
+                  },
+                  {
+                    icon: <TrendingUp className="w-4 h-4" />,
+                    title: "Progress Analytics",
+                    description: "Detailed insights on your learning patterns",
+                  },
+                  {
+                    icon: <Briefcase className="w-4 h-4" />,
+                    title: "Portfolio Ready",
+                    description: "Professional showcase for employers",
+                  },
+                  {
+                    icon: <Lock className="w-4 h-4" />,
+                    title: "Privacy First",
+                    description: "Your data stays yours, full control",
                   },
                 ].map((benefit, index) => (
                   <div key={index} className="flex items-start space-x-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-muted/30 border border-border rounded-md flex items-center justify-center text-foreground">
+                    <div className="flex-shrink-0 w-7 h-7 bg-muted/30 border border-border rounded-md flex items-center justify-center text-foreground">
                       {benefit.icon}
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground">
+                    <div className="flex-1">
+                      <h4
+                        className="font-semibold text-foreground text-sm"
+                        style={{ fontFamily: "'Stinger', sans-serif" }}
+                      >
                         {benefit.title}
                       </h4>
-                      <p className="text-sm text-muted-foreground">
+                      <p
+                        className="text-xs text-muted-foreground leading-tight"
+                        style={{
+                          fontFamily: "'HarmonyOS_Sans', system-ui, sans-serif",
+                        }}
+                      >
                         {benefit.description}
                       </p>
                     </div>
@@ -609,26 +679,44 @@ const HowItWorks: React.FC = React.memo(() => {
               <div className="flex-shrink-0 pt-6 border-t border-border mt-auto">
                 <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
                   <div className="bg-card/50 border border-border rounded-3xl p-2 sm:p-4 backdrop-blur-sm">
-                    <div className="text-lg sm:text-2xl font-bold text-foreground font-mono">
+                    <div
+                      className="text-lg sm:text-2xl font-bold text-foreground"
+                      style={{ fontFamily: "'Figurlce', sans-serif" }}
+                    >
                       2 min
                     </div>
-                    <div className="text-xs text-muted-foreground font-mono">
+                    <div
+                      className="text-xs text-muted-foreground"
+                      style={{ fontFamily: "'Figurlce', sans-serif" }}
+                    >
                       Setup
                     </div>
                   </div>
                   <div className="bg-card/50 border border-border rounded-3xl p-2 sm:p-4 backdrop-blur-sm">
-                    <div className="text-lg sm:text-2xl font-bold text-green-400 font-mono">
+                    <div
+                      className="text-lg sm:text-2xl font-bold text-green-400"
+                      style={{ fontFamily: "'Figurlce', sans-serif" }}
+                    >
                       100%
                     </div>
-                    <div className="text-xs text-muted-foreground font-mono">
+                    <div
+                      className="text-xs text-muted-foreground"
+                      style={{ fontFamily: "'Figurlce', sans-serif" }}
+                    >
                       Automated
                     </div>
                   </div>
                   <div className="bg-card/50 border border-border rounded-3xl p-2 sm:p-4 backdrop-blur-sm">
-                    <div className="text-lg sm:text-2xl font-bold text-blue-400 font-mono">
+                    <div
+                      className="text-lg sm:text-2xl font-bold text-blue-400"
+                      style={{ fontFamily: "'Figurlce', sans-serif" }}
+                    >
                       8
                     </div>
-                    <div className="text-xs text-muted-foreground font-mono">
+                    <div
+                      className="text-xs text-muted-foreground"
+                      style={{ fontFamily: "'Figurlce', sans-serif" }}
+                    >
                       Tools
                     </div>
                   </div>
