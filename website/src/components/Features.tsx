@@ -367,16 +367,16 @@ const Features: React.FC = React.memo(() => {
                     your GitHub repo.
                   </p>
                   <ul className="space-y-3 mt-6">
-                    <li className="flex items-start text-sm text-muted-foreground">
-                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                    <li className="flex items-center text-sm text-muted-foreground">
+                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
                       <span>Auto-commit solutions with AI analysis</span>
                     </li>
-                    <li className="flex items-start text-sm text-muted-foreground">
-                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                    <li className="flex items-center text-sm text-muted-foreground">
+                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
                       <span>Track your progress over time</span>
                     </li>
-                    <li className="flex items-start text-sm text-muted-foreground">
-                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                    <li className="flex items-center text-sm text-muted-foreground">
+                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
                       <span>Build an impressive portfolio</span>
                     </li>
                   </ul>
@@ -563,16 +563,16 @@ const Features: React.FC = React.memo(() => {
                     </span>
                   </p>
                   <ul className="space-y-3">
-                    <li className="flex items-start text-sm text-muted-foreground">
-                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                    <li className="flex items-center text-sm text-muted-foreground">
+                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
                       <span>Auto-generated flashcards</span>
                     </li>
-                    <li className="flex items-start text-sm text-muted-foreground">
-                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                    <li className="flex items-center text-sm text-muted-foreground">
+                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
                       <span>Organized by mistake categories</span>
                     </li>
-                    <li className="flex items-start text-sm text-muted-foreground">
-                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0 mt-0.5" />
+                    <li className="flex items-center text-sm text-muted-foreground">
+                      <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
                       <span>Track learning progress</span>
                     </li>
                   </ul>
