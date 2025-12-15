@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
             {/* Copyright - right aligned on desktop, wraps as paragraph */}
             <div className="w-full md:w-auto md:flex md:items-center md:justify-end relative">
               {/* Cool backstory label */}
-              <div className="cool-backstory absolute -left-32 top-0 flex items-center gap-2">
+              <div className="cool-backstory absolute -left-32 top-0 flex items-center gap-2 hidden md:block">
                 <span className="handwritten rotated">Cool backstory</span>
                 <svg
                   width="30"

@@ -356,7 +356,7 @@ const Pricing: React.FC = React.memo(() => {
 
           {/* Handwritten label */}
           <div
-            className="faq-label absolute right-[-200px] top-[10px] flex items-center gap-2"
+            className="faq-label absolute right-[-200px] top-[10px] flex items-center gap-2 hidden md:block"
             style={{ transform: "rotate(-12deg)" }}
           >
             <svg
