@@ -19,11 +19,11 @@
 @tailwind utilities;
 
 .handwritten {
-  font-family: "Dancing Script", "Segoe Script", "Brush Script MT", cursive;
+  font-family: "Homemade Apple", cursive;
   font-weight: 400;
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   line-height: 1;
-  letter-spacing: 0.5px;
+  letter-spacing: 2px;
   transform: rotate(-2deg);
   display: inline-block;
 }
@@ -34,6 +34,10 @@
 
 .cool-backstory {
   opacity: 0.5;
+}
+
+.flip {
+  transform: scaleX(-1);
 }
 
 @layer base {

@@ -341,7 +341,7 @@ const Pricing: React.FC = React.memo(() => {
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-zinc-900 border border-gray-800 rounded-3xl p-8 md:p-12 mb-16 max-w-4xl mx-auto">
+        <div className="bg-zinc-900 border border-gray-800 rounded-3xl p-8 md:p-12 mb-16 max-w-4xl mx-auto relative">
           <div className="text-center mb-12">
             <h3
               className="text-3xl text-white mb-4"
@@ -353,6 +353,33 @@ const Pricing: React.FC = React.memo(() => {
           </div>
 
           <FAQAccordion />
+
+          {/* Handwritten label */}
+          <div
+            className="faq-label absolute right-[-200px] top-[10px] flex items-center gap-2"
+            style={{ transform: "rotate(-12deg)" }}
+          >
+            <svg
+              width="30"
+              height="15"
+              viewBox="0 0 30 15"
+              className="arrow-svg flip"
+            >
+              <path
+                d="M0 7.5 Q7.5 2.5 15 7.5 Q22.5 12.5 30 7.5"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                fill="none"
+              />
+              <polygon points="25,5 30,7.5 25,10" fill="currentColor" />
+            </svg>
+            <span className="handwritten">
+              We even answered
+              <br />
+              without chatgpt!
+            </span>
+          </div>
         </div>
 
         {/* Open Source Community Section */}
@@ -455,7 +482,9 @@ const Pricing: React.FC = React.memo(() => {
                     size="lg"
                     className={cn(
                       "rounded-full px-6 font-medium",
-                      isDark ? "border-zinc-700 text-white hover:bg-zinc-800" : ""
+                      isDark
+                        ? "border-zinc-700 text-white hover:bg-zinc-800"
+                        : ""
                     )}
                     onClick={() =>
                       window.open("https://discord.gg/BZDb22gz", "_blank")
