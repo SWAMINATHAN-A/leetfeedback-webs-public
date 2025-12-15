@@ -18,6 +18,24 @@
 @tailwind components;
 @tailwind utilities;
 
+.handwritten {
+  font-family: "Dancing Script", "Segoe Script", "Brush Script MT", cursive;
+  font-weight: 400;
+  font-size: 1.125rem;
+  line-height: 1;
+  letter-spacing: 0.5px;
+  transform: rotate(-2deg);
+  display: inline-block;
+}
+
+.rotated {
+  transform: rotate(-30deg);
+}
+
+.cool-backstory {
+  opacity: 0.5;
+}
+
 @layer base {
     :root {
         /* Light theme variables */

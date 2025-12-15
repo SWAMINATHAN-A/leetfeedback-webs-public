@@ -128,6 +128,28 @@ function AppContent() {
     }
   }, [navigationTarget, navigate, completeNavigation]);
 
+  // Hide dock when scrolling near footer
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight;
+      const documentHeight = document.body.scrollHeight;
+      const threshold = 200; // Hide dock when within 200px of bottom
+
+      if (scrollPosition >= documentHeight - threshold) {
+        setShowDock(false);
+      } else if (
+        showDock === false &&
+        scrollPosition < documentHeight - threshold - 100
+      ) {
+        // Show dock again when scrolling up, with some hysteresis
+        setShowDock(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [showDock]);
+
   return (
     <div className="App min-h-screen relative">
       <ScrollToTop />

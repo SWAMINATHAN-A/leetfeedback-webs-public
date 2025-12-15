@@ -36,7 +36,7 @@ const navigationItems = [
 
 export const Skiper58 = () => {
   return (
-    <ul className="bs flex min-h-full w-full flex-1 flex-col items-start justify-start gap-1.5 rounded-2xl px-7 py-3 backdrop-blur-sm">
+    <ul className="bs flex min-h-full w-full flex-1 flex-col items-start justify-start gap-1 rounded-2xl px-4 pt-8 pb-0 bg-card">
       {navigationItems.map((item, index) => (
         <li
           className="relative flex cursor-pointer flex-col items-start overflow-visible"
