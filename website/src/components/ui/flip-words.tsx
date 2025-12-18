@@ -1,6 +1,6 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, LayoutGroup } from "motion/react";
+import React, { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export const FlipWords = ({
@@ -15,7 +15,6 @@ export const FlipWords = ({
   const [currentWord, setCurrentWord] = useState(words[0]);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
 
-  // thanks for the fix Julian - https://github.com/Julian-AT
   const startAnimation = useCallback(() => {
     const word = words[words.indexOf(currentWord) + 1] || words[0];
     setCurrentWord(word);
@@ -23,10 +22,12 @@ export const FlipWords = ({
   }, [currentWord, words]);
 
   useEffect(() => {
-    if (!isAnimating)
-      setTimeout(() => {
+    if (!isAnimating) {
+      const timer = setTimeout(() => {
         startAnimation();
       }, duration);
+      return () => clearTimeout(timer);
+    }
   }, [isAnimating, duration, startAnimation]);
 
   return (
@@ -54,7 +55,7 @@ export const FlipWords = ({
           y: -40,
           x: 40,
           filter: "blur(8px)",
-          scale: 1,
+          scale: 2,
           position: "absolute",
         }}
         className={cn(
@@ -63,16 +64,11 @@ export const FlipWords = ({
         )}
         key={currentWord}
       >
-        {/* edit suggested by Sajal: https://x.com/DewanganSajal */}
         {currentWord.split(" ").map((word, wordIndex) => (
-          <motion.span
+          // OPTIMIZATION: Replaced motion.span with standard span
+          // The visual fade-in is handled entirely by the letters, making the word-level motion component redundant.
+          <span
             key={word + wordIndex}
-            initial={{ opacity: 0, y: 10, filter: "blur(8px)" }}
-            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{
-              delay: wordIndex * 0.3,
-              duration: 0.3,
-            }}
             className="inline-block whitespace-nowrap"
           >
             {word.split("").map((letter, letterIndex) => (
@@ -85,12 +81,14 @@ export const FlipWords = ({
                   duration: 0.2,
                 }}
                 className="inline-block"
+                // OPTIMIZATION: GPU Layer promotion
+                style={{ willChange: "opacity, filter, transform" }}
               >
                 {letter}
               </motion.span>
             ))}
             <span className="inline-block">&nbsp;</span>
-          </motion.span>
+          </span>
         ))}
       </motion.div>
     </AnimatePresence>

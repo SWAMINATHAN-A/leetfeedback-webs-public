@@ -17,7 +17,6 @@ import {
 import HomePage from "./pages/HomePage";
 import { ProgressiveBlur } from "./components/magicui/progressive-blur";
 import { ScrollbarNav } from "./components/ScrollbarNav";
-import { BackgroundRippleEffect } from "./components/ui/background-ripple-effect";
 import { DockDemo } from "./components/DockDemo";
 import { DynamicIslandDemo } from "./components/DynamicIslandDemo";
 import { SignInDynamicIsland } from "./components/SignInDynamicIsland";
@@ -156,11 +155,6 @@ function AppContent() {
 
       {/* Preloader - shows on initial load */}
       {showPreloader && <Preloader onComplete={handlePreloaderComplete} />}
-
-      {/* Background Ripple Effect */}
-      <div className="fixed inset-0 w-full h-full z-0">
-        <BackgroundRippleEffect rows={8} cols={27} cellSize={56} />
-      </div>
 
       {/* Content overlay */}
       <div className="relative z-10">
