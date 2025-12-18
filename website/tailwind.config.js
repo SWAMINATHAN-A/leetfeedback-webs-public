@@ -3,9 +3,6 @@ module.exports = {
     darkMode: "class",
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     safelist: [
-        'animate-cell-ripple',
-        'mask-radial-from-20%',
-        'mask-radial-at-top',
         'mask-b-from-35%',
         'mask-b-to-90%',
         'mask-b-from-55%',
@@ -164,14 +161,6 @@ module.exports = {
     plugins: [
         function ({ addUtilities }) {
             const newUtilities = {
-                '.mask-radial-from-20\\%': {
-                    '-webkit-mask-image': 'radial-gradient(ellipse at center, black 20%, transparent 70%)',
-                    'mask-image': 'radial-gradient(ellipse at center, black 20%, transparent 70%)',
-                },
-                '.mask-radial-at-top': {
-                    '-webkit-mask-position': 'top center',
-                    'mask-position': 'top center',
-                },
                 '.mask-b-from-35\\%': {
                     '-webkit-mask-image': 'linear-gradient(to bottom, black 35%, transparent 100%)',
                     'mask-image': 'linear-gradient(to bottom, black 35%, transparent 100%)',
