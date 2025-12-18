@@ -38,7 +38,7 @@ const Footer: React.FC = () => {
                   <polygon points="25,5 30,7.5 25,10" fill="currentColor" />
                 </svg>
               </div>
-              <div className="text-white/50 text-sm leading-relaxed text-right max-w-[400px]">
+              <div className="text-muted-foreground text-sm leading-relaxed text-right max-w-[400px]">
                 <p>
                   ©2025 LeetFeedback. All rights recieved. This project is
                   something I have worked on for over a year at this point, it's
@@ -54,9 +54,9 @@ const Footer: React.FC = () => {
       </footer>
 
       {/* Footer - positioned after all content */}
-      <div className="relative z-0 w-full h-64 bg-gradient-to-b from-card to-black flex justify-center items-center">
+      <div className="relative z-0 w-full h-64 bg-gradient-to-b from-card to-white flex justify-center items-center">
         <div className="relative overflow-hidden w-full h-full px-12">
-          <h2 className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 sm:text-[192px] text-[100px] md:text-[192px] text-white/10 font-bold">
+          <h2 className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/3 sm:text-[192px] text-[100px] md:text-[192px] text-black/10 font-bold">
             LeetFeedback
           </h2>
         </div>
