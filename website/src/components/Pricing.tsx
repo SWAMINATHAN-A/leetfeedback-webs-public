@@ -29,6 +29,7 @@ import { BlurFade } from "./magicui/blur-fade";
 import { TextAnimate } from "./magicui/text-animate";
 import { RainbowButton } from "./magicui/rainbow-button";
 import { analytics } from "../utils/analytics";
+import reelCircleDeco from "@/assets/reel-circle-deco.svg";
 import DiscordIcon from "./icons/DiscordIcon";
 import ShinyText from "./ShinyText";
 import {
@@ -206,15 +207,50 @@ const Pricing: React.FC = React.memo(() => {
               />
             </div>
           </BlurFade>
-          <TextAnimate
-            as="h2"
-            className="text-5xl md:text-7xl text-foreground mb-4"
-            animation="blurInUp"
-            delay={0.25}
-            by="word"
-          >
-            Simple Pricing
-          </TextAnimate>
+          <div className="relative inline-block">
+            {/* Reel Circle Decoration - Smaller/Inner */}
+            <img
+              src={reelCircleDeco}
+              alt="Circle decoration"
+              className="absolute inset-0 w-full h-full dark:invert-0 invert"
+              style={{
+                transform: "scale(3.5)",
+                pointerEvents: "none",
+                opacity: 0.35,
+              }}
+              aria-hidden="true"
+            />
+            {/* Horizontal and Vertical Lines */}
+            <div className="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true">
+              {/* Vertical Line */}
+              <div
+                className="absolute bg-border/50"
+                style={{
+                  width: "1px",
+                  height: "80%",
+                  top: "10%",
+                }}
+              />
+              {/* Horizontal Line */}
+              <div
+                className="absolute bg-border/50"
+                style={{
+                  height: "1px",
+                  width: "150%",
+                  left: "-25%",
+                }}
+              />
+            </div>
+            <TextAnimate
+              as="h2"
+              className="text-5xl md:text-7xl text-foreground mb-4 relative z-10"
+              animation="blurInUp"
+              delay={0.25}
+              by="word"
+            >
+              Simple Pricing
+            </TextAnimate>
+          </div>
           <BlurFade delay={0.5}>
             <p className="text-xl md:text-2xl text-muted-foreground">
               Choose the plan that{" "}

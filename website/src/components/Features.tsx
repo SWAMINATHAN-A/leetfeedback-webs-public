@@ -29,6 +29,8 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import TextPressure from "./TextPressure";
 import { IconCloud } from "./magicui/icon-cloud";
+import SvgRippleEffect from "./ui/svg-ripple-effect";
+import { useTheme } from "../contexts/ThemeContext";
 import { LineShadowText } from "./magicui/line-shadow-text";
 import { LampContainer } from "./ui/lamp";
 import progressIcon from "@/assets/support-icons/progress.svg";
@@ -40,11 +42,14 @@ import liveCollabIcon from "@/assets/support-icons/LiveCollab.svg";
 import InsightsIcon from "@mui/icons-material/Insights";
 import GroupsIcon from "@mui/icons-material/Groups";
 import LinkIcon from "@mui/icons-material/Link";
+import reelCircleDeco from "@/assets/reel-circle-deco.svg";
+import marqueeCircleDeco from "@/assets/radial-marquee-circle-deco.svg";
 import DefaultSwapy from "./ui/swapy";
 import { ContainerScroll } from "./ui/container-scroll-animation";
 import ShinyText from "./ShinyText";
 
 const Features: React.FC = React.memo(() => {
+  const { isDark } = useTheme();
   const primaryFeatures = [
     {
       icon: <GitHubIcon className="w-8 h-8" />,
@@ -159,9 +164,44 @@ const Features: React.FC = React.memo(() => {
         <ContainerScroll
           titleComponent={
             <div className="text-center">
-              <h1 className="text-5xl md:text-7xl text-foreground mb-4">
-                Transform Your Coding Journey
-              </h1>
+              <div className="relative inline-block">
+                {/* Radial Marquee Circle Decoration */}
+                <img
+                  src={marqueeCircleDeco}
+                  alt="Circle decoration"
+                  className="absolute inset-0 w-full h-full dark:invert-0 invert"
+                  style={{
+                    transform: "scale(1.8)",
+                    pointerEvents: "none",
+                    opacity: 0.35,
+                  }}
+                  aria-hidden="true"
+                />
+                {/* Horizontal and Vertical Lines */}
+                <div className="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true">
+                  {/* Vertical Line */}
+                  <div
+                    className="absolute bg-border/50"
+                    style={{
+                      width: "1px",
+                      height: "150%",
+                      top: "-25%",
+                    }}
+                  />
+                  {/* Horizontal Line */}
+                  <div
+                    className="absolute bg-border/50"
+                    style={{
+                      height: "1px",
+                      width: "150%",
+                      left: "-25%",
+                    }}
+                  />
+                </div>
+                <h1 className="text-5xl md:text-7xl text-foreground mb-4 relative z-10">
+                  Transform Your Coding Journey
+                </h1>
+              </div>
               <p className="text-xl md:text-2xl text-muted-foreground">
                 Watch how AI turns your{" "}
                 <span
@@ -195,15 +235,50 @@ const Features: React.FC = React.memo(() => {
                 />
               </div>
             </BlurFade>
-            <TextAnimate
-              as="h2"
-              className="text-5xl md:text-7xl text-foreground mb-6"
-              animation="blurInUp"
-              delay={0.3}
-              by="word"
-            >
-              Seamless mobile experience
-            </TextAnimate>
+            <div className="relative inline-block">
+              {/* Radial Marquee Circle Decoration */}
+              <img
+                src={marqueeCircleDeco}
+                alt="Circle decoration"
+                className="absolute inset-0 w-full h-full dark:invert-0 invert"
+                style={{
+                  transform: "scale(2.5)",
+                  pointerEvents: "none",
+                  opacity: 0.55,
+                }}
+                aria-hidden="true"
+              />
+              {/* Horizontal and Vertical Lines */}
+              <div className="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true">
+                {/* Vertical Line */}
+                <div
+                  className="absolute bg-border/50"
+                  style={{
+                    width: "1px",
+                    height: "80%",
+                    top: "10%",
+                  }}
+                />
+                {/* Horizontal Line */}
+                <div
+                  className="absolute bg-border/50"
+                  style={{
+                    height: "1px",
+                    width: "150%",
+                    left: "-25%",
+                  }}
+                />
+              </div>
+              <TextAnimate
+                as="h2"
+                className="text-5xl md:text-7xl text-foreground mb-6 relative z-10"
+                animation="blurInUp"
+                delay={0.3}
+                by="word"
+              >
+                Seamless mobile experience
+              </TextAnimate>
+            </div>
             <BlurFade delay={0.5} inView={true}>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Take your coding practice anywhere with our responsive mobile
@@ -334,15 +409,50 @@ const Features: React.FC = React.memo(() => {
                 />
               </div>
             </BlurFade>
-            <TextAnimate
-              as="h2"
-              className="text-5xl md:text-7xl text-foreground mb-6"
-              animation="blurInUp"
-              delay={0.3}
-              by="word"
-            >
-              Everything you need to excel
-            </TextAnimate>
+            <div className="relative inline-block">
+              {/* Radial Marquee Circle Decoration */}
+              <img
+                src={marqueeCircleDeco}
+                alt="Circle decoration"
+                className="absolute inset-0 w-full h-full dark:invert-0 invert"
+                style={{
+                  transform: "scale(1.8)",
+                  pointerEvents: "none",
+                  opacity: 0.35,
+                }}
+                aria-hidden="true"
+              />
+              {/* Horizontal and Vertical Lines */}
+              <div className="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true">
+                {/* Vertical Line */}
+                <div
+                  className="absolute bg-border/50"
+                  style={{
+                    width: "1px",
+                    height: "80%",
+                    top: "10%",
+                  }}
+                />
+                {/* Horizontal Line */}
+                <div
+                  className="absolute bg-border/50"
+                  style={{
+                    height: "1px",
+                    width: "150%",
+                    left: "-25%",
+                  }}
+                />
+              </div>
+              <TextAnimate
+                as="h2"
+                className="text-5xl md:text-7xl text-foreground mb-6 relative z-10"
+                animation="blurInUp"
+                delay={0.3}
+                by="word"
+              >
+                Everything you need to excel
+              </TextAnimate>
+            </div>
           </div>
 
           {/* Bento Grid Layout */}
@@ -2354,6 +2464,38 @@ const Features: React.FC = React.memo(() => {
                               />
                             </div>
                           </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Craft AI Integration Card */}
+                  <Card className="card variant-outlined relative col-span-full overflow-hidden lg:col-span-3">
+                    <CardContent className="grid h-full pt-6 sm:grid-cols-2 relative">
+                      <div className="relative h-full sm:col-span-1 overflow-hidden">
+                        <SvgRippleEffect
+                          image={isDark ? "/craft_logo_white.svg" : "/craft_logo_black.svg"}
+                          fade={["top", "bottom"]}
+                          transition={{
+                            duration: 0.75,
+                            repeat: Infinity,
+                            repeatDelay: 1.25,
+                          }}
+                        />
+                      </div>
+                      <div className="relative z-10 flex flex-col justify-end h-full">
+                        <div className="space-y-2">
+                          <h2
+                            className="text-lg font-medium transition"
+                            style={{ fontFamily: "'Stinger', sans-serif" }}
+                          >
+                            Craft Integration (2026 Q2)
+                          </h2>
+                          <p className="text-foreground text-sm">
+                            Sync everything we offer to your Craft app via their 
+                            newly introduced APIs. Keep all your feedback and insights 
+                            in one unified workspace.
+                          </p>
                         </div>
                       </div>
                     </CardContent>
