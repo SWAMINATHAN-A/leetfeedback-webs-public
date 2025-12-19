@@ -224,7 +224,7 @@ const Hero: React.FC = React.memo(() => {
                       <span className="text-lg font-semibold text-yellow-500">
                         <NumberTicker value={currentRating} decimalPlaces={1} />
                       </span>
-                      <span className="text-sm text-muted-foreground">/ 5</span>
+                      <span className="text-lg text-muted-foreground">/ 5</span>
                     </div>
                     <div className="relative h-4 w-px bg-yellow-500/30" />
                     <span className="relative text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors">
