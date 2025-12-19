@@ -14,7 +14,6 @@ import {
   NavigationProvider,
   useNavigation,
 } from "./contexts/NavigationContext";
-import { LenisProvider } from "./contexts/LenisContext";
 import HomePage from "./pages/HomePage";
 import { ProgressiveBlur } from "./components/magicui/progressive-blur";
 import { ScrollbarNav } from "./components/ScrollbarNav";
@@ -291,13 +290,11 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <NavigationProvider>
-          <LenisProvider>
-            <Router>
-              <AppContent />
-              <Analytics />
-              <SpeedInsights />
-            </Router>
-          </LenisProvider>
+          <Router>
+            <AppContent />
+            <Analytics />
+            <SpeedInsights />
+          </Router>
         </NavigationProvider>
       </AuthProvider>
     </ThemeProvider>

@@ -182,28 +182,6 @@ module.exports = {
                 '.inset-shadow-white\\/20': {
                     'box-shadow': 'inset 0 0 0 1px rgba(255, 255, 255, 0.2)',
                 },
-                /* Responsive Container Utilities */
-                '.container': {
-                    'max-width': 'var(--size-container)',
-                    'margin-left': 'auto',
-                    'margin-right': 'auto',
-                    'padding-left': '1rem',
-                    'padding-right': '1rem',
-                },
-                '.container\\.medium': {
-                    'max-width': 'calc(var(--size-container) * 0.85)',
-                    'margin-left': 'auto',
-                    'margin-right': 'auto',
-                    'padding-left': '1rem',
-                    'padding-right': '1rem',
-                },
-                '.container\\.small': {
-                    'max-width': 'calc(var(--size-container) * 0.7)',
-                    'margin-left': 'auto',
-                    'margin-right': 'auto',
-                    'padding-left': '1rem',
-                    'padding-right': '1rem',
-                },
             };
             addUtilities(newUtilities);
         },

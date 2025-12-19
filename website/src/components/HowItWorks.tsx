@@ -332,15 +332,62 @@ const HowItWorks: React.FC = React.memo(() => {
               />
             </div>
           </BlurFade>
-          <TextAnimate
-            as="h2"
-            className="text-5xl md:text-7xl text-foreground mb-6"
-            animation="blurInUp"
-            delay={0.5}
-            by="word"
-          >
-            How Traverse Works
-          </TextAnimate>
+          <div className="relative inline-block">
+            {/* Reel Circle Decoration - Smaller/Inner */}
+            <img
+              src="/src/assets/reel-circle-deco.svg"
+              alt="Circle decoration"
+              className="absolute inset-0 w-full h-full dark:invert-0 invert"
+              style={{
+                transform: "scale(3.5)",
+                pointerEvents: "none",
+                opacity: 0.35,
+              }}
+              aria-hidden="true"
+            />
+            {/* Marquee Circle Decoration - Larger/Outer */}
+            <img
+              src="/src/assets/radial-marquee-circle-deco.svg"
+              alt="Circle decoration"
+              className="absolute inset-0 w-full h-full dark:invert-0 invert"
+              style={{
+                transform: "scale(8) translateY(100px)",
+                pointerEvents: "none",
+                opacity: 0.25,
+              }}
+              aria-hidden="true"
+            />
+            {/* Horizontal and Vertical Lines */}
+            <div className="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true">
+              {/* Vertical Line */}
+              <div
+                className="absolute bg-border/50"
+                style={{
+                  width: "1px",
+                  height: "150%",
+                  top: "-25%",
+                }}
+              />
+              {/* Horizontal Line */}
+              <div
+                className="absolute bg-border/50"
+                style={{
+                  height: "1px",
+                  width: "150%",
+                  left: "-25%",
+                }}
+              />
+            </div>
+            <TextAnimate
+              as="h2"
+              className="text-5xl md:text-7xl text-foreground mb-6 relative z-10"
+              animation="blurInUp"
+              delay={0.5}
+              by="word"
+            >
+              How Traverse Works
+            </TextAnimate>
+          </div>
           <BlurFade delay={0.75}>
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
               From installation to building your coding portfolio - everything
