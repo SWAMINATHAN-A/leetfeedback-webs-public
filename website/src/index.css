@@ -1,4 +1,5 @@
 @import url("/harmonyos-fonts/css/harmonyos_sans_optimized.css");
+@import url("https://cdn.jsdelivr.net/npm/lenis@1.2.3/dist/lenis.css");
 
 @font-face {
     font-family: 'Britanica';
