@@ -162,9 +162,44 @@ const Features: React.FC = React.memo(() => {
         <ContainerScroll
           titleComponent={
             <div className="text-center">
-              <h1 className="text-5xl md:text-7xl text-foreground mb-4">
-                Transform Your Coding Journey
-              </h1>
+              <div className="relative inline-block">
+                {/* Radial Marquee Circle Decoration */}
+                <img
+                  src="/src/assets/radial-marquee-circle-deco.svg"
+                  alt="Circle decoration"
+                  className="absolute inset-0 w-full h-full"
+                  style={{
+                    transform: "scale(1.8)",
+                    pointerEvents: "none",
+                    opacity: 0.35,
+                  }}
+                  aria-hidden="true"
+                />
+                {/* Horizontal and Vertical Lines */}
+                <div className="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true">
+                  {/* Vertical Line */}
+                  <div
+                    className="absolute bg-border/50"
+                    style={{
+                      width: "1px",
+                      height: "150%",
+                      top: "-25%",
+                    }}
+                  />
+                  {/* Horizontal Line */}
+                  <div
+                    className="absolute bg-border/50"
+                    style={{
+                      height: "1px",
+                      width: "150%",
+                      left: "-25%",
+                    }}
+                  />
+                </div>
+                <h1 className="text-5xl md:text-7xl text-foreground mb-4 relative z-10">
+                  Transform Your Coding Journey
+                </h1>
+              </div>
               <p className="text-xl md:text-2xl text-muted-foreground">
                 Watch how AI turns your{" "}
                 <span
@@ -198,15 +233,50 @@ const Features: React.FC = React.memo(() => {
                 />
               </div>
             </BlurFade>
-            <TextAnimate
-              as="h2"
-              className="text-5xl md:text-7xl text-foreground mb-6"
-              animation="blurInUp"
-              delay={0.3}
-              by="word"
-            >
-              Seamless mobile experience
-            </TextAnimate>
+            <div className="relative inline-block">
+              {/* Radial Marquee Circle Decoration */}
+              <img
+                src="/src/assets/radial-marquee-circle-deco.svg"
+                alt="Circle decoration"
+                className="absolute inset-0 w-full h-full"
+                style={{
+                  transform: "scale(2.5)",
+                  pointerEvents: "none",
+                  opacity: 0.55,
+                }}
+                aria-hidden="true"
+              />
+              {/* Horizontal and Vertical Lines */}
+              <div className="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true">
+                {/* Vertical Line */}
+                <div
+                  className="absolute bg-border/50"
+                  style={{
+                    width: "1px",
+                    height: "150%",
+                    top: "-25%",
+                  }}
+                />
+                {/* Horizontal Line */}
+                <div
+                  className="absolute bg-border/50"
+                  style={{
+                    height: "1px",
+                    width: "150%",
+                    left: "-25%",
+                  }}
+                />
+              </div>
+              <TextAnimate
+                as="h2"
+                className="text-5xl md:text-7xl text-foreground mb-6 relative z-10"
+                animation="blurInUp"
+                delay={0.3}
+                by="word"
+              >
+                Seamless mobile experience
+              </TextAnimate>
+            </div>
             <BlurFade delay={0.5} inView={true}>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
                 Take your coding practice anywhere with our responsive mobile
