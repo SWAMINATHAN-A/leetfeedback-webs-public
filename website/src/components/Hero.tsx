@@ -207,9 +207,8 @@ const Hero: React.FC = React.memo(() => {
                   className="mt-14 flex flex-col sm:flex-row items-start gap-8"
                 >
                   <motion.div
-                    className="group relative flex items-center gap-3 cursor-pointer bg-gradient-to-r from-yellow-500/10 via-amber-500/10 to-orange-500/10 hover:from-yellow-500/20 hover:via-amber-500/20 hover:to-orange-500/20 border border-yellow-500/20 hover:border-yellow-500/40 rounded-full px-4 py-2.5 transition-all duration-300"
+                    className="group relative flex items-center gap-3 cursor-pointer bg-gradient-to-r from-yellow-500/10 via-amber-500/10 to-orange-500/10 hover:from-yellow-500/20 hover:via-amber-500/20 hover:to-orange-500/20 border border-yellow-500/20 hover:border-yellow-500/40 rounded-full px-4 py-2.5 transition-all duration-500 hover:shadow-[22px_8px_34px_rgba(251,191,36,0.25)]"
                     onClick={() => setShowRatingSlider(true)}
-                    whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     {/* Glow effect on hover */}
@@ -248,7 +247,7 @@ const Hero: React.FC = React.memo(() => {
               <div className="relative w-full">
                 {/* Ambient glow effect - positioned to match image bounds */}
                 <div
-                  className="absolute top-8 left-0 w-[180%] h-[70%] bg-gradient-to-br from-white/[0.08] via-white/[0.04] to-transparent blur-3xl opacity-50 pointer-events-none"
+                  className="absolute top-8 left-0 w-[180%] h-[70%] bg-gradient-to-br from-white/[0.12] via-white/[0.08] to-transparent blur-3xl opacity-70 pointer-events-none"
                   aria-hidden="true"
                 />
                 {/* Subtle connecting gradient line */}
