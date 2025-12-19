@@ -334,33 +334,33 @@ const HowItWorks: React.FC = React.memo(() => {
               />
             </div>
           </BlurFade>
-          <div className="relative inline-block">
-            {/* Reel Circle Decoration - Smaller/Inner - Hidden on mobile */}
+          <div className="relative inline-block overflow-hidden">
+            {/* Reel Circle Decoration - Smaller/Inner */}
             <img
               src={reelCircleDeco}
               alt="Circle decoration"
-              className="absolute inset-0 w-full h-full dark:invert-0 invert hidden md:block"
+              className="absolute inset-0 w-full h-full dark:invert-0 invert"
               style={{
-                transform: "scale(3.5)",
+                transform: "scale(2)",
                 pointerEvents: "none",
                 opacity: 0.35,
               }}
               aria-hidden="true"
             />
-            {/* Marquee Circle Decoration - Larger/Outer - Hidden on mobile */}
+            {/* Marquee Circle Decoration - Larger/Outer */}
             <img
               src={marqueeCircleDeco}
               alt="Circle decoration"
-              className="absolute inset-0 w-full h-full dark:invert-0 invert hidden md:block"
+              className="absolute inset-0 w-full h-full dark:invert-0 invert"
               style={{
-                transform: "scale(8) translateY(100px)",
+                transform: "scale(3.5) translateY(50px)",
                 pointerEvents: "none",
                 opacity: 0.25,
               }}
               aria-hidden="true"
             />
-            {/* Horizontal and Vertical Lines - Hidden on mobile */}
-            <div className="absolute inset-0 pointer-events-none hidden md:flex items-center justify-center" aria-hidden="true">
+            {/* Horizontal and Vertical Lines */}
+            <div className="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true">
               {/* Vertical Line */}
               <div
                 className="absolute bg-border/50"
@@ -375,8 +375,7 @@ const HowItWorks: React.FC = React.memo(() => {
                 className="absolute bg-border/50"
                 style={{
                   height: "1px",
-                  width: "150%",
-                  left: "-25%",
+                  width: "100%",
                 }}
               />
             </div>

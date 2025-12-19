@@ -235,21 +235,21 @@ const Features: React.FC = React.memo(() => {
                 />
               </div>
             </BlurFade>
-            <div className="relative inline-block">
-              {/* Radial Marquee Circle Decoration - Hidden on mobile */}
+            <div className="relative inline-block overflow-hidden">
+              {/* Radial Marquee Circle Decoration */}
               <img
                 src={marqueeCircleDeco}
                 alt="Circle decoration"
-                className="absolute inset-0 w-full h-full dark:invert-0 invert hidden md:block"
+                className="absolute inset-0 w-full h-full dark:invert-0 invert"
                 style={{
-                  transform: "scale(2.5)",
+                  transform: "scale(1.2)",
                   pointerEvents: "none",
                   opacity: 0.55,
                 }}
                 aria-hidden="true"
               />
-              {/* Horizontal and Vertical Lines - Hidden on mobile */}
-              <div className="absolute inset-0 pointer-events-none hidden md:flex items-center justify-center" aria-hidden="true">
+              {/* Horizontal and Vertical Lines */}
+              <div className="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true">
                 {/* Vertical Line */}
                 <div
                   className="absolute bg-border/50"
@@ -264,8 +264,7 @@ const Features: React.FC = React.memo(() => {
                   className="absolute bg-border/50"
                   style={{
                     height: "1px",
-                    width: "150%",
-                    left: "-25%",
+                    width: "100%",
                   }}
                 />
               </div>
@@ -409,21 +408,21 @@ const Features: React.FC = React.memo(() => {
                 />
               </div>
             </BlurFade>
-            <div className="relative inline-block">
-              {/* Radial Marquee Circle Decoration - Hidden on mobile */}
+            <div className="relative inline-block overflow-hidden">
+              {/* Radial Marquee Circle Decoration */}
               <img
                 src={marqueeCircleDeco}
                 alt="Circle decoration"
-                className="absolute inset-0 w-full h-full dark:invert-0 invert hidden md:block"
+                className="absolute inset-0 w-full h-full dark:invert-0 invert"
                 style={{
-                  transform: "scale(1.8)",
+                  transform: "scale(1.2)",
                   pointerEvents: "none",
                   opacity: 0.35,
                 }}
                 aria-hidden="true"
               />
-              {/* Horizontal and Vertical Lines - Hidden on mobile */}
-              <div className="absolute inset-0 pointer-events-none hidden md:flex items-center justify-center" aria-hidden="true">
+              {/* Horizontal and Vertical Lines */}
+              <div className="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true">
                 {/* Vertical Line */}
                 <div
                   className="absolute bg-border/50"
@@ -438,8 +437,7 @@ const Features: React.FC = React.memo(() => {
                   className="absolute bg-border/50"
                   style={{
                     height: "1px",
-                    width: "150%",
-                    left: "-25%",
+                    width: "100%",
                   }}
                 />
               </div>
