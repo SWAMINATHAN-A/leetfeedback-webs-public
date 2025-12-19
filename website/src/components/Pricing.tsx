@@ -390,34 +390,7 @@ const Pricing: React.FC = React.memo(() => {
 
           <FAQAccordion />
 
-          {/* Handwritten label */}
-          <div
-            className="faq-label absolute right-[-200px] top-[10px] flex items-center gap-2 hidden md:block"
-            style={{ transform: "rotate(-12deg)" }}
-          >
-            <svg
-              width="30"
-              height="15"
-              viewBox="0 0 30 15"
-              className="arrow-svg flip"
-            >
-              <path
-                d="M0 7.5 Q7.5 2.5 15 7.5 Q22.5 12.5 30 7.5"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                fill="none"
-              />
-              <polygon points="25,5 30,7.5 25,10" fill="currentColor" />
-            </svg>
-            <span className="handwritten">
-              We even answered
-              <br />
-              without chatgpt!
-            </span>
-          </div>
         </div>
-
         {/* Open Source Community Section */}
         <div className="mt-16 max-w-4xl mx-auto">
           <BlurFade delay={0.1}>

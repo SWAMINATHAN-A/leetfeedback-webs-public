@@ -19,25 +19,6 @@ const Footer: React.FC = () => {
 
             {/* Copyright - right aligned on desktop, wraps as paragraph */}
             <div className="w-full md:w-auto md:flex md:items-center md:justify-end relative">
-              {/* Cool backstory label */}
-              <div className="cool-backstory absolute -left-32 top-0 flex items-center gap-2 hidden md:block">
-                <span className="handwritten rotated">Cool backstory</span>
-                <svg
-                  width="30"
-                  height="15"
-                  viewBox="0 0 30 15"
-                  className="arrow-svg"
-                >
-                  <path
-                    d="M0 7.5 Q7.5 2.5 15 7.5 Q22.5 12.5 30 7.5"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    fill="none"
-                  />
-                  <polygon points="25,5 30,7.5 25,10" fill="currentColor" />
-                </svg>
-              </div>
               <div className="text-muted-foreground text-sm leading-relaxed text-right max-w-[400px]">
                 <p>
                   ©2025 LeetFeedback. All rights recieved. This project is
