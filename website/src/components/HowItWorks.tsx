@@ -334,14 +334,14 @@ const HowItWorks: React.FC = React.memo(() => {
               />
             </div>
           </BlurFade>
-          <div className="relative inline-block">
+          <div className="relative inline-block overflow-hidden">
             {/* Reel Circle Decoration - Smaller/Inner */}
             <img
               src={reelCircleDeco}
               alt="Circle decoration"
               className="absolute inset-0 w-full h-full dark:invert-0 invert"
               style={{
-                transform: "scale(3.5)",
+                transform: "scale(2)",
                 pointerEvents: "none",
                 opacity: 0.35,
               }}
@@ -353,7 +353,7 @@ const HowItWorks: React.FC = React.memo(() => {
               alt="Circle decoration"
               className="absolute inset-0 w-full h-full dark:invert-0 invert"
               style={{
-                transform: "scale(8) translateY(100px)",
+                transform: "scale(3.5) translateY(50px)",
                 pointerEvents: "none",
                 opacity: 0.25,
               }}
@@ -375,8 +375,7 @@ const HowItWorks: React.FC = React.memo(() => {
                 className="absolute bg-border/50"
                 style={{
                   height: "1px",
-                  width: "150%",
-                  left: "-25%",
+                  width: "100%",
                 }}
               />
             </div>
