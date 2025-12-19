@@ -238,7 +238,7 @@ const Features: React.FC = React.memo(() => {
               <img
                 src="/src/assets/radial-marquee-circle-deco.svg"
                 alt="Circle decoration"
-                className="absolute inset-0 w-full h-full"
+                className="absolute inset-0 w-full h-full dark:invert-0 invert"
                 style={{
                   transform: "scale(2.5)",
                   pointerEvents: "none",
@@ -253,8 +253,8 @@ const Features: React.FC = React.memo(() => {
                   className="absolute bg-border/50"
                   style={{
                     width: "1px",
-                    height: "150%",
-                    top: "-25%",
+                    height: "80%",
+                    top: "10%",
                   }}
                 />
                 {/* Horizontal Line */}
@@ -412,7 +412,7 @@ const Features: React.FC = React.memo(() => {
               <img
                 src="/src/assets/radial-marquee-circle-deco.svg"
                 alt="Circle decoration"
-                className="absolute inset-0 w-full h-full"
+                className="absolute inset-0 w-full h-full dark:invert-0 invert"
                 style={{
                   transform: "scale(1.8)",
                   pointerEvents: "none",
@@ -427,8 +427,8 @@ const Features: React.FC = React.memo(() => {
                   className="absolute bg-border/50"
                   style={{
                     width: "1px",
-                    height: "150%",
-                    top: "-25%",
+                    height: "80%",
+                    top: "10%",
                   }}
                 />
                 {/* Horizontal Line */}

@@ -226,8 +226,8 @@ const Pricing: React.FC = React.memo(() => {
                 className="absolute bg-border/50"
                 style={{
                   width: "1px",
-                  height: "150%",
-                  top: "-25%",
+                  height: "80%",
+                  top: "10%",
                 }}
               />
               {/* Horizontal Line */}
