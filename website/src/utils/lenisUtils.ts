@@ -55,7 +55,7 @@ export function smoothScrollToElementEnhanced(
   if (lenis) {
     // Use Lenis if available
     return new Promise((resolve) => {
-      scrollToWithLenis(targetElement, {
+      scrollToWithLenis(targetElement as HTMLElement, {
         duration: duration / 1000, // Lenis expects duration in seconds
         onComplete: resolve,
       });
