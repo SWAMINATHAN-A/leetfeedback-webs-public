@@ -138,16 +138,18 @@ function AppContent() {
         setShowDock(false);
       } else if (
         showDock === false &&
-        scrollPosition < documentHeight - threshold - 100
+        scrollPosition < documentHeight - threshold - 100 &&
+        !showDynamicIsland
       ) {
         // Show dock again when scrolling up, with some hysteresis
+        // Only if dynamic island is not shown
         setShowDock(true);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [showDock]);
+  }, [showDock, showDynamicIsland]);
 
   return (
     <div className="App min-h-screen relative">
