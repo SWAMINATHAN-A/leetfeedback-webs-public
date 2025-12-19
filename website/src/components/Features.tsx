@@ -29,6 +29,8 @@ import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import TextPressure from "./TextPressure";
 import { IconCloud } from "./magicui/icon-cloud";
+import SvgRippleEffect from "./ui/svg-ripple-effect";
+import { useTheme } from "../contexts/ThemeContext";
 import { LineShadowText } from "./magicui/line-shadow-text";
 import { LampContainer } from "./ui/lamp";
 import progressIcon from "@/assets/support-icons/progress.svg";
@@ -45,6 +47,7 @@ import { ContainerScroll } from "./ui/container-scroll-animation";
 import ShinyText from "./ShinyText";
 
 const Features: React.FC = React.memo(() => {
+  const { isDark } = useTheme();
   const primaryFeatures = [
     {
       icon: <GitHubIcon className="w-8 h-8" />,
@@ -2354,6 +2357,38 @@ const Features: React.FC = React.memo(() => {
                               />
                             </div>
                           </div>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  {/* Craft AI Integration Card */}
+                  <Card className="card variant-outlined relative col-span-full overflow-hidden lg:col-span-3">
+                    <CardContent className="grid h-full pt-6 sm:grid-cols-2 relative">
+                      <div className="relative h-full sm:col-span-1 overflow-hidden">
+                        <SvgRippleEffect
+                          image={isDark ? "/craft_logo_white.svg" : "/craft_logo_black.svg"}
+                          fade={["top", "bottom"]}
+                          transition={{
+                            duration: 0.75,
+                            repeat: Infinity,
+                            repeatDelay: 1.25,
+                          }}
+                        />
+                      </div>
+                      <div className="relative z-10 flex flex-col justify-end h-full">
+                        <div className="space-y-2">
+                          <h2
+                            className="text-lg font-medium transition"
+                            style={{ fontFamily: "'Stinger', sans-serif" }}
+                          >
+                            Craft Integration (2026 Q2)
+                          </h2>
+                          <p className="text-foreground text-sm">
+                            Sync everything we offer to your Craft app via their 
+                            newly introduced APIs. Keep all your feedback and insights 
+                            in one unified workspace.
+                          </p>
                         </div>
                       </div>
                     </CardContent>
