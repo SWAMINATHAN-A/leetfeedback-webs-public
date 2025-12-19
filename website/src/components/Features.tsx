@@ -236,11 +236,11 @@ const Features: React.FC = React.memo(() => {
               </div>
             </BlurFade>
             <div className="relative inline-block">
-              {/* Radial Marquee Circle Decoration */}
+              {/* Radial Marquee Circle Decoration - Hidden on mobile */}
               <img
                 src={marqueeCircleDeco}
                 alt="Circle decoration"
-                className="absolute inset-0 w-full h-full dark:invert-0 invert"
+                className="absolute inset-0 w-full h-full dark:invert-0 invert hidden md:block"
                 style={{
                   transform: "scale(2.5)",
                   pointerEvents: "none",
@@ -248,8 +248,8 @@ const Features: React.FC = React.memo(() => {
                 }}
                 aria-hidden="true"
               />
-              {/* Horizontal and Vertical Lines */}
-              <div className="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true">
+              {/* Horizontal and Vertical Lines - Hidden on mobile */}
+              <div className="absolute inset-0 pointer-events-none hidden md:flex items-center justify-center" aria-hidden="true">
                 {/* Vertical Line */}
                 <div
                   className="absolute bg-border/50"
@@ -410,11 +410,11 @@ const Features: React.FC = React.memo(() => {
               </div>
             </BlurFade>
             <div className="relative inline-block">
-              {/* Radial Marquee Circle Decoration */}
+              {/* Radial Marquee Circle Decoration - Hidden on mobile */}
               <img
                 src={marqueeCircleDeco}
                 alt="Circle decoration"
-                className="absolute inset-0 w-full h-full dark:invert-0 invert"
+                className="absolute inset-0 w-full h-full dark:invert-0 invert hidden md:block"
                 style={{
                   transform: "scale(1.8)",
                   pointerEvents: "none",
@@ -422,8 +422,8 @@ const Features: React.FC = React.memo(() => {
                 }}
                 aria-hidden="true"
               />
-              {/* Horizontal and Vertical Lines */}
-              <div className="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true">
+              {/* Horizontal and Vertical Lines - Hidden on mobile */}
+              <div className="absolute inset-0 pointer-events-none hidden md:flex items-center justify-center" aria-hidden="true">
                 {/* Vertical Line */}
                 <div
                   className="absolute bg-border/50"
