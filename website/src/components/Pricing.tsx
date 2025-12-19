@@ -29,6 +29,7 @@ import { BlurFade } from "./magicui/blur-fade";
 import { TextAnimate } from "./magicui/text-animate";
 import { RainbowButton } from "./magicui/rainbow-button";
 import { analytics } from "../utils/analytics";
+import reelCircleDeco from "@/assets/reel-circle-deco.svg";
 import DiscordIcon from "./icons/DiscordIcon";
 import ShinyText from "./ShinyText";
 import {
@@ -209,7 +210,7 @@ const Pricing: React.FC = React.memo(() => {
           <div className="relative inline-block">
             {/* Reel Circle Decoration - Smaller/Inner */}
             <img
-              src="/src/assets/reel-circle-deco.svg"
+              src={reelCircleDeco}
               alt="Circle decoration"
               className="absolute inset-0 w-full h-full dark:invert-0 invert"
               style={{

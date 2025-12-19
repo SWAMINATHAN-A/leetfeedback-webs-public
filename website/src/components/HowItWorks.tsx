@@ -39,6 +39,8 @@ import tufIcon from "@/assets/support-icons/tuf.svg";
 import notionIcon from "@/assets/support-icons/notion.svg";
 import ankiIcon from "@/assets/support-icons/anki.svg";
 import geminiIcon from "@/assets/support-icons/gemini.svg";
+import reelCircleDeco from "@/assets/reel-circle-deco.svg";
+import marqueeCircleDeco from "@/assets/radial-marquee-circle-deco.svg";
 
 // Line art doodle SVG paths - continuous single line drawings (dense, spanning entire box)
 const doodlePaths = {
@@ -335,7 +337,7 @@ const HowItWorks: React.FC = React.memo(() => {
           <div className="relative inline-block">
             {/* Reel Circle Decoration - Smaller/Inner */}
             <img
-              src="/src/assets/reel-circle-deco.svg"
+              src={reelCircleDeco}
               alt="Circle decoration"
               className="absolute inset-0 w-full h-full dark:invert-0 invert"
               style={{
@@ -347,7 +349,7 @@ const HowItWorks: React.FC = React.memo(() => {
             />
             {/* Marquee Circle Decoration - Larger/Outer */}
             <img
-              src="/src/assets/radial-marquee-circle-deco.svg"
+              src={marqueeCircleDeco}
               alt="Circle decoration"
               className="absolute inset-0 w-full h-full dark:invert-0 invert"
               style={{

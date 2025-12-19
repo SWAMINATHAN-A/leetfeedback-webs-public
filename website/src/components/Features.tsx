@@ -42,6 +42,8 @@ import liveCollabIcon from "@/assets/support-icons/LiveCollab.svg";
 import InsightsIcon from "@mui/icons-material/Insights";
 import GroupsIcon from "@mui/icons-material/Groups";
 import LinkIcon from "@mui/icons-material/Link";
+import reelCircleDeco from "@/assets/reel-circle-deco.svg";
+import marqueeCircleDeco from "@/assets/radial-marquee-circle-deco.svg";
 import DefaultSwapy from "./ui/swapy";
 import { ContainerScroll } from "./ui/container-scroll-animation";
 import ShinyText from "./ShinyText";
@@ -165,7 +167,7 @@ const Features: React.FC = React.memo(() => {
               <div className="relative inline-block">
                 {/* Radial Marquee Circle Decoration */}
                 <img
-                  src="/src/assets/radial-marquee-circle-deco.svg"
+                  src={marqueeCircleDeco}
                   alt="Circle decoration"
                   className="absolute inset-0 w-full h-full dark:invert-0 invert"
                   style={{
@@ -236,7 +238,7 @@ const Features: React.FC = React.memo(() => {
             <div className="relative inline-block">
               {/* Radial Marquee Circle Decoration */}
               <img
-                src="/src/assets/radial-marquee-circle-deco.svg"
+                src={marqueeCircleDeco}
                 alt="Circle decoration"
                 className="absolute inset-0 w-full h-full dark:invert-0 invert"
                 style={{
@@ -410,7 +412,7 @@ const Features: React.FC = React.memo(() => {
             <div className="relative inline-block">
               {/* Radial Marquee Circle Decoration */}
               <img
-                src="/src/assets/radial-marquee-circle-deco.svg"
+                src={marqueeCircleDeco}
                 alt="Circle decoration"
                 className="absolute inset-0 w-full h-full dark:invert-0 invert"
                 style={{
