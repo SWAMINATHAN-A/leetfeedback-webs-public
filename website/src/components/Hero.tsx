@@ -210,10 +210,18 @@ const Hero: React.FC = React.memo(() => {
                     className="group relative flex items-center gap-3 cursor-pointer bg-gradient-to-r from-yellow-500/10 via-amber-500/10 to-orange-500/10 hover:from-yellow-500/20 hover:via-amber-500/20 hover:to-orange-500/20 border border-yellow-500/20 hover:border-yellow-500/40 rounded-full px-4 py-2.5 transition-all duration-500 hover:shadow-[22px_8px_34px_rgba(251,191,36,0.25)]"
                     onClick={() => setShowRatingSlider(true)}
                     whileTap={{ scale: 0.98 }}
+                    style={{
+                      willChange: 'transform, opacity',
+                      backfaceVisibility: 'hidden',
+                      WebkitBackfaceVisibility: 'hidden',
+                      transformStyle: 'preserve-3d',
+                      WebkitTransformStyle: 'preserve-3d'
+                    }}
                   >
                     {/* Glow effect on hover */}
                     <div
-                      className="absolute inset-0 rounded-full bg-yellow-500/10 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      className="absolute inset-0 rounded-full bg-yellow-500/10 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      style={{ willChange: 'opacity' }}
                       aria-hidden="true"
                     />
 
@@ -244,10 +252,17 @@ const Hero: React.FC = React.memo(() => {
               blur="12px"
               className="hidden lg:block relative mt-10"
             >
-              <div className="relative w-full">
+              <div className="relative w-full" style={{
+                willChange: 'transform',
+                backfaceVisibility: 'hidden',
+                WebkitBackfaceVisibility: 'hidden',
+                transformStyle: 'preserve-3d',
+                WebkitTransformStyle: 'preserve-3d'
+              }}>
                 {/* Ambient glow effect - positioned to match image bounds */}
                 <div
-                  className="absolute top-8 left-0 w-[180%] h-[70%] bg-gradient-to-br from-white/[0.12] via-white/[0.08] to-transparent blur-3xl opacity-70 pointer-events-none"
+                  className="absolute top-8 left-0 w-[180%] h-[70%] bg-gradient-to-br from-white/[0.12] via-white/[0.08] to-transparent blur-2xl opacity-70 pointer-events-none"
+                  style={{ willChange: 'transform' }}
                   aria-hidden="true"
                 />
                 {/* Subtle connecting gradient line */}
