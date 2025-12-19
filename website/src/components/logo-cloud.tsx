@@ -13,16 +13,16 @@ const platforms = [
 
 export default function LogoCloud() {
   return (
-    <section className="overflow-hidden py-8">
+    <section className="overflow-hidden py-4">
       <div className="group relative m-auto max-w-7xl px-4">
         <div className="flex flex-col items-start md:flex-row md:items-center">
           <div className="md:max-w-44 md:border-r md:border-border md:pr-6">
-            <p className="text-start text-sm text-muted-foreground font-mono">
+            <p className="text-start text-xs text-muted-foreground font-mono">
               Supported Platforms
             </p>
           </div>
-          <div className="relative py-6 md:w-[calc(100%-11rem)] w-full">
-            <InfiniteSlider speedOnHover={20} speed={40} gap={80}>
+          <div className="relative py-3 md:w-[calc(100%-11rem)] w-full">
+            <InfiniteSlider speedOnHover={20} speed={40} gap={60}>
               {[...platforms, ...platforms].map((platform, index) => (
                 <div
                   key={`${platform.key}-${index}`}

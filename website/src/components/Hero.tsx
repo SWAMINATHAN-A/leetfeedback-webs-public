@@ -110,7 +110,7 @@ const Hero: React.FC = React.memo(() => {
             <div className="text-left sm:mx-0 lg:mr-auto lg:mt-0">
               {/* Beta Badge - Original Design */}
               <BlurFade delay={0.25}>
-                <div className="mb-10">
+                <div className="mb-6">
                   <Link
                     to="/roadmap"
                     className="inline-block"
@@ -162,7 +162,7 @@ const Hero: React.FC = React.memo(() => {
                     },
                     ...transitionVariants,
                   }}
-                  className="mt-12 flex flex-col items-start gap-4 md:flex-row"
+                  className="mt-8 pt-4 flex flex-col items-start gap-4 md:flex-row"
                 >
                   <AnimatedClipButton
                     text="Add to Chrome - Free"
