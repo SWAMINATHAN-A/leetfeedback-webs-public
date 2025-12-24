@@ -75,7 +75,7 @@ const SimpleProfilePage: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-      <main className="container mx-auto px-4 py-12 max-w-4xl">
+      <main className="container-medium py-12">
         <div className="grid gap-6">
           {/* Profile Header */}
           <Card className="rounded-3xl">

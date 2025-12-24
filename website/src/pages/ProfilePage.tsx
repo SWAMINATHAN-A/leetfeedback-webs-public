@@ -81,14 +81,14 @@ const ProfilePage: React.FC = () => {
         year: "numeric",
         month: "long",
       }),
-    []
+    [],
   );
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
-      <main className="container mx-auto px-4 py-12 max-w-4xl">
+      <main className="container-medium py-12">
         {/* Profile Header */}
         <div className="bg-card border border-border rounded-3xl p-8 mb-8">
           <div className="flex flex-col md:flex-row gap-8">

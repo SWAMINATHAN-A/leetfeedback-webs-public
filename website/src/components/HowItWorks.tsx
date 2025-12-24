@@ -284,7 +284,7 @@ const HowItWorks: React.FC = React.memo(() => {
     (index: number) => {
       if (emblaApi) emblaApi.scrollTo(index);
     },
-    [emblaApi]
+    [emblaApi],
   );
 
   const onSelect = useCallback(() => {
@@ -322,9 +322,9 @@ const HowItWorks: React.FC = React.memo(() => {
       id="how-it-works"
       className="py-24 bg-background border-t border-border/20"
     >
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="container">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center container-small mx-auto mb-16">
           <BlurFade delay={0.25}>
             <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-3 py-1.5 inline-flex items-center hover:bg-[rgba(40,40,40,1)] transition-colors">
               <ShinyText
@@ -360,7 +360,10 @@ const HowItWorks: React.FC = React.memo(() => {
               aria-hidden="true"
             />
             {/* Horizontal and Vertical Lines - Hidden on mobile */}
-            <div className="absolute inset-0 pointer-events-none hidden md:flex items-center justify-center" aria-hidden="true">
+            <div
+              className="absolute inset-0 pointer-events-none hidden md:flex items-center justify-center"
+              aria-hidden="true"
+            >
               {/* Vertical Line */}
               <div
                 className="absolute bg-border/50"
@@ -406,7 +409,7 @@ const HowItWorks: React.FC = React.memo(() => {
         </div>
 
         {/* Carousel Section with External Navigation */}
-        <div className="relative max-w-5xl mx-auto mb-20">
+        <div className="relative container-medium mx-auto mb-20">
           {/* Navigation Controls - Outside Box, Below */}
           <div className="flex items-center justify-center gap-4 mb-6">
             {/* Previous Button */}
@@ -473,7 +476,7 @@ const HowItWorks: React.FC = React.memo(() => {
                               <div className="w-10 h-10 md:w-12 md:h-12">
                                 {React.cloneElement(
                                   step.icon as React.ReactElement<any>,
-                                  { className: "w-full h-full" }
+                                  { className: "w-full h-full" },
                                 )}
                               </div>
                             </div>

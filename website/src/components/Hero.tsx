@@ -84,7 +84,7 @@ const Hero: React.FC = React.memo(() => {
         />
       ));
     },
-    []
+    [],
   );
 
   return (
@@ -105,7 +105,7 @@ const Hero: React.FC = React.memo(() => {
           className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--background)_75%)]"
         />
 
-        <div className="container relative mx-auto px-4 md:px-8 max-w-7xl overflow-visible">
+        <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-start overflow-visible">
             <div className="text-left sm:mx-0 lg:mr-auto lg:mt-0">
               {/* Beta Badge - Original Design */}
@@ -174,7 +174,7 @@ const Hero: React.FC = React.memo(() => {
                       analytics.trackDownloadClick("hero_primary_cta");
                       window.open(
                         "https://github.com/lqSky7/leetFeedback-extension",
-                        "_blank"
+                        "_blank",
                       );
                     }}
                   />
@@ -211,17 +211,17 @@ const Hero: React.FC = React.memo(() => {
                     onClick={() => setShowRatingSlider(true)}
                     whileTap={{ scale: 0.98 }}
                     style={{
-                      willChange: 'transform, opacity',
-                      backfaceVisibility: 'hidden',
-                      WebkitBackfaceVisibility: 'hidden',
-                      transformStyle: 'preserve-3d',
-                      WebkitTransformStyle: 'preserve-3d'
+                      willChange: "transform, opacity",
+                      backfaceVisibility: "hidden",
+                      WebkitBackfaceVisibility: "hidden",
+                      transformStyle: "preserve-3d",
+                      WebkitTransformStyle: "preserve-3d",
                     }}
                   >
                     {/* Glow effect on hover */}
                     <div
                       className="absolute inset-0 rounded-full bg-yellow-500/10 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{ willChange: 'opacity' }}
+                      style={{ willChange: "opacity" }}
                       aria-hidden="true"
                     />
 
@@ -252,17 +252,20 @@ const Hero: React.FC = React.memo(() => {
               blur="12px"
               className="hidden lg:block relative mt-10"
             >
-              <div className="relative w-full" style={{
-                willChange: 'transform',
-                backfaceVisibility: 'hidden',
-                WebkitBackfaceVisibility: 'hidden',
-                transformStyle: 'preserve-3d',
-                WebkitTransformStyle: 'preserve-3d'
-              }}>
+              <div
+                className="relative w-full"
+                style={{
+                  willChange: "transform",
+                  backfaceVisibility: "hidden",
+                  WebkitBackfaceVisibility: "hidden",
+                  transformStyle: "preserve-3d",
+                  WebkitTransformStyle: "preserve-3d",
+                }}
+              >
                 {/* Ambient glow effect - positioned to match image bounds */}
                 <div
                   className="absolute top-8 left-0 w-[180%] h-[70%] bg-gradient-to-br from-white/[0.12] via-white/[0.08] to-transparent blur-2xl opacity-70 pointer-events-none"
-                  style={{ willChange: 'transform' }}
+                  style={{ willChange: "transform" }}
                   aria-hidden="true"
                 />
                 {/* Subtle connecting gradient line */}

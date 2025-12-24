@@ -19,7 +19,7 @@ const CookiePolicyPage: React.FC = () => {
     <>
       <PolicyNavbar sections={sections} />
       <main className="min-h-screen bg-background">
-        <div className="container mx-auto px-4 md:px-8 lg:pl-80 py-16 max-w-6xl">
+        <div className="container lg:pl-80 py-16">
           <div className="space-y-8">
             <div>
               <h1 className="text-5xl font-bold mb-4 text-foreground">
@@ -35,7 +35,7 @@ const CookiePolicyPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 md:px-8 lg:pl-80 pb-16 max-w-6xl">
+        <div className="container lg:pl-80 pb-16">
           <div className="space-y-8">
             {/* 1. Introduction */}
             <section id="introduction" className="space-y-4">

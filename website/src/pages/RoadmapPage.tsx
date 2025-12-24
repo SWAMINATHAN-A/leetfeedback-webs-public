@@ -106,7 +106,7 @@ const RoadmapPage: React.FC = () => {
   const svgOpacity = useTransform(
     heroScrollProgress,
     [0, 0.3, 0.5],
-    [1, 0.9, 0.7]
+    [1, 0.9, 0.7],
   );
   const svgY = useTransform(heroScrollProgress, [0, 0.5], [0, -30]);
 
@@ -190,7 +190,7 @@ const RoadmapPage: React.FC = () => {
 
   const completedCount = roadmapPhases.filter((item) => item.completed).length;
   const progressPercentage = Math.round(
-    (completedCount / roadmapPhases.length) * 100
+    (completedCount / roadmapPhases.length) * 100,
   );
 
   // Timeline data for the new Timeline component
@@ -220,10 +220,10 @@ const RoadmapPage: React.FC = () => {
               phase.id === 1
                 ? "bg-gradient-to-br from-rose-200/10 via-background/95 to-background/95 border-rose-300/30"
                 : phase.id === 2
-                ? "bg-gradient-to-br from-blue-200/10 via-background/95 to-background/95 border-blue-300/30"
-                : phase.completed
-                ? "bg-gradient-to-br from-background/95 via-background/95 to-background/95 border-border/30 opacity-90"
-                : "bg-gradient-to-br from-primary/5 via-background/95 to-background/95 border-border/30"
+                  ? "bg-gradient-to-br from-blue-200/10 via-background/95 to-background/95 border-blue-300/30"
+                  : phase.completed
+                    ? "bg-gradient-to-br from-background/95 via-background/95 to-background/95 border-border/30 opacity-90"
+                    : "bg-gradient-to-br from-primary/5 via-background/95 to-background/95 border-border/30"
             }`}
           >
             <CardContent className="p-6 lg:p-8">
@@ -235,12 +235,12 @@ const RoadmapPage: React.FC = () => {
                       phase.id === 1
                         ? "bg-rose-200/20"
                         : phase.id === 2
-                        ? "bg-blue-200/20"
-                        : phase.id === 3
-                        ? "bg-purple-200/20"
-                        : phase.id === 4
-                        ? "bg-pink-200/20"
-                        : "bg-gradient-to-br from-primary/80 to-primary"
+                          ? "bg-blue-200/20"
+                          : phase.id === 3
+                            ? "bg-purple-200/20"
+                            : phase.id === 4
+                              ? "bg-pink-200/20"
+                              : "bg-gradient-to-br from-primary/80 to-primary"
                     }`}
                   >
                     <phase.icon
@@ -248,12 +248,12 @@ const RoadmapPage: React.FC = () => {
                         phase.id === 1
                           ? "text-rose-500 dark:text-rose-400"
                           : phase.id === 2
-                          ? "text-blue-500 dark:text-blue-400"
-                          : phase.id === 3
-                          ? "text-purple-500 dark:text-purple-400"
-                          : phase.id === 4
-                          ? "text-pink-500 dark:text-pink-400"
-                          : "text-white"
+                            ? "text-blue-500 dark:text-blue-400"
+                            : phase.id === 3
+                              ? "text-purple-500 dark:text-purple-400"
+                              : phase.id === 4
+                                ? "text-pink-500 dark:text-pink-400"
+                                : "text-white"
                       }`}
                     />
                   </div>
@@ -285,12 +285,12 @@ const RoadmapPage: React.FC = () => {
                   phase.id === 1
                     ? "bg-rose-200/10 border border-rose-300/30"
                     : phase.id === 2
-                    ? "bg-blue-200/10 border border-blue-300/30"
-                    : phase.id === 3
-                    ? "bg-purple-200/10 border border-purple-300/30"
-                    : phase.id === 4
-                    ? "bg-pink-200/10 border border-pink-300/30"
-                    : "bg-muted/20 border border-border/30"
+                      ? "bg-blue-200/10 border border-blue-300/30"
+                      : phase.id === 3
+                        ? "bg-purple-200/10 border border-purple-300/30"
+                        : phase.id === 4
+                          ? "bg-pink-200/10 border border-pink-300/30"
+                          : "bg-muted/20 border border-border/30"
                 }`}
               >
                 <div className="flex flex-wrap gap-2">
@@ -301,12 +301,12 @@ const RoadmapPage: React.FC = () => {
                         phase.id === 1
                           ? "bg-rose-100/30 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300"
                           : phase.id === 2
-                          ? "bg-blue-100/30 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
-                          : phase.id === 3
-                          ? "bg-purple-100/30 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300"
-                          : phase.id === 4
-                          ? "bg-pink-100/30 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300"
-                          : "bg-muted/40 text-muted-foreground"
+                            ? "bg-blue-100/30 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                            : phase.id === 3
+                              ? "bg-purple-100/30 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300"
+                              : phase.id === 4
+                                ? "bg-pink-100/30 text-pink-700 dark:bg-pink-900/30 dark:text-pink-300"
+                                : "bg-muted/40 text-muted-foreground"
                       }`}
                     >
                       {feature}
@@ -322,8 +322,8 @@ const RoadmapPage: React.FC = () => {
                     phase.id === 1
                       ? "bg-rose-200/20 border border-rose-300/30"
                       : phase.id === 2
-                      ? "bg-blue-200/20 border border-blue-300/30"
-                      : "bg-muted/30 border border-border/30"
+                        ? "bg-blue-200/20 border border-blue-300/30"
+                        : "bg-muted/30 border border-border/30"
                   }`}
                 >
                   {phase.completed ? (
@@ -333,8 +333,8 @@ const RoadmapPage: React.FC = () => {
                           phase.id === 1
                             ? "text-rose-600 dark:text-rose-400"
                             : phase.id === 2
-                            ? "text-blue-600 dark:text-blue-400"
-                            : "text-muted-foreground"
+                              ? "text-blue-600 dark:text-blue-400"
+                              : "text-muted-foreground"
                         }`}
                       />
                       <div
@@ -342,8 +342,8 @@ const RoadmapPage: React.FC = () => {
                           phase.id === 1
                             ? "text-rose-700 dark:text-rose-300"
                             : phase.id === 2
-                            ? "text-blue-700 dark:text-blue-300"
-                            : "text-muted-foreground"
+                              ? "text-blue-700 dark:text-blue-300"
+                              : "text-muted-foreground"
                         }`}
                       >
                         <ShinyText
@@ -408,7 +408,7 @@ const RoadmapPage: React.FC = () => {
               className="absolute inset-0 -z-10 size-full [background:radial-gradient(125%_125%_at_50%_100%,transparent_0%,var(--background)_75%)]"
             />
 
-            <div className="container relative mx-auto px-4 md:px-8 max-w-7xl overflow-visible">
+            <div className="container">
               <div className="grid lg:grid-cols-2 gap-12 items-center overflow-visible">
                 <div className="text-left sm:mx-0 lg:mr-auto lg:mt-0">
                   {/* Progress Badge */}
@@ -552,10 +552,10 @@ const RoadmapPage: React.FC = () => {
           {/* Animated SVG Path Overlay */}
           <RoadmapPath scrollYProgress={scrollYProgress} />
 
-          <div className="container relative z-10 mx-auto px-4 md:px-8">
+          <div className="container relative z-10">
             {/* Timeline Component */}
             <BlurFade delay={1}>
-              <div className="w-full max-w-6xl mx-auto">
+              <div className="w-full container">
                 <Timeline data={timelineData} />
               </div>
             </BlurFade>
@@ -564,8 +564,8 @@ const RoadmapPage: React.FC = () => {
 
         {/* Open Source Community Section */}
         <section className="py-24 bg-background border-t border-border/20">
-          <div className="container mx-auto px-4 md:px-8">
-            <div className="max-w-4xl mx-auto">
+          <div className="container">
+            <div className="container-medium">
               <BlurFade delay={0.1}>
                 <div className="bg-zinc-900 dark:bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden">
                   <div className="p-8 md:p-12">
@@ -636,7 +636,7 @@ const RoadmapPage: React.FC = () => {
                           analytics.trackFeatureClick("contribute_github");
                           window.open(
                             "https://github.com/lqSky7/leetFeedback-extension",
-                            "_blank"
+                            "_blank",
                           );
                         }}
                       />

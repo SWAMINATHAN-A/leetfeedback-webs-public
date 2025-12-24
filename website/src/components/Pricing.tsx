@@ -78,7 +78,7 @@ const FAQAccordion: React.FC = () => {
   ];
 
   return (
-    <Accordion className="max-w-3xl mx-auto">
+    <Accordion className="container-small mx-auto">
       {faqs.map((faq, index) => (
         <AccordionItem key={index} value={`item-${index}`}>
           <AccordionTrigger
@@ -119,18 +119,18 @@ const useGitHubStats = () => {
       try {
         // Fetch repo info for stars
         const repoRes = await fetch(
-          "https://api.github.com/repos/lqSky7/leetFeedback-extension"
+          "https://api.github.com/repos/lqSky7/leetFeedback-extension",
         );
         const repoData = await repoRes.json();
 
         // Fetch commits for last commit date
         const commitsRes = await fetch(
-          "https://api.github.com/repos/lqSky7/leetFeedback-extension/commits?per_page=1"
+          "https://api.github.com/repos/lqSky7/leetFeedback-extension/commits?per_page=1",
         );
         const commitsData = await commitsRes.json();
 
         const lastCommitDate = new Date(
-          commitsData[0]?.commit?.committer?.date
+          commitsData[0]?.commit?.committer?.date,
         );
         const now = new Date();
         const diffTime = Math.abs(now.getTime() - lastCommitDate.getTime());
@@ -195,9 +195,9 @@ const Pricing: React.FC = React.memo(() => {
       id="pricing"
       className="py-24 bg-background border-t border-border/20"
     >
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="container">
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center container-small mx-auto mb-16">
           <BlurFade delay={0.15}>
             <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-3 py-1.5 inline-flex items-center">
               <ShinyText
@@ -221,7 +221,10 @@ const Pricing: React.FC = React.memo(() => {
               aria-hidden="true"
             />
             {/* Horizontal and Vertical Lines - Hidden on mobile */}
-            <div className="absolute inset-0 pointer-events-none hidden md:flex items-center justify-center" aria-hidden="true">
+            <div
+              className="absolute inset-0 pointer-events-none hidden md:flex items-center justify-center"
+              aria-hidden="true"
+            >
               {/* Vertical Line */}
               <div
                 className="absolute bg-border/50"
@@ -267,7 +270,7 @@ const Pricing: React.FC = React.memo(() => {
         {/* Pricing Cards */}
         <div
           id="pricing-plans"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-4xl mx-auto mb-16"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 container-medium mx-auto mb-16"
         >
           {/* Free Plan */}
           <BlurFade delay={0.5}>
@@ -377,7 +380,7 @@ const Pricing: React.FC = React.memo(() => {
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-zinc-900 border border-gray-800 rounded-3xl p-8 md:p-12 mb-16 max-w-4xl mx-auto relative">
+        <div className="bg-zinc-900 border border-gray-800 rounded-3xl p-8 md:p-12 mb-16 container-medium mx-auto relative">
           <div className="text-center mb-12">
             <h3
               className="text-3xl text-white mb-4"
@@ -389,10 +392,9 @@ const Pricing: React.FC = React.memo(() => {
           </div>
 
           <FAQAccordion />
-
         </div>
         {/* Open Source Community Section */}
-        <div className="mt-16 max-w-4xl mx-auto">
+        <div className="mt-16 container-medium mx-auto">
           <BlurFade delay={0.1}>
             <div className="bg-zinc-900 dark:bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden">
               <div className="p-8 md:p-12">
@@ -447,8 +449,8 @@ const Pricing: React.FC = React.memo(() => {
                         {gitHubStats.loading
                           ? "--"
                           : gitHubStats.lastCommitDays === 0
-                          ? "Today"
-                          : `${gitHubStats.lastCommitDays}d`}
+                            ? "Today"
+                            : `${gitHubStats.lastCommitDays}d`}
                       </span>
                     </div>
                     <span className="text-xs text-gray-400">Last commit</span>
@@ -479,7 +481,7 @@ const Pricing: React.FC = React.memo(() => {
                     onClick={() =>
                       window.open(
                         "https://github.com/lqSky7/leetFeedback-extension",
-                        "_blank"
+                        "_blank",
                       )
                     }
                   />
@@ -493,7 +495,7 @@ const Pricing: React.FC = React.memo(() => {
                       "rounded-full px-6 font-medium",
                       isDark
                         ? "border-zinc-700 text-white hover:bg-zinc-800"
-                        : ""
+                        : "",
                     )}
                     onClick={() =>
                       window.open("https://discord.gg/BZDb22gz", "_blank")

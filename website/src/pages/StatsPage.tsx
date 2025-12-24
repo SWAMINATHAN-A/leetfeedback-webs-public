@@ -218,7 +218,7 @@ const StatsPage: React.FC = () => {
           "#FD7E14", // orange
           "#007BFF", // bright blue
           "#28A745", // green
-        ]
+        ],
   );
 
   // Pastel color schemes that adapt to dark/light mode
@@ -293,7 +293,7 @@ const StatsPage: React.FC = () => {
     data: any,
     keys?: string[],
     indexBy?: string,
-    colorScheme?: string
+    colorScheme?: string,
   ) => {
     setIsAnimating(true);
     setModal({
@@ -927,7 +927,7 @@ const StatsPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground p-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="container">
         <h1 className="text-8xl font-extrabold mt-12 mb-12 text-center">
           Your <AuroraText>Dashboard</AuroraText>
         </h1>
@@ -968,14 +968,14 @@ const StatsPage: React.FC = () => {
                   overallStreak >= 100
                     ? "text-yellow-500"
                     : overallStreak >= 50
-                    ? "text-purple-500"
-                    : overallStreak >= 25
-                    ? "text-red-600"
-                    : overallStreak >= 10
-                    ? "text-red-500"
-                    : overallStreak >= 5
-                    ? "text-orange-500"
-                    : "text-gray-400"
+                      ? "text-purple-500"
+                      : overallStreak >= 25
+                        ? "text-red-600"
+                        : overallStreak >= 10
+                          ? "text-red-500"
+                          : overallStreak >= 5
+                            ? "text-orange-500"
+                            : "text-gray-400"
                 }`}
               >
                 <NumberTicker value={overallStreak} />
@@ -1004,7 +1004,7 @@ const StatsPage: React.FC = () => {
                   "Platform Rankings Over Time",
                   "This bump chart shows how platforms rank over time based on your activity. The lines represent ranking positions, with lower numbers indicating higher rankings.",
                   "bump",
-                  bumpData
+                  bumpData,
                 )
               }
             >
@@ -1061,7 +1061,7 @@ const StatsPage: React.FC = () => {
                   attemptsBarData,
                   ["attempts"],
                   "difficulty",
-                  "oranges"
+                  "oranges",
                 )
               }
             >
@@ -1108,7 +1108,7 @@ const StatsPage: React.FC = () => {
                   timeSpentData,
                   ["value"],
                   "platform",
-                  "paired"
+                  "paired",
                 )
               }
             >
@@ -1152,7 +1152,7 @@ const StatsPage: React.FC = () => {
                   "Questions Solved Distribution",
                   "This pie chart displays the distribution of questions solved across different platforms. Each segment represents the proportion of problems solved on that platform.",
                   "pie",
-                  pieData
+                  pieData,
                 )
               }
             >
@@ -1185,7 +1185,7 @@ const StatsPage: React.FC = () => {
                   "Daily Activity Calendar",
                   "This calendar heatmap shows your daily coding activity. Darker colors indicate more intense practice days.",
                   "calendar",
-                  calendarData
+                  calendarData,
                 )
               }
             >
@@ -1220,7 +1220,7 @@ const StatsPage: React.FC = () => {
                   "Algorithmic Topic Hierarchy",
                   "This sunburst chart shows the hierarchical breakdown of algorithmic topics from general categories to specific subtopics.",
                   "sunburst",
-                  sunburstData
+                  sunburstData,
                 )
               }
             >
@@ -1260,7 +1260,7 @@ const StatsPage: React.FC = () => {
                   stackedBarData,
                   ["Easy", "Medium", "Hard"],
                   "platform",
-                  "greens"
+                  "greens",
                 )
               }
             >
@@ -1302,7 +1302,7 @@ const StatsPage: React.FC = () => {
                   "Monthly Time Trend",
                   "This line chart shows your monthly practice time trend over the year. It helps visualize your consistency and identify periods of high or low activity, useful for planning future study schedules.",
                   "line",
-                  lineData
+                  lineData,
                 )
               }
             >
@@ -1358,7 +1358,7 @@ const StatsPage: React.FC = () => {
                   "Topic Distribution Treemap",
                   "This treemap visualizes the relative sizes of different algorithmic topics based on your practice frequency. Larger rectangles represent more practiced topics.",
                   "treemap",
-                  treemapData
+                  treemapData,
                 )
               }
             >
@@ -1393,7 +1393,7 @@ const StatsPage: React.FC = () => {
                   "Problem Solving Conversion Funnel",
                   "This funnel chart shows the conversion from problems started to successfully solved, highlighting drop-off points in your problem-solving process.",
                   "funnel",
-                  funnelData
+                  funnelData,
                 )
               }
             >
@@ -1431,7 +1431,7 @@ const StatsPage: React.FC = () => {
                   topicsBarData,
                   ["count"],
                   "topic",
-                  "spectral"
+                  "spectral",
                 )
               }
             >
@@ -1474,7 +1474,7 @@ const StatsPage: React.FC = () => {
                   "Problem Difficulty Distribution",
                   "This waffle chart shows the proportion of easy, medium, and hard problems you've solved. Each square represents a percentage of your total solved problems.",
                   "waffle",
-                  waffleData
+                  waffleData,
                 )
               }
             >
@@ -1525,7 +1525,7 @@ const StatsPage: React.FC = () => {
                   mistakesStackedData,
                   ["Easy", "Medium", "Hard"],
                   "platform",
-                  "reds"
+                  "reds",
                 )
               }
             >
@@ -1567,7 +1567,7 @@ const StatsPage: React.FC = () => {
                   "Algorithmic Topic Network",
                   "This network diagram shows relationships between different algorithmic topics. Connected nodes represent related concepts.",
                   "network",
-                  networkData
+                  networkData,
                 )
               }
             >
@@ -1608,7 +1608,7 @@ const StatsPage: React.FC = () => {
                   "radar",
                   successRateData,
                   ["easy", "medium", "hard"],
-                  "platform"
+                  "platform",
                 )
               }
             >

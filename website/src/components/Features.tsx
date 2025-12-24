@@ -178,7 +178,10 @@ const Features: React.FC = React.memo(() => {
                   aria-hidden="true"
                 />
                 {/* Horizontal and Vertical Lines */}
-                <div className="absolute inset-0 pointer-events-none flex items-center justify-center" aria-hidden="true">
+                <div
+                  className="absolute inset-0 pointer-events-none flex items-center justify-center"
+                  aria-hidden="true"
+                >
                   {/* Vertical Line */}
                   <div
                     className="absolute bg-border/50"
@@ -222,7 +225,7 @@ const Features: React.FC = React.memo(() => {
         </ContainerScroll>
       </div>
 
-      <div className="container mx-auto px-4 md:px-8">
+      <div className="container">
         {/* Mobile Screenshots Section */}
         <div className="py-16 from-background to-muted/20 hidden md:block">
           <div className="text-center mb-12">
@@ -249,7 +252,10 @@ const Features: React.FC = React.memo(() => {
                 aria-hidden="true"
               />
               {/* Horizontal and Vertical Lines - Hidden on mobile */}
-              <div className="absolute inset-0 pointer-events-none hidden md:flex items-center justify-center" aria-hidden="true">
+              <div
+                className="absolute inset-0 pointer-events-none hidden md:flex items-center justify-center"
+                aria-hidden="true"
+              >
                 {/* Vertical Line */}
                 <div
                   className="absolute bg-border/50"
@@ -289,7 +295,7 @@ const Features: React.FC = React.memo(() => {
 
           {/* Mobile Screenshots Grid */}
           <div id="features-grid" className="flex justify-center items-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto px-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 container-medium">
               {/* Screenshot 1 */}
               <BlurFade delay={0.6} duration={0.4} inView={true}>
                 <div className="relative group">
@@ -346,7 +352,7 @@ const Features: React.FC = React.memo(() => {
           </div>
 
           <div
-            className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto px-4"
+            className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 container-medium"
             style={{ fontFamily: "'Britanica', sans-serif" }}
           >
             <BlurFade delay={0.8} duration={0.8} inView={true}>
@@ -423,7 +429,10 @@ const Features: React.FC = React.memo(() => {
                 aria-hidden="true"
               />
               {/* Horizontal and Vertical Lines - Hidden on mobile */}
-              <div className="absolute inset-0 pointer-events-none hidden md:flex items-center justify-center" aria-hidden="true">
+              <div
+                className="absolute inset-0 pointer-events-none hidden md:flex items-center justify-center"
+                aria-hidden="true"
+              >
                 {/* Vertical Line */}
                 <div
                   className="absolute bg-border/50"
@@ -456,7 +465,7 @@ const Features: React.FC = React.memo(() => {
           </div>
 
           {/* Bento Grid Layout */}
-          <div className="mx-auto max-w-7xl">
+          <div className="container">
             <div className="grid grid-cols-1 md:grid-cols-2 border">
               {/* GitHub Integration Card - Large */}
               <div className="col-span-full md:col-span-1">
@@ -719,7 +728,7 @@ const Features: React.FC = React.memo(() => {
 
           {/* Professional Features Grid */}
           <section className="bg-transparent py-8">
-            <div className="mx-auto max-w-7xl px-6">
+            <div className="container">
               <div className="relative">
                 <div className="relative z-10 grid grid-cols-6 gap-3">
                   {/* Smart Tracking Card */}
@@ -2474,7 +2483,11 @@ const Features: React.FC = React.memo(() => {
                     <CardContent className="grid h-full pt-6 sm:grid-cols-2 relative">
                       <div className="relative h-full sm:col-span-1 overflow-hidden">
                         <SvgRippleEffect
-                          image={isDark ? "/craft_logo_white.svg" : "/craft_logo_black.svg"}
+                          image={
+                            isDark
+                              ? "/craft_logo_white.svg"
+                              : "/craft_logo_black.svg"
+                          }
                           fade={["top", "bottom"]}
                           transition={{
                             duration: 0.75,
@@ -2492,9 +2505,9 @@ const Features: React.FC = React.memo(() => {
                             Craft Integration (2026 Q2)
                           </h2>
                           <p className="text-foreground text-sm">
-                            Sync everything we offer to your Craft app via their 
-                            newly introduced APIs. Keep all your feedback and insights 
-                            in one unified workspace.
+                            Sync everything we offer to your Craft app via their
+                            newly introduced APIs. Keep all your feedback and
+                            insights in one unified workspace.
                           </p>
                         </div>
                       </div>

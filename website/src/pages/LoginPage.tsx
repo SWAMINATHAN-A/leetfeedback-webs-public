@@ -415,14 +415,14 @@ const LoginPage: React.FC = () => {
 
       <div className="flex-1 flex flex-col items-center justify-center px-4 py-8">
         {/* Main content area */}
-        <div className="w-full max-w-4xl flex flex-col items-center gap-8">
+        <div className="w-full container-medium flex flex-col items-center gap-8">
           {/* Dynamic Island Feature Showcase - Fixed height container */}
           <div className="w-full flex justify-center">
             <LoginFeaturesDynamicIsland />
           </div>
 
           {/* Sign-in form area */}
-          <div className="w-full max-w-2xl">
+          <div className="w-full container-small">
             <AnimatePresence mode="wait">
               {currentStep === "complete" ? (
                 <motion.div
@@ -490,8 +490,8 @@ const LoginPage: React.FC = () => {
                           currentStep === "email"
                             ? "email"
                             : currentStep === "password"
-                            ? "current-password"
-                            : "off"
+                              ? "current-password"
+                              : "off"
                         }
                       />
                     </div>
@@ -522,9 +522,9 @@ const LoginPage: React.FC = () => {
                         {isSubmitting
                           ? "Processing..."
                           : currentStep === "github" ||
-                            (!isSignUp && currentStep === "password")
-                          ? "Submit"
-                          : "Continue"}
+                              (!isSignUp && currentStep === "password")
+                            ? "Submit"
+                            : "Continue"}
                       </span>
                       {isSubmitting ? (
                         <Loader2 className="w-6 h-6 animate-spin" />

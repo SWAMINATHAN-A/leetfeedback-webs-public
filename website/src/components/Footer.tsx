@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
     <>
       {/* Original Footer Content with black background */}
       <footer className="relative z-10 pt-2 pb-3 bg-background">
-        <div className="container mx-auto px-2 md:px-4">
+        <div className="container">
           {/* Separator */}
           <div className="border-t border-white/10 mb-1"></div>
 
