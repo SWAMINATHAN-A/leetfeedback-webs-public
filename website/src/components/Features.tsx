@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "motion/react";
 import {
   Card,
@@ -28,6 +28,8 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
 import TextPressure from "./TextPressure";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import { IconCloud } from "./magicui/icon-cloud";
 import SvgRippleEffect from "./ui/svg-ripple-effect";
 import { useTheme } from "../contexts/ThemeContext";
@@ -293,63 +295,8 @@ const Features: React.FC = React.memo(() => {
             </BlurFade>
           </div>
 
-          {/* Mobile Screenshots Grid */}
-          <div id="features-grid" className="flex justify-center items-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 container-medium">
-              {/* Screenshot 1 */}
-              <BlurFade delay={0.6} duration={0.4} inView={true}>
-                <div className="relative group">
-                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-2 shadow-2xl transition-shadow duration-300">
-                    <div className="bg-black rounded-3xl overflow-hidden">
-                      {/* Placeholder for mobile screenshot 1 */}
-                      <img
-                        src="ms1.jpg"
-                        alt="Mobile Dashboard View"
-                        className="w-full h-full object-contain"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </BlurFade>
-
-              {/* Screenshot 2 */}
-              <BlurFade delay={1.0} duration={0.4} inView={true}>
-                <div className="relative group">
-                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-2 shadow-2xl transition-shadow duration-300">
-                    <div className="bg-black rounded-3xl overflow-hidden">
-                      {/* Placeholder for mobile screenshot 2 */}
-                      <img
-                        src="ms2.jpg"
-                        alt="Mobile Dashboard View"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </BlurFade>
-
-              {/* Screenshot 3 */}
-              <BlurFade
-                delay={1.4}
-                duration={0.4}
-                className="sm:col-span-2 lg:col-span-1"
-                inView={true}
-              >
-                <div className="relative group">
-                  <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-2 shadow-2xl transition-shadow duration-300">
-                    <div className="bg-black rounded-3xl overflow-hidden">
-                      {/* Placeholder for mobile screenshot 3 */}
-                      <img
-                        src="ms3.jpg"
-                        alt="Mobile Dashboard View"
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </BlurFade>
-            </div>
-          </div>
+          {/* Mobile Screenshots Carousel */}
+          <MobileScreenshotsCarousel />
 
           <div
             className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 container-medium"
@@ -2600,5 +2547,98 @@ const Features: React.FC = React.memo(() => {
     </section>
   );
 });
+
+// Mobile Screenshots Carousel Component
+const MobileScreenshotsCarousel: React.FC = () => {
+  const [scrollX, setScrollX] = useState(0);
+  const carouselRef = React.useRef<HTMLDivElement>(null);
+  
+  const screenshots = [
+    { src: "/ios1.webp", alt: "Mobile Dashboard" },
+    { src: "/ios2.webp", alt: "Problem View" },
+    { src: "/ios3.webp", alt: "Statistics" },
+    { src: "/ios4.webp", alt: "Profile" },
+    { src: "/ios5.webp", alt: "Leaderboard" },
+    { src: "/ios6.webp", alt: "Problem Details" },
+    { src: "/ios7.webp", alt: "Progress Tracking" },
+    { src: "/ios8.webp", alt: "Settings" },
+  ];
+
+  // Scroll-linked infinite carousel
+  React.useEffect(() => {
+    const handleScroll = () => {
+      if (!carouselRef.current) return;
+
+      const element = carouselRef.current;
+      const rect = element.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Check if element is in viewport
+      if (rect.top < windowHeight && rect.bottom > 0) {
+        // Calculate scroll progress through the section
+        const elementHeight = rect.height;
+        const scrollProgress = Math.max(0, Math.min(1, 
+          (windowHeight - rect.top) / (windowHeight + elementHeight)
+        ));
+        
+        // Map scroll progress to horizontal scroll (3 full cycles through all images)
+        const totalScrollDistance = 300; // percentage
+        setScrollX(scrollProgress * totalScrollDistance);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Triple the screenshots for infinite loop effect
+  const infiniteScreenshots = [...screenshots, ...screenshots, ...screenshots];
+
+  return (
+    <div ref={carouselRef} className="relative w-full py-8">
+      <div className="relative max-w-5xl mx-auto">
+        {/* Carousel Container */}
+        <div className="overflow-hidden">
+          <motion.div
+            className="flex gap-4 md:gap-6"
+            style={{
+              x: `-${scrollX}%`,
+            }}
+            transition={{
+              type: "tween",
+              ease: "linear",
+              duration: 0.1,
+            }}
+          >
+            {infiniteScreenshots.map((screenshot, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 w-48 md:w-56 lg:w-64"
+              >
+                <div className="relative select-none">
+                  <div className="bg-border/40 rounded-xl p-1.5 shadow-xl">
+                    <div className="bg-black rounded-xl overflow-hidden">
+                      <img
+                        src={screenshot.src}
+                        alt={screenshot.alt}
+                        className="w-full h-auto object-contain pointer-events-none select-none"
+                        loading="lazy"
+                        draggable="false"
+                        onDragStart={(e) => e.preventDefault()}
+                        onContextMenu={(e) => e.preventDefault()}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Features;
