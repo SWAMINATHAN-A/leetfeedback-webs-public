@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { motion } from "motion/react";
 import {
   Card,
@@ -49,7 +49,54 @@ import marqueeCircleDeco from "@/assets/radial-marquee-circle-deco.svg";
 import DefaultSwapy from "./ui/swapy";
 import { ContainerScroll } from "./ui/container-scroll-animation";
 import ShinyText from "./ShinyText";
+import { ChromaText } from "./ui/textRenderAppear";
 
+// Wrapper component that triggers ChromaText animation when visible (replays on re-scroll)
+const VisibleChromaText: React.FC<{
+  id: string;
+  className?: string;
+  delay?: number;
+  duration?: number;
+  children: React.ReactNode;
+}> = ({ id, className, delay, duration, children }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [animationKey, setAnimationKey] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimationKey(prev => prev + 1);
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <span ref={ref}>
+      {isVisible ? (
+        <ChromaText key={animationKey} id={id} className={className} delay={delay} duration={duration}>
+          {children}
+        </ChromaText>
+      ) : (
+        <span className={className} style={{ opacity: 0 }}>
+          {children}
+        </span>
+      )}
+    </span>
+  );
+};
 const Features: React.FC = React.memo(() => {
   const { isDark } = useTheme();
   const primaryFeatures = [
@@ -76,13 +123,13 @@ const Features: React.FC = React.memo(() => {
     },
     {
       icon: <StyleIcon className="w-8 h-8" />,
-      title: "Anki Cards Generation",
+      title: "Built-in Spaced Repetition (SRS)",
       description:
-        "Generate Anki cards from your mistakes, Tagged by mistake type and questions.",
+        "Never forget a pattern. The app automatically schedules revisions for problems you struggled with.",
       benefits: [
-        "Auto-generated cards",
-        "Spaced repetition",
-        "Memory retention",
+        "Smart Calendar for reviews",
+        "Dedicated Revisions tab",
+        "Anki compatible",
       ],
       badge: "Revision",
       highlight: true,
@@ -104,13 +151,13 @@ const Features: React.FC = React.memo(() => {
     },
     {
       icon: <SmartToyIcon className="w-6 h-6" />,
-      title: "Importance of Feedback",
+      title: "AI Performance Coach",
       description:
-        "Advanced LLM analysis of your coding patterns and mistake identification.",
+        "Receive personalized insights on your study habits, mistake analysis, and consistency tracking.",
       benefits: [
-        "Pattern recognition",
-        "Personalized insights",
-        "Actionable feedback",
+        "Strategic insights",
+        "Mistake analysis",
+        "Habit tracking",
       ],
       badge: "AI",
     },
@@ -207,14 +254,18 @@ const Features: React.FC = React.memo(() => {
                   Transform Your Coding Journey
                 </h1>
               </div>
-              <p className="text-xl md:text-2xl text-muted-foreground">
+              <p className="text-xl md:text-2xl text-muted-foreground font-light">
                 Watch how AI turns your{" "}
-                <span
-                  className="font-bold italic text-foreground"
-                  style={{ fontFamily: "'Stinger', sans-serif" }}
+                <VisibleChromaText
+                  id="practice-progress"
+                  className="italic text-foreground font-light"
+                  delay={0.5}
+                  duration={1.2}
                 >
-                  practice into progress
-                </span>
+                  <span style={{ fontFamily: "'HarmonyOS Sans', system-ui, sans-serif" }}>
+                    practice into progress
+                  </span>
+                </VisibleChromaText>
               </p>
             </div>
           }
@@ -284,13 +335,12 @@ const Features: React.FC = React.memo(() => {
                 delay={0.3}
                 by="word"
               >
-                Seamless mobile experience
+                Your Pocket DSA Dashboard
               </TextAnimate>
             </div>
             <BlurFade delay={0.5} inView={true}>
               <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-                Take your coding practice anywhere with our responsive mobile
-                interface
+                Track your solves, streaks, and progress all in one clean mobile interface
               </p>
             </BlurFade>
           </div>
@@ -308,11 +358,10 @@ const Features: React.FC = React.memo(() => {
                   <AppsIcon className="w-6 h-6 text-primary" />
                 </div>
                 <h4 className="font-semibold text-foreground mb-2">
-                  Intuitive Interface
+                  Unified History
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  Clean, mobile-first design that works seamlessly on all
-                  devices
+                  See your solves from LeetCode, GFG, and CodeForces in one clean timeline
                 </p>
               </div>
             </BlurFade>
@@ -323,10 +372,10 @@ const Features: React.FC = React.memo(() => {
                   <TrackChangesIcon className="w-6 h-6 text-primary" />
                 </div>
                 <h4 className="font-semibold text-foreground mb-2">
-                  Real-time Tracking
+                  Performance Metrics
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  Monitor your progress instantly, wherever you are
+                  Track time-to-solve, attempt counts, and difficulty breakdown
                 </p>
               </div>
             </BlurFade>
@@ -340,10 +389,10 @@ const Features: React.FC = React.memo(() => {
                   className="font-semibold text-foreground mb-2"
                   style={{ fontFamily: "'Stinger', sans-serif" }}
                 >
-                  Smart Analytics
+                  Daily Goals
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  Get insights into your coding patterns on the go
+                  Check your streaks, XP progress, and daily targets at a glance
                 </p>
               </div>
             </BlurFade>
@@ -588,7 +637,7 @@ const Features: React.FC = React.memo(() => {
                       +
                     </span>
                   </div>
-                  <p className="text-xl text-muted-foreground">Happy users</p>
+                  <p className="text-xl text-muted-foreground"><VisibleChromaText id="happy-users" className="font-light" delay={0.3} duration={1.0}>Happy</VisibleChromaText> users</p>
                 </div>
               </div>
 
@@ -619,27 +668,26 @@ const Features: React.FC = React.memo(() => {
                     style={{ fontFamily: "'Stinger', sans-serif" }}
                   >
                     <StyleIcon className="size-4" />
-                    Anki Cards Generation
+                    Built-in Spaced Repetition (SRS)
                   </span>
                   <p className="my-8 text-2xl font-semibold">
-                    Generate Anki cards from your mistakes, tagged by mistake
-                    type.{" "}
-                    <span className="text-muted-foreground">
-                      Spaced repetition for better memory retention.
-                    </span>
+                    Never forget a pattern.{" "}
+                    <VisibleChromaText id="spaced-repetition" className="text-muted-foreground font-light" delay={0.4} duration={1.2}>
+                      The app automatically schedules revisions for problems you struggled with.
+                    </VisibleChromaText>
                   </p>
                   <ul className="space-y-3">
                     <li className="flex items-center text-sm text-muted-foreground">
                       <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
-                      <span>Auto-generated flashcards</span>
+                      <span>Smart Calendar tells you what to review today</span>
                     </li>
                     <li className="flex items-center text-sm text-muted-foreground">
                       <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
-                      <span>Organized by mistake categories</span>
+                      <span>Dedicated "Revisions" tab for scheduled reviews</span>
                     </li>
                     <li className="flex items-center text-sm text-muted-foreground">
                       <CheckCircleIcon className="w-4 h-4 mr-2 text-green-500 flex-shrink-0" />
-                      <span>Track learning progress</span>
+                      <span>Anki compatible - auto-export flashcards</span>
                     </li>
                   </ul>
                 </div>
@@ -652,13 +700,11 @@ const Features: React.FC = React.memo(() => {
         <div className="mb-20">
           {/* Section Title */}
           <div className="text-center mb-16 overflow-hidden">
-            <LineShadowText
-              as="h2"
-              shadowColor="hsl(var(--muted-foreground))"
-              className="text-5xl sm:text-7xl md:text-8xl font-black text-foreground tracking-tight italic mb-4"
-            >
-              BEYOND BASICS
-            </LineShadowText>
+            <h2 className="text-5xl sm:text-7xl md:text-8xl font-black text-foreground tracking-tight italic mb-4">
+              <VisibleChromaText id="beyond-basics" className="font-light" delay={0.2} duration={1.5}>
+                BEYOND BASICS
+              </VisibleChromaText>
+            </h2>
             <div
               className="text-md sm:text-lg md:text-xl lg:text-2xl text-muted-foreground font-light break-words"
               style={{ fontFamily: "'Stinger', sans-serif" }}
@@ -669,7 +715,7 @@ const Features: React.FC = React.memo(() => {
                 className="text-foreground font-bold inline-block"
                 duration={2500}
               />{" "}
-              your growth
+              your growth — plus personalized themes to match your style
             </div>
           </div>
 
@@ -879,11 +925,10 @@ const Features: React.FC = React.memo(() => {
                             className="group-hover:text-secondary-950 text-lg font-medium text-zinc-800 transition dark:text-white"
                             style={{ fontFamily: "'Stinger', sans-serif" }}
                           >
-                            AI Pattern Recognition
+                            AI Performance Coach
                           </h2>
                           <p className="text-foreground text-sm">
-                            Automatically identify coding patterns and suggest
-                            improvements based on your mistakes
+                            Receive personalized insights on your study habits, mistake analysis, and consistency tracking
                           </p>
                         </div>
                       </div>
@@ -2374,11 +2419,10 @@ const Features: React.FC = React.memo(() => {
                             className="text-lg font-medium transition"
                             style={{ fontFamily: "'Stinger', sans-serif" }}
                           >
-                            Compete with Friends
+                            Compete & Conquer
                           </h2>
                           <p className="text-foreground text-sm">
-                            Add friends and compete on leaderboards for a
-                            Duolingo-style experience that keeps you motivated.
+                            Earn XP for every solve, unlock 40+ achievements, and see how you stack up on leaderboards.
                           </p>
                         </div>
                       </div>
@@ -2484,7 +2528,7 @@ const Features: React.FC = React.memo(() => {
                 Every solution you complete gets automatically committed to your
                 GitHub with AI-generated feedback notes, creating a kind of{" "}
                 <span className="text-red-400 font-bold">coding journal</span>{" "}
-                that showcases your growth to employers.
+                that <VisibleChromaText id="showcases-growth" className="font-light" delay={0.5} duration={1.2}>showcases your growth to employers</VisibleChromaText>.
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">
@@ -2552,7 +2596,7 @@ const Features: React.FC = React.memo(() => {
 const MobileScreenshotsCarousel: React.FC = () => {
   const [scrollX, setScrollX] = useState(0);
   const carouselRef = React.useRef<HTMLDivElement>(null);
-  
+
   const screenshots = [
     { src: "/ios1.webp", alt: "Mobile Dashboard" },
     { src: "/ios2.webp", alt: "Problem View" },
@@ -2572,15 +2616,15 @@ const MobileScreenshotsCarousel: React.FC = () => {
       const element = carouselRef.current;
       const rect = element.getBoundingClientRect();
       const windowHeight = window.innerHeight;
-      
+
       // Check if element is in viewport
       if (rect.top < windowHeight && rect.bottom > 0) {
         // Calculate scroll progress through the section
         const elementHeight = rect.height;
-        const scrollProgress = Math.max(0, Math.min(1, 
+        const scrollProgress = Math.max(0, Math.min(1,
           (windowHeight - rect.top) / (windowHeight + elementHeight)
         ));
-        
+
         // Map scroll progress to horizontal scroll (3 full cycles through all images)
         const totalScrollDistance = 300; // percentage
         setScrollX(scrollProgress * totalScrollDistance);
@@ -2589,7 +2633,7 @@ const MobileScreenshotsCarousel: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Initial check
-    
+
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 

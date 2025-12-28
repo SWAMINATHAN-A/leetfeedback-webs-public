@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { ChromaText } from "./ui/textRenderAppear";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import NotesIcon from "@mui/icons-material/Notes";
 import StyleIcon from "@mui/icons-material/Style";
@@ -41,6 +42,50 @@ import ankiIcon from "@/assets/support-icons/anki.svg";
 import geminiIcon from "@/assets/support-icons/gemini.svg";
 import reelCircleDeco from "@/assets/reel-circle-deco.svg";
 import marqueeCircleDeco from "@/assets/radial-marquee-circle-deco.svg";
+import PlatformIntegrations from "./ui/platform-integrations";
+
+// Wrapper component that triggers ChromaText animation when visible (replays on re-scroll)
+const VisibleChromaText: React.FC<{
+  id: string;
+  className?: string;
+  delay?: number;
+  duration?: number;
+  children: React.ReactNode;
+}> = ({ id, className, delay, duration, children }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [animationKey, setAnimationKey] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimationKey(prev => prev + 1);
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <span ref={ref}>
+      {isVisible ? (
+        <ChromaText key={animationKey} id={id} className={className} delay={delay} duration={duration}>
+          {children}
+        </ChromaText>
+      ) : (
+        <span className={className} style={{ opacity: 0 }}>
+          {children}
+        </span>
+      )}
+    </span>
+  );
+};
 
 // Line art doodle SVG paths - continuous single line drawings (dense, spanning entire box)
 const doodlePaths = {
@@ -394,16 +439,10 @@ const HowItWorks: React.FC = React.memo(() => {
             </TextAnimate>
           </div>
           <BlurFade delay={0.75}>
-            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-              From installation to building your coding portfolio - everything
-              happens{" "}
-              <span
-                style={{ fontFamily: "'Figurlce', sans-serif" }}
-                className="font-bold italic text-foreground"
-              >
-                automatically
-              </span>{" "}
-              in the background.
+            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light" style={{ fontFamily: "'HarmonyOS Sans', system-ui, sans-serif" }}>
+              <VisibleChromaText id="auto-background" className="font-light" delay={0.4} duration={1.4}>
+                everything happens automatically in the background.
+              </VisibleChromaText>
             </p>
           </BlurFade>
         </div>
@@ -427,11 +466,10 @@ const HowItWorks: React.FC = React.memo(() => {
                 <button
                   key={index}
                   onClick={() => scrollTo(index)}
-                  className={`transition-all duration-300 ${
-                    index === selectedIndex
-                      ? "w-8 h-2 bg-white rounded-full"
-                      : "w-2 h-2 bg-zinc-600 rounded-full hover:bg-zinc-500"
-                  }`}
+                  className={`transition-all duration-300 ${index === selectedIndex
+                    ? "w-8 h-2 bg-white rounded-full"
+                    : "w-2 h-2 bg-zinc-600 rounded-full hover:bg-zinc-500"
+                    }`}
                   aria-label={`Go to step ${index + 1}`}
                 />
               ))}
@@ -523,258 +561,19 @@ const HowItWorks: React.FC = React.memo(() => {
         </div>
 
         {/* Integration Showcase */}
-        <div className="text-center mb-8">
-          <TextPressure
-            text="Why Choose Us"
-            className="text-5xl md:text-7xl italic"
-            textColor="hsl(var(--foreground))"
-            minFontSize={32}
-            width={true}
-            weight={true}
-            italic={true}
-            flex={false}
-          />
-        </div>
-        <div className="bg-card dark:bg-zinc-900 border border-border dark:border-zinc-800 rounded-3xl shadow-xl overflow-hidden">
-          <div className="grid grid-cols-1 lg:grid-cols-2">
-            {/* Left Side - Integration Visual */}
-            <div className="bg-zinc-900 dark:bg-zinc-950 flex items-center justify-center min-h-[400px] border-r border-border dark:border-zinc-800 overflow-hidden">
-              <GlowingStarsBackgroundCard className="w-full h-full max-w-none max-h-none rounded-none border-0 m-0 p-8">
-                <div className="text-center space-y-6">
-                  <GlowingStarsTitle className="text-white dark:text-white">
-                    All Your Tools Connected
-                  </GlowingStarsTitle>
+        <div className="relative bg-zinc-900 dark:bg-zinc-950 rounded-3xl overflow-hidden border border-zinc-800 h-[400px]">
+          {/* Background: Platform Integrations Marquee */}
+          <div className="absolute inset-0">
+            <PlatformIntegrations />
+          </div>
 
-                  {/* Platform Icons Grid */}
-                  <div className="grid grid-cols-4 gap-4 max-w-md mx-auto">
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
-                      <img
-                        src={leetcodeIcon}
-                        alt="LeetCode"
-                        className="w-8 h-8 invert brightness-0 contrast-200"
-                      />
-                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
-                        LeetCode
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
-                      <img
-                        src={geeksforgeeksIcon}
-                        alt="GeeksforGeeks"
-                        className="w-8 h-8 invert brightness-0 contrast-200"
-                      />
-                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
-                        GeeksforGeeks
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
-                      <img
-                        src={hackerrankIcon}
-                        alt="HackerRank"
-                        className="w-8 h-8 invert brightness-0 contrast-200"
-                      />
-                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
-                        HackerRank
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
-                      <img
-                        src={codechefIcon}
-                        alt="CodeChef"
-                        className="w-8 h-8 invert brightness-0 contrast-200"
-                      />
-                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
-                        CodeChef
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
-                      <img
-                        src={tufIcon}
-                        alt="TakeUforward"
-                        className="w-8 h-8 invert brightness-0 contrast-200"
-                      />
-                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
-                        TakeUforward
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
-                      <img
-                        src={notionIcon}
-                        alt="Notion"
-                        className="w-8 h-8 invert brightness-0 contrast-200"
-                      />
-                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
-                        Notion
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
-                      <img
-                        src={ankiIcon}
-                        alt="Anki"
-                        className="w-8 h-8 invert brightness-0 contrast-200"
-                      />
-                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
-                        Anki
-                      </span>
-                    </div>
-                    <div className="flex flex-col items-center space-y-2 p-3 rounded-3xl">
-                      <img
-                        src={geminiIcon}
-                        alt="Gemini AI"
-                        className="w-8 h-8"
-                      />
-                      <span className="text-xs text-zinc-300 dark:text-zinc-300 font-medium">
-                        Gemini AI
-                      </span>
-                    </div>
-                  </div>
-
-                  <GlowingStarsDescription className="max-w-none text-zinc-300 dark:text-zinc-300">
-                    We seamlessly integrate with all major coding platforms,
-                    study tools, and AI assistants to create the best unified
-                    learning ecosystem.
-                  </GlowingStarsDescription>
-
-                  <div className="flex items-center justify-center space-x-6 pt-2">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                      <span className="text-sm text-zinc-300 dark:text-zinc-300 font-medium">
-                        8 Platforms
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </GlowingStarsBackgroundCard>
-            </div>
-
-            {/* Right Side - Benefits */}
-            <div className="p-8 flex flex-col h-full">
-              <div className="flex-shrink-0">
-                <p
-                  className="text-muted-foreground leading-relaxed mb-6 text-lg"
-                  style={{ fontFamily: "'Stinger', sans-serif" }}
-                >
-                  Experience the most comprehensive coding learning platform
-                  that seamlessly integrates with your entire workflow, from
-                  problem-solving to portfolio building.
-                </p>
-              </div>
-
-              <div className="flex-grow space-y-3">
-                {[
-                  {
-                    icon: <Zap className="w-4 h-4" />,
-                    title: "Auto GitHub Push",
-                    description: "Solutions automatically commit to your repo",
-                  },
-                  {
-                    icon: <NotesIcon className="w-4 h-4" />,
-                    title: "Notion Integration",
-                    description:
-                      "Structured notes and insights sync seamlessly",
-                  },
-                  {
-                    icon: <Brain className="w-4 h-4" />,
-                    title: "Anki Cards",
-                    description: "AI-generated flashcards from your mistakes",
-                  },
-                  {
-                    icon: <Rocket className="w-4 h-4" />,
-                    title: "Zero Setup",
-                    description: "Works instantly across all coding platforms",
-                  },
-                  {
-                    icon: <Target className="w-4 h-4" />,
-                    title: "Smart Tracking",
-                    description: "Captures every coding session automatically",
-                  },
-                  {
-                    icon: <TrendingUp className="w-4 h-4" />,
-                    title: "Progress Analytics",
-                    description: "Detailed insights on your learning patterns",
-                  },
-                  {
-                    icon: <Briefcase className="w-4 h-4" />,
-                    title: "Portfolio Ready",
-                    description: "Professional showcase for employers",
-                  },
-                  {
-                    icon: <Lock className="w-4 h-4" />,
-                    title: "Privacy First",
-                    description: "Your data stays yours, full control",
-                  },
-                ].map((benefit, index) => (
-                  <div key={index} className="flex items-start space-x-3">
-                    <div className="flex-shrink-0 w-7 h-7 bg-muted/30 border border-border rounded-md flex items-center justify-center text-foreground">
-                      {benefit.icon}
-                    </div>
-                    <div className="flex-1">
-                      <h4
-                        className="font-semibold text-foreground text-sm"
-                        style={{ fontFamily: "'Stinger', sans-serif" }}
-                      >
-                        {benefit.title}
-                      </h4>
-                      <p
-                        className="text-xs text-muted-foreground leading-tight"
-                        style={{
-                          fontFamily: "'HarmonyOS_Sans', system-ui, sans-serif",
-                        }}
-                      >
-                        {benefit.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex-shrink-0 pt-6 border-t border-border mt-auto">
-                <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
-                  <div className="bg-card/50 border border-border rounded-3xl p-2 sm:p-4 backdrop-blur-sm">
-                    <div
-                      className="text-lg sm:text-2xl font-bold text-foreground"
-                      style={{ fontFamily: "'Figurlce', sans-serif" }}
-                    >
-                      2 min
-                    </div>
-                    <div
-                      className="text-xs text-muted-foreground"
-                      style={{ fontFamily: "'Figurlce', sans-serif" }}
-                    >
-                      Setup
-                    </div>
-                  </div>
-                  <div className="bg-card/50 border border-border rounded-3xl p-2 sm:p-4 backdrop-blur-sm">
-                    <div
-                      className="text-lg sm:text-2xl font-bold text-green-400"
-                      style={{ fontFamily: "'Figurlce', sans-serif" }}
-                    >
-                      100%
-                    </div>
-                    <div
-                      className="text-xs text-muted-foreground"
-                      style={{ fontFamily: "'Figurlce', sans-serif" }}
-                    >
-                      Automated
-                    </div>
-                  </div>
-                  <div className="bg-card/50 border border-border rounded-3xl p-2 sm:p-4 backdrop-blur-sm">
-                    <div
-                      className="text-lg sm:text-2xl font-bold text-blue-400"
-                      style={{ fontFamily: "'Figurlce', sans-serif" }}
-                    >
-                      8
-                    </div>
-                    <div
-                      className="text-xs text-muted-foreground"
-                      style={{ fontFamily: "'Figurlce', sans-serif" }}
-                    >
-                      Tools
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          {/* Title Overlay */}
+          <div className="absolute inset-0 flex items-center justify-center z-10">
+            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold">
+              <VisibleChromaText id="tools-connected" delay={0.3} duration={1.5}>
+                All Your Tools Connected
+              </VisibleChromaText>
+            </h2>
           </div>
         </div>
       </div>

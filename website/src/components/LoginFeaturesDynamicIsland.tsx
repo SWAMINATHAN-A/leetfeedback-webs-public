@@ -140,8 +140,8 @@ const FEATURES: FeatureConfig[] = [
     id: "aiAnalysis",
     icon: PsychologyIcon,
     iconColor: COLORS.systemPurple,
-    title: "AI Pattern Recognition",
-    description: "Intelligent mistake detection and learning optimization",
+    title: "AI Performance Coach",
+    description: "Strategic insights, mistake analysis, and habit tracking",
     size: "tall",
   },
   {
@@ -157,8 +157,8 @@ const FEATURES: FeatureConfig[] = [
     id: "ankiCards",
     icon: StyleIcon,
     iconColor: COLORS.systemOrange,
-    title: "Anki Cards Generation",
-    description: "Auto-generated flashcards",
+    title: "Built-in SRS",
+    description: "Spaced repetition for patterns",
     size: "long",
   },
   {
@@ -231,8 +231,8 @@ const FEATURES: FeatureConfig[] = [
     id: "achievements",
     icon: EmojiEventsIcon,
     iconColor: COLORS.systemYellow,
-    title: "Achievement System",
-    description: "Gamification elements to keep you motivated and engaged",
+    title: "Compete & Conquer",
+    description: "XP system, 40+ achievements, and real-time leaderboards",
     size: "compactLong",
   },
 ];

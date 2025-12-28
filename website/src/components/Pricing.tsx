@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { ChromaText } from "./ui/textRenderAppear";
 import { motion } from "motion/react";
 import { Button } from "./ui/button";
 import { AnimatedClipButton } from "./ui/animated-clip-button";
@@ -40,6 +41,49 @@ import {
 } from "./ui/accordion";
 import { useTheme } from "../contexts/ThemeContext";
 import { cn } from "../lib/utils";
+
+// Wrapper component that triggers ChromaText animation when visible (replays on re-scroll)
+const VisibleChromaText: React.FC<{
+  id: string;
+  className?: string;
+  delay?: number;
+  duration?: number;
+  children: React.ReactNode;
+}> = ({ id, className, delay, duration, children }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [animationKey, setAnimationKey] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimationKey(prev => prev + 1);
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <span ref={ref}>
+      {isVisible ? (
+        <ChromaText key={animationKey} id={id} className={className} delay={delay} duration={duration}>
+          {children}
+        </ChromaText>
+      ) : (
+        <span className={className} style={{ opacity: 0 }}>
+          {children}
+        </span>
+      )}
+    </span>
+  );
+};
 
 const FAQAccordion: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -93,9 +137,9 @@ const FAQAccordion: React.FC = () => {
             className="text-gray-300"
           >
             {openIndex === index ? (
-              <BlurFade delay={0.05} inView key={`content-${index}`}>
+              <ChromaText key={`content-${index}`} id={`faq-answer-${index}`} delay={0.1} duration={1.0}>
                 {faq.answer}
-              </BlurFade>
+              </ChromaText>
             ) : (
               faq.answer
             )}
@@ -255,14 +299,10 @@ const Pricing: React.FC = React.memo(() => {
             </TextAnimate>
           </div>
           <BlurFade delay={0.5}>
-            <p className="text-xl md:text-2xl text-muted-foreground">
-              Choose the plan that{" "}
-              <span
-                style={{ fontFamily: "'Diehl Deco', serif" }}
-                className="font-bold italic text-foreground"
-              >
-                works for you
-              </span>
+            <p className="text-xl md:text-2xl text-muted-foreground font-light" style={{ fontFamily: "'HarmonyOS Sans', system-ui, sans-serif" }}>
+              <VisibleChromaText id="works-for-you" className="font-light" delay={0.3} duration={1.2}>
+                Choose the plan that works for you
+              </VisibleChromaText>
             </p>
           </BlurFade>
         </div>
@@ -338,13 +378,19 @@ const Pricing: React.FC = React.memo(() => {
 
               {/* Premium Plan Content */}
               <div className="relative z-10 p-6 flex flex-col h-full">
-                <h3 className="text-xl font-bold text-white mb-2">Premium</h3>
+                <h3 className="text-xl font-bold text-white mb-2">
+                  <VisibleChromaText id="premium-title" delay={0.2} duration={1.0}>
+                    Premium
+                  </VisibleChromaText>
+                </h3>
                 <div className="mb-6">
                   <span
                     className="text-5xl font-bold text-white"
                     style={{ fontFamily: "'Stinger', sans-serif" }}
                   >
-                    $100
+                    <VisibleChromaText id="premium-price" delay={0.3} duration={1.0}>
+                      $100
+                    </VisibleChromaText>
                   </span>
                 </div>
 
@@ -359,7 +405,13 @@ const Pricing: React.FC = React.memo(() => {
                           strokeWidth={2}
                         />
                         <span className="text-sm text-white/90 leading-tight">
-                          {feature.text}
+                          <VisibleChromaText
+                            id={`premium-feature-${index}`}
+                            delay={0.2 + index * 0.1}
+                            duration={1.0}
+                          >
+                            {feature.text}
+                          </VisibleChromaText>
                         </span>
                       </div>
                     );
@@ -382,13 +434,20 @@ const Pricing: React.FC = React.memo(() => {
         {/* FAQ Section */}
         <div className="bg-zinc-900 border border-gray-800 rounded-3xl p-8 md:p-12 mb-16 container-medium mx-auto relative">
           <div className="text-center mb-12">
-            <h3
-              className="text-3xl text-white mb-4"
-              style={{ fontFamily: "'Stinger', sans-serif" }}
+            <TextAnimate
+              as="h2"
+              className="text-3xl md:text-5xl text-foreground mb-4 relative z-10"
+              animation="blurInUp"
+              delay={0.25}
+              by="word"
             >
               Frequently Asked Questions
-            </h3>
-            <p className="text-gray-300">Everything you need to know</p>
+            </TextAnimate>
+            <p className="text-gray-300 font-light" style={{ fontFamily: "'HarmonyOS Sans', system-ui, sans-serif" }}>
+              <VisibleChromaText id="everything-know" className="font-light" delay={0.5} duration={1.2}>
+                Everything you need to know
+              </VisibleChromaText>
+            </p>
           </div>
 
           <FAQAccordion />
@@ -413,14 +472,11 @@ const Pricing: React.FC = React.memo(() => {
                   >
                     Build with us
                   </h3>
-                  <p className="text-gray-400 max-w-md mx-auto">
+                  <p className="text-gray-400 max-w-md mx-auto font-light" style={{ fontFamily: "'HarmonyOS Sans', system-ui, sans-serif" }}>
                     Join our growing community and help{" "}
-                    <span
-                      style={{ fontFamily: "'Figurlce', sans-serif" }}
-                      className="font-bold italic text-white"
-                    >
+                    <VisibleChromaText id="shape-future" className="font-light" delay={0.4} duration={1.3}>
                       shape the future
-                    </span>{" "}
+                    </VisibleChromaText>{" "}
                     of coding practice
                   </p>
                 </div>
