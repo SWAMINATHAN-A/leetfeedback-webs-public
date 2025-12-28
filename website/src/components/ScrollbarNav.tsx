@@ -149,12 +149,12 @@ export function ScrollbarNav() {
             return (
               <div
                 key={section.id}
-                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
+                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
                 style={{ top: `${position}%` }}
               >
                 <div
                   className={cn(
-                    "rounded-full transition-all duration-300",
+                    "rounded-full",
                     isPassed ? "bg-red-500" : "bg-muted-foreground/40"
                   )}
                   style={{
