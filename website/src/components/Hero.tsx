@@ -7,7 +7,6 @@ import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { BlurFade } from "./magicui/blur-fade";
 import { NumberTicker } from "./magicui/number-ticker";
 import ElasticSlider from "./ElasticSlider";
@@ -78,9 +77,8 @@ const Hero: React.FC = React.memo(() => {
       return Array.from({ length: 5 }, (_, i) => (
         <StarIcon
           key={i}
-          className={`w-4 h-4 ${
-            i < Math.floor(rating) ? "text-yellow-400" : "text-gray-400"
-          }`}
+          className={`w-4 h-4 ${i < Math.floor(rating) ? "text-yellow-400" : "text-gray-400"
+            }`}
         />
       ));
     },
@@ -128,14 +126,24 @@ const Hero: React.FC = React.memo(() => {
               </BlurFade>
 
               {/* Main Headline with TextEffect */}
-              <TextEffect
-                preset="fade-in-blur"
-                speedSegment={0.3}
-                as="h1"
-                className="mt-0 text-5xl md:text-7xl leading-tight"
-              >
-                The Complete Learning Ecosystem
-              </TextEffect>
+              <h1 className="mt-0 text-5xl md:text-7xl leading-tight">
+                <TextEffect
+                  preset="fade-in-blur"
+                  speedSegment={0.3}
+                  as="span"
+                >
+                  The Complete Learning
+                </TextEffect>
+                <br />
+                <TextEffect
+                  preset="fade-in-blur"
+                  speedSegment={0.3}
+                  as="span"
+                  delay={0.3}
+                >
+                  Ecosystem
+                </TextEffect>
+              </h1>
 
               {/* Subheadline with BlurFade */}
               <BlurFade delay={0.5}>
@@ -240,6 +248,7 @@ const Hero: React.FC = React.memo(() => {
                     </span>
                   </motion.div>
                 </AnimatedGroup>
+
               </div>
             </div>
 
@@ -338,9 +347,8 @@ const Hero: React.FC = React.memo(() => {
                   {Array.from({ length: 5 }, (_, i) => (
                     <StarIcon
                       key={i}
-                      className={`w-5 h-5 ${
-                        i < sliderRating ? "text-yellow-400" : "text-gray-300"
-                      }`}
+                      className={`w-5 h-5 ${i < sliderRating ? "text-yellow-400" : "text-gray-300"
+                        }`}
                     />
                   ))}
                 </div>
