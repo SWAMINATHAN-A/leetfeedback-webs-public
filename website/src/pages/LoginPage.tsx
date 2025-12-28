@@ -4,8 +4,6 @@ import { useAuth } from "../contexts/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import {
   ArrowRight,
-  Eye,
-  EyeOff,
   Loader2,
   Check,
   ChevronLeft,
@@ -13,45 +11,33 @@ import {
 import Footer from "../components/Footer";
 import { LoginFeaturesDynamicIsland } from "../components/LoginFeaturesDynamicIsland";
 
-// Utility function
-const cn = (...classes: (string | undefined | null | boolean)[]): string =>
-  classes.filter(Boolean).join(" ");
-
 // Form steps for registration flow
-type FormStep = "email" | "password" | "username" | "github" | "complete";
+type FormStep = "username" | "email" | "password" | "complete";
 
 interface FormData {
+  username: string;
   email: string;
   password: string;
-  username: string;
-  github_username: string;
-  github_repo: string;
-  github_branch: string;
 }
 
 const LoginPage: React.FC = () => {
   const {
-    signInWithGoogle,
     signInWithCredentials,
     registerWithCredentials,
-    isLoading,
   } = useAuth();
   const navigate = useNavigate();
 
   const [isGlowing, setIsGlowing] = useState(false);
-  const [currentStep, setCurrentStep] = useState<FormStep>("email");
+  const [currentStep, setCurrentStep] = useState<FormStep>("username");
   const [isSignUp, setIsSignUp] = useState(false);
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const [formData, setFormData] = useState<FormData>({
+    username: "",
     email: "",
     password: "",
-    username: "",
-    github_username: "",
-    github_repo: "",
-    github_branch: "main",
   });
 
   // Focus input when step changes
@@ -81,44 +67,45 @@ const LoginPage: React.FC = () => {
   const handleNext = async () => {
     triggerGlow();
 
-    if (currentStep === "email") {
-      if (!validateEmail(formData.email)) {
+    if (currentStep === "username") {
+      if (formData.username.length < 3 || formData.username.length > 20) {
+        setError("Username must be 3-20 characters");
+        return;
+      }
+      if (isSignUp) {
+        setCurrentStep("email");
+      } else {
+        // Login flow - go to password
+        setCurrentStep("password");
+      }
+    } else if (currentStep === "email") {
+      // Email is optional for registration, but if provided must be valid
+      if (formData.email && !validateEmail(formData.email)) {
         setError("Please enter a valid email");
         return;
       }
       setCurrentStep("password");
     } else if (currentStep === "password") {
-      if (formData.password.length < 6) {
-        setError("Password must be at least 6 characters");
+      if (formData.password.length < 8) {
+        setError("Password must be at least 8 characters");
         return;
       }
       if (isSignUp) {
-        setCurrentStep("username");
+        await handleRegister();
       } else {
-        // Login flow - submit credentials
         await handleLogin();
       }
-    } else if (currentStep === "username") {
-      if (formData.username.length < 3) {
-        setError("Username must be at least 3 characters");
-        return;
-      }
-      setCurrentStep("github");
-    } else if (currentStep === "github") {
-      if (!formData.github_username || !formData.github_repo) {
-        setError("Please fill in all GitHub details");
-        return;
-      }
-      await handleRegister();
     }
   };
 
   const handleBack = () => {
     if (currentStep === "password") {
-      setCurrentStep("email");
-    } else if (currentStep === "username") {
-      setCurrentStep("password");
-    } else if (currentStep === "github") {
+      if (isSignUp) {
+        setCurrentStep("email");
+      } else {
+        setCurrentStep("username");
+      }
+    } else if (currentStep === "email") {
       setCurrentStep("username");
     }
   };
@@ -130,8 +117,7 @@ const LoginPage: React.FC = () => {
 
     try {
       const response = await signInWithCredentials({
-        username: formData.username || formData.email.split("@")[0],
-        email: formData.email,
+        username: formData.username,
         password: formData.password,
       });
 
@@ -156,11 +142,8 @@ const LoginPage: React.FC = () => {
     try {
       const response = await registerWithCredentials({
         username: formData.username,
-        email: formData.email,
+        email: formData.email || undefined,
         password: formData.password,
-        github_username: formData.github_username,
-        github_repo: formData.github_repo,
-        github_branch: formData.github_branch,
       });
 
       if (response.success) {
@@ -176,17 +159,6 @@ const LoginPage: React.FC = () => {
     }
   };
 
-  const handleGoogleSignIn = async () => {
-    try {
-      setError("");
-      triggerGlow();
-      await signInWithGoogle();
-      navigate("/profile");
-    } catch (error: any) {
-      setError(error.message || "Google sign-in failed");
-    }
-  };
-
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !isSubmitting) {
       handleNext();
@@ -195,14 +167,12 @@ const LoginPage: React.FC = () => {
 
   const getPlaceholder = () => {
     switch (currentStep) {
+      case "username":
+        return "Enter your username";
       case "email":
-        return "yo@example.com";
+        return "Email (optional)";
       case "password":
         return "Enter your password";
-      case "username":
-        return "Choose a username";
-      case "github":
-        return "GitHub username";
       default:
         return "";
     }
@@ -210,14 +180,12 @@ const LoginPage: React.FC = () => {
 
   const getCurrentValue = () => {
     switch (currentStep) {
+      case "username":
+        return formData.username;
       case "email":
         return formData.email;
       case "password":
         return formData.password;
-      case "username":
-        return formData.username;
-      case "github":
-        return formData.github_username;
       default:
         return "";
     }
@@ -225,14 +193,12 @@ const LoginPage: React.FC = () => {
 
   const getInputName = () => {
     switch (currentStep) {
+      case "username":
+        return "username";
       case "email":
         return "email";
       case "password":
         return "password";
-      case "username":
-        return "username";
-      case "github":
-        return "github_username";
       default:
         return "";
     }
@@ -244,44 +210,19 @@ const LoginPage: React.FC = () => {
     return "text";
   };
 
-  const renderGitHubFields = () => (
-    <div className="flex flex-col gap-4 w-full">
-      <div className="relative">
-        <input
-          ref={inputRef}
-          type="text"
-          name="github_username"
-          value={formData.github_username}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          placeholder="GitHub username"
-          className="w-full bg-transparent text-foreground text-2xl md:text-4xl font-light tracking-tight border-b-2 border-muted-foreground/30 focus:border-foreground pb-3 outline-none transition-colors placeholder:text-muted-foreground/50"
-        />
-      </div>
-      <div className="relative">
-        <input
-          type="text"
-          name="github_repo"
-          value={formData.github_repo}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          placeholder="Repository name"
-          className="w-full bg-transparent text-foreground text-2xl md:text-4xl font-light tracking-tight border-b-2 border-muted-foreground/30 focus:border-foreground pb-3 outline-none transition-colors placeholder:text-muted-foreground/50"
-        />
-      </div>
-      <div className="relative">
-        <input
-          type="text"
-          name="github_branch"
-          value={formData.github_branch}
-          onChange={handleInputChange}
-          onKeyDown={handleKeyDown}
-          placeholder="Branch (default: main)"
-          className="w-full bg-transparent text-foreground text-xl md:text-2xl font-light tracking-tight border-b-2 border-muted-foreground/30 focus:border-foreground pb-3 outline-none transition-colors placeholder:text-muted-foreground/50"
-        />
-      </div>
-    </div>
-  );
+  const getStepIndicator = () => {
+    if (!isSignUp) {
+      // Login: username -> password
+      if (currentStep === "username") return "Step 1 of 2";
+      if (currentStep === "password") return "Step 2 of 2";
+    } else {
+      // Sign up: username -> email -> password
+      if (currentStep === "username") return "Step 1 of 3";
+      if (currentStep === "email") return "Step 2 of 3";
+      if (currentStep === "password") return "Step 3 of 3";
+    }
+    return "";
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col relative overflow-hidden">
@@ -453,7 +394,7 @@ const LoginPage: React.FC = () => {
                 >
                   {/* Step indicator */}
                   <div className="flex items-center gap-2 mb-4">
-                    {currentStep !== "email" && (
+                    {currentStep !== "username" && (
                       <button
                         onClick={handleBack}
                         className="p-2 hover:bg-muted rounded-full transition-colors"
@@ -462,40 +403,33 @@ const LoginPage: React.FC = () => {
                       </button>
                     )}
                     <span className="text-sm text-muted-foreground uppercase tracking-wider">
-                      {currentStep === "email" &&
-                        (isSignUp ? "Step 1 of 4" : "Step 1 of 2")}
-                      {currentStep === "password" &&
-                        (isSignUp ? "Step 2 of 4" : "Step 2 of 2")}
-                      {currentStep === "username" && "Step 3 of 4"}
-                      {currentStep === "github" && "Step 4 of 4"}
+                      {getStepIndicator()}
                     </span>
                   </div>
 
                   {/* Input field */}
-                  {currentStep === "github" ? (
-                    renderGitHubFields()
-                  ) : (
-                    <div className="relative">
-                      <input
-                        ref={inputRef}
-                        type={getInputType()}
-                        name={getInputName()}
-                        value={getCurrentValue()}
-                        onChange={handleInputChange}
-                        onKeyDown={handleKeyDown}
-                        placeholder={getPlaceholder()}
-                        disabled={isSubmitting}
-                        className="w-full bg-transparent text-foreground text-3xl md:text-5xl font-light tracking-tight border-b-2 border-muted-foreground/30 focus:border-foreground pb-4 outline-none transition-colors placeholder:text-muted-foreground/50 disabled:opacity-50"
-                        autoComplete={
-                          currentStep === "email"
-                            ? "email"
-                            : currentStep === "password"
-                              ? "current-password"
+                  <div className="relative">
+                    <input
+                      ref={inputRef}
+                      type={getInputType()}
+                      name={getInputName()}
+                      value={getCurrentValue()}
+                      onChange={handleInputChange}
+                      onKeyDown={handleKeyDown}
+                      placeholder={getPlaceholder()}
+                      disabled={isSubmitting}
+                      className="w-full bg-transparent text-foreground text-3xl md:text-5xl font-light tracking-tight border-b-2 border-muted-foreground/30 focus:border-foreground pb-4 outline-none transition-colors placeholder:text-muted-foreground/50 disabled:opacity-50"
+                      autoComplete={
+                        currentStep === "email"
+                          ? "email"
+                          : currentStep === "password"
+                            ? "current-password"
+                            : currentStep === "username"
+                              ? "username"
                               : "off"
-                        }
-                      />
-                    </div>
-                  )}
+                      }
+                    />
+                  </div>
 
                   {/* Error message */}
                   <AnimatePresence>
@@ -521,8 +455,7 @@ const LoginPage: React.FC = () => {
                       <span className="text-lg font-medium">
                         {isSubmitting
                           ? "Processing..."
-                          : currentStep === "github" ||
-                              (!isSignUp && currentStep === "password")
+                          : currentStep === "password"
                             ? "Submit"
                             : "Continue"}
                       </span>
@@ -538,53 +471,14 @@ const LoginPage: React.FC = () => {
             </AnimatePresence>
           </div>
 
-          {/* Alternative sign-in options */}
-          {currentStep === "email" && (
+          {/* Toggle sign up / sign in */}
+          {currentStep === "username" && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
               className="flex flex-col items-center gap-4"
             >
-              <div className="flex items-center gap-4 w-full max-w-md">
-                <div className="flex-1 h-px bg-muted-foreground/30" />
-                <span className="text-sm text-muted-foreground">or</span>
-                <div className="flex-1 h-px bg-muted-foreground/30" />
-              </div>
-
-              <button
-                onClick={handleGoogleSignIn}
-                disabled={isLoading}
-                className="flex items-center gap-3 px-6 py-3 bg-muted hover:bg-muted/80 rounded-full transition-colors disabled:opacity-50"
-              >
-                {isLoading ? (
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                ) : (
-                  <svg className="w-5 h-5" viewBox="0 0 24 24">
-                    <path
-                      fill="#4285F4"
-                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                    />
-                    <path
-                      fill="#34A853"
-                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                    />
-                    <path
-                      fill="#FBBC05"
-                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                    />
-                    <path
-                      fill="#EA4335"
-                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                    />
-                  </svg>
-                )}
-                <span className="text-sm font-medium">
-                  Continue with Google
-                </span>
-              </button>
-
-              {/* Toggle sign up / sign in */}
               <button
                 onClick={() => {
                   setIsSignUp(!isSignUp);

@@ -1,34 +1,40 @@
 // Backend authentication utilities
-const API_BASE_URL = 'https://leetfeedback-backend.onrender.com/api';
+const API_BASE_URL = '/api';
 
 export interface RegisterRequest {
   username: string;
-  email: string;
+  email?: string;
   password: string;
-  github_username: string;
-  github_repo: string;
-  github_branch: string;
+  timezone?: string;
 }
 
 export interface LoginRequest {
   username: string;
-  email: string;
   password: string;
 }
 
 export interface BackendUser {
   id: string;
   username: string;
-  email: string;
-  role?: string;
-  github?: {
-    username: string | null;
-    repo: string | null;
-    branch: string | null;
-    linked: boolean;
+  email: string | null;
+  timezone?: string;
+  visibility?: string;
+  currentStreak?: number;
+  totalXp?: number;
+  createdAt?: string;
+}
+
+export interface UserStats {
+  currentStreak: number;
+  totalXp: number;
+  totalSolves: number;
+  totalSubmissions: number;
+  totalStreakDays: number;
+  problemsByDifficulty: {
+    Easy?: number;
+    Medium?: number;
+    Hard?: number;
   };
-  created_at?: string;
-  updated_at?: string;
 }
 
 export interface AuthResponse {
@@ -73,17 +79,17 @@ export const registerUser = async (userData: RegisterRequest): Promise<AuthRespo
     });
 
     const data = await response.json();
-    
+
     if (response.ok && data.user) {
       // Store auth token if provided
       if (data.token) {
         setCookie('auth_token', data.token, 3650);
       }
-      
+
       // Store user data in localStorage for persistence
       localStorage.setItem('backend_user', JSON.stringify(data.user));
       localStorage.setItem('auth_type', 'backend');
-      
+
       return {
         success: true,
         user: data.user,
@@ -116,17 +122,17 @@ export const loginUser = async (credentials: LoginRequest): Promise<AuthResponse
     });
 
     const data = await response.json();
-    
+
     if (response.ok && data.user) {
       // Store auth token if provided
       if (data.token) {
         setCookie('auth_token', data.token, 3650);
       }
-      
+
       // Store user data in localStorage for persistence
       localStorage.setItem('backend_user', JSON.stringify(data.user));
       localStorage.setItem('auth_type', 'backend');
-      
+
       return {
         success: true,
         user: data.user,
@@ -153,7 +159,7 @@ export const logoutBackendUser = async (): Promise<void> => {
     localStorage.removeItem('backend_user');
     localStorage.removeItem('auth_type');
     deleteCookie('auth_token');
-    
+
     // Optional: Call backend logout endpoint if it exists
     const token = getCookie('auth_token');
     if (token) {
@@ -179,10 +185,10 @@ export const getBackendUser = (): BackendUser | null => {
   try {
     const authType = localStorage.getItem('auth_type');
     if (authType !== 'backend') return null;
-    
+
     const userData = localStorage.getItem('backend_user');
     if (!userData) return null;
-    
+
     return JSON.parse(userData);
   } catch (error) {
     console.error('Error getting backend user:', error);
@@ -205,4 +211,124 @@ export const validateBackendAuth = async (): Promise<BackendUser | null> => {
   }
 
   return cachedUser;
+};
+
+// Fetch current user from backend API
+export const fetchCurrentUser = async (): Promise<BackendUser | null> => {
+  try {
+    const token = getCookie('auth_token');
+    if (!token) return null;
+
+    const response = await fetch(`${API_BASE_URL}/auth/me`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      credentials: 'include',
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      if (data.user) {
+        // Update stored user data
+        localStorage.setItem('backend_user', JSON.stringify(data.user));
+        return data.user;
+      }
+    }
+    return null;
+  } catch (error) {
+    console.error('Error fetching current user:', error);
+    return null;
+  }
+};
+
+// Fetch user stats from backend API
+export const fetchUserStats = async (): Promise<UserStats | null> => {
+  try {
+    const token = getCookie('auth_token');
+    if (!token) return null;
+
+    const response = await fetch(`${API_BASE_URL}/auth/me/stats`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      credentials: 'include',
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.stats || null;
+    }
+    return null;
+  } catch (error) {
+    console.error('Error fetching user stats:', error);
+    return null;
+  }
+};
+
+// Change password
+export const changePassword = async (currentPassword: string, newPassword: string): Promise<{ success: boolean; message: string }> => {
+  try {
+    const token = getCookie('auth_token');
+    if (!token) {
+      return { success: false, message: 'Not authenticated' };
+    }
+
+    const response = await fetch(`${API_BASE_URL}/auth/change-password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      credentials: 'include',
+      body: JSON.stringify({ currentPassword, newPassword }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      return { success: true, message: data.message || 'Password changed successfully' };
+    }
+    return { success: false, message: data.error || 'Failed to change password' };
+  } catch (error) {
+    console.error('Error changing password:', error);
+    return { success: false, message: 'Network error. Please try again.' };
+  }
+};
+
+// Delete account (soft delete with 7-day grace period)
+export const deleteAccount = async (password: string): Promise<{ success: boolean; message: string }> => {
+  try {
+    const token = getCookie('auth_token');
+    if (!token) {
+      return { success: false, message: 'Not authenticated' };
+    }
+
+    const response = await fetch(`${API_BASE_URL}/auth/account`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+      credentials: 'include',
+      body: JSON.stringify({ password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      // Clear local auth data
+      localStorage.removeItem('backend_user');
+      localStorage.removeItem('auth_type');
+      deleteCookie('auth_token');
+      return { success: true, message: data.message || 'Account deleted successfully' };
+    }
+    return { success: false, message: data.error || 'Failed to delete account' };
+  } catch (error) {
+    console.error('Error deleting account:', error);
+    return { success: false, message: 'Network error. Please try again.' };
+  }
 };

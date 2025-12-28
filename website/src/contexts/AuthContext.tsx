@@ -8,14 +8,6 @@ import React, {
   ReactNode,
 } from "react";
 import {
-  User as FirebaseUser,
-  signInWithPopup,
-  signOut as firebaseSignOut,
-  onAuthStateChanged,
-  UserCredential,
-} from "firebase/auth";
-import { auth, googleProvider } from "../config/firebase";
-import {
   BackendUser,
   getBackendUser,
   validateBackendAuth,
@@ -34,20 +26,17 @@ interface User {
   photoURL: string | null;
   provider: string;
   username?: string;
-  role?: string;
-  github?: {
-    username: string | null;
-    repo: string | null;
-    branch: string | null;
-    linked: boolean;
-  };
-  authType: "firebase" | "backend";
+  timezone?: string;
+  visibility?: string;
+  currentStreak?: number;
+  totalXp?: number;
+  createdAt?: string;
+  authType: "backend";
 }
 
 interface AuthContextType {
   user: User | null;
   isLoading: boolean;
-  signInWithGoogle: () => Promise<void>;
   signInWithCredentials: (credentials: LoginRequest) => Promise<AuthResponse>;
   registerWithCredentials: (userData: RegisterRequest) => Promise<AuthResponse>;
   signOut: () => Promise<void>;
@@ -70,9 +59,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
     if (userData) {
       // Store user data for extension communication with timestamp
-      const storageKey =
-        userData.authType === "firebase" ? "firebase_user" : "backend_user";
-      localStorage.setItem(storageKey, JSON.stringify(userData));
+      localStorage.setItem("backend_user", JSON.stringify(userData));
       localStorage.setItem("auth_timestamp", Date.now().toString());
 
       // Notify extension of auth change
@@ -89,7 +76,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         `[AuthContext] User authenticated via ${userData.authType}, data stored for extension`
       );
     } else {
-      localStorage.removeItem("firebase_user");
       localStorage.removeItem("backend_user");
       localStorage.removeItem("auth_timestamp");
 
@@ -108,7 +94,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   useEffect(() => {
-    // Check for existing backend user first
+    // Check for existing backend user
     const initializeAuth = async () => {
       setIsLoading(true);
 
@@ -126,52 +112,26 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
               photoURL: null,
               provider: "backend",
               username: validatedUser.username,
-              role: validatedUser.role,
-              github: validatedUser.github,
+              timezone: validatedUser.timezone,
+              visibility: validatedUser.visibility,
+              currentStreak: validatedUser.currentStreak,
+              totalXp: validatedUser.totalXp,
+              createdAt: validatedUser.createdAt,
               authType: "backend",
             };
             setUserState(userData);
             setIsLoading(false);
             return;
           }
-          // If validation fails, user will be signed out
         }
       } catch (error) {
         console.error("Auth initialization error:", error);
       }
 
-      // If no backend user or validation failed, continue with Firebase auth check
       setIsLoading(false);
     };
 
     initializeAuth();
-
-    const unsubscribe = onAuthStateChanged(
-      auth,
-      (firebaseUser: FirebaseUser | null) => {
-        // Only process Firebase auth if no backend user is already authenticated
-        const currentAuthType = localStorage.getItem("auth_type");
-        if (currentAuthType === "backend" && user?.authType === "backend") {
-          return; // Don't override backend auth with Firebase
-        }
-
-        if (firebaseUser) {
-          const userData: User = {
-            uid: firebaseUser.uid,
-            email: firebaseUser.email,
-            displayName: firebaseUser.displayName,
-            photoURL: firebaseUser.photoURL,
-            provider: firebaseUser.providerData[0]?.providerId || "unknown",
-            authType: "firebase",
-          };
-          setUserState(userData);
-        } else if (user?.authType === "firebase") {
-          // Only clear if the current user was Firebase-authenticated
-          setUserState(null);
-        }
-        setIsLoading(false);
-      }
-    );
 
     // Listen for auth status requests from extension
     const handleExtensionMessage = (event: MessageEvent) => {
@@ -232,37 +192,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     window.addEventListener("message", handleExtensionMessage);
 
     return () => {
-      unsubscribe();
       window.removeEventListener("message", handleExtensionMessage);
     };
-  }, []);
-
-  const signInWithGoogle = useCallback(async (): Promise<void> => {
-    try {
-      setIsLoading(true);
-      // Clear any existing backend auth
-      await logoutBackendUser();
-      const result: UserCredential = await signInWithPopup(
-        auth,
-        googleProvider
-      );
-      // User state will be updated by onAuthStateChanged
-    } catch (error) {
-      console.error("Google sign-in error:", error);
-      throw error;
-    } finally {
-      setIsLoading(false);
-    }
   }, []);
 
   const signInWithCredentials = useCallback(
     async (credentials: LoginRequest): Promise<AuthResponse> => {
       try {
         setIsLoading(true);
-        // Clear any existing Firebase auth
-        if (user?.authType === "firebase") {
-          await firebaseSignOut(auth);
-        }
 
         const response = await loginUser(credentials);
 
@@ -274,8 +211,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             photoURL: null,
             provider: "backend",
             username: response.user.username,
-            role: response.user.role,
-            github: response.user.github,
+            timezone: response.user.timezone,
+            visibility: response.user.visibility,
+            currentStreak: response.user.currentStreak,
+            totalXp: response.user.totalXp,
+            createdAt: response.user.createdAt,
             authType: "backend",
           };
           setUserState(userData);
@@ -292,17 +232,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setIsLoading(false);
       }
     },
-    [user]
+    []
   );
 
   const registerWithCredentials = useCallback(
     async (userData: RegisterRequest): Promise<AuthResponse> => {
       try {
         setIsLoading(true);
-        // Clear any existing Firebase auth
-        if (user?.authType === "firebase") {
-          await firebaseSignOut(auth);
-        }
 
         const response = await registerUser(userData);
 
@@ -314,8 +250,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             photoURL: null,
             provider: "backend",
             username: response.user.username,
-            role: response.user.role,
-            github: response.user.github,
+            timezone: response.user.timezone,
+            visibility: response.user.visibility,
+            currentStreak: response.user.currentStreak,
+            totalXp: response.user.totalXp,
+            createdAt: response.user.createdAt,
             authType: "backend",
           };
           setUserState(userState);
@@ -332,28 +271,23 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         setIsLoading(false);
       }
     },
-    [user]
+    []
   );
 
   const signOut = useCallback(async (): Promise<void> => {
     try {
-      if (user?.authType === "firebase") {
-        await firebaseSignOut(auth);
-      } else if (user?.authType === "backend") {
-        await logoutBackendUser();
-        setUserState(null);
-      }
+      await logoutBackendUser();
+      setUserState(null);
     } catch (error) {
       console.error("Sign-out error:", error);
       throw error;
     }
-  }, [user]);
+  }, []);
 
   const value: AuthContextType = useMemo(
     () => ({
       user,
       isLoading,
-      signInWithGoogle,
       signInWithCredentials,
       registerWithCredentials,
       signOut,
@@ -362,7 +296,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     [
       user,
       isLoading,
-      signInWithGoogle,
       signInWithCredentials,
       registerWithCredentials,
       signOut,

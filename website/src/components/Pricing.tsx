@@ -58,13 +58,13 @@ const VisibleChromaText: React.FC<{
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setAnimationKey(prev => prev + 1);
+          setAnimationKey((prev) => prev + 1);
           setIsVisible(true);
         } else {
           setIsVisible(false);
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
@@ -73,7 +73,13 @@ const VisibleChromaText: React.FC<{
   return (
     <span ref={ref}>
       {isVisible ? (
-        <ChromaText key={animationKey} id={id} className={className} delay={delay} duration={duration}>
+        <ChromaText
+          key={animationKey}
+          id={id}
+          className={className}
+          delay={delay}
+          duration={duration}
+        >
           {children}
         </ChromaText>
       ) : (
@@ -92,32 +98,41 @@ const FAQAccordion: React.FC = () => {
     {
       question: "Is this really free forever?",
       answer:
-        "I initially decided to make it paid but no one's paying for this crap idea. So yeah it's free forever now.",
+        "For Students yes, you only pay for what we pay for. Everything which should be paid is free. For Recruiters, Yeah it will be paid but that's not implemented yet.",
     },
     {
       question: "How do you sustain the project?",
-      answer: "Midnight motivation bursts.",
+      answer: "uhh..",
     },
     {
       question:
         "Any deadlines or something of that sort for phases and upcoming features?",
       answer:
-        "If reality hits hard this will be completed entirely within 1 non-working-day.",
+        "OK. This project is will never be completed as i see it. But what was promised and more is already implemeted!",
     },
     {
       question: "Is my code data secure?",
       answer:
-        "Yes, It is only stored locally (for now), refer to Gemini Policy for Ai stuff, requests are made direcctly from you, there's no middleware.",
+        "Yes. your code 'data' is never collected in any way. It doesn't even reach our servers, even gemini calls are made directly from client side. Though we do collect metadata, and that's the entire purpose of this platform. If some big company wants your data, I'll happily sell it...",
     },
     {
       question:
         "We are XYZ/MNC and are looking to buy this for XYZ million dollars...",
-      answer: "Not selling.",
+      answer: "IT'S YOURS. PLS GIVE ME A JOB",
     },
     {
-      question: "How do I request a new feature/idea?",
+      question: "How do I request a new feature/idea or report bug?",
       answer:
-        "Just mail catinice@outlook.com. You get instant reply even if it's 3AM.",
+        "Just mail diljotsingh7@iCloud.com. You get instant reply even if it's 3AM. No spam pls. Or join our discord server and ping me there.",
+    },
+    {
+      question: "Do you offer any student discounts?",
+      answer: "It's already free lil bro",
+    },
+    {
+      question: "What is spaced repetition?",
+      answer:
+        "Human mind tends to forget stuff, it's the exact counter. Look up what's SM2 or LSTM",
     },
   ];
 
@@ -137,7 +152,12 @@ const FAQAccordion: React.FC = () => {
             className="text-gray-300"
           >
             {openIndex === index ? (
-              <ChromaText key={`content-${index}`} id={`faq-answer-${index}`} delay={0.1} duration={1.0}>
+              <ChromaText
+                key={`content-${index}`}
+                id={`faq-answer-${index}`}
+                delay={0.1}
+                duration={1.0}
+              >
                 {faq.answer}
               </ChromaText>
             ) : (
@@ -299,8 +319,16 @@ const Pricing: React.FC = React.memo(() => {
             </TextAnimate>
           </div>
           <BlurFade delay={0.5}>
-            <p className="text-xl md:text-2xl text-muted-foreground font-light" style={{ fontFamily: "'HarmonyOS Sans', system-ui, sans-serif" }}>
-              <VisibleChromaText id="works-for-you" className="font-light" delay={0.3} duration={1.2}>
+            <p
+              className="text-xl md:text-2xl text-muted-foreground font-light"
+              style={{ fontFamily: "'HarmonyOS Sans', system-ui, sans-serif" }}
+            >
+              <VisibleChromaText
+                id="works-for-you"
+                className="font-light"
+                delay={0.3}
+                duration={1.2}
+              >
                 Choose the plan that works for you
               </VisibleChromaText>
             </p>
@@ -379,7 +407,11 @@ const Pricing: React.FC = React.memo(() => {
               {/* Premium Plan Content */}
               <div className="relative z-10 p-6 flex flex-col h-full">
                 <h3 className="text-xl font-bold text-white mb-2">
-                  <VisibleChromaText id="premium-title" delay={0.2} duration={1.0}>
+                  <VisibleChromaText
+                    id="premium-title"
+                    delay={0.2}
+                    duration={1.0}
+                  >
                     Premium
                   </VisibleChromaText>
                 </h3>
@@ -388,7 +420,11 @@ const Pricing: React.FC = React.memo(() => {
                     className="text-5xl font-bold text-white"
                     style={{ fontFamily: "'Stinger', sans-serif" }}
                   >
-                    <VisibleChromaText id="premium-price" delay={0.3} duration={1.0}>
+                    <VisibleChromaText
+                      id="premium-price"
+                      delay={0.3}
+                      duration={1.0}
+                    >
                       $100
                     </VisibleChromaText>
                   </span>
@@ -443,8 +479,16 @@ const Pricing: React.FC = React.memo(() => {
             >
               Frequently Asked Questions
             </TextAnimate>
-            <p className="text-gray-300 font-light" style={{ fontFamily: "'HarmonyOS Sans', system-ui, sans-serif" }}>
-              <VisibleChromaText id="everything-know" className="font-light" delay={0.5} duration={1.2}>
+            <p
+              className="text-gray-300 font-light"
+              style={{ fontFamily: "'HarmonyOS Sans', system-ui, sans-serif" }}
+            >
+              <VisibleChromaText
+                id="everything-know"
+                className="font-light"
+                delay={0.5}
+                duration={1.2}
+              >
                 Everything you need to know
               </VisibleChromaText>
             </p>
@@ -472,9 +516,19 @@ const Pricing: React.FC = React.memo(() => {
                   >
                     Build with us
                   </h3>
-                  <p className="text-gray-400 max-w-md mx-auto font-light" style={{ fontFamily: "'HarmonyOS Sans', system-ui, sans-serif" }}>
+                  <p
+                    className="text-gray-400 max-w-md mx-auto font-light"
+                    style={{
+                      fontFamily: "'HarmonyOS Sans', system-ui, sans-serif",
+                    }}
+                  >
                     Join our growing community and help{" "}
-                    <VisibleChromaText id="shape-future" className="font-light" delay={0.4} duration={1.3}>
+                    <VisibleChromaText
+                      id="shape-future"
+                      className="font-light"
+                      delay={0.4}
+                      duration={1.3}
+                    >
                       shape the future
                     </VisibleChromaText>{" "}
                     of coding practice

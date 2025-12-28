@@ -18,5 +18,12 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    proxy: {
+      '/api': {
+        target: 'https://traverse-backend-api.azurewebsites.net',
+        changeOrigin: true,
+        secure: true,
+      },
+    },
   },
 });
