@@ -399,6 +399,106 @@ const Features: React.FC = React.memo(() => {
           </div>
         </div>
 
+        {/* Mobile-only: Pocket DSA Dashboard Section */}
+        <div className="py-12 md:hidden">
+          <div className="text-center mb-6">
+            <BlurFade delay={0.1} inView={true}>
+              <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-3 py-1.5 inline-flex items-center">
+                <ShinyText
+                  text="Mobile Experience"
+                  speed={3}
+                  className="font-mono text-xs"
+                />
+              </div>
+            </BlurFade>
+            <BlurFade delay={0.2} inView={true}>
+              <h2 className="text-3xl font-bold text-foreground mb-3 px-4">
+                Your Pocket DSA Dashboard
+              </h2>
+            </BlurFade>
+            <BlurFade delay={0.3} inView={true}>
+              <p className="text-sm text-muted-foreground max-w-xs mx-auto leading-relaxed px-4">
+                Track your solves, streaks, and progress on the go
+              </p>
+            </BlurFade>
+          </div>
+
+          {/* Horizontal Scrollable Screenshot Gallery */}
+          <BlurFade delay={0.4} inView={true}>
+            <div className="relative mb-8">
+              <div
+                className="flex gap-3 overflow-x-auto px-4 pb-4 snap-x snap-mandatory scrollbar-hide"
+                style={{
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none',
+                  WebkitOverflowScrolling: 'touch'
+                }}
+              >
+                {[
+                  { src: "/ios1.webp", alt: "Dashboard" },
+                  { src: "/ios2.webp", alt: "Problems" },
+                  { src: "/ios3.webp", alt: "Stats" },
+                  { src: "/ios4.webp", alt: "Profile" },
+                  { src: "/ios5.webp", alt: "Leaderboard" },
+                  { src: "/ios6.webp", alt: "Details" },
+                ].map((screenshot, index) => (
+                  <div
+                    key={index}
+                    className="flex-shrink-0 w-36 snap-center"
+                  >
+                    <div className="bg-border/40 rounded-xl p-1 shadow-lg">
+                      <div className="bg-black rounded-lg overflow-hidden">
+                        <img
+                          src={screenshot.src}
+                          alt={screenshot.alt}
+                          className="w-full h-auto object-contain"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                    <p className="text-xs text-muted-foreground text-center mt-2">{screenshot.alt}</p>
+                  </div>
+                ))}
+              </div>
+              {/* Swipe hint */}
+              <p className="text-xs text-muted-foreground/60 text-center mt-1">
+                ← Swipe to explore →
+              </p>
+            </div>
+          </BlurFade>
+
+          {/* Compact Feature List for Mobile */}
+          <div className="px-4 space-y-3" style={{ fontFamily: "'Britanica', sans-serif" }}>
+            <BlurFade delay={0.5} duration={0.5} inView={true}>
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-card/30 border border-border/50">
+                <AppsIcon className="w-5 h-5 text-primary flex-shrink-0" />
+                <div>
+                  <span className="text-sm font-medium text-foreground">Unified History</span>
+                  <span className="text-xs text-muted-foreground ml-2">— All platforms in one place</span>
+                </div>
+              </div>
+            </BlurFade>
+            <BlurFade delay={0.55} duration={0.5} inView={true}>
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-card/30 border border-border/50">
+                <TrackChangesIcon className="w-5 h-5 text-primary flex-shrink-0" />
+                <div>
+                  <span className="text-sm font-medium text-foreground">Performance Metrics</span>
+                  <span className="text-xs text-muted-foreground ml-2">— Track your progress</span>
+                </div>
+              </div>
+            </BlurFade>
+            <BlurFade delay={0.6} duration={0.5} inView={true}>
+              <div className="flex items-center gap-3 p-3 rounded-xl bg-card/30 border border-border/50">
+                <AnalyticsIcon className="w-5 h-5 text-primary flex-shrink-0" />
+                <div>
+                  <span className="text-sm font-medium text-foreground">Daily Goals</span>
+                  <span className="text-xs text-muted-foreground ml-2">— Streaks & XP</span>
+                </div>
+              </div>
+            </BlurFade>
+          </div>
+        </div>
+
         {/* Primary Features - Bento Grid Style */}
         <div className="mb-20 mt-20">
           <div className="text-center mb-12">
@@ -637,7 +737,7 @@ const Features: React.FC = React.memo(() => {
                       +
                     </span>
                   </div>
-                  <p className="text-xl text-muted-foreground"><VisibleChromaText id="happy-users" className="font-light" delay={0.3} duration={1.0}>Happy</VisibleChromaText> users</p>
+                  <p className="text-xl text-muted-foreground"><VisibleChromaText id="happy-users" className="font-light" delay={0.8} duration={1.0}>Happy</VisibleChromaText> users</p>
                 </div>
               </div>
 
@@ -672,7 +772,7 @@ const Features: React.FC = React.memo(() => {
                   </span>
                   <p className="my-8 text-2xl font-semibold">
                     Never forget a pattern.{" "}
-                    <VisibleChromaText id="spaced-repetition" className="text-muted-foreground font-light" delay={0.4} duration={1.2}>
+                    <VisibleChromaText id="spaced-repetition" className="text-muted-foreground font-light" delay={1.2} duration={1.2}>
                       The app automatically schedules revisions for problems you struggled with.
                     </VisibleChromaText>
                   </p>
@@ -699,9 +799,9 @@ const Features: React.FC = React.memo(() => {
         {/* Power Features - Professional Cards */}
         <div className="mb-20">
           {/* Section Title */}
-          <div className="text-center mb-16 overflow-hidden">
-            <h2 className="text-5xl sm:text-7xl md:text-8xl font-black text-foreground tracking-tight italic mb-4">
-              <VisibleChromaText id="beyond-basics" className="font-light" delay={0.2} duration={1.5}>
+          <div className="text-center mb-16 overflow-visible">
+            <h2 className="text-5xl sm:text-7xl md:text-8xl font-black text-foreground italic mb-4">
+              <VisibleChromaText id="beyond-basics" className="font-light text-foreground" delay={1.8} duration={1.5}>
                 BEYOND BASICS
               </VisibleChromaText>
             </h2>
@@ -2528,7 +2628,7 @@ const Features: React.FC = React.memo(() => {
                 Every solution you complete gets automatically committed to your
                 GitHub with AI-generated feedback notes, creating a kind of{" "}
                 <span className="text-red-400 font-bold">coding journal</span>{" "}
-                that <VisibleChromaText id="showcases-growth" className="font-light" delay={0.5} duration={1.2}>showcases your growth to employers</VisibleChromaText>.
+                that <VisibleChromaText id="showcases-growth" className="font-light" delay={0.5} duration={1.2}>showcases your growth to employers.</VisibleChromaText>
               </p>
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center">

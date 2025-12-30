@@ -472,7 +472,7 @@ const Pricing: React.FC = React.memo(() => {
           <div className="text-center mb-12">
             <TextAnimate
               as="h2"
-              className="text-3xl md:text-5xl text-foreground mb-4 relative z-10"
+              className="text-3xl md:text-5xl text-white mb-4 relative z-10"
               animation="blurInUp"
               delay={0.25}
               by="word"

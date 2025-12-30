@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { animate, stagger } from "animejs";
 import Footer from "../components/Footer";
@@ -9,6 +9,55 @@ import { Card, CardContent } from "../components/ui/card";
 import { BlurFade } from "../components/magicui/blur-fade";
 import { TextEffect } from "../components/ui/text-effect";
 import { ChromaText } from "../components/ui/textRenderAppear";
+
+// Wrapper component that triggers ChromaText animation when visible (replays on re-scroll)
+const VisibleChromaText: React.FC<{
+  id: string;
+  className?: string;
+  delay?: number;
+  duration?: number;
+  children: React.ReactNode;
+}> = ({ id, className, delay, duration, children }) => {
+  const ref = useRef<HTMLSpanElement>(null);
+  const [animationKey, setAnimationKey] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setAnimationKey((prev) => prev + 1);
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      },
+      { threshold: 0.1 },
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <span ref={ref}>
+      {isVisible ? (
+        <ChromaText
+          key={animationKey}
+          id={id}
+          className={className}
+          delay={delay}
+          duration={duration}
+        >
+          {children}
+        </ChromaText>
+      ) : (
+        <span className={className} style={{ opacity: 0 }}>
+          {children}
+        </span>
+      )}
+    </span>
+  );
+};
 import { analytics } from "../utils/analytics";
 import ShinyText from "../components/ShinyText";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -266,29 +315,29 @@ const RoadmapPage: React.FC = () => {
                 </h2>
                 <div className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed space-y-4">
                   <p>
-                    <ChromaText id="thank-you-1" delay={0.3} duration={1.4}>
+                    <VisibleChromaText id="thank-you-1" delay={0.3} duration={1.4}>
                       To be fair no one really supported this project, and I've worked on it for almost a year at this point. The origins of this project lie in TakeUForward to Github Chrome extension. I learnt JS to build that thing and in the process I realised this is something that I can build a product around.
-                    </ChromaText>
+                    </VisibleChromaText>
                   </p>
                   <p>
-                    <ChromaText id="thank-you-2" delay={0.5} duration={1.4}>
+                    <VisibleChromaText id="thank-you-2" delay={0.5} duration={1.4}>
                       The project got a good kick during SIH hackathon thanks to my teammates who suggested wonderful ideas. So, right now our vision is to provide a student-first Learning platform, and a trust platform for recruiters to find the best talent.
-                    </ChromaText>
+                    </VisibleChromaText>
                   </p>
                   <p>
-                    <ChromaText id="thank-you-3" delay={0.7} duration={1.4}>
+                    <VisibleChromaText id="thank-you-3" delay={0.7} duration={1.4}>
                       Recruiters will be able to detect how honest a student has been during their DSA journey. I understand no matter the amount of checks I have on extension side, they all can be fooled. But there will be a way around this.
-                    </ChromaText>
+                    </VisibleChromaText>
                   </p>
                   <p>
-                    <ChromaText id="thank-you-4" delay={0.9} duration={1.4}>
+                    <VisibleChromaText id="thank-you-4" delay={0.9} duration={1.4}>
                       Anyway, I'm sure you have noted the attention to detail. This is just me being me, I love design, but hate writing frontend code. I have plans to make a component library for the components I have used/modified for this website. Someday.
-                    </ChromaText>
+                    </VisibleChromaText>
                   </p>
                   <p>
-                    <ChromaText id="thank-you-5" delay={1.1} duration={1.4}>
+                    <VisibleChromaText id="thank-you-5" delay={1.1} duration={1.4}>
                       If you are reading this, Thank you. If you use this product, please report bugs, I'm sure there are a lot.
-                    </ChromaText>
+                    </VisibleChromaText>
                   </p>
                 </div>
               </div>

@@ -443,7 +443,7 @@
     .liquidGlass-effect {
         background: rgba(255, 255, 255, 0.85);
     }
-    
+
     .dark .liquidGlass-effect {
         background: rgba(0, 0, 0, 0.85);
     }
@@ -537,7 +537,7 @@
     .liquidGlass-nav .liquidGlass-navItem:hover {
         background-color: rgba(255, 255, 255, 0.7);
     }
-    
+
     .dark .liquidGlass-nav .liquidGlass-navItem:hover {
         background-color: rgba(255, 255, 255, 0.25);
     }
@@ -767,6 +767,7 @@
 .chroma-text {
     display: inline-flex;
     padding-bottom: 0.1rem;
+    padding-right: 0.15em;
     background-size: 300% 100%;
     background-position: 100% 0;
     will-change: background-position;
@@ -870,8 +871,8 @@
 /* BEYOND BASICS */
 [data-chroma-id="beyond-basics"] {
     background-image: linear-gradient(90deg,
-            rgb(100, 116, 139) 0px,
-            rgb(100, 116, 139) 33.33%,
+            rgb(10, 10, 10) 0px,
+            rgb(10, 10, 10) 33.33%,
             rgb(198, 121, 196) 40%,
             rgb(250, 61, 29) 45%,
             rgb(255, 176, 5) 50%,
@@ -885,8 +886,8 @@
 
 .dark [data-chroma-id="beyond-basics"] {
     background-image: linear-gradient(90deg,
-            rgb(163, 163, 163) 0px,
-            rgb(163, 163, 163) 33.33%,
+            rgb(250, 250, 250) 0px,
+            rgb(250, 250, 250) 33.33%,
             rgb(198, 121, 196) 40%,
             rgb(250, 61, 29) 45%,
             rgb(255, 176, 5) 50%,

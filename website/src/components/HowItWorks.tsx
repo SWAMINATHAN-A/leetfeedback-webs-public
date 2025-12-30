@@ -441,7 +441,7 @@ const HowItWorks: React.FC = React.memo(() => {
           <BlurFade delay={0.75}>
             <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-light" style={{ fontFamily: "'HarmonyOS Sans', system-ui, sans-serif" }}>
               <VisibleChromaText id="auto-background" className="font-light" delay={0.4} duration={1.4}>
-                everything happens automatically in the background.
+                Everything happens automatically in the background.
               </VisibleChromaText>
             </p>
           </BlurFade>

@@ -84,6 +84,7 @@ export default function ChromaTextDemo() {
         .chroma-text {
           display: inline-flex;
           padding-bottom: 0.1rem;
+          padding-right: 0.15em;
           background-size: 300% 100%;
           background-position: 100% 0;
           will-change: background-position;
@@ -157,6 +158,35 @@ export default function ChromaTextDemo() {
           );
           animation-delay: 0.5s;
           animation-duration: 1.2s;
+        }
+
+        [data-chroma-id="beyond-basics"] {
+          animation: chroma-sweep-beyond 1.5s ease-in-out 1.8s forwards;
+          padding-right: 0.1em;
+        }
+
+        @keyframes chroma-sweep-beyond {
+          0% {
+            background-position: 100% 0;
+            filter: blur(1px);
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+          }
+          95% {
+            background-position: 0 0;
+            filter: blur(0);
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+          }
+          100% {
+            background-position: 0 0;
+            filter: blur(0);
+            -webkit-text-fill-color: hsl(var(--foreground));
+            color: hsl(var(--foreground));
+            background-image: none;
+            background-clip: unset;
+            -webkit-background-clip: unset;
+          }
         }
 
         @keyframes chroma-sweep {
