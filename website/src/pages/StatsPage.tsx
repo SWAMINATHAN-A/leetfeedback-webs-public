@@ -16,7 +16,7 @@ const ResponsiveWaffle = lazy(() => import("@nivo/waffle").then(m => ({ default:
 const ResponsiveScatterPlot = lazy(() => import("@nivo/scatterplot").then(m => ({ default: m.ResponsiveScatterPlot })));
 const ResponsiveChord = lazy(() => import("@nivo/chord").then(m => ({ default: m.ResponsiveChord })));
 const ResponsiveNetwork = lazy(() => import("@nivo/network").then(m => ({ default: m.ResponsiveNetwork })));
-const ResponsiveParallelCoordinates = lazy(() => import("@nivo/parallel-coordinates").then(m => ({ default: m.ResponsiveParallelCoordinates })));
+const ResponsiveParallelCoordinates = lazy(() => import("@nivo/parallel-coordinates").then(m => ({ default: m.ResponsiveParallelCoordinates }))) as any;
 
 import { NumberTicker } from "../components/magicui/number-ticker";
 import { AuroraText } from "../components/ui/aurora-text";
