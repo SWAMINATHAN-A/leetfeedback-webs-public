@@ -219,6 +219,25 @@ export function IconCloud({ icons, images }: IconCloudProps) {
     isDraggingRef.current = false;
   };
 
+  // Track visibility for performance
+  const [isVisible, setIsVisible] = React.useState(true);
+
+  // Add IntersectionObserver to pause animation when off-screen
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+
+    observer.observe(canvas);
+    return () => observer.disconnect();
+  }, []);
+
   // Animation and rendering
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -226,6 +245,12 @@ export function IconCloud({ icons, images }: IconCloudProps) {
     if (!canvas || !ctx) return;
 
     const animate = () => {
+      // Skip animation frame if not visible
+      if (!isVisible) {
+        animationFrameRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const centerX = canvas.width / 2;
@@ -311,7 +336,7 @@ export function IconCloud({ icons, images }: IconCloudProps) {
         cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [icons, images, iconPositions]); // Removed mutable refs from dependency array
+  }, [icons, images, iconPositions, isVisible]); // Include isVisible to restart animation when visibility changes
 
   return (
     <canvas

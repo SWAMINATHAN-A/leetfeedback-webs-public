@@ -438,6 +438,17 @@
     pointer-events: none;
 }
 
+/* Safari fallback: use semi-transparent solid background instead of blur */
+@supports not (backdrop-filter: blur(10px)) {
+    .liquidGlass-effect {
+        background: rgba(255, 255, 255, 0.85);
+    }
+    
+    .dark .liquidGlass-effect {
+        background: rgba(0, 0, 0, 0.85);
+    }
+}
+
 .liquidGlass-tint {
     z-index: 1;
     position: absolute;
@@ -519,6 +530,17 @@
     background-color: rgba(255, 255, 255, 0.5);
     box-shadow: inset -2px -2px 2px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(2px);
+}
+
+/* Safari fallback */
+@supports not (backdrop-filter: blur(2px)) {
+    .liquidGlass-nav .liquidGlass-navItem:hover {
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+    
+    .dark .liquidGlass-nav .liquidGlass-navItem:hover {
+        background-color: rgba(255, 255, 255, 0.25);
+    }
 }
 
 .dark .liquidGlass-nav .liquidGlass-navItem:hover {

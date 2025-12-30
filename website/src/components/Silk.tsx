@@ -4,6 +4,17 @@ import { FiberProvider } from "its-fine";
 import { Color, Mesh, ShaderMaterial } from "three";
 import { IUniform } from "three";
 
+/**
+ * Silk - Three.js/WebGL shader-based pattern component
+ * 
+ * PERFORMANCE WARNING:
+ * - Uses Three.js with WebGL which is resource-intensive on Safari
+ * - Safari handles WebGL contexts less efficiently than Chrome/Firefox
+ * - This component now pauses rendering when off-screen (frameloop="never")
+ * - Avoid using multiple WebGL components (Aurora + Silk) on the same page
+ * - Three.js continuous rendering can cause battery drain on mobile devices
+ */
+
 type NormalizedRGB = [number, number, number];
 
 const hexToNormalizedRGB = (hex: string): NormalizedRGB => {
@@ -142,6 +153,24 @@ const Silk: React.FC<SilkProps> = React.memo(
     rotation = 0,
   }) => {
     const meshRef = useRef<Mesh>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const [isVisible, setIsVisible] = React.useState(true);
+
+    // Add IntersectionObserver to pause rendering when off-screen
+    useLayoutEffect(() => {
+      const container = containerRef.current;
+      if (!container) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          setIsVisible(entry.isIntersecting);
+        },
+        { threshold: 0 }
+      );
+
+      observer.observe(container);
+      return () => observer.disconnect();
+    }, []);
 
     const uniforms = useMemo<SilkUniforms>(
       () => ({
@@ -156,11 +185,13 @@ const Silk: React.FC<SilkProps> = React.memo(
     );
 
     return (
-      <FiberProvider>
-        <Canvas dpr={[1, 2]} frameloop="always">
-          <SilkPlane ref={meshRef} uniforms={uniforms} />
-        </Canvas>
-      </FiberProvider>
+      <div ref={containerRef} className="w-full h-full">
+        <FiberProvider>
+          <Canvas dpr={[1, 2]} frameloop={isVisible ? "always" : "never"}>
+            <SilkPlane ref={meshRef} uniforms={uniforms} />
+          </Canvas>
+        </FiberProvider>
+      </div>
     );
   }
 );

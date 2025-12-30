@@ -23,12 +23,14 @@ import { DynamicIslandDemo } from "./components/DynamicIslandDemo";
 import { SignInDynamicIsland } from "./components/SignInDynamicIsland";
 import { NavigationIsland } from "./components/NavigationIsland";
 import { ThemeSwitchIsland } from "./components/ThemeSwitchIsland";
-import { Preloader } from "./components/Preloader";
 import { motion, AnimatePresence } from "motion/react";
 import Header from "./components/Header";
 import ScrollToTop from "./components/ScrollToTop";
 import { smoothScrollTo } from "./utils/smoothScroll";
 import "./App.css";
+
+// Lazy load heavy visual components for better performance
+const Preloader = lazy(() => import("./components/Preloader").then(m => ({ default: m.Preloader })));
 
 // Lazy load non-critical pages
 const LoginPage = lazy(() => import("./pages/LoginPage"));
@@ -40,6 +42,7 @@ const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage"));
 const CookiePolicyPage = lazy(() => import("./pages/CookiePolicyPage"));
 
 const COOKIE_CONSENT_KEY = "leetfeedback_cookie_consent";
+const PRELOADER_SHOWN_KEY = "leetfeedback_preloader_shown";
 
 function AppContent() {
   const location = useLocation();
@@ -66,12 +69,21 @@ function AppContent() {
   const [showDock, setShowDock] = useState(false);
   const [showProgressiveBlur, setShowProgressiveBlur] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  // Only show preloader on root path
-  const [showPreloader, setShowPreloader] = useState(isHomePage);
+  
+  // Only show preloader on homepage if it hasn't been shown before or cookies not accepted
+  const [showPreloader, setShowPreloader] = useState(() => {
+    if (!isHomePage) return false;
+    const hasConsent = localStorage.getItem(COOKIE_CONSENT_KEY);
+    const preloaderShown = localStorage.getItem(PRELOADER_SHOWN_KEY);
+    // Show preloader only if cookies accepted AND preloader hasn't been shown yet
+    return hasConsent && !preloaderShown;
+  });
 
   // Handle preloader completion
   const handlePreloaderComplete = useCallback(() => {
     setShowPreloader(false);
+    // Mark preloader as shown so it doesn't appear again
+    localStorage.setItem(PRELOADER_SHOWN_KEY, "true");
   }, []);
 
   // Show loading animation on initial load, then show appropriate UI

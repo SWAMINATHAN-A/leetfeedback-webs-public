@@ -1,6 +1,17 @@
 import { useEffect, useRef } from "react";
 import { Renderer, Program, Mesh, Color, Triangle } from "ogl";
 
+/**
+ * Aurora - WebGL-based gradient animation component
+ * 
+ * PERFORMANCE WARNING:
+ * - Uses WebGL context which is resource-intensive, especially on Safari
+ * - Safari has strict limits on simultaneous WebGL contexts (typically 8-16)
+ * - This component now pauses rendering when off-screen using IntersectionObserver
+ * - Avoid using multiple WebGL components (Aurora + Silk) on the same page
+ * - Consider using this component sparingly, ideally only on homepage
+ */
+
 const VERT = `#version 300 es
 in vec2 position;
 void main() {
@@ -125,10 +136,20 @@ export default function Aurora(props: AuroraProps) {
   propsRef.current = props;
 
   const ctnDom = useRef<HTMLDivElement>(null);
+  const isVisibleRef = useRef(true);
 
   useEffect(() => {
     const ctn = ctnDom.current;
     if (!ctn) return;
+
+    // IntersectionObserver to pause animation when off-screen
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+      },
+      { threshold: 0 }
+    );
+    observer.observe(ctn);
 
     const renderer = new Renderer({
       alpha: true,
@@ -191,6 +212,12 @@ export default function Aurora(props: AuroraProps) {
     let animateId = 0;
     const update = (t: number) => {
       animateId = requestAnimationFrame(update);
+      
+      // Skip rendering if not visible
+      if (!isVisibleRef.current) {
+        return;
+      }
+
       const { time = t * 0.01, speed = 1.0 } = propsRef.current;
       if (program) {
         program.uniforms.uTime.value = time * speed * 0.1;
@@ -209,6 +236,7 @@ export default function Aurora(props: AuroraProps) {
     resize();
 
     return () => {
+      observer.disconnect();
       cancelAnimationFrame(animateId);
       if (resizeTimeout) {
         clearTimeout(resizeTimeout);

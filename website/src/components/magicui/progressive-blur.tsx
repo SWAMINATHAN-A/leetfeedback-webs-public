@@ -54,6 +54,17 @@ export const ProgressiveBlur = React.memo(function ProgressiveBlur({
         />
       ))}
 
+      {/* Safari fallback: solid gradient overlay when backdrop-filter not supported */}
+      <div
+        className="absolute inset-0 hidden supports-[not-(backdrop-filter:blur(1px))]:block"
+        style={{
+          background:
+            position === "top"
+              ? "linear-gradient(to top, transparent 0%, var(--background) 100%)"
+              : "linear-gradient(to bottom, transparent 0%, var(--background) 100%)",
+        }}
+      />
+
       {/* Opacity overlay: matches blur height and direction. Exists only in dark mode with a black mask. */}
       <div
         aria-hidden

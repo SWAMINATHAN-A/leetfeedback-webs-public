@@ -1,21 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { ResponsiveBar } from "@nivo/bar";
-import { ResponsivePie } from "@nivo/pie";
-import { ResponsiveLine } from "@nivo/line";
-import { ResponsiveRadar } from "@nivo/radar";
-import { ResponsiveBump } from "@nivo/bump";
-import { ResponsiveCalendar } from "@nivo/calendar";
-import { ResponsiveHeatMap } from "@nivo/heatmap";
-import { ResponsiveSunburst } from "@nivo/sunburst";
-import { ResponsiveTreeMap } from "@nivo/treemap";
-import { ResponsiveFunnel } from "@nivo/funnel";
-import { ResponsiveSankey } from "@nivo/sankey";
-import { ResponsiveRadialBar } from "@nivo/radial-bar";
-import { ResponsiveWaffle } from "@nivo/waffle";
-import { ResponsiveScatterPlot } from "@nivo/scatterplot";
-import { ResponsiveChord } from "@nivo/chord";
-import { ResponsiveNetwork } from "@nivo/network";
-import { ResponsiveParallelCoordinates } from "@nivo/parallel-coordinates";
+import React, { useState, useEffect, lazy, Suspense } from "react";
+// Lazy load Nivo chart components to reduce initial bundle size
+const ResponsiveBar = lazy(() => import("@nivo/bar").then(m => ({ default: m.ResponsiveBar })));
+const ResponsivePie = lazy(() => import("@nivo/pie").then(m => ({ default: m.ResponsivePie })));
+const ResponsiveLine = lazy(() => import("@nivo/line").then(m => ({ default: m.ResponsiveLine })));
+const ResponsiveRadar = lazy(() => import("@nivo/radar").then(m => ({ default: m.ResponsiveRadar })));
+const ResponsiveBump = lazy(() => import("@nivo/bump").then(m => ({ default: m.ResponsiveBump })));
+const ResponsiveCalendar = lazy(() => import("@nivo/calendar").then(m => ({ default: m.ResponsiveCalendar })));
+const ResponsiveHeatMap = lazy(() => import("@nivo/heatmap").then(m => ({ default: m.ResponsiveHeatMap })));
+const ResponsiveSunburst = lazy(() => import("@nivo/sunburst").then(m => ({ default: m.ResponsiveSunburst })));
+const ResponsiveTreeMap = lazy(() => import("@nivo/treemap").then(m => ({ default: m.ResponsiveTreeMap })));
+const ResponsiveFunnel = lazy(() => import("@nivo/funnel").then(m => ({ default: m.ResponsiveFunnel })));
+const ResponsiveSankey = lazy(() => import("@nivo/sankey").then(m => ({ default: m.ResponsiveSankey })));
+const ResponsiveRadialBar = lazy(() => import("@nivo/radial-bar").then(m => ({ default: m.ResponsiveRadialBar })));
+const ResponsiveWaffle = lazy(() => import("@nivo/waffle").then(m => ({ default: m.ResponsiveWaffle })));
+const ResponsiveScatterPlot = lazy(() => import("@nivo/scatterplot").then(m => ({ default: m.ResponsiveScatterPlot })));
+const ResponsiveChord = lazy(() => import("@nivo/chord").then(m => ({ default: m.ResponsiveChord })));
+const ResponsiveNetwork = lazy(() => import("@nivo/network").then(m => ({ default: m.ResponsiveNetwork })));
+const ResponsiveParallelCoordinates = lazy(() => import("@nivo/parallel-coordinates").then(m => ({ default: m.ResponsiveParallelCoordinates })));
+
 import { NumberTicker } from "../components/magicui/number-ticker";
 import { AuroraText } from "../components/ui/aurora-text";
 import { SparklesText } from "../components/ui/sparkles-text";
@@ -47,6 +49,20 @@ import {
   parallelData,
 } from "../data/sampleStatsData";
 import { useTheme } from "../contexts/ThemeContext";
+
+// Chart loading fallback component
+const ChartLoader = () => (
+  <div className="w-full h-full flex items-center justify-center">
+    <div className="text-muted-foreground">Loading chart...</div>
+  </div>
+);
+
+// Wrapper to automatically add Suspense to any chart component
+const ChartWithSuspense: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+  <Suspense fallback={<ChartLoader />}>
+    {children}
+  </Suspense>
+);
 
 interface ModalData {
   isOpen: boolean;
@@ -339,26 +355,26 @@ const StatsPage: React.FC = () => {
     switch (chartType) {
       case "bar":
         return (
-          <ResponsiveBar
-            data={data}
-            keys={keys || ["value"]}
-            indexBy={indexBy || "platform"}
-            margin={{ top: 50, right: 130, bottom: 100, left: 80 }}
-            padding={0.3}
-            colors={getPastelColors()}
-            theme={commonTheme}
-            axisBottom={{
-              tickSize: 5,
-              tickPadding: 5,
-              tickRotation: -45,
-            }}
-            axisLeft={{
-              tickSize: 5,
-              tickPadding: 5,
-              tickRotation: 0,
-            }}
-            labelSkipWidth={12}
-            labelSkipHeight={12}
+            <ResponsiveBar
+              data={data}
+              keys={keys || ["value"]}
+              indexBy={indexBy || "platform"}
+              margin={{ top: 50, right: 130, bottom: 100, left: 80 }}
+              padding={0.3}
+              colors={getPastelColors()}
+              theme={commonTheme}
+              axisBottom={{
+                tickSize: 5,
+                tickPadding: 5,
+                tickRotation: -45,
+              }}
+              axisLeft={{
+                tickSize: 5,
+                tickPadding: 5,
+                tickRotation: 0,
+              }}
+              labelSkipWidth={12}
+              labelSkipHeight={12}
             labelTextColor="hsl(var(--background))"
             legends={
               keys && keys.length > 1
@@ -987,9 +1003,9 @@ const StatsPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Charts Grid - Inconsistent Layout */}
-        <div className="grid grid-cols-12 gap-6 mb-8">
-          {/* Large Bump Chart - spans 8 columns */}
+        {/* Charts Grid - Inconsistent Layout - Wrapped in Suspense for lazy-loaded Nivo charts */}
+        <Suspense fallback={<div className="text-center py-12"><ChartLoader /></div>}>
+        <div className="grid grid-cols-12 gap-6 mb-8">{/* Large Bump Chart - spans 8 columns */}
           <div className="col-span-12 lg:col-span-8 bg-card border border-border rounded-3xl p-6 relative group cursor-pointer transition-all duration-200 hover:scale-[1.02] hover:shadow-lg active:scale-[0.98]">
             <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
               <Maximize2 className="w-5 h-5 text-muted-foreground" />
@@ -1665,6 +1681,7 @@ const StatsPage: React.FC = () => {
 
           {/* Full-width Parallel Coordinates - spans 12 columns */}
         </div>
+        </Suspense>
       </div>
 
       {/* Modal with iOS-style bouncy animation */}
@@ -1712,7 +1729,11 @@ const StatsPage: React.FC = () => {
             </div>
 
             {/* Chart Content */}
-            <div className="p-6 h-[calc(100%-120px)]">{renderModalChart()}</div>
+            <div className="p-6 h-[calc(100%-120px)]">
+              <Suspense fallback={<ChartLoader />}>
+                {renderModalChart()}
+              </Suspense>
+            </div>
           </div>
         </div>
       )}
