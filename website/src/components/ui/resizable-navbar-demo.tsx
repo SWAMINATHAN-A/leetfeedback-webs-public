@@ -37,14 +37,9 @@ export function ResizableNavbarDemo() {
         <NavBody>
           <div className="flex items-center space-x-3">
             <img
-              src="/navbar.svg"
+              src="/logo.svg"
               alt="Traverse Logo"
-              className="h-8 w-auto dark:hidden"
-            />
-            <img
-              src="/navbar-dark.svg"
-              alt="Traverse Logo"
-              className="h-8 w-auto hidden dark:block"
+              className="h-8 w-auto dark:invert"
             />
             <span className="text-2xl font-semibold" style={{ fontFamily: "'Belisa Plumilla Manual', cursive" }}>Traverse</span>
           </div>
@@ -100,14 +95,9 @@ export function ResizableNavbarDemo() {
           <MobileNavHeader>
             <div className="flex items-center space-x-3">
               <img
-                src="/navbar.svg"
+                src="/logo.svg"
                 alt="Traverse Logo"
-                className="h-8 w-auto dark:hidden"
-              />
-              <img
-                src="/navbar-dark.svg"
-                alt="Traverse Logo"
-                className="h-8 w-auto hidden dark:block"
+                className="h-8 w-auto dark:invert"
               />
               <span className="text-2xl font-semibold" style={{ fontFamily: "'Belisa Plumilla Manual', cursive" }}>Traverse</span>
             </div>
