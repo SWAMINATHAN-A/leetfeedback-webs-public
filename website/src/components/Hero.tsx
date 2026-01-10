@@ -246,6 +246,11 @@ const Hero: React.FC = React.memo(() => {
                   />
                 </AnimatedGroup>
 
+                {/* Platform Showcase with Infinite Slider */}
+                <div className="mt-16 -mx-4 md:-mx-8">
+                  <LogoCloud />
+                </div>
+
                 {/* Trust Indicators */}
                 <AnimatedGroup
                   variants={{
@@ -422,11 +427,6 @@ const Hero: React.FC = React.memo(() => {
             </motion.div>
           </motion.div>
         )}
-
-        {/* Platform Showcase with Infinite Slider */}
-        <div className="mt-24 -mx-4 md:-mx-8">
-          <LogoCloud />
-        </div>
       </div>
 
       {/* Bottom separator */}

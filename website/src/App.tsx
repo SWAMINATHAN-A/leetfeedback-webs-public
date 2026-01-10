@@ -14,7 +14,6 @@ import {
   NavigationProvider,
   useNavigation,
 } from "./contexts/NavigationContext";
-import { LenisProvider } from "./contexts/LenisContext";
 import HomePage from "./pages/HomePage";
 import { ProgressiveBlur } from "./components/magicui/progressive-blur";
 import { ScrollbarNav } from "./components/ScrollbarNav";
@@ -69,7 +68,7 @@ function AppContent() {
   const [showDock, setShowDock] = useState(false);
   const [showProgressiveBlur, setShowProgressiveBlur] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  
+
   // Only show preloader on homepage if it hasn't been shown before or cookies not accepted
   const [showPreloader, setShowPreloader] = useState(() => {
     if (!isHomePage) return false;
@@ -303,13 +302,11 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <NavigationProvider>
-          <LenisProvider>
-            <Router>
-              <AppContent />
-              <Analytics />
-              <SpeedInsights />
-            </Router>
-          </LenisProvider>
+          <Router>
+            <AppContent />
+            <Analytics />
+            <SpeedInsights />
+          </Router>
         </NavigationProvider>
       </AuthProvider>
     </ThemeProvider>
