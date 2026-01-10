@@ -213,6 +213,31 @@ const Features: React.FC = React.memo(() => {
         <ContainerScroll
           titleComponent={
             <div className="text-center">
+              {/* Handwritten annotation - Your code, but smarter! */}
+              <div className="relative mb-2 ml-8 md:ml-32 text-left hidden md:block" aria-hidden>
+                <span
+                  className="text-white/70 text-sm whitespace-nowrap block"
+                  style={{ fontFamily: "'Dancing Script', cursive" }}
+                >
+                  Your code, but smarter!
+                </span>
+                <svg width="50" height="35" viewBox="0 0 50 35" fill="none" className="ml-12 mt-1">
+                  <path
+                    d="M5 5 Q 15 20, 25 28"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    fill="none"
+                    className="text-white/50"
+                  />
+                  <path
+                    d="M20 24 L 25 32 L 28 23"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    fill="none"
+                    className="text-white/50"
+                  />
+                </svg>
+              </div>
               <div className="relative inline-block">
                 {/* Radial Marquee Circle Decoration */}
                 <img
@@ -291,6 +316,31 @@ const Features: React.FC = React.memo(() => {
                 />
               </div>
             </BlurFade>
+            {/* Handwritten annotation - Fits in your pocket! */}
+            <div className="relative mb-2 ml-8 md:ml-32 text-left hidden md:block" aria-hidden>
+              <span
+                className="text-amber-500/80 text-sm whitespace-nowrap block"
+                style={{ fontFamily: "'Dancing Script', cursive" }}
+              >
+                Fits in your pocket!
+              </span>
+              <svg width="50" height="35" viewBox="0 0 50 35" fill="none" className="ml-8 mt-1">
+                <path
+                  d="M5 5 Q 15 20, 25 28"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  fill="none"
+                  className="text-amber-500/60"
+                />
+                <path
+                  d="M20 24 L 25 32 L 28 23"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  fill="none"
+                  className="text-amber-500/60"
+                />
+              </svg>
+            </div>
             <div className="relative inline-block">
               {/* Radial Marquee Circle Decoration - Hidden on mobile */}
               <img

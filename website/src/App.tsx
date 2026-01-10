@@ -39,6 +39,7 @@ const StatsPage = lazy(() => import("./pages/StatsPage"));
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage"));
 const CookiePolicyPage = lazy(() => import("./pages/CookiePolicyPage"));
+const DownloadsPage = lazy(() => import("./pages/DownloadsPage"));
 
 const COOKIE_CONSENT_KEY = "leetfeedback_cookie_consent";
 const PRELOADER_SHOWN_KEY = "leetfeedback_preloader_shown";
@@ -59,6 +60,7 @@ function AppContent() {
   const isHomePage = location.pathname === "/";
   const isStatsPage = location.pathname === "/profile/stats";
   const isRoadmapPage = location.pathname === "/roadmap";
+  const isDownloadsPage = location.pathname === "/downloads";
   const isPolicyPage =
     location.pathname === "/privacy" ||
     location.pathname === "/terms" ||
@@ -89,7 +91,7 @@ function AppContent() {
   useEffect(() => {
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
     const shouldShowPages =
-      isHomePage || isStatsPage || isRoadmapPage || isPolicyPage;
+      isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isPolicyPage;
 
     if (shouldShowPages && isInitialLoad) {
       // Always show loading animation on first load
@@ -115,7 +117,7 @@ function AppContent() {
 
       return () => clearTimeout(timer);
     }
-  }, [isHomePage, isStatsPage, isRoadmapPage, isPolicyPage, isInitialLoad]);
+  }, [isHomePage, isStatsPage, isRoadmapPage, isDownloadsPage, isPolicyPage, isInitialLoad]);
 
   const handleDynamicIslandComplete = useCallback(() => {
     setShowDynamicIsland(false);
@@ -183,6 +185,7 @@ function AppContent() {
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/terms" element={<TermsOfServicePage />} />
             <Route path="/cookies" element={<CookiePolicyPage />} />
+            <Route path="/downloads" element={<DownloadsPage />} />
           </Routes>
         </Suspense>
         {isHomePage && <ScrollbarNav />}

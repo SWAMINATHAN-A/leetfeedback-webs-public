@@ -379,6 +379,31 @@ const HowItWorks: React.FC = React.memo(() => {
               />
             </div>
           </BlurFade>
+          {/* Handwritten annotation - Magic happens here! */}
+          <div className="relative mb-2 ml-8 md:ml-32 text-left hidden md:block" aria-hidden>
+            <span
+              className="text-cyan-400/80 text-sm whitespace-nowrap block"
+              style={{ fontFamily: "'Dancing Script', cursive" }}
+            >
+              Magic happens here!
+            </span>
+            <svg width="50" height="35" viewBox="0 0 50 35" fill="none" className="ml-8 mt-1">
+              <path
+                d="M5 5 Q 15 20, 25 28"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                fill="none"
+                className="text-cyan-400/60"
+              />
+              <path
+                d="M20 24 L 25 32 L 28 23"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                fill="none"
+                className="text-cyan-400/60"
+              />
+            </svg>
+          </div>
           <div className="relative inline-block">
             {/* Reel Circle Decoration - Smaller/Inner - Hidden on mobile */}
             <img

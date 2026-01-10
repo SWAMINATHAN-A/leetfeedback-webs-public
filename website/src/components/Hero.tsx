@@ -220,17 +220,14 @@ const Hero: React.FC = React.memo(() => {
                   className="mt-12 flex flex-col items-start gap-4 md:flex-row"
                 >
                   <AnimatedClipButton
-                    text="Add to Chrome - Free"
+                    text="Download"
                     icon={<CheckCircleIcon className="w-5 h-5" />}
                     iconPosition="left"
                     variant="default"
                     size="lg"
                     onClick={() => {
                       analytics.trackDownloadClick("hero_primary_cta");
-                      window.open(
-                        "https://github.com/lqSky7/leetFeedback-extension",
-                        "_blank",
-                      );
+                      window.location.href = "/downloads";
                     }}
                   />
                   <AnimatedClipButton
@@ -245,11 +242,6 @@ const Hero: React.FC = React.memo(() => {
                     }}
                   />
                 </AnimatedGroup>
-
-                {/* Platform Showcase with Infinite Slider */}
-                <div className="mt-16 -mx-4 md:-mx-8">
-                  <LogoCloud />
-                </div>
 
                 {/* Trust Indicators */}
                 <AnimatedGroup
@@ -354,6 +346,11 @@ const Hero: React.FC = React.memo(() => {
               </div>
             </BlurFade>
           </div>
+        </div>
+
+        {/* Platform Showcase with Infinite Slider */}
+        <div className="mt-24 -mx-4 md:-mx-8">
+          <LogoCloud />
         </div>
 
         {/* Rating Slider Modal */}

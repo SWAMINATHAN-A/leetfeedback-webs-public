@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { Skiper58 } from "./ui/skiper-ui/skiper58";
 import { ChromaText } from "./ui/textRenderAppear";
 
-// Wrapper component that triggers ChromaText animation when visible (replays on re-scroll)
+// Wrapper component that triggers ChromaText animation when visible (animates once, stays visible)
 const VisibleChromaText: React.FC<{
   children: React.ReactNode;
   id: string;
@@ -11,17 +11,13 @@ const VisibleChromaText: React.FC<{
   duration?: number;
 }> = ({ children, id, className, delay = 0.1, duration = 0.9 }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const [key, setKey] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setKey((prev) => prev + 1);
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
         }
       },
       { threshold: 0.1 },
@@ -32,13 +28,12 @@ const VisibleChromaText: React.FC<{
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [hasAnimated]);
 
   return (
     <span ref={ref}>
-      {isVisible ? (
+      {hasAnimated ? (
         <ChromaText
-          key={key}
           id={id}
           className={className}
           delay={delay}
@@ -47,7 +42,7 @@ const VisibleChromaText: React.FC<{
           {children}
         </ChromaText>
       ) : (
-        <span className={className}>{children}</span>
+        <span className={className} style={{ opacity: 0 }}>{children}</span>
       )}
     </span>
   );
@@ -69,18 +64,38 @@ const Footer: React.FC = () => {
               <Skiper58 />
             </div>
 
-            {/* Copyright - right aligned on desktop, wraps as paragraph */}
-            <div className="w-full md:w-auto md:flex md:items-center md:justify-end relative">
-              <div className="text-muted-foreground text-sm leading-relaxed text-right max-w-[400px]">
-                <p>
-                  ©2025 LeetFeedback. All rights recieved. This project is
-                  something I have worked on for over a year at this point, it's
-                  still nowhere near completion. It started as a simple push to
-                  github chrome extension and now we are training neural
-                  networks for revision scheduler, never would i have thought
-                  this project would become so big.
-                </p>
+            {/* Stylized Typography Section */}
+            <div className="w-full md:w-auto flex flex-col items-end gap-2 pr-4 md:pr-8">
+              {/* Main Logo Area */}
+              <div className="flex items-center gap-3">
+                {/* Large TR letters */}
+                <span className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground">TR</span>
+                {/* Checkerboard Pattern */}
+                <div className="grid grid-cols-4 gap-0.5 w-8 h-8 md:w-10 md:h-10">
+                  {[1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1].map((filled, i) => (
+                    <div key={i} className={`w-full h-full ${filled ? 'bg-foreground' : 'bg-transparent'}`} />
+                  ))}
+                </div>
+                {/* Built to text */}
+                <div className="text-xs md:text-sm font-mono text-muted-foreground leading-tight text-right">
+                  <div>BUILT TO</div>
+                  <div className="text-foreground">&lt;/&gt; FLEX</div>
+                </div>
               </div>
+              {/* Tagline */}
+              <div className="text-xs md:text-sm font-mono tracking-widest text-muted-foreground">
+                THE COMPLETE DSA ECOSYSTEM
+              </div>
+              {/* Year and asterisk */}
+              <div className="flex items-center gap-2 text-xs md:text-sm font-mono text-muted-foreground">
+                <span>TO LEVEL UP</span>
+                <span className="text-lg">✳</span>
+                <span>24</span>
+                <span className="w-8 h-px bg-muted-foreground"></span>
+                <span>26</span>
+
+              </div>
+              <span>©2026 No rights reserved</span>
             </div>
           </div>
         </div>

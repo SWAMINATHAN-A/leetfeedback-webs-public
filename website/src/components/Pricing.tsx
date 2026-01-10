@@ -223,7 +223,7 @@ const Pricing: React.FC = React.memo(() => {
   const { isDark } = useTheme();
 
   const freeFeatures = [
-    { text: "LeetCode & GeeksforGeeks integration", icon: Code2 },
+    { text: "All platforms supported on based on early user requests", icon: Code2 },
     { text: "Unlimited Daily Problem Solves", icon: Infinity },
     { text: "iOS and Android Application Support", icon: Smartphone },
     { text: "Priority Support untill userbase is small", icon: Headphones },
@@ -272,6 +272,31 @@ const Pricing: React.FC = React.memo(() => {
             </div>
           </BlurFade>
           <div className="relative inline-block">
+            {/* Handwritten annotation - Everything is almost free! */}
+            <div className="absolute -top-16 left-1/2 -translate-x-1/2 z-20 hidden md:block" aria-hidden>
+              <svg width="140" height="50" viewBox="0 0 140 50" fill="none">
+                <path
+                  d="M20 45 Q 50 50, 80 30 Q 110 10, 130 20"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  fill="none"
+                  className="text-amber-500/70"
+                />
+                <path
+                  d="M125 15 L 135 22 L 128 12"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  fill="none"
+                  className="text-amber-500/70"
+                />
+              </svg>
+              <span
+                className="absolute -top-1 left-1/2 -translate-x-1/2 text-amber-500/90 text-sm whitespace-nowrap"
+                style={{ fontFamily: "'Dancing Script', cursive" }}
+              >
+                Everything is almost free!
+              </span>
+            </div>
             {/* Reel Circle Decoration - Smaller/Inner - Hidden on mobile */}
             <img
               src={reelCircleDeco}
@@ -351,7 +376,7 @@ const Pricing: React.FC = React.memo(() => {
                     className="text-5xl font-bold text-foreground"
                     style={{ fontFamily: "'Stinger', sans-serif" }}
                   >
-                    $0
+                    ₹0
                   </span>
                 </div>
 
@@ -425,9 +450,10 @@ const Pricing: React.FC = React.memo(() => {
                       delay={0.3}
                       duration={1.0}
                     >
-                      $100
+                      ₹49
                     </VisibleChromaText>
                   </span>
+                  <span className="text-lg text-white/70 ml-1">/mo</span>
                 </div>
 
                 {/* Features List */}
@@ -470,15 +496,42 @@ const Pricing: React.FC = React.memo(() => {
         {/* FAQ Section */}
         <div className="bg-zinc-900 border border-gray-800 rounded-3xl p-8 md:p-12 mb-16 container-medium mx-auto relative">
           <div className="text-center mb-12">
-            <TextAnimate
-              as="h2"
-              className="text-3xl md:text-5xl text-white mb-4 relative z-10"
-              animation="blurInUp"
-              delay={0.25}
-              by="word"
-            >
-              Frequently Asked Questions
-            </TextAnimate>
+            {/* Handwritten annotation - We even answered without chatgpt! */}
+            <div className="relative mb-2 ml-8 md:ml-16 text-left hidden md:block" aria-hidden>
+              <span
+                className="text-emerald-400/80 text-sm whitespace-nowrap block"
+                style={{ fontFamily: "'Dancing Script', cursive" }}
+              >
+                We even answered without chatgpt!
+              </span>
+              <svg width="50" height="35" viewBox="0 0 50 35" fill="none" className="ml-16 mt-1">
+                <path
+                  d="M5 5 Q 15 20, 25 28"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  fill="none"
+                  className="text-emerald-400/60"
+                />
+                <path
+                  d="M20 24 L 25 32 L 28 23"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  fill="none"
+                  className="text-emerald-400/60"
+                />
+              </svg>
+            </div>
+            <div className="relative inline-block">
+              <TextAnimate
+                as="h2"
+                className="text-3xl md:text-5xl text-white mb-4 relative z-10"
+                animation="blurInUp"
+                delay={0.25}
+                by="word"
+              >
+                Frequently Asked Questions
+              </TextAnimate>
+            </div>
             <p
               className="text-gray-300 font-light"
               style={{ fontFamily: "'HarmonyOS Sans', system-ui, sans-serif" }}
