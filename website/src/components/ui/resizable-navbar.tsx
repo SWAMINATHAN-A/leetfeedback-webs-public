@@ -73,9 +73,9 @@ export const Navbar = ({ children, className }: NavbarProps) => {
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
           ? React.cloneElement(
-              child as React.ReactElement<{ visible?: boolean }>,
-              { visible }
-            )
+            child as React.ReactElement<{ visible?: boolean }>,
+            { visible }
+          )
           : child
       )}
     </motion.div>
@@ -121,7 +121,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         "relative z-[60] mx-auto hidden w-full max-w-7xl flex-row items-center justify-between self-start lg:flex",
         visible
           ? "liquidGlass-wrapper liquidGlass-nav"
-          : "bg-transparent dark:bg-transparent",
+          : "bg-gradient-to-t from-white/60 via-gray-50/40 to-transparent dark:from-transparent dark:via-transparent dark:to-transparent rounded-b-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] dark:shadow-none",
         "max-lg:!hidden", // Force hide desktop navbar on mobile
         className
       )}
@@ -159,75 +159,31 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
 };
 
 export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
-  const [hovered, setHovered] = useState<number | null>(null);
-
   return (
-    <>
-      <div className="liquidGlass-spacerLeft" />
-      <motion.div
-        onMouseLeave={() => setHovered(null)}
-        className={cn(
-          "flex flex-row items-center justify-center space-x-2 text-sm font-medium transition duration-200 lg:flex lg:space-x-2",
-          className
-        )}
-      >
-        {items.map((item, idx) => (
-          <motion.a
-            onMouseEnter={() => setHovered(idx)}
-            onClick={onItemClick}
-            className="liquidGlass-navItem relative text-inherit"
-            key={`link-${idx}`}
-            href={item.link}
-            initial={{ scale: 1, y: 0 }}
-            animate={{
-              scale: 1,
-              y: 0,
-            }}
-            whileHover={{
-              scale: 1.05,
-              y: -2,
-              transition: {
-                type: "spring",
-                stiffness: 400,
-                damping: 17,
-              },
-            }}
-          >
-            {hovered === idx && (
-              <motion.div
-                layoutId="hovered"
-                className="absolute inset-0 h-full w-full rounded-3xl bg-white/20 dark:bg-white/10"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 500,
-                  damping: 25,
-                }}
-              />
-            )}
-            <motion.span
-              className="relative z-20"
-              animate={{
-                y: 0,
-              }}
-              transition={{
-                delay: idx * 0.05,
-                type: "spring",
-                stiffness: 200,
-                damping: 15,
-              }}
-            >
-              {item.name}
-            </motion.span>
-          </motion.a>
-        ))}
-      </motion.div>
-      <div className="liquidGlass-spacerRight" />
-    </>
+    <div
+      className={cn(
+        "flex-1 flex flex-row items-center justify-center space-x-6 text-sm font-medium lg:flex",
+        className
+      )}
+    >
+      {items.map((item, idx) => (
+        <a
+          onClick={onItemClick}
+          className="relative text-inherit px-2 py-1"
+          key={`link-${idx}`}
+          href={item.link}
+          target={item.link.startsWith('http') ? '_blank' : undefined}
+          rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+        >
+          <span className="relative z-20">
+            {item.name}
+          </span>
+        </a>
+      ))}
+    </div>
   );
 };
+
 
 export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
   return (
@@ -263,7 +219,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center px-0 py-2 lg:hidden",
         visible
           ? "liquidGlass-wrapper liquidGlass-nav"
-          : "bg-transparent dark:bg-transparent",
+          : "bg-gradient-to-t from-white/60 via-gray-50/40 to-transparent dark:from-transparent dark:via-transparent dark:to-transparent rounded-b-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] dark:shadow-none",
         "lg:!hidden", // Ensure mobile navbar never shows on desktop
         className
       )}
@@ -355,10 +311,19 @@ export const MobileNavToggle = ({
   isOpen: boolean;
   onClick: () => void;
 }) => {
-  return isOpen ? (
-    <CloseIcon className="text-black dark:text-white" onClick={onClick} />
-  ) : (
-    <MenuIcon className="text-black dark:text-white" onClick={onClick} />
+  return (
+    <button
+      onClick={onClick}
+      aria-label={isOpen ? "Close menu" : "Open menu"}
+      className="p-2 -mr-2 touch-manipulation"
+      style={{ touchAction: 'manipulation' }}
+    >
+      {isOpen ? (
+        <CloseIcon className="text-black dark:text-white" />
+      ) : (
+        <MenuIcon className="text-black dark:text-white" />
+      )}
+    </button>
   );
 };
 
