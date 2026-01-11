@@ -29,6 +29,7 @@ interface NavItemsProps {
   }[];
   className?: string;
   onItemClick?: () => void;
+  visible?: boolean;
 }
 
 interface MobileNavProps {
@@ -67,8 +68,8 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   return (
     <motion.div
       ref={ref}
-      // IMPORTANT: Change this to class of `fixed` if you want the navbar to be fixed
-      className={cn("sticky inset-x-0 top-0 z-40 w-full", className)}
+      // IMPORTANT: Using fixed positioning for proper mobile menu behavior
+      className={cn("fixed inset-x-0 top-0 z-40 w-full", className)}
     >
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
@@ -152,32 +153,43 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
           !visible && "px-6 py-2"
         )}
       >
-        {children}
+        {React.Children.map(children, (child) =>
+          React.isValidElement(child)
+            ? React.cloneElement(
+              child as React.ReactElement<{ visible?: boolean }>,
+              { visible }
+            )
+            : child
+        )}
       </motion.div>
     </motion.div>
   );
 };
 
-export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
+export const NavItems = ({ items, className, onItemClick, visible }: NavItemsProps) => {
   return (
     <div
       className={cn(
-        "flex-1 flex flex-row items-center justify-center space-x-6 text-sm font-medium lg:flex",
+        "flex-1 flex flex-row items-center justify-center lg:flex transition-all duration-300 ease-out",
+        visible ? "gap-4" : "gap-6",
         className
       )}
     >
       {items.map((item, idx) => (
         <a
-          onClick={onItemClick}
-          className="relative text-inherit px-2 py-1"
           key={`link-${idx}`}
+          onClick={onItemClick}
           href={item.link}
           target={item.link.startsWith('http') ? '_blank' : undefined}
           rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+          className="relative px-2 py-1 whitespace-nowrap transition-all duration-300 ease-out"
+          style={{
+            fontSize: visible ? "0.7rem" : "0.875rem",
+            fontWeight: visible ? 400 : 500,
+            opacity: visible ? 0.7 : 1,
+          }}
         >
-          <span className="relative z-20">
-            {item.name}
-          </span>
+          {item.name}
         </a>
       ))}
     </div>
@@ -311,9 +323,16 @@ export const MobileNavToggle = ({
   isOpen: boolean;
   onClick: () => void;
 }) => {
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onClick();
+  };
+
   return (
     <button
-      onClick={onClick}
+      type="button"
+      onClick={handleClick}
       aria-label={isOpen ? "Close menu" : "Open menu"}
       className="p-2 -mr-2 touch-manipulation"
       style={{ touchAction: 'manipulation' }}

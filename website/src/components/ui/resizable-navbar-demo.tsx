@@ -17,6 +17,49 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useNavigation } from "../../contexts/NavigationContext";
 import SimpleUserMenu from "./SimpleUserMenu";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { ChromaText } from "./textRenderAppear";
+
+// Animated Logo Component - text at top, icon when scrolled
+const TraverseLogo = ({ visible }: { visible?: boolean }) => {
+  // Default to showing text (visible=false means at top)
+  const showIcon = visible === true;
+
+  return (
+    <div className="relative pl-4 h-8 flex items-center min-w-[120px]">
+      {/* Text - visible when not scrolled */}
+      <div
+        className="absolute inset-0 flex items-center transition-all duration-300 ease-out"
+        style={{
+          opacity: showIcon ? 0 : 1,
+          transform: showIcon ? "scale(0.8)" : "scale(1)",
+          pointerEvents: showIcon ? "none" : "auto",
+        }}
+      >
+        <ChromaText
+          id="traverse-logo"
+          className="text-2xl"
+        >
+          <span style={{ fontFamily: "'Fascinate', cursive" }}>Traverse</span>
+        </ChromaText>
+      </div>
+      {/* Icon - visible when scrolled */}
+      <div
+        className="absolute inset-0 flex items-center transition-all duration-300 ease-out"
+        style={{
+          opacity: showIcon ? 1 : 0,
+          transform: showIcon ? "scale(1)" : "scale(0.8)",
+          pointerEvents: showIcon ? "auto" : "none",
+        }}
+      >
+        <img
+          src="/logo.svg"
+          alt="Traverse"
+          className="h-7 w-auto dark:invert"
+        />
+      </div>
+    </div>
+  );
+};
 
 export function ResizableNavbarDemo() {
   const navItems = [
@@ -36,17 +79,14 @@ export function ResizableNavbarDemo() {
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     if (isMobileMenuOpen) {
-      // Simple overflow lock - don't use position:fixed as it breaks sticky navbar
+      // Simple overflow lock - position:fixed breaks sticky navbar
       document.body.style.overflow = 'hidden';
-      document.body.style.height = '100vh';
     } else {
       document.body.style.overflow = '';
-      document.body.style.height = '';
     }
 
     return () => {
       document.body.style.overflow = '';
-      document.body.style.height = '';
     };
   }, [isMobileMenuOpen]);
 
@@ -55,14 +95,7 @@ export function ResizableNavbarDemo() {
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody>
-          <div className="flex items-center space-x-3">
-            <img
-              src="/logo.svg"
-              alt="Traverse Logo"
-              className="h-8 w-auto dark:invert"
-            />
-            <span className="text-2xl font-semibold">Traverse</span>
-          </div>
+          <TraverseLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-3">
             {isAuthenticated ? (
@@ -83,14 +116,7 @@ export function ResizableNavbarDemo() {
         {/* Mobile Navigation */}
         <MobileNav>
           <MobileNavHeader>
-            <div className="flex items-center space-x-3">
-              <img
-                src="/logo.svg"
-                alt="Traverse Logo"
-                className="h-8 w-auto dark:invert"
-              />
-              <span className="text-2xl font-semibold">Traverse</span>
-            </div>
+            <TraverseLogo />
             <MobileNavToggle
               isOpen={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

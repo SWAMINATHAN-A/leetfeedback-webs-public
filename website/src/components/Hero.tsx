@@ -130,7 +130,7 @@ const Hero: React.FC = React.memo(() => {
   );
 
   return (
-    <section id="home" className="relative overflow-hidden -mt-20 pt-28 pb-32">
+    <section id="home" className="relative overflow-hidden pt-20 pb-32">
       {/* Gradient backgrounds */}
       <div
         aria-hidden

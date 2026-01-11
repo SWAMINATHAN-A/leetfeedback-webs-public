@@ -65,11 +65,11 @@ const Footer: React.FC = () => {
             </div>
 
             {/* Stylized Typography Section */}
-            <div className="w-full md:w-auto flex flex-col items-end gap-2 pr-4 md:pr-8">
+            <div className="w-full md:w-auto flex flex-col items-end gap-0.1 pr-4 md:pr-8">
               {/* Main Logo Area */}
               <div className="flex items-center gap-3">
                 {/* Large TR letters */}
-                <span className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground">TR</span>
+                <span className="text-4xl md:text-5xl font-bold tracking-tighter text-foreground" style={{ fontFamily: "'Fascinate', cursive" }}>TR</span>
                 {/* Checkerboard Pattern */}
                 <div className="grid grid-cols-4 gap-0.5 w-8 h-8 md:w-10 md:h-10">
                   {[1, 0, 1, 0, 0, 1, 0, 1, 1, 0, 1, 0, 0, 1, 0, 1].map((filled, i) => (
@@ -77,17 +77,17 @@ const Footer: React.FC = () => {
                   ))}
                 </div>
                 {/* Built to text */}
-                <div className="text-xs md:text-sm font-mono text-muted-foreground leading-tight text-right">
+                <div className="text-xs md:text-sm font-mono text-muted-foreground leading-[0.9] text-right" style={{ fontFamily: "'Fascinate', cursive" }}>
                   <div>BUILT TO</div>
                   <div className="text-foreground">&lt;/&gt; FLEX</div>
                 </div>
               </div>
               {/* Tagline */}
-              <div className="text-xs md:text-sm font-mono tracking-widest text-muted-foreground">
+              <div className="text-xs md:text-sm font-mono tracking-widest text-muted-foreground" style={{ fontFamily: "'Fascinate', cursive" }}>
                 THE COMPLETE DSA ECOSYSTEM
               </div>
               {/* Year and asterisk */}
-              <div className="flex items-center gap-2 text-xs md:text-sm font-mono text-muted-foreground">
+              <div className="flex items-center gap-1 text-xs md:text-sm font-mono text-muted-foreground" style={{ fontFamily: "'Fascinate', cursive" }}>
                 <span>TO LEVEL UP</span>
                 <span className="text-lg">✳</span>
                 <span>24</span>
@@ -95,7 +95,7 @@ const Footer: React.FC = () => {
                 <span>26</span>
 
               </div>
-              <span>©2026 No rights reserved</span>
+              <span style={{ fontFamily: "'Fascinate', cursive" }}>©2026 No rights reserved</span>
             </div>
           </div>
         </div>
