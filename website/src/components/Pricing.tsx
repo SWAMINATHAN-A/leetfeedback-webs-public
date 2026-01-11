@@ -41,6 +41,11 @@ import {
 } from "./ui/accordion";
 import { useTheme } from "../contexts/ThemeContext";
 import { cn } from "../lib/utils";
+import { useAuth } from "../contexts/AuthContext";
+import {
+  createSubscription,
+  openRazorpayCheckout,
+} from "../utils/subscriptionAPI";
 
 // Wrapper component that triggers ChromaText animation when visible (replays on re-scroll)
 const VisibleChromaText: React.FC<{
@@ -221,6 +226,8 @@ const useGitHubStats = () => {
 const Pricing: React.FC = React.memo(() => {
   const gitHubStats = useGitHubStats();
   const { isDark } = useTheme();
+  const { user, isAuthenticated } = useAuth();
+  const [isSubscribing, setIsSubscribing] = useState(false);
 
   const freeFeatures = [
     { text: "All platforms supported on based on early user requests", icon: Code2 },
@@ -249,9 +256,43 @@ const Pricing: React.FC = React.memo(() => {
     // Add your action here
   };
 
-  const handleComingSoonClick = () => {
-    analytics.trackFeatureClick("premium_coming_soon");
-    // Add your action here
+  const handleSubscribeClick = async () => {
+    analytics.trackFeatureClick("premium_subscribe");
+
+    if (!isAuthenticated) {
+      // Scroll to top or navigate to login
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      alert("Please sign in to subscribe");
+      return;
+    }
+
+    setIsSubscribing(true);
+    try {
+      const result = await createSubscription();
+      if (!result) {
+        alert("Failed to create subscription. Please try again.");
+        return;
+      }
+
+      openRazorpayCheckout(
+        result.subscriptionId,
+        user?.email || null,
+        user?.displayName || null,
+        () => {
+          alert("🎉 Subscription successful! Welcome to Premium!");
+          window.location.reload();
+        },
+        (error) => {
+          console.error("Payment failed:", error);
+          alert("Payment failed. Please try again.");
+        }
+      );
+    } catch (error) {
+      console.error("Subscription error:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setIsSubscribing(false);
+    }
   };
 
   return (
@@ -482,11 +523,12 @@ const Pricing: React.FC = React.memo(() => {
 
                 {/* CTA Button */}
                 <AnimatedClipButton
-                  text="Coming Soon"
+                  text={isSubscribing ? "Processing..." : "Subscribe Now"}
                   variant="white"
                   size="lg"
                   className="w-full py-5 text-base font-semibold rounded-full mt-auto"
-                  onClick={handleComingSoonClick}
+                  onClick={handleSubscribeClick}
+                  disabled={isSubscribing}
                 />
               </div>
             </div>
