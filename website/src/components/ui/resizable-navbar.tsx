@@ -93,10 +93,10 @@ export const Navbar = ({ children, className }: NavbarProps) => {
 
 export const NavBody = ({ children, className, visible, scrollProgress }: NavBodyProps) => {
   // Create reactive motion values based on scroll progress
-  const width = useTransform(scrollProgress ?? new MotionValue(), [0, 1], ["100%", "40%"]);
-  const y = useTransform(scrollProgress ?? new MotionValue(), [0, 1], [0, 20]);
-  const scale = useTransform(scrollProgress ?? new MotionValue(), [0, 0.5, 0.75, 1], [1, 0.97, 1.01, 1]);
-  const rotateX = useTransform(scrollProgress ?? new MotionValue(), [0, 0.3, 0.7, 1], [0, -2, 1, 0]);
+  const width = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], ["100%", "40%"]);
+  const y = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], [0, 20]);
+  const scale = useTransform(scrollProgress ?? new MotionValue(0), [0, 0.5, 0.75, 1], [1, 0.97, 1.01, 1]);
+  const rotateX = useTransform(scrollProgress ?? new MotionValue(0), [0, 0.3, 0.7, 1], [0, -2, 1, 0]);
 
   return (
     <motion.div
@@ -146,10 +146,10 @@ export const NavBody = ({ children, className, visible, scrollProgress }: NavBod
 
 export const NavItems = ({ items, className, onItemClick, visible, scrollProgress }: NavItemsProps) => {
   // Create reactive motion values for text styling
-  const fontSize = useTransform(scrollProgress ?? new MotionValue(), [0, 1], ["0.875rem", "0.7rem"]);
-  const fontWeight = useTransform(scrollProgress ?? new MotionValue(), [0, 1], [500, 400]);
-  const opacity = useTransform(scrollProgress ?? new MotionValue(), [0, 1], [1, 0.7]);
-  const gap = useTransform(scrollProgress ?? new MotionValue(), [0, 1], ["1.5rem", "1rem"]);
+  const fontSize = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], ["0.875rem", "0.7rem"]);
+  const fontWeight = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], [500, 400]);
+  const opacity = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], [1, 0.7]);
+  const gap = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], ["1.5rem", "1rem"]);
 
   return (
     <motion.div
@@ -183,10 +183,10 @@ export const NavItems = ({ items, className, onItemClick, visible, scrollProgres
 
 export const MobileNav = ({ children, className, visible, scrollProgress }: MobileNavProps) => {
   // Create reactive motion values based on scroll progress
-  const width = useTransform(scrollProgress ?? new MotionValue(), [0, 1], ["100%", "90%"]);
-  const paddingX = useTransform(scrollProgress ?? new MotionValue(), [0, 1], ["0px", "16px"]);
-  const y = useTransform(scrollProgress ?? new MotionValue(), [0, 1], [0, 20]);
-  const scale = useTransform(scrollProgress ?? new MotionValue(), [0, 1], [1, 0.95]);
+  const width = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], ["100%", "90%"]);
+  const paddingX = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], ["0px", "16px"]);
+  const y = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], [0, 20]);
+  const scale = useTransform(scrollProgress ?? new MotionValue(0), [0, 1], [1, 0.95]);
 
   return (
     <motion.div
