@@ -6,7 +6,9 @@ import {
   motion,
   AnimatePresence,
   useScroll,
+  useTransform,
   useMotionValueEvent,
+  MotionValue,
 } from "framer-motion";
 
 import React, { useRef, useState } from "react";
@@ -20,6 +22,7 @@ interface NavBodyProps {
   children: React.ReactNode;
   className?: string;
   visible?: boolean;
+  scrollProgress?: MotionValue<number>;
 }
 
 interface NavItemsProps {
@@ -30,12 +33,14 @@ interface NavItemsProps {
   className?: string;
   onItemClick?: () => void;
   visible?: boolean;
+  scrollProgress?: MotionValue<number>;
 }
 
 interface MobileNavProps {
   children: React.ReactNode;
   className?: string;
   visible?: boolean;
+  scrollProgress?: MotionValue<number>;
 }
 
 interface MobileNavHeaderProps {
@@ -57,6 +62,9 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   });
   const [visible, setVisible] = useState<boolean>(false);
 
+  // Create a scroll progress value that goes from 0 to 1 over 0-200px scroll
+  const scrollProgress = useTransform(scrollY, [0, 200], [0, 1], { clamp: true });
+
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 100) {
       setVisible(true);
@@ -74,8 +82,8 @@ export const Navbar = ({ children, className }: NavbarProps) => {
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
           ? React.cloneElement(
-            child as React.ReactElement<{ visible?: boolean }>,
-            { visible }
+            child as React.ReactElement<{ visible?: boolean; scrollProgress?: MotionValue<number> }>,
+            { visible, scrollProgress }
           )
           : child
       )}
@@ -83,37 +91,20 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   );
 };
 
-export const NavBody = ({ children, className, visible }: NavBodyProps) => {
+export const NavBody = ({ children, className, visible, scrollProgress }: NavBodyProps) => {
+  // Create reactive motion values based on scroll progress
+  const width = useTransform(scrollProgress ?? new MotionValue(), [0, 1], ["100%", "40%"]);
+  const y = useTransform(scrollProgress ?? new MotionValue(), [0, 1], [0, 20]);
+  const scale = useTransform(scrollProgress ?? new MotionValue(), [0, 0.5, 0.75, 1], [1, 0.97, 1.01, 1]);
+  const rotateX = useTransform(scrollProgress ?? new MotionValue(), [0, 0.3, 0.7, 1], [0, -2, 1, 0]);
+
   return (
     <motion.div
-      animate={{
-        width: visible ? "40%" : "100%",
-        y: visible ? 20 : 0,
-        scale: visible ? [1, 0.95, 1.02, 1] : 1,
-        rotateX: visible ? [0, -2, 1, 0] : 0,
-      }}
-      transition={{
-        type: "spring",
-        stiffness: 150,
-        damping: 12,
-        mass: 0.8,
-        width: {
-          type: "spring",
-          stiffness: 120,
-          damping: 15,
-          bounce: 0.6,
-        },
-        scale: {
-          duration: 0.8,
-          times: [0, 0.3, 0.7, 1],
-          ease: [0.68, -0.55, 0.265, 1.55],
-        },
-        rotateX: {
-          duration: 0.6,
-          ease: "easeInOut",
-        },
-      }}
       style={{
+        width,
+        y,
+        scale,
+        rotateX,
         minWidth: "800px",
         transformOrigin: "center center",
         transformStyle: "preserve-3d",
@@ -135,29 +126,16 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         </>
       )}
       <motion.div
-        animate={{
-          opacity: visible ? [0.7, 1] : 1,
-          y: visible ? [5, 0] : 0,
-        }}
-        transition={{
-          opacity: { duration: 0.4, delay: 0.2 },
-          y: {
-            type: "spring",
-            stiffness: 300,
-            damping: 20,
-            delay: 0.1,
-          },
-        }}
         className={cn(
           "liquidGlass-content flex flex-row items-center w-full",
-          !visible && "px-6 py-2"
+          !visible && "px-6 py-1"
         )}
       >
         {React.Children.map(children, (child) =>
           React.isValidElement(child)
             ? React.cloneElement(
-              child as React.ReactElement<{ visible?: boolean }>,
-              { visible }
+              child as React.ReactElement<{ visible?: boolean; scrollProgress?: MotionValue<number> }>,
+              { visible, scrollProgress }
             )
             : child
         )}
@@ -166,69 +144,63 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
   );
 };
 
-export const NavItems = ({ items, className, onItemClick, visible }: NavItemsProps) => {
+export const NavItems = ({ items, className, onItemClick, visible, scrollProgress }: NavItemsProps) => {
+  // Create reactive motion values for text styling
+  const fontSize = useTransform(scrollProgress ?? new MotionValue(), [0, 1], ["0.875rem", "0.7rem"]);
+  const fontWeight = useTransform(scrollProgress ?? new MotionValue(), [0, 1], [500, 400]);
+  const opacity = useTransform(scrollProgress ?? new MotionValue(), [0, 1], [1, 0.7]);
+  const gap = useTransform(scrollProgress ?? new MotionValue(), [0, 1], ["1.5rem", "1rem"]);
+
   return (
-    <div
+    <motion.div
+      style={{ gap }}
       className={cn(
-        "flex-1 flex flex-row items-center justify-center lg:flex transition-all duration-300 ease-out",
-        visible ? "gap-4" : "gap-6",
+        "flex-1 flex flex-row items-center justify-center lg:flex",
         className
       )}
     >
       {items.map((item, idx) => (
-        <a
+        <motion.a
           key={`link-${idx}`}
           onClick={onItemClick}
           href={item.link}
           target={item.link.startsWith('http') ? '_blank' : undefined}
           rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
-          className="relative px-2 py-1 whitespace-nowrap transition-all duration-300 ease-out"
+          className="relative px-2 py-1 whitespace-nowrap"
           style={{
-            fontSize: visible ? "0.7rem" : "0.875rem",
-            fontWeight: visible ? 400 : 500,
-            opacity: visible ? 0.7 : 1,
+            fontSize,
+            fontWeight,
+            opacity,
           }}
         >
           {item.name}
-        </a>
+        </motion.a>
       ))}
-    </div>
+    </motion.div>
   );
 };
 
 
-export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
+export const MobileNav = ({ children, className, visible, scrollProgress }: MobileNavProps) => {
+  // Create reactive motion values based on scroll progress
+  const width = useTransform(scrollProgress ?? new MotionValue(), [0, 1], ["100%", "90%"]);
+  const paddingX = useTransform(scrollProgress ?? new MotionValue(), [0, 1], ["0px", "16px"]);
+  const y = useTransform(scrollProgress ?? new MotionValue(), [0, 1], [0, 20]);
+  const scale = useTransform(scrollProgress ?? new MotionValue(), [0, 1], [1, 0.95]);
+
   return (
     <motion.div
-      animate={{
-        width: visible ? "90%" : "100%",
-        paddingRight: visible ? "16px" : "0px",
-        paddingLeft: visible ? "16px" : "0px",
-        borderRadius: visible ? "2rem" : "2rem",
-        y: visible ? 20 : 0,
-        scale: visible ? 0.95 : 1,
-      }}
-      transition={{
-        type: "spring",
-        stiffness: 200,
-        damping: 20,
-        mass: 0.6,
-        width: {
-          type: "spring",
-          stiffness: 180,
-          damping: 20,
-        },
-        scale: {
-          type: "spring",
-          stiffness: 200,
-          damping: 20,
-        },
-      }}
       style={{
+        width,
+        paddingRight: paddingX,
+        paddingLeft: paddingX,
+        y,
+        scale,
         transformOrigin: "center center",
+        borderRadius: "2rem",
       }}
       className={cn(
-        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center px-0 py-2 lg:hidden",
+        "relative z-50 mx-auto flex w-full max-w-[calc(100vw-2rem)] flex-col items-center px-0 py-1 lg:hidden",
         visible
           ? "liquidGlass-wrapper liquidGlass-nav"
           : "bg-gradient-to-t from-white/60 via-gray-50/40 to-transparent dark:from-transparent dark:via-transparent dark:to-transparent rounded-b-2xl shadow-[0_1px_3px_rgba(0,0,0,0.04)] dark:shadow-none",
@@ -244,15 +216,9 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         </>
       )}
       <motion.div
-        animate={{
-          opacity: visible ? 1 : 1,
-        }}
-        transition={{
-          opacity: { duration: 0.3, delay: 0.1 },
-        }}
         className={cn(
           "liquidGlass-content flex flex-col items-center w-full",
-          !visible && "px-4 py-3"
+          !visible && "px-4 py-2"
         )}
       >
         {children}

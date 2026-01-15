@@ -906,10 +906,10 @@ const PrivacyPolicyPage: React.FC = () => {
 
               <div className="p-6 bg-muted/10 rounded-lg border border-border space-y-3">
                 <p className="text-foreground">
-                  <strong>Email:</strong> privacy@leetfeedback.com
+                  <strong>Email:</strong> diljotsingh7@iCloud.com
                 </p>
                 <p className="text-foreground">
-                  <strong>Support:</strong> support@leetfeedback.com
+                  <strong>Support:</strong> diljotsingh7@iCloud.com
                 </p>
               </div>
 

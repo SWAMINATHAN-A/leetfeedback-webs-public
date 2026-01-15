@@ -505,7 +505,7 @@
 /* Liquid glass navigation specific styles */
 .liquidGlass-nav {
     border-radius: 2rem;
-    padding: 0.5rem;
+    padding: 0.25rem 0.5rem;
 }
 
 /* Hover expansion removed - keeping nav stable */
