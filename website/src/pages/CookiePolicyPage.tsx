@@ -29,7 +29,7 @@ const CookiePolicyPage: React.FC = () => {
                 Effective Date: January 1, 2025
               </p>
               <p className="text-muted-foreground">
-                Last Updated: October 17, 2025
+                Last Updated: January 15, 2026
               </p>
             </div>
           </div>
@@ -68,10 +68,12 @@ const CookiePolicyPage: React.FC = () => {
                 the website each time you return.
               </p>
               <p className="text-foreground leading-relaxed">
-                Similar technologies include web beacons, pixel tags, and local
-                storage, which work in similar ways to cookies. These
-                technologies help us remember your preferences, analyze how you
-                use our Platform, and enhance your user experience.
+                Similar technologies include web beacons, pixel tags, local
+                storage, and browser extension storage (chrome.storage), which
+                work in similar ways to cookies. These technologies help us
+                remember your preferences, analyze how you use our Platform,
+                and enhance your user experience across our website and
+                browser extensions.
               </p>
             </section>
 

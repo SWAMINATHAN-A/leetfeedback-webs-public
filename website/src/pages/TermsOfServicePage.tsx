@@ -12,6 +12,7 @@ const sections = [
   { id: "user-content", title: "User Content" },
   { id: "recruiter-terms", title: "Recruiter Terms" },
   { id: "integrity-enforcement", title: "Integrity" },
+  { id: "subscriptions", title: "Subscriptions" },
   { id: "limitation-liability", title: "Liability" },
   { id: "indemnification", title: "Indemnification" },
   { id: "disclaimer", title: "Disclaimers" },
@@ -36,7 +37,7 @@ const TermsOfServicePage: React.FC = () => {
                 Effective Date: January 1, 2025
               </p>
               <p className="text-muted-foreground">
-                Last Updated: October 17, 2025
+                Last Updated: January 15, 2026
               </p>
             </div>
           </div>
@@ -158,7 +159,8 @@ const TermsOfServicePage: React.FC = () => {
                 <li>Complete problems accurately and honestly</li>
                 <li>Not use unfair means or cheat in any form</li>
                 <li>Respect the intellectual property rights of others</li>
-                <li>Not engage in any form of harassment or abuse</li>
+                <li>Follow guidelines for social features (Friend Requests, Streaks)</li>
+                <li>Engage respectfully with other users</li>
                 <li>Maintain the integrity and security of your account</li>
               </ul>
             </section>
@@ -200,11 +202,12 @@ const TermsOfServicePage: React.FC = () => {
                 </li>
                 <li>
                   <strong>Account Sharing:</strong> Sharing your account
-                  credentials with others
+                  credentials or subscription access with others
                 </li>
                 <li>
-                  <strong>Data Mining:</strong> Attempting to scrape or extract
-                  data from the Platform
+                  <strong>Data Mining/Extraction:</strong> Attempting to scrape, extract, or
+                  automate the collection of data or source code from the Platform
+                  using unauthorized tools or browser extensions
                 </li>
               </ul>
             </section>
@@ -362,10 +365,60 @@ const TermsOfServicePage: React.FC = () => {
               </div>
             </section>
 
-            {/* 10. Limitation of Liability */}
+            {/* 10. Subscriptions and Payments */}
+            <section id="subscriptions" className="space-y-4">
+              <h2 className="text-3xl font-bold text-foreground">
+                10. Subscriptions and Payments
+              </h2>
+              <div className="space-y-4">
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    10.1 Subscription Plans
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    We offer various subscription plans for premium features.
+                    By subscribing, you agree to pay the fees associated with
+                    your chosen plan.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    10.2 Billing and Payments
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    Payments are processed through <strong>Razorpay</strong>.
+                    You must provide accurate billing information. Subscriptions
+                    automatically renew unless cancelled at least 24 hours before
+                    the end of the current period.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    10.3 Refunds
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    Unless required by law, subscription fees are non-refundable.
+                    If you believe you have been charged in error, please contact
+                    our support team immediately.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    10.4 Cancellation
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    You can cancel your subscription at any time through your
+                    account settings. Cancellation will take effect at the end
+                    of the current billing cycle.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            {/* 11. Limitation of Liability */}
             <section id="limitation-liability" className="space-y-4">
               <h2 className="text-3xl font-bold text-foreground">
-                10. Limitation of Liability
+                11. Limitation of Liability
               </h2>
               <p className="text-foreground leading-relaxed">
                 IN NO EVENT SHALL LEETFEEDBACK, ITS DIRECTORS, EMPLOYEES, OR
@@ -380,10 +433,10 @@ const TermsOfServicePage: React.FC = () => {
               </p>
             </section>
 
-            {/* 11. Indemnification */}
+            {/* 12. Indemnification */}
             <section id="indemnification" className="space-y-4">
               <h2 className="text-3xl font-bold text-foreground">
-                11. Indemnification
+                12. Indemnification
               </h2>
               <p className="text-foreground leading-relaxed">
                 You agree to indemnify and hold harmless LeetFeedback, its
@@ -395,10 +448,10 @@ const TermsOfServicePage: React.FC = () => {
               </p>
             </section>
 
-            {/* 12. Disclaimers */}
+            {/* 13. Disclaimers */}
             <section id="disclaimer" className="space-y-4">
               <h2 className="text-3xl font-bold text-foreground">
-                12. Disclaimers
+                13. Disclaimers
               </h2>
               <p className="text-foreground leading-relaxed">
                 THE PLATFORM IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT ANY
@@ -413,10 +466,10 @@ const TermsOfServicePage: React.FC = () => {
               </p>
             </section>
 
-            {/* 13. Termination */}
+            {/* 14. Termination */}
             <section id="termination" className="space-y-4">
               <h2 className="text-3xl font-bold text-foreground">
-                13. Termination
+                14. Termination
               </h2>
               <p className="text-foreground leading-relaxed">
                 LeetFeedback reserves the right to terminate or suspend your
@@ -430,10 +483,10 @@ const TermsOfServicePage: React.FC = () => {
               </p>
             </section>
 
-            {/* 14. Modifications to Service */}
+            {/* 15. Modifications to Service */}
             <section id="modifications" className="space-y-4">
               <h2 className="text-3xl font-bold text-foreground">
-                14. Modifications to Service
+                15. Modifications to Service
               </h2>
               <p className="text-foreground leading-relaxed">
                 LeetFeedback reserves the right to modify or discontinue the
@@ -443,10 +496,10 @@ const TermsOfServicePage: React.FC = () => {
               </p>
             </section>
 
-            {/* 15. Governing Law */}
+            {/* 16. Governing Law */}
             <section id="governing-law" className="space-y-4">
               <h2 className="text-3xl font-bold text-foreground">
-                15. Governing Law
+                16. Governing Law
               </h2>
               <p className="text-foreground leading-relaxed">
                 These Terms of Service are governed by and construed in
@@ -456,10 +509,10 @@ const TermsOfServicePage: React.FC = () => {
               </p>
             </section>
 
-            {/* 16. Contact Us */}
+            {/* 17. Contact Us */}
             <section id="contact" className="space-y-4">
               <h2 className="text-3xl font-bold text-foreground">
-                16. Contact Us
+                17. Contact Us
               </h2>
               <p className="text-foreground leading-relaxed">
                 If you have any questions about these Terms of Service, please

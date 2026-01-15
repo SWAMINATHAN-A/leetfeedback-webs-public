@@ -36,7 +36,7 @@ const PrivacyPolicyPage: React.FC = () => {
                 Effective Date: January 1, 2025
               </p>
               <p className="text-muted-foreground">
-                Last Updated: October 17, 2025
+                Last Updated: January 15, 2026
               </p>
             </div>
           </div>
@@ -100,43 +100,71 @@ const PrivacyPolicyPage: React.FC = () => {
                     <li>Problem categories and difficulty levels</li>
                     <li>Success/failure metrics and performance trends</li>
                     <li>
-                      Code submission metadata (not the actual code content)
+                      Code submission metadata, including platform-specific identifiers
+                    </li>
+                    <li>
+                      AI-generated insights, including mistake identification and focus areas (Mistake Tags)
                     </li>
                     <li>
                       Integration data from connected platforms (LeetCode,
-                      GeeksforGeeks, CodeChef)
+                      GeeksforGeeks, TakeUForward)
                     </li>
                   </ul>
                 </div>
 
                 <div>
                   <h3 className="text-xl font-semibold text-foreground mb-2">
-                    2.3 Device and Technical Data
+                    2.3 Relationship and Social Data
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    When you use our social features, we collect:
+                  </p>
+                  <ul className="list-disc pl-6 space-y-2 text-foreground">
+                    <li>Friend requests and established friendships</li>
+                    <li>Collaborative progress data (Friend Streaks)</li>
+                    <li>Publicly shared highlights and notes</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    2.4 Device and Technical Data
                   </h3>
                   <p className="text-foreground leading-relaxed">
                     We automatically collect: IP address, browser type,
                     operating system, device type, pages visited, time spent,
-                    and referral source. This helps us understand usage patterns
-                    and improve our platform.
+                    and referral source. We also use unique device identifiers (API Keys)
+                    to sync your progress across different browsers and app instances.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-xl font-semibold text-foreground mb-2">
-                    2.4 Integrity Monitoring Data
+                    2.5 Integrity Monitoring Data
                   </h3>
                   <p className="text-foreground leading-relaxed">
-                    For AI-based detection of unfair means, we analyze:
-                    submission patterns, code similarities, timing anomalies,
-                    and tool usage behavior. This data is used solely for
-                    platform integrity purposes and is never shared for any
-                    other purpose.
+                    For AI-based detection of unfair means and progress verification, we analyze:
+                    submission patterns, code structural similarities, timing anomalies,
+                    and tool usage behavior. This data is used for platform integrity
+                    and to provide accurate progress feedback through AI-generated mistake analysis.
                   </p>
                 </div>
 
                 <div>
                   <h3 className="text-xl font-semibold text-foreground mb-2">
-                    2.5 Communication Data
+                    2.6 Payment and Subscription Data
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    If you purchase a subscription, we collect billing information through our
+                    third-party payment processor (Razorpay). We do not store full credit card
+                    details on our servers; we only retain transaction IDs and subscription
+                    status to manage your access to premium features.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    2.7 Communication Data
                   </h3>
                   <p className="text-foreground leading-relaxed">
                     If you contact us for support or feedback, we keep records
@@ -181,13 +209,19 @@ const PrivacyPolicyPage: React.FC = () => {
                 <div className="flex gap-3">
                   <span className="text-blue-500">✓</span>
                   <p className="text-foreground">
-                    Respond to your support requests and inquiries
+                    Manage your subscriptions and process payments through our partners
                   </p>
                 </div>
                 <div className="flex gap-3">
                   <span className="text-blue-500">✓</span>
                   <p className="text-foreground">
-                    Maintain platform security and prevent fraud
+                    Enable social interaction and collaborative features (Friendships, Streaks)
+                  </p>
+                </div>
+                <div className="flex gap-3">
+                  <span className="text-blue-500">✓</span>
+                  <p className="text-foreground">
+                    Maintain platform security and prevent fraud across multiple devices
                   </p>
                 </div>
                 <div className="flex gap-3">
@@ -268,12 +302,13 @@ const PrivacyPolicyPage: React.FC = () => {
 
                 <div>
                   <h3 className="text-xl font-semibold text-foreground mb-2">
-                    4.5 Code Privacy
+                    4.5 Code Privacy and AI Analysis
                   </h3>
                   <p className="text-foreground leading-relaxed">
                     We do not store or analyze the actual code content you
-                    submit. We only analyze metadata such as submission timing,
-                    success rates, and patterns for integrity purposes.
+                    submit for purposes other than providing you feedback.
+                    Our AI models analyze metadata and structural patterns
+                    to offer insights like mistake tags and focus areas.
                   </p>
                 </div>
               </div>
@@ -737,7 +772,19 @@ const PrivacyPolicyPage: React.FC = () => {
 
                 <div>
                   <h3 className="text-xl font-semibold text-foreground mb-2">
-                    12.3 Data Sharing with Third Parties
+                    12.3 Payment Processors
+                  </h3>
+                  <p className="text-foreground leading-relaxed">
+                    We use <strong>Razorpay</strong> to process payments for subscriptions.
+                    Your payment data is processed directly by Razorpay under their
+                    privacy policy. We only receive confirmation of payment success and
+                    transaction IDs.
+                  </p>
+                </div>
+
+                <div>
+                  <h3 className="text-xl font-semibold text-foreground mb-2">
+                    12.4 Data Sharing with Third Parties
                   </h3>
                   <p className="text-foreground leading-relaxed">
                     Third-party services have their own privacy policies. We are
@@ -748,7 +795,7 @@ const PrivacyPolicyPage: React.FC = () => {
 
                 <div>
                   <h3 className="text-xl font-semibold text-foreground mb-2">
-                    12.4 Service Providers
+                    12.5 Service Providers
                   </h3>
                   <p className="text-foreground leading-relaxed">
                     We use service providers (hosting, analytics, support) who
