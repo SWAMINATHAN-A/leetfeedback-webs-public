@@ -63,7 +63,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
   const [visible, setVisible] = useState<boolean>(false);
 
   // Create a scroll progress value that goes from 0 to 1 over 0-200px scroll
-  const scrollProgress = useTransform(scrollY, [0, 200], [0, 1], { clamp: true });
+  const scrollProgress = useTransform(scrollY, [0, 500], [0, 1], { clamp: true });
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest > 100) {
