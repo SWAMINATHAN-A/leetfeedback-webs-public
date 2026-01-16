@@ -288,7 +288,7 @@ const JobListings: React.FC = () => {
                             {job.description}
                         </p>
                         <a
-                            href="/#contact"
+                            href={`mailto:diljotsingh7@iCloud.com?subject=Application for ${job.title} at Traverse&body=Hi Traverse Team,%0D%0A%0D%0AI'm interested in the ${job.title} position.%0D%0A%0D%0A1. What technologies/tools are you most excited about right now?%0D%0A%0D%0A2. Tell us about something you built with 'heartfelt intensity' - what made it special?%0D%0A%0D%0A3. Share an example of when you asked 'what could be?' and discovered something unexpected.%0D%0A%0D%0A4. How do you approach problems when you genuinely don't know the answer?%0D%0A%0D%0ALooking forward to connecting!%0D%0A%0D%0ABest,%0D%0A[Your Name]`}
                             className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 hover:bg-white/30 text-white rounded-full text-lg font-medium transition-colors backdrop-blur-sm"
                         >
                             Contact Us
