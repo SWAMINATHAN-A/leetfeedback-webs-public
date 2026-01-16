@@ -112,7 +112,7 @@ export function ResizableNavbarDemo() {
   const navItems = [
     { name: "Downloads", link: "/downloads" },
     { name: "Pricing", link: "#pricing" },
-    { name: "Support Us", link: "#pricing" },
+    { name: "Careers", link: "/careers" },
     { name: "Our Inspiration", link: "https://www.thebrowser.company/values" },
   ];
   const { isAuthenticated, isLoading } = useAuth();
