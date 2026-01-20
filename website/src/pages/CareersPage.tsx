@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import StackingCards, { StackingCardItem } from "@/components/fancy/blocks/stacking-cards";
 import TextRotate from "@/components/fancy/text/text-rotate";
 import { ChromaText } from "@/components/ui/textRenderAppear";
+import GlowyButton from "@/components/ui/GlowyButton";
 
 // ChromaText styles for this page - fixed for light/dark mode
 const ChromaStyles = () => (
@@ -163,18 +164,18 @@ const cards = [
     },
 ];
 
-// Job listings data with colorful backgrounds
+// Job listings data with black backgrounds
 const jobs = [
     {
         id: "video-editor",
         title: "Video Editor",
-        bgColor: "bg-[#f97316]",
+        bgColor: "bg-[#1a1a1a]",
         description: "You'll craft visual stories that make people feel something — leaving your fingerprints behind so they know it was made by someone who cared. Show up with heartfelt intensity and help us create content that's fun, playful, and unmistakably alive.",
     },
     {
         id: "devops",
         title: "DevOps",
-        bgColor: "bg-[#0015ff]",
+        bgColor: "bg-[#1a1a1a]",
         description: "Start with 'what could be?' and build the infrastructure that lets us move fast without breaking things. Assume you don't know, pull in different perspectives, and discover the joy in the details others overlook.",
     },
 ];
@@ -287,12 +288,11 @@ const JobListings: React.FC = () => {
                         <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-6">
                             {job.description}
                         </p>
-                        <a
+                        <GlowyButton
                             href={`mailto:diljotsingh7@iCloud.com?subject=Application for ${job.title} at Traverse&body=Hi Traverse Team,%0D%0A%0D%0AI'm interested in the ${job.title} position.%0D%0A%0D%0A1. What technologies/tools are you most excited about right now?%0D%0A%0D%0A2. Tell us about something you built with 'heartfelt intensity' - what made it special?%0D%0A%0D%0A3. Share an example of when you asked 'what could be?' and discovered something unexpected.%0D%0A%0D%0A4. How do you approach problems when you genuinely don't know the answer?%0D%0A%0D%0ALooking forward to connecting!%0D%0A%0D%0ABest,%0D%0A[Your Name]`}
-                            className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 hover:bg-white/30 text-white rounded-full text-lg font-medium transition-colors backdrop-blur-sm"
                         >
                             Contact Us
-                        </a>
+                        </GlowyButton>
                     </div>
                 ))}
             </div>

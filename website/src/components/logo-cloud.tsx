@@ -1,5 +1,4 @@
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
-import { ProgressiveBlur } from "@/components/ui/progressive-blur";
 import PlatformIcon from "./PlatformIcon";
 
 const platforms = [
@@ -21,7 +20,13 @@ export default function LogoCloud() {
               Supported Platforms
             </p>
           </div>
-          <div className="relative py-3 md:w-[calc(100%-11rem)] w-full">
+          <div
+            className="relative py-3 md:w-[calc(100%-11rem)] w-full"
+            style={{
+              maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
+            }}
+          >
             <InfiniteSlider speedOnHover={20} speed={40} gap={60}>
               {[...platforms, ...platforms].map((platform, index) => (
                 <div
@@ -35,17 +40,6 @@ export default function LogoCloud() {
                 </div>
               ))}
             </InfiniteSlider>
-
-            <ProgressiveBlur
-              className="pointer-events-none absolute left-0 top-0 h-full w-20"
-              direction="left"
-              blurIntensity={1}
-            />
-            <ProgressiveBlur
-              className="pointer-events-none absolute right-0 top-0 h-full w-20"
-              direction="right"
-              blurIntensity={1}
-            />
           </div>
         </div>
       </div>

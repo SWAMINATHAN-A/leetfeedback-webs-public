@@ -1,16 +1,8 @@
-import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ChromaText } from "./ui/textRenderAppear";
-import { motion } from "motion/react";
 import { Link } from "react-router-dom";
-import { Button } from "./ui/button";
-import { AnimatedClipButton } from "./ui/animated-clip-button";
-import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import StarIcon from "@mui/icons-material/Star";
-import StarBorderIcon from "@mui/icons-material/StarBorder";
+import GlowyButton from "./ui/GlowyButton";
 import { BlurFade } from "./magicui/blur-fade";
-import { NumberTicker } from "./magicui/number-ticker";
-import ElasticSlider from "./ElasticSlider";
 import { analytics } from "../utils/analytics";
 import ShinyText from "./ShinyText";
 import { TextEffect } from "./ui/text-effect";
@@ -82,53 +74,6 @@ const VisibleChromaText: React.FC<{
 };
 
 const Hero: React.FC = React.memo(() => {
-  const [showRatingSlider, setShowRatingSlider] = useState(false);
-  const [currentRating, setCurrentRating] = useState(4.5);
-  const [userRating, setUserRating] = useState<number | null>(null);
-  const [sliderRating, setSliderRating] = useState(3);
-
-  // Load rating from localStorage on component mount
-  useEffect(() => {
-    const savedRatings = localStorage.getItem("userRatings");
-    if (savedRatings) {
-      const ratings = JSON.parse(savedRatings);
-      const average =
-        ratings.reduce((sum: number, rating: number) => sum + rating, 0) /
-        ratings.length;
-      setCurrentRating(Math.round(average * 10) / 10); // Round to 1 decimal place
-    }
-  }, []);
-
-  const handleRatingSubmit = useCallback((rating: number) => {
-    setUserRating(rating);
-    setShowRatingSlider(false);
-
-    // Save rating to localStorage
-    const savedRatings = localStorage.getItem("userRatings");
-    const ratings = savedRatings ? JSON.parse(savedRatings) : [];
-    ratings.push(rating);
-    localStorage.setItem("userRatings", JSON.stringify(ratings));
-
-    // Calculate new average
-    const average =
-      ratings.reduce((sum: number, rating: number) => sum + rating, 0) /
-      ratings.length;
-    setCurrentRating(Math.round(average * 10) / 10);
-  }, []);
-
-  const renderStars = useMemo(
-    () => (rating: number) => {
-      return Array.from({ length: 5 }, (_, i) => (
-        <StarIcon
-          key={i}
-          className={`w-4 h-4 ${i < Math.floor(rating) ? "text-yellow-400" : "text-gray-400"
-            }`}
-        />
-      ));
-    },
-    [],
-  );
-
   return (
     <section id="home" className="relative overflow-hidden pt-20 pb-32">
       {/* Gradient backgrounds */}
@@ -219,79 +164,20 @@ const Hero: React.FC = React.memo(() => {
                   }}
                   className="mt-12 flex flex-col items-start gap-4 md:flex-row"
                 >
-                  <AnimatedClipButton
-                    text="Download"
-                    icon={<CheckCircleIcon className="w-5 h-5" />}
-                    iconPosition="left"
-                    variant="default"
-                    size="lg"
+                  <GlowyButton
                     onClick={() => {
                       analytics.trackDownloadClick("hero_primary_cta");
                       window.location.href = "/downloads";
                     }}
-                  />
-                  <AnimatedClipButton
-                    text="Follow Development"
-                    icon={<RocketLaunchIcon className="w-5 h-5" />}
-                    iconPosition="left"
-                    variant="ghost"
-                    size="lg"
-                    onClick={() => {
-                      analytics.trackFeatureClick("follow_development");
-                      window.location.href = "/roadmap";
-                    }}
-                  />
-                </AnimatedGroup>
-
-                {/* Trust Indicators */}
-                <AnimatedGroup
-                  variants={{
-                    container: {
-                      visible: {
-                        transition: {
-                          staggerChildren: 0.05,
-                          delayChildren: 1,
-                        },
-                      },
-                    },
-                    ...transitionVariants,
-                  }}
-                  className="mt-14 flex flex-col sm:flex-row items-start gap-8"
-                >
-                  <motion.div
-                    className="group relative flex items-center gap-3 cursor-pointer bg-gradient-to-r from-yellow-500/10 via-amber-500/10 to-orange-500/10 hover:from-yellow-500/20 hover:via-amber-500/20 hover:to-orange-500/20 border border-yellow-500/20 hover:border-yellow-500/40 rounded-full px-4 py-2.5 transition-all duration-500 hover:shadow-[22px_8px_34px_rgba(251,191,36,0.25)]"
-                    onClick={() => setShowRatingSlider(true)}
-                    whileTap={{ scale: 0.98 }}
-                    style={{
-                      willChange: "transform, opacity",
-                      backfaceVisibility: "hidden",
-                      WebkitBackfaceVisibility: "hidden",
-                      transformStyle: "preserve-3d",
-                      WebkitTransformStyle: "preserve-3d",
-                    }}
                   >
-                    {/* Glow effect on hover */}
-                    <div
-                      className="absolute inset-0 rounded-full bg-yellow-500/10 blur-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{ willChange: "opacity" }}
-                      aria-hidden="true"
-                    />
-
-                    <div className="relative flex items-center gap-1">
-                      {renderStars(currentRating)}
-                    </div>
-                    <div className="relative flex items-center gap-1.5">
-                      <span className="text-lg font-semibold text-yellow-500">
-                        <NumberTicker value={currentRating} decimalPlaces={1} />
-                      </span>
-                      <span className="text-lg text-muted-foreground">/ 5</span>
-                    </div>
-                    <div className="relative h-4 w-px bg-yellow-500/30" />
-                    <span className="relative text-sm font-medium text-foreground/80 group-hover:text-foreground transition-colors">
-                      User Rating
-                    </span>
-                  </motion.div>
+                    Download
+                  </GlowyButton>
                 </AnimatedGroup>
+
+                {/* Supported Platforms - half width, no blur effects */}
+                <div className="mt-10 w-full max-w-sm md:max-w-2xl">
+                  <LogoCloud />
+                </div>
 
               </div>
             </div>
@@ -347,83 +233,6 @@ const Hero: React.FC = React.memo(() => {
             </BlurFade>
           </div>
         </div>
-
-        {/* Platform Showcase with Infinite Slider */}
-        <div className="mt-24 -mx-4 md:-mx-8">
-          <LogoCloud />
-        </div>
-
-        {/* Rating Slider Modal */}
-        {showRatingSlider && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
-            onClick={() => setShowRatingSlider(false)}
-          >
-            <motion.div
-              className="bg-card border border-border rounded-3xl p-6 max-w-md w-full mx-4"
-              onClick={(e) => e.stopPropagation()}
-              initial={{ y: 20 }}
-              animate={{ y: 0 }}
-            >
-              <h3 className="text-lg font-semibold text-foreground mb-4 text-center">
-                Rate LeetFeedback
-              </h3>
-              <p className="text-muted-foreground text-center mb-6">
-                How would you rate your experience?
-              </p>
-
-              <div className="flex justify-center mb-6">
-                <ElasticSlider
-                  defaultValue={3}
-                  startingValue={1}
-                  maxValue={5}
-                  isStepped={true}
-                  stepSize={1}
-                  leftIcon={
-                    <StarBorderIcon className="w-6 h-6 text-yellow-400" />
-                  }
-                  rightIcon={<StarIcon className="w-6 h-6 text-yellow-400" />}
-                  className="mb-4"
-                  onChange={setSliderRating}
-                />
-              </div>
-
-              <div className="text-center mb-4">
-                <div className="flex justify-center gap-1">
-                  {Array.from({ length: 5 }, (_, i) => (
-                    <StarIcon
-                      key={i}
-                      className={`w-5 h-5 ${i < sliderRating ? "text-yellow-400" : "text-gray-300"
-                        }`}
-                    />
-                  ))}
-                </div>
-                <p className="text-sm text-muted-foreground mt-2">
-                  {sliderRating} out of 5 stars
-                </p>
-              </div>
-
-              <div className="flex gap-3">
-                <Button
-                  variant="outline"
-                  onClick={() => setShowRatingSlider(false)}
-                  className="flex-1"
-                >
-                  Cancel
-                </Button>
-                <Button
-                  onClick={() => handleRatingSubmit(sliderRating)}
-                  className="flex-1"
-                >
-                  Submit Rating
-                </Button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
       </div>
 
       {/* Bottom separator */}
