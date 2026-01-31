@@ -87,7 +87,7 @@ const DownloadsPage: React.FC = () => {
         {
             title: "Android App",
             description: "Native Android experience for tracking your DSA journey. Seamlessly sync your progress across devices.",
-            href: "https://github.com/SparkleYR/traverse-android-2",
+            href: "https://github.com/lqSky7?tab=repositories",
             badge: "Free",
         },
         {
