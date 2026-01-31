@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion } from "motion/react";
+import SquigglyArrow from "./ui/squiggle-arrow";
 import {
   Card,
   CardContent,
@@ -221,22 +222,14 @@ const Features: React.FC = React.memo(() => {
                 >
                   Your code, but smarter!
                 </span>
-                <svg width="50" height="35" viewBox="0 0 50 35" fill="none" className="ml-12 mt-1">
-                  <path
-                    d="M5 5 Q 15 20, 25 28"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    fill="none"
-                    className="text-white/50"
-                  />
-                  <path
-                    d="M20 24 L 25 32 L 28 23"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    fill="none"
-                    className="text-white/50"
-                  />
-                </svg>
+                <SquigglyArrow
+                  width={70}
+                  height={50}
+                  strokeWidth={3.5}
+                  direction="right"
+                  variant="smooth"
+                  className="text-white/50 ml-12 mt-1 rotate-45"
+                />
               </div>
               <div className="relative inline-block">
                 {/* Radial Marquee Circle Decoration */}
@@ -324,22 +317,14 @@ const Features: React.FC = React.memo(() => {
               >
                 Fits in your pocket!
               </span>
-              <svg width="50" height="35" viewBox="0 0 50 35" fill="none" className="ml-8 mt-1">
-                <path
-                  d="M5 5 Q 15 20, 25 28"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  fill="none"
-                  className="text-amber-500/60"
-                />
-                <path
-                  d="M20 24 L 25 32 L 28 23"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  fill="none"
-                  className="text-amber-500/60"
-                />
-              </svg>
+              <SquigglyArrow
+                width={70}
+                height={50}
+                strokeWidth={3.5}
+                direction="right"
+                variant="smooth"
+                className="text-amber-500/60 ml-8 mt-1 rotate-45"
+              />
             </div>
             <div className="relative inline-block">
               {/* Radial Marquee Circle Decoration - Hidden on mobile */}
@@ -617,15 +602,11 @@ const Features: React.FC = React.memo(() => {
               <div className="col-span-full md:col-span-1">
                 <div className="p-6 sm:p-12 border-b md:border-b-0 md:border-r">
                   <span
-                    className="flex items-center gap-2 text-sm"
+                    className="text-muted-foreground flex items-center gap-2 text-sm"
                     style={{ fontFamily: "'Stinger', sans-serif" }}
                   >
                     <GitHubIcon className="size-4" />
-                    <ShinyText
-                      text="GitHub Integration"
-                      speed={3}
-                      className="text-sm"
-                    />
+                    GitHub Integration
                   </span>
                   <p className="mt-8 text-2xl font-semibold">
                     Automatically push your solutions and AI feedback notes to
@@ -647,12 +628,11 @@ const Features: React.FC = React.memo(() => {
                   </ul>
                 </div>
                 <div aria-hidden className="relative border-t">
-                  <div className="absolute inset-0 z-10 m-auto size-fit top-8">
-                    <div className="relative flex size-fit w-fit items-center gap-2 border rounded-lg px-3 py-1.5 text-xs font-medium shadow-lg bg-background dark:bg-muted">
+                  <div className="absolute inset-0 z-20 m-auto size-fit top-8">
+                    <div className="relative flex size-fit w-fit items-center gap-2 border rounded-lg px-3 py-1.5 text-xs font-medium shadow-lg bg-background dark:bg-zinc-800">
                       <GitHubIcon className="size-4" />
                       <span>Pushed 247 solutions this month</span>
                     </div>
-                    <div className="absolute inset-2 -bottom-2 mx-auto border rounded-lg px-3 py-4 text-xs font-medium shadow-md bg-background/80 dark:bg-zinc-900/80"></div>
                   </div>
                   <div className="relative overflow-hidden h-64 bg-white dark:bg-zinc-950">
                     <div className="absolute inset-0 from-transparent to-background via-background/50 to-90% bg-gradient-to-b z-10 pointer-events-none"></div>
@@ -719,52 +699,89 @@ const Features: React.FC = React.memo(() => {
                 </div>
               </div>
 
-              {/* Notion Sync Card */}
-              <div className="overflow-hidden border-b md:border-b-0 md:border-l bg-zinc-50/50 dark:bg-zinc-900/20 p-6 sm:p-12">
-                <div className="relative z-10">
-                  <span
-                    className="text-muted-foreground flex items-center gap-2 text-sm"
-                    style={{ fontFamily: "'Stinger', sans-serif" }}
-                  >
-                    <NotesIcon className="size-4" />
-                    Notion Sync
-                  </span>
-                  <p className="my-8 text-2xl font-semibold">
-                    Export insights and tagged mistakes to your Notion
-                    workspace.
-                  </p>
-                </div>
-                <div aria-hidden className="flex flex-col gap-6 mt-8">
-                  <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="flex size-6 rounded-full border items-center justify-center bg-background">
-                        <NotesIcon className="size-3" />
-                      </span>
-                      <span className="text-muted-foreground text-xs">
-                        Synced today
-                      </span>
-                    </div>
-                    <div className="w-4/5 border rounded-lg p-4 text-sm bg-background shadow-sm">
-                      <div className="font-medium mb-2">
-                        Two Sum - Mistake Analysis
+              {/* AI Analysis Card */}
+              <div className="overflow-hidden border-b md:border-b-0 md:border-l p-6 sm:p-12 bg-zinc-100 dark:bg-zinc-950">
+                <span
+                  className="text-muted-foreground flex items-center gap-2 text-sm"
+                  style={{ fontFamily: "'Stinger', sans-serif" }}
+                >
+                  <Activity className="size-4" />
+                  AI Analysis
+                </span>
+                <p className="mt-8 text-2xl font-semibold">
+                  AI analysis of all your attempts at your fingertips.
+                </p>
+
+                {/* Problem Card with AI Analysis */}
+                <div className="relative mt-8 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 overflow-hidden">
+
+                  {/* Problem Header */}
+                  <div className="p-4 border-b border-zinc-200 dark:border-zinc-800">
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex-1">
+                        <h3 className="text-lg font-bold text-foreground" style={{ fontFamily: "'Britanica', sans-serif" }}>Next Permutation</h3>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-xs text-amber-600 dark:text-amber-400 font-semibold">Medium</span>
+                          <span className="text-xs text-muted-foreground">•</span>
+                          <span className="text-xs text-muted-foreground">Arrays</span>
+                        </div>
                       </div>
-                      <div className="text-xs text-muted-foreground">
-                        Edge cases not covered • Hash table optimization
+                      <div className="text-right">
+                        <span className="text-pink-600 dark:text-pink-400 font-bold text-sm">+20 ★</span>
+                        <div className="text-xs text-muted-foreground mt-0.5">via Chrome</div>
+                      </div>
+                    </div>
+
+                    {/* Stats */}
+                    <div className="space-y-2 text-sm">
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <svg className="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>
+                        <span className="font-medium">Language: Java</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <svg className="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
+                        <span className="font-medium">Attempts: 4</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <svg className="size-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span className="font-medium">Time: 13m 43s</span>
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <div className="ml-auto w-4/5 bg-blue-600 rounded-lg p-4 text-sm text-white mb-2 shadow-sm">
-                      <div className="font-medium mb-1">
-                        Successfully synced
+
+                  {/* AI Analysis Section */}
+                  <div className="p-4 space-y-4">
+                    <div className="flex items-center gap-2">
+                      <Activity className="size-4 text-pink-600 dark:text-pink-400" />
+                      <h4 className="font-bold text-foreground" style={{ fontFamily: "'Britanica', sans-serif" }}>AI Analysis</h4>
+                    </div>
+
+                    {/* Key Issues */}
+                    <div className="space-y-2">
+                      <p className="text-sm text-foreground leading-relaxed">
+                        <span className="font-bold text-foreground">1. Key Issues:</span> Attempt 1 had a syntax error (missing variable declaration). Early attempts contained loop logic errors (incrementing instead of decrementing) and array bounds issues. Specifically, the swap-search loop used i++ and the reversal started at the pivot rather than the suffix.
+                      </p>
+                    </div>
+
+                    {/* Evolution */}
+                    <div className="space-y-2">
+                      <p className="text-sm text-foreground leading-relaxed">
+                        <span className="font-bold text-foreground">2. Evolution:</span> The code improved by correcting variable scopes, fixing the search direction for the successor element, and adjusting the <code className="px-1 py-0.5 rounded bg-zinc-100 dark:bg-zinc-800 text-xs font-mono text-pink-600 dark:text-pink-400">reverseArr</code> indices to correctly target only the suffix.
+                      </p>
+                    </div>
+
+                    {/* Mistake Tags */}
+                    <div className="space-y-2">
+                      <div className="flex items-center gap-2">
+                        <svg className="size-4 text-muted-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" /></svg>
+                        <span className="text-sm font-bold text-foreground">Mistake Tags</span>
                       </div>
-                      <div className="text-xs opacity-90">
-                        3 new entries added to database
+                      <div className="flex flex-wrap gap-2">
+                        <span className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-zinc-100 dark:bg-zinc-800 text-foreground border border-zinc-200 dark:border-zinc-700">Logic Error</span>
+                        <span className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-zinc-100 dark:bg-zinc-800 text-foreground border border-zinc-200 dark:border-zinc-700">Syntax Error</span>
+                        <span className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-zinc-100 dark:bg-zinc-800 text-foreground border border-zinc-200 dark:border-zinc-700">Off By One</span>
                       </div>
                     </div>
-                    <span className="text-muted-foreground block text-right text-xs">
-                      Just now
-                    </span>
                   </div>
                 </div>
               </div>

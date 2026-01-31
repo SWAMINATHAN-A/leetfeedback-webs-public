@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import SquigglyArrow from "./ui/squiggle-arrow";
 import { ChromaText } from "./ui/textRenderAppear";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import NotesIcon from "@mui/icons-material/Notes";
@@ -255,13 +256,13 @@ const HowItWorks: React.FC = React.memo(() => {
     {
       step: "01",
       title: "Install Extension",
-      description: "Add Traverse to Chrome in seconds. No Sign-In required.",
+      description: "Add Traverse to Chrome in seconds. Email required for sync.",
       icon: <Puzzle strokeWidth={1.5} />,
       details: [
-        "One-click installation from the Chrome Web Store - no complicated setup wizards",
-        "Automatic detection of supported platforms like LeetCode, GeeksforGeeks, and HackerRank",
-        "Instant activation on coding sites - start tracking immediately after install",
-        "Zero configuration needed - works out of the box with sensible defaults",
+        "One-click installation from Chrome Web Store",
+        "Supports LeetCode, GeeksforGeeks, and TakeUforward",
+        "Sign in with email to sync submissions to your account",
+        "Works immediately after authentication",
       ],
       doodlePath: doodlePaths.install,
       revealPattern: "circleBottomLeft" as RevealPattern,
@@ -271,13 +272,13 @@ const HowItWorks: React.FC = React.memo(() => {
       step: "02",
       title: "Code & Practice",
       description:
-        "Continue your normal coding practice. We silently track your runs and submissions in the background.",
+        "Solve problems normally. Extension tracks your attempts, time, and outcomes.",
       icon: <Terminal strokeWidth={1.5} />,
       details: [
-        "Seamless integration - no interruption to your workflow or coding rhythm",
-        "Tracks every 'Run' and 'Submit' button click for comprehensive analytics",
-        "Captures successful submissions along with AI-powered code analysis",
-        "Works across multiple platforms simultaneously - one extension for everything",
+        "Tracks every Run and Submit button click",
+        "Records time spent solving (active time only)",
+        "Monitors submission outcomes and code changes",
+        "AI analyzes mistakes after 3 failed runs",
       ],
       doodlePath: doodlePaths.code,
       revealPattern: "circleTopRight" as RevealPattern,
@@ -285,15 +286,15 @@ const HowItWorks: React.FC = React.memo(() => {
     },
     {
       step: "03",
-      title: "Auto-Export Everything",
+      title: "Auto-Sync to Backend",
       description:
-        "Your solutions and insights automatically sync to GitHub, Notion, and Anki cards.",
+        "Submissions sync to Traverse backend with AI-powered analysis.",
       icon: <ArrowRight strokeWidth={1.5} />,
       details: [
-        "GitHub commits with AI-generated feedback notes and code documentation",
-        "Structured Notion database entries for organized problem tracking",
-        "Spaced repetition flashcards automatically generated for key concepts",
-        "Full control over what gets exported - customize your workflow",
+        "Automatic backend sync after successful submissions",
+        "AI generates mistake tags and feedback",
+        "Optional GitHub push (configure in extension settings)",
+        "Data accessible in iOS app and web dashboard",
       ],
       doodlePath: doodlePaths.export,
       revealPattern: "horizontalWipe" as RevealPattern,
@@ -303,13 +304,13 @@ const HowItWorks: React.FC = React.memo(() => {
       step: "04",
       title: "Track Progress",
       description:
-        "Watch your coding journey unfold across all platforms with comprehensive analytics and insights.",
+        "ML-powered spaced repetition schedules optimal revision times.",
       icon: <Activity strokeWidth={1.5} />,
       details: [
-        "Your portfolio builds automatically as you solve more problems",
-        "Mistake patterns identified through AI analysis to improve faster",
-        "Learning reinforced through spaced repetition scheduling",
-        "Visualize your growth with beautiful charts and progress metrics",
+        "ML model predicts when you'll forget each problem",
+        "Revision schedule adapts based on your performance",
+        "Track streaks, XP, and progress across platforms",
+        "View analytics in iOS app",
       ],
       doodlePath: doodlePaths.track,
       revealPattern: "diagonalReveal" as RevealPattern,
@@ -387,22 +388,14 @@ const HowItWorks: React.FC = React.memo(() => {
             >
               Magic happens here!
             </span>
-            <svg width="50" height="35" viewBox="0 0 50 35" fill="none" className="ml-8 mt-1">
-              <path
-                d="M5 5 Q 15 20, 25 28"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                fill="none"
-                className="text-cyan-400/60"
-              />
-              <path
-                d="M20 24 L 25 32 L 28 23"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                fill="none"
-                className="text-cyan-400/60"
-              />
-            </svg>
+            <SquigglyArrow
+              width={70}
+              height={50}
+              strokeWidth={3.5}
+              direction="right"
+              variant="smooth"
+              className="text-cyan-400/60 ml-8 mt-1 rotate-45"
+            />
           </div>
           <div className="relative inline-block">
             {/* Reel Circle Decoration - Smaller/Inner - Hidden on mobile */}

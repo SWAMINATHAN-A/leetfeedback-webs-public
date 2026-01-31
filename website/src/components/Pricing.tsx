@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ChromaText } from "./ui/textRenderAppear";
 import { motion } from "motion/react";
+import SquigglyArrow from "./ui/squiggle-arrow";
 import { Button } from "./ui/button";
 import { AnimatedClipButton } from "./ui/animated-clip-button";
 import { Card } from "./ui/card";
@@ -314,29 +315,21 @@ const Pricing: React.FC = React.memo(() => {
           </BlurFade>
           <div className="relative inline-block">
             {/* Handwritten annotation - Everything is almost free! */}
-            <div className="absolute -top-16 left-1/2 -translate-x-1/2 z-20 hidden md:block" aria-hidden>
-              <svg width="140" height="50" viewBox="0 0 140 50" fill="none">
-                <path
-                  d="M20 45 Q 50 50, 80 30 Q 110 10, 130 20"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  fill="none"
-                  className="text-amber-500/70"
-                />
-                <path
-                  d="M125 15 L 135 22 L 128 12"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  fill="none"
-                  className="text-amber-500/70"
-                />
-              </svg>
+            <div className="absolute -top-12 -right-20 z-20 hidden md:block" aria-hidden>
               <span
-                className="absolute -top-1 left-1/2 -translate-x-1/2 text-amber-500/90 text-sm whitespace-nowrap"
+                className="absolute -top-6 right-0 text-amber-500/90 text-sm whitespace-nowrap"
                 style={{ fontFamily: "'Dancing Script', cursive" }}
               >
                 Everything is almost free!
               </span>
+              <SquigglyArrow
+                width={180}
+                height={70}
+                strokeWidth={3.5}
+                direction="right"
+                variant="wavy"
+                className="text-amber-500/70 rotate-[135deg]"
+              />
             </div>
             {/* Reel Circle Decoration - Smaller/Inner - Hidden on mobile */}
             <img
@@ -546,22 +539,14 @@ const Pricing: React.FC = React.memo(() => {
               >
                 We even answered without chatgpt!
               </span>
-              <svg width="50" height="35" viewBox="0 0 50 35" fill="none" className="ml-16 mt-1">
-                <path
-                  d="M5 5 Q 15 20, 25 28"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  fill="none"
-                  className="text-emerald-400/60"
-                />
-                <path
-                  d="M20 24 L 25 32 L 28 23"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  fill="none"
-                  className="text-emerald-400/60"
-                />
-              </svg>
+              <SquigglyArrow
+                width={70}
+                height={50}
+                strokeWidth={3.5}
+                direction="right"
+                variant="smooth"
+                className="text-emerald-400/60 ml-16 mt-1 rotate-45"
+              />
             </div>
             <div className="relative inline-block">
               <TextAnimate
