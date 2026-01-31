@@ -381,20 +381,20 @@ const HowItWorks: React.FC = React.memo(() => {
             </div>
           </BlurFade>
           {/* Handwritten annotation - Magic happens here! */}
-          <div className="relative mb-2 ml-8 md:ml-32 text-left hidden md:block" aria-hidden>
+          <div className="relative mb-2 ml-4 md:ml-32 text-left" aria-hidden>
             <span
-              className="text-cyan-400/80 text-sm whitespace-nowrap block"
+              className="text-cyan-400/80 text-xs md:text-sm whitespace-nowrap block"
               style={{ fontFamily: "'Dancing Script', cursive" }}
             >
               Magic happens here!
             </span>
             <SquigglyArrow
-              width={70}
-              height={50}
-              strokeWidth={3.5}
+              width={50}
+              height={35}
+              strokeWidth={2.5}
               direction="right"
               variant="smooth"
-              className="text-cyan-400/60 ml-8 mt-1 rotate-45"
+              className="text-cyan-400/60 ml-4 md:ml-8 mt-1 rotate-45 md:w-[70px] md:h-[50px]"
             />
           </div>
           <div className="relative inline-block">

@@ -215,20 +215,20 @@ const Features: React.FC = React.memo(() => {
           titleComponent={
             <div className="text-center">
               {/* Handwritten annotation - Your code, but smarter! */}
-              <div className="relative mb-2 ml-8 md:ml-32 text-left hidden md:block" aria-hidden>
+              <div className="relative mb-2 ml-4 md:ml-32 text-left" aria-hidden>
                 <span
-                  className="text-white/70 text-sm whitespace-nowrap block"
+                  className="text-white/70 text-xs md:text-sm whitespace-nowrap block"
                   style={{ fontFamily: "'Dancing Script', cursive" }}
                 >
                   Your code, but smarter!
                 </span>
                 <SquigglyArrow
-                  width={70}
-                  height={50}
-                  strokeWidth={3.5}
+                  width={50}
+                  height={35}
+                  strokeWidth={2.5}
                   direction="right"
                   variant="smooth"
-                  className="text-white/50 ml-12 mt-1 rotate-45"
+                  className="text-white/50 ml-4 md:ml-12 mt-1 rotate-45 md:w-[70px] md:h-[50px]"
                 />
               </div>
               <div className="relative inline-block">
@@ -310,20 +310,20 @@ const Features: React.FC = React.memo(() => {
               </div>
             </BlurFade>
             {/* Handwritten annotation - Fits in your pocket! */}
-            <div className="relative mb-2 ml-8 md:ml-32 text-left hidden md:block" aria-hidden>
+            <div className="relative mb-2 ml-4 md:ml-32 text-left" aria-hidden>
               <span
-                className="text-amber-500/80 text-sm whitespace-nowrap block"
+                className="text-amber-500/80 text-xs md:text-sm whitespace-nowrap block"
                 style={{ fontFamily: "'Dancing Script', cursive" }}
               >
                 Fits in your pocket!
               </span>
               <SquigglyArrow
-                width={70}
-                height={50}
-                strokeWidth={3.5}
+                width={50}
+                height={35}
+                strokeWidth={2.5}
                 direction="right"
                 variant="smooth"
-                className="text-amber-500/60 ml-8 mt-1 rotate-45"
+                className="text-amber-500/60 ml-4 md:ml-8 mt-1 rotate-45 md:w-[70px] md:h-[50px]"
               />
             </div>
             <div className="relative inline-block">
@@ -446,6 +446,23 @@ const Features: React.FC = React.memo(() => {
                 />
               </div>
             </BlurFade>
+            {/* Handwritten annotation - Fits in your pocket! */}
+            <div className="relative mb-2 ml-4 text-left" aria-hidden>
+              <span
+                className="text-amber-500/80 text-xs whitespace-nowrap block"
+                style={{ fontFamily: "'Dancing Script', cursive" }}
+              >
+                Fits in your pocket!
+              </span>
+              <SquigglyArrow
+                width={50}
+                height={35}
+                strokeWidth={2.5}
+                direction="right"
+                variant="smooth"
+                className="text-amber-500/60 ml-4 mt-1 rotate-45"
+              />
+            </div>
             <BlurFade delay={0.2} inView={true}>
               <h2 className="text-3xl font-bold text-foreground mb-3 px-4">
                 Your Pocket DSA Dashboard
@@ -942,7 +959,7 @@ const Features: React.FC = React.memo(() => {
                           </g>
                           <path
                             className="text-primary-600 dark:text-primary-500"
-                            d="M3 72H209"
+                            d="M3 71.5H209"
                             stroke="currentColor"
                             strokeWidth="6"
                             strokeLinecap="round"
