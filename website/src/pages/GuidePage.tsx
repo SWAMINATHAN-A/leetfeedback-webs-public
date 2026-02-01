@@ -41,9 +41,9 @@ const GuideChromaStyles = () => (
         hsl(var(--foreground)) 33.33%,
         rgb(255, 182, 193) 40%,
         rgb(255, 218, 185) 45%,
-        rgb(255, 160, 122) 50%,
+        rgba(255, 102, 42, 1) 50%,
         rgb(255, 192, 203) 55%,
-        rgb(255, 228, 225) 60%,
+        rgba(180, 248, 228, 1) 60%,
         transparent 66.67%,
         transparent
       );
@@ -58,9 +58,9 @@ const GuideChromaStyles = () => (
         hsl(var(--foreground)) 33.33%,
         rgb(255, 182, 193) 40%,
         rgb(255, 218, 185) 45%,
-        rgb(255, 160, 122) 50%,
+        rgba(247, 106, 51, 1) 50%,
         rgb(255, 192, 203) 55%,
-        rgb(255, 228, 225) 60%,
+        rgba(127, 172, 176, 1) 60%,
         transparent 66.67%,
         transparent
       );

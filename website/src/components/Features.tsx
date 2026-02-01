@@ -51,6 +51,7 @@ import DefaultSwapy from "./ui/swapy";
 import { ContainerScroll } from "./ui/container-scroll-animation";
 import ShinyText from "./ShinyText";
 import { ChromaText } from "./ui/textRenderAppear";
+import { fetchUserCount } from "../utils/statsAPI";
 
 // Wrapper component that triggers ChromaText animation when visible (replays on re-scroll)
 const VisibleChromaText: React.FC<{
@@ -100,6 +101,15 @@ const VisibleChromaText: React.FC<{
 };
 const Features: React.FC = React.memo(() => {
   const { isDark } = useTheme();
+  const [userCount, setUserCount] = useState<number>(23); // Default fallback
+
+  useEffect(() => {
+    fetchUserCount().then((count) => {
+      if (count !== null && count > 0) {
+        setUserCount(count);
+      }
+    });
+  }, []);
   const primaryFeatures = [
     {
       icon: <GitHubIcon className="w-8 h-8" />,
@@ -817,7 +827,7 @@ const Features: React.FC = React.memo(() => {
                     className="text-5xl md:text-7xl font-bold mb-4"
                     style={{ fontFamily: "'Figurlce', sans-serif" }}
                   >
-                    <NumberTicker value={23} className="text-foreground" />
+                    <NumberTicker value={userCount} className="text-foreground" />
                     <span
                       className="text-primary"
                       style={{ fontFamily: "'Figurlce', sans-serif" }}
