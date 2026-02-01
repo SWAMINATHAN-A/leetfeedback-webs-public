@@ -113,7 +113,7 @@ export function ResizableNavbarDemo() {
     { name: "Downloads", link: "/downloads" },
     { name: "Pricing", link: "#pricing" },
     { name: "Careers", link: "/careers" },
-    { name: "Our Inspiration", link: "https://www.thebrowser.company/values" },
+    { name: "Guide", link: "/guide" },
   ];
   const { isAuthenticated, isLoading } = useAuth();
   const { isSignInIslandOpen, openSignInIsland } = useNavigation();
