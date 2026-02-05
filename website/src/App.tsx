@@ -42,6 +42,7 @@ const CookiePolicyPage = lazy(() => import("./pages/CookiePolicyPage"));
 const DownloadsPage = lazy(() => import("./pages/DownloadsPage"));
 const CareersPage = lazy(() => import("./pages/CareersPage"));
 const GuidePage = lazy(() => import("./pages/GuidePage"));
+const ProblemsPage = lazy(() => import("./pages/ProblemsPage"));
 
 const COOKIE_CONSENT_KEY = "leetfeedback_cookie_consent";
 const PRELOADER_SHOWN_KEY = "leetfeedback_preloader_shown";
@@ -65,6 +66,7 @@ function AppContent() {
   const isDownloadsPage = location.pathname === "/downloads";
   const isCareersPage = location.pathname === "/careers";
   const isGuidePage = location.pathname === "/guide";
+  const isProblemsPage = location.pathname === "/problems";
   const isPolicyPage =
     location.pathname === "/privacy" ||
     location.pathname === "/terms" ||
@@ -95,7 +97,7 @@ function AppContent() {
   useEffect(() => {
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
     const shouldShowPages =
-      isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isPolicyPage;
+      isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isPolicyPage;
 
     if (shouldShowPages && isInitialLoad) {
       // Always show loading animation on first load
@@ -121,7 +123,7 @@ function AppContent() {
 
       return () => clearTimeout(timer);
     }
-  }, [isHomePage, isStatsPage, isRoadmapPage, isDownloadsPage, isCareersPage, isGuidePage, isPolicyPage, isInitialLoad]);
+  }, [isHomePage, isStatsPage, isRoadmapPage, isDownloadsPage, isCareersPage, isGuidePage, isProblemsPage, isPolicyPage, isInitialLoad]);
 
   const handleDynamicIslandComplete = useCallback(() => {
     setShowDynamicIsland(false);
@@ -192,6 +194,7 @@ function AppContent() {
             <Route path="/downloads" element={<DownloadsPage />} />
             <Route path="/careers" element={<CareersPage />} />
             <Route path="/guide" element={<GuidePage />} />
+            <Route path="/problems" element={<ProblemsPage />} />
           </Routes>
         </Suspense>
         {isHomePage && <ScrollbarNav />}
@@ -264,7 +267,7 @@ function AppContent() {
         {!isNavigating &&
           !isThemeSwitching &&
           showDynamicIsland &&
-          (isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isPolicyPage) && (
+          (isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isPolicyPage) && (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -299,7 +302,7 @@ function AppContent() {
         !isThemeSwitching &&
         !isSignInIslandOpen &&
         showDock &&
-        (isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isPolicyPage) && (
+        (isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isPolicyPage) && (
           <DockDemo />
         )}
     </div>

@@ -18,6 +18,7 @@ import { smoothScrollToElement } from "../utils/smoothScroll";
 import HomeIcon from "@mui/icons-material/Home";
 import RoadmapIcon from "@mui/icons-material/Map";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -26,6 +27,7 @@ const DATA = {
     { href: "#home", icon: HomeIcon, label: "Home" },
     { href: "/profile/stats", icon: AnalyticsIcon, label: "Stats" },
     { href: "/roadmap", icon: RoadmapIcon, label: "Roadmap" },
+    { href: "/problems", icon: MenuBookIcon, label: "Problems" },
   ],
 };
 
@@ -59,6 +61,9 @@ export const DockDemo = React.memo(function DockDemo() {
   const isRoadmapPage = location.pathname === "/roadmap";
   const isProfilePage = location.pathname === "/profile";
   const isStatsPage = location.pathname === "/profile/stats";
+  const isDownloadsPage = location.pathname === "/downloads";
+  const isProblemsPage = location.pathname === "/problems";
+  const isGuidePage = location.pathname === "/guide";
 
   // Check if we're on mobile
   const [isMobile, setIsMobile] = useState(false);
@@ -75,7 +80,7 @@ export const DockDemo = React.memo(function DockDemo() {
 
   const renderRightSection = () => {
     if (isMobile) {
-      // Mobile: Always show home, roadmap, and theme
+      // Mobile: Always show home, roadmap, problems, and theme
       return (
         <>
           <DockIcon>
@@ -100,6 +105,18 @@ export const DockDemo = React.memo(function DockDemo() {
               )}
             >
               <RoadmapIcon className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
+            </button>
+          </DockIcon>
+          <DockIcon>
+            <button
+              onClick={() => startNavigation("/problems")}
+              aria-label="Problems"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
+              )}
+            >
+              <MenuBookIcon className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
             </button>
           </DockIcon>
           <DockIcon>
@@ -214,20 +231,62 @@ export const DockDemo = React.memo(function DockDemo() {
           </DockIcon>
         </>
       );
+    } else if (isDownloadsPage || isProblemsPage || isGuidePage) {
+      // Desktop Downloads/Problems/Guide pages: Show home link + theme switch
+      return (
+        <>
+          <DockIcon>
+            <button
+              onClick={() => startNavigation("/")}
+              aria-label="Home"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
+              )}
+            >
+              <HomeIcon className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
+            </button>
+          </DockIcon>
+          <DockIcon>
+            <div
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+              )}
+            >
+              <AnimatedThemeToggler />
+            </div>
+          </DockIcon>
+        </>
+      );
     }
 
-    // Default fallback: show theme switch
+    // Default fallback: show home + theme switch
     return (
-      <DockIcon>
-        <div
-          className={cn(
-            buttonVariants({ variant: "ghost", size: "icon" }),
-            "hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
-          )}
-        >
-          <AnimatedThemeToggler />
-        </div>
-      </DockIcon>
+      <>
+        <DockIcon>
+          <button
+            onClick={() => startNavigation("/")}
+            aria-label="Home"
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
+            )}
+          >
+            <HomeIcon className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
+          </button>
+        </DockIcon>
+        <DockIcon>
+          <div
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+            )}
+          >
+            <AnimatedThemeToggler />
+          </div>
+        </DockIcon>
+      </>
     );
   };
 

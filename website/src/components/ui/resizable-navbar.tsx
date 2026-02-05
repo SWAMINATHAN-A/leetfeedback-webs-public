@@ -265,10 +265,14 @@ export const MobileNavExpandableContent = ({
             opacity: 0,
           }}
           transition={{
-            type: "spring",
-            stiffness: 200,
-            damping: 20,
-            duration: 0.3,
+            height: {
+              duration: 0.3,
+              ease: [0.4, 0, 0.2, 1],
+            },
+            opacity: {
+              duration: 0.2,
+              ease: "easeOut",
+            },
           }}
           className={cn(
             "flex w-full flex-col items-center gap-4 pb-4 overflow-hidden",
