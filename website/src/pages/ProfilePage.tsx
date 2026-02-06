@@ -443,8 +443,8 @@ const ProfilePage: React.FC = () => {
                         className="w-20 h-20 md:w-24 md:h-24 rounded-full object-cover border-2 border-border"
                       />
                     ) : (
-                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-gradient-to-br from-violet-500 to-fuchsia-500 border-2 border-border flex items-center justify-center">
-                        <span className="text-2xl md:text-3xl font-bold text-white">
+                      <div className="w-20 h-20 md:w-24 md:h-24 rounded-full bg-black dark:bg-white border-2 border-border flex items-center justify-center">
+                        <span className="text-2xl md:text-3xl font-bold text-white dark:text-black">
                           {(user.displayName || user.username || "U").charAt(0).toUpperCase()}
                         </span>
                       </div>
