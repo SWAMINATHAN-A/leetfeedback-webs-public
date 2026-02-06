@@ -34,7 +34,8 @@ const Preloader = lazy(() => import("./components/Preloader").then(m => ({ defau
 // Lazy load non-critical pages
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const RoadmapPage = lazy(() => import("./pages/RoadmapPage"));
-const SimpleProfilePage = lazy(() => import("./pages/SimpleProfilePage"));
+const ProfilePage = lazy(() => import("./pages/ProfilePage"));
+
 const StatsPage = lazy(() => import("./pages/StatsPage"));
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage"));
@@ -60,6 +61,7 @@ function AppContent() {
   const { isThemeSwitching, completeThemeSwitch, isDark, targetTheme } =
     useTheme();
 
+  const isProfilePage = location.pathname === "/profile";
   const isHomePage = location.pathname === "/";
   const isStatsPage = location.pathname === "/profile/stats";
   const isRoadmapPage = location.pathname === "/roadmap";
@@ -97,7 +99,7 @@ function AppContent() {
   useEffect(() => {
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
     const shouldShowPages =
-      isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isPolicyPage;
+      isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isPolicyPage || isProfilePage;
 
     if (shouldShowPages && isInitialLoad) {
       // Always show loading animation on first load
@@ -186,7 +188,8 @@ function AppContent() {
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/roadmap" element={<RoadmapPage />} />
-            <Route path="/profile" element={<SimpleProfilePage />} />
+            <Route path="/profile" element={<ProfilePage />} />
+
             <Route path="/profile/stats" element={<StatsPage />} />
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/terms" element={<TermsOfServicePage />} />
@@ -205,7 +208,7 @@ function AppContent() {
         {showProgressiveBlur &&
           !isNavigating &&
           !isThemeSwitching &&
-          (isHomePage || isStatsPage || isRoadmapPage || isPolicyPage) && (
+          (isHomePage || isStatsPage || isRoadmapPage || isPolicyPage || isProfilePage) && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -267,7 +270,7 @@ function AppContent() {
         {!isNavigating &&
           !isThemeSwitching &&
           showDynamicIsland &&
-          (isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isPolicyPage) && (
+          (isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isPolicyPage || isProfilePage) && (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -302,7 +305,7 @@ function AppContent() {
         !isThemeSwitching &&
         !isSignInIslandOpen &&
         showDock &&
-        (isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isPolicyPage) && (
+        (isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isPolicyPage || isProfilePage) && (
           <DockDemo />
         )}
     </div>

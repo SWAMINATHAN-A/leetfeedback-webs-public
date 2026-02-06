@@ -161,7 +161,10 @@ export function ResizableNavbarDemo() {
             />
           </MobileNavHeader>
 
-          <MobileNavExpandableContent isExpanded={isMobileMenuOpen}>
+          <MobileNavExpandableContent 
+            isExpanded={isMobileMenuOpen}
+            onClose={() => setIsMobileMenuOpen(false)}
+          >
             {/* Menu Items - Craft Style */}
             <div className="flex flex-col w-full divide-y divide-neutral-200 dark:divide-neutral-700">
               {navItems.map((item, idx) => (

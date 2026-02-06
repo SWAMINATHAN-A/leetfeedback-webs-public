@@ -52,6 +52,7 @@ interface MobileNavExpandableContentProps {
   children: React.ReactNode;
   className?: string;
   isExpanded: boolean;
+  onClose?: () => void;
 }
 
 export const Navbar = ({ children, className }: NavbarProps) => {
@@ -247,40 +248,55 @@ export const MobileNavExpandableContent = ({
   children,
   className,
   isExpanded,
+  onClose,
 }: MobileNavExpandableContentProps) => {
   return (
     <AnimatePresence>
       {isExpanded && (
-        <motion.div
-          initial={{
-            height: 0,
-            opacity: 0,
-          }}
-          animate={{
-            height: "auto",
-            opacity: 1,
-          }}
-          exit={{
-            height: 0,
-            opacity: 0,
-          }}
-          transition={{
-            height: {
-              duration: 0.3,
-              ease: [0.4, 0, 0.2, 1],
-            },
-            opacity: {
-              duration: 0.2,
-              ease: "easeOut",
-            },
-          }}
-          className={cn(
-            "flex w-full flex-col items-center gap-4 pb-4 overflow-hidden",
-            className
-          )}
-        >
-          {children}
-        </motion.div>
+        <>
+          {/* Full-screen backdrop with blur */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed inset-0 z-20 bg-black/20 backdrop-blur-md supports-[backdrop-filter]:bg-black/10"
+            style={{ top: '80px' }} // Start below the navbar
+            onClick={onClose}
+          />
+          
+          {/* Expandable content */}
+          <motion.div
+            initial={{
+              height: 0,
+              opacity: 0,
+            }}
+            animate={{
+              height: "auto",
+              opacity: 1,
+            }}
+            exit={{
+              height: 0,
+              opacity: 0,
+            }}
+            transition={{
+              height: {
+                duration: 0.3,
+                ease: [0.4, 0, 0.2, 1],
+              },
+              opacity: {
+                duration: 0.2,
+                ease: "easeOut",
+              },
+            }}
+            className={cn(
+              "flex w-full flex-col items-center gap-4 pb-4 overflow-hidden relative z-30",
+              className
+            )}
+          >
+            {children}
+          </motion.div>
+        </>
       )}
     </AnimatePresence>
   );

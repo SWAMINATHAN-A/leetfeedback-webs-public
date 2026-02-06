@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const animatedButtonVariants = cva(
-  "inline-flex items-center justify-center cursor-pointer transition-all duration-[800ms] cubic-bezier(0.625, 0.05, 0, 1) hover:scale-95",
+  "inline-flex items-center justify-center cursor-pointer transition-all duration-[800ms] cubic-bezier(0.625, 0.05, 0, 1) hover:opacity-80",
   {
     variants: {
       variant: {

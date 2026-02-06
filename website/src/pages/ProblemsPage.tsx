@@ -30,7 +30,7 @@ const ProblemsChromaStyles = () => (
     }
 
     .chroma-text-animate {
-      animation: chroma-sweep-problems 0.9s ease-in-out forwards;
+      animation: chroma-sweep-problems 1.2s ease-in-out forwards;
       filter: blur(1px);
     }
 
@@ -459,20 +459,20 @@ const ProblemsPage: React.FC = () => {
 
         {/* Large watermark typography - left */}
         <div
-          className="fixed left-0 top-1/2 -translate-y-1/2 -translate-x-[15%] pointer-events-none select-none z-0"
+          className="fixed left-0 top-1/2 -translate-y-1/2 -translate-x-[20%] pointer-events-none select-none z-0"
           aria-hidden
         >
-          <span className="text-[20vw] font-extralight tracking-tighter text-foreground/[0.03] whitespace-nowrap">
+          <span className="text-[18vw] md:text-[20vw] font-extralight tracking-tighter text-foreground/[0.03] whitespace-nowrap">
             Practice
           </span>
         </div>
 
         {/* Large watermark typography - right */}
         <div
-          className="fixed right-0 top-1/2 -translate-y-1/2 translate-x-[15%] pointer-events-none select-none z-0"
+          className="fixed right-0 top-1/2 -translate-y-1/2 translate-x-[20%] pointer-events-none select-none z-0"
           aria-hidden
         >
-          <span className="text-[20vw] font-extralight tracking-tighter text-foreground/[0.03] whitespace-nowrap">
+          <span className="text-[18vw] md:text-[20vw] font-extralight tracking-tighter text-foreground/[0.03] whitespace-nowrap">
             Problems
           </span>
         </div>
@@ -495,8 +495,8 @@ const ProblemsPage: React.FC = () => {
 
         {/* Decorative lines */}
         <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden>
-          <div className="absolute left-[15%] top-0 h-full w-px bg-gradient-to-b from-transparent via-border/30 to-transparent" />
-          <div className="absolute right-[15%] top-0 h-full w-px bg-gradient-to-b from-transparent via-border/30 to-transparent" />
+          <div className="absolute left-[20%] top-0 h-full w-px bg-gradient-to-b from-transparent via-border/30 to-transparent" />
+          <div className="absolute right-[20%] top-0 h-full w-px bg-gradient-to-b from-transparent via-border/30 to-transparent" />
         </div>
 
         {/* Main content */}

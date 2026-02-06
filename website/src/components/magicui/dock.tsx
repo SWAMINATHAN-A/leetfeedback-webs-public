@@ -27,7 +27,7 @@ const DEFAULT_MAGNIFICATION = 72;
 const DEFAULT_DISTANCE = 40;
 
 const dockVariants = cva(
-    "liquidGlass-wrapper liquidGlass-dock mx-auto mt-8 flex h-[72px] w-max items-center justify-center",
+    "liquidGlass-wrapper liquidGlass-dock mx-auto mt-8 flex h-[88px] w-max items-center justify-center",
 );
 
 const Dock = React.forwardRef<HTMLDivElement, DockProps>(

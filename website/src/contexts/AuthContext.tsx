@@ -101,10 +101,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       try {
         // Check if user was previously authenticated with backend
         const authType = localStorage.getItem("auth_type");
+        console.log("[AuthContext] Initializing auth, auth_type:", authType);
+        
         if (authType === "backend") {
           // Try to validate with backend using httpOnly cookie
+          console.log("[AuthContext] Attempting to validate backend auth...");
           const validatedUser = await validateBackendAuth();
           if (validatedUser) {
+            console.log("[AuthContext] Backend auth validation successful:", validatedUser.username);
             const userData: User = {
               uid: validatedUser.id,
               email: validatedUser.email,
@@ -122,12 +126,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
             setUserState(userData);
             setIsLoading(false);
             return;
+          } else {
+            console.log("[AuthContext] Backend auth validation failed");
           }
         }
       } catch (error) {
-        console.error("Auth initialization error:", error);
+        console.error("[AuthContext] Auth initialization error:", error);
       }
 
+      console.log("[AuthContext] Auth initialization complete, user:", !!user);
       setIsLoading(false);
     };
 

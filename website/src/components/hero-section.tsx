@@ -4,6 +4,8 @@ import { Button } from '@/components/ui/button'
 import { TextEffect } from '@/components/ui/text-effect'
 import { AnimatedGroup } from '@/components/ui/animated-group'
 import HeroHeader from './Header'
+import reelCircle from "../assets/reel-circle-deco.svg";
+import radialMarquee from "../assets/radial-marquee-circle-deco.svg";
 
 const transitionVariants = {
     item: {
@@ -30,6 +32,22 @@ export default function HeroSection() {
         <>
             <HeroHeader />
             <main className="overflow-hidden">
+                {/* Reel circle decoration */}
+                <div
+                    className="absolute -top-[300px] -right-[300px] pointer-events-none opacity-30 z-0"
+                    aria-hidden
+                >
+                    <img src={reelCircle} alt="" className="w-[800px] h-[800px]" />
+                </div>
+
+                {/* Radial marquee circle */}
+                <div
+                    className="absolute -bottom-[400px] -left-[400px] pointer-events-none opacity-20 z-0"
+                    aria-hidden
+                >
+                    <img src={radialMarquee} alt="" className="w-[1000px] h-auto" />
+                </div>
+
                 <div
                     aria-hidden
                     className="absolute inset-0 isolate hidden opacity-65 contain-strict lg:block">

@@ -544,7 +544,7 @@
 
 .liquidGlass-dock {
     border-radius: 2rem;
-    padding: 1rem;
+    padding: 1.25rem;
     gap: 12px;
 }
 
@@ -555,7 +555,7 @@
 }
 
 .liquidGlass-dock:hover {
-    padding: 1rem;
+    padding: 1.25rem;
     border-radius: 2.5rem;
     transform: translateY(-2px);
     box-shadow:

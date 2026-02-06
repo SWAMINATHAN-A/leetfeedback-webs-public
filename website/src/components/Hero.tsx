@@ -9,6 +9,8 @@ import { TextEffect } from "./ui/text-effect";
 import { AnimatedGroup } from "./ui/animated-group";
 import LogoCloud from "./logo-cloud";
 import graphImage from "../assets/support-icons/graph3.png";
+import reelCircle from "../assets/reel-circle-deco.svg";
+import radialMarquee from "../assets/radial-marquee-circle-deco.svg";
 
 const transitionVariants = {
   item: {
@@ -76,6 +78,22 @@ const VisibleChromaText: React.FC<{
 const Hero: React.FC = React.memo(() => {
   return (
     <section id="home" className="relative overflow-hidden pt-20 pb-32">
+      {/* Reel circle decoration - mobile only */}
+      <div
+        className="absolute -top-[300px] -right-[300px] pointer-events-none opacity-30 z-0 lg:hidden"
+        aria-hidden
+      >
+        <img src={reelCircle} alt="" className="w-[800px] h-[800px]" />
+      </div>
+
+      {/* Radial marquee circle - mobile only */}
+      <div
+        className="absolute -bottom-[400px] -left-[400px] pointer-events-none opacity-20 z-0 lg:hidden"
+        aria-hidden
+      >
+        <img src={radialMarquee} alt="" className="w-[1000px] h-auto" />
+      </div>
+
       {/* Gradient backgrounds */}
       <div
         aria-hidden

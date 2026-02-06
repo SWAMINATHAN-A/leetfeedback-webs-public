@@ -30,7 +30,7 @@ const GuideChromaStyles = () => (
     }
 
     .chroma-text-animate {
-      animation: chroma-sweep-guide 0.9s ease-in-out forwards;
+      animation: chroma-sweep-guide 1.2s ease-in-out forwards;
       filter: blur(1px);
     }
 
