@@ -17,15 +17,15 @@ import { smoothScrollToElement } from "../utils/smoothScroll";
 // Material Icons
 import HomeIcon from "@mui/icons-material/Home";
 import RoadmapIcon from "@mui/icons-material/Map";
-import AnalyticsIcon from "@mui/icons-material/Analytics";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import ArticleIcon from "@mui/icons-material/Article";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
 const DATA = {
   navbar: [
     { href: "#home", icon: HomeIcon, label: "Home" },
-    { href: "/profile/stats", icon: AnalyticsIcon, label: "Stats" },
+    { href: "/guide", icon: ArticleIcon, label: "Guide" },
     { href: "/roadmap", icon: RoadmapIcon, label: "Roadmap" },
     { href: "/problems", icon: MenuBookIcon, label: "Problems" },
   ],
@@ -60,10 +60,10 @@ export const DockDemo = React.memo(function DockDemo() {
   const isHomePage = location.pathname === "/";
   const isRoadmapPage = location.pathname === "/roadmap";
   const isProfilePage = location.pathname === "/profile";
-  const isStatsPage = location.pathname === "/profile/stats";
   const isDownloadsPage = location.pathname === "/downloads";
   const isProblemsPage = location.pathname === "/problems";
   const isGuidePage = location.pathname === "/guide";
+  const isBlogPage = location.pathname === "/blog" || location.pathname.startsWith("/blog/");
 
   // Check if we're on mobile
   const [isMobile, setIsMobile] = useState(false);
@@ -93,6 +93,18 @@ export const DockDemo = React.memo(function DockDemo() {
               )}
             >
               <HomeIcon className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
+            </button>
+          </DockIcon>
+          <DockIcon>
+            <button
+              onClick={() => startNavigation("/guide")}
+              aria-label="Guide"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
+              )}
+            >
+              <ArticleIcon className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
             </button>
           </DockIcon>
           <DockIcon>
@@ -195,34 +207,6 @@ export const DockDemo = React.memo(function DockDemo() {
             <div
               className={cn(
                 buttonVariants({ variant: "ghost", size: "icon" }),
-                "hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
-              )}
-            >
-              <AnimatedThemeToggler />
-            </div>
-          </DockIcon>
-        </>
-      );
-    } else if (isStatsPage) {
-      // Desktop Stats page: Show home link + theme switch
-      return (
-        <>
-          <DockIcon>
-            <button
-              onClick={() => startNavigation("/")}
-              aria-label="Home"
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
-              )}
-            >
-              <HomeIcon className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
-            </button>
-          </DockIcon>
-          <DockIcon>
-            <div
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
                 "w-full h-full hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
               )}
             >
@@ -231,8 +215,8 @@ export const DockDemo = React.memo(function DockDemo() {
           </DockIcon>
         </>
       );
-    } else if (isDownloadsPage || isProblemsPage || isGuidePage) {
-      // Desktop Downloads/Problems/Guide pages: Show home link + theme switch
+    } else if (isDownloadsPage || isProblemsPage || isGuidePage || isBlogPage) {
+      // Desktop Downloads/Problems/Guide/Blog pages: Show home link + theme switch
       return (
         <>
           <DockIcon>

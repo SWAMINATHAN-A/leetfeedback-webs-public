@@ -16,19 +16,24 @@ const navigationItems = [
     description: "[1]",
   },
   {
+    name: "Blog",
+    href: "/blog",
+    description: "[2]",
+  },
+  {
     name: "Privacy Policy",
     href: "/privacy",
-    description: "[2]",
+    description: "[3]",
   },
   {
     name: "Terms of Service",
     href: "/terms",
-    description: "[3]",
+    description: "[4]",
   },
   {
     name: "Cookie Policy",
     href: "/cookies",
-    description: "[4]",
+    description: "[5]",
   },
 ];
 

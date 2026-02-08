@@ -112,8 +112,8 @@ export function ResizableNavbarDemo() {
   const navItems = [
     { name: "Downloads", link: "/downloads" },
     { name: "Pricing", link: "#pricing" },
+    { name: "Blog", link: "/blog" },
     { name: "Careers", link: "/careers" },
-    { name: "Guide", link: "/guide" },
   ];
   const { isAuthenticated, isLoading } = useAuth();
   const { isSignInIslandOpen, openSignInIsland } = useNavigation();

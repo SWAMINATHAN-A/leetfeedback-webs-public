@@ -36,7 +36,6 @@ const LoginPage = lazy(() => import("./pages/LoginPage"));
 const RoadmapPage = lazy(() => import("./pages/RoadmapPage"));
 const ProfilePage = lazy(() => import("./pages/ProfilePage"));
 
-const StatsPage = lazy(() => import("./pages/StatsPage"));
 const PrivacyPolicyPage = lazy(() => import("./pages/PrivacyPolicyPage"));
 const TermsOfServicePage = lazy(() => import("./pages/TermsOfServicePage"));
 const CookiePolicyPage = lazy(() => import("./pages/CookiePolicyPage"));
@@ -44,6 +43,8 @@ const DownloadsPage = lazy(() => import("./pages/DownloadsPage"));
 const CareersPage = lazy(() => import("./pages/CareersPage"));
 const GuidePage = lazy(() => import("./pages/GuidePage"));
 const ProblemsPage = lazy(() => import("./pages/ProblemsPage"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
 
 const COOKIE_CONSENT_KEY = "leetfeedback_cookie_consent";
 const PRELOADER_SHOWN_KEY = "leetfeedback_preloader_shown";
@@ -63,12 +64,12 @@ function AppContent() {
 
   const isProfilePage = location.pathname === "/profile";
   const isHomePage = location.pathname === "/";
-  const isStatsPage = location.pathname === "/profile/stats";
   const isRoadmapPage = location.pathname === "/roadmap";
   const isDownloadsPage = location.pathname === "/downloads";
   const isCareersPage = location.pathname === "/careers";
   const isGuidePage = location.pathname === "/guide";
   const isProblemsPage = location.pathname === "/problems";
+  const isBlogPage = location.pathname === "/blog" || location.pathname.startsWith("/blog/");
   const isPolicyPage =
     location.pathname === "/privacy" ||
     location.pathname === "/terms" ||
@@ -99,7 +100,7 @@ function AppContent() {
   useEffect(() => {
     const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
     const shouldShowPages =
-      isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isPolicyPage || isProfilePage;
+      isHomePage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isBlogPage || isPolicyPage || isProfilePage;
 
     if (shouldShowPages && isInitialLoad) {
       // Always show loading animation on first load
@@ -125,7 +126,7 @@ function AppContent() {
 
       return () => clearTimeout(timer);
     }
-  }, [isHomePage, isStatsPage, isRoadmapPage, isDownloadsPage, isCareersPage, isGuidePage, isProblemsPage, isPolicyPage, isInitialLoad]);
+  }, [isHomePage, isRoadmapPage, isDownloadsPage, isCareersPage, isGuidePage, isProblemsPage, isPolicyPage, isInitialLoad]);
 
   const handleDynamicIslandComplete = useCallback(() => {
     setShowDynamicIsland(false);
@@ -190,7 +191,6 @@ function AppContent() {
             <Route path="/roadmap" element={<RoadmapPage />} />
             <Route path="/profile" element={<ProfilePage />} />
 
-            <Route path="/profile/stats" element={<StatsPage />} />
             <Route path="/privacy" element={<PrivacyPolicyPage />} />
             <Route path="/terms" element={<TermsOfServicePage />} />
             <Route path="/cookies" element={<CookiePolicyPage />} />
@@ -198,6 +198,8 @@ function AppContent() {
             <Route path="/careers" element={<CareersPage />} />
             <Route path="/guide" element={<GuidePage />} />
             <Route path="/problems" element={<ProblemsPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/blog/infrastructure-migration" element={<BlogPostPage />} />
           </Routes>
         </Suspense>
         {isHomePage && <ScrollbarNav />}
@@ -208,7 +210,7 @@ function AppContent() {
         {showProgressiveBlur &&
           !isNavigating &&
           !isThemeSwitching &&
-          (isHomePage || isStatsPage || isRoadmapPage || isPolicyPage || isProfilePage) && (
+          (isHomePage || isRoadmapPage || isBlogPage || isPolicyPage || isProfilePage) && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -270,7 +272,7 @@ function AppContent() {
         {!isNavigating &&
           !isThemeSwitching &&
           showDynamicIsland &&
-          (isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isPolicyPage || isProfilePage) && (
+          (isHomePage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isBlogPage || isPolicyPage || isProfilePage) && (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -305,7 +307,7 @@ function AppContent() {
         !isThemeSwitching &&
         !isSignInIslandOpen &&
         showDock &&
-        (isHomePage || isStatsPage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isPolicyPage || isProfilePage) && (
+        (isHomePage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isBlogPage || isPolicyPage || isProfilePage) && (
           <DockDemo />
         )}
     </div>
