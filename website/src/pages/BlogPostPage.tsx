@@ -95,7 +95,7 @@ const BlogPostChromaStyles = () => (
   `}</style>
 );
 
-// Visible wrapper that triggers animation only when scrolled into view
+// Visible wrapper that triggers animation only when scrolled into view (animates once, stays visible)
 const VisibleChromaText: React.FC<{
   children: React.ReactNode;
   id: string;
@@ -104,15 +104,13 @@ const VisibleChromaText: React.FC<{
   duration?: number;
 }> = ({ children, id, className, delay = 0.2, duration = 1.0 }) => {
   const ref = React.useRef<HTMLSpanElement>(null);
-  const [isVisible, setIsVisible] = React.useState(false);
-  const [animationKey, setAnimationKey] = React.useState(0);
+  const [hasAnimated, setHasAnimated] = React.useState(false);
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          setAnimationKey((prev) => prev + 1);
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
         }
       },
       { threshold: 0.1 }
@@ -123,13 +121,12 @@ const VisibleChromaText: React.FC<{
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [hasAnimated]);
 
   return (
     <span ref={ref}>
-      {isVisible ? (
+      {hasAnimated ? (
         <ChromaText
-          key={animationKey}
           id={id}
           className={className}
           delay={delay}
@@ -172,7 +169,7 @@ const BlogPostPage: React.FC = () => {
                 February 8, 2026
               </p>
             </BlurFade>
-            
+
             {/* AI Disclaimer */}
             <BlurFade delay={0.25}>
               <div className="mb-6 p-4 border rounded-lg bg-primary/5 justify-center align-center text-center">
@@ -283,7 +280,7 @@ const BlogPostPage: React.FC = () => {
                     Part 1: Database Migration
                   </VisibleChromaText>
                 </h2>
-                
+
                 <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
                   <p>
                     The first phase of our migration involved moving our PostgreSQL database from NeonDB's Germany cluster to their Singapore region. This geographical shift was crucial for reducing latency for our primary user base in India. The migration process required careful planning to ensure zero data loss and minimal downtime.
@@ -311,26 +308,26 @@ const BlogPostPage: React.FC = () => {
                     <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
                       Database Migration Commands
                     </h3>
-                    
+
                     <div className="bg-code border border-border rounded-lg p-4 font-mono text-sm overflow-x-auto space-y-4">
                       <div>
                         <p className="text-xs text-muted-foreground mb-2"># Install PostgreSQL tools</p>
                         <code className="text-foreground">brew install libpq && brew link --force libpq</code>
                       </div>
-                      
+
                       <div>
                         <p className="text-xs text-muted-foreground mb-2"># Verify Singapore connection</p>
                         <code className="text-foreground whitespace-pre">{`/opt/homebrew/opt/libpq/bin/psql \\
   'postgresql://[SINGAPORE_URL]' \\
   -c "SELECT 1 as test;"`}</code>
                       </div>
-                      
+
                       <div>
                         <p className="text-xs text-muted-foreground mb-2"># Push Prisma schema</p>
                         <code className="text-foreground whitespace-pre">{`DATABASE_URL='postgresql://[SINGAPORE_URL]' \\
   npx prisma db push --accept-data-loss`}</code>
                       </div>
-                      
+
                       <div>
                         <p className="text-xs text-muted-foreground mb-2"># Export from Germany</p>
                         <code className="text-foreground whitespace-pre">{`/opt/homebrew/opt/libpq/bin/pg_dump \\
@@ -339,7 +336,7 @@ const BlogPostPage: React.FC = () => {
   --no-owner --no-acl \\
   --file=/tmp/traverse_data.dump`}</code>
                       </div>
-                      
+
                       <div>
                         <p className="text-xs text-muted-foreground mb-2"># Import to Singapore</p>
                         <code className="text-foreground whitespace-pre">{`/opt/homebrew/opt/libpq/bin/pg_restore \\
@@ -348,7 +345,7 @@ const BlogPostPage: React.FC = () => {
   --dbname='postgresql://[SINGAPORE_URL]' \\
   /tmp/traverse_data.dump`}</code>
                       </div>
-                      
+
                       <div>
                         <p className="text-xs text-muted-foreground mb-2"># Validate migration</p>
                         <code className="text-foreground whitespace-pre">{`SELECT 'User' as table_name, COUNT(*) FROM "User"
@@ -403,7 +400,7 @@ UNION ALL SELECT 'Problem', COUNT(*) FROM "Problem";`}</code>
                     <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
                       Backend Migration Commands
                     </h3>
-                    
+
                     <div className="bg-code border border-border rounded-lg p-4 font-mono text-sm overflow-x-auto space-y-4">
                       <div>
                         <p className="text-xs text-muted-foreground mb-2"># Create India service plan</p>
@@ -413,14 +410,14 @@ UNION ALL SELECT 'Problem', COUNT(*) FROM "Problem";`}</code>
   --location centralindia \\
   --sku B1 --is-linux`}</code>
                       </div>
-                      
+
                       <div>
                         <p className="text-xs text-muted-foreground mb-2"># Delete old US app</p>
                         <code className="text-foreground whitespace-pre">{`az webapp delete \\
   --name traverse-backend-api \\
   --resource-group traverse-rg`}</code>
                       </div>
-                      
+
                       <div>
                         <p className="text-xs text-muted-foreground mb-2"># Recreate with original name in India</p>
                         <code className="text-foreground whitespace-pre">{`az webapp create \\
@@ -429,7 +426,7 @@ UNION ALL SELECT 'Problem', COUNT(*) FROM "Problem";`}</code>
   --plan traverse-plan-india \\
   --deployment-container-image-name [IMAGE]`}</code>
                       </div>
-                      
+
                       <div>
                         <p className="text-xs text-muted-foreground mb-2"># Configure container and environment</p>
                         <code className="text-foreground whitespace-pre">{`az webapp config container set \\
@@ -443,7 +440,7 @@ az webapp config appsettings set \\
   --resource-group traverse-rg \\
   --settings DATABASE_URL="[SINGAPORE_URL]" [OTHER_VARS]`}</code>
                       </div>
-                      
+
                       <div>
                         <p className="text-xs text-muted-foreground mb-2"># Cleanup old resources</p>
                         <code className="text-foreground whitespace-pre">{`az appservice plan delete \\
@@ -500,12 +497,12 @@ az webapp config appsettings set \\
                     <h3 className="text-sm font-medium text-muted-foreground uppercase tracking-wider">
                       Kubernetes Configuration Files
                     </h3>
-                    
+
                     <div className="space-y-6">
                       <div className="bg-code border border-border rounded-lg p-4 font-mono text-sm overflow-x-auto">
                         <p className="text-xs text-muted-foreground mb-2"># Deployment and Service manifest</p>
                         <code className="text-foreground whitespace-pre">
-{`apiVersion: apps/v1
+                          {`apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: lstm-model
@@ -549,7 +546,7 @@ spec:
                       <div className="bg-code border border-border rounded-lg p-4 font-mono text-sm overflow-x-auto">
                         <p className="text-xs text-muted-foreground mb-2"># Horizontal Pod Autoscaler</p>
                         <code className="text-foreground whitespace-pre">
-{`apiVersion: autoscaling/v2
+                          {`apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
   name: lstm-hpa

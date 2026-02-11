@@ -95,7 +95,7 @@ const ProfileChromaStyles = () => (
   `}</style>
 );
 
-// Visible wrapper that triggers animation only when scrolled into view
+// Visible wrapper that triggers animation only when scrolled into view (animates once, stays visible)
 const VisibleChromaText: React.FC<{
   id: string;
   className?: string;
@@ -104,29 +104,25 @@ const VisibleChromaText: React.FC<{
   children: React.ReactNode;
 }> = ({ id, className, delay, duration, children }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const [animationKey, setAnimationKey] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setAnimationKey((prev) => prev + 1);
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
         }
       },
       { threshold: 0.1 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
-  }, []);
+  }, [hasAnimated]);
 
   return (
     <span ref={ref}>
-      {isVisible ? (
-        <ChromaText key={animationKey} id={id} className={className} delay={delay} duration={duration}>
+      {hasAnimated ? (
+        <ChromaText id={id} className={className} delay={delay} duration={duration}>
           {children}
         </ChromaText>
       ) : (
@@ -192,7 +188,7 @@ const ProfilePage: React.FC = () => {
   const [isLoadingStats, setIsLoadingStats] = useState(true);
   const [isLoadingSubscription, setIsLoadingSubscription] = useState(true);
   const [showSettingsModal, setShowSettingsModal] = useState(false);
-  
+
   // Settings modal states
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -218,12 +214,12 @@ const ProfilePage: React.FC = () => {
       if (user) {
         setIsLoadingStats(true);
         setIsLoadingSubscription(true);
-        
+
         const [userStats, subStatus] = await Promise.all([
           fetchUserStats(),
           fetchSubscriptionStatus()
         ]);
-        
+
         setStats(userStats);
         setSubscriptionStatus(subStatus);
         setIsLoadingStats(false);
@@ -490,7 +486,7 @@ const ProfilePage: React.FC = () => {
                       <img src={reelCircle} alt="" className="w-24 h-24" />
                     </div>
                   )}
-                  
+
                   {isLoadingSubscription ? (
                     <div className="flex items-center gap-2 text-muted-foreground">
                       <Loader2 className="w-4 h-4 animate-spin" />
@@ -499,11 +495,10 @@ const ProfilePage: React.FC = () => {
                   ) : (
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
-                        <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium relative z-10 ${
-                          subscriptionStatus?.isSubscriptionActive 
+                        <div className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium relative z-10 ${subscriptionStatus?.isSubscriptionActive
                             ? 'bg-black dark:bg-white text-white dark:text-black border border-gray-800 dark:border-gray-200 shadow-sm'
                             : 'bg-muted text-muted-foreground border border-border'
-                        }`}>
+                          }`}>
                           {subscriptionStatus?.isSubscriptionActive ? (
                             <>
                               <Sparkles className="w-4 h-4" />
@@ -517,7 +512,7 @@ const ProfilePage: React.FC = () => {
                           )}
                         </div>
                       </div>
-                      
+
                       {!subscriptionStatus?.isSubscriptionActive && (
                         <button
                           onClick={handleSubscribe}
@@ -541,7 +536,7 @@ const ProfilePage: React.FC = () => {
                   </VisibleChromaText>
                 </h2>
               </BlurFade>
-              
+
               <div className="border-t border-border/30">
                 {isLoadingStats ? (
                   <div className="flex items-center justify-center py-16">
@@ -570,7 +565,7 @@ const ProfilePage: React.FC = () => {
                     <LogOut className="w-5 h-5" />
                     Sign Out
                   </button>
-                  
+
                   <button
                     onClick={() => setShowSettingsModal(true)}
                     className="flex items-center justify-center gap-2 px-6 py-3 border border-border rounded-lg hover:bg-muted transition-colors"
@@ -628,7 +623,7 @@ const ProfilePage: React.FC = () => {
                         <p className="text-sm text-muted-foreground">@{user.username || "user"}</p>
                       </div>
                     </div>
-                    
+
                     {user.email && (
                       <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
                         <Mail className="w-5 h-5 text-muted-foreground" />
@@ -638,7 +633,7 @@ const ProfilePage: React.FC = () => {
                         </div>
                       </div>
                     )}
-                    
+
                     <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
                       <Calendar className="w-5 h-5 text-muted-foreground" />
                       <div className="flex-1">
@@ -646,7 +641,7 @@ const ProfilePage: React.FC = () => {
                         <p className="text-sm text-muted-foreground">{memberSince}</p>
                       </div>
                     </div>
-                    
+
                     {user.timezone && (
                       <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
                         <Globe className="w-5 h-5 text-muted-foreground" />
@@ -656,7 +651,7 @@ const ProfilePage: React.FC = () => {
                         </div>
                       </div>
                     )}
-                    
+
                     <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
                       {user.visibility === 'public' ? <Eye className="w-5 h-5 text-muted-foreground" /> : <EyeOff className="w-5 h-5 text-muted-foreground" />}
                       <div className="flex-1">
@@ -698,7 +693,7 @@ const ProfilePage: React.FC = () => {
                         <path d="M9 18l6-6-6-6" />
                       </svg>
                     </button>
-                    
+
                     <div className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg">
                       <Shield className="w-5 h-5 text-muted-foreground" />
                       <div className="flex-1">
@@ -723,7 +718,7 @@ const ProfilePage: React.FC = () => {
                         <p className="text-sm text-red-400">Sign out of your account on this device</p>
                       </div>
                     </button>
-                    
+
                     <button
                       onClick={() => {
                         setShowDeleteModal(true);

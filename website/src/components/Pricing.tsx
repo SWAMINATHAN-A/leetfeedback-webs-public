@@ -48,7 +48,7 @@ import {
   openRazorpayCheckout,
 } from "../utils/subscriptionAPI";
 
-// Wrapper component that triggers ChromaText animation when visible (replays on re-scroll)
+// Wrapper component that triggers ChromaText animation when visible (animates once, stays visible)
 const VisibleChromaText: React.FC<{
   id: string;
   className?: string;
@@ -57,30 +57,25 @@ const VisibleChromaText: React.FC<{
   children: React.ReactNode;
 }> = ({ id, className, delay, duration, children }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const [animationKey, setAnimationKey] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setAnimationKey((prev) => prev + 1);
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
         }
       },
-      { threshold: 0.1 },
+      { threshold: 0.1 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
-  }, []);
+  }, [hasAnimated]);
 
   return (
     <span ref={ref}>
-      {isVisible ? (
+      {hasAnimated ? (
         <ChromaText
-          key={animationKey}
           id={id}
           className={className}
           delay={delay}
@@ -487,7 +482,11 @@ const Pricing: React.FC = React.memo(() => {
                       ₹49
                     </VisibleChromaText>
                   </span>
-                  <span className="text-lg text-white/70 ml-1">/mo</span>
+                  <span className="text-lg text-white/70 ml-1">
+                    <VisibleChromaText id="premium-mo" delay={0.3} duration={1.0}>
+                      /mo
+                    </VisibleChromaText>
+                  </span>
                 </div>
 
                 {/* Features List */}

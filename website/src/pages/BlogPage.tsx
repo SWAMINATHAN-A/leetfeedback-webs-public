@@ -75,7 +75,7 @@ const BlogChromaStyles = () => (
   `}</style>
 );
 
-// Visible wrapper that triggers animation only when scrolled into view
+// Visible wrapper that triggers animation only when scrolled into view (animates once, stays visible)
 const VisibleChromaText: React.FC<{
   children: React.ReactNode;
   id: string;
@@ -84,15 +84,13 @@ const VisibleChromaText: React.FC<{
   duration?: number;
 }> = ({ children, id, className, delay = 0.2, duration = 1.0 }) => {
   const ref = React.useRef<HTMLSpanElement>(null);
-  const [isVisible, setIsVisible] = React.useState(false);
-  const [animationKey, setAnimationKey] = React.useState(0);
+  const [hasAnimated, setHasAnimated] = React.useState(false);
 
   React.useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          setAnimationKey((prev) => prev + 1);
+        if (entry.isIntersecting && !hasAnimated) {
+          setHasAnimated(true);
         }
       },
       { threshold: 0.1 }
@@ -103,13 +101,12 @@ const VisibleChromaText: React.FC<{
     }
 
     return () => observer.disconnect();
-  }, []);
+  }, [hasAnimated]);
 
   return (
     <span ref={ref}>
-      {isVisible ? (
+      {hasAnimated ? (
         <ChromaText
-          key={animationKey}
           id={id}
           className={className}
           delay={delay}

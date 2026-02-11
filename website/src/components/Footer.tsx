@@ -67,7 +67,6 @@ const Footer: React.FC = () => {
               <ul className="flex flex-col gap-0 items-start">
                 {[
                   { name: "Home", href: "/" },
-                  { name: "Roadmap", href: "/roadmap" },
                   { name: "Blog", href: "/blog" },
                   { name: "Privacy Policy", href: "/privacy" },
                   { name: "Terms of Service", href: "/terms" },
