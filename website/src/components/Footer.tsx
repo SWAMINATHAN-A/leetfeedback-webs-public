@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Skiper58 } from "./ui/skiper-ui/skiper58";
+import { NavigatingLink } from "./NavigatingLink";
+import LetterSwapForward from "./ui/LetterSwapForward";
 import { ChromaText } from "./ui/textRenderAppear";
 
 // Wrapper component that triggers ChromaText animation when visible (animates once, stays visible)
@@ -60,12 +61,35 @@ const Footer: React.FC = () => {
           {/* Footer Content - navigation on left, copyright right */}
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
             {/* Skiper58 Footer Component - constrained width so it doesn't stretch */}
-            <div className="shrink-0 max-w-[520px] w-full md:w-auto">
-              <Skiper58 />
+            {/* Navigation Links - previously Skiper58 */}
+            {/* Navigation Links - previously Skiper58 */}
+            <div className="shrink-0 max-w-[520px] w-full md:w-auto md:pt-8">
+              <ul className="flex flex-col gap-0 items-start">
+                {[
+                  { name: "Home", href: "/" },
+                  { name: "Roadmap", href: "/roadmap" },
+                  { name: "Blog", href: "/blog" },
+                  { name: "Privacy Policy", href: "/privacy" },
+                  { name: "Terms of Service", href: "/terms" },
+                  { name: "Cookie Policy", href: "/cookies" },
+                ].map((item, index) => (
+                  <li key={index} className="relative flex cursor-pointer flex-col items-start overflow-visible">
+                    <NavigatingLink to={item.href} className="relative flex items-start">
+                      <LetterSwapForward
+                        label={item.name.toUpperCase()}
+                        className="text-4xl font-extrabold uppercase leading-[0.85] tracking-[-0.03em] transition-colors lg:text-5xl"
+                        staggerDuration={0.03}
+                        staggerFrom="first"
+                        reverse={false}
+                      />
+                    </NavigatingLink>
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Stylized Typography Section */}
-            <div className="w-full md:w-auto flex flex-col items-end gap-0.1 pr-4 md:pr-8">
+            <div className="w-full md:w-auto flex flex-col items-start md:items-end gap-0.1 pr-4 md:pr-8">
               {/* Main Logo Area */}
               <div className="flex items-center gap-3">
                 {/* Large TR letters */}
@@ -77,7 +101,7 @@ const Footer: React.FC = () => {
                   ))}
                 </div>
                 {/* Built to text */}
-                <div className="text-xs md:text-sm font-mono text-muted-foreground leading-[0.9] text-right" style={{ fontFamily: "'Fascinate', cursive" }}>
+                <div className="text-xs md:text-sm font-mono text-muted-foreground leading-[0.9] text-left md:text-right" style={{ fontFamily: "'Fascinate', cursive" }}>
                   <div>BUILT TO</div>
                   <div className="text-foreground">&lt;/&gt; FLEX</div>
                 </div>
