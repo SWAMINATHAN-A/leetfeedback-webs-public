@@ -108,10 +108,10 @@ const Hero: React.FC = React.memo(() => {
 
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-start overflow-visible">
-            <div className="text-left sm:mx-0 lg:mr-auto lg:mt-0">
+            <div className="text-left sm:mx-0 lg:mr-auto lg:mt-0 overflow-hidden">
 
               {/* Main Headline with TextEffect */}
-              <h1 className="mt-8 text-5xl md:text-7xl leading-tight">
+              <h1 className="mt-4 md:mt-8 lg:mt-12 text-5xl md:text-7xl leading-tight">
                 <TextEffect
                   preset="fade-in-blur"
                   speedSegment={0.3}
@@ -171,7 +171,10 @@ const Hero: React.FC = React.memo(() => {
                 </AnimatedGroup>
 
                 {/* Supported Platforms - half width, no blur effects */}
-                <div className="mt-10 w-full max-w-sm md:max-w-2xl">
+                <div className="mt-20 w-full max-w-sm md:max-w-2xl">
+                  <div className="text-left text-xs font-mono text-muted-foreground ">
+                    Supported Platforms
+                  </div>
                   <LogoCloud />
                 </div>
 
@@ -185,7 +188,7 @@ const Hero: React.FC = React.memo(() => {
               duration={1.5}
               offset={12}
               blur="12px"
-              className="hidden lg:block relative mt-10"
+              className="hidden lg:block relative mt-4"
             >
               <div
                 className="relative w-full"

@@ -15,13 +15,8 @@ export default function LogoCloud() {
     <section className="overflow-hidden py-4">
       <div className="group relative m-auto max-w-7xl px-4">
         <div className="flex flex-col items-start md:flex-row md:items-center">
-          <div className="md:max-w-44 md:border-r md:border-border md:pr-6">
-            <p className="text-start text-xs text-muted-foreground font-mono">
-              Supported Platforms
-            </p>
-          </div>
           <div
-            className="relative py-3 md:w-[calc(100%-11rem)] w-full"
+            className="relative py-3 w-full"
             style={{
               maskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
               WebkitMaskImage: 'linear-gradient(to right, transparent, black 10%, black 90%, transparent)',
