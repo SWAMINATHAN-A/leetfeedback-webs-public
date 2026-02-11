@@ -575,19 +575,21 @@ const HowItWorks: React.FC = React.memo(() => {
         </div>
 
         {/* Integration Showcase */}
-        <div className="relative bg-zinc-900 dark:bg-zinc-950 rounded-3xl overflow-hidden border border-zinc-800 h-[400px]">
-          {/* Background: Platform Integrations Marquee */}
-          <div className="absolute inset-0">
-            <PlatformIntegrations />
-          </div>
+        <div className="container">
+          <div className="relative bg-zinc-900 dark:bg-zinc-950 rounded-3xl overflow-hidden border border-zinc-800 h-[400px]">
+            {/* Background: Platform Integrations Marquee */}
+            <div className="absolute inset-0">
+              <PlatformIntegrations />
+            </div>
 
-          {/* Title Overlay */}
-          <div className="absolute inset-0 flex items-center justify-center z-10">
-            <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold">
-              <VisibleChromaText id="tools-connected" delay={0.3} duration={1.5}>
-                All Your Tools Connected
-              </VisibleChromaText>
-            </h2>
+            {/* Title Overlay */}
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold">
+                <VisibleChromaText id="tools-connected" delay={0.3} duration={1.5}>
+                  All Your Tools Connected
+                </VisibleChromaText>
+              </h2>
+            </div>
           </div>
         </div>
       </div>
