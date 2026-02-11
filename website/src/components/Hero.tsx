@@ -109,27 +109,9 @@ const Hero: React.FC = React.memo(() => {
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-start overflow-visible">
             <div className="text-left sm:mx-0 lg:mr-auto lg:mt-0">
-              {/* Beta Badge - Original Design */}
-              <BlurFade delay={0.25}>
-                <div className="mb-10">
-                  <Link
-                    to="/roadmap"
-                    className="inline-block"
-                    onClick={() => analytics.trackRoadmapView()}
-                  >
-                    <div className="bg-[rgba(40,40,40,0.9)] border border-white/20 px-3 py-1.5 rounded-full hover:bg-[rgba(40,40,40,1)] transition-colors inline-flex items-center">
-                      <ShinyText
-                        text="Public Beta is out!"
-                        speed={3}
-                        className="text-xs font-mono"
-                      />
-                    </div>
-                  </Link>
-                </div>
-              </BlurFade>
 
               {/* Main Headline with TextEffect */}
-              <h1 className="mt-0 text-5xl md:text-7xl leading-tight">
+              <h1 className="mt-8 text-5xl md:text-7xl leading-tight">
                 <TextEffect
                   preset="fade-in-blur"
                   speedSegment={0.3}

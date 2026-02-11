@@ -53,43 +53,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Helper function to set user state and handle notifications
+  // Helper function to set user state
   const setUserState = (userData: User | null) => {
     setUser(userData);
 
     if (userData) {
-      // Store user data for extension communication with timestamp
-      localStorage.setItem("backend_user", JSON.stringify(userData));
-      localStorage.setItem("auth_timestamp", Date.now().toString());
-
-      // Notify extension of auth change
-      window.postMessage(
-        {
-          type: "AUTH_STATE_CHANGED",
-          isAuthenticated: true,
-          user: userData,
-        },
-        window.location.origin
-      );
-
       console.log(
-        `[AuthContext] User authenticated via ${userData.authType}, data stored for extension`
+        `[AuthContext] User authenticated via ${userData.authType}`
       );
     } else {
-      localStorage.removeItem("backend_user");
-      localStorage.removeItem("auth_timestamp");
-
-      // Notify extension of auth change
-      window.postMessage(
-        {
-          type: "AUTH_STATE_CHANGED",
-          isAuthenticated: false,
-          user: null,
-        },
-        window.location.origin
-      );
-
-      console.log("[AuthContext] User signed out, data cleared");
+      console.log("[AuthContext] User signed out");
     }
   };
 
@@ -139,68 +112,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     };
 
     initializeAuth();
-
-    // Listen for auth status requests from extension
-    const handleExtensionMessage = (event: MessageEvent) => {
-      if (event.origin !== window.location.origin) return;
-
-      if (
-        event.data.type === "AUTH_STATUS_REQUEST" &&
-        event.data.source === "extension"
-      ) {
-        console.log(
-          "[AuthContext] Extension requesting auth status, current user:",
-          !!user
-        );
-        // Send auth status to extension
-        const response = {
-          type: "AUTH_STATUS_RESPONSE",
-          isAuthenticated: !!user,
-          user: user,
-        };
-
-        if (event.source) {
-          (event.source as Window).postMessage(response, event.origin);
-        } else {
-          // Fallback: post to window
-          window.postMessage(response, window.location.origin);
-        }
-      }
-
-      if (
-        event.data.type === "SIGN_OUT_REQUEST" &&
-        event.data.source === "extension"
-      ) {
-        // Handle sign out request from extension
-        signOut()
-          .then(() => {
-            window.postMessage(
-              {
-                type: "SIGN_OUT_RESPONSE",
-                success: true,
-              },
-              window.location.origin
-            );
-          })
-          .catch((error) => {
-            console.error("Sign out error:", error);
-            window.postMessage(
-              {
-                type: "SIGN_OUT_RESPONSE",
-                success: false,
-                error: error.message,
-              },
-              window.location.origin
-            );
-          });
-      }
-    };
-
-    window.addEventListener("message", handleExtensionMessage);
-
-    return () => {
-      window.removeEventListener("message", handleExtensionMessage);
-    };
   }, []);
 
   const signInWithCredentials = useCallback(

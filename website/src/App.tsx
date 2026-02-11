@@ -18,7 +18,6 @@ import HomePage from "./pages/HomePage";
 import { ProgressiveBlur } from "./components/magicui/progressive-blur";
 import { ScrollbarNav } from "./components/ScrollbarNav";
 import { DockDemo } from "./components/DockDemo";
-import { DynamicIslandDemo } from "./components/DynamicIslandDemo";
 import { SignInDynamicIsland } from "./components/SignInDynamicIsland";
 import { NavigationIsland } from "./components/NavigationIsland";
 import { ThemeSwitchIsland } from "./components/ThemeSwitchIsland";
@@ -27,9 +26,6 @@ import Header from "./components/Header";
 import ScrollToTop from "./components/ScrollToTop";
 import { smoothScrollTo } from "./utils/smoothScroll";
 import "./App.css";
-
-// Lazy load heavy visual components for better performance
-const Preloader = lazy(() => import("./components/Preloader").then(m => ({ default: m.Preloader })));
 
 // Lazy load non-critical pages
 const LoginPage = lazy(() => import("./pages/LoginPage"));
@@ -46,8 +42,6 @@ const ProblemsPage = lazy(() => import("./pages/ProblemsPage"));
 const BlogPage = lazy(() => import("./pages/BlogPage"));
 const BlogPostPage = lazy(() => import("./pages/BlogPostPage"));
 
-const COOKIE_CONSENT_KEY = "leetfeedback_cookie_consent";
-const PRELOADER_SHOWN_KEY = "leetfeedback_preloader_shown";
 
 function AppContent() {
   const location = useLocation();
@@ -78,63 +72,14 @@ function AppContent() {
   const [showDynamicIsland, setShowDynamicIsland] = useState(false);
   const [showDock, setShowDock] = useState(false);
   const [showProgressiveBlur, setShowProgressiveBlur] = useState(false);
-  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  // Only show preloader on homepage if it hasn't been shown before or cookies not accepted
-  const [showPreloader, setShowPreloader] = useState(() => {
-    if (!isHomePage) return false;
-    const hasConsent = localStorage.getItem(COOKIE_CONSENT_KEY);
-    const preloaderShown = localStorage.getItem(PRELOADER_SHOWN_KEY);
-    // Show preloader only if cookies accepted AND preloader hasn't been shown yet
-    return hasConsent && !preloaderShown;
-  });
-
-  // Handle preloader completion
-  const handlePreloaderComplete = useCallback(() => {
-    setShowPreloader(false);
-    // Mark preloader as shown so it doesn't appear again
-    localStorage.setItem(PRELOADER_SHOWN_KEY, "true");
-  }, []);
-
-  // Show loading animation on initial load, then show appropriate UI
+  // Show dock and progressive blur immediately on mount
   useEffect(() => {
-    const consent = localStorage.getItem(COOKIE_CONSENT_KEY);
-    const shouldShowPages =
-      isHomePage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isBlogPage || isPolicyPage || isProfilePage;
-
-    if (shouldShowPages && isInitialLoad) {
-      // Always show loading animation on first load
-      setShowDynamicIsland(true);
-      setShowDock(false);
-
-      // After 0.7 seconds, check what to show next
-      const timer = setTimeout(() => {
-        setIsInitialLoad(false);
-
-        if (!consent) {
-          // No consent, keep showing dynamic island for cookie prompt
-          // Island will handle its own completion
-        } else {
-          // Has consent, transition to dock
-          setShowDynamicIsland(false);
-          setTimeout(() => {
-            setShowDock(true);
-            setShowProgressiveBlur(true);
-          }, 300);
-        }
-      }, 800);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isHomePage, isRoadmapPage, isDownloadsPage, isCareersPage, isGuidePage, isProblemsPage, isPolicyPage, isInitialLoad]);
-
-  const handleDynamicIslandComplete = useCallback(() => {
-    setShowDynamicIsland(false);
-    // Wait before showing dock and progressive blur for smooth transition
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setShowDock(true);
       setShowProgressiveBlur(true);
     }, 300);
+    return () => clearTimeout(timer);
   }, []);
 
   const handleSignInComplete = useCallback(() => {
@@ -177,9 +122,6 @@ function AppContent() {
   return (
     <div className="App min-h-screen relative">
       <ScrollToTop />
-
-      {/* Preloader - shows on initial load */}
-      {showPreloader && <Preloader onComplete={handlePreloaderComplete} />}
 
       {/* Content overlay */}
       <div className="relative z-10">
@@ -265,25 +207,6 @@ function AppContent() {
             />
           </motion.div>
         )}
-      </AnimatePresence>
-
-      {/* Dynamic Island - shows on first load for cookie consent */}
-      <AnimatePresence>
-        {!isNavigating &&
-          !isThemeSwitching &&
-          showDynamicIsland &&
-          (isHomePage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isBlogPage || isPolicyPage || isProfilePage) && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="fixed bottom-8 left-0 right-0 z-50 flex justify-center"
-              style={{ willChange: "opacity, transform" }}
-            >
-              <DynamicIslandDemo onComplete={handleDynamicIslandComplete} />
-            </motion.div>
-          )}
       </AnimatePresence>
 
       {/* Sign In Dynamic Island */}
