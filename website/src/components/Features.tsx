@@ -470,11 +470,15 @@ const Features: React.FC = React.memo(() => {
                 className="text-amber-500/60 ml-4 mt-1 rotate-45"
               />
             </div>
-            <BlurFade delay={0.2} inView={true}>
-              <h2 className="text-3xl font-bold text-foreground mb-3 px-4">
-                Your Pocket DSA Dashboard
-              </h2>
-            </BlurFade>
+            <TextAnimate
+              as="h2"
+              className="text-5xl md:text-7xl text-foreground mb-6 relative z-10 px-4"
+              animation="blurInUp"
+              delay={0.3}
+              by="word"
+            >
+              Your Pocket DSA Dashboard
+            </TextAnimate>
             <BlurFade delay={0.3} inView={true}>
               <p className="text-sm text-muted-foreground max-w-xs mx-auto leading-relaxed px-4">
                 Track your solves, streaks, and progress on the go
@@ -494,12 +498,12 @@ const Features: React.FC = React.memo(() => {
                 }}
               >
                 {[
-                  { src: "/ios1.webp", alt: "Dashboard" },
-                  { src: "/ios2.webp", alt: "Problems" },
-                  { src: "/ios3.webp", alt: "Stats" },
-                  { src: "/ios4.webp", alt: "Profile" },
-                  { src: "/ios5.webp", alt: "Leaderboard" },
-                  { src: "/ios6.webp", alt: "Details" },
+                  { src: "/ios1.webp", alt: "Login Page" },
+                  { src: "/ios2.webp", alt: "Dashboard" },
+                  { src: "/ios3.webp", alt: "Revisions" },
+                  { src: "/ios4.webp", alt: "Friends" },
+                  { src: "/ios5.webp", alt: "Solves" },
+                  { src: "/ios6.webp", alt: "Settings" },
                 ].map((screenshot, index) => (
                   <div
                     key={index}
@@ -526,36 +530,7 @@ const Features: React.FC = React.memo(() => {
             </div>
           </BlurFade>
 
-          {/* Compact Feature List for Mobile */}
-          <div className="px-4 space-y-3" style={{ fontFamily: "'Britanica', sans-serif" }}>
-            <BlurFade delay={0.5} duration={0.5} inView={true}>
-              <div className="flex items-center gap-3 p-3 rounded-xl bg-card/30 border border-border/50">
-                <AppsIcon className="w-5 h-5 text-primary flex-shrink-0" />
-                <div>
-                  <span className="text-sm font-medium text-foreground">Unified History</span>
-                  <span className="text-xs text-muted-foreground ml-2">— All platforms in one place</span>
-                </div>
-              </div>
-            </BlurFade>
-            <BlurFade delay={0.55} duration={0.5} inView={true}>
-              <div className="flex items-center gap-3 p-3 rounded-xl bg-card/30 border border-border/50">
-                <TrackChangesIcon className="w-5 h-5 text-primary flex-shrink-0" />
-                <div>
-                  <span className="text-sm font-medium text-foreground">Performance Metrics</span>
-                  <span className="text-xs text-muted-foreground ml-2">— Track your progress</span>
-                </div>
-              </div>
-            </BlurFade>
-            <BlurFade delay={0.6} duration={0.5} inView={true}>
-              <div className="flex items-center gap-3 p-3 rounded-xl bg-card/30 border border-border/50">
-                <AnalyticsIcon className="w-5 h-5 text-primary flex-shrink-0" />
-                <div>
-                  <span className="text-sm font-medium text-foreground">Daily Goals</span>
-                  <span className="text-xs text-muted-foreground ml-2">— Streaks & XP</span>
-                </div>
-              </div>
-            </BlurFade>
-          </div>
+
         </div>
 
         {/* Primary Features - Bento Grid Style */}
@@ -571,15 +546,15 @@ const Features: React.FC = React.memo(() => {
               </div>
             </BlurFade>
             <div className="relative inline-block">
-              {/* Radial Marquee Circle Decoration - Hidden on mobile */}
+              {/* Radial Marquee Circle Decoration — visible on mobile and larger */}
               <img
                 src={marqueeCircleDeco}
                 alt="Circle decoration"
-                className="absolute inset-0 w-full h-full dark:invert-0 invert hidden md:block"
+                className="absolute inset-0 w-full h-full dark:invert-0 invert block"
                 style={{
-                  transform: "scale(1.8)",
+                  transform: "scale(2.6)",
                   pointerEvents: "none",
-                  opacity: 0.35,
+                  opacity: 0.55,
                 }}
                 aria-hidden="true"
               />
@@ -1014,8 +989,8 @@ const MobileScreenshotsCarousel: React.FC = () => {
     { src: "/ios2.webp", alt: "Problem View" },
     { src: "/ios3.webp", alt: "Statistics" },
     { src: "/ios4.webp", alt: "Profile" },
-    { src: "/ios5.webp", alt: "Leaderboard" },
-    { src: "/ios6.webp", alt: "Problem Details" },
+    { src: "/ios5.webp", alt: "Login page" },
+    { src: "/ios6.webp", alt: "Dashboard" },
     { src: "/ios7.webp", alt: "Progress Tracking" },
     { src: "/ios8.webp", alt: "Settings" },
   ];
