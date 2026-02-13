@@ -391,15 +391,15 @@ const Features: React.FC = React.memo(() => {
           <MobileScreenshotsCarousel />
 
           <div
-            className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 container-medium"
+            className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-4 container -mx-4 md:mx-0 px-4 md:px-0"
             style={{ fontFamily: "'Britanica', sans-serif" }}
           >
             <BlurFade delay={0.8} duration={0.8} inView={true}>
               <div className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
                   <AppsIcon className="w-6 h-6 text-primary" />
                 </div>
-                <h4 className="font-semibold text-foreground mb-2">
+                <h4 className="font-semibold text-foreground mb-1">
                   Unified History
                 </h4>
                 <p className="text-sm text-muted-foreground">
@@ -410,10 +410,10 @@ const Features: React.FC = React.memo(() => {
 
             <BlurFade delay={0.9} duration={0.8} inView={true}>
               <div className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
                   <TrackChangesIcon className="w-6 h-6 text-primary" />
                 </div>
-                <h4 className="font-semibold text-foreground mb-2">
+                <h4 className="font-semibold text-foreground mb-1">
                   Performance Metrics
                 </h4>
                 <p className="text-sm text-muted-foreground">
@@ -424,11 +424,11 @@ const Features: React.FC = React.memo(() => {
 
             <BlurFade delay={1.0} duration={0.8} inView={true}>
               <div className="text-center">
-                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-2">
                   <AnalyticsIcon className="w-6 h-6 text-primary" />
                 </div>
                 <h4
-                  className="font-semibold text-foreground mb-2"
+                  className="font-semibold text-foreground mb-1"
                   style={{ fontFamily: "'Stinger', sans-serif" }}
                 >
                   Daily Goals
@@ -620,8 +620,7 @@ const Features: React.FC = React.memo(() => {
           </div>
 
           {/* Bento Grid Layout */}
-          <div className="container">
-            <div className="grid grid-cols-1 md:grid-cols-2 bg-[#0d0d0d] rounded-3xl overflow-hidden border border-white/5">
+          <div className="grid grid-cols-1 md:grid-cols-2 bg-[#0d0d0d] rounded-3xl overflow-hidden border border-white/5">
               {/* GitHub Integration Card - Large */}
               <div className="col-span-full md:col-span-1">
                 <div className="p-6 sm:p-12 border-b md:border-b-0 md:border-r border-white/5">
@@ -655,7 +654,7 @@ const Features: React.FC = React.memo(() => {
                   <div className="absolute inset-0 z-20 m-auto size-fit top-8">
                     <div className="relative flex size-fit w-fit items-center gap-2 border border-white/10 rounded-lg px-3 py-1.5 text-xs font-medium shadow-lg bg-[#0d0d0d]">
                       <GitHubIcon className="size-4" />
-                      <span>Pushed 247 solutions this month</span>
+                      <span className="text-white">Pushed 247 solutions this month</span>
                     </div>
                   </div>
                   <div className="relative overflow-hidden h-64 bg-[#0d0d0d]">
@@ -887,7 +886,6 @@ const Features: React.FC = React.memo(() => {
                 </ul>
               </div>
             </div>
-          </div>
         </div>
       </div>
     </div>
@@ -925,7 +923,7 @@ const Features: React.FC = React.memo(() => {
 
       {/* Feature Highlight Section - GitHub Integration Focus */}
       <div className="container">
-        <div className="bg-zinc-900 dark:bg-zinc-900 border border-zinc-800 dark:border-zinc-800 rounded-3xl p-8 md:p-12">
+        <div className="bg-[#0d0d0d] border border-white/5 rounded-3xl p-8 md:p-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="mb-4 bg-[rgba(40,40,40,0.9)] border border-white/20 rounded-full px-3 py-1.5 inline-flex items-center">
@@ -970,7 +968,7 @@ const Features: React.FC = React.memo(() => {
               </div>
             </div>
             <div className="relative">
-              <div className="bg-zinc-800 border border-zinc-700 rounded-3xl shadow-xl p-6 font-mono text-sm">
+              <div className="bg-[#0d0d0d] border border-white/5 rounded-3xl shadow-xl p-6 font-mono text-sm">
                 <div className="flex items-center justify-between mb-4 text-zinc-400">
                   <span className="font-mono">📁 my-dsa-journey</span>
                   <GitHubIcon className="w-5 h-5 text-white" />

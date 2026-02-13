@@ -43,6 +43,7 @@ import {
 import { useTheme } from "../contexts/ThemeContext";
 import { cn } from "../lib/utils";
 import { useAuth } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
 import {
   createSubscription,
   openRazorpayCheckout,
@@ -223,6 +224,7 @@ const Pricing: React.FC = React.memo(() => {
   const gitHubStats = useGitHubStats();
   const { isDark } = useTheme();
   const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   const [isSubscribing, setIsSubscribing] = useState(false);
 
   const freeFeatures = [
@@ -249,7 +251,7 @@ const Pricing: React.FC = React.memo(() => {
 
   const handleGetAccessClick = () => {
     analytics.trackFeatureClick("get_free_access");
-    // Add your action here
+    navigate('/downloads');
   };
 
   const handleSubscribeClick = async () => {
@@ -392,17 +394,17 @@ const Pricing: React.FC = React.memo(() => {
         {/* Pricing Cards */}
         <div
           id="pricing-plans"
-          className="grid grid-cols-1 lg:grid-cols-2 gap-6 container-medium mx-auto mb-16"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 container mx-auto mb-16"
         >
           {/* Free Plan */}
           <BlurFade delay={0.5}>
-            <div className="relative rounded-3xl overflow-hidden border border-border bg-card/50 backdrop-blur-sm h-full flex flex-col">
+            <div className="relative rounded-3xl overflow-hidden border border-white/5 bg-[#0d0d0d] h-full flex flex-col">
               {/* Free Plan Content */}
               <div className="p-6 flex flex-col h-full">
-                <h3 className="text-xl font-bold text-foreground mb-2">Free</h3>
+                <h3 className="text-xl font-bold text-foreground mb-2 text-white">Free</h3>
                 <div className="mb-6">
                   <span
-                    className="text-5xl font-bold text-foreground"
+                    className="text-5xl font-bold text-white"
                     style={{ fontFamily: "'Stinger', sans-serif" }}
                   >
                     ₹0
@@ -528,7 +530,7 @@ const Pricing: React.FC = React.memo(() => {
         </div>
 
         {/* FAQ Section */}
-        <div className="bg-zinc-900 border border-gray-800 rounded-3xl p-8 md:p-12 mb-16 container-medium mx-auto relative">
+        <div className="bg-[#0d0d0d] border border-white/5 rounded-3xl p-8 md:p-12 mb-16 mx-auto relative">
           <div className="text-center mb-12">
             {/* Handwritten annotation - We even answered without chatgpt! */}
             <div className="relative mb-2 ml-4 md:ml-16 text-left" aria-hidden>

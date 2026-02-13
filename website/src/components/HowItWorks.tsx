@@ -584,7 +584,7 @@ const HowItWorks: React.FC = React.memo(() => {
 
             {/* Title Overlay */}
             <div className="absolute inset-0 flex items-center justify-center z-10">
-              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold">
+              <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold text-center md:text-left">
                 <VisibleChromaText id="tools-connected" delay={0.3} duration={1.5}>
                   All Your Tools Connected
                 </VisibleChromaText>
