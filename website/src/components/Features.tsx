@@ -96,6 +96,37 @@ const VisibleChromaText: React.FC<{
     </span>
   );
 };
+
+// Screenshot with play button overlay linking to YouTube
+const ScrollPlayVideo: React.FC<{
+  videoId: string;
+  poster?: string;
+  className?: string;
+}> = ({ videoId, poster = "/screenshot.png", className = "" }) => {
+  const handlePlayClick = () => {
+    window.open(`https://www.youtube.com/watch?v=${videoId}`, "_blank");
+  };
+
+  return (
+    <div className={`${className} relative flex items-center justify-center bg-black group cursor-pointer`} onClick={handlePlayClick}>
+      <img src={poster} alt="LeetFeedback Screenshot" className="w-full h-full object-cover" />
+      <button
+        className="absolute flex items-center justify-center w-20 h-20 md:w-28 md:h-28 bg-red-600 rounded-full hover:bg-red-700 transition-all duration-200 hover:scale-110 shadow-2xl"
+        onClick={handlePlayClick}
+        aria-label="Play video on YouTube"
+      >
+        <svg
+          className="w-8 h-8 md:w-12 md:h-12 text-white ml-1"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <polygon points="5 3 19 12 5 21 5 3" />
+        </svg>
+      </button>
+    </div>
+  );
+};
+
 const Features: React.FC = React.memo(() => {
   const { isDark } = useTheme();
   const [userCount, setUserCount] = useState<number>(23); // Default fallback
@@ -295,11 +326,7 @@ const Features: React.FC = React.memo(() => {
             </div>
           }
         >
-          <img
-            src="/screenshot.png"
-            alt="LeetFeedback Screenshot"
-            className="w-full h-full object-contain"
-          />
+          <ScrollPlayVideo videoId="zHgaHDe7QTM" poster="/screenshot.png" className="w-full h-full" />
         </ContainerScroll>
       </div>
 
@@ -323,7 +350,7 @@ const Features: React.FC = React.memo(() => {
                 style={{ fontFamily: "'Dancing Script', cursive" }}
               >
                 Fits in your pocket!
-              </span>
+              </span> 
               <SquigglyArrow
                 width={50}
                 height={35}
