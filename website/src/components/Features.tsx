@@ -502,7 +502,7 @@ const Features: React.FC = React.memo(() => {
                   { src: "/ios2.webp", alt: "Dashboard" },
                   { src: "/ios3.webp", alt: "Revisions" },
                   { src: "/ios4.webp", alt: "Friends" },
-                  { src: "/ios5.webp", alt: "Solves" },
+                  { src: "/ios5.webp", alt: "Solvesq" },
                   { src: "/ios6.webp", alt: "Settings" },
                 ].map((screenshot, index) => (
                   <div
@@ -545,14 +545,15 @@ const Features: React.FC = React.memo(() => {
                 />
               </div>
             </BlurFade>
-            <div className="relative inline-block">
-              {/* Radial Marquee Circle Decoration — visible on mobile and larger */}
+            <div className="relative inline-block overflow-hidden">
+              {/* Radial Marquee Circle Decoration — visible on mobile and larger (clipped to prevent overflow) */}
               <img
                 src={marqueeCircleDeco}
                 alt="Circle decoration"
                 className="absolute inset-0 w-full h-full dark:invert-0 invert block"
                 style={{
                   transform: "scale(2.6)",
+                  transformOrigin: 'center center',
                   pointerEvents: "none",
                   opacity: 0.55,
                 }}
