@@ -22,9 +22,10 @@ const ContactBar: React.FC<ContactBarProps> = ({ visible = true, onToggle }) => 
       role="region"
       aria-label="Contact support bar"
     >
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex items-center justify-center gap-2 md:gap-4">
         {/* Center text */}
-        <span className="text-xs md:text-sm text-muted-foreground whitespace-nowrap">bugs? help? feature request?</span>
+        <span className="text-xs md:text-sm text-muted-foreground whitespace-nowrap hidden sm:inline">bugs? help? feature request?</span>
+        <span className="text-xs text-muted-foreground whitespace-nowrap sm:hidden">Need help?</span>
 
         {/* Desktop buttons */}
         <div className="hidden md:flex items-center gap-2">
@@ -49,26 +50,24 @@ const ContactBar: React.FC<ContactBarProps> = ({ visible = true, onToggle }) => 
           </a>
         </div>
 
-        {/* Mobile buttons */}
-        <div className="md:hidden flex items-center gap-2">
+        {/* Mobile buttons - icon only */}
+        <div className="md:hidden flex items-center gap-1.5">
           <a
             href="https://t.me/traversesupport"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 hover:bg-white/10 transition-colors duration-200 text-xs"
+            className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 transition-colors duration-200"
             aria-label="Contact on Telegram"
           >
-            <TelegramIcon className="w-4 h-4 text-white/80" />
-            <span className="text-blue-300">Telegram</span>
+            <TelegramIcon className="w-4 h-4 text-blue-300" />
           </a>
 
           <a
             href="mailto:diljotsingh7@gmail.com"
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 hover:bg-white/10 transition-colors duration-200 text-xs"
+            className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 transition-colors duration-200"
             aria-label="Contact via email"
           >
-            <MailIcon className="w-4 h-4 text-white/80" />
-            <span className="text-blue-300">Mail</span>
+            <MailIcon className="w-4 h-4 text-blue-300" />
           </a>
         </div>
 
