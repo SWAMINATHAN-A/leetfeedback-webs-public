@@ -23,6 +23,7 @@ import { NavigationIsland } from "./components/NavigationIsland";
 import { ThemeSwitchIsland } from "./components/ThemeSwitchIsland";
 import { motion, AnimatePresence } from "motion/react";
 import Header from "./components/Header";
+import ContactBar from "./components/ContactBar";
 import ScrollToTop from "./components/ScrollToTop";
 import { smoothScrollTo } from "./utils/smoothScroll";
 import "./App.css";
@@ -71,20 +72,41 @@ function AppContent() {
 
   const [showDynamicIsland, setShowDynamicIsland] = useState(false);
   const [showDock, setShowDock] = useState(false);
+  const [contactBarVisible, setContactBarVisible] = useState(true);
   const [showProgressiveBlur, setShowProgressiveBlur] = useState(false);
+  const [manualOverride, setManualOverride] = useState(false); // Track manual toggle
 
-  // Show dock and progressive blur immediately on mount
+  // Show progressive blur after mount
   useEffect(() => {
     const timer = setTimeout(() => {
-      setShowDock(true);
       setShowProgressiveBlur(true);
     }, 300);
     return () => clearTimeout(timer);
   }, []);
 
+  // When contact bar is manually toggled, manage dock visibility
+  useEffect(() => {
+    if (contactBarVisible) {
+      setShowDock(false);
+    } else {
+      // Always show dock when contact bar is hidden (regardless of scroll position)
+      setShowDock(true);
+    }
+  }, [contactBarVisible]);
+
   const handleSignInComplete = useCallback(() => {
     closeSignInIsland();
   }, [closeSignInIsland]);
+
+  const handleManualToggle = useCallback(() => {
+    setManualOverride(true);
+    setContactBarVisible(!contactBarVisible);
+    
+    // Reset manual override after 5 seconds to re-enable scroll-based behavior
+    setTimeout(() => {
+      setManualOverride(false);
+    }, 5000);
+  }, [contactBarVisible]);
 
   const handleNavigationComplete = useCallback(() => {
     if (navigationTarget) {
@@ -95,29 +117,49 @@ function AppContent() {
     }
   }, [navigationTarget, navigate, completeNavigation]);
 
-  // Hide dock when scrolling near footer
+  // Handle scroll-based ContactBar to Dock transition
   useEffect(() => {
     const handleScroll = () => {
-      const scrollPosition = window.scrollY + window.innerHeight;
-      const documentHeight = document.body.scrollHeight;
-      const threshold = 200; // Hide dock when within 200px of bottom
+      // Skip scroll-based transitions if user manually toggled
+      if (manualOverride) return;
 
-      if (scrollPosition >= documentHeight - threshold) {
+      const scrollPosition = window.scrollY;
+      const scrollThreshold = 300; // Scroll threshold to trigger transition
+      const documentHeight = document.body.scrollHeight;
+      const viewportBottom = scrollPosition + window.innerHeight;
+      const footerThreshold = 200; // Hide dock when within 200px of bottom
+
+      // Auto-hide ContactBar and show Dock after scrolling down
+      if (scrollPosition > scrollThreshold) {
+        if (contactBarVisible) {
+          setContactBarVisible(false);
+          setShowDock(true);
+        }
+      } else {
+        // Show ContactBar and hide Dock when scrolling back to top
+        if (!contactBarVisible) {
+          setContactBarVisible(true);
+          setShowDock(false);
+        }
+      }
+
+      // Hide dock when scrolling near footer
+      if (viewportBottom >= documentHeight - footerThreshold) {
         setShowDock(false);
       } else if (
         showDock === false &&
-        scrollPosition < documentHeight - threshold - 100 &&
+        scrollPosition > scrollThreshold &&
+        viewportBottom < documentHeight - footerThreshold - 100 &&
         !showDynamicIsland
       ) {
-        // Show dock again when scrolling up, with some hysteresis
-        // Only if dynamic island is not shown
+        // Show dock again when scrolling up from footer, but only if past threshold
         setShowDock(true);
       }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [showDock, showDynamicIsland]);
+  }, [showDock, showDynamicIsland, contactBarVisible, manualOverride]);
 
   return (
     <div className="App min-h-screen relative">
@@ -147,11 +189,20 @@ function AppContent() {
         {isHomePage && <ScrollbarNav />}
       </div>
 
+      {/* ContactBar - Fixed to viewport, outside of relative containers */}
+      {location.pathname !== "/login" && (
+        <ContactBar
+          visible={contactBarVisible}
+          onToggle={handleManualToggle}
+        />
+      )}
+
       {/* Progressive Blur - shows after dynamic island completes */}
       <AnimatePresence>
         {showProgressiveBlur &&
           !isNavigating &&
           !isThemeSwitching &&
+          !contactBarVisible &&
           (isHomePage || isRoadmapPage || isBlogPage || isPolicyPage || isProfilePage) && (
             <motion.div
               initial={{ opacity: 0 }}
@@ -231,7 +282,7 @@ function AppContent() {
         !isSignInIslandOpen &&
         showDock &&
         (isHomePage || isRoadmapPage || isDownloadsPage || isCareersPage || isGuidePage || isProblemsPage || isBlogPage || isPolicyPage || isProfilePage) && (
-          <DockDemo />
+          <DockDemo onToggleContact={handleManualToggle} />
         )}
     </div>
   );

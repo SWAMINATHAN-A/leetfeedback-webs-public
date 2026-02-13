@@ -19,6 +19,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import RoadmapIcon from "@mui/icons-material/Map";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import ArticleIcon from "@mui/icons-material/Article";
+import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 
 export type IconProps = React.HTMLAttributes<SVGElement>;
 
@@ -31,7 +32,7 @@ const DATA = {
   ],
 };
 
-export const DockDemo = React.memo(function DockDemo() {
+export const DockDemo = React.memo(function DockDemo({ onToggleContact }: { onToggleContact?: () => void }) {
   const { user, isAuthenticated } = useAuth();
   const { startNavigation, isNavigating } = useNavigation();
   const location = useLocation();
@@ -141,26 +142,52 @@ export const DockDemo = React.memo(function DockDemo() {
               <AnimatedThemeToggler />
             </div>
           </DockIcon>
+          <DockIcon>
+            <button
+              onClick={() => onToggleContact?.()}
+              aria-label="Toggle contact support"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/20 dark:hover:bg-black/20"
+              )}
+            >
+              <SwapHorizIcon className="w-6 h-6 md:w-7 md:h-7 text-foreground" />
+            </button>
+          </DockIcon>
         </>
       );
     }
 
     if (isHomePage) {
-      // Desktop Home page: Show theme switch only
+      // Desktop Home page: Show theme switch and contact toggle
       return (
-        <DockIcon>
-          <div
-            className={cn(
-              buttonVariants({ variant: "ghost", size: "icon" }),
-              "hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
-            )}
-          >
-            <AnimatedThemeToggler />
-          </div>
-        </DockIcon>
+        <>
+          <DockIcon>
+            <div
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "hover:bg-white/20 dark:hover:bg-black/20 flex items-center justify-center"
+              )}
+            >
+              <AnimatedThemeToggler />
+            </div>
+          </DockIcon>
+          <DockIcon>
+            <button
+              onClick={() => onToggleContact?.()}
+              aria-label="Toggle contact support"
+              className={cn(
+                buttonVariants({ variant: "ghost", size: "icon" }),
+                "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
+              )}
+            >
+              <SwapHorizIcon className="md:size-6 size-5 text-foreground" />
+            </button>
+          </DockIcon>
+        </>
       );
     } else if (isRoadmapPage) {
-      // Desktop Roadmap page: Show home link + theme switch (no profile icon)
+      // Desktop Roadmap page: Show home link + theme switch (no swap)
       return (
         <>
           <DockIcon>
@@ -188,7 +215,7 @@ export const DockDemo = React.memo(function DockDemo() {
         </>
       );
     } else if (isProfilePage) {
-      // Desktop Profile page: Show home link + theme switch
+      // Desktop Profile page: Show home link + theme switch (no swap)
       return (
         <>
           <DockIcon>
@@ -216,7 +243,7 @@ export const DockDemo = React.memo(function DockDemo() {
         </>
       );
     } else if (isDownloadsPage || isProblemsPage || isGuidePage || isBlogPage) {
-      // Desktop Downloads/Problems/Guide/Blog pages: Show home link + theme switch
+      // Desktop Downloads/Problems/Guide/Blog pages: Show home link + theme switch (no swap)
       return (
         <>
           <DockIcon>
@@ -245,7 +272,7 @@ export const DockDemo = React.memo(function DockDemo() {
       );
     }
 
-    // Default fallback: show home + theme switch
+    // Default fallback: show home + theme switch (no swap)
     return (
       <>
         <DockIcon>
@@ -269,6 +296,18 @@ export const DockDemo = React.memo(function DockDemo() {
           >
             <AnimatedThemeToggler />
           </div>
+        </DockIcon>
+        <DockIcon>
+          <button
+            onClick={() => onToggleContact?.()}
+            aria-label="Toggle contact support"
+            className={cn(
+              buttonVariants({ variant: "ghost", size: "icon" }),
+              "w-full h-full hover:bg-white/10 dark:hover:bg-black/10"
+            )}
+          >
+            <SwapHorizIcon className="md:size-6 size-5 text-foreground" />
+          </button>
         </DockIcon>
       </>
     );

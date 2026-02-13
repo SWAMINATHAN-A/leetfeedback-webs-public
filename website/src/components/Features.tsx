@@ -554,6 +554,26 @@ const Features: React.FC = React.memo(() => {
               <p className="text-xs text-muted-foreground/60 text-center mt-1">
                 ← Swipe to explore →
               </p>
+
+              {/* YouTube Demo Button for Mobile */}
+              <div className="flex justify-center mt-6">
+                <a
+                  href="https://www.youtube.com/watch?v=zHgaHDe7QTM"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-full transition-all duration-200 font-medium text-sm group"
+                  aria-label="Watch YouTube demo video"
+                >
+                  <svg
+                    className="w-5 h-5 group-hover:scale-110 transition-transform"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <polygon points="5 3 19 12 5 21 5 3" />
+                  </svg>
+                  <span>Watch demo on YouTube</span>
+                </a>
+              </div>
             </div>
           </BlurFade>
 
