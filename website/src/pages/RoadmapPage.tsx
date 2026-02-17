@@ -455,7 +455,7 @@ const RoadmapPage: React.FC = () => {
                         onClick={() => {
                           analytics.trackFeatureClick("contribute_github");
                           window.open(
-                            "https://github.com/lqSky7/leetFeedback-extension",
+                            "https://chromewebstore.google.com/detail/traverse/nnapafjmoelkehjedfgjchoeelgbiama",
                             "_blank",
                           );
                         }}

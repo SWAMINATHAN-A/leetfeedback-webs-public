@@ -75,7 +75,7 @@ const DownloadsPage: React.FC = () => {
         {
             title: "Chrome Extension",
             description: "Track your coding practice on LeetCode, GeeksforGeeks, HackerRank, and more. Get AI-powered feedback and insights.",
-            href: "https://github.com/lqSky7/leetFeedback-extension",
+            href: "https://chromewebstore.google.com/detail/traverse/nnapafjmoelkehjedfgjchoeelgbiama",
             badge: "Free",
         },
         {

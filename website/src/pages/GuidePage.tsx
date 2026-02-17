@@ -226,7 +226,7 @@ const GuidePage: React.FC = () => {
                 "Click 'Load unpacked' and select the unzipped folder",
                 "The Traverse extension icon will appear in your toolbar"
             ],
-            href: "https://github.com/lqSky7/leetFeedback-extension",
+            href: "https://chromewebstore.google.com/detail/traverse/nnapafjmoelkehjedfgjchoeelgbiama",
             linkText: "Get Chrome Extension",
             icon: ExtensionIcon,
         },
