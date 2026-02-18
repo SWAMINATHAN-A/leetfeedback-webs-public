@@ -42,11 +42,11 @@ const ProblemsChromaStyles = () => (
         90deg,
         hsl(var(--foreground)) 0px,
         hsl(var(--foreground)) 33.33%,
-        rgb(100, 180, 255) 40%,
-        rgb(180, 100, 255) 45%,
-        rgb(100, 220, 180) 50%,
-        rgb(255, 180, 100) 55%,
-        rgb(180, 220, 255) 60%,
+        rgb(255, 182, 193) 40%,
+        rgb(240, 40, 50) 45%,
+        rgb(255, 190, 20) 50%,
+        rgb(235, 235, 255) 55%,
+        rgb(20, 90, 230) 60%,
         transparent 66.67%,
         transparent
       );

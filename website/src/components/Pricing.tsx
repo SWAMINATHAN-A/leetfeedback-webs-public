@@ -314,7 +314,7 @@ const Pricing: React.FC = React.memo(() => {
             {/* Handwritten annotation - Everything is almost free! */}
             <div className="absolute -top-8 md:-top-12 right-2 md:-right-20 z-20" aria-hidden>
               <span
-                className="absolute -top-4 md:-top-6 right-0 text-amber-500/90 text-xs md:text-sm whitespace-nowrap"
+                className="absolute -top-4 md:-top-6 right-0 text-yellow-400/90 text-xs md:text-sm whitespace-nowrap"
                 style={{ fontFamily: "'Dancing Script', cursive" }}
               >
                 Everything is almost free!
@@ -325,7 +325,7 @@ const Pricing: React.FC = React.memo(() => {
                 strokeWidth={2.5}
                 direction="right"
                 variant="wavy"
-                className="text-amber-500/70 rotate-[135deg] md:w-[180px] md:h-[70px]"
+                className="text-yellow-400/70 rotate-[135deg] md:w-[180px] md:h-[70px]"
               />
             </div>
             {/* Reel Circle Decoration - Smaller/Inner - Hidden on mobile */}
@@ -525,7 +525,7 @@ const Pricing: React.FC = React.memo(() => {
             {/* Handwritten annotation - We even answered without chatgpt! */}
             <div className="relative mb-2 ml-4 md:ml-16 text-left" aria-hidden>
               <span
-                className="text-emerald-400/80 text-xs md:text-sm whitespace-nowrap block"
+                className="text-blue-400/80 text-xs md:text-sm whitespace-nowrap block"
                 style={{ fontFamily: "'Dancing Script', cursive" }}
               >
                 We even answered without chatgpt!
@@ -536,7 +536,7 @@ const Pricing: React.FC = React.memo(() => {
                 strokeWidth={2.5}
                 direction="right"
                 variant="smooth"
-                className="text-emerald-400/60 ml-4 md:ml-16 mt-1 rotate-45 md:w-[70px] md:h-[50px]"
+                className="text-blue-400/60 ml-4 md:ml-16 mt-1 rotate-45 md:w-[70px] md:h-[50px]"
               />
             </div>
             <div className="relative inline-block">

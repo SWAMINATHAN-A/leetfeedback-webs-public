@@ -346,7 +346,7 @@ const Features: React.FC = React.memo(() => {
             {/* Handwritten annotation - Fits in your pocket! */}
             <div className="relative mb-2 ml-4 md:ml-32 text-left" aria-hidden>
               <span
-                className="text-amber-500/80 text-xs md:text-sm whitespace-nowrap block"
+                className="text-yellow-400/80 text-xs md:text-sm whitespace-nowrap block"
                 style={{ fontFamily: "'Dancing Script', cursive" }}
               >
                 Fits in your pocket!
@@ -357,7 +357,7 @@ const Features: React.FC = React.memo(() => {
                 strokeWidth={2.5}
                 direction="right"
                 variant="smooth"
-                className="text-amber-500/60 ml-4 md:ml-8 mt-1 rotate-45 md:w-[70px] md:h-[50px]"
+                className="text-yellow-400/60 ml-4 md:ml-8 mt-1 rotate-45 md:w-[70px] md:h-[50px]"
               />
             </div>
             <div className="relative inline-block">
@@ -483,7 +483,7 @@ const Features: React.FC = React.memo(() => {
             {/* Handwritten annotation - Fits in your pocket! */}
             <div className="relative mb-2 ml-4 text-left" aria-hidden>
               <span
-                className="text-amber-500/80 text-xs whitespace-nowrap block"
+                className="text-yellow-400/80 text-xs whitespace-nowrap block"
                 style={{ fontFamily: "'Dancing Script', cursive" }}
               >
                 Fits in your pocket!
@@ -494,7 +494,7 @@ const Features: React.FC = React.memo(() => {
                 strokeWidth={2.5}
                 direction="right"
                 variant="smooth"
-                className="text-amber-500/60 ml-4 mt-1 rotate-45"
+                className="text-yellow-400/60 ml-4 mt-1 rotate-45"
               />
             </div>
             <TextAnimate
@@ -798,7 +798,7 @@ const Features: React.FC = React.memo(() => {
                   {/* AI Analysis Section */}
                   <div className="p-4 space-y-4">
                     <div className="flex items-center gap-2">
-                      <Activity className="size-4 text-pink-600 dark:text-pink-400" />
+                      <Activity className="size-4 text-red-400 dark:text-red-400" />
                       <h4 className="font-bold text-white" style={{ fontFamily: "'Britanica', sans-serif" }}>AI Analysis</h4>
                     </div>
 

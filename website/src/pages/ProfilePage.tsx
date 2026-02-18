@@ -65,10 +65,10 @@ const ProfileChromaStyles = () => (
         hsl(var(--foreground)) 0px,
         hsl(var(--foreground)) 33.33%,
         rgb(255, 182, 193) 40%,
-        rgb(255, 218, 185) 45%,
-        rgb(230, 230, 250) 50%,
-        rgb(255, 240, 245) 55%,
-        rgb(240, 248, 255) 60%,
+        rgb(240, 40, 50) 45%,
+        rgb(255, 190, 20) 50%,
+        rgb(235, 235, 255) 55%,
+        rgb(20, 90, 230) 60%,
         transparent 66.67%,
         transparent
       );

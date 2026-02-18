@@ -262,7 +262,7 @@ const HowItWorks: React.FC = React.memo(() => {
       ],
       doodlePath: doodlePaths.install,
       revealPattern: "circleBottomLeft" as RevealPattern,
-      doodleColor: "rgba(96, 165, 250, 0.25)", // blue
+      doodleColor: "rgba(255, 182, 193, 0.25)", // Baby Pink
     },
     {
       step: "02",
@@ -278,7 +278,7 @@ const HowItWorks: React.FC = React.memo(() => {
       ],
       doodlePath: doodlePaths.code,
       revealPattern: "circleTopRight" as RevealPattern,
-      doodleColor: "rgba(192, 132, 252, 0.25)", // purple
+      doodleColor: "rgba(240, 40, 50, 0.25)", // Crimson Red
     },
     {
       step: "03",
@@ -294,7 +294,7 @@ const HowItWorks: React.FC = React.memo(() => {
       ],
       doodlePath: doodlePaths.export,
       revealPattern: "horizontalWipe" as RevealPattern,
-      doodleColor: "rgba(74, 222, 128, 0.25)", // green
+      doodleColor: "rgba(255, 190, 20, 0.25)", // Amber Gold
     },
     {
       step: "04",
@@ -310,7 +310,7 @@ const HowItWorks: React.FC = React.memo(() => {
       ],
       doodlePath: doodlePaths.track,
       revealPattern: "diagonalReveal" as RevealPattern,
-      doodleColor: "rgba(251, 146, 60, 0.25)", // orange
+      doodleColor: "rgba(20, 90, 230, 0.25)", // Cobalt Blue
     },
   ];
 
@@ -379,7 +379,7 @@ const HowItWorks: React.FC = React.memo(() => {
           {/* Handwritten annotation - Magic happens here! */}
           <div className="relative mb-2 ml-4 md:ml-32 text-left" aria-hidden>
             <span
-              className="text-cyan-400/80 text-xs md:text-sm whitespace-nowrap block"
+              className="text-blue-400/80 text-xs md:text-sm whitespace-nowrap block"
               style={{ fontFamily: "'Dancing Script', cursive" }}
             >
               Magic happens here!
@@ -390,7 +390,7 @@ const HowItWorks: React.FC = React.memo(() => {
               strokeWidth={2.5}
               direction="right"
               variant="smooth"
-              className="text-cyan-400/60 ml-4 md:ml-8 mt-1 rotate-45 md:w-[70px] md:h-[50px]"
+              className="text-blue-400/60 ml-4 md:ml-8 mt-1 rotate-45 md:w-[70px] md:h-[50px]"
             />
           </div>
           <div className="relative inline-block">

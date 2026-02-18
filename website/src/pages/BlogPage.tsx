@@ -36,10 +36,10 @@ const BlogChromaStyles = () => (
         hsl(var(--foreground)) 0px,
         hsl(var(--foreground)) 33.33%,
         rgb(255, 182, 193) 40%,
-        rgb(255, 218, 185) 45%,
-        rgb(176, 224, 230) 50%,
-        rgb(221, 160, 221) 55%,
-        rgb(255, 228, 196) 60%,
+        rgb(240, 40, 50) 45%,
+        rgb(255, 190, 20) 50%,
+        rgb(235, 235, 255) 55%,
+        rgb(20, 90, 230) 60%,
         transparent 66.67%,
         transparent
       );
@@ -51,11 +51,11 @@ const BlogChromaStyles = () => (
         90deg,
         hsl(var(--foreground)) 0px,
         hsl(var(--foreground)) 33.33%,
-        rgb(176, 224, 230) 40%,
-        rgb(221, 160, 221) 45%,
-        rgb(255, 218, 185) 50%,
-        rgb(255, 228, 196) 55%,
-        rgb(255, 182, 193) 60%,
+        rgb(255, 182, 193) 40%,
+        rgb(240, 40, 50) 45%,
+        rgb(255, 190, 20) 50%,
+        rgb(235, 235, 255) 55%,
+        rgb(20, 90, 230) 60%,
         transparent 66.67%,
         transparent
       );
