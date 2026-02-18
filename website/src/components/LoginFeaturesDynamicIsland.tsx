@@ -32,15 +32,15 @@ import { motion } from "motion/react";
 
 // Constants
 const COLORS = {
-  systemBlue: "#007AFF",
+  systemBlue: "rgb(20, 90, 230)",      // Cobalt Blue
   systemGreen: "#34C759",
-  systemIndigo: "#5856D6",
-  systemOrange: "#FF9500",
-  systemPink: "#FF2D55",
-  systemPurple: "#AF52DE",
-  systemRed: "#FF3B30",
-  systemTeal: "#5AC8FA",
-  systemYellow: "#FFCC00",
+  systemIndigo: "rgb(235, 235, 255)",  // Ice White Highlight
+  systemOrange: "rgb(255, 190, 20)",   // Amber Gold
+  systemPink: "rgb(255, 182, 193)",    // Baby Pink
+  systemPurple: "rgb(240, 40, 50)",    // Crimson Red
+  systemRed: "rgb(240, 40, 50)",       // Crimson Red
+  systemTeal: "rgb(20, 90, 230)",      // Cobalt Blue
+  systemYellow: "rgb(255, 190, 20)",   // Amber Gold
   white: "#FFFFFF",
   gray: "#8E8E93",
 } as const;

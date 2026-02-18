@@ -62,7 +62,7 @@ const SignInDynamicIslandContent = ({
     <DynamicContainer className="flex items-center justify-center h-full w-full">
       <div className="relative flex w-full items-center justify-center gap-4 px-4">
         <BlurFade delay={0.1} inView>
-          <Loader className="animate-spin h-12 w-12 text-[#fcba70]" />
+          <Loader className="animate-spin h-12 w-12 text-yellow-400" />
         </BlurFade>
         <BlurFade delay={0.2} inView>
           <DynamicTitle className="my-auto text-3xl font-black tracking-tighter text-white">
@@ -94,7 +94,8 @@ const SignInDynamicIslandContent = ({
         <BlurFade delay={0.2} className="flex-1">
           <Button
             onClick={handleSignIn}
-            className="w-full bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 text-white font-semibold rounded-3xl"
+            className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold rounded-3xl"
+            style={{ backgroundColor: 'rgb(240, 40, 50)' }}
           >
             <LogIn className="h-4 w-4 mr-2" />
             Sign In

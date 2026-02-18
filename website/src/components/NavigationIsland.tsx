@@ -48,7 +48,7 @@ const NavigationIslandContent = ({
     <DynamicContainer className="flex items-center justify-center h-full w-full">
       <div className="relative flex w-full items-center justify-center gap-3 px-4">
         <BlurFade delay={0.1} inView>
-          <ArrowRight className="h-8 w-8 text-[#fcba70]" />
+          <ArrowRight className="h-8 w-8 text-yellow-400" />
         </BlurFade>
         <BlurFade delay={0.15} inView>
           <DynamicTitle className="my-auto text-lg font-bold tracking-tight text-white">
