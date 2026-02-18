@@ -444,21 +444,11 @@ const Pricing: React.FC = React.memo(() => {
           {/* Premium Plan */}
           <BlurFade delay={0.7}>
             <div className="relative rounded-3xl overflow-hidden border border-border h-full flex flex-col">
-              {/* Video Background */}
-              <div className="absolute inset-0 z-0">
-                <video
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  className="w-full h-full object-cover"
-                >
-                  <source
-                    src="https://cdn.skiper-ui.com/loopbg.mp4"
-                    type="video/mp4"
-                  />
-                </video>
-              </div>
+              {/* SVG Background */}
+              <div 
+                className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+                style={{ backgroundImage: "url('/premium-bg.svg')" }}
+              />
 
               {/* Premium Plan Content */}
               <div className="relative z-10 p-6 flex flex-col h-full">
