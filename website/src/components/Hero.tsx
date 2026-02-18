@@ -108,7 +108,7 @@ const Hero: React.FC = React.memo(() => {
 
         <div className="container">
           <div className="grid lg:grid-cols-2 gap-12 items-start overflow-visible">
-            <div className="text-left sm:mx-0 lg:mr-auto lg:mt-0 overflow-hidden">
+            <div className="text-left sm:mx-0 lg:mr-auto lg:mt-0 overflow-visible">
 
               {/* Main Headline with TextEffect */}
               <h1 className="mt-4 md:mt-8 lg:mt-12 text-5xl md:text-7xl leading-tight">
