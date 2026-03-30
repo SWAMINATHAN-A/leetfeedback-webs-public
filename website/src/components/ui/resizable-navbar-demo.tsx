@@ -11,7 +11,7 @@ import {
   MobileNavExpandableContent,
   MobileNavToggle,
 } from "@/components/ui/resizable-navbar";
-import { AnimatedClipButton } from "@/components/ui/animated-clip-button";
+import ChromaButton from "@/components/chromaButton";
 import { MotionValue } from "framer-motion";
 import { useState, useEffect } from "react";
 import { useAuth } from "../../contexts/AuthContext";
@@ -89,21 +89,26 @@ const FlushSignInButton = ({ isAuthenticated, isLoading, onClick, visible }: Flu
         transition: "margin 300ms ease-out",
       }}
     >
-      <AnimatedClipButton
-        text={isLoading ? "Loading..." : "Sign In"}
-        variant="default"
-        size="default"
+      <ChromaButton
         onClick={onClick}
         disabled={isLoading}
+        size="md"
         className={
           isFlush
-            ? "bg-white text-black hover:bg-gray-100 dark:bg-white dark:text-black dark:hover:bg-gray-100 !rounded-l-none !rounded-r-[2rem] h-full border-0 font-normal text-sm"
-            : "bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200"
+            ? "h-full"
+            : ""
         }
+        background="#000000"
+        color="#ffffff"
         style={{
           transition: "background-color 300ms ease-out, border-radius 300ms ease-out",
+          padding: isFlush ? "0 22px" : undefined,
+          height: isFlush ? "100%" : undefined,
+          borderRadius: isFlush ? "0 2rem 2rem 0" : undefined,
         }}
-      />
+      >
+        {isLoading ? "Loading..." : "Sign In"}
+      </ChromaButton>
     </div>
   );
 };
@@ -188,17 +193,19 @@ export function ResizableNavbarDemo() {
                 <SimpleUserMenu />
               ) : (
                 <>
-                  <AnimatedClipButton
-                    text={isLoading ? "Loading..." : "Try Traverse Free"}
-                    variant="default"
-                    size="default"
+                  <ChromaButton
                     onClick={() => {
                       setIsMobileMenuOpen(false);
                       handleSignInClick();
                     }}
                     disabled={isLoading}
-                    className="w-full bg-black text-white hover:bg-gray-800 dark:bg-white dark:text-black dark:hover:bg-gray-200 py-4 text-base font-semibold"
-                  />
+                    className="w-full py-4 text-base font-semibold"
+                    background="#000000"
+                    color="#ffffff"
+                    size="md"
+                  >
+                    {isLoading ? "Loading..." : "Try Traverse Free"}
+                  </ChromaButton>
                   <button
                     onClick={() => {
                       setIsMobileMenuOpen(false);

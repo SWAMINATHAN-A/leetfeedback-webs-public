@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { ChromaText } from "./ui/textRenderAppear";
 import { motion } from "motion/react";
 import SquigglyArrow from "./ui/squiggle-arrow";
+import ChromaButton from "./chromaButton";
 import { Button } from "./ui/button";
 import { AnimatedClipButton } from "./ui/animated-clip-button";
 import { Card } from "./ui/card";
@@ -410,6 +411,7 @@ const Pricing: React.FC = React.memo(() => {
                     ₹0
                   </span>
                 </div>
+                <div className="mb-6 border-t border-white/10" />
 
                 {/* Features List */}
                 <div className="space-y-2.5 mb-6 flex-grow">
@@ -430,13 +432,15 @@ const Pricing: React.FC = React.memo(() => {
                 </div>
 
                 {/* CTA Button */}
-                <AnimatedClipButton
-                  text="Get Instant Access"
-                  variant="default"
+                <ChromaButton
                   size="lg"
-                  className="w-full py-5 text-base font-semibold rounded-full mt-auto"
+                  className="w-full mt-auto"
                   onClick={handleGetAccessClick}
-                />
+                  background="#101010"
+                  color="#ffffff"
+                >
+                  Get Instant Access
+                </ChromaButton>
               </div>
             </div>
           </BlurFade>
@@ -480,6 +484,7 @@ const Pricing: React.FC = React.memo(() => {
                     </VisibleChromaText>
                   </span>
                 </div>
+                <div className="mb-6 border-t border-white/20" />
 
                 {/* Features List */}
                 <div className="space-y-2.5 mb-6 flex-grow">
@@ -506,14 +511,23 @@ const Pricing: React.FC = React.memo(() => {
                 </div>
 
                 {/* CTA Button */}
-                <AnimatedClipButton
-                  text={isSubscribing ? "Processing..." : "Subscribe Now"}
-                  variant="white"
+                <ChromaButton
                   size="lg"
-                  className="w-full py-5 text-base font-semibold rounded-full mt-auto"
+                  className="w-full mt-auto"
                   onClick={handleSubscribeClick}
                   disabled={isSubscribing}
-                />
+                  background="#ffffff"
+                  color="#111111"
+                  waveColors={{
+                    blue: "rgb(0, 102, 255)",
+                    white: "rgb(255, 255, 255)",
+                    yellow: "rgb(255, 220, 0)",
+                    red: "rgb(255, 32, 48)",
+                    pink: "rgb(255, 120, 190)",
+                  }}
+                >
+                  {isSubscribing ? "Processing..." : "Subscribe Now"}
+                </ChromaButton>
               </div>
             </div>
           </BlurFade>

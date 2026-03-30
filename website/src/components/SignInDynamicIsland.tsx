@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LogIn, Loader } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ChromaButton from "@/components/chromaButton";
 import { BlurFade } from "@/components/magicui/blur-fade";
 import {
   DynamicContainer,
@@ -92,14 +93,18 @@ const SignInDynamicIslandContent = ({
 
       <div className="flex flex-row gap-2 mb-2 px-2">
         <BlurFade delay={0.2} className="flex-1">
-          <Button
+          <ChromaButton
             onClick={handleSignIn}
-            className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold rounded-3xl"
-            style={{ backgroundColor: 'rgb(240, 40, 50)' }}
+            className="w-full rounded-3xl"
+            background="rgb(240, 40, 50)"
+            color="#ffffff"
+            size="md"
           >
-            <LogIn className="h-4 w-4 mr-2" />
-            Sign In
-          </Button>
+            <span className="inline-flex items-center justify-center gap-2">
+              <LogIn className="h-4 w-4" />
+              Sign In
+            </span>
+          </ChromaButton>
         </BlurFade>
         <BlurFade delay={0.25} className="flex-1">
           <Button
